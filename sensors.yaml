@@ -1,0 +1,609 @@
+  - platform: airvisual
+    api_key: !secret airvisual_key
+    monitored_conditions:
+      - us
+
+  - platform: darksky
+    api_key: !secret darksky_key
+    scan_interval:
+      minutes: 12
+    forecast:
+    - 0
+    monitored_conditions:
+    - temperature_high
+    - temperature_low
+    - apparent_temperature_high
+    - apparent_temperature_low
+    - summary
+    - icon
+    - nearest_storm_distance
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - temperature
+    - apparent_temperature
+    - dew_point
+    - wind_speed
+    - wind_bearing
+    - wind_gust
+    - cloud_cover
+    - humidity
+    - pressure
+    - visibility
+    - ozone
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: cp_packages_coming_today
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - ceskaposta@cpost.cz
+    - !secret wife_email
+    value_template: >-
+      {% if 'Informace o Vaší zásilce' in subject %}
+        delivery
+      {% elif 'reset state of package sensor' in subject %}
+        no_delivery
+      {% endif %}
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: dpd_packages_coming_today
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - NOREPLY@dpd.cz
+    - !secret wife_email
+    value_template: >-
+      {% if 'Dnes Vám' in subject %}
+        delivery
+      {% elif 'reset state of package sensor' in subject %}
+        no_delivery
+      {% endif %}
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: dhl_packages_coming_today
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - NoReply.ODD@dhl.com
+    - !secret wife_email
+    value_template: >-
+      {% if 'DHL On Demand Delivery' in subject %}
+        delivery
+      {% elif 'reset state of package sensor' in subject %}
+        no_delivery
+      {% endif %}
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: house_electricity
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - no-reply@smartconnect.apc.com
+    value_template: >-
+      {% if 'UPS On Battery' in subject %}
+        power_out
+      {% elif 'Power Restored' in subject %}
+        power_on
+      {% endif %}
+
+#  - platform: gtfs
+#    name: transport
+#    origin: U49N198
+#    destination: U484Z2
+#    data: jrdata
+
+  - platform: template
+    sensors:
+      bike_day:
+        friendly_name: "Bike Day"
+        value_template: >-
+          {% if states('sensor.dark_sky_precip_probability')|float < 40 
+             and states('sensor.dark_sky_daytime_high_temperature_0')|float < 25
+             and states('sensor.dark_sky_temperature')|float > 15 
+             and states('sensor.dark_sky_wind_gust')|float < 20 %}
+            yes
+          {% else %}
+            no
+          {% endif %}
+
+
+  - platform: template
+    sensors:
+      last_human_left:
+        friendly_name: "Last Human-Left"
+        value_template: >-
+          {% if states('sensor.left_human_detection') | float > 16 %}
+            Person Detected
+          {% else %}
+            {{states('sensor.last_human_left')}}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      last_human_right:
+        friendly_name: "Last Human-Right"
+        value_template: >-
+          {% if states('sensor.right_human_detection') | float > 16 %}
+            Person Detected
+          {% else %}
+            {{states('sensor.right_human_right')}}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      last_human_front:
+        friendly_name: "Last Human-Front"
+        value_template: >-
+          {% if states('sensor.front_human_detection') | float > 16 %}
+            Person Detected
+          {% else %}
+            {{states('sensor.last_human_front')}}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      last_human_back:
+        friendly_name: "Last Human-Back"
+        value_template: >-
+          {% if states('sensor.back_human_detection') | float > 16 %}
+            Person Detected
+          {% else %}
+            {{states('sensor.back_human_left')}}
+          {% endif %}
+
+#  - platform: gtfs_realtime
+#    trip_update_url: 'http://opendata.iprpraha.cz/DPP/JR/jrdata.zip'
+#    departures:
+#    - name: transit
+#      route: 5
+#      stopid: U49N198
+
+  - platform: template
+    sensors:
+      alenas_phone_battery:
+        friendly_name: "Alena's Phone Battery"
+        value_template: >-
+          {% if is_state('sensor.alena_s_iphone_battery_state', 'Charging') %}
+            Charging
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 15 %}
+            Very Low
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 25 %}
+            Low
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 40 %}
+            Needs Charging
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Charged
+          {% endif %}
+
+  - platform: template
+    sensors:
+      sophies_phone_battery:
+        friendly_name: "Sophie's Phone Battery"
+        value_template: >-
+          {% if is_state('sensor.sophies_iphone_6_battery_state', 'Charging') %}
+            Charging
+          {% elif states('sensor.sophies_iphone_6_battery_level')|float < 15 %}
+            Very Low
+          {% elif states('sensor.sophies_iphone_6_battery_level')|float < 25 %}
+            Low
+          {% elif states('sensor.sophies_iphone_6_battery_level')|float < 40 %}
+            Needs Charging
+          {% elif states('sensor.sophies_iphone_6_battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Charged
+          {% endif %}
+
+  - platform: template
+    sensors:
+      closet_window_sensor_1_battery:
+        friendly_name: "Closet Window Sensor 1 Battery"
+        value_template: >-
+          {% if state_attr('zwave.neo_coolcam_door_window_detector', 'battery_level')|float < 15 %}
+            Very Low
+          {% elif state_attr('zwave.neo_coolcam_door_window_detector', 'battery_level')|float < 25 %}
+            Low
+          {% elif state_attr('zwave.neo_coolcam_door_window_detector', 'battery_level')|float < 40 %}
+            Medium
+          {% elif state_attr('zwave.neo_coolcam_door_window_detector', 'battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Full
+          {% endif %}  
+
+  - platform: template
+    sensors:
+      back_door_sensor_battery:
+        friendly_name: "Back Door Sensor Battery"
+        value_template: >-
+          {% if state_attr('zwave.neo_coolcam_door_window_detector_2', 'battery_level')|float < 15 %}
+            Very Low
+          {% elif state_attr('zwave.neo_coolcam_door_window_detector_2', 'battery_level')|float < 25 %}
+            Low
+          {% elif state_attr('zwave.neo_coolcam_door_window_detector_2', 'battery_level')|float < 40 %}
+            Medium
+          {% elif state_attr('zwave.neo_coolcam_door_window_detector_2', 'battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Full
+          {% endif %}            
+
+  - platform: template
+    sensors:
+      back_door:
+        friendly_name: "Back Door"
+        value_template: >-
+          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'off') %}
+            Closed
+          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'on') %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'off') %}
+            mdi:door
+          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'on') %}
+            mdi:door-open
+          {% endif %}
+
+  - platform: template
+    sensors:
+      closet_window:
+        friendly_name: "Closet Window"
+        value_template: >-
+          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'off') %}
+            Closed
+          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'on') %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'off') %}
+            mdi:window-closed
+          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'on') %}
+            mdi:window-open
+          {% endif %}
+
+  - platform: template
+    sensors:
+      seans_phone_battery:
+        friendly_name: "Sean's Phone Battery"
+        value_template: >-
+          {% if is_state('sensor.sean_s_iphone_x_battery_state', 'Charging') %}
+            Charging
+          {% elif states('sensor.sean_s_iphone_x_battery_level')|float < 15 %}
+            Very Low
+          {% elif states('sensor.sean_s_iphone_x_battery_level')|float < 25 %}
+            Low
+          {% elif states('sensor.sean_s_iphone_x_battery_level')|float < 40 %}
+            Needs Charging
+          {% elif states('sensor.sean_s_iphone_x_battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Charged
+          {% endif %}
+
+  - platform: waze_travel_time
+    origin: !secret home_address
+    destination: !secret work_address
+    region: 'EU'
+    name: Driving Time to Work
+ 
+  - platform: waze_travel_time
+    origin: device_tracker.seans_iphone_x
+    destination: zone.home
+    region: 'EU'
+    name: Sean Driving Time to Home
+ 
+  - platform: waze_travel_time
+    origin: device_tracker.sophie
+    destination: zone.home
+    region: 'EU'
+    name: Sophie Driving Time to Home
+ 
+#  - platform: google_travel_time
+#    api_key: !secret google_travel_key
+#    origin: device_tracker.seans_iphone_x
+#    destination: zone.home
+#    name: Sean Tram Time to Home
+#    options:
+#      mode: transit
+
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: disk_free
+        arg: /
+      - type: memory_use_percent
+      - type: load_15m
+
+  - platform: template
+    sensors:
+      sean_location:
+        value_template: '{{ states.input_select.sean_location_dropdown.state }}'
+        friendly_name: "Papa Is:"
+        icon_template: >-
+          {% if is_state('input_select.sean_location_dropdown', 'Home') %}
+            mdi:home
+          {% elif is_state('input_select.sean_location_dropdown', 'At Work') %}
+            mdi:briefcase
+          {% elif is_state('input_select.sean_location_dropdown', 'At Andel') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At WineFood') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At Hornbach') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At Ikea') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At Billa') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At BioStore') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At Posta') %}
+            mdi:email            
+          {% elif is_state('input_select.sean_location_dropdown', 'At Yoga') %}
+            mdi:human-handsup  
+          {% else %}
+            mdi:train-car
+          {% endif %}
+
+  - platform: template
+    sensors:
+      alena_location:
+        friendly_name: "Mama Is:"
+        value_template: >-          
+          {% if is_state('device_tracker.alenas_iphone', 'home') %}
+            Home
+          {% elif is_state('device_tracker.alenas_iphone', 'Andel') %}
+            At Andel
+          {% elif is_state('device_tracker.alenas_iphone', 'WineFood') %}
+            At WineFood
+          {% elif is_state('device_tracker.alenas_iphone', 'Hornbach') %}
+            At Hornbach
+          {% elif is_state('device_tracker.alenas_iphone', 'Ikea') %}
+            At Ikea
+          {% elif is_state('device_tracker.alenas_iphone', 'Billa') %}
+            At Billa
+          {% elif is_state('device_tracker.alenas_iphone', 'BioStore') %}
+            At Bio Store
+          {% elif is_state('device_tracker.alenas_iphone', 'Posta') %}
+            At Posta
+          {% elif is_state('device_tracker.alenas_iphone', 'Yoga') %}
+            At Yoga
+          {% elif is_state('sensor.alena_direction_of_travel', 'away_from') %}
+            Leaving Home
+          {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
+            Somewhere
+          {% elif is_state('sensor.alena_direction_of_travel', 'towards') %}
+            Heading Home
+          {% endif %}
+        icon_template: >-
+          {% if is_state('device_tracker.alenas_iphone', 'home') %}
+            mdi:home
+          {% elif is_state('device_tracker.alenas_iphone', 'Andel') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alenas_iphone', 'WineFood') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alenas_iphone', 'Hornbach') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alenas_iphone', 'Ikea') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alenas_iphone', 'Billa') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alenas_iphone', 'BioStore') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alenas_iphone', 'Posta') %}
+            mdi:email
+          {% elif is_state('device_tracker.alenas_iphone', 'Yoga') %}
+            mdi:human-handsup
+          {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
+            mdi:help
+          {% else %}
+            mdi:car
+          {% endif %}
+
+
+  - platform: template
+    sensors:
+      sophie_location:
+        friendly_name: "Sophie Is:"
+        value_template: >-          
+          {% if is_state('device_tracker.sophie', 'home') %}
+            Home
+          {% elif is_state('device_tracker.sophie', 'Andel') %}
+            At Andel
+          {% elif is_state('device_tracker.sophie', 'WineFood') %}
+            At WineFood
+          {% elif is_state('device_tracker.sophie', 'Parklane Valdstejnska') %}
+            At School
+          {% elif is_state('device_tracker.sophie', 'Hornbach') %}
+            At Hornbach
+          {% elif is_state('device_tracker.sophie', 'Ikea') %}
+            At Ikea
+          {% elif is_state('device_tracker.sophie', 'Billa') %}
+            At Billa
+          {% elif is_state('device_tracker.sophie', 'BioStore') %}
+            At Bio Store
+          {% elif is_state('device_tracker.sophie', 'Posta') %}
+            At Posta
+          {% elif is_state('device_tracker.sophie', 'Yoga') %}
+            At Yoga
+          {% elif is_state('sensor.sophie_direction_of_travel', 'away_from') %}
+            Leaving Home
+          {% elif is_state('sensor.sophie_direction_of_travel', 'stationary') %}
+            Somewhere
+          {% elif is_state('sensor.sophie_direction_of_travel', 'towards') %}
+            Heading Home
+          {% endif %}
+        icon_template: >-
+          {% if is_state('device_tracker.sophie', 'home') %}
+            mdi:home
+          {% elif is_state('device_tracker.sophie', 'Parklane Valdstejnska') %}
+            mdi:school
+          {% elif is_state('device_tracker.sophie', 'Andel') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'WineFood') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'Hornbach') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'Ikea') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'Billa') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'BioStore') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'Posta') %}
+            mdi:email            
+          {% elif is_state('device_tracker.sophie', 'Yoga') %}
+            mdi:human-handsup  
+          {% elif is_state('sensor.sophie_direction_of_travel', 'stationary') %}
+            mdi:help
+          {% else %}
+            mdi:train-car
+          {% endif %}
+
+#  - platform: template
+#    sensors:
+#      sophie_location:
+#        value_template: '{{ states.device_tracker.sophie.state }}'
+#        friendly_name: "Sophie Is:"
+#        icon_template: >-
+#          {% if is_state('device_tracker.sophie', 'home') %}
+#            mdi:home
+#          {% elif is_state('device_tracker.sophie', 'Home') %}
+#            mdi:home
+#          {% elif is_state('device_tracker.sophie', 'Parklane Valdstejnska') %}
+#            mdi:school
+#          {% elif is_state('device_tracker.sophie', 'Andel') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.sophie', 'WineFood') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.sophie', 'Hornbach') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.sophie', 'Billa') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.sophie', 'Ikea') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.sophie', 'BioStore') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.sophie', 'Posta') %}
+#            mdi:email            
+#          {% elif is_state('device_tracker.sophie', 'Yoga') %}
+#            mdi:human-handsup  
+#          {% else %}
+#            mdi:car
+#          {% endif %}
+#          
+#  - platform: template
+#    sensors:
+#      alena_location:
+#        value_template: '{{ states.device_tracker.alenas_iphone.state }}'
+#        friendly_name: "Mama Is:"
+#        icon_template: >-
+#          {% if is_state('device_tracker.alenas_iphone', 'home') %}
+#            mdi:home
+#          {% elif is_state('device_tracker.alenas_iphone', 'Home') %}
+#            mdi:home
+#          {% elif is_state('device_tracker.alenas_iphone', 'Parklane Valdstejnska') %}
+#            mdi:school
+#          {% elif is_state('device_tracker.alenas_iphone', 'Andel') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.alenas_iphone', 'WineFood') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.alenas_iphone', 'Hornbach') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.alenas_iphone', 'Billa') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.alenas_iphone', 'Ikea') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.alenas_iphone', 'BioStore') %}
+#            mdi:cart
+#          {% elif is_state('device_tracker.alenas_iphone', 'Posta') %}
+#            mdi:email            
+#          {% elif is_state('device_tracker.alenas_iphone', 'Yoga') %}
+#            mdi:human-handsup                  
+#          {% else %}
+#            mdi:car
+#          {% endif %}         
+
+  - platform: deluge
+    host: !secret deluge_ip
+    username: !secret deluge_uname
+    password: !secret deluge_pw
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+      
+  - platform: template
+    sensors:
+      sean_direction_of_travel:
+        friendly_name: "Sean is Heading"
+        value_template: "{{ state_attr('proximity.sean_home', 'dir_of_travel') }}"
+
+  - platform: template
+    sensors:
+      alena_direction_of_travel:
+        friendly_name: "Alena is Heading"
+        value_template: "{{ state_attr('proximity.alena_home', 'dir_of_travel') }}"
+
+  - platform: template
+    sensors:
+      sophie_direction_of_travel:
+        friendly_name: "Sophie is Heading"
+        value_template: "{{ state_attr('proximity.sophie_home', 'dir_of_travel') }}"
+
+  - platform: template
+    sensors:
+      all_direction_of_travel:
+        friendly_name: "All are Heading"
+        value_template: "{{ state_attr('proximity.all_home', 'dir_of_travel') }}"
+
+  - name: Right Human Detection
+    platform: mqtt
+    state_topic: "cameras/1/objects"
+    value_template: '{{ value_json.person }}'
+    unit_of_measurement: '%'
+    availability_topic: "cameras/1/available"
+
+  - name: Left Human Detection
+    platform: mqtt
+    state_topic: "cameras/2/objects"
+    value_template: '{{ value_json.person }}'
+    unit_of_measurement: '%'
+    availability_topic: "cameras/2/available"
+
+  - name: Front Human Detection
+    platform: mqtt
+    state_topic: "cameras/3/objects"
+    value_template: '{{ value_json.person }}'
+    unit_of_measurement: '%'
+    availability_topic: "cameras/3/available"
+
+  - name: Back Human Detection
+    platform: mqtt
+    state_topic: "cameras/4/objects"
+    value_template: '{{ value_json.person }}'
+    unit_of_measurement: '%'
+    availability_topic: "cameras/4/available"
+
+#  - platform: smartthinq_washer
+#    name: LG_Washer
+#    mac: !secret lg_washer_mac         

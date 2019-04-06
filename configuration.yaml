@@ -1,0 +1,681 @@
+homeassistant:
+
+  name: Home
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  elevation: 260
+  unit_system: metric
+  time_zone: Europe/Prague
+  customize: !include customize.yaml
+#  auth_providers:
+#    - type: trusted_networks
+#      trusted_networks:
+#        - 10.10.10.0/24
+#        - 10.11.147.245/32
+#    - type: legacy_api_password
+#      api_password: !secret API_pass
+
+lovelace:
+
+  mode: yaml
+
+frontend:
+
+  themes: !include themes.yaml
+  javascript_version: auto
+  
+system_health:
+
+discovery:
+
+config:
+
+hassio:
+
+http:
+
+#  api_password: !secret API_pass
+  ssl_certificate: !secret cer_dir
+  ssl_key: !secret key_dir
+  base_url: !secret my_host+port
+
+updater:
+
+# include_used_components: true
+# discovery:
+
+conversation:
+
+history:
+  exclude:
+    domains:
+    - calendar
+    - history_graph
+    - media_player
+    - switch
+    - input_boolean
+    - automation
+    entities:
+    - sensor.dark_sky_cloud_coverage_0
+    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_daytime_high_apparent_temperature_0
+    - sensor.dark_sky_daytime_high_temperature_0
+    - sensor.dark_sky_dew_point_0
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_humidity_0
+    - sensor.dark_sky_icon
+    - sensor.dark_sky_icon_0
+    - sensor.dark_sky_minutely_summary
+    - sensor.dark_sky_overnight_low_apparent_temperature_0
+    - sensor.dark_sky_overnight_low_temperature_0
+    - sensor.dark_sky_ozone_0
+    - sensor.dark_sky_precip
+    - sensor.dark_sky_precip_0
+    - sensor.dark_sky_precip_intensity_0
+    - sensor.dark_sky_precip_probability_0
+    - sensor.dark_sky_pressure_0
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_summary_0
+    - sensor.dark_sky_temperature_0
+    - sensor.dark_sky_visibility_0
+    - sensor.dark_sky_wind_bearing_0
+    - sensor.dark_sky_wind_gust_0
+    - sensor.dark_sky_wind_speed_0
+    - sensor.neo_coolcam_door_window_detector_access_control
+    - sensor.neo_coolcam_door_window_detector_access_control_2
+    - sensor.neo_coolcam_door_window_detector_alarm_level
+    - sensor.neo_coolcam_door_window_detector_alarm_level_2
+    - sensor.neo_coolcam_door_window_detector_alarm_type
+    - sensor.neo_coolcam_door_window_detector_alarm_type_2
+    - sensor.neo_coolcam_door_window_detector_sourcenodeid
+    - sensor.neo_coolcam_door_window_detector_sourcenodeid_2
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_alarm_level
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_alarm_type
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_exporting
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_interval
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_interval_2
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_interval_3
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_interval_4
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_power_management
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_2
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_3
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_4
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_sourcenodeid
+    - sensor.popp_unknown_type_0004_id_0014_sourcenodeid
+
+
+recorder:
+  db_url: !secret maria_url
+  purge_keep_days: 3
+  exclude:
+    domains:
+    - calendar
+    - history_graph
+    - media_player
+    - switch
+    - input_boolean
+    entities:
+    - sensor.dark_sky_cloud_coverage_0
+    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_daytime_high_apparent_temperature_0
+    - sensor.dark_sky_daytime_high_temperature_0
+    - sensor.dark_sky_dew_point_0
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_humidity_0
+    - sensor.dark_sky_icon
+    - sensor.dark_sky_icon_0
+    - sensor.dark_sky_minutely_summary
+    - sensor.dark_sky_overnight_low_apparent_temperature_0
+    - sensor.dark_sky_overnight_low_temperature_0
+    - sensor.dark_sky_ozone_0
+    - sensor.dark_sky_precip
+    - sensor.dark_sky_precip_0
+    - sensor.dark_sky_precip_intensity_0
+    - sensor.dark_sky_precip_probability_0
+    - sensor.dark_sky_pressure_0
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_summary_0
+    - sensor.dark_sky_temperature_0
+    - sensor.dark_sky_visibility_0
+    - sensor.dark_sky_wind_bearing_0
+    - sensor.dark_sky_wind_gust_0
+    - sensor.dark_sky_wind_speed_0
+    - sensor.neo_coolcam_door_window_detector_access_control
+    - sensor.neo_coolcam_door_window_detector_access_control_2
+    - sensor.neo_coolcam_door_window_detector_alarm_level
+    - sensor.neo_coolcam_door_window_detector_alarm_level_2
+    - sensor.neo_coolcam_door_window_detector_alarm_type
+    - sensor.neo_coolcam_door_window_detector_alarm_type_2
+    - sensor.neo_coolcam_door_window_detector_sourcenodeid
+    - sensor.neo_coolcam_door_window_detector_sourcenodeid_2
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_alarm_level
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_alarm_type
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_exporting
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_interval
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_interval_2
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_interval_3
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_interval_4
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_power_management
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_2
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_3
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_4
+    - sensor.neo_coolcam_unknown_type_0200_id_1027_sourcenodeid
+    - sensor.popp_unknown_type_0004_id_0014_sourcenodeid
+    
+logbook:
+
+map:
+
+sun:
+
+tts:
+
+  - platform: google
+
+logger:
+
+  default: debug
+  logs:
+    homeassistant.components.mqtt: warn
+    homeassistant.components.websocket_api: warn
+#    homeassistant.components.nest: debug
+#    homeassistant.components.sensor.nest: debug
+#    sseclient: debug
+#    homeassistant.components.camera: debug
+#    homeassistant.components.sensor.imap_email_content: debug
+#    homeassistant.components.imap_email_content: debug
+#    homeassistant.components.sensor: debug
+#cloud:
+
+group: !include groups.yaml
+
+automation: !include automations.yaml
+
+script: !include scripts.yaml
+
+custom_updater:
+  track:
+    - cards
+    - components
+    - python_scripts
+  component_urls:
+    - https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/custom_components.json
+  python_script_urls:
+    - https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/python_scripts.json
+  card_urls:
+    - https://raw.githubusercontent.com/rdehuyss/homeassistant-lovelace-google-calendar-card/master/custom_updater.json
+    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+    - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
+    - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/master/tracker.json
+    - https://raw.githubusercontent.com/sgttrs/lovelace-weather-card-chart/master/custom-updater.json
+
+sensor: !include sensors.yaml
+
+binary_sensor:
+
+  - platform: template
+    sensors:
+      motion_back:
+        friendly_name: "Motion - Back"
+        device_class: motion
+        value_template: >-
+          {{ is_state('camera.back', 'recording') }}
+
+  - platform: template
+    sensors:
+      motion_front:
+        friendly_name: "Motion - Front"
+        device_class: motion
+        value_template: >-
+          {{ is_state('camera.front', 'recording') }}
+
+  - platform: template
+    sensors:
+      motion_left:
+        friendly_name: "Motion - Left"
+        device_class: motion
+        value_template: >-
+          {{ is_state('camera.left', 'recording') }}
+
+  - platform: template
+    sensors:
+      motion_right:
+        friendly_name: "Motion - Right"
+        device_class: motion
+        value_template: >-
+          {{ is_state('camera.right', 'recording') }}
+
+  - name: Right Tensorflow Motion
+    platform: mqtt
+    state_topic: "cameras/1/motion"
+    device_class: motion
+    availability_topic: "cameras/1/available"
+
+  - name: Left Tensorflow Motion
+    platform: mqtt
+    state_topic: "cameras/2/motion"
+    device_class: motion
+    availability_topic: "cameras/2/available"
+
+  - name: Front Tensorflow Motion
+    platform: mqtt
+    state_topic: "cameras/3/motion"
+    device_class: motion
+    availability_topic: "cameras/3/available"
+
+  - name: Back Tensorflow Motion
+    platform: mqtt
+    state_topic: "cameras/4/motion"
+    device_class: motion
+    availability_topic: "cameras/4/available"
+
+switch:
+
+  - platform: command_line
+    switches:
+      shuffle:
+        friendly_name:  Shuffle
+        command_on: !secret shuffle_on_cmd
+        command_off: !secret shuffle_off_cmd
+
+zone:
+
+  - name: Home
+    latitude: !secret home_lat
+    longitude: !secret home_long
+    radius: 50
+
+  - name: ToAndel
+    latitude: 50.05028576621793
+    longitude: 14.407266504965492
+    radius: 100
+
+  - name: Andel
+    latitude: 50.07113918629207
+    longitude: 14.401753942111782
+    radius: 250
+    
+  - name: Lazarska
+    latitude: 50.0792552
+    longitude: 14.4206597
+    radius: 100
+    
+  - name: ToCenter
+    latitude: 50.03895628687976
+    longitude: 14.403341809848598
+    radius: 150
+       
+  - name: Work
+    latitude: !secret work_lat
+    longitude: !secret work_long
+    radius: 100
+    
+  - name: SmichovskeNad
+    latitude: 50.06081691414926
+    longitude: 14.408698081970215
+    radius: 100
+    
+  - name: ToWineFood
+    latitude: 50.05165429631845
+    longitude: 14.410333276190158
+    radius: 100
+    
+  - name: WineFood
+    latitude: 50.06312766008826
+    longitude: 14.410505890846252
+    radius: 100
+    
+  - name: ToHornbachP5
+    latitude: 50.03731625484117
+    longitude: 14.404350320438198
+    radius: 100
+
+  - name: HornbachP5
+    latitude: 50.01711564352049
+    longitude: 14.392004013061523
+    radius: 150
+
+  - name: FromHornbachP5
+    latitude: 50.020497646816274
+    longitude: 14.391348971419461
+    radius: 100
+    
+  - name: BioStore
+    latitude: 50.069935276368234
+    longitude: 14.405101239681244
+    radius: 100
+
+  - name: Yoga
+    latitude: 50.053344109028735
+    longitude: 14.439699053764343
+    radius: 100
+    
+  - name: Billa
+    latitude: 50.03442312686808
+    longitude: 14.378568828105927
+    radius: 80
+    
+  - name: Posta
+    latitude: 50.03448859534987
+    longitude: 14.37636137008667
+    radius: 50
+    
+  - name: IkeaZlicin
+    latitude: 50.05129159516705
+    longitude: 14.29226479883198
+    radius: 400
+  
+  - name: ToP6
+    latitude: 50.02640773207083
+    longitude: 14.361298084259033
+    radius: 400
+    
+  - name: FromP6HomeHighway
+    latitude: 50.040781931095275
+    longitude: 14.270255889515965
+    radius: 250  
+  
+  - name: FromP6HomeBackWay
+    latitude: 50.04770073594183
+    longitude: 14.307665650633908
+    radius: 250  
+
+  - name: ToHornbachP6
+    latitude: 50.06683074554662
+    longitude: 14.309810544749325
+    radius: 250  
+
+  - name: FromHornbachP6
+    latitude: 50.07674466705169
+    longitude: 14.300489152926161
+    radius: 250  
+
+  - name: HornbachP6
+    latitude: 50.07504465799953
+    longitude: 14.307889938354492
+    radius: 250  
+
+evohome:
+
+  username: !secret my_email
+  password: !secret hass_pass
+  location_idx: 0
+  scan_interval: 360 
+
+media_player:
+
+  - platform: itunes
+    host: !secret itunes_ip
+
+ios:
+
+  push:
+    categories:
+      - name: bike_to_work_day
+        identifier: 'bikeday'
+        actions:
+          - identifier: 'BIKE_DAY'
+            title: 'Bike Day'
+            
+nest:
+
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  sensors:
+    monitored_conditions:
+      - 'co_status'
+      - 'smoke_status'
+      - 'battery_health'
+      - 'color_status'
+
+camera:
+
+  - name: Right Last Person
+    platform: generic
+    still_image_url: http://10.10.10.71:5000/best_person.jpg
+
+  - name: Left Last Person
+    platform: generic
+    still_image_url: http://10.10.10.71:5001/best_person.jpg
+
+  - name: Front Last Person
+    platform: generic
+    still_image_url: http://10.10.10.71:5002/best_person.jpg
+
+  - name: Back Last Person
+    platform: generic
+    still_image_url: http://10.10.10.71:5003/best_person.jpg
+
+  - platform: synology
+    url: !secret synology_int_url
+    username: !secret syn_uname
+    password: !secret hass_pass
+    timeout: 120
+#    verify_ssl: False
+
+
+google:
+             
+  client_id: !secret google_email_client_id
+  client_secret: !secret google_email_secret
+
+zwave:
+  usb_path: /dev/ttyACM0
+
+weather:
+
+  - platform: darksky
+    api_key: !secret darksky_key
+    name: Weather Forecast
+    mode: daily
+    scan_interval: 720
+    
+  - platform: openweathermap
+    api_key: !secret openweathermap_key
+    mode: hourly
+
+#panel_iframe:
+#cloud9:
+#  title: cloud9
+#  icon: mdi:wrench
+#  url: http://hassbian.local:8181/ide.html
+ 
+
+#mqtt:
+#
+#  broker: !secret pi_ip
+#  client_id: homeassistant-001
+
+
+mqtt:
+  broker: !secret narnia_ip
+  client_id: homeassistant-001
+  username: !secret mqqt_uname
+  password: !secret mqqt_pass
+
+input_boolean:
+  mix_playlist:
+    name: Mix Playlist
+    initial: off
+  rock_playlist:
+    name: Rock Playlist
+    initial: off
+  pop_playlist:
+    name: Pop Playlist
+    initial: off
+  black_playlist:
+    name: Black Playlist
+    initial: off
+  classical_playlist:
+    name: Classical Playlist
+    initial: off
+  electronica_playlist:
+    name: Electronica Playlist
+    initial: off
+  kids_playlist:
+    name: Kids Playlist
+    initial: off
+    
+input_select:
+  sean_last_zone_dropdown:
+    name: Sean Last Zone
+    options:
+      - home
+      - ToAndel
+      - Andel
+      - Lazarska
+      - ToCenter
+      - Work
+      - SmichovskeNad 
+      - ToWineFood
+      - WineFood
+      - ToHornbachP5
+      - HornbachP5
+      - FromHornbachP5
+      - BioStore
+      - Yoga
+      - Billa
+      - Posta
+      - IkeaZlicin
+      - ToP6
+      - FromP6HomeHighway
+      - FromP6HomeBackWay
+      - ToHornbachP6
+      - FromHornbachP6
+      - HornbachP6
+    initial: home
+    
+  sean_location_dropdown:
+    name: Sean Extended Location
+    options:
+      - Home
+      - Left Home
+      - Almost Home
+      - Heading to Work
+      - Heading to Center
+      - Almost at Work
+      - At Work
+      - Waiting for Tram
+      - Left Work
+      - Heading Home
+      - Heading to Andel
+      - At Andel
+      - Heading to Hornbach
+      - At Hornbach
+      - Heading to WineFood
+      - At WineFood
+      - At Billa
+      - At Posta
+      - Heading to P6
+      - At Ikea
+      - Driving
+    initial: Home
+
+  dishwasher_status:
+    name: Dishwasher Status
+    options:
+      - Dirty
+      - Starting Up
+      - First Rinse
+      - Washing
+      - Final Rinse
+      - Finishing Up
+      - Drying
+      - Clean
+      - Emptying
+    initial: Dirty
+    icon: mdi:dishwasher
+
+proximity:
+  all_home: 
+    devices:
+      - device_tracker.seans_iphone_x
+      - device_tracker.alenas_iphone
+      - device_tracker.sophie
+      - device_tracker.sophies_iphhshshshs
+    tolerance: 50
+    unit_of_measurement: km
+  sean_home: 
+    devices:
+      - device_tracker.seans_iphone_x
+    tolerance: 50
+    unit_of_measurement: km
+  alena_home: 
+    devices:
+      - device_tracker.alenas_iphone
+    tolerance: 50
+    unit_of_measurement: km
+  sophie_home: 
+    devices:
+      - device_tracker.sophie
+    tolerance: 50
+    unit_of_measurement: km    
+    
+device_tracker:
+  - platform: life360
+    username: !secret life360_uname
+    password: !secret life360_pw
+    interval_seconds: 12
+    filename: life360.conf
+    show_as_state: places, driving, moving
+    max_update_wait:
+      minutes: 30
+
+variable:
+  dpd_variable:
+    attributes:
+      icon: mdi:delivery
+      friendly_name: 'DPD'
+      from: ''
+      subject: ''
+      body: ''
+      date: ''
+    restore: true
+
+  posta_variable:
+    attributes:
+      icon: mdi:delivery
+      friendly_name: 'Posta'
+      from: ''
+      subject: ''
+      body: ''
+      date: ''
+    restore: true
+      
+  dhl_variable:
+    attributes:
+      icon: mdi:delivery
+      friendly_name: 'DHL'
+      from: ''
+      subject: ''
+      body: ''
+      date: ''
+    restore: true
+    
+cast:
+  media_player:
+    - host: !secret chromecast_ip
+    
+#smartthinq:
+#  token: !secret smartthinq_token
+
+notify:
+  - name: sean_alena
+    platform: group
+    services:
+      - service: ios_seans_iphone_x
+      - service: ios_alenas_iphone
+  - name: whole_family
+    platform: group
+    services:
+      - service: ios_seans_iphone_x
+      - service: ios_alenas_iphone  
+      - service: ios_sophies_iphone_6
+
+speedtestdotnet:
+  monitored_conditions:
+    - ping
+    - download
+    - upload

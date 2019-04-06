@@ -1,0 +1,170 @@
+  All_Speakers:
+    name: All Speakers
+    entities:
+      - media_player.living_room_airtunes_speaker
+      - media_player.kitchen_airtunes_speaker
+      - media_player.bathroom_1st_floor_airtunes_speaker
+      - media_player.apple_tv_airtunes_speaker
+      - media_player.master_bedroom_airtunes_speaker
+      - media_player.master_bath_airtunes_speaker
+      - media_player.office_airtunes_speaker
+      - media_player.library_airtunes_speaker
+      - media_player.computer_airtunes_speaker
+      - media_player.sophies_room_airtunes_speaker
+      - media_player.sebastians_room_airtunes_speaker
+      - media_player.gym_airtunes_speaker
+
+  Alena_And_Sean:
+    name: Alena and Sean
+    entities:
+      - device_tracker.seans_iphone_x
+      - device_tracker.alenas_iphone
+
+#  default_view:
+#    view: yes
+#    name: Home
+#    entities:
+#      - group.Weather
+#      - group.Weather2
+#      - group.Outdoors
+#      - group.Outdoors_Cameras
+#      - group.Outdoors_Motion_Time
+#      - group.Outdoors_Motion_Current
+#      - group.Outdoors_Speakers
+#      - group.House_Summary
+#      - group.First_Floor
+#      - group.Second_Floor
+#      - group.Third_Floor
+#      - group.Basement
+#  Weather:
+#    name: Current Weather
+#    entities:
+#      - weather.weather_forecast
+#  Weather2:
+#    name: Weather Forecast
+#    entities:
+#      - sensor.dark_sky_hourly_summary
+#      - sensor.dark_sky_daily_summary
+#  Outdoors: 
+#    name: Outdoor Air Quality
+#    entities:
+#      - sensor.us_air_pollution_level
+#      - sensor.us_air_quality_index
+##      - sensor.us_main_pollutant
+#  Outdoors_Cameras:
+#    name: Outside Cameras
+#    entities: 
+#      - camera.back
+#      - camera.front
+#      - camera.left
+#      - camera.right
+#  Outdoors_Motion_Time:
+#    name: Outside Motion By Time
+#    entities: 
+#      - history_graph.motion_detection_times
+#  Outdoors_Motion_Current:
+#    name: Current Outdoor Motion Detection
+#    entities:
+#      - binary_sensor.motion_back
+#      - binary_sensor.motion_front
+#      - binary_sensor.motion_left
+#      - binary_sensor.motion_right
+#  Outdoors_Speakers:
+#    name: Outdoor Speakers
+#    entities:
+#      - media_player.back_yard_airtunes_speaker
+#      - sun.sun
+#  House_Summary:
+#    name: House Summary
+#    entities:
+#      - media_player.itunes
+#      - climate.straus_house
+#  First_Floor:
+#    name: First Floor
+#    entities:
+#      - climate.entrance
+#      - climate.dining_room
+#      - climate.living_room
+#      - media_player.living_room_airtunes_speaker
+#      - media_player.kitchen_airtunes_speaker
+#      - media_player.bathroom_1st_floor_airtunes_speaker
+#      - media_player.apple_tv_airtunes_speaker
+#      - binary_sensor.living_room_nest_protect_online
+#      - sensor.living_room_nest_protect_battery_health
+#      - sensor.living_room_nest_protect_co_status
+#      - sensor.living_room_nest_protect_color_status
+#      - sensor.living_room_nest_protect_smoke_status
+#  Second_Floor:
+#    name: Second Floor
+#    entities:
+#      - climate.master_bedroom
+#      - climate.master_bath
+#      - climate.master_closet
+#      - climate.office_library
+#      - media_player.master_bedroom_airtunes_speaker
+#      - media_player.master_bath_airtunes_speaker
+#      - media_player.office_airtunes_speaker
+#      - media_player.library_airtunes_speaker
+#      - media_player.computer_airtunes_speaker
+#      - binary_sensor.master_bedroom_nest_protect_online
+#      - sensor.master_bedroom_nest_protect_battery_health
+#      - sensor.master_bedroom_nest_protect_co_status
+#      - sensor.master_bedroom_nest_protect_color_status
+#      - sensor.master_bedroom_nest_protect_smoke_status
+#  Third_Floor:
+#    name: Third Floor
+#    entities:
+#      - climate.sebastians_room
+#      - climate.sophies_room
+#      - climate.guest_bedroom
+#      - media_player.sophies_room_airtunes_speaker
+#      - media_player.sebastians_room_airtunes_speaker
+#      - media_player.gym_airtunes_speaker
+#      - binary_sensor.kids_room_nest_protect_online
+#      - sensor.kids_room_nest_protect_battery_health
+#      - sensor.kids_room_nest_protect_co_status
+#      - sensor.kids_room_nest_protect_color_status
+#      - sensor.kids_room_nest_protect_smoke_status
+#  Basement:
+#    name: Basement
+#    entities:
+#      - climate.garage
+#      - climate.basement
+#      - media_player.laundry_room_airtunes_speaker
+#      - binary_sensor.basement_nest_protect_online
+#      - sensor.basement_nest_protect_battery_health
+#      - sensor.basement_nest_protect_co_status
+#      - sensor.basement_nest_protect_color_status
+#      - sensor.basement_nest_protect_smoke_status
+#  Climate_First_Floor:
+#    name: First Floor Climate
+#    entities:
+#      - history_graph.entrance_temperatures
+#      - history_graph.living_room_temperatures
+#      - history_graph.dining_room_temperatures
+#  Climate_Second_Floor:
+#    name: Second Floor Climate
+#    entities:
+#      - history_graph.master_bedroom_temperatures
+#      - history_graph.master_bath_temperatures
+#      - history_graph.master_closet_temperatures
+#      - history_graph.office__library_temperatures
+#  Climate_Third_Floor:
+#    name: Third Floor Climate
+#    entities:
+#      - history_graph.sophies_room_temperatures
+#      - history_graph.sebastians_room_temperatures
+#      - history_graph.guest_bedroom_temperatures
+#  Climate_Basement:
+#    name: Third Floor Basement
+#    entities:
+#      - history_graph.basement_temperatures
+#      - history_graph.garage_temperatures
+#  Climate_Detail:
+#    view: yes
+#    name: Climate Detail
+#    entities:
+#      - group.Climate_First_Floor
+#      - group.Climate_Second_Floor
+#      - group.Climate_Third_Floor
+#      - group.Climate_Basement

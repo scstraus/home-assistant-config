@@ -1,0 +1,1657 @@
+title: Home
+
+#resources:
+#
+#  - url: /local/mini-media-player-bundle.js?v=1.0.1
+#    type: module
+#  - url: https://unpkg.com/moment@2.22.2/moment.js
+#    type: js
+#  - url: /local/custom_ui/calendar-card/calendar-card.js?v=1.0.1
+#    type: module
+#  - url: /local/button-card.js
+#    type: module
+#  - url: /local/air-visual-card.js 
+#    type: js
+#  - url: /local/custom-weather-card-chart.js
+#    type: module
+#  - url: /local/tracker-card.js?v=0.3.2
+#    type: js
+#  - url: /local/simple-thermostat.js?v=0.17.0
+#    type: module
+#  - url: /local/vertical-stack-in-card.js?v=v0.1.1
+#    type: js
+#  - url: /local/card-modder.js?v=f3d96f
+#    type: js
+#  - url: /local/card-tools.js?v=f5bb8e
+#    type: js
+
+resources:
+
+  - url: /customcards/mini-media-player-bundle.js
+    type: module
+  - url: https://unpkg.com/moment@2.22.2/moment.js
+    type: js
+  - url: /customcards/custom_ui/calendar-card/calendar-card.js
+    type: module
+  - url: /customcards/button-card.js
+    type: module
+  - url: /customcards/air-visual-card.js 
+    type: js
+#  - url: /local/custom-weather-card-chart.js
+#    type: module
+  - url: /customcards/custom-weather-card-chart.js
+    type: module
+  - url: /customcards/tracker-card.js
+    type: js
+  - url: /customcards/simple-thermostat.js
+    type: module
+  - url: /customcards/vertical-stack-in-card.js
+    type: js
+  - url: /customcards/card-modder.js
+    type: js
+  - url: /customcards/card-tools.js?track=true
+    type: js
+
+
+views:
+
+
+
+#### FIRST TAB ####
+
+
+
+  - title: Home
+    icon: mdi:home 
+    cards: 
+    
+    - type: entity-filter
+      card: 
+        title: "!!! EMERGENCY ALERT !!!"
+        show_header_toggle: false
+      entities:
+      - sensor.living_room_nest_protect_co_status
+      - sensor.living_room_nest_protect_smoke_status
+      - sensor.master_bedroom_nest_protect_co_status
+      - sensor.master_bedroom_nest_protect_smoke_status
+      - sensor.kids_room_nest_protect_co_status
+      - sensor.kids_room_nest_protect_smoke_status
+      - sensor.basement_nest_protect_co_status
+      - sensor.basement_nest_protect_smoke_status
+      - sensor.living_room_nest_protect_color_status
+      - sensor.master_bedroom_nest_protect_color_status
+      - sensor.kids_room_nest_protect_color_status
+      - sensor.basement_nest_protect_color_status
+      - sensor.house_electricity
+      - sensor.object_detection_front
+      - sensor.object_detection_left
+      - sensor.object_detection_right
+      - sensor.object_detection_back
+      state_filter:
+      - "red"
+      - "Emergency"
+      - "power_out"
+      - "Person Detected"
+      show_empty: false
+
+    - type: entity-filter
+      card: 
+        title: Devices Reporting Problems
+        show_header_toggle: false
+      entities:
+      - sensor.living_room_nest_protect_co_status
+      - sensor.living_room_nest_protect_smoke_status       
+      - sensor.master_bedroom_nest_protect_co_status
+      - sensor.master_bedroom_nest_protect_smoke_status
+      - sensor.kids_room_nest_protect_co_status
+      - sensor.kids_room_nest_protect_smoke_status
+      - sensor.basement_nest_protect_co_status
+      - sensor.basement_nest_protect_smoke_status
+      - binary_sensor.living_room_nest_protect_online
+      - sensor.living_room_nest_protect_color_status
+      - binary_sensor.master_bedroom_nest_protect_online
+      - sensor.master_bedroom_nest_protect_color_status
+      - binary_sensor.kids_room_nest_protect_online
+      - sensor.kids_room_nest_protect_color_status
+      - binary_sensor.basement_nest_protect_online
+      - sensor.basement_nest_protect_color_status
+      - zwave.aeotec_zw090_z_stick_gen5_eu
+      - zwave.aeotec_zw096_smart_switch_6
+      - zwave.neo_coolcam_door_window_detector
+      - zwave.neo_coolcam_door_window_detector_2
+      - zwave.neo_coolcam_unknown_type_0200_id_1027
+      - zwave.popp_unknown_type_0004_id_0014
+      state_filter:
+      - "Warning"
+      - "grey"
+      - "yellow"
+      - "off"
+      - "dead"
+      show_empty: false
+
+    - type: entity-filter
+      card:
+        title: "Battery Change Needed"
+        show_header_toggle: false
+      entities:
+      - sensor.living_room_nest_protect_battery_health
+      - sensor.master_bedroom_nest_protect_battery_health
+      - sensor.kids_room_nest_protect_battery_health
+      - sensor.basement_nest_protect_battery_health
+      - sensor.seans_phone_battery
+      - sensor.alenas_phone_battery
+      - sensor.closet_window_sensor_1_battery
+      - sensor.back_door_sensor_battery
+      - sensor.sophies_phone_battery
+      state_filter:
+      - "Replace"
+      - "Low"
+      - "Very Low"
+      show_empty: false
+
+    - type: entity-filter
+      entities:
+      - variable.posta_variable
+      - variable.dhl_variable
+      - variable.dpd_variable
+      - sensor.cp_packages_coming_today
+      - sensor.dpd_packages_coming_today
+      - sensor.dhl_packages_coming_today
+      - sensor.bike_day
+      - sensor.object_detection_front
+      - sensor.object_detection_left
+      - sensor.object_detection_right
+      - sensor.object_detection_back
+      - sensor.back_door
+      - sensor.closet_window
+      - input_select.dishwasher_status
+      - binary_sensor.popp_unknown_type_0004_id_0014_sensor
+      state_filter:
+      - "on"
+      - "delivery"
+      - "yes"
+      - "Cat Detected"
+      - "Dog Detected"
+      - "Open"
+      - "Clean"
+      - "Emptying"
+      card: 
+        type: glance
+        title: "What's Happening Today"
+      show_empty: false      
+      
+    - type: custom:card-modder
+      report_size: 18
+      card:
+
+        type: custom:vertical-stack-in-card
+        cards:
+
+        - type: 'custom:weather-card-chart'
+          title: Weather / Air Quality
+          weather: weather.openweathermap
+          sun: sun.sun
+          mode: hourly
+
+        - type: entities
+    #        title: Weather Forecast
+          show_header_toggle: false
+          entities:
+          - sensor.dark_sky_hourly_summary
+          - sensor.dark_sky_daily_summary
+
+        - type: custom:air-visual-card 
+          air_pollution_level: sensor.u_s_air_pollution_level 
+          air_quality_index: sensor.u_s_air_quality_index
+          main_pollutant: sensor.u_s_main_pollutant
+#          temp: sensor.dark_sky_temperature 
+          city: 'Prague'  
+
+    - type: glance
+      entities:
+        - sensor.sean_location
+        - sensor.sophie_location
+        - sensor.alena_location
+
+
+    - type: custom:card-modder
+      report_size: 8
+      card:
+      
+        type: "custom:calendar-card"
+        entities:
+          - calendar.alena_and_seans_calendar
+        name: "Reminders"
+        showProgressBar: false
+        numberOfDays: 3
+      
+    - type: custom:card-modder
+      report_size: 100
+      card:
+        type: vertical-stack
+        cards:
+
+        - type: picture-glance
+          title: Outdoor - Front Gate
+          aspect_ratio: 16x9
+          entities:
+  #        - binary_sensor.motion_front_of_house_motion
+          - binary_sensor.motion_front
+  #        camera_image: camera.front_outdoor
+          camera_image: camera.front
+
+        - type: horizontal-stack
+          cards:
+
+
+          - type: picture-glance
+            title: Outdoor - Left
+            aspect_ratio: 9x16
+            entities:
+            - binary_sensor.motion_left
+            camera_image: camera.left
+
+          - type: picture-glance
+            title: Outdoor - Right 
+            aspect_ratio: 9x16
+            entities:
+            - binary_sensor.motion_right
+            camera_image: camera.right
+
+        - type: picture-glance
+          title: Outdoor - Back Yard
+          aspect_ratio: 16x9
+          entities:
+  #        - binary_sensor.motion_back_of_house_motion
+          - binary_sensor.motion_back
+  #        camera_image: camera.back_outdoor
+          camera_image: camera.back
+
+
+
+
+
+#      - type: picture-glance
+#        title: Outdoor - Right Side
+#        aspect_ratio: 16x9
+#        entities:
+#        - binary_sensor.motion_right
+#        camera_image: camera.right
+#
+#      - type: picture-glance
+#        title: Outdoor - Left Side
+#        aspect_ratio: 16x9
+#        entities:
+#        - binary_sensor.motion_left
+#        camera_image: camera.left
+
+#    - type: history-graph
+#      title: 'Motion Sensor History'
+#      entities:
+#      - binary_sensor.motion_back_of_house_motion
+#      - binary_sensor.motion_front_of_house_motion
+#      - binary_sensor.motion_left_side_of_house_motion
+#      - binary_sensor.motion_right_side_of_house_motion
+
+    - type: custom:card-modder
+      report_size: 6
+      card:
+
+        type: vertical-stack
+        cards:
+
+        - type: entities
+          title: Whole House
+          show_header_toggle: false
+          entities:
+          - climate.straus_house 
+
+  #      - type: gauge
+  #        entity: sensor.current_rate_power_cost_per_day 
+  #        name: "Current Electricity Use"
+  #        unit: Kč/day
+  #        min: 60
+  #        max: 700
+  #        severity:
+  #          green: 0
+  #          yellow: 250
+  #          red: 350 
+  #        
+
+        - entity: media_player.itunes
+          type: custom:mini-media-player
+          group: true
+
+        - type: horizontal-stack
+          cards:
+
+          - type: "custom:button-card"
+            color_type: blank-card
+          - type: "custom:button-card"
+            name: Shuffle
+            icon: mdi:shuffle-variant
+            color_type: icon
+            color: rgb(54, 112, 160)
+            show_state: false
+            action: service
+            service:
+              domain: switch
+              action: toggle
+              data:
+                entity_id: switch.shuffle
+          - type: "custom:button-card"
+            color_type: blank-card
+
+        - type: horizontal-stack
+          cards:
+
+
+          - type: "custom:button-card"
+            name: Mix
+            icon: mdi:pot-mix
+            color_type: icon
+            color: rgb(54, 112, 160)
+            show_state: false
+            action: service
+            service:
+              domain: media_player
+              action: play_media 
+              data:
+                entity_id: "media_player.itunes"
+                media_content_id: "a-45-star"
+                media_content_type: "playlist"
+
+          - type: "custom:button-card"
+            name: Jazz
+            icon: mdi:saxophone
+            color_type: icon
+            color: rgb(54, 112, 160)
+            show_state: false
+            action: service
+            service:
+              domain: media_player
+              action: play_media 
+              data:
+                entity_id: "media_player.itunes"
+                media_content_id: "best-jazz"
+                media_content_type: "playlist"
+
+          - type: "custom:button-card"
+            name: Rock
+            icon: mdi:guitar-electric
+            color_type: icon
+            color: rgb(54, 112, 160)
+            show_state: false
+            action: service
+            service:
+              domain: media_player
+              action: play_media 
+              data:
+                entity_id: "media_player.itunes"
+                media_content_id: "best-rock"
+                media_content_type: "playlist"              
+
+          - type: "custom:button-card"
+            name: Pop
+            icon: mdi:candycane
+            color_type: icon
+            color: rgb(54, 112, 160)
+            show_state: false
+            action: service
+            service:
+              domain: media_player
+              action: play_media 
+              data:
+                entity_id: "media_player.itunes"
+                media_content_id: "best-pop"
+                media_content_type: "playlist"              
+
+
+        - type: horizontal-stack
+          cards:
+
+
+          - type: "custom:button-card"
+            name: Classical
+            icon: mdi:violin
+            color_type: icon
+            color: rgb(54, 112, 160)
+            show_state: false
+            action: service
+            service:
+              domain: media_player
+              action: play_media 
+              data:
+                entity_id: "media_player.itunes"
+                media_content_id: "classical"
+                media_content_type: "playlist"
+
+          - type: "custom:button-card"
+            name: Black
+            icon: mdi:album
+            color_type: icon
+            color: rgb(54, 112, 160)
+            show_state: false
+            action: service
+            service:
+              domain: media_player
+              action: play_media 
+              data:
+                entity_id: "media_player.itunes"
+                media_content_id: "best-black"
+                media_content_type: "playlist"
+
+          - type: "custom:button-card"
+            name: Electro
+            icon: mdi:current-ac
+            color_type: icon
+            color: rgb(54, 112, 160)
+            show_state: false
+            action: service
+            service:
+              domain: media_player
+              action: play_media 
+              data:
+                entity_id: "media_player.itunes"
+                media_content_id: "best-electronica"
+                media_content_type: "playlist"
+
+          - type: "custom:button-card"
+            name: Kids
+            icon: mdi:human-child
+            color_type: icon
+            color: rgb(54, 112, 160)
+            show_state: false
+            action: service
+            service:
+              domain: media_player
+              action: play_media 
+              data:
+                entity_id: "media_player.itunes"
+                media_content_id: "kids-english"
+                media_content_type: "playlist"
+
+#    - type: entities
+#      title: Whole House
+#      show_header_toggle: false
+#      entities:
+#       - climate.straus_house 
+#      - switch.mix
+#      - switch.jazz
+#      - switch.rock
+#      - switch.pop
+#      - switch.classical
+#      - switch.black
+#      - switch.electronica 
+#      - switch.kids
+
+    - type: custom:card-modder
+      report_size: 14
+      card: 
+
+        type: entities
+        title: First Floor
+        show_header_toggle: false
+        entities:
+        - entity: media_player.living_room_airtunes_speaker
+          type: custom:mini-media-player
+          name: Living Rm
+          hide:
+            controls: true
+            mute: true
+          group: true
+        - entity: media_player.kitchen_airtunes_speaker
+          type: custom:mini-media-player
+          name: Kitchen Speakers
+          hide:
+            controls: true
+            mute: true
+          group: true
+        - entity: media_player.bathroom_1st_floor_airtunes_speaker
+          type: custom:mini-media-player
+          name: Bathroom Speakers
+          hide:
+            controls: true
+            mute: true
+          group: true
+        - entity: media_player.apple_tv_airtunes_speaker
+          type: custom:mini-media-player
+          name: Apple TV
+          hide:
+            controls: true
+            mute: true
+          group: true
+        - entity: media_player.chromecast
+          type: custom:mini-media-player
+          name: Chromecast
+          hide:
+            controls: true
+            mute: true
+          group: true
+        - climate.entrance
+        - climate.living_room
+        - climate.dining_room
+
+    - type: entities
+      title: Second Floor
+      show_header_toggle: false
+      entities:
+      - entity: media_player.master_bedroom_airtunes_speaker
+        type: custom:mini-media-player
+        name: "Master Bedroom Speakers"
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.master_bath_airtunes_speaker
+        type: custom:mini-media-player
+        name: "Master Bath Speakers"
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.office_airtunes_speaker
+        type: custom:mini-media-player
+        name: Office Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.media_player.library_airtunes_speaker
+        type: custom:mini-media-player
+        name: Library Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.computer_airtunes_speaker
+        type: custom:mini-media-player
+        name: Computer Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - climate.master_bedroom
+      - climate.master_bath
+      - climate.master_closet
+      - climate.office_library
+      
+    - type: entities
+      title: Third Floor
+      show_header_toggle: false
+      entities:
+      - entity: media_player.sophie_s_room_airtunes_speaker
+        type: custom:mini-media-player
+        name: "Sophie's Room Speakers"
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.sebastian_s_room_airtunes_speaker
+        type: custom:mini-media-player
+        name: "Seb's Room Speakers"
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.gym_airtunes_speaker
+        type: custom:mini-media-player
+        name: Gym Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - climate.sebastian_s_room
+      - climate.sophie_s_room
+      - climate.guest_bedroom
+      style: 
+        font-size: 20px   
+
+    - type: custom:card-modder
+      report_size: 8
+      card:      
+
+        type: entities
+        title: Basement
+        show_header_toggle: false
+        entities:
+        - climate.garage
+        - climate.laundry_room
+
+    - type: entities
+      title: Outside
+      show_header_toggle: false
+      entities:
+      
+#        - sensor.us_air_pollution_level
+#          icon: mdi:gauge
+#        - sensor.us_air_quality_index
+#        - sensor.us_main_pollutant
+
+      - entity: media_player.back_yard_airtunes_speaker
+        type: custom:mini-media-player
+        name: Back Yard Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+
+
+
+#### SECOND TAB ####
+
+
+
+  - title: Music
+    icon: mdi:music
+    cards:
+    
+    
+    - type: vertical-stack
+      cards:
+      
+#      - entity: media_player.itunes
+#        type: custom:mini-media-player
+#        group: true
+
+      - type: media-control
+        entity: media_player.itunes   
+
+#      - entity: media_player.itunes
+#        type: custom:mini-media-player
+##        name: Living Rm
+#        hide:
+#          controls: true
+#          mute: true
+#        hide_info: true
+#        hide_power: true
+
+      - type: horizontal-stack
+        cards:
+
+        - type: "custom:button-card"
+          color_type: blank-card
+        - type: "custom:button-card"
+          name: Shuffle
+          icon: mdi:shuffle-variant
+          color_type: icon
+          color: rgb(54, 112, 160)
+          show_state: false
+          action: service
+          service:
+            domain: switch
+            action: toggle
+            data:
+              entity_id: switch.shuffle
+        - type: "custom:button-card"
+          color_type: blank-card
+
+            
+      - type: horizontal-stack
+        cards:
+        
+        
+        - type: "custom:button-card"
+          name: Mix
+          icon: mdi:pot-mix
+          color_type: icon
+          color: rgb(54, 112, 160)
+          show_state: false
+          action: service
+          service:
+            domain: media_player
+            action: play_media 
+            data:
+              entity_id: "media_player.itunes"
+              media_content_id: "a-45-star"
+              media_content_type: "playlist"
+              
+        - type: "custom:button-card"
+          name: Jazz
+          icon: mdi:saxophone
+          color_type: icon
+          color: rgb(54, 112, 160)
+          show_state: false
+          action: service
+          service:
+            domain: media_player
+            action: play_media 
+            data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-jazz"
+              media_content_type: "playlist"
+              
+        - type: "custom:button-card"
+          name: Rock
+          color_type: icon
+          color: rgb(54, 112, 160)
+          show_state: false
+          icon: mdi:guitar-electric
+          action: service
+          service:
+            domain: media_player
+            action: play_media 
+            data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-rock"
+              media_content_type: "playlist"              
+ 
+        - type: "custom:button-card"
+          name: Pop
+          icon: mdi:candycane
+          color_type: icon
+          color: rgb(54, 112, 160)
+          show_state: false
+          action: service
+          service:
+            domain: media_player
+            action: play_media 
+            data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-pop"
+              media_content_type: "playlist"              
+              
+      - type: horizontal-stack
+        cards:
+        
+        
+        - type: "custom:button-card"
+          name: Classical
+          icon: mdi:violin
+          color_type: icon
+          color: rgb(54, 112, 160)
+          show_state: false
+          action: service
+          service:
+            domain: media_player
+            action: play_media 
+            data:
+              entity_id: "media_player.itunes"
+              media_content_id: "classical"
+              media_content_type: "playlist"
+              
+        - type: "custom:button-card"
+          name: Black
+          icon: mdi:album
+          color_type: icon
+          color: rgb(54, 112, 160)
+          show_state: false
+          action: service
+          service:
+            domain: media_player
+            action: play_media 
+            data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-black"
+              media_content_type: "playlist"
+              
+        - type: "custom:button-card"
+          name: Electro
+          icon: mdi:current-ac
+          color_type: icon
+          color: rgb(54, 112, 160)
+          show_state: false
+          action: service
+          service:
+            domain: media_player
+            action: play_media 
+            data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-electronica"
+              media_content_type: "playlist"
+              
+        - type: "custom:button-card"
+          name: Kids
+          icon: mdi:human-child
+          color_type: icon
+          color: rgb(54, 112, 160)
+          show_state: false
+          action: service
+          service:
+            domain: media_player
+            action: play_media 
+            data:
+              entity_id: "media_player.itunes"
+              media_content_id: "kids-english"
+              media_content_type: "playlist"    
+              
+    - type: entities
+      title: First Floor
+      show_header_toggle: false
+      entities:
+      - type: media-control
+        entity: media_player.chromecast
+      - entity: media_player.living_room_airtunes_speaker
+        type: custom:mini-media-player
+        name: Living Rm
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.media_player.apple_tv_airtunes_speaker
+        type: custom:mini-media-player
+        name: Apple TV
+        hide:
+          controls: true
+          mute: true
+        group: true
+#      - entity: media_player.chromecast
+#        type: custom:mini-media-player
+#        name: Chromecast
+#        hide_controls: false
+#        hide_mute: false
+#        group: true
+      - entity: media_player.kitchen_airtunes_speaker
+        type: custom:mini-media-player
+        name: Kitchen Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.bathroom_1st_floor_airtunes_speaker
+        type: custom:mini-media-player
+        name: Bathroom Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+        
+    - type: entities
+      title: Second Floor
+      show_header_toggle: false
+      entities:
+      - entity: media_player.master_bedroom_airtunes_speaker
+        type: custom:mini-media-player
+        name: "Master Bedroom Speakers"
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.master_bath_airtunes_speaker
+        type: custom:mini-media-player
+        name: "Master Bath Speakers"
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.office_airtunes_speaker
+        type: custom:mini-media-player
+        name: Office Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.media_player.library_airtunes_speaker
+        type: custom:mini-media-player
+        name: Library Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.computer_airtunes_speaker
+        type: custom:mini-media-player
+        name: Computer Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+        
+    - type: entities
+      title: Third Floor
+      show_header_toggle: false
+      entities:
+      - entity: media_player.sophie_s_room_airtunes_speaker
+        type: custom:mini-media-player
+        name: "Sophie's Room Speakers"
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.sebastian_s_room_airtunes_speaker
+        type: custom:mini-media-player
+        name: "Seb's Room Speakers"
+        hide:
+          controls: true
+          mute: true
+        group: true
+      - entity: media_player.gym_airtunes_speaker
+        type: custom:mini-media-player
+        name: Gym Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+        
+    - type: entities
+      title: Outside
+      show_header_toggle: false
+      entities:
+      - entity: media_player.back_yard_airtunes_speaker
+        type: custom:mini-media-player
+        name: Back Yard Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true     
+
+    - type: entities
+      title: All Speakers
+      entities:
+      - entity: group.all_speakers
+      
+      
+
+#### THIRD TAB ####
+
+
+
+  - title: Climate
+    icon: mdi:radiator
+    cards:
+    
+    
+#    - type: vertical-stack
+#      cards:
+
+    - type: custom:vertical-stack-in-card
+      cards:
+    
+      - type: history-graph
+        title: 'Entrance'
+        entities:
+        - climate.entrance
+
+#      - type: thermostat
+#        entity: climate.entrance
+
+#      - type: entities
+#        entities:
+#        - climate.entrance
+#
+      - type: custom:simple-thermostat
+        entity: climate.entrance
+        step_size: 0.5
+        name: false
+        
+        
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: 'Play Room'
+        entities:
+        - climate.dining_room
+
+      - type: custom:simple-thermostat
+        entity: climate.dining_room
+        step_size: 0.5
+        name: false
+
+#      - type: entities
+#        entities:
+#        - automation.dining_room_climate_kid_lock
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: 'Living Room'
+        entities:
+        - climate.living_room
+
+      - type: custom:simple-thermostat
+        entity: climate.living_room
+        step_size: 0.5
+        name: false
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: 'Master Bedroom'
+        entities:
+        - climate.master_bedroom
+
+      - type: custom:simple-thermostat
+        entity: climate.master_bedroom
+        step_size: 0.5
+        name: false
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: 'Master Bath'
+        entities:
+        - climate.master_bath
+
+      - type: custom:simple-thermostat
+        entity: climate.master_bath
+        step_size: 0.5
+        name: false
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: 'Master Closet'
+        entities:
+        - climate.master_closet
+
+      - type: custom:simple-thermostat
+        entity: climate.master_closet
+        step_size: 0.5
+        name: false
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: 'Office / Library'
+        entities:
+        - climate.office_library
+
+      - type: custom:simple-thermostat
+        entity: climate.office_library
+        step_size: 0.5
+        name: false
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: "Sebastian's Room"
+        entities:
+        - climate.sebastian_s_room
+
+      - type: custom:simple-thermostat
+        entity: climate.sebastian_s_room
+        step_size: 0.5
+        name: false
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: "Sophie's Room"
+        entities:
+        - climate.sophie_s_room
+
+      - type: custom:simple-thermostat
+        entity: climate.sophie_s_room
+        step_size: 0.5
+        name: false
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: 'Gym'
+        entities:
+        - climate.guest_bedroom
+
+      - type: custom:simple-thermostat
+        entity: climate.guest_bedroom
+        step_size: 0.5
+        name: false
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: 'Garage'
+        entities:
+        - climate.garage
+
+      - type: custom:simple-thermostat
+        entity: climate.garage
+        step_size: 0.5
+        name: false
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: history-graph
+        title: 'Laundry Room'
+        entities:
+        - climate.laundry_room
+
+      - type: custom:simple-thermostat
+        entity: climate.laundry_room
+        step_size: 0.5
+        name: false
+
+#      - type: divider
+#        style:
+#          height: 1px
+#          width: 100%
+#          margin-left: 0
+#          margin-right: 0
+#          background: '#3670a0'
+    - type: custom:vertical-stack-in-card
+      cards:
+
+      
+      - type: history-graph
+        title: 'House Average'
+        entities:
+        - climate.straus_house 
+
+      - type: custom:simple-thermostat
+        entity: climate.straus_house 
+        step_size: 0.5
+        name: false
+        
+
+
+#### FOURTH TAB ####
+
+
+
+  - title: Security
+    panel: true
+    icon: mdi:cctv
+    cards:
+    
+    - type: vertical-stack
+      cards:    
+
+# live views and motion detection
+
+      - type: picture-glance
+        title: Outdoor - Front Gate
+        aspect_ratio: 16x9
+        entities:
+        - binary_sensor.motion_front
+        camera_image: camera.front
+
+      - type: history-graph
+        title: 'Front Motion'
+        entities:
+#        - binary_sensor.motion_front_of_house_motion
+        - binary_sensor.motion_front
+
+#      - type: picture-glance
+#        title: Outdoor - Right Side
+#        aspect_ratio: 16x9
+#        entities:
+#        - binary_sensor.motion_right
+#        camera_image: camera.right
+
+      - type: horizontal-stack
+        cards:
+
+        - type: vertical-stack
+          cards:    
+
+          - type: picture-glance
+            title: Outdoor - Left
+            aspect_ratio: 9x16
+            entities:
+            - binary_sensor.motion_left
+            camera_image: camera.left
+
+          - type: history-graph
+            title: 'Left Motion'
+            entities:
+    #        - binary_sensor.motion_left_side_of_house_motion
+            - binary_sensor.motion_left
+
+        - type: vertical-stack
+          cards:
+
+          - type: picture-glance
+            title: Outdoor - Right 
+            aspect_ratio: 9x16
+            entities:
+            - binary_sensor.motion_right
+            camera_image: camera.right
+
+          - type: history-graph
+            title: 'Right Motion'
+            entities:
+    #        - binary_sensor.motion_right_side_of_house_motion
+            - binary_sensor.motion_right
+
+      - type: picture-glance
+        title: Outdoor - Back Yard
+        aspect_ratio: 16x9
+        entities:
+        - binary_sensor.motion_back
+        camera_image: camera.back
+
+      - type: history-graph
+        title: 'Back Motion'
+        entities:
+#        - binary_sensor.motion_back_of_house_motion
+        - binary_sensor.motion_back
+
+
+# object detection (tensorflow)
+
+
+      - type: custom:vertical-stack-in-card
+        cards:
+
+        
+        - type: picture-glance
+          title: Back Last Person Detected
+          entities:
+          - sensor.object_detection_back
+          camera_image: camera.back_last_person
+
+        - type: history-graph
+          title: 'Back Human Detection'
+          entities:
+          - sensor.back_human_detection
+#          - sensor.tensorflow_summary_back
+          
+        - type: entities
+          title: 
+          show_header_toggle: false
+          entities:           
+#          - sensor.last_object_back
+          - sensor.last_human_back
+
+      - type: horizontal-stack
+        cards:
+          
+        - type: custom:vertical-stack-in-card
+          cards:          
+
+          - type: picture-glance
+            title: Left Last Person Detected
+            entities:
+            - sensor.object_detection_left
+            camera_image: camera.left_last_person
+
+          - type: history-graph
+            title: 'Human Left'
+            entities:
+            - sensor.left_human_detection
+#            - sensor.tensorflow_summary_left
+
+          - type: entities
+            title: 
+            show_header_toggle: false
+            entities:
+#            - sensor.last_object_left
+            - sensor.last_human_left
+
+        - type: custom:vertical-stack-in-card
+          cards:
+
+          - type: picture-glance
+            title: Right Last Person Detected
+            entities:
+            - sensor.object_detection_right
+            camera_image: camera.right_last_person
+
+          - type: history-graph
+            title: 'Human Right'
+            entities:
+            - sensor.right_human_detection
+  #          - sensor.tensorflow_summary_right
+
+          - type: entities
+            title: 
+            show_header_toggle: false
+            entities:
+#            - sensor.last_object_right
+            - sensor.last_human_right
+
+
+      - type: custom:vertical-stack-in-card
+        cards:
+
+
+        - type: picture-glance
+          title: Front Last Object Detected
+          entities:
+          - sensor.object_detection_front
+          camera_image: camera.front_last_person
+
+        - type: history-graph
+          title: 'Front Human Detection'
+          entities:
+          - sensor.front_human_detection
+#          - sensor.tensorflow_summary_front
+#          - sensor.last_oject_front
+        - type: entities
+          title: 
+          show_header_toggle: false
+          entities:
+#          - sensor.last_object_front
+          - sensor.last_human_front
+
+
+
+#### FIFTH TAB ####
+
+
+
+  - title: Weather
+    icon: mdi:weather-lightning
+    cards:
+
+    - type: 'custom:weather-card-chart'
+      title: Weather
+      weather: weather.weather_forecast
+      sun: sun.sun
+
+    - type: vertical-stack
+      cards:
+
+      - type: entities
+        title: Current Conditions
+        show_header_toggle: false
+        entities:
+        - sensor.dark_sky_summary
+#        - sensor.us_air_pollution_level
+#          icon: mdi:gauge
+      - type: custom:air-visual-card 
+        air_pollution_level: sensor.u_s_air_pollution_level 
+        air_quality_index: sensor.u_s_air_quality_index 
+        main_pollutant: sensor.u_s_main_pollutant 
+#        temp: sensor.dark_sky_temperature 
+        city: 'Prague'
+
+    - type: entities
+      title: Weather Forecast
+      show_header_toggle: false
+      entities:
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_daily_summary
+      - sensor.dark_sky_overnight_low_temperature_0
+      - sensor.dark_sky_daytime_high_temperature_0
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_precip
+      - sensor.dark_sky_apparent_temperature
+      - sensor.dark_sky_overnight_low_apparent_temperature_0
+      - sensor.dark_sky_daytime_high_apparent_temperature_0
+
+    - type: history-graph
+      title: 'Air Pollution Level'
+      entities: 
+      - sensor.u_s_air_quality_index
+
+    - type: history-graph
+      title: 'Temperature'
+      entities:
+      - sensor.dark_sky_temperature
+
+    - type: history-graph
+      title: 'Feels Like Temp'
+      entities:
+      - sensor.dark_sky_apparent_temperature
+
+    - type: history-graph
+      title: 'Wind Speed'
+      entities:
+      - sensor.dark_sky_wind_speed
+
+    - type: history-graph
+      title: 'Wind Gust'
+      entities:
+      - sensor.dark_sky_wind_gust
+
+    - type: history-graph
+      title: 'Wind Bearing'
+      entities:
+      - sensor.dark_sky_wind_bearing  
+
+    - type: history-graph
+      title: 'Humidity'
+      entities:
+      - sensor.dark_sky_humidity
+
+    - type: history-graph
+      title: '% Chance Precip.'
+      entities:
+      - sensor.dark_sky_precip_probability
+
+    - type: history-graph
+      title: 'Precip. Intensity'
+      entities:
+      - sensor.dark_sky_precip_intensity
+
+    - type: history-graph
+      title: 'Visibility'
+      entities:
+      - sensor.dark_sky_visibility      
+
+    - type: history-graph
+      title: 'Nearest Storm'
+      entities:
+      - sensor.dark_sky_nearest_storm_distance      
+
+    - type: history-graph
+      title: 'Ozone'
+      entities:
+      - sensor.dark_sky_ozone
+
+    - type: history-graph
+      title: 'Pressure'
+      entities:
+      - sensor.dark_sky_pressure
+
+    - type: history-graph
+      title: 'Dew Point'
+      entities:
+      - sensor.dark_sky_dew_point
+
+    - type: history-graph
+      title: 'Cloud Coverage'
+      entities:
+      - sensor.dark_sky_cloud_coverage    
+
+
+
+#### SIXTH TAB ####
+
+
+
+  - title: Computer
+    icon: mdi:desktop-classic
+    cards:
+
+#    - type: gauge
+#      entity: sensor.power_consumption  
+#      name: "House Power Consumption"
+#      max: 8000
+#      severity:
+#        green: 0
+#        yellow: 2000
+#        red: 3000
+#    
+    - type: gauge
+      entity: sensor.disk_free   
+      name: "Narnia Disk Free"
+      max: 256
+      severity:
+        green: 32
+        yellow: 16
+        red: 8
+      
+    - type: gauge
+      entity: sensor.disk_use_percent  
+      name: "Narnia % Disk Use"
+      severity:
+        green: 0
+        yellow: 75
+        red: 88
+
+    - type: gauge
+      name: "Narnia % Memory Used"
+      entity: sensor.memory_use_percent
+      severity:
+        green: 0
+        yellow: 50
+        red: 80
+
+    - type: history-graph
+      title: 'Narnia Load'
+      entities:
+      - sensor.load_15m
+
+    - type: history-graph
+      title: 'Dishwasher Status'
+      entities:
+      - input_select.dishwasher_status
+
+    - type: vertical-stack
+      cards:
+      
+      
+      - type: history-graph
+        title: 'Download Speed'
+        entities:
+        - sensor.speedtest_download
+
+      - type: history-graph
+        title: 'Deluge Down Speed'
+        entities:
+        - sensor.deluge_down_speed
+
+
+    - type: vertical-stack
+      cards:
+      
+
+      - type: history-graph
+        title: 'Upload Speed'
+        entities:
+        - sensor.speedtest_upload
+
+      - type: history-graph
+        title: 'Deluge Up Speed'
+        entities:
+        - sensor.deluge_up_speed
+
+
+    - type: history-graph
+      title: 'Ping Time'
+      entities:
+      - sensor.speedtest_ping
+
+
+
+    - type: entities
+      entities:
+      - switch.fibaro_system_fgs223_double_relay_switch
+      - switch.fibaro_system_fgs223_double_relay_switch_2
+      - sensor.deluge_status
+      - binary_sensor.living_room_nest_protect_online
+      - binary_sensor.master_bedroom_nest_protect_online
+      - binary_sensor.kids_room_nest_protect_online
+      - binary_sensor.basement_nest_protect_online
+      - sensor.sean_direction_of_travel
+      - sensor.alena_direction_of_travel
+      - sensor.sophie_direction_of_travel
+      - sensor.all_direction_of_travel
+
+    - type: gauge
+      entity: sensor.alena_s_iphone_battery_level
+      name: "     Alena's Phone Battery"
+      severity:
+        green: 50
+        yellow: 25
+        red: 12
+
+    - type: gauge
+      entity: sensor.sean_s_iphone_x_battery_level   
+      name: "     Sean's Phone Battery"
+      severity:
+        green: 50
+        yellow: 25
+        red: 12
+
+    - type: gauge
+      entity: sensor.sophies_iphone_6_battery_level   
+      name: "     Sophie's Phone Battery"
+      severity:
+        green: 50
+        yellow: 25
+        red: 12
+
+    - type: custom:tracker-card
+      title:
+      trackers:
+        - sensor.custom_card_tracker
+        - sensor.custom_component_tracker
+
+    - type: vertical-stack
+      cards:
+
+      - type: history-graph
+        title: 'device_tracker.seans_iphone_x'
+        entities:
+        - device_tracker.seans_iphone_x
+
+      - type: history-graph
+        title: 'input_select.sean_last_zone_dropdown'
+        entities:
+        - input_select.sean_last_zone_dropdown
+
+      - type: history-graph
+        title: 'input_select.sean_location_dropdown'
+        entities:
+        - input_select.sean_location_dropdown
+
+      - type: history-graph
+        title: 'sensor.sean_location'
+        entities:
+        - sensor.sean_location
+
+    - type: vertical-stack
+      cards:
+
+      - type: history-graph
+        title: 'Humidity Under Sink'
+        entities:
+        - sensor.popp_unknown_type_0004_id_0014_relative_humidity
+
+      - type: history-graph
+        title: 'Temperature Under Sink'
+        entities:
+        - sensor.popp_unknown_type_0004_id_0014_temperature
+
+      - type: history-graph
+        title: 'Dew Point Under Sink'
+        entities:
+        - sensor.popp_unknown_type_0004_id_0014_dew_point
+      
+#### SEVENTH TAB ####
+
+
+
+  - title: Utility Costs
+    panel: true
+    icon: mdi:power-plug
+    cards:
+    
+    - type: vertical-stack
+      cards:   
+
+      - type: iframe
+        url: https://pro.smappee.net/analyse
+        aspect_ratio: 100%

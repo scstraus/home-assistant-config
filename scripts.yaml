@@ -1,0 +1,63 @@
+#    #turn input booleans for all playlist states to off
+  turn_playlists_off:
+    sequence:
+    - service: input_boolean.turn_off
+      data: 
+        entities:  
+        - input_boolean.mix_playlist
+        - input_boolean.jazz_playlist
+        - input_boolean.rock_playlist
+        - input_boolean.pop_playlist
+        - input_boolean.black_playlist
+        - input_boolean.classical_playlist
+        - input_boolean.electronica_playlist
+        - input_boolean.kids_playlist
+
+
+
+#input_boolean.mix_playlist, input_boolean.jazz_playlist, input_boolean.rock_playlist, input_boolean.pop_playlist, input_boolean.black_playlist, input_boolean.classical_playlist, input_boolean.electronica_playlist, input_boolean.kids_playlist
+
+
+
+
+#  - service: notify.pushover
+#    data_template:
+#      title: "{{ title }}"
+#      message: "{{ message }}"
+
+  #turn input booleans for all playlist states to off
+
+
+  turn_playlists_on:
+    sequence:
+    - service: input_boolean.turn_on
+      data: 
+        entities:
+        - input_boolean.mix_playlist
+        - input_boolean.jazz_playlist
+        - input_boolean.rock_playlist
+        - input_boolean.pop_playlist
+        - input_boolean.black_playlist
+        - input_boolean.classical_playlist
+        - input_boolean.electronica_playlist
+        - input_boolean.kids_playlist
+      
+#      input_boolean.mix_playlist, input_boolean.jazz_playlist, input_boolean.rock_playlist, input_boolean.pop_playlist, input_boolean.black_playlist, input_boolean.classical_playlist, input_boolean.electronica_playlist, input_boolean.kids_playlist
+#      input_boolean.mix_playlist
+#      input_boolean.jazz_playlist
+#      input_boolean.rock_playlist
+#      input_boolean.pop_playlist
+#      input_boolean.black_playlist
+#      input_boolean.classical_playlist
+#      input_boolean.electronica_playlist
+#      input_boolean.kids_playlist
+#
+#
+#      - input_boolean.mix_playlist
+#      - input_boolean.jazz_playlist
+#      - input_boolean.rock_playlist
+#      - input_boolean.pop_playlist
+#      - input_boolean.black_playlist
+#      - input_boolean.classical_playlist
+#      - input_boolean.electronica_playlist
+#      - input_boolean.kids_playlist
