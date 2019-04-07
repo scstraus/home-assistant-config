@@ -12,6 +12,7 @@ homeassistant:
 #      trusted_networks:
 #        - 10.10.10.0/24
 #        - 10.11.147.245/32
+# uncomment for iOS device add
 #    - type: legacy_api_password
 #      api_password: !secret API_pass
 
@@ -26,7 +27,8 @@ frontend:
   
 system_health:
 
-discovery:
+#uncomment for iOS device add
+#discovery:
 
 config:
 
@@ -34,6 +36,7 @@ hassio:
 
 http:
 
+#uncomment for iOS device add
 #  api_password: !secret API_pass
   ssl_certificate: !secret cer_dir
   ssl_key: !secret key_dir

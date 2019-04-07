@@ -12,13 +12,17 @@
     entity_id: sensor.front_human_detection
     above: 18
   condition:
-    condition: or
+    condition: and
     conditions:
-    - condition: time
-      after: '21:00:00'
-      before: '7:00:00'
     - condition: template
-      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 600)}}'
+    - condition: or
+      conditions:
+      - condition: time
+        after: '21:00:00'
+        before: '7:00:00'
+      - condition: template
+        value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -36,13 +40,17 @@
     entity_id: sensor.back_human_detection
     above: 18
   condition:
-    condition: or
+    condition: and
     conditions:
-    - condition: time
-      after: '21:00:00'
-      before: '7:00:00'
     - condition: template
-      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_back.attributes.last_triggered | default(0)) | int > 600)}}'
+    - condition: or
+      conditions:
+      - condition: time
+        after: '21:00:00'
+        before: '7:00:00'
+      - condition: template
+        value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -60,13 +68,17 @@
     entity_id: sensor.left_human_detection
     above: 18
   condition:
-    condition: or
+    condition: and
     conditions:
-    - condition: time
-      after: '21:00:00'
-      before: '7:00:00'
     - condition: template
-      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_on_left.attributes.last_triggered | default(0)) | int > 600)}}'
+    - condition: or
+      conditions:
+      - condition: time
+        after: '21:00:00'
+        before: '7:00:00'
+      - condition: template
+        value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -84,13 +96,19 @@
     entity_id: sensor.right_human_detection
     above: 18
   condition:
-    condition: or
+    condition: and
     conditions:
-    - condition: time
-      after: '21:00:00'
-      before: '7:00:00'
     - condition: template
-      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_on_right.attributes.last_triggered | default(0)) | int > 600)}}'
+    - condition: or
+      conditions:
+      - condition: time
+        after: '21:00:00'
+        before: '7:00:00'
+      - condition: template
+        value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+
+
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -1269,3 +1287,39 @@
     service: switch.turn_on
     data:
       entity_id: switch.fibaro_system_fgs223_double_relay_switch
+
+- id: front_right_security_lights_on_if_human
+  alias: Front+Right Security Lights on if Human
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.front_human_detection
+      above: 18
+    - platform: numeric_state
+      entity_id: sensor.right_human_detection
+      above: 18
+  condition:
+    condition: time
+    after: '21:00:00'
+    before: '7:00:00'
+  action:
+    service: switch.turn_on
+    data:
+      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+
+- id: back_left_security_lights_on_if_human
+  alias: Back+Left Security Lights on if Human
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.back_human_detection
+      above: 18
+    - platform: numeric_state
+      entity_id: sensor.left_human_detection
+      above: 18
+  condition:
+    condition: time
+    after: '21:00:00'
+    before: '7:00:00'
+  action:
+    service: switch.turn_on
+    data:
+      entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
