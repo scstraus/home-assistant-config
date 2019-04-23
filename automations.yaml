@@ -1337,3 +1337,134 @@
     data:
       title: "Garage is Open"
       message: "The garage door has been open for 10 minutes."
+
+- id: warm_weather_heat_down
+  alias: Turn Down Heat For Warm Weather
+  trigger:
+    platform: time
+    at: '23:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0 > 5 }}'
+      - condition: template
+        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0 > 13 }}'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.dining_room
+        temperature: 20
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.entrance
+        temperature: 18
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.garage
+        temperature: 18
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.guest_bedroom
+        temperature: 21
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.living_room
+        temperature: 20
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bath
+        temperature: 22
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bedroom
+        temperature: 21
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_closet
+        temperature: 22
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.office_library
+        temperature: 21.5
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sebastian_s_room
+        temperature: 22
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sophie_s_room
+        temperature: 21
+        operation_mode: manual
+                
+- id: cool_weather_heat_auto
+  alias: Turn Heat to Schedule in Cold Weather
+  trigger:
+    platform: time
+    at: '23:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0 < 5 }}'
+      - condition: template
+        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0 < 13 }}'
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.dining_room
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.entrance
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.garage
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.guest_bedroom
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.laundry_room
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.living_room
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.master_bath
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.master_bedroom
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.master_closet
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.office_library
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.sebastian_s_room
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.sophie_s_room
+        operation_mode: auto
