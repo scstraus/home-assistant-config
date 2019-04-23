@@ -34,13 +34,17 @@ config:
 
 hassio:
 
+cloud:
+
 http:
 
 #uncomment for iOS device add
 #  api_password: !secret API_pass
-  ssl_certificate: !secret cer_dir
-  ssl_key: !secret key_dir
-  base_url: !secret my_host+port
+
+#uncomment to re-enable public ssl access
+#  ssl_certificate: !secret cer_dir
+#  ssl_key: !secret key_dir
+#  base_url: !secret my_host+port
 
 updater:
 

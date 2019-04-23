@@ -606,4 +606,213 @@
 
 #  - platform: smartthinq_washer
 #    name: LG_Washer
-#    mac: !secret lg_washer_mac         
+#    mac: !secret lg_washer_mac        
+
+
+  - name: Alarm Connection
+    platform: mqtt
+    state_topic: 'paradox/ctrl/state'
+
+  - name: Alarm State 1 - Laundry
+    platform: mqtt
+    state_topic: 'paradox/alarm/state/1'
+
+  - name: Alarm State 2 - 1st Floor
+    platform: mqtt
+    state_topic: 'paradox/alarm/state/2'
+    
+  - name: Alarm State 3 - Motion Sensors
+    platform: mqtt
+    state_topic: 'paradox/alarm/state/3'
+
+  - name: Zone 1 - Entrance Door
+    platform: mqtt
+    state_topic: 'paradox/zone/state/1'
+
+  - name: Zone 2 - Windows
+    platform: mqtt
+    state_topic: 'paradox/zone/state/2'
+
+  - name: Zone 3 - Play Room
+    platform: mqtt
+    state_topic: 'paradox/zone/state/3'
+
+  - name: Zone 4 - Living Room
+    platform: mqtt
+    state_topic: 'paradox/zone/state/4'
+    
+  - name: Zone 5 - Master Bedroom
+    platform: mqtt
+    state_topic: 'paradox/zone/state/5'
+
+  - name: Zone 6 - Library
+    platform: mqtt
+    state_topic: 'paradox/zone/state/6'
+
+  - name: Zone 7 
+    platform: mqtt
+    state_topic: 'paradox/zone/state/7'
+
+  - name: Zone 8 - Closet
+    platform: mqtt
+    state_topic: 'paradox/zone/state/8'
+
+  - name: Zone 9
+    platform: mqtt
+    state_topic: 'paradox/zone/state/9'
+    
+  - name: Zone 10 - Sophies Room
+    platform: mqtt
+    state_topic: 'paradox/zone/state/10'
+    
+  - name: Zone 11 - Entrance
+    platform: mqtt
+    state_topic: 'paradox/zone/state/11'
+
+  - name: Zone 12 - Garage
+    platform: mqtt
+    state_topic: 'paradox/zone/state/12'
+
+  - name: Zone 13 - Laundry Room
+    platform: mqtt
+    state_topic: 'paradox/zone/state/13'
+
+  - name: Zone 14 - Garage Door
+    platform: mqtt
+    state_topic: 'paradox/zone/state/14'
+    
+  - name: Zone 15
+    platform: mqtt
+    state_topic: 'paradox/zone/state/15'
+    
+  - name: Zone 16
+    platform: mqtt
+    state_topic: 'paradox/zone/state/16'
+
+  - name: Zone 17
+    platform: mqtt
+    state_topic: 'paradox/zone/state/17'
+
+  - name: Zone 18
+    platform: mqtt
+    state_topic: 'paradox/zone/state/18'
+
+  - name: Zone 19
+    platform: mqtt
+    state_topic: 'paradox/zone/state/19'
+    
+  - name: Zone 20
+    platform: mqtt
+    state_topic: 'paradox/zone/state/20'
+    
+  - name: Zone 21
+    platform: mqtt
+    state_topic: 'paradox/zone/state/21'
+
+  - name: Zone 22
+    platform: mqtt
+    state_topic: 'paradox/zone/state/22'
+
+  - name: Zone 23
+    platform: mqtt
+    state_topic: 'paradox/zone/state/23'
+
+  - name: Zone 24
+    platform: mqtt
+    state_topic: 'paradox/zone/state/24'
+    
+  - name: Zone 25
+    platform: mqtt
+    state_topic: 'paradox/zone/state/25'
+    
+  - name: Zone 26
+    platform: mqtt
+    state_topic: 'paradox/zone/state/26'
+
+  - name: Zone 27
+    platform: mqtt
+    state_topic: 'paradox/zone/state/27'
+
+  - name: Zone 28
+    platform: mqtt
+    state_topic: 'paradox/zone/state/28'
+
+  - name: Zone 29
+    platform: mqtt
+    state_topic: 'paradox/zone/state/29'
+    
+  - name: Zone 30
+    platform: mqtt
+    state_topic: 'paradox/zone/state/30'
+    
+  - name: Zone 31
+    platform: mqtt
+    state_topic: 'paradox/zone/state/31'
+
+  - name: Zone 32
+    platform: mqtt
+    state_topic: 'paradox/zone/state/32'
+
+  - name: Zone 33
+    platform: mqtt
+    state_topic: 'paradox/zone/state/33'
+
+  - name: Zone 34
+    platform: mqtt
+    state_topic: 'paradox/zone/state/34'
+    
+  - name: Zone 35
+    platform: mqtt
+    state_topic: 'paradox/zone/state/35'
+    
+  - name: Zone 36
+    platform: mqtt
+    state_topic: 'paradox/zone/state/36'
+
+  - name: Zone 37
+    platform: mqtt
+    state_topic: 'paradox/zone/state/37'
+
+  - name: Zone 38
+    platform: mqtt
+    state_topic: 'paradox/zone/state/38'
+
+  - name: Zone 39
+    platform: mqtt
+    state_topic: 'paradox/zone/state/39'
+    
+  - name: Zone 40
+    platform: mqtt
+    state_topic: 'paradox/zone/state/40'
+
+  - name: Zone 41
+    platform: mqtt
+    state_topic: 'paradox/zone/state/41'
+
+  - name: Zone 42
+    platform: mqtt
+    state_topic: 'paradox/zone/state/42'
+
+  - name: Zone 43
+    platform: mqtt
+    state_topic: 'paradox/zone/state/43'
+
+  - name: Zone 44
+    platform: mqtt
+    state_topic: 'paradox/zone/state/44'
+    
+  - name: Zone 45
+    platform: mqtt
+    state_topic: 'paradox/zone/state/45'
+    
+  - name: Zone 46
+    platform: mqtt
+    state_topic: 'paradox/zone/state/46'
+
+  - name: Zone 47
+    platform: mqtt
+    state_topic: 'paradox/zone/state/47'
+
+  - name: Zone 48
+    platform: mqtt
+    state_topic: 'paradox/zone/state/48'

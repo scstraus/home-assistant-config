@@ -1323,3 +1323,17 @@
     service: switch.turn_on
     data:
       entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+
+- id: garage_open
+  alias: 'Garage Door Open'
+  trigger:
+    platform: state
+    entity_id: sensor.zone_14_garage_door
+    to: 'on'
+    for:
+      minutes: 10
+  action:
+    service: notify.sean_alena
+    data:
+      title: "Garage is Open"
+      message: "The garage door has been open for 10 minutes."
