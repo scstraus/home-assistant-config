@@ -1,0 +1,669 @@
+- id: zone_to_dropdown
+  alias: 'Zone to Dropdown'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+  action:
+    service: input_select.select_option
+    entity_id: input_select.sean_last_zone_dropdown
+    data_template:
+      option: '{{ states.device_tracker.seans_iphone_x.state }}'
+
+- id: zone_to_dropdown_home
+  alias: 'Zone to Dropdown - home'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    from: 'home'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_last_zone_dropdown
+      option: home
+
+- id: at_home
+  alias: 'At Home'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'home'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Home
+      
+- id: left_home
+  alias: 'Left Home'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Left Home
+
+- id: heading_to_work
+  alias: 'Heading To Work'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        before: '17:00:00'
+        weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+             trigger.from_state.state in ['home','Billa','Posta'] and
+             trigger.to_state.state in ['ToCenter','ToAndel','ToWineFood','BioStore','Lazarska','SmichovskeNad'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading to Work
+
+- id: at_work
+  alias: 'At Work'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'Work'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Work
+
+- id: left_work_1
+  alias: 'Left Work 1'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'not_home'
+  condition:
+    - condition: and
+      conditions:
+        - condition: time
+          after: '18:00:00'
+          weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+        - condition: state
+          entity_id: 'input_select.sean_last_zone_dropdown'
+          state: 'Work'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Left Work
+
+- id: heading_home_work_1
+  alias: 'Heading Home From Work 1'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    condition: and  
+    conditions:
+    - condition: template
+      value_template: >
+        {{ trigger.from_state is not none and trigger.to_state is not none and
+           trigger.from_state.state in ['Work'] and
+           trigger.to_state.state in ['Andel', 'Lazarska', 'BioStore', 'ToWineFood', 'SmichovskeNad'] }}
+    - condition: time
+      after: '18:00:00'
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+      
+- id: heading_home_work_2
+  alias: 'Heading Home From Work 2'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.from_state is not none and trigger.to_state is not none and
+         trigger.from_state.state in ['Work', 'Lazarska', 'Andel', 'BioStore'] and
+         trigger.to_state.state in ['SmichovskeNad', 'WineFood', 'ToAndel', 'ToWineFood', 'ToCenter'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+
+- id: heading_home_from_hornbach
+  alias: 'Heading Home From Hornbach'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+    from: 'HornbachP5'
+    to: 'FromHornbachP5'
+  condition:
+    condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+
+- id: heading_home_from_ikea
+  alias: 'Heading Home From Ikea'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+             trigger.from_state.state in ['Ikea'] and
+             trigger.to_state.state in ['FromP6HomeBackWay', 'FromP6HomeHighway', 'ToP6'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+
+- id: heading_home_from_hornbach_p6
+  alias: 'Heading Home From Hornbach P6'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+             trigger.from_state.state in ['HornbachP6'] and
+             trigger.to_state.state in ['FromP6HomeBackWay', 'FromP6HomeHighway', 'ToP6', 'FromHornbachP6', 'ToHornbachP6'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+
+- id: heading_to_andel_from_p6
+  alias: 'Heading Home From P6'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+             trigger.from_state.state in ['Ikea', 'HornbachP6', 'FromP6HomeBackWay', 'FromP6HomeHighway', 'ToP6', 'FromHornbachP6', 'ToHornbachP6'] and
+             trigger.to_state.state in ['ToAndelFromP6'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+
+- id: heading_home_from_winefood
+  alias: 'Heading Home From WineFood'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+            trigger.from_state.state in ['WineFood'] and
+            trigger.to_state.state in ['SmichovskeNad', 'ToWineFood', 'ToCenter'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+      
+- id: heading_home_from_andel
+  alias: 'Heading Home From Andel'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+            trigger.from_state.state in ['Andel'] and
+            trigger.to_state.state in ['SmichovskeNad', 'ToAndel', 'BioStore', 'ToWineFood', 'ToCenter', 'WineFood'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+
+- id: to_p6
+  alias: 'To Prague 6'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+            trigger.from_state.state in ['home','Driving','Posta','Billa'] and
+            trigger.to_state.state in ['ToP6','FromP6HomeBackWay','FromP6HomeHighway'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+
+- id: heading_home_1
+  alias: 'Almost Home 1'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+    to: 'ToCenter'
+  condition:
+    condition: state
+    entity_id: 'input_select.sean_location_dropdown'
+    state: 'Heading Home'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Almost Home
+      
+- id: to_center_1
+  alias: 'Heading To Center'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+    from: 'home'
+    to: 'ToCenter'
+  condition:
+    condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading To Center
+      
+- id: to_p6
+  alias: 'To Prague 6'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+            trigger.from_state.state in ['home'] and
+            trigger.to_state.state in ['ToCenter','ToWineFood','WineFood','SmichovskeNad'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading To P6
+
+- id: to_winefood_1
+  alias: 'Heading To WineFood'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+    from: 'ToCenter'
+    to: 'ToWineFood'
+  condition:
+    condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading to WineFood
+
+- id: to_andel
+  alias: 'Heading To Andel'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+    from: 'ToCenter'
+    to: 'ToAndel'
+  condition:
+    condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading to Andel
+
+- id: to_hornbach_p5
+  alias: 'Heading To Hornbach'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+    from: 'ToCenter'
+    to: 'ToHornbachP5'
+  condition:
+    condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading to Hornbach
+
+- id: at_andel
+  alias: 'At Andel'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'Andel'
+    for:
+      minutes: 3
+  condition:
+    condition: or  
+    conditions:
+    - condition: time
+      weekday:
+      - sat
+      - sun
+    - condition: time
+      after: '19:00:00'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Andel
+
+- id: at_andel_weekdays
+  alias: 'At Andel Weekdays'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'Andel'
+    for:
+      minutes: 15
+  condition:
+    condition: and  
+    conditions:
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+    - condition: time
+      before: '19:00:00'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Andel
+
+- id: at_winefood
+  alias: 'At WineFood'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'WineFood'
+    for:
+      minutes: 3
+  condition:
+    condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At WineFood
+      
+- id: at_hornbach
+  alias: 'At Hornbach'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'HornbachP5'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Hornbach
+
+- id: at_hornbach_2
+  alias: 'At Hornbach'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'HornbachP6'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Hornbach
+
+- id: at_billa
+  alias: 'At Billa'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'Billa'
+    for:
+      minutes: 3
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Billa
+      
+- id: driving
+  alias: 'Driving'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+            trigger.from_state.state in ['home','Posta','Billa','Ikea','HornbachP6','HornbachP5','Andel'] and
+            trigger.to_state.state in ['Away'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Driving
+
+- id: at_ikea
+  alias: 'At Ikea Zlicin'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'IkeaZlicin'
+    for:
+      minutes: 3
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Ikea
+      
+- id: at_posta
+  alias: 'At Posta'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'Posta'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Posta
+
+- id: alena_left_yoga
+  alias: 'Alena left yoga'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.alenas_iphone
+    from: 'Yoga'
+    to: 'not_home'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Alena Left Yoga"
+      message: "Alena Left Yoga"
+
+- id: alenas_home
+  alias: 'Alena is Home'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.alenas_iphone
+    to: 'home'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Alena's Home"
+      message: "Alena's Almost Arrived"

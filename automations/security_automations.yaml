@@ -1,0 +1,460 @@
+
+- id: person_in_front
+  alias: Person In Front
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.front_human_detection
+    above: 18
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 600)}}'
+    - condition: or
+      conditions:
+      - condition: time
+        after: '21:00:00'
+        before: '7:00:00'
+      - condition: template
+        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "House Watch"
+      message: "There's a Person in Front of the House"
+      data:
+        push:
+          category: camera
+        entity_id: camera.front
+
+- id: person_in_back
+  alias: Person In Back
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.back_human_detection
+    above: 18
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_back.attributes.last_triggered | default(0)) | int > 600)}}'
+    - condition: or
+      conditions:
+      - condition: time
+        after: '21:00:00'
+        before: '7:00:00'
+      - condition: template
+        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "House Watch"
+      message: "There's a Person in Back of the House"
+      data:
+        push:
+          category: camera
+        entity_id: camera.back
+
+- id: person_on_left
+  alias: Person On Left
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.left_human_detection
+    above: 18
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_on_left.attributes.last_triggered | default(0)) | int > 600)}}'
+    - condition: or
+      conditions:
+      - condition: time
+        after: '21:00:00'
+        before: '7:00:00'
+      - condition: template
+        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "House Watch"
+      message: "There's a Person on the Left Side of the House"
+      data:
+        push:
+          category: camera
+        entity_id: camera.left
+
+- id: person_on_right
+  alias: Person On Right
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.right_human_detection
+    above: 18
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_on_right.attributes.last_triggered | default(0)) | int > 600)}}'
+    - condition: or
+      conditions:
+      - condition: time
+        after: '21:00:00'
+        before: '7:00:00'
+      - condition: template
+        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "House Watch"
+      message: "There's a Person on the Right Side of the House"
+      data:
+        push:
+          category: camera
+        entity_id: camera.right
+
+#- id: person_in_front_hassbian
+#  alias: Person In Front
+#  trigger:
+#    platform: state
+#    entity_id: sensor.object_detection_front
+#    to: 'Person Detected'
+#  condition:
+#    condition: or
+#    conditions:
+#    - condition: time
+#      after: '21:00:00'
+#      before: '7:00:00'
+#    - condition: template
+#      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+#  action:
+#    service: notify.ios_seans_iphone_x
+#    data:
+#      title: "House Watch"
+#      message: "There's a Person in Front of the House"
+#      data:
+#        push:
+#          category: camera
+#        entity_id: camera.front
+#
+#- id: person_in_back_hassbian
+#  alias: Person In Back
+#  trigger:
+#    platform: state
+#    entity_id: sensor.object_detection_back
+#    to: 'Person Detected'
+#  condition:
+#    condition: or
+#    conditions:
+#    - condition: time
+#      after: '21:00:00'
+#      before: '7:00:00'
+#    - condition: template
+#      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+#  action:
+#    service: notify.ios_seans_iphone_x
+#    data:
+#      title: "House Watch"
+#      message: "There's a Person in Back of the House"
+#      data:
+#        push:
+#          category: camera
+#        entity_id: camera.back
+#
+#- id: person_on_left_hassbian
+#  alias: Person On Left
+#  trigger:
+#    platform: state
+#    entity_id: sensor.object_detection_left
+#    to: 'Person Detected'
+#  condition:
+#    condition: or
+#    conditions:
+#    - condition: time
+#      after: '21:00:00'
+#      before: '7:00:00'
+#    - condition: template
+#      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+#  action:
+#    service: notify.ios_seans_iphone_x
+#    data:
+#      title: "House Watch"
+#      message: "There's a Person on the Left Side of the House"
+#      data:
+#        push:
+#          category: camera
+#        entity_id: camera.left
+#
+#- id: person_on_right_hassbian
+#  alias: Person On Right
+#  trigger:
+#    platform: state
+#    entity_id: sensor.object_detection_right
+#    to: 'Person Detected'
+#  condition:
+#    condition: or
+#    conditions:
+#    - condition: time
+#      after: '21:00:00'
+#      before: '7:00:00'
+#    - condition: template
+#      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+#  action:
+#    service: notify.ios_seans_iphone_x
+#    data:
+#      title: "House Watch"
+#      message: "There's a Person on the Right Side of the House"
+#      data:
+#        push:
+#          category: camera
+#        entity_id: camera.right
+#
+#- id: car_in_front_hassbian
+#  alias: Car In Front
+#  trigger:
+#    platform: state
+#    entity_id: sensor.object_detection_front
+#    to: 'Car Detected'
+#  condition:
+#    condition: state
+#    entity_id: 'device_tracker.seans_iphone_x'
+#    state: 'home'
+#  action:
+#    service: notify.ios_seans_iphone_x
+#    data:
+#      title: "House Watch"
+#      message: "There's a Car in Front of the House"
+#      data:
+#        push:
+#          category: camera
+#        entity_id: camera.front
+- id: turn_off_front_security_light_if_it_gets_windy
+  alias: 'Turn Off Front Security Light If It Gets Windy'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.dark_sky_wind_gust
+    above: 10
+  condition:
+    condition: time
+    after: '21:00:00'
+    before: '7:00:00'
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+
+- id: turn_off_front_security_light_if_its_windy
+  alias: Turn Off Front Security Light If It's Windy'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '21:00:00'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.dark_sky_wind_gust
+    above: 10
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+
+- id: turn_on_front_security_light_in_morning
+  alias: 'Turn On Front Security Light In Morning'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '9:00:00'
+  action:
+    service: switch.turn_on
+    data:
+      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+
+- id: front_right_security_lights_on_if_human
+  alias: 'Front+Right Security Lights on if Human'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.front_human_detection
+      above: 18
+    - platform: numeric_state
+      entity_id: sensor.right_human_detection
+      above: 18
+  condition:
+    condition: time
+    after: '21:00:00'
+    before: '7:00:00'
+  action:
+    service: switch.turn_on
+    data:
+      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+
+- id: back_left_security_lights_on_if_human
+  alias: 'Back+Left Security Lights on if Human'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.back_human_detection
+      above: 18
+    - platform: numeric_state
+      entity_id: sensor.left_human_detection
+      above: 18
+  condition:
+    condition: time
+    after: '21:00:00'
+    before: '7:00:00'
+  action:
+    service: switch.turn_on
+    data:
+      entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+
+#- id: garage_open
+#  alias: 'Garage Door Open'
+#  hide_entity: true
+#  initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: sensor.zone_14_garage_door
+#    to: 'on'
+#    for:
+#      minutes: 10
+#  action:
+#    service: notify.sean_alena
+#    data:
+#      title: "Garage is Open"
+#      message: "The garage door has been open for 10 minutes."
+
+
+- id: alarm_is_on_alena_home
+  alias: 'Alarm is on - Alena is home'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.alenas_iphone
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: sensor.alarm_state_3_motion_sensors
+    state: armed_away
+  action:
+    service: notify.ios_alenas_iphone
+    data:
+      title: "Warning: Alarm On"
+      message: "The alarm is turned on. Remember to turn it off before opening the door."
+      
+- id: alarm_is_on_sean_home
+  alias: Alarm is on - Sean is home
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: sensor.alarm_state_3_motion_sensors
+    state: armed_away
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Warning: Alarm On"
+      message: "The alarm is turned on. Remember to turn it off before opening the door."
+      
+- id: alarm_turned_on_alena
+  alias: 'Alarm turned on notification - Alena'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.alarm_state_3_motion_sensors
+    from: 'disarmed'
+    to: 'armed_away'
+  action:
+    service: notify.ios_alenas_iphone
+    data:
+      title: "Alarm is On At Home"
+      message: "The alarm has been activated at home"
+  
+- id: alarm_turned_off_alena
+  alias: 'Alarm turned off notification - Alena'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.alarm_state_3_motion_sensors
+    from: 'disarmed'
+    to: 'armed_away'
+  action:
+    service: notify.ios_alenas_iphone
+    data:
+      title: "Alarm is Off At Home"
+      message: "The alarm has been turned off at home"
+      
+- id: alarm_turned_on_sean
+  alias: 'Alarm turned on notification - Sean'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.alarm_state_3_motion_sensors
+    from: 'disarmed'
+    to: 'armed_away'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Alarm is On At Home"
+      message: "The alarm has been activated at home"
+  
+- id: alarm_turned_off_sean
+  alias: 'Alarm turned off notification - Sean'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'armed_away'
+      to: 'disarmed'
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'armed'
+      to: 'disarmed'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Alarm is Off At Home"
+      message: "The alarm has been turned off at home"
+
+- id: alarm_triggered
+  alias: 'Alarm is triggered'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'armed_away'
+      to: 'triggered'
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'armed_night'
+      to: 'triggered'
+    - platform: state
+      entity_id: device_tracker.seans_iphone_x
+      from: 'arm_home'
+      to: 'triggered'
+  action:
+    service: notify.sean_alena
+    data:
+      title: "!!Alarm Triggered!!"
+      message: "The alarm at home has been triggered and is now alarming!"

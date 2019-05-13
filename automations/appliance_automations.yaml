@@ -1,0 +1,200 @@
+
+- id: dishwasher_active_when_power
+  alias: 'Set dishwasher active when power detected'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    above: 20
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.dishwasher_status
+        state: Dirty
+      - condition: state
+        entity_id: input_select.dishwasher_status
+        state: Emptying
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.dishwasher_status
+        option: Starting Up
+
+- id: dishwasher_first_rinse
+  alias: 'Set dishwasher first rinse'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    above: 1000
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.dishwasher_status
+        state: Starting Up
+      - condition: state
+        entity_id: input_select.dishwasher_status
+        state: Clean
+      - condition: state
+        entity_id: input_select.dishwasher_status
+        state: Drying
+      - condition: state
+        entity_id: input_select.dishwasher_status
+        state: Emptying
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.dishwasher_status
+        option: First Rinse
+
+- id: set_dishwasher_wash
+  alias: 'Set dishwasher wash'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    below: 100
+    for:
+      minutes: 10
+  condition:
+    condition: state
+    entity_id: input_select.dishwasher_status
+    state: First Rinse
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.dishwasher_status
+      option: Washing
+
+- id: set_dishwasher_rinse
+  alias: Set dishwasher second rinse
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    above: 100
+  condition:
+    condition: state
+    entity_id: input_select.dishwasher_status
+    state: Washing
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.dishwasher_status
+        option: Final Rinse
+        
+- id: set_dishwasher_finishing_up
+  alias: 'Set dishwasher finishing up'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    below: 25
+    for:
+      minutes: 10    
+  condition:
+    condition: state
+    entity_id: input_select.dishwasher_status
+    state: Final Rinse
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.dishwasher_status
+      option: Finishing Up
+
+- id: set_dishwasher_clean
+  alias: 'Set dishwasher clean'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    below: 1
+    for:
+      minutes: 2
+  condition:
+    condition: state
+    entity_id: input_select.dishwasher_status
+    state: Finishing Up
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.dishwasher_status
+      option: Clean
+ 
+# Once the dishwasher status has been 'Drying' for 30 minutes, mark the
+# dishwasher as clean
+
+- id: set_dishwasher_emptying
+  alias: 'Set dishwasher emptying'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    below: 0.01
+    for:
+      minutes: 5
+  condition: 
+    condition: state
+    entity_id: input_select.dishwasher_status
+    state: Clean
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.dishwasher_status
+      option: Emptying
+
+# When the power drops and the dishwasher is Clean or Drying, someone has
+# turned the Dishwasher off and emptied it. We should do this when the state
+# of the Dishwasher is clean or Finishing, just incase someone opens the
+# Dishwasher before the 30 minute timeout has been reached.
+ 
+- id: dishwasher_dirty_on_power_off
+  alias: Set Dishwasher dirty when power off
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    below: 0.01
+    for:
+      minutes: 15
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.dishwasher_status
+        state: Clean
+      - condition: state
+        entity_id: input_select.dishwasher_status
+        state: Drying
+      - condition: state
+        entity_id: input_select.dishwasher_status
+        state: Emptying
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.dishwasher_status
+      option: Dirty
+
+- id: notify_clean_dishes
+  alias: Clean Dishes Notification
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.dishwasher_status
+    to: 'Clean'
+  action:
+    service: notify.ios_alenas_iphone
+    data:
+      title: "Dishwasher Update"
+      message: "Dishes Are Clean"

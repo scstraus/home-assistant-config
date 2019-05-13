@@ -1,0 +1,220 @@
+- id: bike_day
+  alias: 'Bike Day'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '11:00:00'
+  condition:
+    condition: state
+    entity_id: 'sensor.bike_day'
+    state: 'yes'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Bike Day"
+      message: "It's a good day to ride your bike to work today!"
+      data:
+        push:
+          category: weather
+        entity_id: weather.openweathermap 
+      
+- id: posta_state_change
+  alias: 'Posta state change'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.cp_packages_coming_today
+  condition:
+    condition: state
+    entity_id: 'sensor.cp_packages_coming_today'
+    state: 'delivery'
+  action:
+    service: variable.set_variable
+    data:
+      variable: posta_variable
+      value_template: "{{ states('sensor.cp_packages_coming_today')}}"
+      attributes_template: >
+        {
+          "from": "{{ state_attr('sensor.cp_packages_coming_today', 'from') }}",
+          "date": "{{ state_attr('sensor.cp_packages_coming_today', 'date') }}",
+          "subject": "{{ state_attr('sensor.cp_packages_coming_today', 'subject') }}",
+          "body": "{{ state_attr('sensor.cp_packages_coming_today', 'body') }}"
+        } 
+        
+- id: posta_variable_reset
+  alias: 'Posta Variable Reset'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '00:00:01'
+  action:
+    service: variable.set_variable
+    data:
+      variable: posta_variable
+      value: no_delivery
+      attributes:
+        from: ''
+        date: ''
+        subject: ''
+        body: ''
+        icon: mdi:delivery
+
+- id: dpd_state_change
+  alias: 'DPD state change'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.dpd_packages_coming_today
+  condition:
+    condition: state
+    entity_id: 'sensor.dpd_packages_coming_today'
+    state: 'delivery'
+  action:
+    service: variable.set_variable
+    data:
+      variable: dpd_variable
+      value_template: "{{ states('sensor.dpd_packages_coming_today')}}"
+      attributes_template: >
+        {
+          "from": "{{ state_attr('sensor.dpd_packages_coming_today', 'from') }}",
+          "date": "{{ state_attr('sensor.dpd_packages_coming_today', 'date') }}",
+          "subject": "{{ state_attr('sensor.dpd_packages_coming_today', 'subject') }}",
+          "body": "{{ state_attr('sensor.dpd_packages_coming_today', 'body') }}"
+        }   
+        
+- id: dpd_variable_reset
+  alias: 'DPD Variable Reset'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '00:00:01'
+  action:
+    service: variable.set_variable
+    data:
+      variable: dpd_variable
+      value: no_delivery
+      attributes:
+        from: ''
+        date: ''
+        subject: ''
+        body: ''
+        icon: mdi:delivery
+
+- id: dhl_state_change
+  alias: 'DHL state change'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.dhl_packages_coming_today
+  condition:
+    condition: state
+    entity_id: 'sensor.dhl_packages_coming_today'
+    state: 'delivery'
+  action:
+    service: variable.set_variable
+    data:
+      variable: dhl_variable
+      value_template: "{{ states('sensor.dhl_packages_coming_today')}}"
+      attributes_template: >
+        {
+          "from": "{{ state_attr('sensor.dhl_packages_coming_today', 'from') }}",
+          "date": "{{ state_attr('sensor.dhl_packages_coming_today', 'date') }}",
+          "subject": "{{ state_attr('sensor.dhl_packages_coming_today', 'subject') }}",
+          "body": "{{ state_attr('sensor.dhl_packages_coming_today', 'body') }}"
+        }    
+        
+- id: dhl_variable_reset
+  alias: 'DHL Variable Reset'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '00:00:01'
+  action:
+    service: variable.set_variable
+    data:
+      variable: dhl_variable
+      value: no_delivery
+      attributes:
+        from: ''
+        date: ''
+        subject: ''
+        body: ''
+        icon: mdi:delivery
+
+- id: power_out
+  alias: 'Power is out'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.house_electricity
+    to: 'power_out'
+  action:
+    service: notify.whole_family
+    data:
+      title: "Power is Out at Home"
+      message: "There's been a power cut at home. Electricity is now off"
+
+- id: power_restored
+  alias: 'Power is restored'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.house_electricity
+    to: 'power_on'
+  action:
+    service: notify.whole_family
+    data:
+      title: "Power Restored at Home"
+      message: "Electricity has been powered back on at home"
+
+- id: moldy_conditions
+  alias: 'Moldy Conditions'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.popp_unknown_type_0004_id_0014_sensor
+    to: 'on'
+  action:
+    service: notify.sean_alena
+    data:
+      title: "Mold Detector"
+      message: "There are conditions for mold formation under the sink right now"
+     
+- id: internet_upload_limited
+  alias: 'Internet Upload is Limited'
+  hide_entity: true
+  initial_state: 'true'      
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.speedtest_upload
+    below: 0.25
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Internet is Severely Limited"
+      message: "The upload speed of the internet is below 250kbit"
+  
+- id: internet_upload_normal
+  alias: 'Internet Upload is Normal'
+  hide_entity: true
+  initial_state: 'true'      
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.speedtest_upload
+    above: 1
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Internet is Normal"
+      message: "The upload speed of the internet is above 1 mbit"
+ 

@@ -1,0 +1,239 @@
+##################################################
+# AUTOMATIONS TO TURN DOWN HEAT FOR OPEN WINDOWS #
+##################################################
+
+
+- id: heat_down_open_living_room
+  alias: 'Turn Heat Down In Living Room' 
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.back_door
+    to: 'Open'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.living_room
+        temperature: 5
+        
+- id: heat_up_closed_living_room
+  alias: 'Turn Heat Up In Living Room'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.back_door
+    to: 'Closed'
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.living_room
+        operation_mode: auto
+
+
+- id: living_room_last_mode
+  alias: 'Living Room Last Mode'
+  trigger:
+    platform: state
+    entity_id: climate.living_room
+  action:
+    service: input_select.select_option
+    data_template:
+      entity_id: input_select.living_room_last_mode
+      option: '{{ trigger.from_state.state }}'
+
+- id: living_room_last_temp
+  alias: 'Living Room Last Temp'
+  trigger:
+    platform: state
+    entity_id: climate.living_room
+  action:
+    service: input_number.set_value
+    data_template:
+      entity_id: input_number.living_room_last_temp
+      value: "{{ states[trigger.from_state.attributes.temperature] }}"
+
+
+
+######################################################
+# AUTOMATIONS TO ADJUST HEAT BASED ON WEATHER REPORT #
+######################################################
+
+
+
+- id: warm_weather_heat_down
+  alias: 'Turn Down Heat For Warm Weather'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '00:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0'
+        above: 5
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0'
+        above: 15
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.dining_room
+        temperature: 20
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.entrance
+        temperature: 18
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.garage
+        temperature: 18
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.guest_bedroom
+        temperature: 21
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.living_room
+        temperature: 20
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bath
+        temperature: 22
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bedroom
+        temperature: 21
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_closet
+        temperature: 22
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.office_library
+        temperature: 21.5
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sebastian_s_room
+        temperature: 22
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sophie_s_room
+        temperature: 21
+        operation_mode: manual
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_heat_down_in_living_room
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_heat_up_in_living_room
+
+
+#      - condition: template
+#        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0 > 5 }}'
+#      - condition: template
+#        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0 > 13 }}'
+
+
+                
+- id: cool_weather_heat_auto
+  alias: 'Turn Heat to Schedule in Cold Weather'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '00:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0'
+        below: 5
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0'
+        below: 15
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.dining_room
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.entrance
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.garage
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.guest_bedroom
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.laundry_room
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.living_room
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.master_bath
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.master_bedroom
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.master_closet
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.office_library
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.sebastian_s_room
+        operation_mode: auto
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.sophie_s_room
+        operation_mode: auto
+    - service: homeassistant.turn_on
+      entity_id: automation.turn_heat_down_in_living_room
+    - service: homeassistant.turn_on
+      entity_id: automation.turn_heat_up_in_living_room
+        
+#      - condition: template
+#        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0 < 5 }}'
+#      - condition: template
+#        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0 < 13 }}'
+
+
+#- id: living_room_last_temp
+#  alias: 'Living Room Last Temp'
+#  trigger:
+#    platform: state
+#    entity_id: climate.living_room
+#  action:
+#    service: variable.set_variable
+#    data:
+#      variable: living_room_last_temp_variable
+#      value_template: "{{ states('sensor.climate.living_room')}}"
+#      attributes_template: >
+#        {
+#          "temperature": "{{ state_attr('climate.living_room', 'temperature') }}",
+#        }   
