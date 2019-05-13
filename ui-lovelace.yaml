@@ -122,12 +122,14 @@ views:
       - zwave.neo_coolcam_door_window_detector_2
       - zwave.neo_coolcam_unknown_type_0200_id_1027
       - zwave.popp_unknown_type_0004_id_0014
+      - binary_sensor.alarm_connection
       state_filter:
       - "Warning"
       - "grey"
       - "yellow"
       - "off"
       - "dead"
+      - "disconnected"
       show_empty: false
 
     - type: entity-filter
@@ -164,6 +166,7 @@ views:
       - sensor.object_detection_right
       - sensor.object_detection_back
       - sensor.back_door
+      - sensor.garage_door
       - sensor.closet_window
       - input_select.dishwasher_status
       - binary_sensor.popp_unknown_type_0004_id_0014_sensor
@@ -320,29 +323,21 @@ views:
           type: custom:mini-media-player
           group: true
 
+
         - type: horizontal-stack
           cards:
 
+
           - type: "custom:button-card"
-            color_type: blank-card
-          - type: "custom:button-card"
-            name: Shuffle
-            icon: mdi:shuffle-variant
-            color_type: icon
-            color: rgb(54, 112, 160)
-            show_state: false
+            name: SHUFFLE
             style:
-#            - height: 2
-            - padding-bottom: 0%
-            - padding-top: 12%
-            action: service
-            service:
-              domain: switch
-              action: toggle
-              data:
-                entity_id: switch.shuffle
-          - type: "custom:button-card"
-            color_type: blank-card
+            - padding: 12px 0px
+            - font-size: 14px
+            tap_action: 
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: "switch.shuffle"
 
 
         - type: horizontal-stack
@@ -350,77 +345,56 @@ views:
 
 
           - type: "custom:button-card"
-            name: Mix
-            icon: mdi:pot-mix
-            color_type: icon
-            color: rgb(54, 112, 160)
-            show_state: false
+            name: MIX
             style:
-#            - height: 0
-            - padding-bottom: 0%
-            - padding-top: 12%
-            action: service
-            service:
-              domain: media_player
-              action: play_media 
-              data:
+            - padding: 12px 0px
+            - font-size: 14px
+            tap_action: 
+              action: call-service
+              service: media_player.play_media 
+              service_data:
                 entity_id: "media_player.itunes"
                 media_content_id: "a-45-star"
                 media_content_type: "playlist"
 
           - type: "custom:button-card"
-            name: Jazz
-            icon: mdi:saxophone
-            color_type: icon
-            color: rgb(54, 112, 160)
-            show_state: false
+            name: JAZZ
             style:
-            - padding-bottom: 0%
-            - padding-top: 12%
-            action: service
-            service:
-              domain: media_player
-              action: play_media 
-              data:
+            - padding: 12px 0px
+            - font-size: 14px
+            tap_action: 
+              action: call-service
+              service: media_player.play_media 
+              service_data:
                 entity_id: "media_player.itunes"
                 media_content_id: "best-jazz"
                 media_content_type: "playlist"
 
           - type: "custom:button-card"
-            name: Rock
-            icon: mdi:guitar-electric
-            color_type: icon
-            color: rgb(54, 112, 160)
-            show_state: false
+            name: ROCK
             style:
-            - padding-bottom: 0%
-            - padding-top: 12%
-            action: service
-            service:
-              domain: media_player
-              action: play_media 
-              data:
+            - padding: 12px 0px
+            - font-size: 14px
+            tap_action: 
+              action: call-service
+              service: media_player.play_media 
+              service_data:
                 entity_id: "media_player.itunes"
                 media_content_id: "best-rock"
-                media_content_type: "playlist"              
+                media_content_type: "playlist"           
 
           - type: "custom:button-card"
-            name: Pop
-            icon: mdi:candycane
-            color_type: icon
-            color: rgb(54, 112, 160)
-            show_state: false
+            name: POP
             style:
-            - padding-bottom: 0%
-            - padding-top: 12%
-            action: service
-            service:
-              domain: media_player
-              action: play_media 
-              data:
+            - padding: 12px 0px
+            - font-size: 14px
+            tap_action: 
+              action: call-service
+              service: media_player.play_media 
+              service_data:
                 entity_id: "media_player.itunes"
                 media_content_id: "best-pop"
-                media_content_type: "playlist"              
+                media_content_type: "playlist"
 
 
         - type: horizontal-stack
@@ -428,73 +402,53 @@ views:
 
 
           - type: "custom:button-card"
-            name: Classical
-            icon: mdi:violin
-            color_type: icon
-            color: rgb(54, 112, 160)
-            show_state: false
+            name: CLASSICAL
             style:
-            - padding-bottom: 0%
-            - padding-top: 12%
-            action: service
-            service:
-              domain: media_player
-              action: play_media 
-              data:
+            - padding: 12px 0px
+            - font-size: 14px
+            tap_action: 
+              action: call-service
+              service: media_player.play_media 
+              service_data:
                 entity_id: "media_player.itunes"
                 media_content_id: "classical"
                 media_content_type: "playlist"
 
           - type: "custom:button-card"
-            name: Black
-            icon: mdi:album
-            color_type: icon
-            color: rgb(54, 112, 160)
-            show_state: false
+            name: BLACK
             style:
-            - padding-bottom: 0%
-            - padding-top: 12%
-            action: service
-            service:
-              domain: media_player
-              action: play_media 
-              data:
+            - padding: 12px 0px
+            - font-size: 14px
+            tap_action: 
+              action: call-service
+              service: media_player.play_media 
+              service_data:
                 entity_id: "media_player.itunes"
                 media_content_id: "best-black"
                 media_content_type: "playlist"
 
           - type: "custom:button-card"
-            name: Electro
-            icon: mdi:current-ac
-            color_type: icon
-            color: rgb(54, 112, 160)
-            show_state: false
+            name: ELECTRO
             style:
-            - padding-bottom: 0%
-            - padding-top: 12%
-            action: service
-            service:
-              domain: media_player
-              action: play_media 
-              data:
+            - padding: 12px 0px
+            - font-size: 14px
+            tap_action: 
+              action: call-service
+              service: media_player.play_media 
+              service_data:
                 entity_id: "media_player.itunes"
                 media_content_id: "best-electronica"
                 media_content_type: "playlist"
 
           - type: "custom:button-card"
-            name: Kids
-            icon: mdi:human-child
-            color_type: icon
-            color: rgb(54, 112, 160)
-            show_state: false
+            name: KIDS
             style:
-            - padding-bottom: 0%
-            - padding-top: 12%
-            action: service
-            service:
-              domain: media_player
-              action: play_media 
-              data:
+            - padding: 12px 0px
+            - font-size: 14px
+            tap_action: 
+              action: call-service
+              service: media_player.play_media 
+              service_data:
                 entity_id: "media_player.itunes"
                 media_content_id: "kids-english"
                 media_content_type: "playlist"
@@ -692,183 +646,136 @@ views:
 #        hide_info: true
 #        hide_power: true
 
+
       - type: horizontal-stack
         cards:
 
 
         - type: "custom:button-card"
-          color_type: blank-card
-        - type: "custom:button-card"
-          name: Shuffle
-          icon: mdi:shuffle-variant
-          color_type: icon
-          color: rgb(54, 112, 160)
-          show_state: false
+          name: SHUFFLE
           style:
-          - padding-bottom: 0%
-          - padding-top: 12%
-          action: service
-          service:
-            domain: switch
-            action: toggle
-            data:
-              entity_id: switch.shuffle
-        - type: "custom:button-card"
-          color_type: blank-card
+          - padding: 12px 0px
+          - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: switch.toggle
+            service_data:
+              entity_id: "switch.shuffle"
 
-            
+
       - type: horizontal-stack
         cards:
-        
-        
+
+
         - type: "custom:button-card"
-          name: Mix
-          icon: mdi:pot-mix
-          color_type: icon
-          color: rgb(54, 112, 160)
-          show_state: false
+          name: MIX
           style:
-          - padding-bottom: 0%
-          - padding-top: 12%
-          action: service
-          service:
-            domain: media_player
-            action: play_media 
-            data:
+          - padding: 12px 0px
+          - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
               entity_id: "media_player.itunes"
               media_content_id: "a-45-star"
               media_content_type: "playlist"
-              
+
         - type: "custom:button-card"
-          name: Jazz
-          icon: mdi:saxophone
-          color_type: icon
-          color: rgb(54, 112, 160)
-          show_state: false
+          name: JAZZ
           style:
-          - padding-bottom: 0%
-          - padding-top: 12%
-          action: service
-          service:
-            domain: media_player
-            action: play_media 
-            data:
+          - padding: 12px 0px
+          - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
               entity_id: "media_player.itunes"
               media_content_id: "best-jazz"
               media_content_type: "playlist"
-              
+
         - type: "custom:button-card"
-          name: Rock
-          color_type: icon
-          color: rgb(54, 112, 160)
-          show_state: false
-          icon: mdi:guitar-electric
+          name: ROCK
           style:
-          - padding-bottom: 0%
-          - padding-top: 12%
-          action: service
-          service:
-            domain: media_player
-            action: play_media 
-            data:
+          - padding: 12px 0px
+          - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
               entity_id: "media_player.itunes"
               media_content_id: "best-rock"
-              media_content_type: "playlist"              
- 
+              media_content_type: "playlist"           
+           
         - type: "custom:button-card"
-          name: Pop
-          icon: mdi:candycane
-          color_type: icon
-          color: rgb(54, 112, 160)
-          show_state: false
+          name: POP
           style:
-          - padding-bottom: 0%
-          - padding-top: 12%
-          action: service
-          service:
-            domain: media_player
-            action: play_media 
-            data:
+          - padding: 12px 0px
+          - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
               entity_id: "media_player.itunes"
               media_content_id: "best-pop"
-              media_content_type: "playlist"              
-              
+              media_content_type: "playlist"
+
+
       - type: horizontal-stack
         cards:
-        
-        
+
+
         - type: "custom:button-card"
-          name: Classical
-          icon: mdi:violin
-          color_type: icon
-          color: rgb(54, 112, 160)
-          show_state: false
+          name: CLASSICAL
           style:
-          - padding-bottom: 0%
-          - padding-top: 12%
-          action: service
-          service:
-            domain: media_player
-            action: play_media 
-            data:
+          - padding: 12px 0px
+          - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
               entity_id: "media_player.itunes"
               media_content_id: "classical"
               media_content_type: "playlist"
-              
+
         - type: "custom:button-card"
-          name: Black
-          icon: mdi:album
-          color_type: icon
-          color: rgb(54, 112, 160)
-          show_state: false
+          name: BLACK
           style:
-          - padding-bottom: 0%
-          - padding-top: 12%
-          action: service
-          service:
-            domain: media_player
-            action: play_media 
-            data:
+          - padding: 12px 0px
+          - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
               entity_id: "media_player.itunes"
               media_content_id: "best-black"
               media_content_type: "playlist"
-              
+
         - type: "custom:button-card"
-          name: Electro
-          icon: mdi:current-ac
-          color_type: icon
-          color: rgb(54, 112, 160)
-          show_state: false
+          name: ELECTRO
           style:
-          - padding-bottom: 0%
-          - padding-top: 12%
-          action: service
-          service:
-            domain: media_player
-            action: play_media 
-            data:
+          - padding: 12px 0px
+          - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
               entity_id: "media_player.itunes"
               media_content_id: "best-electronica"
               media_content_type: "playlist"
-              
+
         - type: "custom:button-card"
-          name: Kids
-          icon: mdi:human-child
-          color_type: icon
-          color: rgb(54, 112, 160)
-          show_state: false
+          name: KIDS
           style:
-          - padding-bottom: 0%
-          - padding-top: 12%
-          action: service
-          service:
-            domain: media_player
-            action: play_media 
-            data:
+          - padding: 12px 0px
+          - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
               entity_id: "media_player.itunes"
               media_content_id: "kids-english"
-              media_content_type: "playlist"    
-              
+              media_content_type: "playlist"
+             
     - type: entities
       title: First Floor
       show_header_toggle: false
@@ -1405,41 +1312,101 @@ views:
 
 
   - title: Alarm
-    icon: mdi:alarm-light
+    icon: mdi:shield-key
     cards:
     
-    - type: entities
-      title: Alarm Connection
-      show_header_toggle: false
+    - type: entity-filter
+      card: 
+        title: "Open Alarm Windows/Doors"
+        show_header_toggle: false
       entities:
-      - sensor.alarm_connection
-    
-    - type: entities
-      title: Arming Status
-      show_header_toggle: false
+      - binary_sensor.garage_door_zone_14
+      - binary_sensor.front_door_zone_1
+      - binary_sensor.laundry_room_window_zone_13
+      - binary_sensor.windows_1st_floor_zone_2
+      state_filter:
+      - "on"
+      show_empty: false
+      
+    - type: entity-filter
+      card: 
+        title: "Open Other Windows/Doors"
+        show_header_toggle: false
       entities:
-      - sensor.alarm_state_1_laundry
-      - sensor.alarm_state_2_1st_floor
-      - sensor.alarm_state_3_motion_sensors   
-    
-    - type: entities
-      title: Alarm Zones
-      show_header_toggle: false
-      entities:
-      - sensor.zone_1_entrance_door
-      - sensor.zone_2_windows
-      - sensor.zone_3_play_room
-      - sensor.zone_4_living_room
-      - sensor.zone_5_master_bedroom
-      - sensor.zone_6_library
-      - sensor.zone_8_closet
-      - sensor.zone_10_sophies_room
-      - sensor.zone_11_entrance
-      - sensor.zone_12_garage
-      - sensor.zone_13_laundry_room
-      - sensor.zone_14_garage_door
+      - sensor.closet_window
+      - sensor.back_door
+      state_filter:
+      - "on"
+      show_empty: false
 
-  
+    - type: entity-filter
+      card: 
+        title: "Alarm Motion Detected"
+        show_header_toggle: false
+      entities:
+      - binary_sensor.play_room_zone_3
+      - binary_sensor.living_room_zone_4
+      - binary_sensor.master_bedroom_zone_5
+      - binary_sensor.library_zone_6
+      - binary_sensor.master_closet_zone_8
+      - binary_sensor.sophies_room_zone_10
+      - binary_sensor.garage_zone_12
+      - binary_sensor.glass_break_sensor_zone_11
+      state_filter:
+      - "on"
+      show_empty: false
+ 
+    - type: vertical-stack
+      cards:
+   
+      - type: alarm-panel
+        states:
+        - arm_home
+        - arm_away
+        entity: alarm_control_panel.home_alarm_system
+        name: House Alarm
+        
+      - type: entities
+        title: Arming Status
+        show_header_toggle: false
+        entities:
+        - sensor.alarm_state_1_laundry
+        - sensor.alarm_state_2_1st_floor
+        - sensor.alarm_state_3_motion_sensors   
+
+      - type: entities
+        title: Alarm Connection
+        show_header_toggle: false
+        entities:
+        - binary_sensor.alarm_connection
+    
+    - type: history-graph
+      title: 'Door/Window Open History'
+      hours_to_show: 8
+      refresh_interval: 60
+      entities:
+      - binary_sensor.garage_door_zone_14
+      - binary_sensor.front_door_zone_1
+      - binary_sensor.laundry_room_window_zone_13
+      - binary_sensor.windows_1st_floor_zone_2
+      - sensor.closet_window
+      - sensor.back_door
+      
+    - type: history-graph
+      title: 'Motion Detection History'
+      hours_to_show: 8
+      refresh_interval: 60
+      entities:
+      - binary_sensor.play_room_zone_3
+      - binary_sensor.living_room_zone_4
+      - binary_sensor.master_bedroom_zone_5
+      - binary_sensor.library_zone_6
+      - binary_sensor.master_closet_zone_8
+      - binary_sensor.sophies_room_zone_10
+      - binary_sensor.garage_zone_12
+      - binary_sensor.glass_break_sensor_zone_11
+
+
 
 #### FIFTH TAB ####
 
@@ -1581,40 +1548,40 @@ views:
 #        yellow: 2000
 #        red: 3000
 #    
-    - type: gauge
-      entity: sensor.disk_free   
-      name: "Narnia Disk Free"
-      max: 256
-      severity:
-        green: 32
-        yellow: 16
-        red: 8
+
+    - type: vertical-stack
+      cards:
       
-    - type: gauge
-      entity: sensor.disk_use_percent  
-      name: "Narnia % Disk Use"
-      severity:
-        green: 0
-        yellow: 75
-        red: 88
+      - type: gauge
+        entity: sensor.disk_free   
+        name: "Narnia Disk Free"
+        max: 256
+        severity:
+          green: 32
+          yellow: 16
+          red: 8
 
-    - type: gauge
-      name: "Narnia % Memory Used"
-      entity: sensor.memory_use_percent
-      severity:
-        green: 0
-        yellow: 50
-        red: 80
+      - type: gauge
+        entity: sensor.disk_use_percent  
+        name: "Narnia % Disk Use"
+        severity:
+          green: 0
+          yellow: 75
+          red: 88
 
-    - type: history-graph
-      title: 'Narnia Load'
-      entities:
-      - sensor.load_15m
+      - type: gauge
+        name: "Narnia % Memory Used"
+        entity: sensor.memory_use_percent
+        severity:
+          green: 0
+          yellow: 50
+          red: 80
 
-    - type: history-graph
-      title: 'Dishwasher Status'
-      entities:
-      - input_select.dishwasher_status
+      - type: history-graph
+        title: 'Narnia Load'
+        entities:
+        - sensor.load_15m
+
 
     - type: vertical-stack
       cards:
@@ -1626,38 +1593,47 @@ views:
         - sensor.speedtest_download
 
       - type: history-graph
-        title: 'Deluge Down Speed'
-        entities:
-        - sensor.deluge_down_speed
-
-
-    - type: vertical-stack
-      cards:
-      
-
-      - type: history-graph
         title: 'Upload Speed'
         entities:
         - sensor.speedtest_upload
 
       - type: history-graph
-        title: 'Deluge Up Speed'
+        title: 'Ping Time'
         entities:
-        - sensor.deluge_up_speed
+        - sensor.speedtest_ping
 
+    - type: vertical-stack
+      cards:
 
-    - type: history-graph
-      title: 'Ping Time'
-      entities:
-      - sensor.speedtest_ping
+      - type: gauge
+        entity: sensor.alena_s_iphone_battery_level
+        name: "     Alena's Phone Battery"
+        severity:
+          green: 50
+          yellow: 25
+          red: 12
 
+      - type: gauge
+        entity: sensor.sean_s_iphone_x_battery_level   
+        name: "     Sean's Phone Battery"
+        severity:
+          green: 50
+          yellow: 25
+          red: 12
+
+      - type: gauge
+        entity: sensor.sophies_iphone_6_battery_level   
+        name: "     Sophie's Phone Battery"
+        severity:
+          green: 50
+          yellow: 25
+          red: 12
 
 
     - type: entities
       entities:
       - switch.fibaro_system_fgs223_double_relay_switch
       - switch.fibaro_system_fgs223_double_relay_switch_2
-      - sensor.deluge_status
       - binary_sensor.living_room_nest_protect_online
       - binary_sensor.master_bedroom_nest_protect_online
       - binary_sensor.kids_room_nest_protect_online
@@ -1667,29 +1643,11 @@ views:
       - sensor.sophie_direction_of_travel
       - sensor.all_direction_of_travel
 
-    - type: gauge
-      entity: sensor.alena_s_iphone_battery_level
-      name: "     Alena's Phone Battery"
-      severity:
-        green: 50
-        yellow: 25
-        red: 12
 
-    - type: gauge
-      entity: sensor.sean_s_iphone_x_battery_level   
-      name: "     Sean's Phone Battery"
-      severity:
-        green: 50
-        yellow: 25
-        red: 12
-
-    - type: gauge
-      entity: sensor.sophies_iphone_6_battery_level   
-      name: "     Sophie's Phone Battery"
-      severity:
-        green: 50
-        yellow: 25
-        red: 12
+    - type: history-graph
+      title: 'Dishwasher Status'
+      entities:
+      - input_select.dishwasher_status
 
     - type: custom:tracker-card
       title:
@@ -1720,23 +1678,21 @@ views:
         entities:
         - sensor.sean_location
 
-    - type: vertical-stack
-      cards:
 
-      - type: history-graph
-        title: 'Humidity Under Sink'
-        entities:
-        - sensor.popp_unknown_type_0004_id_0014_relative_humidity
+    - type: history-graph
+      title: 'Humidity Under Sink'
+      entities:
+      - sensor.popp_unknown_type_0004_id_0014_relative_humidity
 
-      - type: history-graph
-        title: 'Temperature Under Sink'
-        entities:
-        - sensor.popp_unknown_type_0004_id_0014_temperature
+    - type: history-graph
+      title: 'Temperature Under Sink'
+      entities:
+      - sensor.popp_unknown_type_0004_id_0014_temperature
 
-      - type: history-graph
-        title: 'Dew Point Under Sink'
-        entities:
-        - sensor.popp_unknown_type_0004_id_0014_dew_point
+    - type: history-graph
+      title: 'Dew Point Under Sink'
+      entities:
+      - sensor.popp_unknown_type_0004_id_0014_dew_point
       
 #### SEVENTH TAB ####
 #

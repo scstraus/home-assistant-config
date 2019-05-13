@@ -510,3 +510,94 @@ sensors:
 #            {{states('sensor.last_object_front')}}
 #          {% endif %}
 #  
+#  - platform: imap_email_content
+#    server: imap.gmail.com
+#    name: cp_packages_coming_today
+#    port: 993
+#    username: !secret gmail_uname
+#    password: !secret hass_pass
+#    senders:
+#    - !secret my_email
+#    - ceskaposta@cpost.cz
+#    - !secret wife_email
+#    value_template: >-
+#      {% if 'Informace o Vaší zásilce' in subject %}
+#        delivery
+#      {% elif 'reset state of package sensor' in subject %}
+#        no_delivery
+#      {% endif %}
+
+#  - platform: imap_email_content
+#    server: imap.gmail.com
+#    name: dpd_packages_coming_today
+#    port: 993
+#    username: !secret gmail_uname
+#    password: !secret hass_pass
+#    senders:
+#    - !secret my_email
+#    - NOREPLY@dpd.cz
+#    - !secret wife_email
+#    value_template: >-
+#      {% if 'Dnes Vám' in subject %}
+#        delivery
+#      {% elif 'reset state of package sensor' in subject %}
+#        no_delivery
+#      {% endif %}
+#
+#  - platform: imap_email_content
+#    server: imap.gmail.com
+#    name: dhl_packages_coming_today
+#    port: 993
+#    username: !secret gmail_uname
+#    password: !secret hass_pass
+#    senders:
+#    - !secret my_email
+#    - NoReply.ODD@dhl.com
+#    - !secret wife_email
+#    value_template: >-
+#      {% if 'DHL On Demand Delivery' in subject %}
+#        delivery
+#      {% elif 'reset state of package sensor' in subject %}
+#        no_delivery
+#      {% endif %}
+
+automation:
+
+#- id: posta_state_change
+#  alias: 'Posta state change'
+#  trigger:
+#    platform: state
+#    entity_id: sensor.cp_packages_coming_today
+#  condition:
+#    condition: or
+#    conditions:
+#      - condition: state
+#        entity_id: 'sensor.cp_packages_coming_today'
+#        state: 'delivery'
+#      - condition: state
+#        entity_id: 'sensor.cp_packages_coming_today'
+#        state: 'no_delivery'
+#  action:
+#    service: variable.set_variable
+#    data:
+#      variable: posta_variable
+#      value_template: "{{ states('sensor.cp_packages_coming_today')}}"
+#      attributes_template: >
+#        {
+#          "from": "{{ state_attr('sensor.cp_packages_coming_today', 'from') }}",
+#          "date": "{{ state_attr('sensor.cp_packages_coming_today', 'date') }}",
+#          "subject": "{{ state_attr('sensor.cp_packages_coming_today', 'subject') }}",
+#          "body": "{{ state_attr('sensor.cp_packages_coming_today', 'body') }}"
+#        } 
+#- id: dining_room_climate_kid_lock
+#  alias: 'Dining Room Climate Kid Lock'
+#  trigger:
+#    platform: state
+#    entity_id: climate.dining_room
+#    to: 'manual'
+#  action:
+#    service: climate.set_operation_mode
+#    data:
+#      entity_id: climate.dining_room
+#      operation_mode: auto
+# 

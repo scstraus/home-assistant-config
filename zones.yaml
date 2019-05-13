@@ -1,0 +1,114 @@
+  - name: Home
+    latitude: !secret home_lat
+    longitude: !secret home_long
+    radius: 50
+
+  - name: ToAndel
+    latitude: 50.05028576621793
+    longitude: 14.407266504965492
+    radius: 100
+
+  - name: Andel
+    latitude: 50.07113918629207
+    longitude: 14.401753942111782
+    radius: 250
+    
+  - name: Lazarska
+    latitude: 50.0792552
+    longitude: 14.4206597
+    radius: 100
+    
+  - name: ToCenter
+    latitude: 50.03895628687976
+    longitude: 14.403341809848598
+    radius: 150
+       
+  - name: Work
+    latitude: !secret work_lat
+    longitude: !secret work_long
+    radius: 100
+    
+  - name: SmichovskeNad
+    latitude: 50.06081691414926
+    longitude: 14.408698081970215
+    radius: 100
+    
+  - name: ToWineFood
+    latitude: 50.05165429631845
+    longitude: 14.410333276190158
+    radius: 100
+    
+  - name: WineFood
+    latitude: 50.06312766008826
+    longitude: 14.410505890846252
+    radius: 100
+    
+  - name: ToHornbachP5
+    latitude: 50.03731625484117
+    longitude: 14.404350320438198
+    radius: 100
+
+  - name: HornbachP5
+    latitude: 50.01711564352049
+    longitude: 14.392004013061523
+    radius: 150
+
+  - name: FromHornbachP5
+    latitude: 50.020497646816274
+    longitude: 14.391348971419461
+    radius: 100
+    
+  - name: BioStore
+    latitude: 50.069935276368234
+    longitude: 14.405101239681244
+    radius: 100
+
+  - name: Yoga
+    latitude: 50.053344109028735
+    longitude: 14.439699053764343
+    radius: 100
+    
+  - name: Billa
+    latitude: 50.03442312686808
+    longitude: 14.378568828105927
+    radius: 80
+    
+  - name: Posta
+    latitude: 50.03448859534987
+    longitude: 14.37636137008667
+    radius: 50
+    
+  - name: IkeaZlicin
+    latitude: 50.05129159516705
+    longitude: 14.29226479883198
+    radius: 400
+  
+  - name: ToP6
+    latitude: 50.02640773207083
+    longitude: 14.361298084259033
+    radius: 400
+    
+  - name: FromP6HomeHighway
+    latitude: 50.040781931095275
+    longitude: 14.270255889515965
+    radius: 250  
+  
+  - name: FromP6HomeBackWay
+    latitude: 50.04770073594183
+    longitude: 14.307665650633908
+    radius: 250  
+
+  - name: ToHornbachP6
+    latitude: 50.06683074554662
+    longitude: 14.309810544749325
+    radius: 250  
+
+  - name: FromHornbachP6
+    latitude: 50.07674466705169
+    longitude: 14.300489152926161
+    radius: 250  
+
+  - name: HornbachP6
+    latitude: 50.07504465799953
+    longitude: 14.307889938354492
+    radius: 250  

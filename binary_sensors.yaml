@@ -1,0 +1,229 @@
+
+  - platform: template
+    sensors:
+      motion_back:
+        friendly_name: "Motion - Back"
+        device_class: motion
+        value_template: >-
+          {{ is_state('camera.back', 'recording') }}
+
+  - platform: template
+    sensors:
+      motion_front:
+        friendly_name: "Motion - Front"
+        device_class: motion
+        value_template: >-
+          {{ is_state('camera.front', 'recording') }}
+
+  - platform: template
+    sensors:
+      motion_left:
+        friendly_name: "Motion - Left"
+        device_class: motion
+        value_template: >-
+          {{ is_state('camera.left', 'recording') }}
+
+  - platform: template
+    sensors:
+      motion_right:
+        friendly_name: "Motion - Right"
+        device_class: motion
+        value_template: >-
+          {{ is_state('camera.right', 'recording') }}
+
+  - name: Right Tensorflow Motion
+    platform: mqtt
+    state_topic: "cameras/1/motion"
+    device_class: motion
+    availability_topic: "cameras/1/available"
+
+  - name: Left Tensorflow Motion
+    platform: mqtt
+    state_topic: "cameras/2/motion"
+    device_class: motion
+    availability_topic: "cameras/2/available"
+
+  - name: Front Tensorflow Motion
+    platform: mqtt
+    state_topic: "cameras/3/motion"
+    device_class: motion
+    availability_topic: "cameras/3/available"
+
+  - name: Back Tensorflow Motion
+    platform: mqtt
+    state_topic: "cameras/4/motion"
+    device_class: motion
+    availability_topic: "cameras/4/available"
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/1"
+    name: "Front Door (Zone 1)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: door
+    
+  - platform: mqtt
+    state_topic: "paradox/zone/state/2"
+    name: "Windows 1st Floor (Zone 2)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: window
+    
+  - platform: mqtt
+    state_topic: "paradox/zone/state/3"
+    name: "Play Room (Zone 3)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: motion
+    
+  - platform: mqtt
+    state_topic: "paradox/zone/state/4"
+    name: "Living Room (Zone 4)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/5"
+    name: "Master Bedroom (Zone 5)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/6"
+    name: "Library (Zone 6)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/7"
+    name: "Zone 7"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/8"
+    name: "Master Closet (Zone 8)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/9"
+    name: "Zone 9"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/10"
+    name: "Sophies Room (Zone 10)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: motion
+ 
+  - platform: mqtt
+    state_topic: "paradox/zone/state/11"
+    name: "Glass Break Sensor (Zone 11)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: vibration
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/12"
+    name: "Garage (Zone 12)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/13"
+    name: "Laundry Room Window (Zone 13)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: window
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/14"
+    name: "Garage Door (Zone 14)"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: garage_door
+
+  - platform: mqtt
+    state_topic: "paradox/zone/state/14"
+    name: "Garage Door"
+    qos: 1
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    device_class: garage_door
+
+  - platform: mqtt
+    state_topic: "paradox/ctrl/state"
+    name: "Alarm Connection"
+    qos: 1
+    payload_on: "Connected"
+    payload_off: "Disconnected"
+    device_class: connectivity

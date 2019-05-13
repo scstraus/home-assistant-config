@@ -168,6 +168,7 @@ sensor.neo_coolcam_doorwindow_detector_sourcenodeid:
   hidden: true
 binary_sensor.neo_coolcam_doorwindow_detector_sensor:
   friendly_name: Closet Window Sensor 1
+  device_class: window
 zwave.neo_coolcam_doorwindow_detector_2:
   friendly_name: Back Door Detector
 sensor.neo_coolcam_doorwindow_detector_access_control_2:
@@ -183,21 +184,22 @@ sensor.neo_coolcam_doorwindow_detector_sourcenodeid_2:
   friendly_name: Back Door Sensor Alarm Level
   hidden: true
 binary_sensor.neo_coolcam_doorwindow_detector_sensor_2:
-  friendly_name: Back Door Sensor 
+  friendly_name: Back Door Sensor
+  device_class: door
 sensor.dark_sky_cloud_coverage:
   friendly_name: Cloud Coverage
 sensor.dark_sky_cloud_coverage_0:
-  friendly_name: Cloud Coverage Forecast Tomorrow
+  friendly_name: Cloud Coverage Forecast Today
 sensor.dark_sky_daytime_high_apparent_temperature_0:
-  friendly_name: High "Feels Like" Temperature Forecast Tomorrow
+  friendly_name: High "Feels Like" Temperature Forecast Today
 sensor.dark_sky_visibility_0:
-  friendly_name: Meters Visibility Forecast Tomorrow
+  friendly_name: Meters Visibility Forecast Today
 sensor.dark_sky_daytime_high_temperature_0:
-  friendly_name: Daily High Temperature Tomorrow
+  friendly_name: Daily High Temperature Today
 sensor.dark_sky_overnight_low_temperature_0:
-  friendly_name: Overnight Low Temperature Tomorrow
+  friendly_name: Overnight Low Temperature Today
 sensor.dark_sky_overnight_low_apparent_temperature_0:
-  friendly_name: Low "Feels Like" Temperature Tomorrow
+  friendly_name: Low "Feels Like" Temperature Today
 sensor.dark_sky_apparent_temperature:
   friendly_name: Current "Feels Like" Temperature
 sensor.dark_sky_precip:

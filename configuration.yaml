@@ -10,8 +10,8 @@ homeassistant:
 #  auth_providers:
 #    - type: trusted_networks
 #      trusted_networks:
-#        - 10.10.10.0/24
-#        - 10.11.147.245/32
+#        - !secret trusted_network1
+#        - !secret trusted_network2
 # uncomment for iOS device add
 #    - type: legacy_api_password
 #      api_password: !secret API_pass
@@ -50,6 +50,19 @@ updater:
 
 # include_used_components: true
 # discovery:
+# discovery:
+
+group: !include groups.yaml
+
+automation: !include_dir_merge_list automations/
+
+script: !include scripts.yaml
+
+sensor: !include sensors.yaml
+
+binary_sensor: !include binary_sensors.yaml
+
+zone: !include zones.yaml
 
 conversation:
 
@@ -187,6 +200,7 @@ logger:
   logs:
     homeassistant.components.mqtt: warn
     homeassistant.components.websocket_api: warn
+    homeassistant.components.deluge_client: warn
 #    homeassistant.components.nest: debug
 #    homeassistant.components.sensor.nest: debug
 #    sseclient: debug
@@ -195,12 +209,6 @@ logger:
 #    homeassistant.components.imap_email_content: debug
 #    homeassistant.components.sensor: debug
 #cloud:
-
-group: !include groups.yaml
-
-automation: !include automations.yaml
-
-script: !include scripts.yaml
 
 custom_updater:
   track:
@@ -218,66 +226,6 @@ custom_updater:
     - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/master/tracker.json
     - https://raw.githubusercontent.com/sgttrs/lovelace-weather-card-chart/master/custom-updater.json
 
-sensor: !include sensors.yaml
-
-binary_sensor:
-
-  - platform: template
-    sensors:
-      motion_back:
-        friendly_name: "Motion - Back"
-        device_class: motion
-        value_template: >-
-          {{ is_state('camera.back', 'recording') }}
-
-  - platform: template
-    sensors:
-      motion_front:
-        friendly_name: "Motion - Front"
-        device_class: motion
-        value_template: >-
-          {{ is_state('camera.front', 'recording') }}
-
-  - platform: template
-    sensors:
-      motion_left:
-        friendly_name: "Motion - Left"
-        device_class: motion
-        value_template: >-
-          {{ is_state('camera.left', 'recording') }}
-
-  - platform: template
-    sensors:
-      motion_right:
-        friendly_name: "Motion - Right"
-        device_class: motion
-        value_template: >-
-          {{ is_state('camera.right', 'recording') }}
-
-  - name: Right Tensorflow Motion
-    platform: mqtt
-    state_topic: "cameras/1/motion"
-    device_class: motion
-    availability_topic: "cameras/1/available"
-
-  - name: Left Tensorflow Motion
-    platform: mqtt
-    state_topic: "cameras/2/motion"
-    device_class: motion
-    availability_topic: "cameras/2/available"
-
-  - name: Front Tensorflow Motion
-    platform: mqtt
-    state_topic: "cameras/3/motion"
-    device_class: motion
-    availability_topic: "cameras/3/available"
-
-  - name: Back Tensorflow Motion
-    platform: mqtt
-    state_topic: "cameras/4/motion"
-    device_class: motion
-    availability_topic: "cameras/4/available"
-
 switch:
 
   - platform: command_line
@@ -286,123 +234,6 @@ switch:
         friendly_name:  Shuffle
         command_on: !secret shuffle_on_cmd
         command_off: !secret shuffle_off_cmd
-
-zone:
-
-  - name: Home
-    latitude: !secret home_lat
-    longitude: !secret home_long
-    radius: 50
-
-  - name: ToAndel
-    latitude: 50.05028576621793
-    longitude: 14.407266504965492
-    radius: 100
-
-  - name: Andel
-    latitude: 50.07113918629207
-    longitude: 14.401753942111782
-    radius: 250
-    
-  - name: Lazarska
-    latitude: 50.0792552
-    longitude: 14.4206597
-    radius: 100
-    
-  - name: ToCenter
-    latitude: 50.03895628687976
-    longitude: 14.403341809848598
-    radius: 150
-       
-  - name: Work
-    latitude: !secret work_lat
-    longitude: !secret work_long
-    radius: 100
-    
-  - name: SmichovskeNad
-    latitude: 50.06081691414926
-    longitude: 14.408698081970215
-    radius: 100
-    
-  - name: ToWineFood
-    latitude: 50.05165429631845
-    longitude: 14.410333276190158
-    radius: 100
-    
-  - name: WineFood
-    latitude: 50.06312766008826
-    longitude: 14.410505890846252
-    radius: 100
-    
-  - name: ToHornbachP5
-    latitude: 50.03731625484117
-    longitude: 14.404350320438198
-    radius: 100
-
-  - name: HornbachP5
-    latitude: 50.01711564352049
-    longitude: 14.392004013061523
-    radius: 150
-
-  - name: FromHornbachP5
-    latitude: 50.020497646816274
-    longitude: 14.391348971419461
-    radius: 100
-    
-  - name: BioStore
-    latitude: 50.069935276368234
-    longitude: 14.405101239681244
-    radius: 100
-
-  - name: Yoga
-    latitude: 50.053344109028735
-    longitude: 14.439699053764343
-    radius: 100
-    
-  - name: Billa
-    latitude: 50.03442312686808
-    longitude: 14.378568828105927
-    radius: 80
-    
-  - name: Posta
-    latitude: 50.03448859534987
-    longitude: 14.37636137008667
-    radius: 50
-    
-  - name: IkeaZlicin
-    latitude: 50.05129159516705
-    longitude: 14.29226479883198
-    radius: 400
-  
-  - name: ToP6
-    latitude: 50.02640773207083
-    longitude: 14.361298084259033
-    radius: 400
-    
-  - name: FromP6HomeHighway
-    latitude: 50.040781931095275
-    longitude: 14.270255889515965
-    radius: 250  
-  
-  - name: FromP6HomeBackWay
-    latitude: 50.04770073594183
-    longitude: 14.307665650633908
-    radius: 250  
-
-  - name: ToHornbachP6
-    latitude: 50.06683074554662
-    longitude: 14.309810544749325
-    radius: 250  
-
-  - name: FromHornbachP6
-    latitude: 50.07674466705169
-    longitude: 14.300489152926161
-    radius: 250  
-
-  - name: HornbachP6
-    latitude: 50.07504465799953
-    longitude: 14.307889938354492
-    radius: 250  
 
 evohome:
 
@@ -441,19 +272,19 @@ camera:
 
   - name: Right Last Person
     platform: generic
-    still_image_url: http://10.10.10.71:5000/best_person.jpg
+    still_image_url: !secret right_best_url
 
   - name: Left Last Person
     platform: generic
-    still_image_url: http://10.10.10.71:5001/best_person.jpg
+    still_image_url: !secret left_best_url
 
   - name: Front Last Person
     platform: generic
-    still_image_url: http://10.10.10.71:5002/best_person.jpg
+    still_image_url: !secret front_best_url
 
   - name: Back Last Person
     platform: generic
-    still_image_url: http://10.10.10.71:5003/best_person.jpg
+    still_image_url: !secret back_best_url
 
   - platform: synology
     url: !secret synology_int_url
@@ -595,6 +426,12 @@ input_select:
     initial: Dirty
     icon: mdi:dishwasher
 
+  living_room_last_mode:
+    name: Last Heating Mode in Living Room
+    options:
+      - auto
+      - manual
+
 proximity:
   all_home: 
     devices:
@@ -661,6 +498,9 @@ variable:
       date: ''
     restore: true
     
+  living_room_last_temp_variable:
+    restore: true
+    
 cast:
   media_player:
     - host: !secret chromecast_ip
@@ -686,3 +526,57 @@ speedtestdotnet:
     - ping
     - download
     - upload
+
+alarm_control_panel:
+  - platform: mqtt
+    name: "Home Alarm System"
+    state_topic: "paradox/alarm/state/3"
+    command_topic: "paradox/alarm/cmnd/3"
+    qos: 1
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    payload_disarm: “DISARM”
+    payload_arm_home: “ARM_HOME”
+    payload_arm_away: “ARM_AWAY”
+#    code: !secret alarm_code
+#    code_arm_required: false
+#    code_disarm_required: true
+
+alert:
+  garage_door:
+    name: Garage has been open for {{ relative_time(states.sensor.binary_sensor.garage_door_zone_14) }}
+    done_message: Garage is closed
+    entity_id: binary_sensor.garage_door_zone_14
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+      - 60
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - sean_alena
+
+  front_door:
+    name: Front door has been open for {{ relative_time(states.binary_sensor.front_door_zone_1) }}
+    done_message: Front door is closed
+    entity_id: binary_sensor.front_door_zone_1
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+      - 60
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - sean_alena
+
+input_number:
+  living_room_last_temp:
+    name: Last Temp - Living Room
+    min: 5
+    max: 25
+    step: 0.5

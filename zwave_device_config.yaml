@@ -1,0 +1,75 @@
+sensor.fibaro_system_fgd212_dimmer_2_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgd212_dimmer_2_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgd212_dimmer_2_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgd212_dimmer_2_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgd212_dimmer_2_system:
+  ignored: true
+  polling_intensity: 0
+switch.fibaro_system_fgs223_double_relay_switch:
+  ignored: false
+  polling_intensity: 0
+sensor.neo_coolcam_door_window_detector_access_control_2:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_door_window_detector_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_door_window_detector_alarm_level_2:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_door_window_detector_alarm_type_2:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_door_window_detector_sourcenodeid_2:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_door_window_detector_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_door_window_detector_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_door_window_detector_access_control:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_interval:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_interval_2:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_interval_3:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_interval_4:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_2:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_3:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_4:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_unknown_type_0200_id_1027_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
