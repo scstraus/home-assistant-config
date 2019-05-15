@@ -16,6 +16,27 @@ homeassistant:
 #    - type: legacy_api_password
 #      api_password: !secret API_pass
 
+
+group: !include groups.yaml
+
+automation: !include_dir_merge_list automations/
+
+script: !include scripts.yaml
+
+sensor: !include sensors.yaml
+
+binary_sensor: !include binary_sensors.yaml
+
+zone: !include zones.yaml
+
+config:
+
+hassio:
+
+cloud:
+
+system_health:
+
 lovelace:
 
   mode: yaml
@@ -24,17 +45,17 @@ frontend:
 
   themes: !include themes.yaml
   javascript_version: auto
-  
-system_health:
+
+conversation:
+    
+logbook:
+
+map:
+
+sun:
 
 #uncomment for iOS device add
 #discovery:
-
-config:
-
-hassio:
-
-cloud:
 
 http:
 
@@ -52,19 +73,27 @@ updater:
 # discovery:
 # discovery:
 
-group: !include groups.yaml
+tts:
 
-automation: !include_dir_merge_list automations/
+  - platform: google
 
-script: !include scripts.yaml
+logger:
 
-sensor: !include sensors.yaml
-
-binary_sensor: !include binary_sensors.yaml
-
-zone: !include zones.yaml
-
-conversation:
+  default: debug
+  logs:
+    homeassistant.components.mqtt: warn
+    homeassistant.components.websocket_api: warn
+    homeassistant.components.deluge_client: warn
+    homeassistant.components.zwave: warn
+    homeassistant.components.openzwave: warn
+    homeassistant.components.libopenzwave: warn
+#    homeassistant.components.nest: debug
+#    homeassistant.components.sensor.nest: debug
+#    sseclient: debug
+#    homeassistant.components.camera: debug
+#    homeassistant.components.sensor.imap_email_content: debug
+#    homeassistant.components.imap_email_content: debug
+#    homeassistant.components.sensor: debug
 
 history:
   exclude:
@@ -183,32 +212,7 @@ recorder:
     - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_4
     - sensor.neo_coolcam_unknown_type_0200_id_1027_sourcenodeid
     - sensor.popp_unknown_type_0004_id_0014_sourcenodeid
-    
-logbook:
 
-map:
-
-sun:
-
-tts:
-
-  - platform: google
-
-logger:
-
-  default: debug
-  logs:
-    homeassistant.components.mqtt: warn
-    homeassistant.components.websocket_api: warn
-    homeassistant.components.deluge_client: warn
-#    homeassistant.components.nest: debug
-#    homeassistant.components.sensor.nest: debug
-#    sseclient: debug
-#    homeassistant.components.camera: debug
-#    homeassistant.components.sensor.imap_email_content: debug
-#    homeassistant.components.imap_email_content: debug
-#    homeassistant.components.sensor: debug
-#cloud:
 
 custom_updater:
   track:
@@ -333,29 +337,29 @@ mqtt:
   username: !secret mqqt_uname
   password: !secret mqqt_pass
 
-input_boolean:
-  mix_playlist:
-    name: Mix Playlist
-    initial: off
-  rock_playlist:
-    name: Rock Playlist
-    initial: off
-  pop_playlist:
-    name: Pop Playlist
-    initial: off
-  black_playlist:
-    name: Black Playlist
-    initial: off
-  classical_playlist:
-    name: Classical Playlist
-    initial: off
-  electronica_playlist:
-    name: Electronica Playlist
-    initial: off
-  kids_playlist:
-    name: Kids Playlist
-    initial: off
-    
+#input_boolean:
+#  mix_playlist:
+#    name: Mix Playlist
+#    initial: off
+#  rock_playlist:
+#    name: Rock Playlist
+#    initial: off
+#  pop_playlist:
+#    name: Pop Playlist
+#    initial: off
+#  black_playlist:
+#    name: Black Playlist
+#    initial: off
+#  classical_playlist:
+#    name: Classical Playlist
+#    initial: off
+#  electronica_playlist:
+#    name: Electronica Playlist
+#    initial: off
+#  kids_playlist:
+#    name: Kids Playlist
+#    initial: off
+#    
 input_select:
   sean_last_zone_dropdown:
     name: Sean Last Zone
@@ -470,32 +474,32 @@ device_tracker:
 variable:
   dpd_variable:
     attributes:
-      icon: mdi:delivery
       friendly_name: 'DPD'
       from: ''
       subject: ''
       body: ''
       date: ''
+      icon: mdi:truck-delivery
     restore: true
 
   posta_variable:
     attributes:
-      icon: mdi:delivery
       friendly_name: 'Posta'
       from: ''
       subject: ''
       body: ''
       date: ''
+      icon: mdi:truck-delivery
     restore: true
       
   dhl_variable:
     attributes:
-      icon: mdi:delivery
       friendly_name: 'DHL'
       from: ''
       subject: ''
       body: ''
       date: ''
+      icon: mdi:truck-delivery
     restore: true
     
   living_room_last_temp_variable:

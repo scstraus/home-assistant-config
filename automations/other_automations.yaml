@@ -34,15 +34,18 @@
     service: variable.set_variable
     data:
       variable: posta_variable
-      value_template: "{{ states('sensor.cp_packages_coming_today')}}"
-      attributes_template: >
-        {
-          "from": "{{ state_attr('sensor.cp_packages_coming_today', 'from') }}",
-          "date": "{{ state_attr('sensor.cp_packages_coming_today', 'date') }}",
-          "subject": "{{ state_attr('sensor.cp_packages_coming_today', 'subject') }}",
-          "body": "{{ state_attr('sensor.cp_packages_coming_today', 'body') }}"
-        } 
-        
+    data_template:
+      value: >
+          {{ states('sensor.cp_packages_coming_today')}}
+
+#      attributes_template: >
+#        {
+#          "from": "{{ state_attr('sensor.cp_packages_coming_today', 'from') }}",
+#          "date": "{{ state_attr('sensor.cp_packages_coming_today', 'date') }}",
+#          "subject": "{{ state_attr('sensor.cp_packages_coming_today', 'subject') }}",
+#          "body": "{{ state_attr('sensor.cp_packages_coming_today', 'body') }}"
+#        } 
+
 - id: posta_variable_reset
   alias: 'Posta Variable Reset'
   hide_entity: true
@@ -77,15 +80,19 @@
     service: variable.set_variable
     data:
       variable: dpd_variable
-      value_template: "{{ states('sensor.dpd_packages_coming_today')}}"
-      attributes_template: >
-        {
-          "from": "{{ state_attr('sensor.dpd_packages_coming_today', 'from') }}",
-          "date": "{{ state_attr('sensor.dpd_packages_coming_today', 'date') }}",
-          "subject": "{{ state_attr('sensor.dpd_packages_coming_today', 'subject') }}",
-          "body": "{{ state_attr('sensor.dpd_packages_coming_today', 'body') }}"
-        }   
-        
+    data_template:
+      value: >
+        {{ states('sensor.dpd_packages_coming_today')}}
+
+#      attributes_template: >
+#        {
+#          "from": "{{ state_attr('sensor.dpd_packages_coming_today', 'from') }}",
+#          "date": "{{ state_attr('sensor.dpd_packages_coming_today', 'date') }}",
+#          "subject": "{{ state_attr('sensor.dpd_packages_coming_today', 'subject') }}",
+#          "body": "{{ state_attr('sensor.dpd_packages_coming_today', 'body') }}"
+#        } 
+
+
 - id: dpd_variable_reset
   alias: 'DPD Variable Reset'
   hide_entity: true
@@ -119,15 +126,18 @@
   action:
     service: variable.set_variable
     data:
-      variable: dhl_variable
-      value_template: "{{ states('sensor.dhl_packages_coming_today')}}"
-      attributes_template: >
-        {
-          "from": "{{ state_attr('sensor.dhl_packages_coming_today', 'from') }}",
-          "date": "{{ state_attr('sensor.dhl_packages_coming_today', 'date') }}",
-          "subject": "{{ state_attr('sensor.dhl_packages_coming_today', 'subject') }}",
-          "body": "{{ state_attr('sensor.dhl_packages_coming_today', 'body') }}"
-        }    
+      variable: dhl_variable   
+    data_template:
+      value: >
+        {{ states('sensor.dhl_packages_coming_today')}}
+
+#      attributes_template: >
+#        {
+#          "from": "{{ state_attr('sensor.dhl_packages_coming_today', 'from') }}",
+#          "date": "{{ state_attr('sensor.dhl_packages_coming_today', 'date') }}",
+#          "subject": "{{ state_attr('sensor.dhl_packages_coming_today', 'subject') }}",
+#          "body": "{{ state_attr('sensor.dhl_packages_coming_today', 'body') }}"
+#        } 
         
 - id: dhl_variable_reset
   alias: 'DHL Variable Reset'
@@ -192,8 +202,7 @@
      
 - id: internet_upload_limited
   alias: 'Internet Upload is Limited'
-  hide_entity: true
-  initial_state: 'true'      
+  hide_entity: true      
   trigger:
     platform: numeric_state
     entity_id: sensor.speedtest_upload
@@ -206,8 +215,7 @@
   
 - id: internet_upload_normal
   alias: 'Internet Upload is Normal'
-  hide_entity: true
-  initial_state: 'true'      
+  hide_entity: true     
   trigger:
     platform: numeric_state
     entity_id: sensor.speedtest_upload

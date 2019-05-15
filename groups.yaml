@@ -20,6 +20,12 @@
       - device_tracker.seans_iphone_x
       - device_tracker.alenas_iphone
 
+  Internet_Notifications:
+    name: Internet Notifications
+    entities:
+      - automation.internet_upload_is_limited
+      - automation.internet_upload_is_normal
+
 #  default_view:
 #    view: yes
 #    name: Home

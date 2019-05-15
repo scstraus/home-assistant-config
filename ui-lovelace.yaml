@@ -157,16 +157,17 @@ views:
       - variable.posta_variable
       - variable.dhl_variable
       - variable.dpd_variable
-      - sensor.cp_packages_coming_today
-      - sensor.dpd_packages_coming_today
-      - sensor.dhl_packages_coming_today
+#      - sensor.cp_packages_coming_today
+#      - sensor.dpd_packages_coming_today
+#      - sensor.dhl_packages_coming_today
       - sensor.bike_day
       - sensor.object_detection_front
       - sensor.object_detection_left
       - sensor.object_detection_right
       - sensor.object_detection_back
       - sensor.back_door
-      - sensor.garage_door
+      - binary_sensor.garage_door
+      - binary_sensor.front_door_zone_1
       - sensor.closet_window
       - input_select.dishwasher_status
       - binary_sensor.popp_unknown_type_0004_id_0014_sensor
@@ -1601,6 +1602,10 @@ views:
         title: 'Ping Time'
         entities:
         - sensor.speedtest_ping
+
+      - type: entities
+        entities:
+        -  group.internet_notifications
 
     - type: vertical-stack
       cards:

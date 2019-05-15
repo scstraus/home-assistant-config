@@ -17,8 +17,14 @@
       - condition: time
         after: '21:00:00'
         before: '7:00:00'
-      - condition: template
-        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
+      - condition: state
+        entity_id: sensor.alarm_state_3_motion_sensors
+        state: 'armed_away'
+        for:
+          minutes: 1
+      - condition: state
+        entity_id: sensor.alarm_state_3_motion_sensors
+        state: 'triggered'  
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -28,6 +34,10 @@
         push:
           category: camera
         entity_id: camera.front
+
+#      - condition: template
+#        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
+
 
 - id: person_in_back
   alias: Person In Back
@@ -47,8 +57,14 @@
       - condition: time
         after: '21:00:00'
         before: '7:00:00'
-      - condition: template
-        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
+      - condition: state
+        entity_id: sensor.alarm_state_3_motion_sensors
+        state: 'armed_away'
+        for:
+          minutes: 1
+      - condition: state
+        entity_id: sensor.alarm_state_3_motion_sensors
+        state: 'triggered'
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -58,6 +74,8 @@
         push:
           category: camera
         entity_id: camera.back
+
+
 
 - id: person_on_left
   alias: Person On Left
@@ -77,8 +95,14 @@
       - condition: time
         after: '21:00:00'
         before: '7:00:00'
-      - condition: template
-        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
+      - condition: state
+        entity_id: sensor.alarm_state_3_motion_sensors
+        state: 'armed_away'
+        for:
+          minutes: 1
+      - condition: state
+        entity_id: sensor.alarm_state_3_motion_sensors
+        state: 'triggered'  
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -107,8 +131,14 @@
       - condition: time
         after: '21:00:00'
         before: '7:00:00'
-      - condition: template
-        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
+      - condition: state
+        entity_id: sensor.alarm_state_3_motion_sensors
+        state: 'armed_away'
+        for:
+          minutes: 1
+      - condition: state
+        entity_id: sensor.alarm_state_3_motion_sensors
+        state: 'triggered'  
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -450,7 +480,7 @@
       from: 'armed_night'
       to: 'triggered'
     - platform: state
-      entity_id: device_tracker.seans_iphone_x
+      entity_id: sensor.alarm_state_3_motion_sensors
       from: 'arm_home'
       to: 'triggered'
   action:
