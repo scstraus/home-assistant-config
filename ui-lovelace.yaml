@@ -134,7 +134,7 @@ views:
 
     - type: entity-filter
       card:
-        title: "Battery Change Needed"
+        title: "Battery Change/Charge Needed"
         show_header_toggle: false
       entities:
       - sensor.living_room_nest_protect_battery_health
@@ -157,6 +157,8 @@ views:
       - variable.posta_variable
       - variable.dhl_variable
       - variable.dpd_variable
+      - variable.gls_variable
+#      - sensor.gls_packages_coming_today
 #      - sensor.cp_packages_coming_today
 #      - sensor.dpd_packages_coming_today
 #      - sensor.dhl_packages_coming_today
@@ -173,6 +175,7 @@ views:
       - binary_sensor.popp_unknown_type_0004_id_0014_sensor
       state_filter:
       - "on"
+      - "Delivery"
       - "delivery"
       - "yes"
       - "Cat Detected"
@@ -1334,8 +1337,8 @@ views:
         title: "Open Other Windows/Doors"
         show_header_toggle: false
       entities:
-      - sensor.closet_window
-      - sensor.back_door
+      - binary_sensor.closet_window_1
+      - binary_sensor.back_door
       state_filter:
       - "on"
       show_empty: false
@@ -1357,29 +1360,40 @@ views:
       - "on"
       show_empty: false
  
-    - type: vertical-stack
-      cards:
-   
-      - type: alarm-panel
-        states:
-        - arm_home
-        - arm_away
-        entity: alarm_control_panel.home_alarm_system
-        name: House Alarm
-        
-      - type: entities
-        title: Arming Status
-        show_header_toggle: false
-        entities:
-        - sensor.alarm_state_1_laundry
-        - sensor.alarm_state_2_1st_floor
-        - sensor.alarm_state_3_motion_sensors   
+#    - type: vertical-stack
+#      cards:
 
-      - type: entities
-        title: Alarm Connection
-        show_header_toggle: false
-        entities:
-        - binary_sensor.alarm_connection
+    - type: alarm-panel
+      states:
+      - arm_away
+      entity: alarm_control_panel.motion_sensors
+      name: Alarm - Motion Sensors
+
+    - type: alarm-panel
+      states:
+      - arm_away
+      entity: alarm_control_panel.windows_and_garage_door
+      name: Alarm - Windows, Front and Garage Door
+
+    - type: alarm-panel
+      states:
+      - arm_away
+      entity: alarm_control_panel.laundry_room_window
+      name: Alarm - Laundry Room Window
+
+#      - type: entities
+#        title: Arming Status
+#        show_header_toggle: false
+#        entities:
+#        - sensor.alarm_state_1_laundry
+#        - sensor.alarm_state_2_1st_floor
+#        - sensor.alarm_state_3_motion_sensors   
+#
+#      - type: entities
+#        title: Alarm Connection
+#        show_header_toggle: false
+#        entities:
+#        - binary_sensor.alarm_connection
     
     - type: history-graph
       title: 'Door/Window Open History'
@@ -1390,8 +1404,8 @@ views:
       - binary_sensor.front_door_zone_1
       - binary_sensor.laundry_room_window_zone_13
       - binary_sensor.windows_1st_floor_zone_2
-      - sensor.closet_window
-      - sensor.back_door
+      - binary_sensor.closet_window_1
+      - binary_sensor.back_door
       
     - type: history-graph
       title: 'Motion Detection History'
@@ -1446,13 +1460,13 @@ views:
       entities:
       - sensor.dark_sky_hourly_summary
       - sensor.dark_sky_daily_summary
-      - sensor.dark_sky_overnight_low_temperature_0
-      - sensor.dark_sky_daytime_high_temperature_0
+      - sensor.dark_sky_overnight_low_temperature_0d
+      - sensor.dark_sky_daytime_high_temperature_0d
       - sensor.dark_sky_precip_probability
       - sensor.dark_sky_precip
       - sensor.dark_sky_apparent_temperature
-      - sensor.dark_sky_overnight_low_apparent_temperature_0
-      - sensor.dark_sky_daytime_high_apparent_temperature_0
+      - sensor.dark_sky_overnight_low_apparent_temperature_0d
+      - sensor.dark_sky_daytime_high_apparent_temperature_0d
 
     - type: history-graph
       title: 'Air Pollution Level'
@@ -1605,7 +1619,8 @@ views:
 
       - type: entities
         entities:
-        -  group.internet_notifications
+        - group.internet_notifications
+        - automation.sensor_notification
 
     - type: vertical-stack
       cards:
@@ -1643,16 +1658,16 @@ views:
       - binary_sensor.master_bedroom_nest_protect_online
       - binary_sensor.kids_room_nest_protect_online
       - binary_sensor.basement_nest_protect_online
-      - sensor.sean_direction_of_travel
-      - sensor.alena_direction_of_travel
-      - sensor.sophie_direction_of_travel
-      - sensor.all_direction_of_travel
+#      - sensor.sean_direction_of_travel
+#      - sensor.alena_direction_of_travel
+#      - sensor.sophie_direction_of_travel
+#      - sensor.all_direction_of_travel
 
-
-    - type: history-graph
-      title: 'Dishwasher Status'
-      entities:
-      - input_select.dishwasher_status
+#
+#    - type: history-graph
+#      title: 'Dishwasher Status'
+#      entities:
+#      - input_select.dishwasher_status
 
     - type: custom:tracker-card
       title:
@@ -1660,44 +1675,44 @@ views:
         - sensor.custom_card_tracker
         - sensor.custom_component_tracker
 
-    - type: vertical-stack
-      cards:
+#    - type: vertical-stack
+#      cards:
+#
+#      - type: history-graph
+#        title: 'device_tracker.seans_iphone_x'
+#        entities:
+#        - device_tracker.seans_iphone_x
+#
+#      - type: history-graph
+#        title: 'input_select.sean_last_zone_dropdown'
+#        entities:
+#        - input_select.sean_last_zone_dropdown
+#
+#      - type: history-graph
+#        title: 'input_select.sean_location_dropdown'
+#        entities:
+#        - input_select.sean_location_dropdown
+#
+#      - type: history-graph
+#        title: 'sensor.sean_location'
+#        entities:
+#        - sensor.sean_location
 
-      - type: history-graph
-        title: 'device_tracker.seans_iphone_x'
-        entities:
-        - device_tracker.seans_iphone_x
 
-      - type: history-graph
-        title: 'input_select.sean_last_zone_dropdown'
-        entities:
-        - input_select.sean_last_zone_dropdown
-
-      - type: history-graph
-        title: 'input_select.sean_location_dropdown'
-        entities:
-        - input_select.sean_location_dropdown
-
-      - type: history-graph
-        title: 'sensor.sean_location'
-        entities:
-        - sensor.sean_location
-
-
-    - type: history-graph
-      title: 'Humidity Under Sink'
-      entities:
-      - sensor.popp_unknown_type_0004_id_0014_relative_humidity
-
-    - type: history-graph
-      title: 'Temperature Under Sink'
-      entities:
-      - sensor.popp_unknown_type_0004_id_0014_temperature
-
-    - type: history-graph
-      title: 'Dew Point Under Sink'
-      entities:
-      - sensor.popp_unknown_type_0004_id_0014_dew_point
+#    - type: history-graph
+#      title: 'Humidity Under Sink'
+#      entities:
+#      - sensor.popp_unknown_type_0004_id_0014_relative_humidity
+#
+#    - type: history-graph
+#      title: 'Temperature Under Sink'
+#      entities:
+#      - sensor.popp_unknown_type_0004_id_0014_temperature
+#
+#    - type: history-graph
+#      title: 'Dew Point Under Sink'
+#      entities:
+#      - sensor.popp_unknown_type_0004_id_0014_dew_point
       
 #### SEVENTH TAB ####
 #

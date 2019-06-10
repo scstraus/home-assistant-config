@@ -7,14 +7,15 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Prague
   customize: !include customize.yaml
-#  auth_providers:
+
+  auth_providers:
+# airport worked with this
 #    - type: trusted_networks
 #      trusted_networks:
 #        - !secret trusted_network1
-#        - !secret trusted_network2
-# uncomment for iOS device add
-#    - type: legacy_api_password
-#      api_password: !secret API_pass
+# uncomment for iOS device add, other option for airport 
+    - type: legacy_api_password
+      api_password: !secret API_pass
 
 
 group: !include groups.yaml
@@ -37,14 +38,7 @@ cloud:
 
 system_health:
 
-lovelace:
-
-  mode: yaml
-
-frontend:
-
-  themes: !include themes.yaml
-  javascript_version: auto
+api:
 
 conversation:
     
@@ -53,6 +47,15 @@ logbook:
 map:
 
 sun:
+
+lovelace:
+
+  mode: yaml
+
+frontend:
+
+  themes: !include themes.yaml
+  javascript_version: auto
 
 #uncomment for iOS device add
 #discovery:
@@ -73,9 +76,9 @@ updater:
 # discovery:
 # discovery:
 
-tts:
-
-  - platform: google
+#tts:
+#
+#  - platform: google
 
 logger:
 
@@ -152,7 +155,175 @@ history:
     - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_4
     - sensor.neo_coolcam_unknown_type_0200_id_1027_sourcenodeid
     - sensor.popp_unknown_type_0004_id_0014_sourcenodeid
-
+    - sensor.dark_sky_apparent_temperature_1h
+    - sensor.dark_sky_apparent_temperature_2h
+    - sensor.dark_sky_apparent_temperature_3h
+    - sensor.dark_sky_apparent_temperature_4h
+    - sensor.dark_sky_apparent_temperature_5h
+    - sensor.dark_sky_apparent_temperature_6h
+    - sensor.dark_sky_apparent_temperature_7h
+    - sensor.dark_sky_apparent_temperature_8h
+    - sensor.dark_sky_apparent_temperature_9h
+    - sensor.dark_sky_cloud_coverage_1h
+    - sensor.dark_sky_cloud_coverage_2h
+    - sensor.dark_sky_cloud_coverage_3h
+    - sensor.dark_sky_cloud_coverage_4h
+    - sensor.dark_sky_cloud_coverage_5h
+    - sensor.dark_sky_cloud_coverage_6h
+    - sensor.dark_sky_cloud_coverage_7h
+    - sensor.dark_sky_cloud_coverage_8h
+    - sensor.dark_sky_cloud_coverage_9h
+    - sensor.dark_sky_dew_point_1h
+    - sensor.dark_sky_dew_point_2h
+    - sensor.dark_sky_dew_point_3h
+    - sensor.dark_sky_dew_point_4h
+    - sensor.dark_sky_dew_point_5h
+    - sensor.dark_sky_dew_point_6h
+    - sensor.dark_sky_dew_point_7h
+    - sensor.dark_sky_dew_point_8h
+    - sensor.dark_sky_dew_point_9h
+    - sensor.dark_sky_humidity_1h
+    - sensor.dark_sky_humidity_2h
+    - sensor.dark_sky_humidity_3h
+    - sensor.dark_sky_humidity_4h
+    - sensor.dark_sky_humidity_5h
+    - sensor.dark_sky_humidity_6h
+    - sensor.dark_sky_humidity_7h
+    - sensor.dark_sky_humidity_8h
+    - sensor.dark_sky_humidity_9h
+    - sensor.dark_sky_icon_1h
+    - sensor.dark_sky_icon_2h
+    - sensor.dark_sky_icon_3h
+    - sensor.dark_sky_icon_4h
+    - sensor.dark_sky_icon_5h
+    - sensor.dark_sky_icon_6h
+    - sensor.dark_sky_icon_7h
+    - sensor.dark_sky_icon_8h
+    - sensor.dark_sky_icon_9h
+    - sensor.dark_sky_ozone_1h
+    - sensor.dark_sky_ozone_2h
+    - sensor.dark_sky_ozone_3h
+    - sensor.dark_sky_ozone_4h
+    - sensor.dark_sky_ozone_5h
+    - sensor.dark_sky_ozone_6h
+    - sensor.dark_sky_ozone_7h
+    - sensor.dark_sky_ozone_8h
+    - sensor.dark_sky_ozone_9h
+    - sensor.dark_sky_precip_1h
+    - sensor.dark_sky_precip_2h
+    - sensor.dark_sky_precip_3h
+    - sensor.dark_sky_precip_4h
+    - sensor.dark_sky_precip_5h
+    - sensor.dark_sky_precip_6h
+    - sensor.dark_sky_precip_7h
+    - sensor.dark_sky_precip_8h
+    - sensor.dark_sky_precip_9h
+    - sensor.dark_sky_precip_intensity_1h
+    - sensor.dark_sky_precip_intensity_2h
+    - sensor.dark_sky_precip_intensity_3h
+    - sensor.dark_sky_precip_intensity_4h
+    - sensor.dark_sky_precip_intensity_5h
+    - sensor.dark_sky_precip_intensity_6h
+    - sensor.dark_sky_precip_intensity_7h
+    - sensor.dark_sky_precip_intensity_8h
+    - sensor.dark_sky_precip_intensity_9h
+    - sensor.dark_sky_precip_probability_1h
+    - sensor.dark_sky_precip_probability_2h
+    - sensor.dark_sky_precip_probability_3h
+    - sensor.dark_sky_precip_probability_4h
+    - sensor.dark_sky_precip_probability_5h
+    - sensor.dark_sky_precip_probability_6h
+    - sensor.dark_sky_precip_probability_7h
+    - sensor.dark_sky_precip_probability_8h
+    - sensor.dark_sky_precip_probability_9h
+    - sensor.dark_sky_pressure_1h
+    - sensor.dark_sky_pressure_2h
+    - sensor.dark_sky_pressure_3h
+    - sensor.dark_sky_pressure_4h
+    - sensor.dark_sky_pressure_5h
+    - sensor.dark_sky_pressure_6h
+    - sensor.dark_sky_pressure_7h
+    - sensor.dark_sky_pressure_8h
+    - sensor.dark_sky_pressure_9h
+    - sensor.dark_sky_summary_1h
+    - sensor.dark_sky_summary_2h
+    - sensor.dark_sky_summary_3h
+    - sensor.dark_sky_summary_4h
+    - sensor.dark_sky_summary_5h
+    - sensor.dark_sky_summary_6h
+    - sensor.dark_sky_summary_7h
+    - sensor.dark_sky_summary_8h
+    - sensor.dark_sky_summary_9h
+    - sensor.dark_sky_temperature_1h
+    - sensor.dark_sky_temperature_2h
+    - sensor.dark_sky_temperature_3h
+    - sensor.dark_sky_temperature_4h
+    - sensor.dark_sky_temperature_5h
+    - sensor.dark_sky_temperature_6h
+    - sensor.dark_sky_temperature_7h
+    - sensor.dark_sky_temperature_8h
+    - sensor.dark_sky_temperature_9h
+    - sensor.dark_sky_visibility_1h
+    - sensor.dark_sky_visibility_2h
+    - sensor.dark_sky_visibility_3h
+    - sensor.dark_sky_visibility_4h
+    - sensor.dark_sky_visibility_5h
+    - sensor.dark_sky_visibility_6h
+    - sensor.dark_sky_visibility_7h
+    - sensor.dark_sky_visibility_8h
+    - sensor.dark_sky_visibility_9h
+    - sensor.dark_sky_wind_bearing_1h
+    - sensor.dark_sky_wind_bearing_2h
+    - sensor.dark_sky_wind_bearing_3h
+    - sensor.dark_sky_wind_bearing_4h
+    - sensor.dark_sky_wind_bearing_5h
+    - sensor.dark_sky_wind_bearing_6h
+    - sensor.dark_sky_wind_bearing_7h
+    - sensor.dark_sky_wind_bearing_8h
+    - sensor.dark_sky_wind_bearing_9h
+    - sensor.dark_sky_wind_gust_1h
+    - sensor.dark_sky_wind_gust_2h
+    - sensor.dark_sky_wind_gust_3h
+    - sensor.dark_sky_wind_gust_4h
+    - sensor.dark_sky_wind_gust_5h
+    - sensor.dark_sky_wind_gust_6h
+    - sensor.dark_sky_wind_gust_7h
+    - sensor.dark_sky_wind_gust_8h
+    - sensor.dark_sky_wind_gust_9h
+    - sensor.dark_sky_wind_speed_1h
+    - sensor.dark_sky_wind_speed_2h
+    - sensor.dark_sky_wind_speed_3h
+    - sensor.dark_sky_wind_speed_4h
+    - sensor.dark_sky_wind_speed_5h
+    - sensor.dark_sky_wind_speed_6h
+    - sensor.dark_sky_wind_speed_7h
+    - sensor.dark_sky_wind_speed_8h
+    - sensor.dark_sky_wind_speed_9h
+    - device_tracker.00_be_3b_15_b2_b2
+    - device_tracker.20_64_32_dc_2c_06
+    - device_tracker.2c_26_17_43_35_0a
+    - device_tracker.40_3c_fc_05_6a_b9
+    - device_tracker.40_3c_fc_05_7f_39
+    - device_tracker.74_1b_b2_74_73_c2
+    - device_tracker.78_ca_39_45_e6_2f
+    - device_tracker.80_00_0b_a2_e7_34
+    - device_tracker.80_2b_f9_39_05_a3
+    - device_tracker.a8_66_7f_d2_24_97
+    - device_tracker.b0_41_1d_35_b4_ed
+    - device_tracker.b4_e6_2a_a5_29_61
+    - device_tracker.c8_3c_85_54_9d_81
+    - device_tracker.c8_bc_c8_d2_23_c8
+    - device_tracker.d0_e7_82_c6_93_07
+    - device_tracker.f4_60_e2_d5_e6_60
+    - sensor.fibaro_system_fgd212_dimmer_2_alarm_level
+    - sensor.fibaro_system_fgd212_dimmer_2_alarm_type
+    - sensor.fibaro_system_fgd212_dimmer_2_sourcenodeid
+    - sensor.fibaro_system_fgd212_dimmer_2_system
+    - sensor.fibaro_system_fgs223_double_relay_alarm_level
+    - sensor.fibaro_system_fgs223_double_relay_alarm_type
+    - sensor.fibaro_system_fgs223_double_relay_exporting
+    - sensor.fibaro_system_fgs223_double_relay_exporting_2
+    - sensor.fibaro_system_fgs223_double_relay_sourcenodeid
 
 recorder:
   db_url: !secret maria_url
@@ -212,7 +383,175 @@ recorder:
     - sensor.neo_coolcam_unknown_type_0200_id_1027_previous_reading_4
     - sensor.neo_coolcam_unknown_type_0200_id_1027_sourcenodeid
     - sensor.popp_unknown_type_0004_id_0014_sourcenodeid
-
+    - sensor.dark_sky_apparent_temperature_1h
+    - sensor.dark_sky_apparent_temperature_2h
+    - sensor.dark_sky_apparent_temperature_3h
+    - sensor.dark_sky_apparent_temperature_4h
+    - sensor.dark_sky_apparent_temperature_5h
+    - sensor.dark_sky_apparent_temperature_6h
+    - sensor.dark_sky_apparent_temperature_7h
+    - sensor.dark_sky_apparent_temperature_8h
+    - sensor.dark_sky_apparent_temperature_9h
+    - sensor.dark_sky_cloud_coverage_1h
+    - sensor.dark_sky_cloud_coverage_2h
+    - sensor.dark_sky_cloud_coverage_3h
+    - sensor.dark_sky_cloud_coverage_4h
+    - sensor.dark_sky_cloud_coverage_5h
+    - sensor.dark_sky_cloud_coverage_6h
+    - sensor.dark_sky_cloud_coverage_7h
+    - sensor.dark_sky_cloud_coverage_8h
+    - sensor.dark_sky_cloud_coverage_9h
+    - sensor.dark_sky_dew_point_1h
+    - sensor.dark_sky_dew_point_2h
+    - sensor.dark_sky_dew_point_3h
+    - sensor.dark_sky_dew_point_4h
+    - sensor.dark_sky_dew_point_5h
+    - sensor.dark_sky_dew_point_6h
+    - sensor.dark_sky_dew_point_7h
+    - sensor.dark_sky_dew_point_8h
+    - sensor.dark_sky_dew_point_9h
+    - sensor.dark_sky_humidity_1h
+    - sensor.dark_sky_humidity_2h
+    - sensor.dark_sky_humidity_3h
+    - sensor.dark_sky_humidity_4h
+    - sensor.dark_sky_humidity_5h
+    - sensor.dark_sky_humidity_6h
+    - sensor.dark_sky_humidity_7h
+    - sensor.dark_sky_humidity_8h
+    - sensor.dark_sky_humidity_9h
+    - sensor.dark_sky_icon_1h
+    - sensor.dark_sky_icon_2h
+    - sensor.dark_sky_icon_3h
+    - sensor.dark_sky_icon_4h
+    - sensor.dark_sky_icon_5h
+    - sensor.dark_sky_icon_6h
+    - sensor.dark_sky_icon_7h
+    - sensor.dark_sky_icon_8h
+    - sensor.dark_sky_icon_9h
+    - sensor.dark_sky_ozone_1h
+    - sensor.dark_sky_ozone_2h
+    - sensor.dark_sky_ozone_3h
+    - sensor.dark_sky_ozone_4h
+    - sensor.dark_sky_ozone_5h
+    - sensor.dark_sky_ozone_6h
+    - sensor.dark_sky_ozone_7h
+    - sensor.dark_sky_ozone_8h
+    - sensor.dark_sky_ozone_9h
+    - sensor.dark_sky_precip_1h
+    - sensor.dark_sky_precip_2h
+    - sensor.dark_sky_precip_3h
+    - sensor.dark_sky_precip_4h
+    - sensor.dark_sky_precip_5h
+    - sensor.dark_sky_precip_6h
+    - sensor.dark_sky_precip_7h
+    - sensor.dark_sky_precip_8h
+    - sensor.dark_sky_precip_9h
+    - sensor.dark_sky_precip_intensity_1h
+    - sensor.dark_sky_precip_intensity_2h
+    - sensor.dark_sky_precip_intensity_3h
+    - sensor.dark_sky_precip_intensity_4h
+    - sensor.dark_sky_precip_intensity_5h
+    - sensor.dark_sky_precip_intensity_6h
+    - sensor.dark_sky_precip_intensity_7h
+    - sensor.dark_sky_precip_intensity_8h
+    - sensor.dark_sky_precip_intensity_9h
+    - sensor.dark_sky_precip_probability_1h
+    - sensor.dark_sky_precip_probability_2h
+    - sensor.dark_sky_precip_probability_3h
+    - sensor.dark_sky_precip_probability_4h
+    - sensor.dark_sky_precip_probability_5h
+    - sensor.dark_sky_precip_probability_6h
+    - sensor.dark_sky_precip_probability_7h
+    - sensor.dark_sky_precip_probability_8h
+    - sensor.dark_sky_precip_probability_9h
+    - sensor.dark_sky_pressure_1h
+    - sensor.dark_sky_pressure_2h
+    - sensor.dark_sky_pressure_3h
+    - sensor.dark_sky_pressure_4h
+    - sensor.dark_sky_pressure_5h
+    - sensor.dark_sky_pressure_6h
+    - sensor.dark_sky_pressure_7h
+    - sensor.dark_sky_pressure_8h
+    - sensor.dark_sky_pressure_9h
+    - sensor.dark_sky_summary_1h
+    - sensor.dark_sky_summary_2h
+    - sensor.dark_sky_summary_3h
+    - sensor.dark_sky_summary_4h
+    - sensor.dark_sky_summary_5h
+    - sensor.dark_sky_summary_6h
+    - sensor.dark_sky_summary_7h
+    - sensor.dark_sky_summary_8h
+    - sensor.dark_sky_summary_9h
+    - sensor.dark_sky_temperature_1h
+    - sensor.dark_sky_temperature_2h
+    - sensor.dark_sky_temperature_3h
+    - sensor.dark_sky_temperature_4h
+    - sensor.dark_sky_temperature_5h
+    - sensor.dark_sky_temperature_6h
+    - sensor.dark_sky_temperature_7h
+    - sensor.dark_sky_temperature_8h
+    - sensor.dark_sky_temperature_9h
+    - sensor.dark_sky_visibility_1h
+    - sensor.dark_sky_visibility_2h
+    - sensor.dark_sky_visibility_3h
+    - sensor.dark_sky_visibility_4h
+    - sensor.dark_sky_visibility_5h
+    - sensor.dark_sky_visibility_6h
+    - sensor.dark_sky_visibility_7h
+    - sensor.dark_sky_visibility_8h
+    - sensor.dark_sky_visibility_9h
+    - sensor.dark_sky_wind_bearing_1h
+    - sensor.dark_sky_wind_bearing_2h
+    - sensor.dark_sky_wind_bearing_3h
+    - sensor.dark_sky_wind_bearing_4h
+    - sensor.dark_sky_wind_bearing_5h
+    - sensor.dark_sky_wind_bearing_6h
+    - sensor.dark_sky_wind_bearing_7h
+    - sensor.dark_sky_wind_bearing_8h
+    - sensor.dark_sky_wind_bearing_9h
+    - sensor.dark_sky_wind_gust_1h
+    - sensor.dark_sky_wind_gust_2h
+    - sensor.dark_sky_wind_gust_3h
+    - sensor.dark_sky_wind_gust_4h
+    - sensor.dark_sky_wind_gust_5h
+    - sensor.dark_sky_wind_gust_6h
+    - sensor.dark_sky_wind_gust_7h
+    - sensor.dark_sky_wind_gust_8h
+    - sensor.dark_sky_wind_gust_9h
+    - sensor.dark_sky_wind_speed_1h
+    - sensor.dark_sky_wind_speed_2h
+    - sensor.dark_sky_wind_speed_3h
+    - sensor.dark_sky_wind_speed_4h
+    - sensor.dark_sky_wind_speed_5h
+    - sensor.dark_sky_wind_speed_6h
+    - sensor.dark_sky_wind_speed_7h
+    - sensor.dark_sky_wind_speed_8h
+    - sensor.dark_sky_wind_speed_9h
+    - device_tracker.00_be_3b_15_b2_b2
+    - device_tracker.20_64_32_dc_2c_06
+    - device_tracker.2c_26_17_43_35_0a
+    - device_tracker.40_3c_fc_05_6a_b9
+    - device_tracker.40_3c_fc_05_7f_39
+    - device_tracker.74_1b_b2_74_73_c2
+    - device_tracker.78_ca_39_45_e6_2f
+    - device_tracker.80_00_0b_a2_e7_34
+    - device_tracker.80_2b_f9_39_05_a3
+    - device_tracker.a8_66_7f_d2_24_97
+    - device_tracker.b0_41_1d_35_b4_ed
+    - device_tracker.b4_e6_2a_a5_29_61
+    - device_tracker.c8_3c_85_54_9d_81
+    - device_tracker.c8_bc_c8_d2_23_c8
+    - device_tracker.d0_e7_82_c6_93_07
+    - device_tracker.f4_60_e2_d5_e6_60
+    - sensor.fibaro_system_fgd212_dimmer_2_alarm_level
+    - sensor.fibaro_system_fgd212_dimmer_2_alarm_type
+    - sensor.fibaro_system_fgd212_dimmer_2_sourcenodeid
+    - sensor.fibaro_system_fgd212_dimmer_2_system
+    - sensor.fibaro_system_fgs223_double_relay_alarm_level
+    - sensor.fibaro_system_fgs223_double_relay_alarm_type
+    - sensor.fibaro_system_fgs223_double_relay_exporting
+    - sensor.fibaro_system_fgs223_double_relay_exporting_2
+    - sensor.fibaro_system_fgs223_double_relay_sourcenodeid
 
 custom_updater:
   track:
@@ -229,6 +568,7 @@ custom_updater:
     - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
     - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/master/tracker.json
     - https://raw.githubusercontent.com/sgttrs/lovelace-weather-card-chart/master/custom-updater.json
+    
 
 switch:
 
@@ -252,14 +592,6 @@ media_player:
     host: !secret itunes_ip
 
 ios:
-
-  push:
-    categories:
-      - name: bike_to_work_day
-        identifier: 'bikeday'
-        actions:
-          - identifier: 'BIKE_DAY'
-            title: 'Bike Day'
             
 nest:
 
@@ -304,7 +636,8 @@ google:
   client_secret: !secret google_email_secret
 
 zwave:
-  usb_path: /dev/ttyACM0
+  usb_path: /dev/ttyACM1
+  device_config: !include zwave_device_config.yaml
 
 weather:
 
@@ -359,7 +692,7 @@ mqtt:
 #  kids_playlist:
 #    name: Kids Playlist
 #    initial: off
-#    
+ 
 input_select:
   sean_last_zone_dropdown:
     name: Sean Last Zone
@@ -387,6 +720,9 @@ input_select:
       - ToHornbachP6
       - FromHornbachP6
       - HornbachP6
+      - Airport
+      - LittleGym
+      - ParklaneValdejnska
     initial: home
     
   sean_location_dropdown:
@@ -413,6 +749,9 @@ input_select:
       - Heading to P6
       - At Ikea
       - Driving
+      - Traveling
+      - At Little Gym
+      - At Parklane Valdejnska
     initial: Home
 
   dishwasher_status:
@@ -502,6 +841,16 @@ variable:
       icon: mdi:truck-delivery
     restore: true
     
+  gls_variable:
+    attributes:
+      friendly_name: 'GLS'
+      from: ''
+      subject: ''
+      body: ''
+      date: ''
+      icon: mdi:truck-delivery
+    restore: true
+
   living_room_last_temp_variable:
     restore: true
     
@@ -533,23 +882,47 @@ speedtestdotnet:
 
 alarm_control_panel:
   - platform: mqtt
-    name: "Home Alarm System"
+    name: "Motion Sensors"
     state_topic: "paradox/alarm/state/3"
     command_topic: "paradox/alarm/cmnd/3"
     qos: 1
     availability_topic: "paradox/ctrl/state"
     payload_available: "Connected"
     payload_not_available: "Disconnected"
-    payload_disarm: “DISARM”
-    payload_arm_home: “ARM_HOME”
-    payload_arm_away: “ARM_AWAY”
+    payload_disarm: DISARM
+    payload_arm_away: ARM_AWAY
+    code: !secret alarm_code
+  - platform: mqtt
+    name: "Windows and Garage Door"
+    state_topic: "paradox/alarm/state/2"
+    command_topic: "paradox/alarm/cmnd/2"
+    qos: 1
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    payload_disarm: DISARM
+    payload_arm_away: ARM_AWAY
+    code: !secret alarm_code
+  - platform: mqtt
+    name: "Laundry Room Window"
+    state_topic: "paradox/alarm/state/1"
+    command_topic: "paradox/alarm/cmnd/1"
+    qos: 1
+    availability_topic: "paradox/ctrl/state"
+    payload_available: "Connected"
+    payload_not_available: "Disconnected"
+    payload_disarm: DISARM
+    payload_arm_away: ARM_AWAY
+    code: !secret alarm_code
+
+
 #    code: !secret alarm_code
 #    code_arm_required: false
 #    code_disarm_required: true
 
 alert:
   garage_door:
-    name: Garage has been open for {{ relative_time(states.sensor.binary_sensor.garage_door_zone_14) }}
+    name: Garage has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.garage_door_zone_14.last_updated)) | int //60 }} minutes
     done_message: Garage is closed
     entity_id: binary_sensor.garage_door_zone_14
     state: 'on'
@@ -562,9 +935,10 @@ alert:
     skip_first: true
     notifiers:
       - sean_alena
+#has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.garage_door_zone_14.last_updated)) | int //60 }}
 
   front_door:
-    name: Front door has been open for {{ relative_time(states.binary_sensor.front_door_zone_1) }}
+    name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
     done_message: Front door is closed
     entity_id: binary_sensor.front_door_zone_1
     state: 'on'
@@ -577,6 +951,8 @@ alert:
     skip_first: true
     notifiers:
       - sean_alena
+
+#has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }}
 
 input_number:
   living_room_last_temp:

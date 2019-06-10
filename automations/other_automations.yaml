@@ -29,20 +29,22 @@
   condition:
     condition: state
     entity_id: 'sensor.cp_packages_coming_today'
-    state: 'delivery'
+    state: 'Delivery'
   action:
     service: variable.set_variable
     data:
       variable: posta_variable
+      attributes_template: >
+        {
+          "from": "{{ state_attr('sensor.cp_packages_coming_today', 'from') }}",
+          "date": "{{ state_attr('sensor.cp_packages_coming_today', 'date') }}",
+          "subject": "{{ state_attr('sensor.cp_packages_coming_today', 'subject') }}"
+        }
     data_template:
       value: >
           {{ states('sensor.cp_packages_coming_today')}}
 
-#      attributes_template: >
-#        {
-#          "from": "{{ state_attr('sensor.cp_packages_coming_today', 'from') }}",
-#          "date": "{{ state_attr('sensor.cp_packages_coming_today', 'date') }}",
-#          "subject": "{{ state_attr('sensor.cp_packages_coming_today', 'subject') }}",
+#,
 #          "body": "{{ state_attr('sensor.cp_packages_coming_today', 'body') }}"
 #        } 
 
@@ -63,7 +65,7 @@
         date: ''
         subject: ''
         body: ''
-        icon: mdi:delivery
+        icon: mdi:truck-delivery
 
 - id: dpd_state_change
   alias: 'DPD state change'
@@ -75,22 +77,23 @@
   condition:
     condition: state
     entity_id: 'sensor.dpd_packages_coming_today'
-    state: 'delivery'
+    state: 'Delivery'
   action:
     service: variable.set_variable
     data:
       variable: dpd_variable
+      attributes_template: >
+        {
+          "from": "{{ state_attr('sensor.dpd_packages_coming_today', 'from') }}",
+          "date": "{{ state_attr('sensor.dpd_packages_coming_today', 'date') }}",
+          "subject": "{{ state_attr('sensor.dpd_packages_coming_today', 'subject') }}"
+        } 
     data_template:
       value: >
         {{ states('sensor.dpd_packages_coming_today')}}
 
-#      attributes_template: >
-#        {
-#          "from": "{{ state_attr('sensor.dpd_packages_coming_today', 'from') }}",
-#          "date": "{{ state_attr('sensor.dpd_packages_coming_today', 'date') }}",
-#          "subject": "{{ state_attr('sensor.dpd_packages_coming_today', 'subject') }}",
+#,
 #          "body": "{{ state_attr('sensor.dpd_packages_coming_today', 'body') }}"
-#        } 
 
 
 - id: dpd_variable_reset
@@ -110,7 +113,7 @@
         date: ''
         subject: ''
         body: ''
-        icon: mdi:delivery
+        icon: mdi:truck-delivery
 
 - id: dhl_state_change
   alias: 'DHL state change'
@@ -122,22 +125,25 @@
   condition:
     condition: state
     entity_id: 'sensor.dhl_packages_coming_today'
-    state: 'delivery'
+    state: 'Delivery'
   action:
     service: variable.set_variable
     data:
       variable: dhl_variable   
+      attributes_template: >
+        {
+          "from": "{{ state_attr('sensor.dhl_packages_coming_today', 'from') }}",
+          "date": "{{ state_attr('sensor.dhl_packages_coming_today', 'date') }}",
+          "subject": "{{ state_attr('sensor.dhl_packages_coming_today', 'subject') }}"
+        } 
     data_template:
       value: >
         {{ states('sensor.dhl_packages_coming_today')}}
 
-#      attributes_template: >
-#        {
-#          "from": "{{ state_attr('sensor.dhl_packages_coming_today', 'from') }}",
-#          "date": "{{ state_attr('sensor.dhl_packages_coming_today', 'date') }}",
-#          "subject": "{{ state_attr('sensor.dhl_packages_coming_today', 'subject') }}",
+
+ #,
 #          "body": "{{ state_attr('sensor.dhl_packages_coming_today', 'body') }}"
-#        } 
+
         
 - id: dhl_variable_reset
   alias: 'DHL Variable Reset'
@@ -156,7 +162,54 @@
         date: ''
         subject: ''
         body: ''
-        icon: mdi:delivery
+        icon: mdi:truck-delivery
+
+- id: gls_state_change
+  alias: 'GLS state change'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.gls_packages_coming_today
+  condition:
+    condition: state
+    entity_id: 'sensor.gls_packages_coming_today'
+    state: 'Delivery'
+  action:
+    service: variable.set_variable
+    data:
+      variable: gls_variable
+      attributes_template: >
+        {
+          "from": "{{ state_attr('sensor.gls_packages_coming_today', 'from') }}",
+          "date": "{{ state_attr('sensor.gls_packages_coming_today', 'date') }}",
+          "subject": "{{ state_attr('sensor.gls_packages_coming_today', 'subject') }}"
+        }
+    data_template:
+      value: >
+        {{ states('sensor.gls_packages_coming_today')}}
+
+#,
+#          "body": "{{ state_attr('sensor.gls_packages_coming_today', 'body') }}"
+
+- id: gls_variable_reset
+  alias: 'GLS Variable Reset'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '00:00:01'
+  action:
+    service: variable.set_variable
+    data:
+      variable: gls_variable
+      value: no_delivery
+      attributes:
+        from: ''
+        date: ''
+        subject: ''
+        body: ''
+        icon: mdi:truck-delivery
 
 - id: power_out
   alias: 'Power is out'
@@ -226,3 +279,20 @@
       title: "Internet is Normal"
       message: "The upload speed of the internet is above 1 mbit"
  
+- id: sophie_up_late
+  alias: 'Sophie up late'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sophies_room_zone_10
+      to: 'on'
+  condition:
+    condition: time
+    after: '21:30:00'
+    before: '5:00:00'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Sophie is Up Late"
+      message: "Sophie is Up Late"

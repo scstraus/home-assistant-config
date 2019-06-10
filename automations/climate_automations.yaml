@@ -52,7 +52,7 @@
     service: input_number.set_value
     data_template:
       entity_id: input_number.living_room_last_temp
-      value: "{{ states[trigger.from_state.attributes.temperature] }}"
+      value: "{{ states[trigger.from_state.attributes.temperature]|float }}"
 
 
 
@@ -73,19 +73,18 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0'
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
         above: 5
+        below: 10
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0'
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
         above: 13
+        below: 20
       - condition: or
         conditions:
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'clear-day'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0
-            state: 'partly-cloudy-day'
   action:
     - service: climate.set_temperature
       data:
@@ -139,6 +138,10 @@
         operation_mode: manual
     - service: climate.set_temperature
       data:
+        entity_id: climate.laundry_room
+        operation_mode: auto
+    - service: climate.set_temperature
+      data:
         entity_id: climate.sophie_s_room
         temperature: 21
         operation_mode: manual
@@ -158,30 +161,35 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0'
-        above: 5
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+        above: 7
+        below: 10
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0'
-        above: 13
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+        above: 15
+        below: 20
       - condition: or
         conditions:
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
+            state: 'partly-cloudy-day'
+          - condition: state
+            entity_id: sensor.dark_sky_icon_0d
             state: 'rain'          
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'snow'
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'sleet'
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'wind'
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'fog'
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'cloudy'     
   action:
     - service: climate.set_temperature
@@ -234,6 +242,10 @@
         entity_id: climate.sophie_s_room
         temperature: 21
         operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.laundry_room
+        operation_mode: auto
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
@@ -241,9 +253,9 @@
 
 
 #      - condition: template
-#        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0 > 5 }}'
+#        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0d > 5 }}'
 #      - condition: template
-#        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0 > 13 }}'
+#        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0d > 13 }}'
 
 
                 
@@ -258,19 +270,16 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0'
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
         below: 5
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0'
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
         below: 13
       - condition: or
         conditions:
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'clear-day'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0
-            state: 'partly-cloudy-day'
   action:
     - service: climate.set_operation_mode
       data:
@@ -316,6 +325,10 @@
       data:
         entity_id: climate.sophie_s_room
         operation_mode: auto
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.laundry_room
+        operation_mode: auto
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_on
@@ -332,30 +345,33 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0'
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
         below: 7
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0'
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
         below: 15
       - condition: or
         conditions:
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
+            state: 'partly-cloudy-day'
+          - condition: state
+            entity_id: sensor.dark_sky_icon_0d
             state: 'rain'          
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'snow'
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'sleet'
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'wind'
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'fog'
           - condition: state
-            entity_id: sensor.dark_sky_icon_0
+            entity_id: sensor.dark_sky_icon_0d
             state: 'cloudy'
   action:
     - service: climate.set_operation_mode
@@ -402,6 +418,10 @@
       data:
         entity_id: climate.sophie_s_room
         operation_mode: auto
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.laundry_room
+        operation_mode: auto
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_on
@@ -419,11 +439,13 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0'
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
         above: 2
+        below: 10
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0'
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
         above: 11
+        below: 20
   action:
     - service: climate.set_temperature
       data:
@@ -442,11 +464,13 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0'
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
         above: 5
+        below: 10
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0'
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
         above: 13
+        below: 20
   action:
     - service: climate.set_temperature
       data:
@@ -466,10 +490,10 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0'
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
         below: 2
       - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0'
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
         below: 11
   action:
     - service: climate.set_temperature
@@ -477,9 +501,9 @@
         entity_id: climate.living_room
         operation_mode: auto
 #      - condition: template
-#        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0 < 5 }}'
+#        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0d < 5 }}'
 #      - condition: template
-#        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0 < 13 }}'
+#        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0d < 13 }}'
 
 
 #- id: living_room_last_temp
@@ -496,3 +520,254 @@
 #        {
 #          "temperature": "{{ state_attr('climate.living_room', 'temperature') }}",
 #        }   
+
+- id: warmer_weather_heat_down_more
+  alias: 'Turn Down Heat For Warm Weather'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '00:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+        above: 10
+        below: 13
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+        above: 20
+        below: 23
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.dining_room
+        temperature: 18
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.entrance
+        temperature: 16
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.garage
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.guest_bedroom
+        temperature: 18
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.living_room
+        temperature: 16
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bath
+        temperature: 20
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bedroom
+        temperature: 20
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_closet
+        temperature: 20
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.office_library
+        temperature: 20
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sebastian_s_room
+        temperature: 21
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sophie_s_room
+        temperature: 21
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.laundry_room
+        temperature: 21
+        operation_mode: manual
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_heat_down_in_living_room
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_heat_up_in_living_room
+
+
+- id: warmer_weather_heat_down_more_2
+  alias: 'Turn Down Heat For Warm Weather 2'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '00:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+        above: 12
+        below: 14
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+        above: 23
+        below: 25
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.dining_room
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.entrance
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.garage
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.guest_bedroom
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.living_room
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bath
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bedroom
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_closet
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.office_library
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sebastian_s_room
+        temperature: 18
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sophie_s_room
+        temperature: 18
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.laundry_room
+        temperature: 19
+        operation_mode: manual
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_heat_down_in_living_room
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_heat_up_in_living_room
+
+- id: hot_weather_turn_heat_off
+  alias: 'Turn Heat Off For Hot Weather'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '00:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+        above: 14
+      - condition: numeric_state
+        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+        above: 25
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.dining_room
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.entrance
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.garage
+        temperature: 12
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.guest_bedroom
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.living_room
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bath
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_bedroom
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.master_closet
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.office_library
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sebastian_s_room
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sophie_s_room
+        temperature: 15
+        operation_mode: manual
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.laundry_room
+        temperature: 12
+        operation_mode: manual
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_heat_down_in_living_room
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_heat_up_in_living_room

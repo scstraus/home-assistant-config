@@ -49,7 +49,7 @@ sensor.kids_room_nest_protect_color_status:
 sensor.kids_room_nest_protect_smoke_status:
   friendly_name: Sophie's Room Smoke Level
 binary_sensor.basement_nest_protect_online:
-  friendly_name: Sophie's Room Smoke Detector Status
+  friendly_name: Basement Smoke Detector Status
 sensor.basement_nest_protect_battery_health:
   friendly_name: Basement Smoke Detector Battery
   icon: mdi:battery-60
@@ -233,9 +233,11 @@ sensor.last_object_time_left:
 sensor.neo_coolcam_unknown_type_0200_id_1027_alarm_level:
   friendly_name: Dishwasher Alarm Level
   icon: mdi:washing-machine
+  hidden: true
 sensor.neo_coolcam_unknown_type_0200_id_1027_alarm_type:
   friendly_name: Dishwasher Alarm Type
   icon: mdi:washing-machine
+  hidden: true
 sensor.neo_coolcam_unknown_type_0200_id_1027_current:
   friendly_name: Dishwasher Amps Current
   icon: mdi:washing-machine
@@ -284,3 +286,61 @@ switch.fibaro_system_fgs223_double_relay_switch:
 switch.fibaro_system_fgs223_double_relay_switch_2:
   friendly_name: Back/Left Security Lights
   icon: mdi:light-switch
+binary_sensor.back_door:
+  friendly_name: Back Door
+  device_class: door
+binary_sensor.closet_window_1:
+  friendly_name: Closet Window
+  device_class: window
+device_tracker.00_be_3b_15_b2_b2:
+  hidden: true
+device_tracker.20_64_32_dc_2c_06:
+  hidden: true
+device_tracker.2c_26_17_43_35_0a:
+  hidden: true
+device_tracker.40_3c_fc_05_6a_b9:
+  hidden: true
+device_tracker.40_3c_fc_05_7f_39:
+  hidden: true
+device_tracker.60_c5_47_05_63_c8:
+  hidden: true
+device_tracker.74_1b_b2_74_73_c2:
+  hidden: true
+device_tracker.78_ca_39_45_e6_2f:
+  hidden: true
+device_tracker.80_00_0b_a2_e7_34:
+  hidden: true
+device_tracker.80_2b_f9_39_05_a3:
+  hidden: true
+device_tracker.a8_66_7f_d2_24_97:
+  hidden: true
+device_tracker.b0_41_1d_35_b4_ed:
+  hidden: true
+device_tracker.b4_e6_2a_a5_29_61:
+  hidden: true
+device_tracker.c8_3c_85_54_9d_81:
+  hidden: true
+device_tracker.c8_bc_c8_d2_23_c8:
+  hidden: true
+device_tracker.d0_e7_82_c6_93_07:
+  hidden: true
+device_tracker.f4_60_e2_d5_e6_60:
+  hidden: true
+sensor.fibaro_system_fgd212_dimmer_2_alarm_level:
+  hidden: true
+sensor.fibaro_system_fgd212_dimmer_2_alarm_type:
+  hidden: true
+sensor.fibaro_system_fgd212_dimmer_2_sourcenodeid:
+  hidden: true
+sensor.fibaro_system_fgd212_dimmer_2_system:
+  hidden: true
+sensor.fibaro_system_fgs223_double_relay_alarm_level:
+  hidden: true
+sensor.fibaro_system_fgs223_double_relay_alarm_type:
+  hidden: true
+sensor.fibaro_system_fgs223_double_relay_exporting:
+  hidden: true
+sensor.fibaro_system_fgs223_double_relay_exporting_2:
+  hidden: true
+sensor.fibaro_system_fgs223_double_relay_sourcenodeid:
+  hidden: true

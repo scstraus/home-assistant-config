@@ -57,7 +57,7 @@
     - !secret wife_email
     value_template: >-
       {% if 'Informace o Vaší zásilce' in subject %}
-        delivery
+        Delivery
       {% elif 'reset state of package sensor' in subject %}
         no_delivery
       {% endif %}
@@ -74,7 +74,7 @@
     - !secret wife_email
     value_template: >-
       {% if 'Dnes Vám' in subject %}
-        delivery
+        Delivery
       {% elif 'reset state of package sensor' in subject %}
         no_delivery
       {% endif %}
@@ -91,7 +91,24 @@
     - !secret wife_email
     value_template: >-
       {% if 'DHL On Demand Delivery' in subject %}
-        delivery
+        Delivery
+      {% elif 'reset state of package sensor' in subject %}
+        no_delivery
+      {% endif %}
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: gls_packages_coming_today
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - noreply@gls-czech.com
+    - !secret wife_email
+    value_template: >-
+      {% if 'Informace o času doručení balíku' in subject %}
+        Delivery
       {% elif 'reset state of package sensor' in subject %}
         no_delivery
       {% endif %}
@@ -114,7 +131,7 @@
 
   - platform: gtfs
     name: transport
-    origin: U49N198
+    origin: U49Z4
     destination: U484Z2
     data: jrdata.zip
 
@@ -123,10 +140,19 @@
       bike_day:
         friendly_name: "Bike Day"
         value_template: >-
-          {% if states('sensor.dark_sky_precip_probability')|float < 40 
-             and states('sensor.dark_sky_daytime_high_temperature_0')|float < 27
+          {% if states('sensor.dark_sky_precip_probability')|float < 30 
+             and states('sensor.dark_sky_daytime_high_temperature_0d')|float < 27
              and states('sensor.dark_sky_temperature')|float > 14 
-             and states('sensor.dark_sky_wind_gust')|float < 20 %}
+             and states('sensor.dark_sky_wind_gust')|float < 20
+             and states('sensor.dark_sky_precip_probability_1h')|float < 30
+             and states('sensor.dark_sky_precip_probability_2h')|float < 30
+             and states('sensor.dark_sky_precip_probability_3h')|float < 30
+             and states('sensor.dark_sky_precip_probability_4h')|float < 30
+             and states('sensor.dark_sky_precip_probability_5h')|float < 30
+             and states('sensor.dark_sky_precip_probability_6h')|float < 30
+             and states('sensor.dark_sky_precip_probability_7h')|float < 30
+             and states('sensor.dark_sky_precip_probability_8h')|float < 30
+             and states('sensor.dark_sky_precip_probability_9h')|float < 30 %}
             yes
           {% else %}
             no
@@ -227,13 +253,13 @@
       closet_window_sensor_1_battery:
         friendly_name: "Closet Window Sensor 1 Battery"
         value_template: >-
-          {% if state_attr('zwave.neo_coolcam_door_window_detector', 'battery_level')|float < 15 %}
+          {% if state_attr('zwave.closet_window_1', 'battery_level')|float < 15 %}
             Very Low
-          {% elif state_attr('zwave.neo_coolcam_door_window_detector', 'battery_level')|float < 25 %}
+          {% elif state_attr('zwave.closet_window_1', 'battery_level')|float < 25 %}
             Low
-          {% elif state_attr('zwave.neo_coolcam_door_window_detector', 'battery_level')|float < 40 %}
+          {% elif state_attr('zwave.closet_window_1', 'battery_level')|float < 40 %}
             Medium
-          {% elif state_attr('zwave.neo_coolcam_door_window_detector', 'battery_level')|float < 70 %}
+          {% elif state_attr('zwave.closet_window_1', 'battery_level')|float < 70 %}
             Good
           {% else %}
             Full
@@ -244,51 +270,51 @@
       back_door_sensor_battery:
         friendly_name: "Back Door Sensor Battery"
         value_template: >-
-          {% if state_attr('zwave.neo_coolcam_door_window_detector_2', 'battery_level')|float < 15 %}
+          {% if state_attr('zwave.back_door', 'battery_level')|float < 15 %}
             Very Low
-          {% elif state_attr('zwave.neo_coolcam_door_window_detector_2', 'battery_level')|float < 25 %}
+          {% elif state_attr('zwave.back_door', 'battery_level')|float < 25 %}
             Low
-          {% elif state_attr('zwave.neo_coolcam_door_window_detector_2', 'battery_level')|float < 40 %}
+          {% elif state_attr('zwave.back_door', 'battery_level')|float < 40 %}
             Medium
-          {% elif state_attr('zwave.neo_coolcam_door_window_detector_2', 'battery_level')|float < 70 %}
+          {% elif state_attr('zwave.back_door', 'battery_level')|float < 70 %}
             Good
           {% else %}
             Full
           {% endif %}            
 
-  - platform: template
-    sensors:
-      back_door:
-        friendly_name: "Back Door"
-        value_template: >-
-          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'off') %}
-            Closed
-          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'on') %}
-            Open
-          {% endif %}
-        icon_template: >-
-          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'off') %}
-            mdi:door
-          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'on') %}
-            mdi:door-open
-          {% endif %}
-
-  - platform: template
-    sensors:
-      closet_window:
-        friendly_name: "Closet Window"
-        value_template: >-
-          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'off') %}
-            Closed
-          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'on') %}
-            Open
-          {% endif %}
-        icon_template: >-
-          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'off') %}
-            mdi:window-closed
-          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'on') %}
-            mdi:window-open
-          {% endif %}
+#  - platform: template
+#    sensors:
+#      back_door:
+#        friendly_name: "Back Door"
+#        value_template: >-
+#          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'off') %}
+#            Closed
+#          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'on') %}
+#            Open
+#          {% endif %}
+#        icon_template: >-
+#          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'off') %}
+#            mdi:door
+#          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor_2', 'on') %}
+#            mdi:door-open
+#          {% endif %}
+#
+#  - platform: template
+#    sensors:
+#      closet_window:
+#        friendly_name: "Closet Window"
+#        value_template: >-
+#          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'off') %}
+#            Closed
+#          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'on') %}
+#            Open
+#          {% endif %}
+#        icon_template: >-
+#          {% if is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'off') %}
+#            mdi:window-closed
+#          {% elif is_state('binary_sensor.neo_coolcam_door_window_detector_sensor', 'on') %}
+#            mdi:window-open
+#          {% endif %}
 
   - platform: template
     sensors:
@@ -369,7 +395,11 @@
           {% elif is_state('input_select.sean_location_dropdown', 'At Posta') %}
             mdi:email            
           {% elif is_state('input_select.sean_location_dropdown', 'At Yoga') %}
-            mdi:human-handsup  
+            mdi:human-handsup
+          {% elif is_state('input_select.sean_location_dropdown', 'Traveling') %}
+            mdi:airplane
+          {% elif is_state('input_select.sean_location_dropdown', 'ParklaneValdstejnska') %}
+            mdi:school
           {% else %}
             mdi:train-car
           {% endif %}
@@ -397,6 +427,10 @@
             At Posta
           {% elif is_state('device_tracker.alenas_iphone', 'Yoga') %}
             At Yoga
+          {% elif is_state('device_tracker.alenas_iphone', 'LittleGym') %}
+            At Little Gym
+          {% elif is_state('device_tracker.alenas_iphone', 'ParklaneValdejnska') %}
+            At Parklane Valdejnska
           {% elif is_state('sensor.alena_direction_of_travel', 'away_from') %}
             Leaving Home
           {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
@@ -423,8 +457,14 @@
             mdi:email
           {% elif is_state('device_tracker.alenas_iphone', 'Yoga') %}
             mdi:human-handsup
+          {% elif is_state('device_tracker.alenas_iphone', 'LittleGym') %}
+            mdi:human-handsup
+          {% elif is_state('device_tracker.alenas_iphone', 'Traveling') %}
+            mdi:airplane
           {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
             mdi:help
+          {% elif is_state('device_tracker.alenas_iphone', 'ParklaneValdstejnska') %}
+            mdi:school
           {% else %}
             mdi:car
           {% endif %}
@@ -455,6 +495,12 @@
             At Posta
           {% elif is_state('device_tracker.sophie', 'Yoga') %}
             At Yoga
+          {% elif is_state('device_tracker.sophie', 'LittleGym') %}
+            At Little Gym
+          {% elif is_state('device_tracker.sophie', 'Airport') %}
+            At Airport
+          {% elif is_state('device_tracker.sophie', 'ParklaneValdejnska') %}
+            At School
           {% elif is_state('sensor.sophie_direction_of_travel', 'away_from') %}
             Leaving Home
           {% elif is_state('sensor.sophie_direction_of_travel', 'stationary') %}
@@ -483,6 +529,12 @@
             mdi:email            
           {% elif is_state('device_tracker.sophie', 'Yoga') %}
             mdi:human-handsup  
+          {% elif is_state('device_tracker.sophie', 'LittleGym') %}
+            mdi:human-handsup  
+          {% elif is_state('device_tracker.sophie', 'Airport') %}
+            mdi:airplane
+          {% elif is_state('device_tracker.sophie', 'ParklaneValdstejnska') %}
+            mdi:school
           {% elif is_state('sensor.sophie_direction_of_travel', 'stationary') %}
             mdi:help
           {% else %}

@@ -15,7 +15,7 @@
     - condition: or
       conditions:
       - condition: time
-        after: '21:00:00'
+        after: '22:00:00'
         before: '7:00:00'
       - condition: state
         entity_id: sensor.alarm_state_3_motion_sensors
@@ -55,7 +55,7 @@
     - condition: or
       conditions:
       - condition: time
-        after: '21:00:00'
+        after: '22:00:00'
         before: '7:00:00'
       - condition: state
         entity_id: sensor.alarm_state_3_motion_sensors
@@ -93,7 +93,7 @@
     - condition: or
       conditions:
       - condition: time
-        after: '21:00:00'
+        after: '22:00:00'
         before: '7:00:00'
       - condition: state
         entity_id: sensor.alarm_state_3_motion_sensors
@@ -129,7 +129,7 @@
     - condition: or
       conditions:
       - condition: time
-        after: '21:00:00'
+        after: '22:00:00'
         before: '7:00:00'
       - condition: state
         entity_id: sensor.alarm_state_3_motion_sensors
@@ -264,6 +264,7 @@
 #        push:
 #          category: camera
 #        entity_id: camera.front
+
 - id: turn_off_front_security_light_if_it_gets_windy
   alias: 'Turn Off Front Security Light If It Gets Windy'
   hide_entity: true
@@ -407,10 +408,14 @@
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: sensor.alarm_state_3_motion_sensors
-    from: 'disarmed'
-    to: 'armed_away'
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'disarmed'
+      to: 'armed_away'
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'disarmed'
+      to: 'armed'
   action:
     service: notify.ios_alenas_iphone
     data:
@@ -422,10 +427,14 @@
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: sensor.alarm_state_3_motion_sensors
-    from: 'disarmed'
-    to: 'armed_away'
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'armed_away'
+      to: 'disarmed'
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'armed'
+      to: 'disarmed'
   action:
     service: notify.ios_alenas_iphone
     data:
@@ -437,10 +446,14 @@
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: sensor.alarm_state_3_motion_sensors
-    from: 'disarmed'
-    to: 'armed_away'
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'disarmed'
+      to: 'armed_away'
+    - platform: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      from: 'disarmed'
+      to: 'armed'
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -488,3 +501,32 @@
     data:
       title: "!!Alarm Triggered!!"
       message: "The alarm at home has been triggered and is now alarming!"
+
+- id: sensor_notification
+  alias: 'Sensor Notification'
+  hide_entity: true
+  initial_state: 'false'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.library_zone_6
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.master_bedroom_zone_5
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.master_closet_zone_8
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.play_room_zone_3
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.sophies_room_zone_10
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.play_room_zone_3
+      to: 'on'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Activity Notification"
+      message: "Activity notification"

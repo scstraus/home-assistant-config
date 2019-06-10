@@ -341,7 +341,7 @@
     service: input_select.select_option
     data:
       entity_id: input_select.sean_location_dropdown
-      option: Heading Home
+      option: Heading to P6
 
 - id: heading_home_1
   alias: 'Almost Home 1'
@@ -381,31 +381,6 @@
       entity_id: input_select.sean_location_dropdown
       option: Heading To Center
       
-- id: to_p6
-  alias: 'To Prague 6'
-  hide_entity: true
-  initial_state: 'true'
-  trigger:
-    platform: state
-    entity_id: input_select.sean_last_zone_dropdown
-  condition:
-    - condition: and
-      conditions:
-      - condition: time
-        weekday:
-        - sat
-        - sun
-      - condition: template
-        value_template: >
-          {{ trigger.from_state is not none and trigger.to_state is not none and
-            trigger.from_state.state in ['home'] and
-            trigger.to_state.state in ['ToCenter','ToWineFood','WineFood','SmichovskeNad'] }}
-  action:
-    service: input_select.select_option
-    data:
-      entity_id: input_select.sean_location_dropdown
-      option: Heading To P6
-
 - id: to_winefood_1
   alias: 'Heading To WineFood'
   hide_entity: true
@@ -667,3 +642,108 @@
     data:
       title: "Alena's Home"
       message: "Alena's Almost Arrived"
+
+- id: traveling
+  alias: 'Traveling'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'Airport'
+    for:
+      minutes: 10
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Traveling
+
+- id: heading_home_from_airport
+  alias: 'Heading Home From The Airport'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.from_state is not none and trigger.to_state is not none and
+         trigger.from_state.state in ['Airport'] and
+         trigger.to_state.state in ['HomeFromAirport', 'FromP6HomeHighway', 'FromP6HomeBackWay', 'ToP6', 'FromHornbachP6'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+
+- id: at_little_gym
+  alias: 'At Little Gym'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'LittleGym'
+    for:
+      minutes: 3
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Little Gym
+
+- id: heading_home_from_little_gym
+  alias: 'Heading Home From Little Gym'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.from_state is not none and trigger.to_state is not none and
+      trigger.from_state.state in ['LittleGym'] and
+      trigger.to_state.state in ['SmichovskeNad', 'ToAndel', 'BioStore', 'ToWineFood', 'ToCenter', 'Andel', 'WineFood'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home
+
+- id: at_parklane_valdejnska
+  alias: 'At Parklane Valdejnska'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'ParklaneValdejnska'
+    for:
+      minutes: 3
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Parklane Valdejnska
+
+- id: heading_home_from_parklane_valdejnska
+  alias: 'Heading Home From Parklane Valdejnska'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.from_state is not none and trigger.to_state is not none and
+        trigger.from_state.state in ['ParklaneValdejnska'] and
+        trigger.to_state.state in ['SmichovskeNad', 'ToAndel', 'BioStore', 'ToWineFood', 'ToCenter', 'Andel','WineFood'] }}
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Heading Home

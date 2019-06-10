@@ -86,29 +86,49 @@
   - name: ToP6
     latitude: 50.02640773207083
     longitude: 14.361298084259033
-    radius: 400
+    radius: 600
     
   - name: FromP6HomeHighway
     latitude: 50.040781931095275
     longitude: 14.270255889515965
-    radius: 250  
+    radius: 600
   
   - name: FromP6HomeBackWay
     latitude: 50.04770073594183
     longitude: 14.307665650633908
-    radius: 250  
+    radius: 250
 
   - name: ToHornbachP6
     latitude: 50.06683074554662
     longitude: 14.309810544749325
-    radius: 250  
+    radius: 250
 
   - name: FromHornbachP6
     latitude: 50.07674466705169
     longitude: 14.300489152926161
-    radius: 250  
+    radius: 250
 
   - name: HornbachP6
     latitude: 50.07504465799953
     longitude: 14.307889938354492
-    radius: 250  
+    radius: 250
+
+  - name: Airport
+    latitude: 50.107368497290395
+    longitude: 14.267528057098389
+    radius: 350
+    
+  - name: HomeFromAirport
+    latitude: 50.09321917589538
+    longitude: 14.296229701730681
+    radius: 600
+
+  - name: LittleGym
+    latitude: 50.07612525345335
+    longitude: 14.402230605483055
+    radius: 50
+
+  - name: ParklaneValdstejnska
+    latitude: 50.09169285033227
+    longitude: 14.408373534679413
+    radius: 50
