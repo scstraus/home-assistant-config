@@ -7,7 +7,8 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Prague
   customize: !include customize.yaml
-
+  whitelist_external_dirs:
+    - /share/avnodehome
   auth_providers:
 # airport worked with this
 #    - type: trusted_networks
@@ -16,7 +17,6 @@ homeassistant:
 # uncomment for iOS device add, other option for airport 
     - type: legacy_api_password
       api_password: !secret API_pass
-
 
 group: !include groups.yaml
 
@@ -636,7 +636,7 @@ google:
   client_secret: !secret google_email_secret
 
 zwave:
-  usb_path: /dev/ttyACM1
+  usb_path: /dev/ttyACM0
   device_config: !include zwave_device_config.yaml
 
 weather:
@@ -960,3 +960,6 @@ input_number:
     min: 5
     max: 25
     step: 0.5
+
+shell_command:
+  update_avnodehome_data: !secret avnodehome_update_cmd

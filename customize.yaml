@@ -170,7 +170,7 @@ binary_sensor.neo_coolcam_doorwindow_detector_sensor:
   friendly_name: Closet Window Sensor 1
   device_class: window
 zwave.neo_coolcam_doorwindow_detector_2:
-  friendly_name: Back Door Detector
+  friendly_name: Back Door 2 Detector
 sensor.neo_coolcam_doorwindow_detector_access_control_2:
   friendly_name: Back Door Sensor Access Control
   hidden: true
@@ -184,7 +184,7 @@ sensor.neo_coolcam_doorwindow_detector_sourcenodeid_2:
   friendly_name: Back Door Sensor Alarm Level
   hidden: true
 binary_sensor.neo_coolcam_doorwindow_detector_sensor_2:
-  friendly_name: Back Door Sensor
+  friendly_name: Back Door Sensor 2
   device_class: door
 sensor.dark_sky_cloud_coverage:
   friendly_name: Cloud Coverage
@@ -344,3 +344,9 @@ sensor.fibaro_system_fgs223_double_relay_exporting_2:
   hidden: true
 sensor.fibaro_system_fgs223_double_relay_sourcenodeid:
   hidden: true
+binary_sensor.back_door_sensor_2:
+  friendly_name: Back Door Sensor 2
+  device_class: door
+binary_sensor.back_door_sensor:
+  friendly_name: Back Door Sensor
+  device_class: door

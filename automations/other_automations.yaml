@@ -296,3 +296,12 @@
     data:
       title: "Sophie is Up Late"
       message: "Sophie is Up Late"
+
+- id: 'update_airvisualnode_home_data'
+  alias: 'Update AirVisual node home data'
+  trigger:
+    minutes: '/5'
+    platform: time_pattern
+  action:
+  - service: shell_command.update_avnodehome_data
+  initial_state: 'on'

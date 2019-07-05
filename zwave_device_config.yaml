@@ -91,4 +91,24 @@ sensor.fibaro_system_fgs223_double_relay_heat:
 sensor.fibaro_system_fgs223_double_relay_sourcenodeid:
   ignored: true
   polling_intensity: 0
-
+sensor.ecolink_door_window_sensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_burglar:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_access_control:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.back_door:
+  ignored: false
+  polling_intensity: 0

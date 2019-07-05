@@ -282,6 +282,24 @@
             Full
           {% endif %}            
 
+  - platform: template
+    sensors:
+      guest_bedroom_window_1_battery:
+        friendly_name: "Guest Bedroom Window 1 Sensor Battery"
+        value_template: >-
+          {% if state_attr('zwave.guest_bedroom_window_1', 'battery_level')|float < 15 %}
+            Very Low
+          {% elif state_attr('zwave.guest_bedroom_window_1', 'battery_level')|float < 25 %}
+            Low
+          {% elif state_attr('zwave.guest_bedroom_window_1', 'battery_level')|float < 40 %}
+            Medium
+          {% elif state_attr('zwave.guest_bedroom_window_1', 'battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Full
+          {% endif %}            
+
+
 #  - platform: template
 #    sensors:
 #      back_door:
@@ -618,3 +636,29 @@
     platform: mqtt
     state_topic: 'paradox/alarm/state/3'
 
+#  - name: Home Air Quality
+#    platform: file
+#    file_path: "/share/avnodehome/Latest_AirVisual_values.txt"
+#    value_template: '{{ value.split(";")[4] }}'
+#    unit_of_measurement: 'AQI'
+
+
+# 04/01-11/25:Even Weeks on Sunday = Today, Even Weeks on Saturday = Tomorrow. Pickup is Even Weeks Monday Morning
+#  - platform: template
+#    sensors:
+#      bio_odpad_day:
+#        friendly_name: "Take Out Bio-Odpad"
+#        value_template: >-
+#          {% if (now.isocalendar()[1]/2) | round(0) == (now.isocalendar()[1]/2) 
+#          and now().weekday() in (6,) 
+#          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
+#          and now().strftime('%F') >= (now().strftime('%Y') | int + 1) ~ "-04-01" %}
+#            Today 
+#          {% elif (now.isocalendar()[1]/2) | round(0) == (now.isocalendar()[1]/2) 
+#          and now().weekday() in (5,) 
+#          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
+#          and now().strftime('%F') >= (now().strftime('%Y') | int + 1) ~ "-04-01" %}
+#            Tomorrow
+#          {% else %}
+#            false
+#          {% endif %}
