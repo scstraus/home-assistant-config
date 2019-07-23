@@ -140,68 +140,98 @@
       bike_day:
         friendly_name: "Bike Day"
         value_template: >-
-          {% if states('sensor.dark_sky_precip_probability')|float < 30 
-             and states('sensor.dark_sky_daytime_high_temperature_0d')|float < 27
+          {% if states('sensor.dark_sky_daytime_high_temperature_0d')|float < 27
              and states('sensor.dark_sky_temperature')|float > 14 
              and states('sensor.dark_sky_wind_gust')|float < 20
-             and states('sensor.dark_sky_precip_probability_1h')|float < 30
-             and states('sensor.dark_sky_precip_probability_2h')|float < 30
-             and states('sensor.dark_sky_precip_probability_3h')|float < 30
-             and states('sensor.dark_sky_precip_probability_4h')|float < 30
-             and states('sensor.dark_sky_precip_probability_5h')|float < 30
-             and states('sensor.dark_sky_precip_probability_6h')|float < 30
-             and states('sensor.dark_sky_precip_probability_7h')|float < 30
-             and states('sensor.dark_sky_precip_probability_8h')|float < 30
-             and states('sensor.dark_sky_precip_probability_9h')|float < 30 %}
+             and (states('sensor.dark_sky_precip_probability_0d')|float < 30
+             or ((states('sensor.dark_sky_precip_intensity_1h')|float < 0.1)
+             and (states('sensor.dark_sky_precip_intensity_2h')|float < 0.1)
+             and (states('sensor.dark_sky_precip_intensity_3h')|float < 0.1)
+             and (states('sensor.dark_sky_precip_intensity_4h')|float < 0.1)
+             and (states('sensor.dark_sky_precip_intensity_5h')|float < 0.1)
+             and (states('sensor.dark_sky_precip_intensity_6h')|float < 0.1)
+             and (states('sensor.dark_sky_precip_intensity_7h')|float < 0.1)
+             and (states('sensor.dark_sky_precip_intensity_8h')|float < 0.1)
+             and (states('sensor.dark_sky_precip_intensity_9h')|float < 0.1))) %}
             yes
           {% else %}
             no
           {% endif %}
 
+#             and (((states('sensor.dark_sky_precip_probability_1h')|float
+#             + states('sensor.dark_sky_precip_probability_2h')|float
+#             + states('sensor.dark_sky_precip_probability_3h')|float
+#             + states('sensor.dark_sky_precip_probability_4h')|float
+#             + states('sensor.dark_sky_precip_probability_5h')|float
+#             + states('sensor.dark_sky_precip_probability_6h')|float
+#             + states('sensor.dark_sky_precip_probability_7h')|float
+#             + states('sensor.dark_sky_precip_probability_8h')|float
+#             + states('sensor.dark_sky_precip_probability_9h')|float) < 60 )        
+        
+#          {% if states('sensor.dark_sky_precip_probability')|float < 30 
+#             and states('sensor.dark_sky_daytime_high_temperature_0d')|float < 27
+#             and states('sensor.dark_sky_temperature')|float > 14 
+#             and states('sensor.dark_sky_wind_gust')|float < 20
+#             and states('sensor.dark_sky_precip_probability_1h')|float < 30
+#             and states('sensor.dark_sky_precip_probability_2h')|float < 30
+#             and states('sensor.dark_sky_precip_probability_3h')|float < 30
+#             and states('sensor.dark_sky_precip_probability_4h')|float < 30
+#             and states('sensor.dark_sky_precip_probability_5h')|float < 30
+#             and states('sensor.dark_sky_precip_probability_6h')|float < 30
+#             and states('sensor.dark_sky_precip_probability_7h')|float < 30
+#             and states('sensor.dark_sky_precip_probability_8h')|float < 30
+#             and states('sensor.dark_sky_precip_probability_9h')|float < 30 %}
+#            yes
+#          {% else %}
+#            no
+#          {% endif %}
 
-  - platform: template
-    sensors:
-      last_human_left:
-        friendly_name: "Last Human-Left"
-        value_template: >-
-          {% if states('sensor.left_human_detection') | float > 16 %}
-            Person Detected
-          {% else %}
-            {{states('sensor.last_human_left')}}
-          {% endif %}
 
-  - platform: template
-    sensors:
-      last_human_right:
-        friendly_name: "Last Human-Right"
-        value_template: >-
-          {% if states('sensor.right_human_detection') | float > 16 %}
-            Person Detected
-          {% else %}
-            {{states('sensor.right_human_right')}}
-          {% endif %}
 
-  - platform: template
-    sensors:
-      last_human_front:
-        friendly_name: "Last Human-Front"
-        value_template: >-
-          {% if states('sensor.front_human_detection') | float > 16 %}
-            Person Detected
-          {% else %}
-            {{states('sensor.last_human_front')}}
-          {% endif %}
-
-  - platform: template
-    sensors:
-      last_human_back:
-        friendly_name: "Last Human-Back"
-        value_template: >-
-          {% if states('sensor.back_human_detection') | float > 16 %}
-            Person Detected
-          {% else %}
-            {{states('sensor.back_human_left')}}
-          {% endif %}
+#
+#  - platform: template
+#    sensors:
+#      last_human_left:
+#        friendly_name: "Last Human-Left"
+#        value_template: >-
+#          {% if states('sensor.left_human_detection') | float > 16 %}
+#            Person Detected
+#          {% else %}
+#            {{states('sensor.last_human_left')}}
+#          {% endif %}
+#
+#  - platform: template
+#    sensors:
+#      last_human_right:
+#        friendly_name: "Last Human-Right"
+#        value_template: >-
+#          {% if states('sensor.right_human_detection') | float > 16 %}
+#            Person Detected
+#          {% else %}
+#            {{states('sensor.right_human_right')}}
+#          {% endif %}
+#
+#  - platform: template
+#    sensors:
+#      last_human_front:
+#        friendly_name: "Last Human-Front"
+#        value_template: >-
+#          {% if states('sensor.front_human_detection') | float > 16 %}
+#            Person Detected
+#          {% else %}
+#            {{states('sensor.last_human_front')}}
+#          {% endif %}
+#
+#  - platform: template
+#    sensors:
+#      last_human_back:
+#        friendly_name: "Last Human-Back"
+#        value_template: >-
+#          {% if states('sensor.back_human_detection') | float > 16 %}
+#            Person Detected
+#          {% else %}
+#            {{states('sensor.back_human_left')}}
+#          {% endif %}
 
 #  - platform: gtfs_realtime
 #    trip_update_url: 'http://opendata.iprpraha.cz/DPP/JR/jrdata.zip'
@@ -592,33 +622,33 @@
         friendly_name: "All are Heading"
         value_template: "{{ state_attr('proximity.all_home', 'dir_of_travel') }}"
 
-  - name: Right Human Detection
-    platform: mqtt
-    state_topic: "cameras/1/objects"
-    value_template: '{{ value_json.person }}'
-    unit_of_measurement: '%'
-    availability_topic: "cameras/1/available"
-
-  - name: Left Human Detection
-    platform: mqtt
-    state_topic: "cameras/2/objects"
-    value_template: '{{ value_json.person }}'
-    unit_of_measurement: '%'
-    availability_topic: "cameras/2/available"
-
-  - name: Front Human Detection
-    platform: mqtt
-    state_topic: "cameras/3/objects"
-    value_template: '{{ value_json.person }}'
-    unit_of_measurement: '%'
-    availability_topic: "cameras/3/available"
-
-  - name: Back Human Detection
-    platform: mqtt
-    state_topic: "cameras/4/objects"
-    value_template: '{{ value_json.person }}'
-    unit_of_measurement: '%'
-    availability_topic: "cameras/4/available"
+#  - name: Right Human Detection
+#    platform: mqtt
+#    state_topic: "cameras/1/objects"
+#    value_template: '{{ value_json.person }}'
+#    unit_of_measurement: '%'
+#    availability_topic: "cameras/1/available"
+#
+#  - name: Left Human Detection
+#    platform: mqtt
+#    state_topic: "cameras/2/objects"
+#    value_template: '{{ value_json.person }}'
+#    unit_of_measurement: '%'
+#    availability_topic: "cameras/2/available"
+#
+#  - name: Front Human Detection
+#    platform: mqtt
+#    state_topic: "cameras/3/objects"
+#    value_template: '{{ value_json.person }}'
+#    unit_of_measurement: '%'
+#    availability_topic: "cameras/3/available"
+#
+#  - name: Back Human Detection
+#    platform: mqtt
+#    state_topic: "cameras/4/objects"
+#    value_template: '{{ value_json.person }}'
+#    unit_of_measurement: '%'
+#    availability_topic: "cameras/4/available"
 
 #  - platform: smartthinq_washer
 #    name: LG_Washer
@@ -644,21 +674,113 @@
 
 
 # 04/01-11/25:Even Weeks on Sunday = Today, Even Weeks on Saturday = Tomorrow. Pickup is Even Weeks Monday Morning
-#  - platform: template
-#    sensors:
-#      bio_odpad_day:
-#        friendly_name: "Take Out Bio-Odpad"
-#        value_template: >-
-#          {% if (now.isocalendar()[1]/2) | round(0) == (now.isocalendar()[1]/2) 
-#          and now().weekday() in (6,) 
-#          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
-#          and now().strftime('%F') >= (now().strftime('%Y') | int + 1) ~ "-04-01" %}
-#            Today 
-#          {% elif (now.isocalendar()[1]/2) | round(0) == (now.isocalendar()[1]/2) 
-#          and now().weekday() in (5,) 
-#          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
-#          and now().strftime('%F') >= (now().strftime('%Y') | int + 1) ~ "-04-01" %}
-#            Tomorrow
-#          {% else %}
-#            false
-#          {% endif %}
+  - platform: template
+    sensors:
+      bio_odpad_day:
+        friendly_name: "Take Out Bio-Odpad"
+        entity_id: sensor.time_date
+        value_template: >-
+          {% if (now().isocalendar()[1]/2) | round(0) == (now().isocalendar()[1]/2) 
+          and now().weekday() in (6,) 
+          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
+          and now().strftime('%F') >= (now().strftime('%Y') | int + 1) ~ "-04-01" %}
+            Today
+          {% elif (now().isocalendar()[1]/2) | round(0) == (now().isocalendar()[1]/2) 
+          and now().weekday() in (5,) 
+          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
+          and now().strftime('%F') >= (now().strftime('%Y') | int + 1) ~ "-04-01" %}
+            Tomorrow
+          {% else %}
+            false
+          {% endif %}
+
+  - platform: synologydsm
+    host: !secret synology_ip
+    username: !secret syn_uname
+    password: !secret hass_pass
+    monitored_conditions:
+      - cpu_total_load
+      - memory_real_usage
+      - network_up
+      - network_down
+      - disk_smart_status
+      - volume_percentage_used
+
+
+  - platform: template
+    sensors:
+      dining_room_temperature:
+        friendly_name: "Temperature-Dining Room"
+        value_template: "{{ state_attr('climate.dining_room', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      entrance_temperature:
+        friendly_name: "Temperature-Entrance"
+        value_template: "{{ state_attr('climate.entrance', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      garage_temperature:
+        friendly_name: "Temperature-Garage"
+        value_template: "{{ state_attr('climate.garage', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      guest_bedroom_temperature:
+        friendly_name: "Temperature-Guest Bedroom"
+        value_template: "{{ state_attr('climate.guest_bedroom', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      laundry_room_temperature:
+        friendly_name: "Temperature-Laundry Room"
+        value_template: "{{ state_attr('climate.laundry_room', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      living_room_temperature:
+        friendly_name: "Temperature-Living Room"
+        value_template: "{{ state_attr('climate.living_room', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      master_bath_temperature:
+        friendly_name: "Temperature-Master Bath"
+        value_template: "{{ state_attr('climate.master_bath', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      master_bedroom_temperature:
+        friendly_name: "Temperature-Master Bedroom"
+        value_template: "{{ state_attr('climate.master_bedroom', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      master_closet_temperature:
+        friendly_name: "Temperature-Master Closet"
+        value_template: "{{ state_attr('climate.master_closet', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      office_library_temperature:
+        friendly_name: "Temperature-Office/Libary"
+        value_template: "{{ state_attr('climate.office_library', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      sebastian_s_room_temperature:
+        friendly_name: "Temperature-Sebastian's Room"
+        value_template: "{{ state_attr('climate.sebastian_s_room', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      sophie_s_room_temperature:
+        friendly_name: "Temperature-Sophie's Room"
+        value_template: "{{ state_attr('climate.sophie_s_room', 'current_temperature') }}"
+
+  - platform: template
+    sensors:
+      straus_house_temperature:
+        friendly_name: "Temperature-Straus House"
+        value_template: "{{ state_attr('climate.straus_house', 'current_temperature') }}"

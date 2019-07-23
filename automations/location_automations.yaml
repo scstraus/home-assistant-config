@@ -623,6 +623,9 @@
     entity_id: device_tracker.alenas_iphone
     from: 'Yoga'
     to: 'not_home'
+  condition:
+  - condition: template
+    value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -637,6 +640,14 @@
     platform: state
     entity_id: device_tracker.alenas_iphone
     to: 'home'
+  condition:  
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: device_tracker.seans_iphone_x
+        state: 'Home'
+      - condition: template
+        value_template: "{{ (as_timestamp(now())-as_timestamp(states.device_tracker.seans_iphone_x.last_changed)) < 120 }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -747,3 +758,72 @@
     data:
       entity_id: input_select.sean_location_dropdown
       option: Heading Home
+
+#- id: turn_off_automations_when_away
+#  alias: 'Turn off automations when away'
+#  hide_entity: true
+#  initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: device_tracker.seans_iphone_x
+#    to: 'Traveling'
+#  action:
+#    - service: automation.turn_off
+#      entity_id: automation.alena_left_yoga
+#
+#- id: turn_on_automations_when_home
+#  alias: 'Turn on automations when home'
+#  hide_entity: true
+#  initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: device_tracker.seans_iphone_x
+#    from: 'Traveling'
+#  action:
+#    - service: automation.turn_on
+#      entity_id: automation.alena_left_yoga
+
+
+- alias: 'Good Time For Ferry to Work'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'NearFerryToWork'
+  condition:
+    condition: template
+    value_template: >
+      {{ (now().strftime('%M') <= 56 and
+         now().strftime('%M') >= 48) or
+         (now().strftime('%M') <= 16 and
+         now().strftime('%M') >= 08) or
+         (now().strftime('%M') <= 36 and
+         now().strftime('%M') >= 28) }}
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Ferry Notification"
+      message: "It's a good time to grab the ferry to work"
+
+- alias: 'Good Time For Ferry to Work'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_x
+    to: 'NearFerryFromWork'
+  condition:
+    condition: template
+    value_template: >
+      {{ (now().strftime('%M') <= 60 and
+         now().strftime('%M') >= 52) or
+         (now().strftime('%M') <= 20 and
+         now().strftime('%M') >= 12) or
+         (now().strftime('%M') <= 40 and
+         now().strftime('%M') >= 32) }}
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Ferry Notification"
+      message: "It's a good time to grab the ferry from work"

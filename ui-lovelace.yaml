@@ -41,6 +41,8 @@ resources:
 #    type: module
   - url: /customcards/custom-weather-card-chart.js
     type: module
+  - url: /local/mini-graph-card-bundle.js?v=0.5.0
+    type: module
   - url: /customcards/tracker-card.js
     type: js
   - url: /customcards/simple-thermostat.js
@@ -51,6 +53,17 @@ resources:
     type: js
   - url: /customcards/card-tools.js?track=true
     type: js
+  - url: /customcards/github/thomasloven/popup-card.js?track=true
+    type: js
+
+#popup_cards:
+#  sensor.dining_room_temperature:
+#    title: Dining Room Climate History
+#    card:
+#      type: history-graph
+#      entities:
+#        - climate.dining_room
+#        title: 'Entrance'
 
 views:
 

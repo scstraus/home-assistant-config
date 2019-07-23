@@ -126,9 +126,19 @@
   - name: LittleGym
     latitude: 50.07612525345335
     longitude: 14.402230605483055
-    radius: 50
+    radius: 100
 
   - name: ParklaneValdstejnska
     latitude: 50.09169285033227
     longitude: 14.408373534679413
+    radius: 50
+
+  - name: NearFerryFromWork
+    latitude: 50.054572177476324
+    longitude: 14.41780686378479
+    radius: 50
+  
+  - name: NearFerryToWork
+    latitude: 50.04259188338851
+    longitude: 14.40590109328673
     radius: 50

@@ -568,7 +568,7 @@ custom_updater:
     - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
     - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/master/tracker.json
     - https://raw.githubusercontent.com/sgttrs/lovelace-weather-card-chart/master/custom-updater.json
-    
+    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json    
 
 switch:
 

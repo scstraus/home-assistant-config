@@ -4,9 +4,12 @@
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.front_human_detection
-    above: 18
+#    platform: numeric_state
+#    entity_id: sensor.front_human_detection
+#    above: 18
+    platform: state
+    entity_id: binary_sensor.human_front
+    to: 'on'
   condition:
     condition: and
     conditions:
@@ -44,9 +47,12 @@
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.back_human_detection
-    above: 18
+#    platform: numeric_state
+#    entity_id: sensor.back_human_detection
+#    above: 18
+    platform: state
+    entity_id: binary_sensor.human_back
+    to: 'on'
   condition:
     condition: and
     conditions:
@@ -82,9 +88,12 @@
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.left_human_detection
-    above: 18
+#    platform: numeric_state
+#    entity_id: sensor.left_human_detection
+#    above: 18
+    platform: state
+    entity_id: binary_sensor.human_left
+    to: 'on'
   condition:
     condition: and
     conditions:
@@ -118,9 +127,12 @@
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.right_human_detection
-    above: 18
+#    platform: numeric_state
+#    entity_id: sensor.right_human_detection
+#    above: 18
+    platform: state
+    entity_id: binary_sensor.human_right
+    to: 'on'
   condition:
     condition: and
     conditions:
@@ -315,12 +327,18 @@
   hide_entity: true
   initial_state: 'true'
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.front_human_detection
-      above: 18
-    - platform: numeric_state
-      entity_id: sensor.right_human_detection
-      above: 18
+#    - platform: numeric_state
+#      entity_id: sensor.front_human_detection
+#      above: 18
+#    - platform: numeric_state
+#      entity_id: sensor.right_human_detection
+#      above: 18
+    - platform: state
+      entity_id: binary_sensor.human_front
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.human_right
+      to: 'on'
   condition:
     condition: time
     after: '21:00:00'
@@ -335,12 +353,18 @@
   hide_entity: true
   initial_state: 'true'
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.back_human_detection
-      above: 18
-    - platform: numeric_state
-      entity_id: sensor.left_human_detection
-      above: 18
+#    - platform: numeric_state
+#      entity_id: sensor.back_human_detection
+#      above: 18
+#    - platform: numeric_state
+#      entity_id: sensor.left_human_detection
+#      above: 18
+    - platform: state
+      entity_id: binary_sensor.human_back
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.human_left
+      to: 'on'
   condition:
     condition: time
     after: '21:00:00'
@@ -410,11 +434,9 @@
   trigger:
     - platform: state
       entity_id: sensor.alarm_state_3_motion_sensors
-      from: 'disarmed'
       to: 'armed_away'
     - platform: state
       entity_id: sensor.alarm_state_3_motion_sensors
-      from: 'disarmed'
       to: 'armed'
   action:
     service: notify.ios_alenas_iphone
@@ -448,11 +470,9 @@
   trigger:
     - platform: state
       entity_id: sensor.alarm_state_3_motion_sensors
-      from: 'disarmed'
       to: 'armed_away'
     - platform: state
       entity_id: sensor.alarm_state_3_motion_sensors
-      from: 'disarmed'
       to: 'armed'
   action:
     service: notify.ios_seans_iphone_x

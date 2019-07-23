@@ -31,29 +31,29 @@
         value_template: >-
           {{ is_state('camera.right', 'recording') }}
 
-  - name: Right Tensorflow Motion
-    platform: mqtt
-    state_topic: "cameras/1/motion"
-    device_class: motion
-    availability_topic: "cameras/1/available"
-
-  - name: Left Tensorflow Motion
-    platform: mqtt
-    state_topic: "cameras/2/motion"
-    device_class: motion
-    availability_topic: "cameras/2/available"
-
-  - name: Front Tensorflow Motion
-    platform: mqtt
-    state_topic: "cameras/3/motion"
-    device_class: motion
-    availability_topic: "cameras/3/available"
-
-  - name: Back Tensorflow Motion
-    platform: mqtt
-    state_topic: "cameras/4/motion"
-    device_class: motion
-    availability_topic: "cameras/4/available"
+#  - name: Right Tensorflow Motion
+#    platform: mqtt
+#    state_topic: "cameras/1/motion"
+#    device_class: motion
+#    availability_topic: "cameras/1/available"
+#
+#  - name: Left Tensorflow Motion
+#    platform: mqtt
+#    state_topic: "cameras/2/motion"
+#    device_class: motion
+#    availability_topic: "cameras/2/available"
+#
+#  - name: Front Tensorflow Motion
+#    platform: mqtt
+#    state_topic: "cameras/3/motion"
+#    device_class: motion
+#    availability_topic: "cameras/3/available"
+#
+#  - name: Back Tensorflow Motion
+#    platform: mqtt
+#    state_topic: "cameras/4/motion"
+#    device_class: motion
+#    availability_topic: "cameras/4/available"
 
   - platform: mqtt
     state_topic: "paradox/zone/state/1"
@@ -227,3 +227,32 @@
     payload_on: "Connected"
     payload_off: "Disconnected"
     device_class: connectivity
+
+  - name: "Human Back"
+    platform: mqtt
+    state_topic: "frigate/back/objects"
+    value_template: '{{ value_json.person }}'
+    device_class: motion
+#    availability_topic: "frigate/available"
+
+  - name: "Human Front"
+    platform: mqtt
+    state_topic: "frigate/front/objects"
+    value_template: '{{ value_json.person }}'
+    device_class: motion
+#    availability_topic: "frigate/available"
+
+  - name: "Human Left"
+    platform: mqtt
+    state_topic: "frigate/left/objects"
+    value_template: '{{ value_json.person }}'
+    device_class: motion
+#    availability_topic: "frigate/available"
+
+  - name: "Human Right"
+    platform: mqtt
+    state_topic: "frigate/right/objects"
+    value_template: '{{ value_json.person }}'
+    device_class: motion
+#    availability_topic: "frigate/available"
+

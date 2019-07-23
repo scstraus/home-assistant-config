@@ -188,17 +188,17 @@ binary_sensor.neo_coolcam_doorwindow_detector_sensor_2:
   device_class: door
 sensor.dark_sky_cloud_coverage:
   friendly_name: Cloud Coverage
-sensor.dark_sky_cloud_coverage_0:
+sensor.dark_sky_cloud_coverage_0d:
   friendly_name: Cloud Coverage Forecast Today
-sensor.dark_sky_daytime_high_apparent_temperature_0:
+sensor.dark_sky_daytime_high_apparent_temperature_0d:
   friendly_name: High "Feels Like" Temperature Forecast Today
-sensor.dark_sky_visibility_0:
+sensor.dark_sky_visibility_0d:
   friendly_name: Meters Visibility Forecast Today
-sensor.dark_sky_daytime_high_temperature_0:
+sensor.dark_sky_daytime_high_temperature_0d:
   friendly_name: Daily High Temperature Today
-sensor.dark_sky_overnight_low_temperature_0:
+sensor.dark_sky_overnight_low_temperature_0d:
   friendly_name: Overnight Low Temperature Today
-sensor.dark_sky_overnight_low_apparent_temperature_0:
+sensor.dark_sky_overnight_low_apparent_temperature_0d:
   friendly_name: Low "Feels Like" Temperature Today
 sensor.dark_sky_apparent_temperature:
   friendly_name: Current "Feels Like" Temperature

@@ -288,9 +288,15 @@
       entity_id: binary_sensor.sophies_room_zone_10
       to: 'on'
   condition:
-    condition: time
-    after: '21:30:00'
-    before: '5:00:00'
+    condition: and
+    conditions:
+    - condition: time
+      after: '21:30:00'
+      before: '5:00:00'
+    - condition: template
+      value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
+    - condition: template
+      value_template: "{{ now().strftime('%m') > 8 or now().strftime('%m') < 7 }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -305,3 +311,22 @@
   action:
   - service: shell_command.update_avnodehome_data
   initial_state: 'on'
+  hide_entity: 'true'
+
+- alias: Turn off sophie up late in summer
+  initial_state: 'on'
+  hide_entity: 'true'
+  trigger:
+    - platform: homeassistant
+      event: start
+  condition:
+    condition: template
+    value_template: >
+      {{ now().strftime('%m') <= 8 and
+         now().strftime('%m') >= 7 }}
+  action:
+    - delay: '00:02:00'
+    - service: automation.turn_off
+      entity_id:
+        - automation.sophie_up_late
+        
