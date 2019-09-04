@@ -1,0 +1,117 @@
+
+
+
+#### FIFTH TAB ####
+
+
+title: Alarm
+icon: mdi:shield-key
+cards:
+
+  - type: entity-filter
+    card: 
+      title: "Open Alarm Windows/Doors"
+      show_header_toggle: false
+    entities:
+    - binary_sensor.garage_door_zone_14
+    - binary_sensor.front_door_zone_1
+    - binary_sensor.laundry_room_window_zone_13
+    - binary_sensor.windows_1st_floor_zone_2
+    state_filter:
+    - "on"
+    show_empty: false
+
+  - type: entity-filter
+    card: 
+      title: "Open Other Windows/Doors"
+      show_header_toggle: false
+    entities:
+    - binary_sensor.closet_window_1
+    - binary_sensor.back_door
+    - binary_sensor.back_door_2
+    - binary_sensor.sebastians_room_left_window
+    state_filter:
+    - "on"
+    show_empty: false
+
+  - type: entity-filter
+    card: 
+      title: "Alarm Motion Detected"
+      show_header_toggle: false
+    entities:
+    - binary_sensor.play_room_zone_3
+    - binary_sensor.living_room_zone_4
+    - binary_sensor.master_bedroom_zone_5
+    - binary_sensor.library_zone_6
+    - binary_sensor.master_closet_zone_8
+    - binary_sensor.sophies_room_zone_10
+    - binary_sensor.garage_zone_12
+    - binary_sensor.glass_break_sensor_zone_11
+    state_filter:
+    - "on"
+    show_empty: false
+
+#    - type: vertical-stack
+#      cards:
+
+  - type: alarm-panel
+    states:
+    - arm_away
+    entity: alarm_control_panel.motion_sensors
+    name: Alarm - Motion Sensors
+
+  - type: alarm-panel
+    states:
+    - arm_away
+    entity: alarm_control_panel.windows_and_garage_door
+    name: Alarm - Windows, Front and Garage Door
+
+  - type: alarm-panel
+    states:
+    - arm_away
+    entity: alarm_control_panel.laundry_room_window
+    name: Alarm - Laundry Room Window
+
+#      - type: entities
+#        title: Arming Status
+#        show_header_toggle: false
+#        entities:
+#        - sensor.alarm_state_1_laundry
+#        - sensor.alarm_state_2_1st_floor
+#        - sensor.alarm_state_3_motion_sensors   
+#
+#      - type: entities
+#        title: Alarm Connection
+#        show_header_toggle: false
+#        entities:
+#        - binary_sensor.alarm_connection
+
+  - type: history-graph
+    title: 'Door/Window Open History'
+    hours_to_show: 8
+    refresh_interval: 60
+    entities:
+    - binary_sensor.garage_door_zone_14
+    - binary_sensor.front_door_zone_1
+    - binary_sensor.laundry_room_window_zone_13
+    - binary_sensor.windows_1st_floor_zone_2
+    - binary_sensor.closet_window_1
+    - binary_sensor.back_door
+    - binary_sensor.guest_bedroom_window_1
+    - binary_sensor.sebastians_room_left_window
+
+  - type: history-graph
+    title: 'Motion Detection History'
+    hours_to_show: 8
+    refresh_interval: 60
+    entities:
+    - binary_sensor.play_room_zone_3
+    - binary_sensor.living_room_zone_4
+    - binary_sensor.master_bedroom_zone_5
+    - binary_sensor.library_zone_6
+    - binary_sensor.master_closet_zone_8
+    - binary_sensor.sophies_room_zone_10
+    - binary_sensor.garage_zone_12
+    - binary_sensor.glass_break_sensor_zone_11
+
+

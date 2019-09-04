@@ -1,0 +1,644 @@
+#### THIRD TAB ####
+
+
+#sensor.dining_room_temperature
+#sensor.entrance_temperature
+#sensor.garage_temperature
+#sensor.guest_bedroom_temperature
+#sensor.laundry_room_temperature
+#sensor.living_room_temperature
+#sensor.master_bath_temperature
+#sensor.master_bedroom_temperature
+#sensor.master_closet_temperature
+#sensor.office_library_temperature
+#sensor.sebastian_s_room_temperature
+#sensor.sophie_s_room_temperature
+#sensor.straus_house_temperature
+
+
+title: Climate
+icon: mdi:radiator
+background: var(--background-image)
+
+popup_cards:
+  sensor.dining_room_temperature:
+    title: Dining Room Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.dining_room
+  sensor.entrance_temperature:
+    title: Entrance Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.entrance
+  sensor.garage_temperature:
+    title: Garage Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.garage
+  sensor.guest_bedroom_temperature:
+    title: Guest Bedroom Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.guest_bedroom
+  sensor.laundry_room_temperature:
+    title: Laundry Room Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.laundry_room
+  sensor.living_room_temperature:
+    title: living_room Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.living_room
+  sensor.master_bath_temperature:
+    title: Master Bath Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.master_bath
+  sensor.master_bedroom_temperature:
+    title: Master Bedroom Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.master_bedroom
+  sensor.master_closet_temperature:
+    title: Master Closet Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.master_closet
+  sensor.office_library_temperature:
+    title: Office Library Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.office_library
+  sensor.sebastian_s_room_temperature:
+    title: "Sebastian's Room Climate History"
+    card:
+      type: history-graph
+      entities:
+        - climate.sebastian_s_room
+  sensor.sophie_s_room_temperature:
+    title: "Sophie's Room Climate History"
+    card:
+      type: history-graph
+      entities:
+        - climate.sophie_s_room
+  sensor.straus_house_temperature:
+    title: Straus House Climate History
+    card:
+      type: history-graph
+      entities:
+        - climate.straus_house
+      
+        
+cards:
+
+
+#    - type: vertical-stack
+#      cards:
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+#    - type: history-graph
+#      title: 'Entrance'
+#      entities:
+#      - climate.entrance
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.entrance_temperature
+          name: ENTRANCE
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+#      - type: thermostat
+#        entity: climate.entrance
+
+#      - type: entities
+#        entities:
+#        - climate.entrance
+#
+    - type: custom:simple-thermostat
+      entity: climate.entrance
+      step_size: 0.5
+      name: false
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: 'Play Room'
+#      entities:
+#      - climate.dining_room
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.dining_room_temperature
+          name: PLAY ROOM
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.dining_room
+      step_size: 0.5
+      name: false
+
+#      - type: entities
+#        entities:
+#        - automation.dining_room_climate_kid_lock
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: 'Living Room'
+#      entities:
+#      - climate.living_room
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.living_room_temperature
+          name: LIVING ROOM
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.living_room
+      step_size: 0.5
+      name: false
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: 'Master Bedroom'
+#      entities:
+#      - climate.master_bedroom
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.master_bedroom_temperature
+          name: MASTER BEDROOM
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.master_bedroom
+      step_size: 0.5
+      name: false
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+#    - type: history-graph
+#      title: 'Master Bath'
+#      entities:
+#      - climate.master_bath
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.master_bath_temperature
+          name: MASTER BATH
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.master_bath
+      step_size: 0.5
+      name: false
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+#    - type: history-graph
+#      title: 'Master Closet'
+#      entities:
+#      - climate.master_closet
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.master_closet_temperature
+          name: MASTER CLOSET
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.master_closet
+      step_size: 0.5
+      name: false
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: 'Office / Library'
+#      entities:
+#      - climate.office_library
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.office_library_temperature
+          name: OFFICE / LIBRARY
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.office_library
+      step_size: 0.5
+      name: false
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: "Sebastian's Room"
+#      entities:
+#      - climate.sebastian_s_room
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.sebastian_s_room_temperature
+          name: "SEBASTIAN'S ROOM"
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.sebastian_s_room
+      step_size: 0.5
+      name: false
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: "Sophie's Room"
+#      entities:
+#      - climate.sophie_s_room
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.sophie_s_room_temperature
+          name: "SOPHIE'S ROOM"
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.sophie_s_room
+      step_size: 0.5
+      name: false
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: 'Gym'
+#      entities:
+#      - climate.guest_bedroom
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.guest_bedroom_temperature
+          name: "GUEST BEDROOM"
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.guest_bedroom
+      step_size: 0.5
+      name: false
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: 'Garage'
+#      entities:
+#      - climate.garage
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.garage_temperature
+          name: "GARAGE"
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.garage
+      step_size: 0.5
+      name: false
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: 'Laundry Room'
+#      entities:
+#      - climate.laundry_room
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.laundry_room_temperature
+          name: "LAUNDRY ROOM"
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+    - type: custom:simple-thermostat
+      entity: climate.laundry_room
+      step_size: 0.5
+      name: false
+
+#      - type: divider
+#        style:
+#          height: 1px
+#          width: 100%
+#          margin-left: 0
+#          margin-right: 0
+#          background: '#3670a0'
+  - type: custom:vertical-stack-in-card
+    cards:
+
+
+#    - type: history-graph
+#      title: 'House Average'
+#      entities:
+#      - climate.straus_house 
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.straus_house_temperature
+          name: "HOUSE AVERAGE"
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+
+#    - type: custom:simple-thermostat
+#      entity: climate.straus_house
+#      step_size: 0.5
+#      name: false
+
+    - type: entities
+      entities:
+      - climate.straus_house
+#      show_header_toggle: false

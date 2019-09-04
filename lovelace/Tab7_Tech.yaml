@@ -1,0 +1,335 @@
+#### SEVENTH TAB ####
+
+
+
+title: Computer
+icon: mdi:desktop-classic
+background: var(--background-image)
+cards:
+
+#    - type: gauge
+#      entity: sensor.power_consumption  
+#      name: "House Power Consumption"
+#      max: 8000
+#      severity:
+#        green: 0
+#        yellow: 2000
+#        red: 3000
+#    
+
+#  - type: vertical-stack
+#    cards:
+
+
+  - type: custom:vertical-stack-in-card
+    title: Narnia
+    cards:
+
+    - type: horizontal-stack
+      cards:
+
+      - type: gauge
+        entity: sensor.disk_free   
+        name: "Disk Free"
+        max: 256
+        severity:
+          green: 32
+          yellow: 16
+          red: 8
+
+      - type: gauge
+        entity: sensor.disk_use_percent  
+        name: "% Disk Use"
+        severity:
+          green: 0
+          yellow: 75
+          red: 88
+
+    - type: custom:mini-graph-card
+      name: CPU Usage
+      entities:
+#        - entity: sensor.load_15m
+#          name: Load (15m)
+        - entity: sensor.processor_use
+          name: CPU %
+      hours_to_show: 24
+      points_per_hour: 20
+      show_points: false
+      height: 200
+      lower_bound: 0
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
+    - type: custom:mini-graph-card
+      name: 'Memory Used (%)'
+      entities:
+        - entity: sensor.memory_use_percent
+          name: 'Memory Used (%)'
+      hours_to_show: 24
+      points_per_hour: 20
+      show_points: false
+      height: 200
+      lower_bound: 0
+      upper_bound: 100
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
+#
+#    - type: gauge
+#      name: "% Memory Used"
+#      entity: sensor.memory_use_percent
+#      severity:
+#        green: 0
+#        yellow: 50
+#        red: 80
+
+
+
+  - type: custom:vertical-stack-in-card
+    title: Discworld
+    cards:
+
+    - type: horizontal-stack
+      cards:
+
+      - type: gauge
+        entity:  sensor.discworld_volume_used_volume_1  
+        name: "% Disk Use Vol. 1"
+        severity:
+          green: 0
+          yellow: 75
+          red: 88
+
+      - type: gauge
+        entity: sensor.discworld_volume_used_volume_2 
+        name: "% Disk Use Vol. 2"
+        severity:
+          green: 0
+          yellow: 75
+          red: 88
+
+
+    - type: custom:mini-graph-card
+      name: CPU Load
+      entities:
+        - entity: sensor.discworld_cpu_load_total
+          name: Total Load
+      hours_to_show: 24
+      points_per_hour: 20
+      show_points: false
+      height: 200
+      lower_bound: 0
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
+
+    - type: custom:mini-graph-card
+      name: 'Memory Used (%)'
+      entities:
+        - entity: sensor.discworld_memory_usage_real
+          name: 'Memory Used (%)'
+      hours_to_show: 24
+      points_per_hour: 20
+      show_points: false
+      height: 200
+      lower_bound: 0
+      upper_bound: 100
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
+
+
+    - type: custom:mini-graph-card
+      name: Network
+      entities:
+        - entity: sensor.discworld_network_up_mbit 
+          name: Upload (Mbps)
+        - entity: sensor.discworld_network_down_mbit 
+          name: Download (Mbps)
+      lower_bound: 0
+      hours_to_show: 24
+      points_per_hour: 2
+      show_points: false
+      height: 200
+      show:
+        extrema: true
+      
+
+
+    - type: entities
+      entities:
+      - sensor.discworld_status_smart_sda
+      - sensor.discworld_status_smart_sdb
+      - sensor.discworld_status_smart_sdc
+      - sensor.discworld_status_smart_sdd
+
+
+#    - type: history-graph
+#      title: 'CPU Load'
+#      entities:
+#      - sensor.load_15m
+
+
+  - type: custom:vertical-stack-in-card
+    title: Internet
+    cards:
+
+    - type: custom:mini-graph-card
+#      name: Internet
+      entities:
+        - entity: sensor.speedtest_download
+          name: Download
+        - entity: sensor.speedtest_upload
+          name: Upload
+        - entity: sensor.speedtest_ping
+          name: Ping
+      lower_bound: 0
+      hours_to_show: 24
+      points_per_hour: 2
+      show_points: false
+      height: 300
+      
+#    - type: history-graph
+#      title: 'Download Speed'
+#      entities:
+#      - sensor.speedtest_download
+#
+#    - type: history-graph
+#      title: 'Upload Speed'
+#      entities:
+#      - sensor.speedtest_upload
+#
+#    - type: history-graph
+#      title: 'Ping Time'
+#      entities:
+#      - sensor.speedtest_ping
+
+
+
+#  - type: vertical-stack
+#    cards:
+
+
+  - type: custom:vertical-stack-in-card
+    title: Battery Levels
+    cards:
+
+    - type: gauge
+      entity: sensor.alena_s_iphone_battery_level
+      name: "     Alena"
+      severity:
+        green: 50
+        yellow: 25
+        red: 12
+
+    - type: gauge
+      entity: sensor.sean_s_iphone_x_battery_level   
+      name: "     Sean"
+      severity:
+        green: 50
+        yellow: 25
+        red: 12
+
+    - type: gauge
+      entity: sensor.sophies_iphone_6_battery_level   
+      name: "     Sophie"
+      severity:
+        green: 50
+        yellow: 25
+        red: 12
+
+
+  - type: entities
+    entities:
+    - group.internet_notifications
+    - automation.sensor_notification
+    - switch.fibaro_system_fgs223_double_relay_switch
+    - switch.fibaro_system_fgs223_double_relay_switch_2
+    - binary_sensor.living_room_nest_protect_online
+    - binary_sensor.master_bedroom_nest_protect_online
+    - binary_sensor.kids_room_nest_protect_online
+    - binary_sensor.basement_nest_protect_online
+#      - sensor.sean_direction_of_travel
+#      - sensor.alena_direction_of_travel
+#      - sensor.sophie_direction_of_travel
+#      - sensor.all_direction_of_travel
+
+#
+#    - type: history-graph
+#      title: 'Dishwasher Status'
+#      entities:
+#      - input_select.dishwasher_status
+
+  - type: custom:tracker-card
+    title:
+    trackers:
+      - sensor.custom_card_tracker
+      - sensor.custom_component_tracker
+
+#    - type: vertical-stack
+#      cards:
+#
+#      - type: history-graph
+#        title: 'device_tracker.seans_iphone_x'
+#        entities:
+#        - device_tracker.seans_iphone_x
+#
+#      - type: history-graph
+#        title: 'input_select.sean_last_zone_dropdown'
+#        entities:
+#        - input_select.sean_last_zone_dropdown
+#
+#      - type: history-graph
+#        title: 'input_select.sean_location_dropdown'
+#        entities:
+#        - input_select.sean_location_dropdown
+#
+#      - type: history-graph
+#        title: 'sensor.sean_location'
+#        entities:
+#        - sensor.sean_location
+
+
+#    - type: history-graph
+#      title: 'Humidity Under Sink'
+#      entities:
+#      - sensor.popp_unknown_type_0004_id_0014_relative_humidity
+#
+#    - type: history-graph
+#      title: 'Temperature Under Sink'
+#      entities:
+#      - sensor.popp_unknown_type_0004_id_0014_temperature
+#
+#    - type: history-graph
+#      title: 'Dew Point Under Sink'
+#      entities:
+#      - sensor.popp_unknown_type_0004_id_0014_dew_point
+

@@ -1,0 +1,260 @@
+#### SIXTH TAB ####
+
+
+
+title: Weather
+icon: mdi:weather-lightning
+background: var(--background-image)
+cards:
+
+  - type: 'custom:weather-card-chart'
+    title: Weather
+    weather: weather.weather_forecast
+    sun: sun.sun
+
+#    - type: vertical-stack
+#      cards:
+
+  - type: entities
+    title: Current Conditions
+    show_header_toggle: false
+    entities:
+    - sensor.dark_sky_summary
+#    - sensor.u_s_air_pollution_level 
+#    - sensor.u_s_air_quality_index 
+    - type: custom:air-visual-card 
+      air_pollution_level: sensor.u_s_air_pollution_level 
+      air_quality_index: sensor.u_s_air_quality_index
+      main_pollutant: sensor.u_s_main_pollutant
+      svg_location: "/local/icons/aqi_icons"
+#          temp: sensor.dark_sky_temperature 
+      city: 'Prague'
+
+
+  - type: entities
+    title: Weather Forecast
+    show_header_toggle: false
+    entities:
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_overnight_low_temperature_0d
+    - sensor.dark_sky_daytime_high_temperature_0d
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_precip
+#    - sensor.dark_sky_apparent_temperature
+#    - sensor.dark_sky_overnight_low_apparent_temperature_0d
+#    - sensor.dark_sky_daytime_high_apparent_temperature_0d
+
+#  - type: history-graph
+#    title: 'Air Pollution Level'
+#    entities: 
+#    - sensor.u_s_air_quality_index
+
+  - type: custom:vertical-stack-in-card
+#    title: Internet
+    cards:
+
+    - type: custom:mini-graph-card
+  #      name: Internet
+      entities:
+        - entity: sensor.u_s_air_quality_index
+          name: Prague Air Quality
+      hours_to_show: 24
+      points_per_hour: 2
+      height: 150
+      lower_bound: 0
+
+    - type: custom:mini-graph-card
+  #      name: Internet
+      entities:
+        - entity: sensor.dark_sky_ozone
+          name: 'Ozone'
+      hours_to_show: 24
+      points_per_hour: 2
+      height: 150
+
+#  - type: history-graph
+#    title: 'Temperature'
+#    entities:
+#    - sensor.dark_sky_temperature
+
+  - type: custom:mini-graph-card
+#      name: Internet
+    entities:
+      - entity: sensor.dark_sky_temperature
+        name: Temperature
+    hours_to_show: 24
+    points_per_hour: 2
+    height: 150
+    
+#  - type: history-graph
+#    title: 'Feels Like Temp'
+#    entities:
+#    - sensor.dark_sky_apparent_temperature
+
+#  - type: history-graph
+#    title: 'Wind Speed'
+#    entities:
+#    - sensor.dark_sky_wind_speed
+  - type: custom:vertical-stack-in-card
+#    title: Internet
+    cards:
+    
+    - type: custom:mini-graph-card
+  #      name: Internet
+      entities:
+        - entity: sensor.dark_sky_wind_speed
+          name: Wind Speed
+      hours_to_show: 24
+      points_per_hour: 2
+      height: 150
+      lower_bound: 0
+
+
+    - type: custom:mini-graph-card
+  #      name: Internet
+      entities:
+        - entity: sensor.dark_sky_wind_gust
+          name: Wind Gust
+      hours_to_show: 24
+      points_per_hour: 2
+      height: 150
+      lower_bound: 0
+#    
+#  - type: history-graph
+#    title: 'Wind Gust'
+#    entities:
+#    - sensor.dark_sky_wind_gust
+
+
+    - type: custom:mini-graph-card
+  #      name: Internet
+      entities:
+        - entity: sensor.dark_sky_wind_bearing
+          name: Wind Bearing
+      hours_to_show: 24
+      points_per_hour: 4
+      height: 150
+
+#  - type: history-graph
+#    title: 'Wind Bearing'
+#    entities:
+#    - sensor.dark_sky_wind_bearing  
+
+  - type: custom:mini-graph-card
+#      name: Internet
+    entities:
+      - entity: sensor.dark_sky_humidity
+        name: Humidity
+    hours_to_show: 24
+    points_per_hour: 2
+    height: 150
+    lower_bound: 0
+
+#  - type: history-graph
+#    title: 'Humidity'
+#    entities:
+#    - sensor.dark_sky_humidity
+
+  - type: custom:vertical-stack-in-card
+#    title: Internet
+    cards:
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.dark_sky_precip_probability
+          name: '% Chance Precip.'
+      hours_to_show: 24
+      points_per_hour: 2
+      height: 150
+      lower_bound: 0
+      upper_bound: 100
+      show:
+
+        points: false
+
+    #  - type: history-graph
+    #    title: '% Chance Precip.'
+    #    entities:
+    #    - sensor.dark_sky_precip_probability
+
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.dark_sky_precip_intensity
+          name: 'Precip. Intensity'
+      hours_to_show: 24
+      points_per_hour: 2
+      height: 150
+      lower_bound: 0
+
+#  - type: history-graph
+#    title: 'Precip. Intensity'
+#    entities:
+#    - sensor.dark_sky_precip_intensity
+
+  - type: custom:mini-graph-card
+#      name: Internet
+    entities:
+      - entity: sensor.dark_sky_cloud_coverage 
+        name: 'Cloud Coverage'
+    hours_to_show: 24
+    points_per_hour: 2
+    height: 150
+    lower_bound: 0
+
+  - type: custom:mini-graph-card
+#      name: Internet
+    entities:
+      - entity: sensor.dark_sky_visibility
+        name: 'Visibility'
+    hours_to_show: 24
+    points_per_hour: 1
+    height: 150
+#
+#  - type: history-graph
+#    title: 'Visibility'
+#    entities:
+#    - sensor.dark_sky_visibility        
+
+
+#
+#  - type: history-graph
+#    title: 'Ozone'
+#    entities:
+#    - sensor.dark_sky_ozone
+
+  - type: custom:mini-graph-card
+#      name: Internet
+    entities:
+      - entity: sensor.dark_sky_pressure
+        name: 'Air Pressure'
+    hours_to_show: 24
+    points_per_hour: 2
+    height: 150
+
+#  - type: history-graph
+#    title: 'Pressure'
+#    entities:
+#    - sensor.dark_sky_pressure
+
+  - type: custom:mini-graph-card
+#      name: Internet
+    entities:
+      - entity: sensor.dark_sky_dew_point
+        name: 'Dew Point'
+    hours_to_show: 24
+    points_per_hour: 2
+    height: 150
+
+#  - type: history-graph
+#    title: 'Dew Point'
+#    entities:
+#    - sensor.dark_sky_dew_point
+
+
+#  - type: history-graph
+#    title: 'Cloud Coverage'
+#    entities:
+#    - sensor.dark_sky_cloud_coverage    
+

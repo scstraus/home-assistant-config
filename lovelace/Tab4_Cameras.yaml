@@ -1,0 +1,182 @@
+
+#### FOURTH TAB ####
+
+
+
+title: Security
+panel: true
+icon: mdi:cctv
+background: var(--background-image)
+cards:
+
+  - type: vertical-stack
+    cards:    
+
+# live views and motion detection
+
+    - type: picture-glance
+      title: Outdoor - Front Gate
+      aspect_ratio: 16x9
+      entities:
+      - binary_sensor.motion_front
+      camera_image: camera.front
+
+    - type: history-graph
+      title: 'Front Motion'
+      entities:
+#        - binary_sensor.motion_front_of_house_motion
+      - binary_sensor.motion_front
+
+#      - type: picture-glance
+#        title: Outdoor - Right Side
+#        aspect_ratio: 16x9
+#        entities:
+#        - binary_sensor.motion_right
+#        camera_image: camera.right
+
+    - type: horizontal-stack
+      cards:
+
+      - type: vertical-stack
+        cards:    
+
+        - type: picture-glance
+          title: Outdoor - Left
+          aspect_ratio: 9x16
+          entities:
+          - binary_sensor.motion_left
+          camera_image: camera.left
+
+        - type: history-graph
+          title: 'Left Motion'
+          entities:
+  #        - binary_sensor.motion_left_side_of_house_motion
+          - binary_sensor.motion_left
+
+      - type: vertical-stack
+        cards:
+
+        - type: picture-glance
+          title: Outdoor - Right 
+          aspect_ratio: 9x16
+          entities:
+          - binary_sensor.motion_right
+          camera_image: camera.right
+
+        - type: history-graph
+          title: 'Right Motion'
+          entities:
+  #        - binary_sensor.motion_right_side_of_house_motion
+          - binary_sensor.motion_right
+
+    - type: picture-glance
+      title: Outdoor - Back Yard
+      aspect_ratio: 16x9
+      entities:
+      - binary_sensor.motion_back
+      camera_image: camera.back
+
+    - type: history-graph
+      title: 'Back Motion'
+      entities:
+#        - binary_sensor.motion_back_of_house_motion
+      - binary_sensor.motion_back
+
+
+# object detection (tensorflow)
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: picture-glance
+        title: Back Last Person Detected
+        entities:
+#        - sensor.object_detection_back
+        - binary_sensor.human_back
+        camera_image: camera.back_last_person
+
+      - type: history-graph
+        title: 'Back Human Detection'
+        entities:
+#        - sensor.back_human_detection
+        - binary_sensor.human_back
+
+#      - type: entities
+#        title: 
+#        show_header_toggle: false
+#        entities:           
+#        - sensor.last_human_back
+
+    - type: horizontal-stack
+      cards:
+
+      - type: custom:vertical-stack-in-card
+        cards:          
+
+        - type: picture-glance
+          title: Left Last Person Detected
+          entities:
+#          - sensor.object_detection_left
+          - binary_sensor.human_left
+          camera_image: camera.left_last_person
+
+        - type: history-graph
+          title: 'Human Left'
+          entities:
+#          - sensor.left_human_detection
+          - binary_sensor.human_left
+
+#        - type: entities
+#          title: 
+#          show_header_toggle: false
+#          entities:
+#          - sensor.last_human_left
+
+      - type: custom:vertical-stack-in-card
+        cards:
+
+        - type: picture-glance
+          title: Right Last Person Detected
+          entities:
+#          - sensor.object_detection_right
+          - binary_sensor.human_right
+          camera_image: camera.right_last_person
+
+        - type: history-graph
+          title: 'Human Right'
+          entities:
+          -  binary_sensor.human_right
+#          - sensor.right_human_detection
+
+#        - type: entities
+#          title: 
+#          show_header_toggle: false
+#          entities:
+#          - sensor.last_human_right
+
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+
+      - type: picture-glance
+        title: Front Last Person Detected
+        entities:
+#          - sensor.object_detection_right
+        - binary_sensor.human_front
+        camera_image: camera.front_last_person
+
+      - type: history-graph
+        title: 'Front Human Detection'
+        entities:
+        - binary_sensor.human_front
+
+#      - type: entities
+#        title: 
+#        show_header_toggle: false
+#        entities:
+#        - sensor.last_human_front
+
+
