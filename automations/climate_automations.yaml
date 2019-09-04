@@ -25,14 +25,17 @@
     platform: state
     entity_id: sensor.back_door
     to: 'Closed'
-  action:
-    - service: climate.set_operation_mode
+  action:   
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.living_room
-        operation_mode: auto
+        preset_mode: 'none'
+        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.living_room
 
-
-- id: living_room_last_mode
+- id: living_room_last_preset_mode
   alias: 'Living Room Last Mode'
   trigger:
     platform: state
@@ -40,8 +43,10 @@
   action:
     service: input_select.select_option
     data_template:
-      entity_id: input_select.living_room_last_mode
-      option: '{{ trigger.from_state.state }}'
+      entity_id: input_select.living_room_last_preset_mode
+      option: "{{ states[trigger.from_state.attributes.preset_mode] }}"
+      
+#      option: '{{ trigger.from_state.state }}'
 
 - id: living_room_last_temp
   alias: 'Living Room Last Temp'
@@ -90,65 +95,102 @@
       data:
         entity_id: climate.dining_room
         temperature: 20
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.entrance
         temperature: 18
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.garage
         temperature: 18
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.guest_bedroom
         temperature: 21
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.living_room
         temperature: 20
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bath
         temperature: 22
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bedroom
         temperature: 21
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_closet
         temperature: 22
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.office_library
         temperature: 21.5
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.sebastian_s_room
         temperature: 22
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.laundry_room
-        operation_mode: auto
+        temperature: 21
     - service: climate.set_temperature
       data:
         entity_id: climate.sophie_s_room
-        temperature: 21
-        operation_mode: manual
+        temperature: 21 
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.laundry_room
+        preset_mode: 'none'
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
+#   - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.dining_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.entrance
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.garage
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.guest_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.living_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bath
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_closet
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.office_library
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sophie_s_room
+#        preset_mode: 'permanent'
 
 - id: warm_cloudy_weather_heat_down
   alias: 'Turn Down Heat For Warm Weather'
@@ -196,61 +238,99 @@
       data:
         entity_id: climate.dining_room
         temperature: 20
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.entrance
         temperature: 18
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.garage
         temperature: 18
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.guest_bedroom
         temperature: 21
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bath
         temperature: 22
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bedroom
         temperature: 21
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_closet
         temperature: 22
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.office_library
         temperature: 21.5
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.sebastian_s_room
         temperature: 22
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.sophie_s_room
         temperature: 21
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.laundry_room
-        operation_mode: auto
+        temperature: 21     
+
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.laundry_room
+        preset_mode: 'none'
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
-
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.dining_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.entrance
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.garage
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.guest_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.living_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bath
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_closet
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.office_library
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sophie_s_room
+#        preset_mode: 'permanent'
 
 #      - condition: template
 #        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0d > 5 }}'
@@ -281,58 +361,106 @@
             entity_id: sensor.dark_sky_icon_0d
             state: 'clear-day'
   action:
-    - service: climate.set_operation_mode
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.dining_room
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.entrance
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.garage
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.guest_bedroom
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
-        entity_id: climate.laundry_room
-        operation_mode: auto
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.master_bath
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        entity_id: climate.living_room
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.master_bedroom
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.master_bath
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.master_closet
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.office_library
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.sebastian_s_room
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.sophie_s_room
-        operation_mode: auto
-    - service: climate.set_temperature
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.laundry_room
-        operation_mode: auto
+        preset_mode: 'none'
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_up_in_living_room
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.dining_room
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.entrance
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.garage
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.guest_bedroom
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.laundry_room
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.master_bath
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.master_bedroom
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.master_closet
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.office_library
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.sophie_s_room
+#        
+#    - service: climate.set_temperature
+#      data:
+#        entity_id: climate.laundry_room
+#        
        
 - id: cold_weather_heat_auto_cloudy
   alias: 'Turn Heat to Schedule in Cold Cloudy Weather'
@@ -374,59 +502,106 @@
             entity_id: sensor.dark_sky_icon_0d
             state: 'cloudy'
   action:
-    - service: climate.set_operation_mode
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.dining_room
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.entrance
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.garage
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.guest_bedroom
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
-        entity_id: climate.laundry_room
-        operation_mode: auto
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.master_bath
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        entity_id: climate.living_room
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.master_bedroom
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.master_bath
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.master_closet
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.office_library
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.sebastian_s_room
-        operation_mode: auto
-    - service: climate.set_operation_mode
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.sophie_s_room
-        operation_mode: auto
-    - service: climate.set_temperature
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
       data:
         entity_id: climate.laundry_room
-        operation_mode: auto
+        preset_mode: 'none'
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_up_in_living_room
-
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.dining_room
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.entrance
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.garage
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.guest_bedroom
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.laundry_room
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.master_bath
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.master_bedroom
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.master_closet
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.office_library
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        
+#    - service: climate.set_hvac_mode
+#      data:
+#        entity_id: climate.sophie_s_room
+#        
+#    - service: climate.set_temperature
+#      data:
+#        entity_id: climate.laundry_room
+#        
 
 - id: living_room_tepid_weather_heat_down
   alias: 'Turn Living Room Heat Down For Tepid Weather'
@@ -451,7 +626,11 @@
       data:
         entity_id: climate.living_room
         temperature: 20
-        operation_mode: manual 
+#        
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.living_room
+#        preset_mode: 'permanent'
         
 - id: living_room_warm_weather_heat_down
   alias: 'Turn Living Room Heat Down For Warm Weather'
@@ -476,8 +655,11 @@
       data:
         entity_id: climate.living_room
         temperature: 18
-        operation_mode: manual 
-
+#         
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.living_room
+#        preset_mode: 'permanent'
 
 - id: living_room_cold_weather_heat_up
   alias: 'Turn Living Room Heat Down For Warm Weather'
@@ -499,7 +681,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.living_room
-        operation_mode: auto
+        
 #      - condition: template
 #        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0d < 5 }}'
 #      - condition: template
@@ -544,67 +726,115 @@
       data:
         entity_id: climate.dining_room
         temperature: 18
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.entrance
         temperature: 16
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.garage
         temperature: 15
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.guest_bedroom
         temperature: 18
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.living_room
         temperature: 16
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bath
         temperature: 20
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bedroom
         temperature: 20
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.master_closet
         temperature: 20
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.office_library
         temperature: 20
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.sebastian_s_room
         temperature: 21
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.sophie_s_room
         temperature: 21
-        operation_mode: manual
+        
     - service: climate.set_temperature
       data:
         entity_id: climate.laundry_room
         temperature: 21
-        operation_mode: manual
+
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
-
+#        
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.dining_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.entrance
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.garage
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.guest_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.living_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bath
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_closet
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.office_library
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sophie_s_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.laundry_room
+#        preset_mode: 'permanent'
 
 - id: warmer_weather_heat_down_more_2
   alias: 'Turn Down Heat For Warm Weather 2'
@@ -629,66 +859,103 @@
       data:
         entity_id: climate.dining_room
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.entrance
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.garage
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.guest_bedroom
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.living_room
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bath
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bedroom
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_closet
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.office_library
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.sebastian_s_room
         temperature: 18
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.sophie_s_room
         temperature: 18
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.laundry_room
         temperature: 19
-        operation_mode: manual
+
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.dining_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.entrance
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.garage
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.guest_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.living_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bath
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_closet
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.office_library
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sophie_s_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.laundry_room
+#        preset_mode: 'permanent'
 
 - id: hot_weather_turn_heat_off
   alias: 'Turn Heat Off For Hot Weather'
@@ -710,64 +977,100 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.dining_room
-        temperature: 15
-        operation_mode: manual
+        temperature: 15  
     - service: climate.set_temperature
       data:
         entity_id: climate.entrance
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.garage
         temperature: 12
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.guest_bedroom
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.living_room
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bath
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_bedroom
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.master_closet
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.office_library
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.sebastian_s_room
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.sophie_s_room
         temperature: 15
-        operation_mode: manual
     - service: climate.set_temperature
       data:
         entity_id: climate.laundry_room
         temperature: 12
-        operation_mode: manual
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.dining_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.entrance
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.garage
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.guest_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.living_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bedroom
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_bath
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.master_closet
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.office_library
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.sophie_s_room
+#        preset_mode: 'permanent'
+#    - service: climate.set_preset_mode
+#      data:
+#        entity_id: climate.laundry_room
+#        preset_mode: 'permanent'

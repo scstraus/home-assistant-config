@@ -350,3 +350,17 @@ binary_sensor.back_door_sensor_2:
 binary_sensor.back_door_sensor:
   friendly_name: Back Door Sensor
   device_class: door
+sensor.bio_odpad_day:
+  icon: mdi:recycle
+binary_sensor.basement_flooding:
+  device_class: moisture
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_level:
+  hidden: true
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_type:
+  hidden: true
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_burglar:
+  hidden: true
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_sourcenodeid:
+  hidden: true
+binary_sensor.sebastians_room_left_window:
+  device_class: window

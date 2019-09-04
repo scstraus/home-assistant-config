@@ -288,20 +288,40 @@
       entity_id: binary_sensor.sophies_room_zone_10
       to: 'on'
   condition:
-    condition: and
+    condition: or
     conditions:
-    - condition: time
-      after: '21:30:00'
-      before: '5:00:00'
-    - condition: template
-      value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
-    - condition: template
-      value_template: "{{ now().strftime('%m') > 8 or now().strftime('%m') < 7 }}"
+      - condition: and
+        conditions:
+          - condition: time
+            after: '22:30:00'
+            before: '5:00:00'
+          - condition: template
+            value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
+          - condition: template
+            value_template: "{{ now().strftime('%m')|int > 6 or now().strftime('%m')|int < 9 }}"
+      - condition: and
+        conditions:
+          - condition: time
+            after: '21:30:00'
+            before: '5:00:00'
+          - condition: template
+            value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
+          - condition: template
+            value_template: "{{ now().strftime('%m')|int > 8 or now().strftime('%m')|int < 7 }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
       title: "Sophie is Up Late"
       message: "Sophie is Up Late"
+
+#          - condition: time
+#            after: '21:30:00'
+#            before: '5:00:00'
+#          - condition: template
+#            value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
+#          - condition: template
+#            value_template: "{{ now().strftime('%m')|int = 8 or now().strftime('%m')|int = 7 }}"
+
 
 - id: 'update_airvisualnode_home_data'
   alias: 'Update AirVisual node home data'
@@ -313,20 +333,115 @@
   initial_state: 'on'
   hide_entity: 'true'
 
-- alias: Turn off sophie up late in summer
-  initial_state: 'on'
-  hide_entity: 'true'
-  trigger:
-    - platform: homeassistant
-      event: start
-  condition:
-    condition: template
-    value_template: >
-      {{ now().strftime('%m') <= 8 and
-         now().strftime('%m') >= 7 }}
-  action:
-    - delay: '00:02:00'
-    - service: automation.turn_off
-      entity_id:
-        - automation.sophie_up_late
+#- alias: Turn off sophie up late in summer
+#  initial_state: 'on'
+#  hide_entity: 'true'
+#  trigger:
+#    - platform: homeassistant
+#      event: start
+#  condition:
+#    condition: template
+#    value_template: >
+#      {{ now().strftime('%m')|int <= 8 and
+#         now().strftime('%m')|int >= 7 }}
+#  action:
+#    - delay: '00:02:00'
+#    - service: automation.turn_off
+#      entity_id:
+#        - automation.sophie_up_late
         
+- id: bio_odpad_day_tomorrow
+  alias: 'Bio Odpad Day'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '21:00:00'
+  condition:
+    condition: state
+    entity_id: 'sensor.bio_odpad_day'
+    state: 'Tomorrow'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Bio Odpad Tomorrow"
+      message: "Bio odpad should be taken out tonight or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} Morning"
+
+- id: bio_odpad_day_today
+  alias: 'Bio Odpad Day'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '21:00:00'
+  condition:
+    condition: state
+    entity_id: 'sensor.bio_odpad_day'
+    state: 'Today'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Bio Odpad Today"
+      message: "Bio odpad should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} Morning"
+
+- alias: 'update_bio_odpad_sensor'
+  trigger:
+    platform: time
+    at: '00:00:01'
+  action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.bio_odpad_day
+
+- id: update_morning_commute_sensor
+  alias: "Update morning commute sensor"
+  initial_state: 'on'
+  hide_entity: true
+  trigger:
+    - platform: time_pattern
+      seconds: 17
+  condition:
+    - condition: time
+      after: '10:00:00'
+      before: '13:00:00'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.transport_time_to_work
+
+
+- id: basement_flooding
+  alias: 'Basement Flooding'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.basement_is_flooding
+    to: 'on'
+  action:
+    service: notify.sean_alena
+    data:
+      title: "Basement Flooding"
+      message: "The basement is flooding"
+
+- id: basement_flooding_2
+  alias: 'Basement Flooding 2'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    - platform: time_pattern
+      minutes: 30
+  condition:
+    condition: state
+    entity_id: 'binary_sensor.basement_is_flooding'
+    state: 'on'
+  action:
+    service: notify.sean_alena
+    data:
+      title: "Basement Flooding"
+      message: "The basement is flooding"

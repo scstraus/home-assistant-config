@@ -37,8 +37,6 @@ resources:
     type: module
   - url: /customcards/air-visual-card.js 
     type: js
-#  - url: /local/custom-weather-card-chart.js
-#    type: module
   - url: /customcards/custom-weather-card-chart.js
     type: module
   - url: /local/mini-graph-card-bundle.js?v=0.5.0
@@ -53,8 +51,18 @@ resources:
     type: js
   - url: /customcards/card-tools.js?track=true
     type: js
+  - url: /customcards/github/thomasloven/layout-card.js?track=true
+    type: js
   - url: /customcards/github/thomasloven/popup-card.js?track=true
     type: js
+  - url: /customcards/github/thomasloven/browser-commander.js?track=true
+    type: js
+  - url: /local/secondaryinfo-entity-row.js
+    type: module
+  - url: /local/markdown-mod.js
+    type: module
+  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
+    type: module
 
 #popup_cards:
 #  sensor.dining_room_temperature:
@@ -64,10 +72,47 @@ resources:
 #      entities:
 #        - climate.dining_room
 #        title: 'Entrance'
+cch:
+  exceptions:
+    - conditions:
+        user: kiosk
+      config:
+        hide_tabs: 0
+        disable_sidebar: true
+        default_tab: 1
+        hide_help: true
+        hide_config: true
+        hide_unused: true
+        voice: hide
+        menu: hide
+        notifications: hide  
+        options: clock
+        clock_format: 24
+    - conditions:
+        user: Alena, Sophie
+      config:
+        hide_tabs: 1
+        disable_sidebar: true
+        default_tab: 0
+        hide_help: true
+        hide_config: true
+        hide_unused: true
+        voice: hide
+        menu: hide
+        notifications: hide  
+    - conditions:
+        user: Sean Straus
+      config:
+        hide_tabs: 1
+        default_tab: 0
+        hide_help: true
+        hide_config: true
+ 
 
 views:
 
   - !include /config/lovelace/Tab1_Home.yaml
+  - !include /config/lovelace/Tab1a_Home_Kiosk.yaml
   - !include /config/lovelace/Tab2_Music.yaml
   - !include /config/lovelace/Tab3_Heat.yaml
   - !include /config/lovelace/Tab4_Cameras.yaml

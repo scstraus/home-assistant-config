@@ -9,14 +9,14 @@ homeassistant:
   customize: !include customize.yaml
   whitelist_external_dirs:
     - /share/avnodehome
-  auth_providers:
+#  auth_providers:
 # airport worked with this
 #    - type: trusted_networks
 #      trusted_networks:
 #        - !secret trusted_network1
-# uncomment for iOS device add, other option for airport 
-    - type: legacy_api_password
-      api_password: !secret API_pass
+# uncomment for iOS device add, other option for airport (seems to work with only this, but then the web doesn't seem to login with normal auth) 
+#    - type: legacy_api_password
+#      api_password: !secret API_pass
 
 group: !include groups.yaml
 
@@ -324,6 +324,11 @@ history:
     - sensor.fibaro_system_fgs223_double_relay_exporting
     - sensor.fibaro_system_fgs223_double_relay_exporting_2
     - sensor.fibaro_system_fgs223_double_relay_sourcenodeid
+    - binary_sensor.basement_flooding
+    - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_level
+    - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_type
+    - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_burglar
+    - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_sourcenodeid
 
 recorder:
   db_url: !secret maria_url
@@ -552,6 +557,11 @@ recorder:
     - sensor.fibaro_system_fgs223_double_relay_exporting
     - sensor.fibaro_system_fgs223_double_relay_exporting_2
     - sensor.fibaro_system_fgs223_double_relay_sourcenodeid
+    - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_level
+    - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_type
+    - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_burglar
+    - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_sourcenodeid
+
 
 custom_updater:
   track:
@@ -569,6 +579,7 @@ custom_updater:
     - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/master/tracker.json
     - https://raw.githubusercontent.com/sgttrs/lovelace-weather-card-chart/master/custom-updater.json
     - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json    
+    - https://raw.githubusercontent.com/MizterB/lovelace-secondaryinfo-entity-row/master/custom_cards.json
 
 switch:
 
@@ -769,11 +780,23 @@ input_select:
     initial: Dirty
     icon: mdi:dishwasher
 
-  living_room_last_mode:
+  living_room_last_preset_mode:
     name: Last Heating Mode in Living Room
     options:
-      - auto
-      - manual
+      - 'none'
+      - 'permanent'
+      - 'temporary'
+      
+  miele_washing_machine_status:
+    name: Miele Washing Machine Status
+    options:
+      - Empty
+      - Starting Up
+      - First Spin Cycle
+      - First Wash Cycle
+      - Second Spin Cycle
+      - Clean
+    initial: Empty
 
 proximity:
   all_home: 
@@ -871,8 +894,8 @@ notify:
     platform: group
     services:
       - service: ios_seans_iphone_x
-      - service: ios_alenas_iphone  
-      - service: ios_sophies_iphone_6
+      - service: ios_alenas_iphone
+      - service: ios_sophies_iphone
 
 speedtestdotnet:
   monitored_conditions:
@@ -935,7 +958,6 @@ alert:
     skip_first: true
     notifiers:
       - sean_alena
-#has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.garage_door_zone_14.last_updated)) | int //60 }}
 
   front_door:
     name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
@@ -951,8 +973,6 @@ alert:
     skip_first: true
     notifiers:
       - sean_alena
-
-#has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }}
 
 input_number:
   living_room_last_temp:

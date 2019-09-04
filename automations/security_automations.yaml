@@ -550,3 +550,16 @@
     data:
       title: "Activity Notification"
       message: "Activity notification"
+
+- id: popup_on_kiosk_back
+  alias: Popup on Kiosk Back
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.human_back
+    to: 'on'
+  action:
+    - event: browser_command
+      event_data:
+        command: debug

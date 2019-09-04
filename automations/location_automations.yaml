@@ -645,9 +645,9 @@
       conditions:
       - condition: state
         entity_id: device_tracker.seans_iphone_x
-        state: 'Home'
+        state: 'home'
       - condition: template
-        value_template: "{{ (as_timestamp(now())-as_timestamp(states.device_tracker.seans_iphone_x.last_changed)) < 120 }}"
+        value_template: "{{ (as_timestamp(now())-as_timestamp(states.device_tracker.seans_iphone_x.last_changed)) > 120 }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -794,12 +794,12 @@
   condition:
     condition: template
     value_template: >
-      {{ (now().strftime('%M') <= 56 and
-         now().strftime('%M') >= 48) or
-         (now().strftime('%M') <= 16 and
-         now().strftime('%M') >= 08) or
-         (now().strftime('%M') <= 36 and
-         now().strftime('%M') >= 28) }}
+      {{ (now().strftime('%M')|int <= 56 and
+         now().strftime('%M')|int >= 48) or
+         (now().strftime('%M')|int <= 16 and
+         now().strftime('%M')|int >= 08) or
+         (now().strftime('%M')|int <= 36 and
+         now().strftime('%M')|int >= 28) }}
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -816,14 +816,36 @@
   condition:
     condition: template
     value_template: >
-      {{ (now().strftime('%M') <= 60 and
-         now().strftime('%M') >= 52) or
-         (now().strftime('%M') <= 20 and
-         now().strftime('%M') >= 12) or
-         (now().strftime('%M') <= 40 and
-         now().strftime('%M') >= 32) }}
+      {{ (now().strftime('%M')|int <= 60 and
+         now().strftime('%M')|int >= 52) or
+         (now().strftime('%M')|int <= 20 and
+         now().strftime('%M')|int >= 12) or
+         (now().strftime('%M')|int <= 40 and
+         now().strftime('%M')|int >= 32) }}
   action:
     service: notify.ios_seans_iphone_x
     data:
       title: "Ferry Notification"
       message: "It's a good time to grab the ferry from work"
+
+- id: alenas_home
+  alias: 'Alena is Heading Home'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.alena_location
+    to: 'Heading Home'
+    for: 
+      minutes: 1
+  condition:  
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: device_tracker.seans_iphone_x
+        state: 'home'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "Alena's Heading Home"
+      message: "Alena is Heading Home and should arrive in about {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving"

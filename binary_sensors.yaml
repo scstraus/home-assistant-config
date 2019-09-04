@@ -256,3 +256,10 @@
     device_class: motion
 #    availability_topic: "frigate/available"
 
+  - platform: template
+    sensors:
+      basement_is_flooding:
+        friendly_name: "Basement Is Flooding"
+        device_class: moisture
+        value_template: >-
+          {{ is_state('sensor.flood_sensor', '2') }}

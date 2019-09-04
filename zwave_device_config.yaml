@@ -112,3 +112,27 @@ sensor.ecolink_door_window_sensor_access_control:
 binary_sensor.back_door:
   ignored: false
   polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_level_2:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_type_2:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.ecolink_door_window_sensor_sensor:
+  ignored: false
+  polling_intensity: 0
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_burglar:
+  ignored: true
+  polling_intensity: 0
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.basement_flooding:
+  ignored: true
+  polling_intensity: 0
