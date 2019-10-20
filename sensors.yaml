@@ -129,11 +129,11 @@
         power_on
       {% endif %}
 
-  - platform: gtfs
-    name: transport
-    origin: U49Z4
-    destination: U484Z2
-    data: jrdata.zip
+#  - platform: gtfs
+#    name: transport
+#    origin: U49Z4
+#    destination: U484Z2
+#    data: jrdata.zip
 
   - platform: template
     sensors:
@@ -144,15 +144,15 @@
              and states('sensor.dark_sky_temperature')|float > 14 
              and states('sensor.dark_sky_wind_gust')|float < 20
              and (states('sensor.dark_sky_precip_probability_0d')|float < 30
-             or ((states('sensor.dark_sky_precip_intensity_1h')|float < 0.1)
-             and (states('sensor.dark_sky_precip_intensity_2h')|float < 0.1)
-             and (states('sensor.dark_sky_precip_intensity_3h')|float < 0.1)
-             and (states('sensor.dark_sky_precip_intensity_4h')|float < 0.1)
-             and (states('sensor.dark_sky_precip_intensity_5h')|float < 0.1)
-             and (states('sensor.dark_sky_precip_intensity_6h')|float < 0.1)
-             and (states('sensor.dark_sky_precip_intensity_7h')|float < 0.1)
-             and (states('sensor.dark_sky_precip_intensity_8h')|float < 0.1)
-             and (states('sensor.dark_sky_precip_intensity_9h')|float < 0.1))) %}
+             or ((states('sensor.dark_sky_precip_intensity_1h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_2h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_3h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_4h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_5h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_6h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_7h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_8h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_9h')|float < 0.05))) %}
             yes
           {% else %}
             no
@@ -415,6 +415,14 @@
     options:
       mode: transit
 
+  - platform: google_travel_time
+    api_key: !secret google_travel_key
+    origin: device_tracker.sophie
+    destination: zone.home
+    name: Sophie Tram Time to Home
+    options:
+      mode: transit
+
 #  - platform: google_travel_time
 #    api_key: !secret google_travel_key
 #    origin: zone.home
@@ -494,14 +502,28 @@
             At Little Gym
           {% elif is_state('device_tracker.alenas_iphone', 'ParklaneValdejnska') %}
             At Parklane Valdejnska
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp6') %}
+            At CMC in P6
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp4') %}
+            At CMC in P4
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp5') %}
+            At CMC in P5
+          {% elif is_state('device_tracker.alenas_iphone', 'EUCp4') %}
+            At EUC in P4
+          {% elif is_state('device_tracker.alenas_iphone', 'EUCp1') %}
+            At EUC in P1
+          {% elif is_state('device_tracker.alenas_iphone', 'Zlichov') %}
+            At Zlichov
+          {% elif is_state('device_tracker.alenas_iphone', 'Malostranska') %}
+            At Malostranska
+          {% elif states('proximity.alena_home')|float > 120 %}
+            Traveling
           {% elif is_state('sensor.alena_direction_of_travel', 'away_from') %}
             Leaving Home
           {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
             Somewhere
           {% elif is_state('sensor.alena_direction_of_travel', 'towards') %}
             Heading Home
-          {% elif states('proximity.alena_home')|float > 120 %}
-            Traveling
           {% else %}
             Somewhere
           {% endif %}
@@ -530,11 +552,25 @@
             mdi:airplane
           {% elif is_state('device_tracker.alenas_iphone', 'ParklaneValdstejnska') %}
             mdi:school
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp6') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp4') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp5') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.alenas_iphone', 'EUCp4') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.alenas_iphone', 'EUCp1') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.alenas_iphone', 'Zlichov') %}
+            mdi:tram
+          {% elif is_state('device_tracker.alenas_iphone', 'Malostranska') %}
+            mdi:tram
           {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
             mdi:help
           {% elif is_state('sensor.alena_direction_of_travel', 'away_from') %}
             mdi:car
-          {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
+          {% elif is_state('sensor.alena_direction_of_travel', 'towards') %}
             mdi:car
           {% elif states('proximity.alena_home')|float > 120 %}
             mdi:airplane
@@ -574,14 +610,28 @@
             At Airport
           {% elif is_state('device_tracker.sophie', 'ParklaneValdejnska') %}
             At School
+          {% elif is_state('device_tracker.sophie', 'CMCp6') %}
+            At CMC in P6
+          {% elif is_state('device_tracker.sophie', 'CMCp4') %}
+            At CMC in P4
+          {% elif is_state('device_tracker.sophie', 'CMCp5') %}
+            At CMC in P5
+          {% elif is_state('device_tracker.sophie', 'EUCp4') %}
+            At EUC in P4
+          {% elif is_state('device_tracker.sophie', 'EUCp1') %}
+            At EUC in P1
+          {% elif is_state('device_tracker.sophie', 'Zlichov') %}
+            At Zlichov
+          {% elif is_state('device_tracker.sophie', 'Malostranska') %}
+            At Malostranska
+          {% elif states('proximity.sophie_home')|float > 120 %}
+            Traveling
           {% elif is_state('sensor.sophie_direction_of_travel', 'away_from') %}
             Leaving Home
           {% elif is_state('sensor.sophie_direction_of_travel', 'stationary') %}
             Somewhere
           {% elif is_state('sensor.sophie_direction_of_travel', 'towards') %}
             Heading Home
-          {% elif states('proximity.sophie_home')|float > 120 %}
-            Traveling
           {% endif %}
         icon_template: >-
           {% if is_state('device_tracker.sophie', 'home') %}
@@ -610,10 +660,24 @@
             mdi:airplane
           {% elif is_state('device_tracker.sophie', 'ParklaneValdstejnska') %}
             mdi:school
-          {% elif is_state('sensor.sophie_direction_of_travel', 'stationary') %}
-            mdi:help
+          {% elif is_state('device_tracker.sophie', 'CMCp6') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.sophie', 'CMCp4') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.sophie', 'CMCp5') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.sophie', 'EUCp4') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.sophie', 'EUCp1') %}
+            mdi:local_hospital
+          {% elif is_state('device_tracker.sophie', 'Zlichov') %}
+            mdi:tram
+          {% elif is_state('device_tracker.sophie', 'Malostranska') %}
+            mdi:tram
           {% elif states('proximity.sophie_home')|float > 120 %}
             mdi:airplane
+          {% elif is_state('sensor.sophie_direction_of_travel', 'stationary') %}
+            mdi:help
           {% else %}
             mdi:train-car
           {% endif %}
@@ -696,22 +760,37 @@
 #    unit_of_measurement: 'AQI'
 
 
-# 04/01-11/25:Even Weeks on Sunday = Today, Even Weeks on Saturday = Tomorrow. Pickup is Even Weeks Monday Morning
+# 04/01-11/25: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
+
   - platform: template
     sensors:
       bio_odpad_day:
-        friendly_name: "Take Out Bio-Odpad"
+        friendly_name: "Take Bio Odpad Out"
         entity_id: sensor.date
         value_template: >-
-          {% if (now().isocalendar()[1]/2)|int|round(0) == (now().isocalendar()[1]/2)|int  
+          {% if (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
           and now().weekday() in (6,) 
           and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
           and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-04-01" %}
             Today
-          {% elif (now().isocalendar()[1]/2)|int|round(0) == (now().isocalendar()[1]/2)|int  
+          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
           and now().weekday() in (5,) 
           and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
           and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-04-01" %}
+            Tomorrow
+          {% else %}
+            false
+          {% endif %}
+
+  - platform: template
+    sensors:
+      trash_day:
+        friendly_name: "Take Trash Out"
+        entity_id: sensor.date
+        value_template: >-
+          {% if now().weekday() in (2,) %}
+            Today
+          {% elif now().weekday() in (1,) %}
             Tomorrow
           {% else %}
             false
@@ -737,79 +816,79 @@
         friendly_name: "Temperature-Dining Room"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.dining_room', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.dining_room', 'current_temperature')|float }}"
 
       entrance_temperature:
         friendly_name: "Temperature-Entrance"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.entrance', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.entrance', 'current_temperature')|float }}"
 
       garage_temperature:
         friendly_name: "Temperature-Garage"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.garage', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.garage', 'current_temperature')|float }}"
 
       guest_bedroom_temperature:
         friendly_name: "Temperature-Guest Bedroom"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.guest_bedroom', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.guest_bedroom', 'current_temperature')|float }}"
 
       laundry_room_temperature:
         friendly_name: "Temperature-Laundry Room"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.laundry_room', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.laundry_room', 'current_temperature')|float }}"
 
       living_room_temperature:
         friendly_name: "Temperature-Living Room"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.living_room', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.living_room', 'current_temperature')|float }}"
 
       master_bath_temperature:
         friendly_name: "Temperature-Master Bath"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.master_bath', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.master_bath', 'current_temperature')|float }}"
 
       master_bedroom_temperature:
         friendly_name: "Temperature-Master Bedroom"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.master_bedroom', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.master_bedroom', 'current_temperature')|float }}"
 
       master_closet_temperature:
         friendly_name: "Temperature-Master Closet"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.master_closet', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.master_closet', 'current_temperature')|float }}"
 
       office_library_temperature:
         friendly_name: "Temperature-Office/Libary"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.office_library', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.office_library', 'current_temperature')|float }}"
 
       sebastian_s_room_temperature:
         friendly_name: "Temperature-Sebastian's Room"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.sebastian_s_room', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.sebastian_s_room', 'current_temperature')|float }}"
 
       sophie_s_room_temperature:
         friendly_name: "Temperature-Sophie's Room"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.sophie_s_room', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.sophie_s_room', 'current_temperature')|float }}"
 
       straus_house_temperature:
         friendly_name: "Temperature-Straus House"
         device_class: temperature
         unit_of_measurement: C
-        value_template: "{{ state_attr('climate.straus_house', 'current_temperature')|int }}"
+        value_template: "{{ state_attr('climate.straus_house', 'current_temperature')|float }}"
 
   - platform: template
     sensors:
@@ -843,7 +922,7 @@
           {% if is_state('sensor.alena_direction_of_travel', 'away_from') %}Alena is heading away from home. But if she were to turn around and start driving home now, it would take her approximately {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving in a car.
           {% elif is_state('sensor.alena_location', 'Somewhere') %}Alena is somewhere I don't know. She hasn't started heading home yet, but if she were to start driving home now, it would take her approximately {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving in a car.
           {% elif is_state('sensor.alena_direction_of_travel', 'towards') %}Alena is heading towards home, if she's driving, she should be home in about {{ states('sensor.alena_driving_time_to_home') }} minutes.
-          {% elif is_state('device_tracker.alenas_iphone', 'home') %}Alena is at home.
+          {% elif is_state('sensor.alena_location','Home') %}
           {% else %}Alena is at {{ states('sensor.alena_location') }}. She hasn't started heading home yet. But if she were to start driving home now, it would take her approximately {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving in a car.
           {% endif %}
  
@@ -871,13 +950,21 @@
       sophie_eta_description:
         friendly_name: "Sophie ETA description"
         value_template: >-
-          {% if is_state('sensor.sophie_direction_of_travel', 'away_from') %} Sophie is heading away from home. But if she were to turn around and start driving home now, it would take her approximately {{ states('sensor.sophie_driving_time_to_home') }} minutes if she's driving in a car.
-          {% elif is_state('sensor.sophie_location', 'Somewhere') %} Sophie is somewhere I don't know. She hasn't started heading home yet, but if she were to start driving home now, it would take her approximately {{ states('sensor.sophie_driving_time_to_home') }} minutes if she's driving in a car.
-          {% elif is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie is heading towards home, if she's driving, she should be home in about {{ states('sensor.sophie_driving_time_to_home') }} minutes.
-          {% elif is_state('device_tracker.sophie', 'home') %} 
-          {% else %} Sophie is {{ states('sensor.sophie_location') }}. She hasn't started heading home yet. But if she were to start driving home now, it would take her approximately {{ states('sensor.sophie_driving_time_to_home') }} minutes if she's driving in a car.
+          {% if now().weekday() in (1,2,3,4,5,) %}
+            {% if is_state('sensor.sophie_direction_of_travel', 'away_from') %} Sophie is heading away from home. But if she were to turn around and start heading home now, it would take her approximately {{ states('sensor.sophie_tram_time_to_home') }} minutes if she's in a tram.
+            {% elif is_state('sensor.sophie_location', 'Somewhere') %} Sophie is somewhere I don't know. She hasn't started heading home yet, but if she were to start driving home now, it would take her approximately {{ states('sensor.sophie_tram_time_to_home') }} minutes if she's in a tram.
+            {% elif is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie is heading towards home, if she's in a tram, she should be home in about {{ states('sensor.sophie_tram_time_to_home') }} minutes.
+            {% elif is_state('device_tracker.sophie', 'home') %} 
+            {% else %} Sophie is {{ states('sensor.sophie_location') }}. She hasn't started heading home yet. But if she were to start heading home now, it would take her approximately {{ states('sensor.sophie_tram_time_to_home') }} minutes if she's in a tram.
+            {% endif %}
+          {% else %}
+            {% if is_state('sensor.sophie_direction_of_travel', 'away_from') %} Sophie is heading away from home. But if she were to turn around and start driving home now, it would take her approximately {{ states('sensor.sophie_driving_time_to_home') }} minutes if she's driving in a car.
+            {% elif is_state('sensor.sophie_location', 'Somewhere') %} Sophie is somewhere I don't know. She hasn't started heading home yet, but if she were to start driving home now, it would take her approximately {{ states('sensor.sophie_driving_time_to_home') }} minutes if she's driving in a car.
+            {% elif is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie is heading towards home, if she's driving, she should be home in about {{ states('sensor.sophie_driving_time_to_home') }} minutes.
+            {% elif is_state('device_tracker.sophie', 'home') %} 
+            {% else %} Sophie is {{ states('sensor.sophie_location') }}. She hasn't started heading home yet. But if she were to start driving home now, it would take her approximately {{ states('sensor.sophie_driving_time_to_home') }} minutes if she's driving in a car.
+            {% endif %}
           {% endif %}
-
 
   - platform: template
     sensors:
@@ -911,9 +998,16 @@
       sophie_eta:
         friendly_name: "Sophie ETA"
         value_template: >-
-          {% if is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie ETA: {{ states('sensor.sophie_driving_time_to_home') }} minutes by car.
-          {% elif is_state('device_tracker.sophie', 'home') %} Sophie is at home.
-          {% else %} Sophie isn't heading home
+          {% if now().weekday() in (1,2,3,4,5,) %}
+            {% if is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie ETA: {{ states('sensor.sophie_tram_time_to_home') }} minutes by tram.
+            {% elif is_state('device_tracker.sophie', 'home') %} Sophie is at home.
+            {% else %} Sophie isn't heading home
+            {% endif %}
+          {% else %}
+            {% if is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie ETA: {{ states('sensor.sophie_driving_time_to_home') }} minutes by car.
+            {% elif is_state('device_tracker.sophie', 'home') %} Sophie is at home.
+            {% else %} Sophie isn't heading home
+            {% endif %}
           {% endif %}
 
 
@@ -958,15 +1052,15 @@
         value_template: >-
           Sean Route to Work: {{ state_attr('sensor.transport_time_to_work', 'route') }} (ETA: {{ states('sensor.transport_time_to_work') }} minutes)
 
-
-
-
-#          Sean Route to Work: 
-#
-#          
-#          {{  state_attr('sensor.transport_time_to_work', 'route')|replace(';','
-#
-#          ') }}
-#          
-#          
+#          Sean Route to Work:
+#          {{  state_attr('sensor.transport_time_to_work', 'route')|replace(';','  ') }}          
 #          (ETA: {{ states('sensor.transport_time_to_work') }} minutes)
+
+  - platform: template
+    sensors:
+        last_alexa:
+          entity_id:
+            - media_player.sean_s_2nd_fire
+          value_template: >
+            {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
+

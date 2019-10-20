@@ -45,7 +45,10 @@
     data_template:
       entity_id: input_select.living_room_last_preset_mode
       option: "{{ states[trigger.from_state.attributes.preset_mode] }}"
-      
+# ^^^^^^this is getting the from_state, but it's not matching the input select. 
+# it gives this error: Invalid option: <template DomainStates('permanent')> (possible options: none, permanent, temporary)
+
+
 #      option: '{{ trigger.from_state.state }}'
 
 - id: living_room_last_temp

@@ -18,7 +18,7 @@
     - condition: or
       conditions:
       - condition: time
-        after: '22:00:00'
+        after: '23:00:00'
         before: '7:00:00'
       - condition: state
         entity_id: sensor.alarm_state_3_motion_sensors
@@ -61,7 +61,7 @@
     - condition: or
       conditions:
       - condition: time
-        after: '22:00:00'
+        after: '23:00:00'
         before: '7:00:00'
       - condition: state
         entity_id: sensor.alarm_state_3_motion_sensors
@@ -102,7 +102,7 @@
     - condition: or
       conditions:
       - condition: time
-        after: '22:00:00'
+        after: '23:00:00'
         before: '7:00:00'
       - condition: state
         entity_id: sensor.alarm_state_3_motion_sensors
@@ -141,7 +141,7 @@
     - condition: or
       conditions:
       - condition: time
-        after: '22:00:00'
+        after: '23:00:00'
         before: '7:00:00'
       - condition: state
         entity_id: sensor.alarm_state_3_motion_sensors
@@ -551,6 +551,7 @@
       title: "Activity Notification"
       message: "Activity notification"
 
+
 - id: popup_on_kiosk_back
   alias: Popup on Kiosk Back
   hide_entity: true
@@ -560,6 +561,281 @@
     entity_id: binary_sensor.human_back
     to: 'on'
   action:
-    - event: browser_command
-      event_data:
-        command: debug
+    - service: browser_mod.command
+      data:
+        command: more-info
+        entity_id: camera.back
+        deviceID:
+          - c89cdc64-ee70c20f
+    - service: fully_kiosk.screensaver_stop
+      data:
+        entity_id: display.kindle_fire_kitchen
+
+- id: popup_on_kiosk_front
+  alias: Popup on Kiosk Front
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.human_front
+    to: 'on'
+  action:
+    - service: browser_mod.command
+      data:
+        command: more-info
+        entity_id: camera.front
+        deviceID:
+          - c89cdc64-ee70c20f
+    - service: fully_kiosk.screensaver_stop
+      data:
+        entity_id: display.kindle_fire_kitchen
+
+- id: popup_on_kiosk_left
+  alias: Popup on Kiosk Left
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.human_left
+    to: 'on'
+  action:
+    - service: browser_mod.command
+      data:
+        command: more-info
+        entity_id: camera.left
+        deviceID:
+          - c89cdc64-ee70c20f
+    - service: fully_kiosk.screensaver_stop
+      data:
+        entity_id: display.kindle_fire_kitchen
+
+- id: popup_on_kiosk_right
+  alias: Popup on Kiosk Right
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.human_right
+    to: 'on'
+  action:
+    - service: browser_mod.command
+      data:
+        command: more-info
+        entity_id: camera.right
+        deviceID:
+          - c89cdc64-ee70c20f
+    - service: fully_kiosk.screensaver_stop
+      data:
+        entity_id: display.kindle_fire_kitchen
+
+- id: keep_fully_kiosk_screen_on_human
+  alias: Keep Fully Kiosk Screen On
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.human_back
+    to: 'off'
+    for:
+      seconds: 15
+  - platform: state
+    entity_id: binary_sensor.human_front
+    to: 'off'
+    for:
+      seconds: 15
+  - platform: state
+    entity_id: binary_sensor.human_left
+    to: 'off'
+    for:
+      seconds: 15
+  - platform: state
+    entity_id: binary_sensor.human_right
+    to: 'off'
+    for:
+      seconds: 15
+  action:
+    - service: fully_kiosk.screensaver_stop
+      data:
+        entity_id: display.kindle_fire_kitchen
+
+- id: keep_fully_kiosk_screen_on_human
+  alias: Keep Fully Kiosk Screen On
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.human_back
+    to: 'off'
+    for:
+      seconds: 30
+  - platform: state
+    entity_id: binary_sensor.human_front
+    to: 'off'
+    for:
+      seconds: 30
+  - platform: state
+    entity_id: binary_sensor.human_left
+    to: 'off'
+    for:
+      seconds: 30
+  - platform: state
+    entity_id: binary_sensor.human_right
+    to: 'off'
+    for:
+      seconds: 30
+  action:
+    - service: fully_kiosk.screensaver_stop
+      data:
+        entity_id: display.kindle_fire_kitchen
+
+#          - 080081a9-e0bfb147
+
+#- id: popup_on_kiosk_back_2
+#  alias: Popup on Kiosk Back 2
+#  hide_entity: true
+#  initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.human_back
+#    to: 'on'
+#  action:
+#    - service: script.turn_on
+#      data:
+#        entity_id: script.launch_camera_back_popup
+
+
+#    - delay: '00:00:20'
+#    - service: script.turn_on
+#      data:
+#        entity_id: script.close_popup
+
+
+- id: close_popup_on_kiosk_back
+  alias: close_Popup on Kiosk Back
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.human_back
+    to: 'off'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: binary_sensor.human_front
+    to: 'off'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: binary_sensor.human_left
+    to: 'off'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: binary_sensor.human_right
+    to: 'off'
+    for:
+      minutes: 1
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.human_right
+      state: 'off'
+      for:
+        minutes: 1
+    - condition: state
+      entity_id: binary_sensor.human_left
+      state: 'off'
+      for:
+        minutes: 1
+    - condition: state
+      entity_id: binary_sensor.human_front
+      state: 'off'
+      for:
+        minutes: 1
+    - condition: state
+      entity_id: binary_sensor.human_back
+      state: 'off'
+      for:
+        minutes: 1
+  action:
+    - service: browser_mod.command
+      data:
+        command: close-popup
+
+#
+#- id: close_popup_on_kiosk_back
+#  alias: close_Popup on Kiosk Back
+#  hide_entity: true
+#  initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.human_back
+#    to: 'off'
+#    for:
+#      minutes: 1
+#  action:
+#    - service: browser_mod.command
+#      data:
+#        command: close-popup
+#
+#- id: close_popup_on_kiosk_front
+#  alias: close_Popup on Kiosk Front
+#  hide_entity: true
+#  initial_state: 'true'
+#  trigger:
+#  - platform: state
+#    entity_id: binary_sensor.human_front
+#    to: 'off'
+#    for:
+#      minutes: 1
+#  action:
+#    - service: browser_mod.command
+#      data:
+#        command: close-popup
+#
+#- id: close_popup_on_kiosk_left
+#  alias: close_Popup on Kiosk Left
+#  hide_entity: true
+#  initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.human_left
+#    to: 'off'
+#    for:
+#      minutes: 1
+#  action:
+#    - service: browser_mod.command
+#      data:
+#        command: close-popup
+#
+#- id: close_popup_on_kiosk_right
+#  alias: close_Popup on Kiosk Right
+#  hide_entity: true
+#  initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.human_right
+#    to: 'off'
+#    for:
+#      minutes: 1
+#  action:
+#    - service: browser_mod.command
+#      data:
+#        command: close-popup
+
+
+#- id: close_popup_on_kiosk_back_2
+#  alias: close_Popup on Kiosk Back 2
+#  hide_entity: true
+#  initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.human_back
+#    to: 'off'
+#    for:
+#      minutes: 1
+#  action:
+#    - service: script.turn_on
+#      data:
+#        entity_id: script.close_popup

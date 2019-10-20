@@ -379,7 +379,7 @@
     service: input_select.select_option
     data:
       entity_id: input_select.sean_location_dropdown
-      option: Heading To Center
+      option: Heading to Center
       
 - id: to_winefood_1
   alias: 'Heading To WineFood'
@@ -849,3 +849,18 @@
     data:
       title: "Alena's Heading Home"
       message: "Alena is Heading Home and should arrive in about {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving"
+
+
+- id: traveling_2
+  alias: 'Traveling 2'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: proximity.sean_home
+    above: 120
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: Traveling

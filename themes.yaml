@@ -4,6 +4,7 @@ midnight:
   accent-color: '#E45E65'                                                         # Accent color
   dark-primary-color: 'var(--accent-color)'                                       # Hyperlinks                                         
   light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
+  background-color: 'var(--secondary-background-color)' 
 
   # Text colors                                                                  
   primary-text-color: '#FFFFFF'                                                   # Primary text colour, here is referencing dark-primary-color

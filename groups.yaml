@@ -10,8 +10,8 @@
       - media_player.office_airtunes_speaker
       - media_player.library_airtunes_speaker
       - media_player.computer_airtunes_speaker
-      - media_player.sophies_room_airtunes_speaker
-      - media_player.sebastians_room_airtunes_speaker
+      - media_player.sophie_s_room_airtunes_speaker
+      - media_player.sebastian_s_room_airtunes_speaker
       - media_player.gym_airtunes_speaker
 
   Alena_And_Sean:
@@ -25,6 +25,13 @@
     entities:
       - automation.internet_upload_is_limited
       - automation.internet_upload_is_normal
+
+
+  alexa_kitchen_bar_speakers:
+    name: Alexa Kitchen Bar Speakers
+    entities: 
+      - media_player.kitchen_airtunes_speaker
+      - media_player.living_room_airtunes_speaker
 
 #  default_view:
 #    view: yes

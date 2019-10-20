@@ -124,8 +124,8 @@
     radius: 600
 
   - name: LittleGym
-    latitude: 50.07612525345335
-    longitude: 14.402230605483055
+    latitude: 50.07509061087109
+    longitude: 14.402225241065025
     radius: 100
 
   - name: ParklaneValdstejnska
@@ -142,3 +142,37 @@
     latitude: 50.04259188338851
     longitude: 14.40590109328673
     radius: 50
+
+  - name: CMCp6
+    latitude: 50.095582481132
+    longitude: 14.349418242327829
+    radius: 200 
+
+  - name: CMCp4
+    latitude: 50.02836000160167
+    longitude: 14.493390732332614
+    radius: 200
+
+  - name: CMCp5
+    latitude: 50.05602355945356
+    longitude: 14.372034719771705
+    radius: 200
+
+  - name: EUCp4
+    latitude: 50.05726309227848
+    longitude: 14.432614653338305
+    radius: 200
+
+  - name: EUCp1
+    latitude: 50.089155331978745
+    longitude: 14.431200052761255
+    radius: 150
+
+  - name: Zlichov
+    latitude: 50.04618517418162
+    longitude: 14.407724440097809
+    radius: 150
+    
+  - name: Malostranska
+    latitude: 50.09067113114381
+    longitude: 14.410035722090129

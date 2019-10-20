@@ -5,7 +5,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    entity_id: sensor.miele_dishwasher_power
     above: 20
   condition:
     condition: or
@@ -28,7 +28,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    entity_id: sensor.miele_dishwasher_power
     above: 1000
   condition:
     condition: or
@@ -57,7 +57,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    entity_id: sensor.miele_dishwasher_power
     below: 100
     for:
       minutes: 10
@@ -77,7 +77,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    entity_id: sensor.miele_dishwasher_power
     above: 100
   condition:
     condition: state
@@ -95,7 +95,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    entity_id: sensor.miele_dishwasher_power
     below: 25
     for:
       minutes: 10    
@@ -115,7 +115,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    entity_id: sensor.miele_dishwasher_power
     below: 1
     for:
       minutes: 2
@@ -138,7 +138,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    entity_id: sensor.miele_dishwasher_power
     below: 0.01
     for:
       minutes: 5
@@ -163,7 +163,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.neo_coolcam_unknown_type_0200_id_1027_power
+    entity_id: sensor.miele_dishwasher_power
     below: 0.01
     for:
       minutes: 15
@@ -216,7 +216,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.aeotec_zw096_smart_switch_6_power
+    entity_id: sensor.miele_washing_machine_power
     above: 300
   condition:
     condition: state
@@ -234,7 +234,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.aeotec_zw096_smart_switch_6_power
+    entity_id: sensor.miele_washing_machine_power
     above: 2000
   condition:
     condition: or
@@ -257,7 +257,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.aeotec_zw096_smart_switch_6_power
+    entity_id: sensor.miele_washing_machine_power
     below: 1000
     for: 
       minutes: 8
@@ -277,7 +277,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.aeotec_zw096_smart_switch_6_power
+    entity_id: sensor.miele_washing_machine_power
     above: 2000
   condition:
     condition: state
@@ -295,7 +295,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.aeotec_zw096_smart_switch_6_power
+    entity_id: sensor.miele_washing_machine_power
     below: 1000
     for: 
       minutes: 12
@@ -315,7 +315,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.aeotec_zw096_smart_switch_6_power
+    entity_id: sensor.miele_washing_machine_power
     below: 1
     for: 
       minutes: 2

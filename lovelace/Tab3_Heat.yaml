@@ -151,6 +151,10 @@ cards:
       entity: climate.entrance
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
 
   - type: custom:vertical-stack-in-card
@@ -191,6 +195,9 @@ cards:
       entity: climate.dining_room
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
 
 #      - type: entities
 #        entities:
@@ -235,6 +242,10 @@ cards:
       entity: climate.living_room
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
   - type: custom:vertical-stack-in-card
     cards:
@@ -274,6 +285,10 @@ cards:
       entity: climate.master_bedroom
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
 
   - type: custom:vertical-stack-in-card
@@ -313,6 +328,10 @@ cards:
       entity: climate.master_bath
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
   - type: custom:vertical-stack-in-card
     cards:
@@ -351,6 +370,10 @@ cards:
       entity: climate.master_closet
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
 
   - type: custom:vertical-stack-in-card
@@ -391,6 +414,10 @@ cards:
       entity: climate.office_library
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
 
   - type: custom:vertical-stack-in-card
@@ -431,6 +458,10 @@ cards:
       entity: climate.sebastian_s_room
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
 
   - type: custom:vertical-stack-in-card
@@ -471,6 +502,10 @@ cards:
       entity: climate.sophie_s_room
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
 
   - type: custom:vertical-stack-in-card
@@ -511,6 +546,10 @@ cards:
       entity: climate.guest_bedroom
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
 
   - type: custom:vertical-stack-in-card
@@ -551,6 +590,10 @@ cards:
       entity: climate.garage
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
 
   - type: custom:vertical-stack-in-card
@@ -591,6 +634,10 @@ cards:
       entity: climate.laundry_room
       step_size: 0.5
       name: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
 
 #      - type: divider
 #        style:

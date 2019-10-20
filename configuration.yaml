@@ -48,6 +48,8 @@ map:
 
 sun:
 
+python_script:
+
 lovelace:
 
   mode: yaml
@@ -90,6 +92,11 @@ logger:
     homeassistant.components.zwave: warn
     homeassistant.components.openzwave: warn
     homeassistant.components.libopenzwave: warn
+    libopenzwave: warn
+    openzwave: warn
+    zwave: warn
+#    hass_nabucasa: debug
+#    homeassistant.components.cloud: debug
 #    homeassistant.components.nest: debug
 #    homeassistant.components.sensor.nest: debug
 #    sseclient: debug
@@ -107,6 +114,7 @@ history:
     - switch
     - input_boolean
     - automation
+    - script
     entities:
     - sensor.dark_sky_cloud_coverage_0
     - sensor.dark_sky_daily_summary
@@ -300,19 +308,26 @@ history:
     - sensor.dark_sky_wind_speed_8h
     - sensor.dark_sky_wind_speed_9h
     - device_tracker.00_be_3b_15_b2_b2
+    - device_tracker.18_b4_30_20_29_fe
+    - device_tracker.18_b4_30_21_8a_df
+    - device_tracker.18_b4_30_22_0a_b8
+    - device_tracker.18_b4_30_22_4b_88
     - device_tracker.20_64_32_dc_2c_06
     - device_tracker.2c_26_17_43_35_0a
-    - device_tracker.40_3c_fc_05_6a_b9
-    - device_tracker.40_3c_fc_05_7f_39
+    - device_tracker.4c_17_44_4b_91_22
+    - device_tracker.54_c9_df_d6_5a_20
+    - device_tracker.60_c5_47_05_63_c8
     - device_tracker.74_1b_b2_74_73_c2
-    - device_tracker.78_ca_39_45_e6_2f
-    - device_tracker.80_00_0b_a2_e7_34
-    - device_tracker.80_2b_f9_39_05_a3
+    - device_tracker.78_ca_39_45_e6_2b
+    - device_tracker.7c_bb_8a_aa_54_1f
+    - device_tracker.98_fe_94_5e_f9_95
     - device_tracker.a8_66_7f_d2_24_97
     - device_tracker.b0_41_1d_35_b4_ed
     - device_tracker.b4_e6_2a_a5_29_61
+    - device_tracker.b8_2c_a0_11_c7_33
     - device_tracker.c8_3c_85_54_9d_81
     - device_tracker.c8_bc_c8_d2_23_c8
+    - device_tracker.c8_db_26_0a_ad_96
     - device_tracker.d0_e7_82_c6_93_07
     - device_tracker.f4_60_e2_d5_e6_60
     - sensor.fibaro_system_fgd212_dimmer_2_alarm_level
@@ -643,8 +658,8 @@ camera:
 
 google:
              
-  client_id: !secret google_email_client_id
-  client_secret: !secret google_email_secret
+  client_id: !secret google_calendar_client_id
+  client_secret: !secret google_calendar_secret
 
 zwave:
   usb_path: /dev/ttyACM0
@@ -823,15 +838,21 @@ proximity:
     tolerance: 50
     unit_of_measurement: km    
     
-device_tracker:
-  - platform: life360
+#device_tracker:
+#  - platform: life360
+#    username: !secret life360_uname
+#    password: !secret life360_pw
+#    filename: life360.conf
+
+life360:
+  accounts:
     username: !secret life360_uname
-    password: !secret life360_pw
-    interval_seconds: 12
-    filename: life360.conf
-    show_as_state: places, driving, moving
-    max_update_wait:
-      minutes: 30
+    password: !secret life360_pw   
+  interval_seconds: 12
+  show_as_state: [driving, moving]
+  prefix: ''
+  max_update_wait:
+    minutes: 30
 
 variable:
   dpd_variable:
@@ -974,12 +995,39 @@ alert:
     notifiers:
       - sean_alena
 
+  sebastian_window_rain_warning:
+    name: Sebastian's room window is open and it might rain.
+    done_message: Sebastian's room window is closed.
+    entity_id: binary_sensor.sebastians_room_rain_window
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - sean_alena
+
 input_number:
   living_room_last_temp:
     name: Last Temp - Living Room
-    min: 5
-    max: 25
+    min: 5.0
+    max: 25.0
     step: 0.5
 
 shell_command:
   update_avnodehome_data: !secret avnodehome_update_cmd
+
+browser_mod:
+
+display:
+  - platform: fully_kiosk
+    name: Kindle Fire Kitchen
+    host: !secret kindle_kitchen_ip
+    password: !secret kindle_kitchen_pass
+
+remote:
+  - platform: harmony
+    name: harmony
+    host: !secret harmony_ip

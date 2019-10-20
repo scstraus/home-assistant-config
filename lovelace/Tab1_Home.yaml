@@ -170,6 +170,7 @@ cards:
     - variable.dpd_variable
     - variable.gls_variable
     - sensor.bio_odpad_day
+    - sensor.trash_day
   #      - sensor.gls_packages_coming_today
   #      - sensor.cp_packages_coming_today
   #      - sensor.dpd_packages_coming_today
@@ -196,7 +197,6 @@ cards:
     - "Dog Detected"
     - "Open"
     - "Clean"
-    - "Emptying"
     - "Today"
     - "Tomorrow"
     card: 
@@ -236,6 +236,7 @@ cards:
         air_pollution_level: sensor.u_s_air_pollution_level 
         air_quality_index: sensor.u_s_air_quality_index
         main_pollutant: sensor.u_s_main_pollutant
+        hide_title: true
         svg_location: "/local/icons/aqi_icons"
 #          temp: sensor.dark_sky_temperature 
         city: 'Prague'
@@ -361,9 +362,10 @@ cards:
 
         - type: "custom:button-card"
           name: SHUFFLE
-          style:
-          - padding: 12px 0px
-          - font-size: 14px
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
           tap_action: 
             action: call-service
             service: switch.toggle
@@ -377,9 +379,10 @@ cards:
 
         - type: "custom:button-card"
           name: MIX
-          style:
-          - padding: 12px 0px
-          - font-size: 14px
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
           tap_action: 
             action: call-service
             service: media_player.play_media 
@@ -390,9 +393,10 @@ cards:
 
         - type: "custom:button-card"
           name: JAZZ
-          style:
-          - padding: 12px 0px
-          - font-size: 14px
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
           tap_action: 
             action: call-service
             service: media_player.play_media 
@@ -403,9 +407,10 @@ cards:
 
         - type: "custom:button-card"
           name: ROCK
-          style:
-          - padding: 12px 0px
-          - font-size: 14px
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
           tap_action: 
             action: call-service
             service: media_player.play_media 
@@ -416,9 +421,10 @@ cards:
 
         - type: "custom:button-card"
           name: POP
-          style:
-          - padding: 12px 0px
-          - font-size: 14px
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
           tap_action: 
             action: call-service
             service: media_player.play_media 
@@ -434,9 +440,10 @@ cards:
 
         - type: "custom:button-card"
           name: CLASSICAL
-          style:
-          - padding: 12px 0px
-          - font-size: 14px
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
           tap_action: 
             action: call-service
             service: media_player.play_media 
@@ -447,9 +454,10 @@ cards:
 
         - type: "custom:button-card"
           name: BLACK
-          style:
-          - padding: 12px 0px
-          - font-size: 14px
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
           tap_action: 
             action: call-service
             service: media_player.play_media 
@@ -460,9 +468,10 @@ cards:
 
         - type: "custom:button-card"
           name: ELECTRO
-          style:
-          - padding: 12px 0px
-          - font-size: 14px
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
           tap_action: 
             action: call-service
             service: media_player.play_media 
@@ -473,15 +482,75 @@ cards:
 
         - type: "custom:button-card"
           name: KIDS
-          style:
-          - padding: 12px 0px
-          - font-size: 14px
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
           tap_action: 
             action: call-service
             service: media_player.play_media 
             service_data:
               entity_id: "media_player.itunes"
               media_content_id: "kids-english"
+              media_content_type: "playlist"
+
+      - type: horizontal-stack
+        cards:
+
+        - type: "custom:button-card"
+          name: KULTURA <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "radio-kultura-ru"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: CLASSICAL <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "radio-swiss-classic"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: JAZZ24 <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "jazz24"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: AMBIENT <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "ambient-sleeping-pill"
               media_content_type: "playlist"
 
   #    - type: entities
@@ -498,12 +567,12 @@ cards:
   #      - switch.electronica 
   #      - switch.kids
 
-
+#  - type: custom:vertical-stack-in-card
+#    cards:
   - type: entities
     title: First Floor
     show_header_toggle: false
     entities:
-
     - entity: media_player.living_room_airtunes_speaker
       type: custom:mini-media-player
       name: Living Rm
@@ -542,6 +611,90 @@ cards:
     - climate.entrance
     - climate.living_room
     - climate.dining_room
+
+#    - type: markdown
+#      content: |
+#        ### Entrance   
+#    - type: 'custom:card-modder'
+#      style:
+#        --st-font-size-xl: 16px
+#        --st-font-size-m: 16px
+#        --st-font-size-title: 16px
+#        --st-font-size-sensors: 16px
+#        --st-spacing: 0px
+#        padding: 0px 0px 0px !important
+#        padding-top: 0px !important
+#        padding-bottom: 0px !important
+#        border-radius: 0px !important
+#      card:
+#        type: custom:simple-thermostat
+#        entity: climate.entrance
+#        step_size: 0.5
+#        name: false
+#        hide: 
+#          state: true
+#        sensors:
+#          - attribute: preset_mode
+#            name: Mode
+#        modes:
+#          'off':
+#            include: false
+#          heat:
+#            include: false
+#    - type: 'custom:card-modder'
+#      style:
+#        padding-top: 0px !important
+#        padding-bottom: 0px !important
+#        border-radius: 0px !important
+#        padding: 0px 0px 0px !important
+#      card:
+#        type: markdown
+#        content: |
+#          ### Living Room
+#    - type: 'custom:card-modder'
+#      style:
+#        padding-top: 0px !important
+#        padding-bottom: 0px !important
+#        border-radius: 0px !important
+#        padding: 0px 0px 0px !important
+#      card:
+#        type: entities
+#        title: false
+#        show_header_toggle: false
+#        entities:
+#        - entity: media_player.living_room_airtunes_speaker
+#          type: custom:mini-media-player
+#          name: Speaker
+#          hide:
+#            controls: true
+#            mute: true
+#          group: true
+#    - type: 'custom:card-modder'
+#      style:
+#        padding-top: 0px !important
+#        padding-bottom: 0px !important
+#        border-radius: 0px !important
+#        padding: 0px 0px 0px !important
+#        --st-font-size-xl: 16px
+#        --st-font-size-m: 16px
+#        --st-font-size-title: 16px
+#        --st-font-size-sensors: 16px
+#        --st-spacing: 0px
+#      card:
+#        type: custom:simple-thermostat
+#        entity: climate.living_room
+#        step_size: 0.5
+#        name: false
+#        hide: 
+#          state: true
+#        sensors:
+#          - attribute: preset_mode
+#            name: Mode
+#        modes:
+#          'off':
+#            include: false
+#          heat:
+#            include: false
 
   - type: entities
     title: Second Floor
@@ -582,10 +735,14 @@ cards:
         controls: true
         mute: true
       group: true
-    - climate.master_bedroom
-    - climate.master_bath
-    - climate.master_closet
-    - climate.office_library
+    - entity: climate.master_bedroom
+      name: Bedroom
+    - entity: climate.master_bath
+      name: Bath
+    - entity: climate.master_closet
+      name: Closet
+    - entity: climate.office_library
+      name: Office
 
   - type: entities
     title: Third Floor

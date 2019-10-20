@@ -91,29 +91,29 @@ media_player.sophies_room_airtunes_speaker:
 climate.straus_house:
   friendly_name: Home Temperature Avg.
 climate.basement:
-  friendly_name: Basement Temperature
+  friendly_name: Basement
 climate.dining_room:
-  friendly_name: Play Room Temperature
+  friendly_name: Play Room
 climate.entrance:
-  friendly_name: Entrance Hall Temperature
+  friendly_name: Entrance Hall
 climate.garage:
-  friendly_name: Garage Temperature
+  friendly_name: Garage
 climate.guest_bedroom:
-  friendly_name: Gym Temperature
+  friendly_name: Gym
 climate.living_room:
-  friendly_name: Living Room Temperature
+  friendly_name: Living Room
 climate.master_bath:
-  friendly_name: Master Bath Temperature
+  friendly_name: Master Bath
 climate.master_bedroom:
-  friendly_name: Master Bedroom Temperature
+  friendly_name: Master Bedroom
 climate.master_closet:
-  friendly_name: Master Closet Temperature
+  friendly_name: Master Closet
 climate.office_library:
-  friendly_name: Office & Library Temperature
+  friendly_name: Office & Library
 climate.sebastian_s_room:
-  friendly_name: Sebastian's Room Temperature
+  friendly_name: Sebastian's Room
 climate.sophie_s_room:
-  friendly_name: Sophie's Room Temperature
+  friendly_name: Sophie's Room
 sensor.seans_iphone_x_battery_level:
   friendly_name: Sean's Phone Battery Level
   hidden: true
@@ -135,9 +135,9 @@ sensor.dark_sky_minutely_summary:
 weather.weather_forecast:
   friendly_name: Current Weather
 sensor.dark_sky_hourly_summary:
-  friendly_name: Today
+  friendly_name: Day
 sensor.dark_sky_daily_summary:
-  friendly_name: This Week
+  friendly_name: Week
 sensor.cp_packages_coming_today:
   friendly_name: Posta
   icon: mdi:truck-delivery
@@ -352,6 +352,8 @@ binary_sensor.back_door_sensor:
   device_class: door
 sensor.bio_odpad_day:
   icon: mdi:recycle
+sensor.trash_day:
+  icon: mdi:trash-can-outline
 binary_sensor.basement_flooding:
   device_class: moisture
 sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_level:

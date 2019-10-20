@@ -57,6 +57,8 @@ resources:
     type: js
   - url: /customcards/github/thomasloven/browser-commander.js?track=true
     type: js
+  - url: /customcards/github/thomasloven/slider-entity-row.js?track=true
+    type: module
   - url: /local/secondaryinfo-entity-row.js
     type: module
   - url: /local/markdown-mod.js
@@ -89,7 +91,19 @@ cch:
         options: clock
         clock_format: 24
     - conditions:
-        user: Alena, Sophie
+        user: Alena
+      config:
+        hide_tabs: 1
+        disable_sidebar: true
+        default_tab: 0
+        hide_help: true
+        hide_config: true
+        hide_unused: true
+        voice: hide
+        menu: hide
+        notifications: hide  
+    - conditions:
+        user: Sophie
       config:
         hide_tabs: 1
         disable_sidebar: true

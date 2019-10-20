@@ -7,25 +7,35 @@ icon: mdi:music
 background: var(--background-image)
 cards:
 
-
   - type: vertical-stack
     cards:
 
-#      - entity: media_player.itunes
-#        type: custom:mini-media-player
-#        group: true
+    - type: custom:vertical-stack-in-card
+      cards:
 
-    - type: media-control
-      entity: media_player.itunes   
+  #      - entity: media_player.itunes
+  #        type: custom:mini-media-player
+  #        group: true
 
-#      - entity: media_player.itunes
-#        type: custom:mini-media-player
-##        name: Living Rm
-#        hide:
-#          controls: true
-#          mute: true
-#        hide_info: true
-#        hide_power: true
+      - type: media-control
+        entity: media_player.itunes 
+      - type: entities
+        entities:
+#        - type: section
+#          label: Master Volume
+        - type: custom:slider-entity-row
+          entity: media_player.itunes
+          full_row: true
+
+  #      - entity: media_player.itunes
+  #        type: custom:mini-media-player
+  ##        name: Living Rm
+  #        hide:
+  #          controls: true
+  #          mute: true
+  #        hide_info: true
+  #        hide_power: true
+
 
 
     - type: horizontal-stack
@@ -34,9 +44,10 @@ cards:
 
       - type: "custom:button-card"
         name: SHUFFLE
-        style:
-        - padding: 12px 0px
-        - font-size: 14px
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
         tap_action: 
           action: call-service
           service: switch.toggle
@@ -50,9 +61,10 @@ cards:
 
       - type: "custom:button-card"
         name: MIX
-        style:
-        - padding: 12px 0px
-        - font-size: 14px
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
         tap_action: 
           action: call-service
           service: media_player.play_media 
@@ -63,9 +75,10 @@ cards:
 
       - type: "custom:button-card"
         name: JAZZ
-        style:
-        - padding: 12px 0px
-        - font-size: 14px
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
         tap_action: 
           action: call-service
           service: media_player.play_media 
@@ -76,9 +89,10 @@ cards:
 
       - type: "custom:button-card"
         name: ROCK
-        style:
-        - padding: 12px 0px
-        - font-size: 14px
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
         tap_action: 
           action: call-service
           service: media_player.play_media 
@@ -89,9 +103,10 @@ cards:
 
       - type: "custom:button-card"
         name: POP
-        style:
-        - padding: 12px 0px
-        - font-size: 14px
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
         tap_action: 
           action: call-service
           service: media_player.play_media 
@@ -107,9 +122,10 @@ cards:
 
       - type: "custom:button-card"
         name: CLASSICAL
-        style:
-        - padding: 12px 0px
-        - font-size: 14px
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
         tap_action: 
           action: call-service
           service: media_player.play_media 
@@ -120,9 +136,10 @@ cards:
 
       - type: "custom:button-card"
         name: BLACK
-        style:
-        - padding: 12px 0px
-        - font-size: 14px
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
         tap_action: 
           action: call-service
           service: media_player.play_media 
@@ -133,9 +150,10 @@ cards:
 
       - type: "custom:button-card"
         name: ELECTRO
-        style:
-        - padding: 12px 0px
-        - font-size: 14px
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
         tap_action: 
           action: call-service
           service: media_player.play_media 
@@ -146,15 +164,75 @@ cards:
 
       - type: "custom:button-card"
         name: KIDS
-        style:
-        - padding: 12px 0px
-        - font-size: 14px
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
         tap_action: 
           action: call-service
           service: media_player.play_media 
           service_data:
             entity_id: "media_player.itunes"
             media_content_id: "kids-english"
+            media_content_type: "playlist"
+
+    - type: horizontal-stack
+      cards:
+
+      - type: "custom:button-card"
+        name: KULTURA <br> RADIO
+        styles:
+          card:
+            - padding: 4px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "radio-kultura-ru"
+            media_content_type: "playlist"
+
+      - type: "custom:button-card"
+        name: CLASSICAL <br> RADIO
+        styles:
+          card:
+            - padding: 4px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "radio-swiss-classic"
+            media_content_type: "playlist"
+
+      - type: "custom:button-card"
+        name: JAZZ24 <br> RADIO
+        styles:
+          card:
+            - padding: 4px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "jazz24"
+            media_content_type: "playlist"
+
+      - type: "custom:button-card"
+        name: AMBIENT <br> RADIO
+        styles:
+          card:
+            - padding: 4px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "ambient-sleeping-pill"
             media_content_type: "playlist"
 
   - type: entities
