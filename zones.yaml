@@ -9,9 +9,9 @@
     radius: 100
 
   - name: Andel
-    latitude: 50.07113918629207
-    longitude: 14.401753942111782
-    radius: 250
+    latitude: 50.07181637695498
+    longitude: 14.40109297278665
+    radius: 300
     
   - name: Lazarska
     latitude: 50.0792552
@@ -126,7 +126,7 @@
   - name: LittleGym
     latitude: 50.07509061087109
     longitude: 14.402225241065025
-    radius: 100
+    radius: 90
 
   - name: ParklaneValdstejnska
     latitude: 50.09169285033227

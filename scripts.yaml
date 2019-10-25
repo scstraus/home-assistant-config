@@ -689,7 +689,7 @@
             type: tts
           message: >-
             {{ states.sensor.sophie_eta.state }}. 
-            {{ states.sensor.sopie_eta_description.state }}
+            {{ states.sensor.sophie_eta_description.state }}
 
   is_today_a_bike_day:
     sequence:

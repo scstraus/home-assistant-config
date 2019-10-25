@@ -204,20 +204,21 @@
 ################### MIELE WASHING MACHINE ####################
 
 #      - Empty
-#      - Starting Up
+#      - Wash Cycle
+#      - First Rest
 #      - First Spin Cycle
-#      - First Wash Cycle
+#      - Second Rest
 #      - Second Spin Cycle
 #      - Clean
 
-- id: miele_washing_starting_up_when_power
-  alias: 'Set Miele washing machine active when power detected'
+- id: set_miele_washing_wash_cycle
+  alias: 'Set Miele washing machine wash cycle'
   hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
     entity_id: sensor.miele_washing_machine_power
-    above: 300
+    above: 2000
   condition:
     condition: state
     entity_id: input_select.miele_washing_machine_status
@@ -226,7 +227,27 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.miele_washing_machine_status
-        option: Starting Up
+        option: Wash Cycle
+
+- id: miele_washing_first_rest
+  alias: 'Set Miele washing machine first rest'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.miele_washing_machine_power
+    below: 1000
+    for: 
+      minutes: 10
+  condition:
+    condition: state
+    entity_id: input_select.miele_washing_machine_status
+    state: Wash Cycle
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.miele_washing_machine_status
+        option: First Rest
 
 - id: set_miele_washing_first_spin_cycle
   alias: 'Set Miele washing machine first spin cycle'
@@ -237,22 +258,17 @@
     entity_id: sensor.miele_washing_machine_power
     above: 2000
   condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: input_select.miele_washing_machine_status
-        state: Starting Up
-      - condition: state
-        entity_id: input_select.miele_washing_machine_status
-        state: Empty
+    condition: state
+    entity_id: input_select.miele_washing_machine_status
+    state: First Rest
   action:
     - service: input_select.select_option
       data:
         entity_id: input_select.miele_washing_machine_status
         option: First Spin Cycle
-
-- id: miele_washing_first_wash_cycle
-  alias: 'Set Miele washing machine first wash cycle'
+        
+- id: set_miele_washing_second_rest
+  alias: 'Set Miele washing machine second rest'
   hide_entity: true
   initial_state: 'true'
   trigger:
@@ -260,7 +276,7 @@
     entity_id: sensor.miele_washing_machine_power
     below: 1000
     for: 
-      minutes: 8
+      minutes: 12
   condition:
     condition: state
     entity_id: input_select.miele_washing_machine_status
@@ -269,7 +285,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.miele_washing_machine_status
-        option: First Wash Cycle
+        option: Second Rest
 
 - id: set_miele_washing_second_spin_cycle
   alias: 'Set Miele washing machine second spin cycle'
@@ -282,27 +298,58 @@
   condition:
     condition: state
     entity_id: input_select.miele_washing_machine_status
-    state: Second Wash Cycle
+    state: Second Rest
   action:
     - service: input_select.select_option
       data:
         entity_id: input_select.miele_washing_machine_status
         option: Second Spin Cycle
-        
-- id: miele_washing_clean
-  alias: 'Set Miele washing machine first wash cycle'
+
+- id: set_miele_washing_finishing
+  alias: 'Set Miele washing machine finishing'
   hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
     entity_id: sensor.miele_washing_machine_power
-    below: 1000
-    for: 
-      minutes: 12
+    above: 525
+    below: 700
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.miele_washing_machine_status
+        state: Wash Cycle
+      - condition: state
+        entity_id: input_select.miele_washing_machine_status
+        state: First Rest
+      - condition: state
+        entity_id: input_select.miele_washing_machine_status
+        state: First Spin Cycle
+      - condition: state
+        entity_id: input_select.miele_washing_machine_status
+        state: Second Rest
+      - condition: state
+        entity_id: input_select.miele_washing_machine_status
+        state: Second Spin Cycle
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.miele_washing_machine_status
+        option: Finishing
+
+- id: miele_washing_clean
+  alias: 'Set Miele washing machine clean'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.miele_washing_machine_power
+    below: 3
   condition:
     condition: state
     entity_id: input_select.miele_washing_machine_status
-    state: Second Spin Cycle
+    state: Finishing
   action:
     - service: input_select.select_option
       data:
@@ -328,3 +375,144 @@
       data:
         entity_id: input_select.miele_washing_machine_status
         option: Empty
+
+- id: notify_miele_clean
+  alias: Miele clean laundry
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.miele_washing_machine_status
+    to: 'Clean'
+  action:
+    service: notify.ios_alenas_iphone
+    data:
+      title: "Miele Washing Machine Update"
+      message: "Laundry is Done"
+
+
+################### LG WASHING MACHINE ####################
+
+#      - Empty
+#      - Starting Up
+#      - Wash Cycle
+#      - Spin Cycle
+#      - Clean
+
+- id: set_lg_washing_starting_up
+  alias: 'Set lg washing machine starting up'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.lg_washing_machine_power
+    above: 75
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.lg_washing_machine_status
+        state: Empty
+      - condition: state
+        entity_id: input_select.lg_washing_machine_status
+        state: Clean
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.lg_washing_machine_status
+        option: Starting Up
+
+- id: lg_washing_wash_cycle
+  alias: 'Set lg washing machine washing'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.lg_washing_machine_power
+    above: 1000
+  condition:
+    condition: state
+    entity_id: input_select.lg_washing_machine_status
+    state: Starting Up
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.lg_washing_machine_status
+        option: Wash Cycle
+
+- id: lg_washing_washing
+  alias: 'Set lg washing machine spin cycle'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.lg_washing_machine_power
+    below: 1000
+  condition:
+    condition: state
+    entity_id: input_select.lg_washing_machine_status
+    state: Wash Cycle
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.lg_washing_machine_status
+        option: Spin Cycle
+
+- id: set_lg_washing_clean
+  alias: 'Set lg washing machine clean'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.lg_washing_machine_power
+    below: 1
+    for: 
+      minutes: 3
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.lg_washing_machine_status
+        state: Wash Cycle
+      - condition: state
+        entity_id: input_select.lg_washing_machine_status
+        state: Spin Cycle
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.lg_washing_machine_status
+        option: Clean
+
+- id: lg_washing_empty
+  alias: 'Set lg washing machine empty'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.lg_washing_machine_power
+    below: 0.01
+    for: 
+      minutes: 5
+  condition:
+    condition: state
+    entity_id: input_select.lg_washing_machine_status
+    state: Clean
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.lg_washing_machine_status
+        option: Empty
+
+- id: notify_lg_clean
+  alias: LG clean laundry
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_select.lg_washing_machine_status
+    to: 'Clean'
+  action:
+    service: notify.ios_alenas_iphone
+    data:
+      title: "LG Washing Machine Update"
+      message: "Laundry is Done"

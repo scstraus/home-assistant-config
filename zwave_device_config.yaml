@@ -136,3 +136,9 @@ sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_sourcenodeid:
 binary_sensor.basement_flooding:
   ignored: true
   polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_level_3:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_type_3:
+  ignored: true
+  polling_intensity: 0

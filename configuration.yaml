@@ -806,12 +806,25 @@ input_select:
     name: Miele Washing Machine Status
     options:
       - Empty
-      - Starting Up
+      - Wash Cycle
+      - First Rest
       - First Spin Cycle
-      - First Wash Cycle
+      - Second Rest
       - Second Spin Cycle
+      - Finishing
       - Clean
     initial: Empty
+
+  lg_washing_machine_status:
+    name: LG Washing Machine Status
+    options:
+      - Empty
+      - Starting Up
+      - Wash Cycle
+      - Spin Cycle
+      - Clean
+    initial: Empty
+
 
 proximity:
   all_home: 

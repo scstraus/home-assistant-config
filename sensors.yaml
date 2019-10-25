@@ -469,8 +469,10 @@
             mdi:human-handsup
           {% elif is_state('input_select.sean_location_dropdown', 'Traveling') %}
             mdi:airplane
-          {% elif is_state('input_select.sean_location_dropdown', 'ParklaneValdstejnska') %}
+          {% elif is_state('input_select.sean_location_dropdown', 'At Parklane Valdejnska') %}
             mdi:school
+          {% elif is_state('input_select.sean_location_dropdown', 'At Little Gym') %}
+            mdi:human-handsup
           {% else %}
             mdi:train-car
           {% endif %}

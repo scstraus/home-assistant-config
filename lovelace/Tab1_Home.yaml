@@ -127,6 +127,7 @@ cards:
     - sensor.status_smart_sdd
     - zwave.sebastian_room_left_window
     - zwave.basement_flood_sensor
+    - zwave.sophies_room_ceiling_window
     state_filter:
     - "Warning"
     - "grey"
@@ -144,6 +145,10 @@ cards:
     card:
       title: "Low Battery"
       show_header_toggle: false
+    state_filter:
+    - "Replace"
+    - "Low"
+    - "Very Low"
     entities:
     - sensor.living_room_nest_protect_battery_health
     - sensor.master_bedroom_nest_protect_battery_health
@@ -157,10 +162,11 @@ cards:
     - sensor.guest_bedroom_window_1_battery
     - sensor.basement_flood_sensor_battery
     - sensor.sebastian_left_window_battery
-    state_filter:
-    - "Replace"
-    - "Low"
-    - "Very Low"
+    - entity: sensor.sophies_room_ceiling_window_sensor_battery_level
+      state_filter:
+        - operator: "<"
+          value: 10
+
     show_empty: false
 
   - type: entity-filter
@@ -188,6 +194,8 @@ cards:
     - input_select.dishwasher_status
     - binary_sensor.popp_unknown_type_0004_id_0014_sensor
     - binary_sensor.sebastians_room_left_window
+    - input_select.miele_washing_machine_status
+    - input_select.lg_washing_machine_status
     state_filter:
     - "on"
     - "Delivery"
