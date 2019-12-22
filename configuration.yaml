@@ -59,8 +59,10 @@ frontend:
   themes: !include themes.yaml
   javascript_version: auto
 
+mobile_app:
+
 #uncomment for iOS device add
-#discovery:
+discovery:
 
 http:
 
@@ -82,6 +84,9 @@ updater:
 #
 #  - platform: google
 
+hacs:
+  token: !secret hacs_token
+
 logger:
 
   default: debug
@@ -95,6 +100,8 @@ logger:
     libopenzwave: warn
     openzwave: warn
     zwave: warn
+    homeassistant.components.evohome_rf: debug
+    evohome: debug
 #    hass_nabucasa: debug
 #    homeassistant.components.cloud: debug
 #    homeassistant.components.nest: debug
@@ -355,6 +362,7 @@ recorder:
     - media_player
     - switch
     - input_boolean
+    - fan
     entities:
     - sensor.dark_sky_cloud_coverage_0
     - sensor.dark_sky_daily_summary
@@ -696,7 +704,11 @@ mqtt:
   username: !secret mqqt_uname
   password: !secret mqqt_pass
 
-#input_boolean:
+input_boolean:
+  fire_in_fireplace:
+    name: Turn Down The Heat For Fire in the Fireplace
+    initial: off
+    icon: mdi:fire
 #  mix_playlist:
 #    name: Mix Playlist
 #    initial: off
@@ -830,7 +842,7 @@ proximity:
   all_home: 
     devices:
       - device_tracker.seans_iphone_x
-      - device_tracker.alenas_iphone
+      - device_tracker.alena_s_iphone
       - device_tracker.sophie
       - device_tracker.sophies_iphhshshshs
     tolerance: 50
@@ -842,7 +854,7 @@ proximity:
     unit_of_measurement: km
   alena_home: 
     devices:
-      - device_tracker.alenas_iphone
+      - device_tracker.alena_s_iphone
     tolerance: 50
     unit_of_measurement: km
   sophie_home: 
@@ -910,7 +922,20 @@ variable:
 
   living_room_last_temp_variable:
     restore: true
-    
+
+  last_motion:
+    value: 'Not set'
+    restore: true
+    attributes:
+      icon: mdi:format-list-bulleted-square
+      name: 'Last Motion'
+
+  last_door_window:
+    value: 'Not set'
+    restore: true
+    attributes:
+      icon: mdi:format-list-bulleted-square
+      name: 'Last Door/Window'
 cast:
   media_player:
     - host: !secret chromecast_ip
@@ -979,9 +1004,9 @@ alarm_control_panel:
 
 alert:
   garage_door:
-    name: Garage has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.garage_door_zone_14.last_updated)) | int //60 }} minutes
+    name: Garage has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.ecolink_garage_door.last_updated)) | int //60 }} minutes
     done_message: Garage is closed
-    entity_id: binary_sensor.garage_door_zone_14
+    entity_id: binary_sensor.ecolink_garage_door
     state: 'on'
     repeat: 
       - 10
@@ -992,6 +1017,7 @@ alert:
     skip_first: true
     notifiers:
       - sean_alena
+#    entity_id: binary_sensor.garage_door_zone_14
 
   front_door:
     name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
@@ -1012,6 +1038,20 @@ alert:
     name: Sebastian's room window is open and it might rain.
     done_message: Sebastian's room window is closed.
     entity_id: binary_sensor.sebastians_room_rain_window
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - sean_alena
+
+  sophies_window_rain_warning:
+    name: Sophie's room window is open and it might rain.
+    done_message: Sophie's room window is closed.
+    entity_id: binary_sensor.sophies_room_ceiling_window
     state: 'on'
     repeat: 
       - 10
@@ -1044,3 +1084,27 @@ remote:
   - platform: harmony
     name: harmony
     host: !secret harmony_ip
+
+rest_command:
+  record_human_front: 
+    url: !secret human_record_front_url
+  record_human_back: 
+    url: !secret human_record_back_url
+  record_human_left: 
+    url: !secret human_record_left_url
+  record_human_right: 
+    url: !secret human_record_right_url
+
+fan:
+  - platform: xiaomi_miio
+    name: sebastians_room_air_purifier
+    host: !secret xiaomi_air_purifier_sebastians_room_ip
+    token: !secret xiaomi_air_purifier_sebastians_room_token
+  - platform: xiaomi_miio
+    name: sophies_room_air_purifier
+    host: !secret xiaomi_air_purifier_sophies_room_ip
+    token: !secret xiaomi_air_purifier_sophies_room_token
+
+evohome_rf:
+  serial_port: /dev/ttyUSB0
+  packet_log: /share/packets.log

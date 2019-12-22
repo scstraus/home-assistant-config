@@ -665,7 +665,7 @@
 #        preset_mode: 'permanent'
 
 - id: living_room_cold_weather_heat_up
-  alias: 'Turn Living Room Heat Down For Warm Weather'
+  alias: 'Turn Living Room Heat Up For Cold Weather'
   hide_entity: true
   initial_state: 'true'
   trigger:
@@ -684,6 +684,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.living_room
+        preset_mode: 'none'
         
 #      - condition: template
 #        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0d < 5 }}'
@@ -1077,3 +1078,21 @@
 #      data:
 #        entity_id: climate.laundry_room
 #        preset_mode: 'permanent'
+
+- id: sophie_room_heat_up_if_home
+  alias: "Turn up the heat in sophie's room if she's home"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '7:50:00'
+  condition:    
+    condition: state
+    entity_id: device_tracker.alena_s_iphone
+    state: 'home'
+  action:
+    service: climate.set_temperature
+    data:
+      entity_id: climate.sophie_s_room
+      temperature: 23
+  

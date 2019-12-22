@@ -139,8 +139,8 @@
     radius: 50
   
   - name: NearFerryToWork
-    latitude: 50.04259188338851
-    longitude: 14.40590109328673
+    latitude: 50.04243660973981
+    longitude: 14.406651554122906
     radius: 50
 
   - name: CMCp6

@@ -573,6 +573,47 @@
           media_content_id: 'ambient-sleeping-pill'
           media_content_type: 'playlist'
 
+  play_europa2_radio:
+    sequence:
+      - service: homeassistant.turn_off
+        data_template: 
+          entity_id: >- 
+            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+              group.all_speakers
+            {% else %}
+            {% endif %}
+      - service: homeassistant.turn_on
+        data_template: 
+          entity_id: >-
+            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+              group.alexa_kitchen_bar_speakers
+            {% else %}
+            {% endif %}
+      - service: homeassistant.turn_off
+        data_template: 
+          entity_id: >- 
+            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+              media_player.computer_airtunes_speaker
+            {% else %}
+            {% endif %}
+      - service: media_player.volume_set
+        data_template: 
+          entity_id: >- 
+            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+              group.alexa_kitchen_bar_speakers
+            {% else %}
+            {% endif %}
+          volume_level: 0.5
+      - service: media_player.volume_set
+        data: 
+          entity_id: media_player.itunes
+          volume_level: 0.5
+      - service: media_player.play_media
+        data:
+          entity_id: 'media_player.itunes'
+          media_content_id: 'europa2'
+          media_content_type: 'playlist'
+
   stop_music:
     sequence:
       - service: media_player.media_pause

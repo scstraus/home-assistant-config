@@ -128,6 +128,8 @@ cards:
     - zwave.sebastian_room_left_window
     - zwave.basement_flood_sensor
     - zwave.sophies_room_ceiling_window
+    - zwave.ecolink_closet_left_window
+    - zwave.ecolink_garage_door_sensor
     state_filter:
     - "Warning"
     - "grey"
@@ -149,6 +151,8 @@ cards:
     - "Replace"
     - "Low"
     - "Very Low"
+    - operator: "<"
+      value: 10
     entities:
     - sensor.living_room_nest_protect_battery_health
     - sensor.master_bedroom_nest_protect_battery_health
@@ -162,11 +166,9 @@ cards:
     - sensor.guest_bedroom_window_1_battery
     - sensor.basement_flood_sensor_battery
     - sensor.sebastian_left_window_battery
-    - entity: sensor.sophies_room_ceiling_window_sensor_battery_level
-      state_filter:
-        - operator: "<"
-          value: 10
-
+    - sensor.sophies_room_ceiling_window_sensor_battery_level
+    - sensor.ecolink_closet_left_window_battery_level
+    - sensor.ecolink_garage_door_battery_level
     show_empty: false
 
   - type: entity-filter
@@ -196,6 +198,9 @@ cards:
     - binary_sensor.sebastians_room_left_window
     - input_select.miele_washing_machine_status
     - input_select.lg_washing_machine_status
+    - binary_sensor.sophies_room_ceiling_window
+    - binary_sensor.ecolink_closet_left_window
+    - binary_sensor.ecolink_garage_door
     state_filter:
     - "on"
     - "Delivery"
@@ -548,7 +553,7 @@ cards:
               media_content_type: "playlist"
 
         - type: "custom:button-card"
-          name: AMBIENT <br> RADIO
+          name: EUROPA2 <br> RADIO
           styles:
             card:
               - padding: 4px 0px
@@ -558,7 +563,7 @@ cards:
             service: media_player.play_media 
             service_data:
               entity_id: "media_player.itunes"
-              media_content_id: "ambient-sleeping-pill"
+              media_content_id: "europa2"
               media_content_type: "playlist"
 
   #    - type: entities
@@ -756,6 +761,14 @@ cards:
     title: Third Floor
     show_header_toggle: false
     entities:
+    - entity: fan.sophies_room_air_purifier
+      name: "Sophie's Room Air Purifier"
+      type: "custom:secondaryinfo-entity-row"
+      secondary_info: "Air Quality: [[  sensor.sophies_room_aqi.state ]]"
+    - entity: fan.sebastians_room_air_purifier
+      name: "Seb's Room Air Purifier"
+      type: "custom:secondaryinfo-entity-row"
+      secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi.state ]]"
     - entity: media_player.sophie_s_room_airtunes_speaker
       type: custom:mini-media-player
       name: "Sophie's Room Speakers"

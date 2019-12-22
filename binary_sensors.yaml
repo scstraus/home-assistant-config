@@ -272,3 +272,13 @@
         value_template: >-
           {{ is_state('sensor.dark_sky_icon_0d', 'rain') and 
           is_state('binary_sensor.sebastians_room_left_window','on')}}
+
+
+  - platform: template
+    sensors:
+      sophies_room_rain_window:
+        friendly_name: "Sophie's Window is Open and it Might Rain"
+        device_class: moisture
+        value_template: >-
+          {{ is_state('sensor.dark_sky_icon_0d', 'rain') and 
+          is_state('binary_sensor.sophies_room_ceiling_window','on')}}

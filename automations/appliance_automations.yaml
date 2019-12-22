@@ -516,3 +516,99 @@
     data:
       title: "LG Washing Machine Update"
       message: "Laundry is Done"
+      
+      
+      
+##################### AIR PURIFIERS #########################
+
+- id: turn_on_sophies_air_purifier_if_air_is_bad
+  alias: "Turn on Sophie's Air Purifier if the air is bad"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.u_s_air_quality_index
+    above: 70
+  condition:
+    condition: time
+    after: '20:00:00'
+    before: '7:00:00'
+  action:
+    service: fan.turn_on
+    data:
+      entity_id: fan.sophies_room_air_purifier
+
+
+- id: turn_on_sophies_air_purifier_if_air_is_bad_2
+  alias: "Turn on Sophie's Air Purifier if the air is bad 2"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '20:00:00'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.u_s_air_quality_index
+    above: 70
+  action:
+    service: fan.turn_off
+    data:
+      entity_id: fan.sophies_room_air_purifier
+
+- id: turn_off_sophies_air_purifier_in_the_morning
+  alias: "Turn off Sophie's Air Purifier in the morning"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '7:00:00'
+  action:
+    service: fan.turn_off
+    data:
+      entity_id: fan.sophies_room_air_purifier
+
+- id: turn_on_sebastians_air_purifier_if_air_is_bad
+  alias: "Turn on Sebastian's Air Purifier if the air is bad"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.u_s_air_quality_index
+    above: 70
+  condition:
+    condition: time
+    after: '20:00:00'
+    before: '7:00:00'
+  action:
+    service: fan.turn_on
+    data:
+      entity_id: fan.sebastians_room_air_purifier
+
+
+- id: turn_on_sebastians_air_purifier_if_air_is_bad_2
+  alias: "Turn on Sebastian's Air Purifier if the air is bad 2"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '20:00:00'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.u_s_air_quality_index
+    above: 70
+  action:
+    service: fan.turn_off
+    data:
+      entity_id: fan.sebastians_room_air_purifier
+
+- id: turn_off_sebastians_air_purifier_in_the_morning
+  alias: "Turn off Sebastian's Air Purifier in the morning"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '7:00:00'
+  action:
+    service: fan.turn_off
+    data:
+      entity_id: fan.sebastians_room_air_purifier

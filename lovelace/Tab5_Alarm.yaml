@@ -26,10 +26,13 @@ cards:
       title: "Open Other Windows/Doors"
       show_header_toggle: false
     entities:
-    - binary_sensor.closet_window_1
+#    - binary_sensor.closet_window_1
     - binary_sensor.back_door
     - binary_sensor.back_door_2
     - binary_sensor.sebastians_room_left_window
+    - binary_sensor.sophies_room_ceiling_window
+    - binary_sensor.ecolink_closet_left_window
+    - binary_sensor.ecolink_garage_door
     state_filter:
     - "on"
     show_empty: false
@@ -86,6 +89,109 @@ cards:
 #        entities:
 #        - binary_sensor.alarm_connection
 
+  - type: custom:home-feed-card
+    title: Last Door And Window Activity
+    id_filter: ^nothing.*
+    max_item_count: 10
+    entities:
+      - entity: garage_door_zone_14
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.front_door_zone_1
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.laundry_room_window_zone_13
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.windows_1st_floor_zone_2
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.back_door
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.guest_bedroom_window_1
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.sebastians_room_left_window
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.sophies_room_ceiling_window
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.ecolink_garage_door
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.ecolink_closet_left_window
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+
+  - type: custom:home-feed-card
+    title: Last Motion
+    id_filter: ^nothing.*
+    max_item_count: 10
+    entities:
+      - entity: binary_sensor.play_room_zone_3
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.living_room_zone_4
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.master_bedroom_zone_5
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.library_zone_6
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.master_closet_zone_8
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.sophies_room_zone_10
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.garage_zone_12
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.glass_break_sensor_zone_11
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+
+
   - type: history-graph
     title: 'Door/Window Open History'
     hours_to_show: 8
@@ -95,10 +201,13 @@ cards:
     - binary_sensor.front_door_zone_1
     - binary_sensor.laundry_room_window_zone_13
     - binary_sensor.windows_1st_floor_zone_2
-    - binary_sensor.closet_window_1
+#    - binary_sensor.closet_window_1
     - binary_sensor.back_door
     - binary_sensor.guest_bedroom_window_1
     - binary_sensor.sebastians_room_left_window
+    - binary_sensor.sophies_room_ceiling_window
+    - binary_sensor.ecolink_closet_left_window
+    - binary_sensor.ecolink_garage_door
 
   - type: history-graph
     title: 'Motion Detection History'

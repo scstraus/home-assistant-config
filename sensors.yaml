@@ -245,15 +245,15 @@
       alenas_phone_battery:
         friendly_name: "Alena's Phone Battery"
         value_template: >-
-          {% if is_state('sensor.alena_s_iphone_battery_state', 'Charging') %}
+          {% if is_state('sensor.alena_battery_state', 'Charging') %}
             Charging
-          {% elif states('sensor.alena_s_iphone_battery_level')|float < 15 %}
+          {% elif states('sensor.alena_battery_level')|float < 15 %}
             Very Low
-          {% elif states('sensor.alena_s_iphone_battery_level')|float < 25 %}
+          {% elif states('sensor.alena_battery_level')|float < 25 %}
             Low
-          {% elif states('sensor.alena_s_iphone_battery_level')|float < 40 %}
+          {% elif states('sensor.alena_battery_level')|float < 40 %}
             Needs Charging
-          {% elif states('sensor.alena_s_iphone_battery_level')|float < 70 %}
+          {% elif states('sensor.alena_battery_level')|float < 70 %}
             Good
           {% else %}
             Charged
@@ -369,34 +369,34 @@
       seans_phone_battery:
         friendly_name: "Sean's Phone Battery"
         value_template: >-
-          {% if is_state('sensor.sean_s_iphone_x_battery_state', 'Charging') %}
+          {% if is_state('sensor.sean_battery_state', 'Charging') %}
             Charging
-          {% elif states('sensor.sean_s_iphone_x_battery_level')|float < 15 %}
+          {% elif states('sensor.sean_battery_level')|float < 15 %}
             Very Low
-          {% elif states('sensor.sean_s_iphone_x_battery_level')|float < 25 %}
+          {% elif states('sensor.sean_battery_level')|float < 25 %}
             Low
-          {% elif states('sensor.sean_s_iphone_x_battery_level')|float < 40 %}
+          {% elif states('sensor.sean_battery_level')|float < 40 %}
             Needs Charging
-          {% elif states('sensor.sean_s_iphone_x_battery_level')|float < 70 %}
+          {% elif states('sensor.sean_battery_level')|float < 70 %}
             Good
           {% else %}
             Charged
           {% endif %}
 
-  - platform: waze_travel_time
-    origin: !secret home_address
-    destination: !secret work_address
-    region: 'EU'
-    name: Driving Time to Work
+#  - platform: waze_travel_time
+#    origin: !secret home_address
+#    destination: !secret work_address
+#    region: 'EU'
+#    name: Driving Time to Work
  
   - platform: waze_travel_time
-    origin: device_tracker.seans_iphone_x
+    origin: device_tracker.sean_s_iphone_x
     destination: zone.home
     region: 'EU'
     name: Sean Driving Time to Home
 
   - platform: waze_travel_time
-    origin: device_tracker.alenas_iphone
+    origin: device_tracker.alena_s_iphone
     destination: zone.home
     region: 'EU'
     name: Alena Driving Time to Home
@@ -409,7 +409,7 @@
  
   - platform: google_travel_time
     api_key: !secret google_travel_key
-    origin: device_tracker.seans_iphone_x
+    origin: device_tracker.sean_s_iphone_x
     destination: zone.home
     name: Sean Tram Time to Home
     options:
@@ -482,41 +482,41 @@
       alena_location:
         friendly_name: "Mama Is:"
         value_template: >-          
-          {% if is_state('device_tracker.alenas_iphone', 'home') %}
+          {% if is_state('device_tracker.alena_s_iphone', 'home') %}
             Home
-          {% elif is_state('device_tracker.alenas_iphone', 'Andel') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Andel') %}
             At Andel
-          {% elif is_state('device_tracker.alenas_iphone', 'WineFood') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'WineFood') %}
             At WineFood
-          {% elif is_state('device_tracker.alenas_iphone', 'Hornbach') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Hornbach') %}
             At Hornbach
-          {% elif is_state('device_tracker.alenas_iphone', 'Ikea') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Ikea') %}
             At Ikea
-          {% elif is_state('device_tracker.alenas_iphone', 'Billa') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Billa') %}
             At Billa
-          {% elif is_state('device_tracker.alenas_iphone', 'BioStore') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'BioStore') %}
             At Bio Store
-          {% elif is_state('device_tracker.alenas_iphone', 'Posta') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Posta') %}
             At Posta
-          {% elif is_state('device_tracker.alenas_iphone', 'Yoga') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Yoga') %}
             At Yoga
-          {% elif is_state('device_tracker.alenas_iphone', 'LittleGym') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'LittleGym') %}
             At Little Gym
-          {% elif is_state('device_tracker.alenas_iphone', 'ParklaneValdejnska') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'ParklaneValdejnska') %}
             At Parklane Valdejnska
-          {% elif is_state('device_tracker.alenas_iphone', 'CMCp6') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp6') %}
             At CMC in P6
-          {% elif is_state('device_tracker.alenas_iphone', 'CMCp4') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp4') %}
             At CMC in P4
-          {% elif is_state('device_tracker.alenas_iphone', 'CMCp5') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp5') %}
             At CMC in P5
-          {% elif is_state('device_tracker.alenas_iphone', 'EUCp4') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp4') %}
             At EUC in P4
-          {% elif is_state('device_tracker.alenas_iphone', 'EUCp1') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp1') %}
             At EUC in P1
-          {% elif is_state('device_tracker.alenas_iphone', 'Zlichov') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Zlichov') %}
             At Zlichov
-          {% elif is_state('device_tracker.alenas_iphone', 'Malostranska') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Malostranska') %}
             At Malostranska
           {% elif states('proximity.alena_home')|float > 120 %}
             Traveling
@@ -530,43 +530,43 @@
             Somewhere
           {% endif %}
         icon_template: >-
-          {% if is_state('device_tracker.alenas_iphone', 'home') %}
+          {% if is_state('device_tracker.alena_s_iphone', 'home') %}
             mdi:home
-          {% elif is_state('device_tracker.alenas_iphone', 'Andel') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Andel') %}
             mdi:cart
-          {% elif is_state('device_tracker.alenas_iphone', 'WineFood') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'WineFood') %}
             mdi:cart
-          {% elif is_state('device_tracker.alenas_iphone', 'Hornbach') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Hornbach') %}
             mdi:cart
-          {% elif is_state('device_tracker.alenas_iphone', 'Ikea') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Ikea') %}
             mdi:cart
-          {% elif is_state('device_tracker.alenas_iphone', 'Billa') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Billa') %}
             mdi:cart
-          {% elif is_state('device_tracker.alenas_iphone', 'BioStore') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'BioStore') %}
             mdi:cart
-          {% elif is_state('device_tracker.alenas_iphone', 'Posta') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Posta') %}
             mdi:email
-          {% elif is_state('device_tracker.alenas_iphone', 'Yoga') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Yoga') %}
             mdi:human-handsup
-          {% elif is_state('device_tracker.alenas_iphone', 'LittleGym') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'LittleGym') %}
             mdi:human-handsup
-          {% elif is_state('device_tracker.alenas_iphone', 'Traveling') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Traveling') %}
             mdi:airplane
-          {% elif is_state('device_tracker.alenas_iphone', 'ParklaneValdstejnska') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'ParklaneValdstejnska') %}
             mdi:school
-          {% elif is_state('device_tracker.alenas_iphone', 'CMCp6') %}
-            mdi:local_hospital
-          {% elif is_state('device_tracker.alenas_iphone', 'CMCp4') %}
-            mdi:local_hospital
-          {% elif is_state('device_tracker.alenas_iphone', 'CMCp5') %}
-            mdi:local_hospital
-          {% elif is_state('device_tracker.alenas_iphone', 'EUCp4') %}
-            mdi:local_hospital
-          {% elif is_state('device_tracker.alenas_iphone', 'EUCp1') %}
-            mdi:local_hospital
-          {% elif is_state('device_tracker.alenas_iphone', 'Zlichov') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp6') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp4') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp5') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp4') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp1') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'Zlichov') %}
             mdi:tram
-          {% elif is_state('device_tracker.alenas_iphone', 'Malostranska') %}
+          {% elif is_state('device_tracker.alena_s_iphone', 'Malostranska') %}
             mdi:tram
           {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
             mdi:help
@@ -610,7 +610,7 @@
             At Little Gym
           {% elif is_state('device_tracker.sophie', 'Airport') %}
             At Airport
-          {% elif is_state('device_tracker.sophie', 'ParklaneValdejnska') %}
+          {% elif is_state('device_tracker.sophie', 'ParklaneValdstejnska') %}
             At School
           {% elif is_state('device_tracker.sophie', 'CMCp6') %}
             At CMC in P6
@@ -663,15 +663,15 @@
           {% elif is_state('device_tracker.sophie', 'ParklaneValdstejnska') %}
             mdi:school
           {% elif is_state('device_tracker.sophie', 'CMCp6') %}
-            mdi:local_hospital
+            mdi:stethoscope
           {% elif is_state('device_tracker.sophie', 'CMCp4') %}
-            mdi:local_hospital
+            mdi:stethoscope
           {% elif is_state('device_tracker.sophie', 'CMCp5') %}
-            mdi:local_hospital
+            mdi:stethoscope
           {% elif is_state('device_tracker.sophie', 'EUCp4') %}
-            mdi:local_hospital
+            mdi:stethoscope
           {% elif is_state('device_tracker.sophie', 'EUCp1') %}
-            mdi:local_hospital
+            mdi:stethoscope
           {% elif is_state('device_tracker.sophie', 'Zlichov') %}
             mdi:tram
           {% elif is_state('device_tracker.sophie', 'Malostranska') %}
@@ -762,7 +762,8 @@
 #    unit_of_measurement: 'AQI'
 
 
-# 04/01-11/25: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
+# 04/01/19-11/25/19: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
+# 12/04/19-03/25/20: Pickup is Odd Weeks Wednesday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
 
   - platform: template
     sensors:
@@ -772,13 +773,23 @@
         value_template: >-
           {% if (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
           and now().weekday() in (6,) 
-          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
+          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-30" 
           and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-04-01" %}
             Today
           {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
           and now().weekday() in (5,) 
-          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-25" 
+          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-30" 
           and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-04-01" %}
+            Tomorrow
+          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+          and now().weekday() in (1,) 
+          and now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
+          and now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01" %}
+            Today
+          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+          and now().weekday() in (0,) 
+          and now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
+          and now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01" %}
             Tomorrow
           {% else %}
             false
@@ -933,7 +944,7 @@
       sean_eta_description:
         friendly_name: "Sean ETA description"
         value_template: >-
-          {% if now().weekday() in (1,2,3,4,5,) %}
+          {% if now().weekday() in (0,1,2,3,4,) %}
             {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}Sean is {{ states('sensor.sean_location') }} . If he's coming by tram, it should take approximately {{ states('sensor.sean_tram_time_to_home') }} minutes to arrive.
             {% elif states('sensor.sean_location') in ['Left Home','Heading to Work','Almost at Work','Heading to Center','Heading to Andel','Heading to Hornbach','Heading to WineFood','Heading to P6','Driving','Traveling'] %} Sean is {{ states('sensor.sean_location') }} . He's not heading towards home, but if he were to turn around now and start coming home, it would take approximately {{ states('sensor.sean_tram_time_to_home') }} minutes for him to arrive.
             {% elif is_state('sensor.sean_location', 'Home') %} 
@@ -943,7 +954,7 @@
             {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}Sean is {{ states('sensor.sean_location') }} . If he's coming by car, it should take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
             {% elif states('sensor.sean_location') in ['Left Home','Heading to Work','Almost at Work','Heading to Center','Heading to Andel','Heading to Hornbach','Heading to WineFood','Heading to P6','Driving','Traveling'] %} Sean is {{ states('sensor.sean_location') }} . He's not heading towards home, but if he were to turn around now and start coming home by car, it would take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
             {% elif is_state('sensor.sean_location', 'Home') %} 
-            {% else %}Sean is {{ states('sensor.sean_location') }}. He hasn't started heading home yet. But if he were to start driving home now, it would take him approximately {{ states('sensor.sean_driving_time_to_home') }} minutes tp arrive if he were coming by car.
+            {% else %}Sean is {{ states('sensor.sean_location') }}. He hasn't started heading home yet. But if he were to start driving home now, it would take him approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive if he were coming by car.
             {% endif %}
           {% endif %}
 
@@ -1066,3 +1077,44 @@
           value_template: >
             {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
 
+  - platform: template
+    sensors:
+      sebastians_room_aqi:
+        friendly_name: "Sebastian's Room Air Quality"
+        value_template: >-
+          {% if state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 15.401 %}
+            {{(((state_attr('fan.sebastians_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }} (Good)
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 40.401 %}
+            {{(((51+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }} (Moderate)
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 65.401 %}
+            {{(((101+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-40.5)|float * 1.96787148594)|float)*1)|round|int }} (Unh. Sens. Groups)
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 150.401 %}
+            {{(((151+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-65.5)|float * 1.73265306122)|float)*1)|round|int }} (Unhealthy)
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 250.401 %}
+            {{(((201+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-150.5)|float * 1.00909090909)|float)*1)|round|int }} (Very Unhealthy)
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 500.401 %}
+            {{(((301+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-250.5)|float * 1.25577889447)|float)*1)|round|int }} (Hazardous)
+          {% else %}
+            Off the Charts
+          {% endif %} 
+
+  - platform: template
+    sensors:
+      sophies_room_aqi:
+        friendly_name: "Sophie's Room Air Quality"
+        value_template: >-
+          {% if state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 15.401 %}
+            {{(((state_attr('fan.sophies_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }} (Good)
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 40.401 %}
+            {{(((51+(state_attr('fan.sophies_room_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }} (Moderate)
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 65.401 %}
+            {{(((101+(state_attr('fan.sophies_room_air_purifier', 'aqi')-40.5)|float * 1.96787148594)|float)*1)|round|int }} (Unh. Sens. Groups)
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 150.401 %}
+            {{(((151+(state_attr('fan.sophies_room_air_purifier', 'aqi')-65.5)|float * 1.73265306122)|float)*1)|round|int }} (Unhealthy)
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 250.401 %}
+            {{(((201+(state_attr('fan.sophies_room_air_purifier', 'aqi')-150.5)|float * 1.00909090909)|float)*1)|round|int }} (Very Unhealthy)
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 500.401 %}
+            {{(((301+(state_attr('fan.sophies_room_air_purifier', 'aqi')-250.5)|float * 1.25577889447)|float)*1)|round|int }} (Hazardous)
+          {% else %}
+            Off the Charts
+          {% endif %} 

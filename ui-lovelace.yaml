@@ -65,6 +65,8 @@ resources:
     type: module
   - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
     type: module
+  - url: /local/custom-lovelace/home-feed-card/lovelace-home-feed-card.js?v=0.0.0
+    type: js
 
 #popup_cards:
 #  sensor.dining_room_temperature:

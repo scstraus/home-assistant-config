@@ -4,12 +4,12 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
   action:
     service: input_select.select_option
     entity_id: input_select.sean_last_zone_dropdown
     data_template:
-      option: '{{ states.device_tracker.seans_iphone_x.state }}'
+      option: '{{ states.device_tracker.sean_s_iphone_x.state }}'
 
 - id: zone_to_dropdown_home
   alias: 'Zone to Dropdown - home'
@@ -17,7 +17,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     from: 'home'
   action:
     service: input_select.select_option
@@ -31,7 +31,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'home'
   action:
     service: input_select.select_option
@@ -45,7 +45,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     from: 'home'
     to: 'not_home'
   action:
@@ -89,7 +89,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'Work'
   action:
     service: input_select.select_option
@@ -103,7 +103,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'not_home'
   condition:
     - condition: and
@@ -447,7 +447,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'Andel'
     for:
       minutes: 3
@@ -472,7 +472,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'Andel'
     for:
       minutes: 15
@@ -500,7 +500,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'WineFood'
     for:
       minutes: 3
@@ -521,7 +521,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'HornbachP5'
   action:
     service: input_select.select_option
@@ -535,7 +535,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'HornbachP6'
   action:
     service: input_select.select_option
@@ -549,7 +549,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'Billa'
     for:
       minutes: 3
@@ -565,7 +565,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
   condition:
     - condition: and
       conditions:
@@ -590,7 +590,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'IkeaZlicin'
     for:
       minutes: 3
@@ -606,7 +606,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'Posta'
   action:
     service: input_select.select_option
@@ -620,12 +620,12 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.alenas_iphone
+    entity_id: device_tracker.alena_s_iphone
     from: 'Yoga'
     to: 'not_home'
   condition:
   - condition: template
-    value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
+    value_template: "{{ not is_state('device_tracker.sean_s_iphone_x', 'Traveling') }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -638,16 +638,16 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.alenas_iphone
+    entity_id: device_tracker.alena_s_iphone
     to: 'home'
   condition:  
     - condition: and
       conditions:
       - condition: state
-        entity_id: device_tracker.seans_iphone_x
+        entity_id: device_tracker.sean_s_iphone_x
         state: 'home'
       - condition: template
-        value_template: "{{ (as_timestamp(now())-as_timestamp(states.device_tracker.seans_iphone_x.last_changed)) > 120 }}"
+        value_template: "{{ (as_timestamp(now())-as_timestamp(states.device_tracker.sean_s_iphone_x.last_changed)) > 120 }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
@@ -660,7 +660,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'Airport'
     for:
       minutes: 10
@@ -695,7 +695,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'LittleGym'
     for:
       minutes: 3
@@ -730,7 +730,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'ParklaneValdejnska'
     for:
       minutes: 3
@@ -765,7 +765,7 @@
 #  initial_state: 'true'
 #  trigger:
 #    platform: state
-#    entity_id: device_tracker.seans_iphone_x
+#    entity_id: device_tracker.sean_s_iphone_x
 #    to: 'Traveling'
 #  action:
 #    - service: automation.turn_off
@@ -777,7 +777,7 @@
 #  initial_state: 'true'
 #  trigger:
 #    platform: state
-#    entity_id: device_tracker.seans_iphone_x
+#    entity_id: device_tracker.sean_s_iphone_x
 #    from: 'Traveling'
 #  action:
 #    - service: automation.turn_on
@@ -789,7 +789,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'NearFerryToWork'
   condition:
     condition: template
@@ -811,7 +811,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'NearFerryFromWork'
   condition:
     condition: template
@@ -838,12 +838,10 @@
     to: 'Heading Home'
     for: 
       minutes: 1
-  condition:  
-    - condition: and
-      conditions:
-      - condition: state
-        entity_id: device_tracker.seans_iphone_x
-        state: 'home'
+  condition:    
+    condition: state
+    entity_id: device_tracker.sean_s_iphone_x
+    state: 'home'
   action:
     service: notify.ios_seans_iphone_x
     data:

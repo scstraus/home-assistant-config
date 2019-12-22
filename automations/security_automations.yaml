@@ -36,7 +36,7 @@
       data:
         push:
           category: camera
-        entity_id: camera.front
+        entity_id: camera.front_last_person
 
 #      - condition: template
 #        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
@@ -79,7 +79,7 @@
       data:
         push:
           category: camera
-        entity_id: camera.back
+        entity_id: camera.back_last_person
 
 
 
@@ -120,7 +120,7 @@
       data:
         push:
           category: camera
-        entity_id: camera.left
+        entity_id: camera.left_last_person
 
 - id: person_on_right
   alias: Person On Right
@@ -159,7 +159,7 @@
       data:
         push:
           category: camera
-        entity_id: camera.right
+        entity_id: camera.right_last_person
 
 #- id: person_in_front_hassbian
 #  alias: Person In Front
@@ -174,7 +174,7 @@
 #      after: '21:00:00'
 #      before: '7:00:00'
 #    - condition: template
-#      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+#      value_template: "{{ states.device_tracker.sean_s_iphone_x.state != 'home' }}"
 #  action:
 #    service: notify.ios_seans_iphone_x
 #    data:
@@ -198,7 +198,7 @@
 #      after: '21:00:00'
 #      before: '7:00:00'
 #    - condition: template
-#      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+#      value_template: "{{ states.device_tracker.sean_s_iphone_x.state != 'home' }}"
 #  action:
 #    service: notify.ios_seans_iphone_x
 #    data:
@@ -222,7 +222,7 @@
 #      after: '21:00:00'
 #      before: '7:00:00'
 #    - condition: template
-#      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+#      value_template: "{{ states.device_tracker.sean_s_iphone_x.state != 'home' }}"
 #  action:
 #    service: notify.ios_seans_iphone_x
 #    data:
@@ -246,7 +246,7 @@
 #      after: '21:00:00'
 #      before: '7:00:00'
 #    - condition: template
-#      value_template: "{{ states.device_tracker.seans_iphone_x.state != 'home' }}"
+#      value_template: "{{ states.device_tracker.sean_s_iphone_x.state != 'home' }}"
 #  action:
 #    service: notify.ios_seans_iphone_x
 #    data:
@@ -265,7 +265,7 @@
 #    to: 'Car Detected'
 #  condition:
 #    condition: state
-#    entity_id: 'device_tracker.seans_iphone_x'
+#    entity_id: 'device_tracker.sean_s_iphone_x'
 #    state: 'home'
 #  action:
 #    service: notify.ios_seans_iphone_x
@@ -284,7 +284,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.dark_sky_wind_gust
-    above: 10
+    above: 7
   condition:
     condition: time
     after: '21:00:00'
@@ -294,8 +294,9 @@
     data:
       entity_id: switch.fibaro_system_fgs223_double_relay_switch
 
+
 - id: turn_off_front_security_light_if_its_windy
-  alias: Turn Off Front Security Light If It's Windy'
+  alias: "Turn Off Front Security Light If It's Windy"
   hide_entity: true
   initial_state: 'true'
   trigger:
@@ -304,7 +305,7 @@
   condition:
     condition: numeric_state
     entity_id: sensor.dark_sky_wind_gust
-    above: 10
+    above: 7
   action:
     service: switch.turn_off
     data:
@@ -397,7 +398,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.alenas_iphone
+    entity_id: device_tracker.alena_s_iphone
     to: 'home'
   condition:
     condition: state
@@ -415,7 +416,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_x
+    entity_id: device_tracker.sean_s_iphone_x
     to: 'home'
   condition:
     condition: state
@@ -549,8 +550,7 @@
     service: notify.ios_seans_iphone_x
     data:
       title: "Activity Notification"
-      message: "Activity notification"
-
+      message: "Activity Notification"
 
 - id: popup_on_kiosk_back
   alias: Popup on Kiosk Back
@@ -566,7 +566,7 @@
         command: more-info
         entity_id: camera.back
         deviceID:
-          - c89cdc64-ee70c20f
+          - !secret kindle_kitchen_deviceid
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
@@ -585,7 +585,7 @@
         command: more-info
         entity_id: camera.front
         deviceID:
-          - c89cdc64-ee70c20f
+          - !secret kindle_kitchen_deviceid
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
@@ -604,7 +604,7 @@
         command: more-info
         entity_id: camera.left
         deviceID:
-          - c89cdc64-ee70c20f
+          - !secret kindle_kitchen_deviceid
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
@@ -623,7 +623,7 @@
         command: more-info
         entity_id: camera.right
         deviceID:
-          - c89cdc64-ee70c20f
+          - !secret kindle_kitchen_deviceid
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
@@ -687,28 +687,6 @@
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
-
-#          - 080081a9-e0bfb147
-
-#- id: popup_on_kiosk_back_2
-#  alias: Popup on Kiosk Back 2
-#  hide_entity: true
-#  initial_state: 'true'
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_back
-#    to: 'on'
-#  action:
-#    - service: script.turn_on
-#      data:
-#        entity_id: script.launch_camera_back_popup
-
-
-#    - delay: '00:00:20'
-#    - service: script.turn_on
-#      data:
-#        entity_id: script.close_popup
-
 
 - id: close_popup_on_kiosk_back
   alias: close_Popup on Kiosk Back
@@ -763,79 +741,112 @@
       data:
         command: close-popup
 
-#
-#- id: close_popup_on_kiosk_back
-#  alias: close_Popup on Kiosk Back
-#  hide_entity: true
-#  initial_state: 'true'
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_back
-#    to: 'off'
-#    for:
-#      minutes: 1
-#  action:
-#    - service: browser_mod.command
-#      data:
-#        command: close-popup
-#
-#- id: close_popup_on_kiosk_front
-#  alias: close_Popup on Kiosk Front
-#  hide_entity: true
-#  initial_state: 'true'
-#  trigger:
-#  - platform: state
-#    entity_id: binary_sensor.human_front
-#    to: 'off'
-#    for:
-#      minutes: 1
-#  action:
-#    - service: browser_mod.command
-#      data:
-#        command: close-popup
-#
-#- id: close_popup_on_kiosk_left
-#  alias: close_Popup on Kiosk Left
-#  hide_entity: true
-#  initial_state: 'true'
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_left
-#    to: 'off'
-#    for:
-#      minutes: 1
-#  action:
-#    - service: browser_mod.command
-#      data:
-#        command: close-popup
-#
-#- id: close_popup_on_kiosk_right
-#  alias: close_Popup on Kiosk Right
-#  hide_entity: true
-#  initial_state: 'true'
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_right
-#    to: 'off'
-#    for:
-#      minutes: 1
-#  action:
-#    - service: browser_mod.command
-#      data:
-#        command: close-popup
+
+- alias: 'Update Last Motion'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.comp_rm_motion_template
+      to: 'on'
+    - platform: state
+      entity_id:
+      - binary_sensor.play_room_zone_3
+      - binary_sensor.living_room_zone_4
+      - binary_sensor.master_bedroom_zone_5
+      - binary_sensor.library_zone_6
+      - binary_sensor.master_closet_zone_8
+      - binary_sensor.sophies_room_zone_10
+      - binary_sensor.garage_zone_12
+      - binary_sensor.glass_break_sensor_zone_11
+      to: 'Detected'
+  action:
+    service: variable.set_variable
+    data:
+      variable: last_motion
+      attributes_template: >
+        {
+          "history_1": "{{ variable.state }}",
+          "history_2": "{{ variable.attributes.history_1 }}",
+          "history_3": "{{ variable.attributes.history_2 }}",
+          "history_4": "{{ variable.attributes.history_3 }}",
+          "history_5": "{{ variable.attributes.history_4 }}",
+          "history_6": "{{ variable.attributes.history_5 }}",
+          "history_7": "{{ variable.attributes.history_6 }}",
+          "history_8": "{{ variable.attributes.history_7 }}",
+          "history_9": "{{ variable.attributes.history_8 }}",
+          "history_10": "{{ variable.attributes.history_9 }}"
+          }
 
 
-#- id: close_popup_on_kiosk_back_2
-#  alias: close_Popup on Kiosk Back 2
-#  hide_entity: true
-#  initial_state: 'true'
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_back
-#    to: 'off'
-#    for:
-#      minutes: 1
-#  action:
-#    - service: script.turn_on
-#      data:
-#        entity_id: script.close_popup
+- alias: 'Update Last Door/Window'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.comp_rm_motion_template
+      to: 'on'
+    - platform: state
+      entity_id:
+      - binary_sensor.play_room_zone_3
+      - binary_sensor.living_room_zone_4
+      - binary_sensor.master_bedroom_zone_5
+      - binary_sensor.library_zone_6
+      - binary_sensor.master_closet_zone_8
+      - binary_sensor.sophies_room_zone_10
+      - binary_sensor.garage_zone_12
+      - binary_sensor.glass_break_sensor_zone_11
+      to: 'Detected'
+  action:
+    service: variable.set_variable
+    data:
+      variable: last_door_window
+      attributes_template: >
+        {
+          "history_1": "{{ variable.state }}",
+          "history_2": "{{ variable.attributes.history_1 }}",
+          "history_3": "{{ variable.attributes.history_2 }}",
+          "history_4": "{{ variable.attributes.history_3 }}",
+          "history_5": "{{ variable.attributes.history_4 }}",
+          "history_6": "{{ variable.attributes.history_5 }}",
+          "history_7": "{{ variable.attributes.history_6 }}",
+          "history_8": "{{ variable.attributes.history_7 }}",
+          "history_9": "{{ variable.attributes.history_8 }}",
+          "history_10": "{{ variable.attributes.history_9 }}"
+          }
+
+- alias: 'Record Human In Front'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.human_front
+    to: 'on'
+  action:
+    - service: rest_command.record_human_front
+
+- alias: 'Record Human In Back'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.human_back
+    to: 'on'
+  action:
+    - service: rest_command.record_human_back
+
+- alias: 'Record Human In Left'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.human_left
+    to: 'on'
+  action:
+    - service: rest_command.record_human_left
+
+- alias: 'Record Human In Right'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.human_right
+    to: 'on'
+  action:
+    - service: rest_command.record_human_right

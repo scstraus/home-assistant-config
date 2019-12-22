@@ -142,3 +142,15 @@ sensor.ecolink_door_window_sensor_alarm_level_3:
 sensor.ecolink_door_window_sensor_alarm_type_3:
   ignored: true
   polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_level_4:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_type_4:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_garage_door_alarm_level_5:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_garage_door_alarm_type_5:
+  ignored: true
+  polling_intensity: 0

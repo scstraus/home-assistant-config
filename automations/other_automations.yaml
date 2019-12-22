@@ -307,7 +307,7 @@
             after: '22:30:00'
             before: '5:00:00'
           - condition: template
-            value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
+            value_template: "{{ not is_state('device_tracker.sean_s_iphone_x', 'Traveling') }}"
           - condition: template
             value_template: "{{ now().strftime('%m')|int > 6 or now().strftime('%m')|int < 9 }}"
       - condition: and
@@ -316,7 +316,7 @@
             after: '21:30:00'
             before: '5:00:00'
           - condition: template
-            value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
+            value_template: "{{ not is_state('device_tracker.sean_s_iphone_x', 'Traveling') }}"
           - condition: template
             value_template: "{{ now().strftime('%m')|int > 8 or now().strftime('%m')|int < 7 }}"
   action:
@@ -329,7 +329,7 @@
 #            after: '21:30:00'
 #            before: '5:00:00'
 #          - condition: template
-#            value_template: "{{ not is_state('device_tracker.seans_iphone_x', 'Traveling') }}"
+#            value_template: "{{ not is_state('device_tracker.sean_s_iphone_x', 'Traveling') }}"
 #          - condition: template
 #            value_template: "{{ now().strftime('%m')|int = 8 or now().strftime('%m')|int = 7 }}"
 
@@ -604,9 +604,9 @@
     - platform: state
       entity_id: sun.sun
       to: above_horizon
-    - platform: state
-      entity_id: sun.sun
-      to: below_horizon
+    - platform: sun
+      event: sunset
+      offset: "+00:30:00"
   action:
     - service_template: frontend.set_theme
       data_template:
@@ -616,3 +616,17 @@
           {% else %}
             midnight
           {% endif %}
+
+- id: backup_snapshots_to_dropbox_nightly
+  alias: "Nightly Backup of Snapshots to Dropbox"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '4:00:00'
+  action:
+  - service: hassio.addon_stdin
+    data: 
+      addon: "7be23ff5_dropbox_sync"
+      input: 
+        command: "upload"

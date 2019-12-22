@@ -17,8 +17,8 @@
   Alena_And_Sean:
     name: Alena and Sean
     entities:
-      - device_tracker.seans_iphone_x
-      - device_tracker.alenas_iphone
+      - device_tracker.sean_s_iphone_x
+      - device_tracker.alena_s_iphone
 
   Internet_Notifications:
     name: Internet Notifications

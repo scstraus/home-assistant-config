@@ -98,30 +98,17 @@ cards:
 #        red: 80
 
 
-
   - type: custom:vertical-stack-in-card
     title: Discworld
     cards:
 
-    - type: horizontal-stack
-      cards:
-
-      - type: gauge
-        entity:  sensor.discworld_volume_used_volume_1  
-        name: "% Disk Use Vol. 1"
-        severity:
-          green: 0
-          yellow: 75
-          red: 88
-
-      - type: gauge
-        entity: sensor.discworld_volume_used_volume_2 
-        name: "% Disk Use Vol. 2"
-        severity:
-          green: 0
-          yellow: 75
-          red: 88
-
+    - type: gauge
+      entity:  sensor.discworld_volume_used_volume_1  
+      name: "% Disk Use Vol. 1"
+      severity:
+        green: 0
+        yellow: 75
+        red: 88
 
     - type: custom:mini-graph-card
       name: CPU Load
@@ -243,7 +230,7 @@ cards:
     cards:
 
     - type: gauge
-      entity: sensor.alena_s_iphone_battery_level
+      entity: sensor.alena_battery_level
       name: "     Alena"
       severity:
         green: 50
@@ -251,7 +238,7 @@ cards:
         red: 12
 
     - type: gauge
-      entity: sensor.sean_s_iphone_x_battery_level   
+      entity: sensor.sean_battery_level   
       name: "     Sean"
       severity:
         green: 50
@@ -298,9 +285,9 @@ cards:
 #      cards:
 #
 #      - type: history-graph
-#        title: 'device_tracker.seans_iphone_x'
+#        title: 'device_tracker.sean_s_iphone_x'
 #        entities:
-#        - device_tracker.seans_iphone_x
+#        - device_tracker.sean_s_iphone_x
 #
 #      - type: history-graph
 #        title: 'input_select.sean_last_zone_dropdown'

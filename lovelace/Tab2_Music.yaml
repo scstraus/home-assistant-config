@@ -222,7 +222,7 @@ cards:
             media_content_type: "playlist"
 
       - type: "custom:button-card"
-        name: AMBIENT <br> RADIO
+        name: EUROPA2 <br> RADIO
         styles:
           card:
             - padding: 4px 0px
@@ -232,7 +232,7 @@ cards:
           service: media_player.play_media 
           service_data:
             entity_id: "media_player.itunes"
-            media_content_id: "ambient-sleeping-pill"
+            media_content_id: "europa2"
             media_content_type: "playlist"
 
   - type: entities
