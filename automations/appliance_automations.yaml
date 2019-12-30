@@ -519,7 +519,9 @@
       
       
       
-##################### AIR PURIFIERS #########################
+      
+############## SOPHIE AIR PURIFIER ON OFF #############
+
 
 - id: turn_on_sophies_air_purifier_if_air_is_bad
   alias: "Turn on Sophie's Air Purifier if the air is bad"
@@ -527,16 +529,16 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.u_s_air_quality_index
+    entity_id: sensor.hlubocepy_air_quality
     above: 70
   condition:
     condition: time
-    after: '20:00:00'
+    after: '19:00:00'
     before: '7:00:00'
   action:
-    service: fan.turn_on
+    service: input_boolean.turn_on
     data:
-      entity_id: fan.sophies_room_air_purifier
+      entity_id: input_boolean.sophies_air_purifier
 
 
 - id: turn_on_sophies_air_purifier_if_air_is_bad_2
@@ -545,15 +547,15 @@
   initial_state: 'true'
   trigger:
     platform: time
-    at: '20:00:00'
+    at: '19:00:00'
   condition:
     condition: numeric_state
-    entity_id: sensor.u_s_air_quality_index
+    entity_id: sensor.hlubocepy_air_quality
     above: 70
   action:
-    service: fan.turn_off
+    service: input_boolean.turn_on
     data:
-      entity_id: fan.sophies_room_air_purifier
+      entity_id: input_boolean.sophies_air_purifier
 
 - id: turn_off_sophies_air_purifier_in_the_morning
   alias: "Turn off Sophie's Air Purifier in the morning"
@@ -561,54 +563,411 @@
   initial_state: 'true'
   trigger:
     platform: time
-    at: '7:00:00'
+    at: '8:00:00'
   action:
-    service: fan.turn_off
+    service: input_boolean.turn_off
     data:
-      entity_id: fan.sophies_room_air_purifier
+      entity_id: input_boolean.sophies_air_purifier
 
-- id: turn_on_sebastians_air_purifier_if_air_is_bad
-  alias: "Turn on Sebastian's Air Purifier if the air is bad"
+- id: turn_on_sophie_air_purifier_during_day_if_motion
+  alias: "Turn Sophie's Air Purifier During the Day if Motion in Room"
+  hide_entity: true
+  initial_state: 'false'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sophies_room_zone_10
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.hlubocepy_air_quality
+        above: 70  
+      - condition: state
+        entity_id: device_tracker.sophie
+        state: 'home'
+      - condition: time
+        after: '8:00:00'
+        before: '19:00:00'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.sophies_air_purifier
+
+- id: turn_off_sophie_air_purifier_aqi_left_home
+  alias: "Turn Sophie's Air Purifier for AQI or Left Home"
+  hide_entity: true
+  initial_state: 'false'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.hlubocepy_air_quality
+      below: 65 
+    - platform: state
+      entity_id: device_tracker.sophie
+      from: 'home'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.sophies_air_purifier
+
+- id: turn_off_sophie_air_purifier_if_no_motion
+  alias: "Turn Sophie's Air Purifier for No Motion"
+  hide_entity: true
+  initial_state: 'false'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sophies_room_zone_10
+      to: 'off'
+      for: 
+        minutes: 60
+  condition:
+    condition: time
+    after: '8:00:00'
+    before: '19:00:00'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.sophies_air_purifier
+
+############ SEBASTIAN AIR PURIFIER ON OFF ##############
+
+
+
+- id: turn_on_sebastians_air_purifier_if_air_is_bad_at_night
+  alias: "Turn on Sebastian's Air Purifier if the air is bad at night"
   hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.u_s_air_quality_index
+    entity_id: sensor.hlubocepy_air_quality
     above: 70
   condition:
     condition: time
-    after: '20:00:00'
-    before: '7:00:00'
+    after: '19:00:00'
+    before: '8:00:00'
   action:
-    service: fan.turn_on
+    service: input_boolean.turn_on
     data:
-      entity_id: fan.sebastians_room_air_purifier
+      entity_id: input_boolean.sebastians_air_purifier
 
 
-- id: turn_on_sebastians_air_purifier_if_air_is_bad_2
-  alias: "Turn on Sebastian's Air Purifier if the air is bad 2"
+- id: turn_on_sebastians_air_purifier_if_air_is_bad_at_night_2
+  alias: "Turn on Sebastian's Air Purifier if the air is bad at night 2"
   hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
-    at: '20:00:00'
+    at: '19:00:00'
   condition:
     condition: numeric_state
-    entity_id: sensor.u_s_air_quality_index
+    entity_id: sensor.hlubocepy_air_quality
     above: 70
   action:
-    service: fan.turn_off
+    service: input_boolean.turn_on
     data:
-      entity_id: fan.sebastians_room_air_purifier
+      entity_id: input_boolean.sebastians_air_purifier
 
 - id: turn_off_sebastians_air_purifier_in_the_morning
   alias: "Turn off Sebastian's Air Purifier in the morning"
   hide_entity: true
   initial_state: 'true'
   trigger:
+    - platform: time
+      at: '8:00:00'
+    - platform: numeric_state
+      entity_id: sensor.hlubocepy_air_quality
+      below: 65 
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.sebastians_air_purifier
+      
+
+- id: turn_on_sebastians_air_purifier_if_air_is_bad_for_naptime
+  alias: "Turn on Sebastian's Air Purifier if the air is bad for naptime"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.hlubocepy_air_quality
+    above: 70
+  condition:
+    condition: time
+    after: '12:30:00'
+    before: '16:30:00'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.sebastians_air_purifier
+
+
+- id: turn_on_sebastians_air_purifier_if_air_is_bad_for_naptime_2
+  alias: "Turn on Sebastian's Air Purifier if the air is bad for naptime 2"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
     platform: time
-    at: '7:00:00'
+    at: '12:30:00'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.hlubocepy_air_quality
+    above: 70
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.sebastians_air_purifier
+
+- id: turn_off_sebastians_air_purifier_after_nap
+  alias: "Turn off Sebastian's Air Purifier after nap"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '16:30:00'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.sebastians_air_purifier
+            
+
+
+###### Sophies's Air Purifier Input Boolean ########      
+
+
+
+
+- id: turn_on_sophies_air_purifier_from_input_select
+  alias: "Turn on Sophie's Air Purifier from Input Select"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_boolean.sophies_air_purifier
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: fan.sophies_room_air_purifier
+    state: 'off'
+  action:
+    service: fan.turn_on
+    data:
+      entity_id: fan.sophies_room_air_purifier
+    
+
+- id: turn_on_sophies_air_purifier_from_input_select_after unavailable
+  alias: "Turn on Sophie's Air Purifier from Input Select after Unavailable"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.sophies_room_air_purifier
+    from: 'unavailable'
+    to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sophies_air_purifier
+        state: 'on'
+  action:
+    service: fan.turn_on
+    data:
+      entity_id: fan.sophies_room_air_purifier
+
+- id: turn_off_sophies_air_purifier_from_input_select
+  alias: "Turn off Sophie's Air Purifier from Input Select"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_boolean.sophies_air_purifier
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: fan.sophies_room_air_purifier
+    state: 'on'
+  action:
+    service: fan.turn_off
+    data:
+      entity_id: fan.sophies_room_air_purifier
+    
+
+- id: turn_off_sophies_air_purifier_from_input_select_after unavailable
+  alias: "Turn off Sophie's Air Purifier from Input Select after Unavailable"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.sophies_room_air_purifier
+    from: 'unavailable'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sophies_air_purifier
+        state: 'off'
+  action:
+    service: fan.turn_off
+    data:
+      entity_id: fan.sophies_room_air_purifier
+      
+- id: sync_sophie_air_purifier_input_boolean_to_manual_on
+  alias: "Sync Sophie Air Purifier Input Boolean to Manually Turning Air Purifier On"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.sophies_room_air_purifier
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sophies_air_purifier
+        state: 'off'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.sophies_air_purifier
+
+- id: sync_sophie_air_purifier_input_boolean_to_manual_off
+  alias: "Sync Sophie Air Purifier Input Boolean to Manually Turning Air Purifier Off"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.sophies_room_air_purifier
+    to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sophies_air_purifier
+        state: 'on'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.sophies_air_purifier
+
+
+
+
+###### Sebastian's Air Purifier Input Boolean ########
+
+
+
+
+- id: turn_on_sebastians_air_purifier_from_input_select
+  alias: "Turn on Sebastian's Air Purifier from Input Select"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_boolean.sebastians_air_purifier
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: fan.sebastians_room_air_purifier
+    state: 'off'
+  action:
+    service: fan.turn_on
+    data:
+      entity_id: fan.sebastians_room_air_purifier
+    
+
+- id: turn_on_sebastians_air_purifier_from_input_select_after unavailable
+  alias: "Turn on sebastian's Air Purifier from Input Select after Unavailable"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.sebastians_room_air_purifier
+    from: 'unavailable'
+    to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sebastians_air_purifier
+        state: 'on'
+  action:
+    service: fan.turn_on
+    data:
+      entity_id: fan.sebastians_room_air_purifier
+
+- id: turn_off_sebastians_air_purifier_from_input_select
+  alias: "Turn off sebastian's Air Purifier from Input Select"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_boolean.sebastians_air_purifier
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: fan.sebastians_room_air_purifier
+    state: 'on'
   action:
     service: fan.turn_off
     data:
       entity_id: fan.sebastians_room_air_purifier
+    
+
+- id: turn_off_sebastians_air_purifier_from_input_select_after unavailable
+  alias: "Turn off sebastian's Air Purifier from Input Select after Unavailable"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.sebastians_room_air_purifier
+    from: 'unavailable'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sebastians_air_purifier
+        state: 'off'
+  action:
+    service: fan.turn_off
+    data:
+      entity_id: fan.sebastians_room_air_purifier
+      
+- id: sync_sebastian_air_purifier_input_boolean_to_manual_on
+  alias: "Sync sebastian Air Purifier Input Boolean to Manually Turning Air Purifier On"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.sebastians_room_air_purifier
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sebastians_air_purifier
+        state: 'off'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.sebastians_air_purifier
+
+- id: sync_sebastian_air_purifier_input_boolean_to_manual_off
+  alias: "Sync sebastian Air Purifier Input Boolean to Manually Turning Air Purifier Off"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.sebastians_room_air_purifier
+    to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sebastians_air_purifier
+        state: 'on'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.sebastians_air_purifier

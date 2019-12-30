@@ -692,6 +692,8 @@ cards:
 
   - type: entities
     entities: 
+    - input_boolean.fire_in_fireplace_tomorrow
+    - input_boolean.fire_in_fireplace_now
     - binary_sensor.04_000722_window
     - binary_sensor.04_000730_window
     - binary_sensor.04_000736_window

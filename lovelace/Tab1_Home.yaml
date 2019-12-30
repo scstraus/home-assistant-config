@@ -223,36 +223,50 @@ cards:
 
 
   - type: custom:card-modder
-    report_size: 18
+    report_size: 36
     card:
 
-      type: custom:vertical-stack-in-card
+    type: vertical-stack
+    cards:
+
+    - type: 'custom:weather-card-chart'
+      title: Weather / Air Quality
+      weather: weather.openweathermap
+      sun: sun.sun
+      mode: hourly
+
+    - type: custom:vertical-stack-in-card
       cards:
 
-      - type: 'custom:weather-card-chart'
-        title: Weather / Air Quality
-        weather: weather.openweathermap
-        sun: sun.sun
-        mode: hourly
-
-      - type: entities
-  #        title: Weather Forecast
-        show_header_toggle: false
-        entities:
-        - sensor.dark_sky_hourly_summary
-        - sensor.dark_sky_daily_summary
-
-#        - sensor.u_s_air_pollution_level 
-#        - sensor.u_s_air_quality_index 
+      - type: "custom:button-card"
+        name: Hlubočepy
+        styles:
+          card:
+            - padding: 8px 0px
 
       - type: custom:air-visual-card 
-        air_pollution_level: sensor.u_s_air_pollution_level 
-        air_quality_index: sensor.u_s_air_quality_index
+        air_pollution_level: sensor.hlubocepy_air_pollution
+        air_quality_index: sensor.hlubocepy_air_quality
         main_pollutant: sensor.u_s_main_pollutant
         hide_title: true
         svg_location: "/local/icons/aqi_icons"
-#          temp: sensor.dark_sky_temperature 
-        city: 'Prague'
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+      - type: "custom:button-card"
+        name: Home
+        styles:
+          card:
+            - padding: 8px 0px
+
+      - type: custom:air-visual-card 
+        air_pollution_level: sensor.home_air_pollution
+        air_quality_index: sensor.home_air_quality
+        main_pollutant: sensor.u_s_main_pollutant
+        hide_title: true
+        svg_location: "/local/icons/aqi_icons"
+
 
   - type: glance
     entities:
@@ -761,11 +775,11 @@ cards:
     title: Third Floor
     show_header_toggle: false
     entities:
-    - entity: fan.sophies_room_air_purifier
+    - entity: input_boolean.sophies_air_purifier
       name: "Sophie's Room Air Purifier"
       type: "custom:secondaryinfo-entity-row"
       secondary_info: "Air Quality: [[  sensor.sophies_room_aqi.state ]]"
-    - entity: fan.sebastians_room_air_purifier
+    - entity: input_boolean.sebastians_air_purifier
       name: "Seb's Room Air Purifier"
       type: "custom:secondaryinfo-entity-row"
       secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi.state ]]"

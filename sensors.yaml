@@ -755,15 +755,20 @@
     platform: mqtt
     state_topic: 'paradox/alarm/state/3'
 
-#  - name: Home Air Quality
-#    platform: file
-#    file_path: "/share/avnodehome/Latest_AirVisual_values.txt"
-#    value_template: '{{ value.split(";")[4] }}'
-#    unit_of_measurement: 'AQI'
+  - name: Home Air Quality
+    platform: file
+    file_path: "/share/Latest_AirVisual_values.txt"
+    value_template: '{{ value.split(";")[4] }}'
+    unit_of_measurement: 'AQI'
 
+  - name: Hlubocepy Air Quality
+    platform: file
+    file_path: "/share/Latest_AirVisual_Hlu_values.txt"
+    value_template: '{{ value.split(";")[4] }}'
+    unit_of_measurement: 'AQI'
 
-# 04/01/19-11/25/19: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
-# 12/04/19-03/25/20: Pickup is Odd Weeks Wednesday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
+# 04/01/19-11/30/19: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
+# 12/01/19-03/30/20: Pickup is Odd Weeks Wednesday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
 
   - platform: template
     sensors:
@@ -795,15 +800,18 @@
             false
           {% endif %}
 
+
+#trash day is wednesday so take it out today=tuesday, tomorrow=monday
+
   - platform: template
     sensors:
       trash_day:
         friendly_name: "Take Trash Out"
         entity_id: sensor.date
         value_template: >-
-          {% if now().weekday() in (2,) %}
+          {% if now().weekday() in (1,) %}
             Today
-          {% elif now().weekday() in (1,) %}
+          {% elif now().weekday() in (0,) %}
             Tomorrow
           {% else %}
             false
@@ -1082,7 +1090,9 @@
       sebastians_room_aqi:
         friendly_name: "Sebastian's Room Air Quality"
         value_template: >-
-          {% if state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 15.401 %}
+          {% if state_attr('fan.sebastians_room_air_purifier', 'aqi')|float == 0 %}
+            {{ states('variable.sophies_room_aqi') }}  
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 15.401 %}
             {{(((state_attr('fan.sebastians_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }} (Good)
           {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 40.401 %}
             {{(((51+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }} (Moderate)
@@ -1103,7 +1113,9 @@
       sophies_room_aqi:
         friendly_name: "Sophie's Room Air Quality"
         value_template: >-
-          {% if state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 15.401 %}
+          {% if state_attr('fan.sophies_room_air_purifier', 'aqi')|float == 0 %}
+            {{ states('variable.sophies_room_aqi') }}  
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 15.401 %}
             {{(((state_attr('fan.sophies_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }} (Good)
           {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 40.401 %}
             {{(((51+(state_attr('fan.sophies_room_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }} (Moderate)
@@ -1118,3 +1130,46 @@
           {% else %}
             Off the Charts
           {% endif %} 
+
+  - platform: template
+    sensors:
+      home_air_pollution:
+        friendly_name: "Home Air Pollution Level"
+        value_template: >-
+          {% if states('sensor.home_air_quality')|float < 50 %}
+            Good
+          {% elif states('sensor.home_air_quality')|float < 100 and states('sensor.home_air_quality')|float >= 50 %}
+            Moderate
+          {% elif states('sensor.home_air_quality')|float < 150 and states('sensor.home_air_quality')|float >= 100 %}
+            Unh. Sens. Groups
+          {% elif states('sensor.home_air_quality')|float < 200 and states('sensor.home_air_quality')|float >= 150 %}
+            Unhealthy
+          {% elif states('sensor.home_air_quality')|float < 250 and states('sensor.home_air_quality')|float >= 200 %}
+            Very Unhealthy
+          {% elif states('sensor.home_air_quality')|float < 500 and states('sensor.home_air_quality')|float >= 250 %}
+            Hazardous
+          {% else %}
+            Off the Charts
+          {% endif %} 
+
+  - platform: template
+    sensors:
+      hlubocepy_air_pollution:
+        friendly_name: "Hlubocepy Air Pollution Level"
+        value_template: >-
+          {% if states('sensor.hlubocepy_air_quality')|float < 50 %}
+            Good
+          {% elif states('sensor.hlubocepy_air_quality')|float < 100 and states('sensor.hlubocepy_air_quality')|float >= 50 %}
+            Moderate
+          {% elif states('sensor.hlubocepy_air_quality')|float < 150 and states('sensor.hlubocepy_air_quality')|float >= 100 %}
+            Unh. Sens. Groups
+          {% elif states('sensor.hlubocepy_air_quality')|float < 200 and states('sensor.hlubocepy_air_quality')|float >= 150 %}
+            Unhealthy
+          {% elif states('sensor.hlubocepy_air_quality')|float < 250 and states('sensor.hlubocepy_air_quality')|float >= 200 %}
+            Very Unhealthy
+          {% elif states('sensor.hlubocepy_air_quality')|float < 500 and states('sensor.hlubocepy_air_quality')|float >= 250 %}
+            Hazardous
+          {% else %}
+            Off the Charts
+          {% endif %} 
+

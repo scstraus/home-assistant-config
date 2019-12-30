@@ -1088,11 +1088,89 @@
     at: '7:50:00'
   condition:    
     condition: state
-    entity_id: device_tracker.alena_s_iphone
+    entity_id: device_tracker.sophie
     state: 'home'
   action:
-    service: climate.set_temperature
-    data:
-      entity_id: climate.sophie_s_room
-      temperature: 23
-  
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.sophie_s_room
+        temperature: 23
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.sophie_s_room
+        preset_mode: 'permanent'  
+
+- id: fire_in_fireplace_tomorrow
+  alias: "Fire in Fireplace Tomorrow"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '6:00:00'
+  condition:    
+    condition: state
+    entity_id: input_boolean.fire_in_fireplace_tomorrow
+    state: 'on'
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.fire_in_fireplace_tomorrow
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.fire_in_fireplace_now
+
+- id: fire_in_fireplace_now
+  alias: "Fire in Fireplace Now"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_boolean.fire_in_fireplace_now
+    to: 'on'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.dining_room
+        temperature: 21
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.entrance
+        temperature: 21
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.living_room
+        temperature: 21
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.dining_room
+        preset_mode: 'permanent'
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.entrance
+        preset_mode: 'permanent'
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.living_room
+        preset_mode: 'permanent'
+
+- id: fire_in_fireplace_now_turned_off
+  alias: "Fire in Fireplace Now Off"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_boolean.fire_in_fireplace_now
+    to: 'off'
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.dining_room
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.entrance
+        preset_mode: 'none'
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.living_room
+        preset_mode: 'none'

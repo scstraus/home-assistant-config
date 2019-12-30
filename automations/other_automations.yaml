@@ -344,6 +344,16 @@
   initial_state: 'on'
   hide_entity: 'true'
 
+- id: 'update_airvisualnode_hlubocepy_data'
+  alias: 'Update AirVisual node Hlubocepy data'
+  trigger:
+    minutes: '/5'
+    platform: time_pattern
+  action:
+  - service: shell_command.update_avnodehlubocepy_data
+  initial_state: 'on'
+  hide_entity: 'true'
+
 #- alias: Turn off sophie up late in summer
 #  initial_state: 'on'
 #  hide_entity: 'true'
@@ -630,3 +640,39 @@
       addon: "7be23ff5_dropbox_sync"
       input: 
         command: "upload"
+
+- id: preserve_sophies_room_aqi
+  alias: 'Preserve Sophies Room AQI to Variable'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.sophies_room_aqi
+  condition:
+    condition: template
+    value_template: "{{ not is_state('sensor.sophies_room_aqi', '0 (Good)') }}"
+  action:
+    service: variable.set_variable
+    data:
+      variable: sophies_room_aqi
+    data_template:
+      value: >
+          {{ states('sensor.sophies_room_aqi')}}
+          
+- id: preserve_sebastians_room_aqi
+  alias: 'Preserve Sebastians Room AQI to Variable'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.sebastians_room_aqi
+  condition:
+    condition: template
+    value_template: "{{ not is_state('sensor.sebastians_room_aqi', '0 (Good)') }}"
+  action:
+    service: variable.set_variable
+    data:
+      variable: sebastians_room_aqi
+    data_template:
+      value: >
+          {{ states('sensor.sebastians_room_aqi')}}

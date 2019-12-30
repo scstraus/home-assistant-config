@@ -8,7 +8,7 @@ homeassistant:
   time_zone: Europe/Prague
   customize: !include customize.yaml
   whitelist_external_dirs:
-    - /share/avnodehome
+    - /share
 #  auth_providers:
 # airport worked with this
 #    - type: trusted_networks
@@ -119,7 +119,6 @@ history:
     - history_graph
     - media_player
     - switch
-    - input_boolean
     - automation
     - script
     entities:
@@ -361,8 +360,6 @@ recorder:
     - history_graph
     - media_player
     - switch
-    - input_boolean
-    - fan
     entities:
     - sensor.dark_sky_cloud_coverage_0
     - sensor.dark_sky_daily_summary
@@ -705,10 +702,20 @@ mqtt:
   password: !secret mqqt_pass
 
 input_boolean:
-  fire_in_fireplace:
-    name: Turn Down The Heat For Fire in the Fireplace
+  fire_in_fireplace_tomorrow:
+    name: Heat Down Tomorrow - Fire in Fireplace
     initial: off
     icon: mdi:fire
+  fire_in_fireplace_now:
+    name: Heat Down Now - Fire in Fireplace
+    initial: off
+    icon: mdi:fire
+  sebastians_air_purifier:
+    name: "Sebastian's Air Purifier"
+    icon: mdi:fan
+  sophies_air_purifier:
+    name: "Sophie's Air Purifier"
+    icon: mdi:fan
 #  mix_playlist:
 #    name: Mix Playlist
 #    initial: off
@@ -936,6 +943,19 @@ variable:
     attributes:
       icon: mdi:format-list-bulleted-square
       name: 'Last Door/Window'
+
+  sophies_room_aqi:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+    
+  sebastians_room_aqi:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+    
 cast:
   media_player:
     - host: !secret chromecast_ip
@@ -1071,6 +1091,7 @@ input_number:
 
 shell_command:
   update_avnodehome_data: !secret avnodehome_update_cmd
+  update_avnodehlubocepy_data: !secret avnodehlubocepy_update_cmd
 
 browser_mod:
 
@@ -1108,3 +1129,5 @@ fan:
 evohome_rf:
   serial_port: /dev/ttyUSB0
   packet_log: /share/packets.log
+
+
