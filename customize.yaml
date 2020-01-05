@@ -378,3 +378,7 @@ binary_sensor.ecolink_closet_left_window:
 binary_sensor.ecolink_garage_door:
   friendly_name: Garage Door
   device_class: garage_door
+sensor.sophies_room_aqi:
+   unit_of_measurement: AQI
+sensor.sebastians_room_aqi:
+   unit_of_measurement: AQI   

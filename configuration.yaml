@@ -84,8 +84,8 @@ updater:
 #
 #  - platform: google
 
-hacs:
-  token: !secret hacs_token
+#hacs:
+#  token: !secret hacs_token
 
 logger:
 
@@ -583,23 +583,23 @@ recorder:
     - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_sourcenodeid
 
 
-custom_updater:
-  track:
-    - cards
-    - components
-    - python_scripts
-  component_urls:
-    - https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/custom_components.json
-  python_script_urls:
-    - https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/python_scripts.json
-  card_urls:
-    - https://raw.githubusercontent.com/rdehuyss/homeassistant-lovelace-google-calendar-card/master/custom_updater.json
-    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
-    - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
-    - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/master/tracker.json
-    - https://raw.githubusercontent.com/sgttrs/lovelace-weather-card-chart/master/custom-updater.json
-    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json    
-    - https://raw.githubusercontent.com/MizterB/lovelace-secondaryinfo-entity-row/master/custom_cards.json
+#custom_updater:
+#  track:
+#    - cards
+#    - components
+#    - python_scripts
+#  component_urls:
+#    - https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/custom_components.json
+#  python_script_urls:
+#    - https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/python_scripts.json
+#  card_urls:
+#    - https://raw.githubusercontent.com/rdehuyss/homeassistant-lovelace-google-calendar-card/master/custom_updater.json
+#    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+#    - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
+#    - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/master/tracker.json
+#    - https://raw.githubusercontent.com/sgttrs/lovelace-weather-card-chart/master/custom-updater.json
+#    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json    
+#    - https://raw.githubusercontent.com/MizterB/lovelace-secondaryinfo-entity-row/master/custom_cards.json
 
 switch:
 
@@ -951,6 +951,18 @@ variable:
     restore: true
     
   sebastians_room_aqi:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+
+  sophies_room_aqi_description:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+    
+  sebastians_room_aqi_description:
     value: 'Unknown'
     attributes:
       icon: mdi:gauge-low

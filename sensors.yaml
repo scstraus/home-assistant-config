@@ -1092,6 +1092,48 @@
         value_template: >-
           {% if state_attr('fan.sebastians_room_air_purifier', 'aqi')|float == 0 %}
             {{ states('variable.sophies_room_aqi') }}  
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 15.401 %}           {{(((state_attr('fan.sebastians_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }}
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 40.401 %}
+            {{(((51+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }}
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 65.401 %}
+            {{(((101+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-40.5)|float * 1.96787148594)|float)*1)|round|int }}
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 150.401 %}
+            {{(((151+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-65.5)|float * 1.73265306122)|float)*1)|round|int }} 
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 250.401 %}
+            {{(((201+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-150.5)|float * 1.00909090909)|float)*1)|round|int }}
+          {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 500.401 %}
+            {{(((301+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-250.5)|float * 1.25577889447)|float)*1)|round|int }}
+          {% endif %} 
+
+  - platform: template
+    sensors:
+      sophies_room_aqi:
+        friendly_name: "Sophie's Room Air Quality"
+        value_template: >-
+          {% if state_attr('fan.sophies_room_air_purifier', 'aqi')|float == 0 %}
+            {{ states('variable.sophies_room_aqi') }}  
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 15.401 %}
+            {{(((state_attr('fan.sophies_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }}
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 40.401 %}
+            {{(((51+(state_attr('fan.sophies_room_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }}
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 65.401 %}
+            {{(((101+(state_attr('fan.sophies_room_air_purifier', 'aqi')-40.5)|float * 1.96787148594)|float)*1)|round|int }} 
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 150.401 %}
+            {{(((151+(state_attr('fan.sophies_room_air_purifier', 'aqi')-65.5)|float * 1.73265306122)|float)*1)|round|int }} 
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 250.401 %}
+            {{(((201+(state_attr('fan.sophies_room_air_purifier', 'aqi')-150.5)|float * 1.00909090909)|float)*1)|round|int }} 
+          {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 500.401 %}
+            {{(((301+(state_attr('fan.sophies_room_air_purifier', 'aqi')-250.5)|float * 1.25577889447)|float)*1)|round|int }}
+          {% endif %} 
+
+
+  - platform: template
+    sensors:
+      sebastians_room_aqi_description:
+        friendly_name: "Sebastian's Room Air Quality Description"
+        value_template: >-
+          {% if state_attr('fan.sebastians_room_air_purifier', 'aqi')|float == 0 %}
+            {{ states('variable.sebastians_room_aqi_description') }}  
           {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 15.401 %}
             {{(((state_attr('fan.sebastians_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }} (Good)
           {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 40.401 %}
@@ -1110,11 +1152,11 @@
 
   - platform: template
     sensors:
-      sophies_room_aqi:
-        friendly_name: "Sophie's Room Air Quality"
+      sophies_room_aqi_description:
+        friendly_name: "Sophie's Room Air Quality Description"
         value_template: >-
           {% if state_attr('fan.sophies_room_air_purifier', 'aqi')|float == 0 %}
-            {{ states('variable.sophies_room_aqi') }}  
+            {{ states('variable.sophies_room_aqi_description') }}  
           {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 15.401 %}
             {{(((state_attr('fan.sophies_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }} (Good)
           {% elif state_attr('fan.sophies_room_air_purifier', 'aqi')|float < 40.401 %}

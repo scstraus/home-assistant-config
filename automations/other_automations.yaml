@@ -650,7 +650,7 @@
     entity_id: sensor.sophies_room_aqi
   condition:
     condition: template
-    value_template: "{{ not is_state('sensor.sophies_room_aqi', '0 (Good)') }}"
+    value_template: "{{ not is_state('sensor.sophies_room_aqi', 0) }}"
   action:
     service: variable.set_variable
     data:
@@ -668,7 +668,7 @@
     entity_id: sensor.sebastians_room_aqi
   condition:
     condition: template
-    value_template: "{{ not is_state('sensor.sebastians_room_aqi', '0 (Good)') }}"
+    value_template: "{{ not is_state('sensor.sebastians_room_aqi', 0) }}"
   action:
     service: variable.set_variable
     data:
@@ -676,3 +676,39 @@
     data_template:
       value: >
           {{ states('sensor.sebastians_room_aqi')}}
+
+- id: preserve_sophies_room_aqi_description
+  alias: 'Preserve Sophies Room AQI description to Variable'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.sophies_room_aqi_description
+  condition:
+    condition: template
+    value_template: "{{ not is_state('sensor.sophies_room_aqi_description', '0 (Good)') }}"
+  action:
+    service: variable.set_variable
+    data:
+      variable: sophies_room_aqi_description
+    data_template:
+      value: >
+          {{ states('sensor.sophies_room_aqi_description')}}
+          
+- id: preserve_sebastians_room_aqi_description
+  alias: 'Preserve Sebastians Room AQI description to Variable'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.sebastians_room_aqi_description
+  condition:
+    condition: template
+    value_template: "{{ not is_state('sensor.sebastians_room_aqi_description', '0 (Good)') }}"
+  action:
+    service: variable.set_variable
+    data:
+      variable: sebastians_room_aqi_description
+    data_template:
+      value: >
+          {{ states('sensor.sebastians_room_aqi_description')}}

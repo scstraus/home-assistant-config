@@ -19,6 +19,7 @@ popup_cards:
         content: |
           ## [[ sensor.sean_eta ]]
           [[ sensor.sean_eta_description ]] 
+
   sensor.sophie_location:
     title: Sophie Location History and Time to Home
     card:
@@ -45,6 +46,49 @@ popup_cards:
           ## [[ sensor.alena_eta ]] 
           [[ sensor.alena_eta_description ]]
 
+  input_boolean.sophies_air_purifier:
+    title: "Sophie's Air Purifier"
+    card:
+      type: custom:vertical-stack-in-card
+      cards:
+      - type: history-graph
+        entities:
+          - input_boolean.sophies_air_purifier
+      - type: history-graph
+        entities:
+          - sensor.hlubocepy_air_quality
+      - type: history-graph
+        entities:
+          - sensor.sophies_room_aqi
+      - type: markdown
+        content: |
+          Last Hour Availability:
+      - type: history-graph
+        entities:
+          - fan.sophies_room_air_purifier
+        hours_to_show: 1
+
+  input_boolean.sebastians_air_purifier:
+    title: "Sebastian's Air Purifier"
+    card:
+      type: custom:vertical-stack-in-card
+      cards:
+      - type: history-graph
+        entities:
+          - input_boolean.sebastians_air_purifier
+      - type: history-graph
+        entities:
+          - sensor.hlubocepy_air_quality
+      - type: history-graph
+        entities:
+          - sensor.sebastians_room_aqi
+      - type: markdown
+        content: |
+          Last Hour Availability:
+      - type: history-graph
+        entities:
+          - fan.sebastians_room_air_purifier
+        hours_to_show: 1
 
 #    card:
 #      type: markdown
@@ -778,11 +822,11 @@ cards:
     - entity: input_boolean.sophies_air_purifier
       name: "Sophie's Room Air Purifier"
       type: "custom:secondaryinfo-entity-row"
-      secondary_info: "Air Quality: [[  sensor.sophies_room_aqi.state ]]"
+      secondary_info: "Air Quality: [[  sensor.sophies_room_aqi_description.state ]]"
     - entity: input_boolean.sebastians_air_purifier
       name: "Seb's Room Air Purifier"
       type: "custom:secondaryinfo-entity-row"
-      secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi.state ]]"
+      secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi_description.state ]]"
     - entity: media_player.sophie_s_room_airtunes_speaker
       type: custom:mini-media-player
       name: "Sophie's Room Speakers"
