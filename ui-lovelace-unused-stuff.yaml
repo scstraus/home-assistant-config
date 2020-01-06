@@ -1,0 +1,66 @@
+
+#resources:
+#
+#  - url: /local/mini-media-player-bundle.js?v=1.0.1
+#    type: module
+#  - url: https://unpkg.com/moment@2.22.2/moment.js
+#    type: js
+#  - url: /local/custom_ui/calendar-card/calendar-card.js?v=1.0.1
+#    type: module
+#  - url: /local/button-card.js
+#    type: module
+#  - url: /local/air-visual-card.js 
+#    type: js
+#  - url: /local/custom-weather-card-chart.js
+#    type: module
+#  - url: /local/tracker-card.js?v=0.3.2
+#    type: js
+#  - url: /local/simple-thermostat.js?v=0.17.0
+#    type: module
+#  - url: /local/vertical-stack-in-card.js?v=v0.1.1
+#    type: js
+#  - url: /local/card-modder.js?v=f3d96f
+#    type: js
+#  - url: /local/card-tools.js?v=f5bb8e
+#    type: js
+#  - url: /local/secondaryinfo-entity-row.js
+#    type: module
+
+#  - url: /card-modder.js
+#    type: js
+
+#  - url: /custom-weather-card-chart.js
+#    type: module
+#  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
+#  - url: /air-visual-card.js 
+#    type: js
+#  - url: /simple-thermostat.js
+#    type: module
+#  - url: /tracker-card.js
+#    type: js
+#  - url: /github/thomasloven/slider-entity-row.js?track=true
+#    type: module
+#  - url: /local/mini-graph-card-bundle.js?v=0.5.0
+#    type: module
+#  - url: /custom_ui/calendar-card/calendar-card.js
+#    type: module
+#  - url: /github/thomasloven/layout-card.js?track=true
+#    type: js
+#  - url: /mini-media-player-bundle.js
+#    type: module
+#  - url: /card-tools.js?track=true
+#    type: js
+#  - url: /customcards/button-card.js
+#    type: module
+#
+#  - url: /customcards/vertical-stack-in-card.js
+#    type: js
+#popup_cards:
+#  sensor.dining_room_temperature:
+#    title: Dining Room Climate History
+#    card:
+#      type: history-graph
+#      entities:
+#        - climate.dining_room
+#        title: 'Entrance'
+

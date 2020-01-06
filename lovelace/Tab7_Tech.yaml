@@ -274,12 +274,12 @@ cards:
 #      title: 'Dishwasher Status'
 #      entities:
 #      - input_select.dishwasher_status
-
-  - type: custom:tracker-card
-    title:
-    trackers:
-      - sensor.custom_card_tracker
-      - sensor.custom_component_tracker
+#
+#  - type: custom:tracker-card
+#    title:
+#    trackers:
+#      - sensor.custom_card_tracker
+#      - sensor.custom_component_tracker
 
 #    - type: vertical-stack
 #      cards:

@@ -1,129 +1,51 @@
 title: Home
 
-#resources:
-#
-#  - url: /local/mini-media-player-bundle.js?v=1.0.1
-#    type: module
-#  - url: https://unpkg.com/moment@2.22.2/moment.js
-#    type: js
-#  - url: /local/custom_ui/calendar-card/calendar-card.js?v=1.0.1
-#    type: module
-#  - url: /local/button-card.js
-#    type: module
-#  - url: /local/air-visual-card.js 
-#    type: js
-#  - url: /local/custom-weather-card-chart.js
-#    type: module
-#  - url: /local/tracker-card.js?v=0.3.2
-#    type: js
-#  - url: /local/simple-thermostat.js?v=0.17.0
-#    type: module
-#  - url: /local/vertical-stack-in-card.js?v=v0.1.1
-#    type: js
-#  - url: /local/card-modder.js?v=f3d96f
-#    type: js
-#  - url: /local/card-tools.js?v=f5bb8e
-#    type: js
-
 resources:
 
-  - url: /customcards/mini-media-player-bundle.js
-    type: module
-  - url: https://unpkg.com/moment@2.22.2/moment.js
+  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
     type: js
-  - url: /customcards/custom_ui/calendar-card/calendar-card.js
+  - url: /community_plugin/button-card/button-card.js
     type: module
-  - url: /customcards/button-card.js
+  - url: /community_plugin/lovelace-card-tools/card-tools.js
     type: module
-  - url: /customcards/air-visual-card.js 
+  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
     type: js
-  - url: /customcards/custom-weather-card-chart.js
+  - url: /community_plugin/mini-media-player/mini-media-player-bundle.js
     type: module
-  - url: /local/mini-graph-card-bundle.js?v=0.5.0
+  - url: /community_plugin/lovelace-layout-card/layout-card.js
     type: module
-  - url: /customcards/tracker-card.js
+  - url: /community_plugin/calendar-card/calendar-card.js
     type: js
-  - url: /customcards/simple-thermostat.js
+  - url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
     type: module
-  - url: /customcards/vertical-stack-in-card.js
-    type: js
-  - url: /customcards/card-modder.js
-    type: js
-  - url: /customcards/card-tools.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/layout-card.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/popup-card.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/browser-commander.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/slider-entity-row.js?track=true
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
     type: module
-  - url: /local/secondaryinfo-entity-row.js
-    type: module
-  - url: /local/markdown-mod.js
-    type: module
-  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
-    type: module
-  - url: /local/custom-lovelace/home-feed-card/lovelace-home-feed-card.js?v=0.0.0
+  - url: /community_plugin/secondaryinfo-entity-row/secondaryinfo-entity-row.js
     type: js
+  - url: /community_plugin/simple-thermostat/simple-thermostat.js
+    type: module
+  - url: /community_plugin/air-visual-card/air-visual-card.js
+    type: js
+  - url: /community_plugin/custom-header/custom-header.js
+    type: module
+  - url: /community_plugin/lovelace-weather-card-chart/weather-card-chart.js
+    type: module
+  - url: /community_plugin/lovelace-card-mod/card-mod.js
+    type: null
 
-#popup_cards:
-#  sensor.dining_room_temperature:
-#    title: Dining Room Climate History
-#    card:
-#      type: history-graph
-#      entities:
-#        - climate.dining_room
-#        title: 'Entrance'
-cch:
-  exceptions:
-    - conditions:
-        user: kiosk
-      config:
-        hide_tabs: 0
-        disable_sidebar: true
-        default_tab: 1
-        hide_help: true
-        hide_config: true
-        hide_unused: true
-        voice: hide
-        menu: hide
-        notifications: hide  
-        options: clock
-        clock_format: 24
-    - conditions:
-        user: Alena
-      config:
-        hide_tabs: 1
-        disable_sidebar: true
-        default_tab: 0
-        hide_help: true
-        hide_config: true
-        hide_unused: true
-        voice: hide
-        menu: hide
-        notifications: hide  
-    - conditions:
-        user: Sophie
-      config:
-        hide_tabs: 1
-        disable_sidebar: true
-        default_tab: 0
-        hide_help: true
-        hide_config: true
-        hide_unused: true
-        voice: hide
-        menu: hide
-        notifications: hide  
-    - conditions:
-        user: Sean Straus
-      config:
-        hide_tabs: 1
-        default_tab: 0
-        hide_help: true
-        hide_config: true
- 
+# old
+
+
+#  - url: https://unpkg.com/moment@2.22.2/moment.js
+#    type: js
+#  - url: /github/thomasloven/popup-card.js?track=true
+#    type: js
+#  - url: /github/thomasloven/browser-commander.js?track=true
+#    type: js
+#  - url: /local/markdown-mod.js
+#    type: module
+#  - url: /local/custom-lovelace/home-feed-card/lovelace-home-feed-card.js?v=0.0.0
+#    type: js
 
 views:
 
@@ -135,7 +57,69 @@ views:
   - !include /config/lovelace/Tab5_Alarm.yaml
   - !include /config/lovelace/Tab6_Weather.yaml
   - !include /config/lovelace/Tab7_Tech.yaml
-     
+    
+    
+
+custom_header:
+  compact_mode: true
+  exceptions:
+    - conditions:
+        user: kiosk
+      config:
+        hide_tabs: '0'
+        disable_sidebar: true
+        default_tab: '1'
+        hide_help: true
+        hide_config: true
+        hide_unused: true
+        voice_hide: true
+#        menu_hide: true
+#        button_text:
+#          menu: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
+    - conditions:
+        user: Alena
+      config:
+        hide_tabs: '1'
+        disable_sidebar: true
+        default_tab: 0
+        hide_help: true
+        hide_config: true
+        hide_unused: true
+        voice_hide: true
+        menu_hide: true
+    - conditions:
+        user: Sophie
+      config:
+        hide_tabs: '1'
+        disable_sidebar: true
+        default_tab: 0
+        hide_help: true
+        hide_config: true
+        hide_unused: true
+        voice_hide: true
+        menu_hide: true
+    - conditions:
+        user: Sean Straus
+      config:
+        hide_tabs: '1'
+        default_tab: 0
+        hide_help: true
+        hide_config: true
+        voice_hide: true
+#        header_text: '{{ hours12 }}:{{ minutesLZ }} {{ ampm }}'
+#        button_text:
+#          menu: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
+
+#        header_text: '{{ hours12 }}:{{ minutesLZ }} {{ ampm }}'
+#        button_text:
+#          menu: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
+
+#        options: clock
+#        clock_format: 24
+#        voice: hide
+#        notifications: hide  
+#        menu: hide
+ 
 #### EIGHTH TAB ####
 #
 #

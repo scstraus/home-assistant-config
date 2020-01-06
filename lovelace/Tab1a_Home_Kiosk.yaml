@@ -344,10 +344,12 @@ cards:
     - type: "custom:calendar-card"
       entities:
         - calendar.alena_and_seans_calendar
-      name: "Reminders"
-      showProgressBar: false
-      numberOfDays: 3
+      title: "Reminders"
+      eventsLimit: 3
+      hidePastEvents: true
 
+#      numberOfDays: 3
+#      maxHeight: true
     
     - type: custom:vertical-stack-in-card
       cards:
@@ -783,17 +785,17 @@ cards:
         font-size: 20px   
         
     - break
+#
+#    - type: custom:card-modder
+#      report_size: 8
+#      card:      
 
-    - type: custom:card-modder
-      report_size: 8
-      card:      
-
-        type: entities
-        title: Basement
-        show_header_toggle: false
-        entities:
-        - climate.garage
-        - climate.laundry_room
+    - type: entities
+      title: Basement
+      show_header_toggle: false
+      entities:
+      - climate.garage
+      - climate.laundry_room
 
     - type: entities
       title: Outside

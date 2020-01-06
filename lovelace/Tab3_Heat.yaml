@@ -610,7 +610,7 @@ cards:
         - entity: sensor.laundry_room_temperature
           name: "LAUNDRY ROOM"
       hours_to_show: 24
-      points_per_hour: 10
+      points_per_hour: 1
       height: 150
       font_size_header: 16
       decimals: 1
@@ -749,7 +749,7 @@ cards:
       - entity: sensor.04_136503_temp
         name: "LAUNDRY ROOM RF"
     hours_to_show: 24
-    points_per_hour: 10
+    points_per_hour: 3
     height: 150
     font_size_header: 16
     decimals: 1
