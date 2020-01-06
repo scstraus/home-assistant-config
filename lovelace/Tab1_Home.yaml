@@ -860,6 +860,10 @@ cards:
 #    card:      
 
   - type: entities
+    style: |
+      ha-card {
+        color: red;
+      }
     title: Basement
     show_header_toggle: false
     entities:
@@ -867,10 +871,6 @@ cards:
     - climate.laundry_room
 
   - type: entities
-    style: |
-      ha-card {
-        color: red;
-      }
     title: Outside
     show_header_toggle: false
     entities:

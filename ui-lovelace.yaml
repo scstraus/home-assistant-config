@@ -8,8 +8,6 @@ resources:
     type: module
   - url: /community_plugin/lovelace-card-tools/card-tools.js
     type: module
-  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
-    type: js
   - url: /community_plugin/mini-media-player/mini-media-player-bundle.js
     type: module
   - url: /community_plugin/lovelace-layout-card/layout-card.js
@@ -32,20 +30,8 @@ resources:
     type: module
   - url: /community_plugin/lovelace-card-mod/card-mod.js
     type: null
-
-# old
-
-
-#  - url: https://unpkg.com/moment@2.22.2/moment.js
-#    type: js
-#  - url: /github/thomasloven/popup-card.js?track=true
-#    type: js
-#  - url: /github/thomasloven/browser-commander.js?track=true
-#    type: js
-#  - url: /local/markdown-mod.js
-#    type: module
-#  - url: /local/custom-lovelace/home-feed-card/lovelace-home-feed-card.js?v=0.0.0
-#    type: js
+  - url: /community_plugin/lovelace-home-feed-card/lovelace-home-feed-card.js
+    type: js
 
 views:
 
