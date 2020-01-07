@@ -29,7 +29,7 @@ resources:
   - url: /community_plugin/lovelace-weather-card-chart/weather-card-chart.js
     type: module
   - url: /community_plugin/lovelace-card-mod/card-mod.js
-    type: null
+    type: module
   - url: /community_plugin/lovelace-home-feed-card/lovelace-home-feed-card.js
     type: js
 
