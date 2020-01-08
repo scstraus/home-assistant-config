@@ -622,7 +622,7 @@
       data_template:
         name: >
           {% if states.sun.sun.state == "above_horizon" %}
-            default
+            Google - Light
           {% else %}
             midnight
           {% endif %}

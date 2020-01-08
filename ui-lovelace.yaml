@@ -48,6 +48,7 @@ views:
 
 custom_header:
   compact_mode: true
+  background: var(--primary-background-color)
   exceptions:
     - conditions:
         user: kiosk

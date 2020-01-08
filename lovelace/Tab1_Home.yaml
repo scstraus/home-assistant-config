@@ -102,59 +102,42 @@ popup_cards:
 
 cards: 
 
-  - type: custom:mod-card
-    style: |
-      ha-card {
-       border-radius: 15px;
-      }
-    card:
-      type: entity-filter
-      card: 
-        title: "!!! EMERGENCY ALERT !!!"
-        show_header_toggle: false
-      entities:
-      - sensor.living_room_nest_protect_co_status
-      - sensor.living_room_nest_protect_smoke_status
-      - sensor.master_bedroom_nest_protect_co_status
-      - sensor.master_bedroom_nest_protect_smoke_status
-      - sensor.kids_room_nest_protect_co_status
-      - sensor.kids_room_nest_protect_smoke_status
-      - sensor.basement_nest_protect_co_status
-      - sensor.basement_nest_protect_smoke_status
-      - sensor.living_room_nest_protect_color_status
-      - sensor.master_bedroom_nest_protect_color_status
-      - sensor.kids_room_nest_protect_color_status
-      - sensor.basement_nest_protect_color_status
-      - sensor.house_electricity
-  #    - sensor.object_detection_front
-  #    - sensor.object_detection_left
-  #    - sensor.object_detection_right
-  #    - sensor.object_detection_back
-      - binary_sensor.human_back
-      - binary_sensor.human_front 
-      - binary_sensor.human_left
-      - binary_sensor.human_right
-      - binary_sensor.basement_is_flooding
-      state_filter:
-      - "red"
-      - "Emergency"
-      - "power_out"
-      - "Person Detected"
-      - "on"
-      - "yes"
-      show_empty: false
   - type: entity-filter
-    style: |
-       ha-card {
-         background-color: var(--primary-background-color);
-         border-radius: 15px;
-         box-shadow: 
-           {% if is_state('sun.sun', 'above_horizon') %}
-             -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-           {% else %}
-             -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-           {% endif %}    
-       }  
+    card: 
+      title: "!!! EMERGENCY ALERT !!!"
+      show_header_toggle: false
+    entities:
+    - sensor.living_room_nest_protect_co_status
+    - sensor.living_room_nest_protect_smoke_status
+    - sensor.master_bedroom_nest_protect_co_status
+    - sensor.master_bedroom_nest_protect_smoke_status
+    - sensor.kids_room_nest_protect_co_status
+    - sensor.kids_room_nest_protect_smoke_status
+    - sensor.basement_nest_protect_co_status
+    - sensor.basement_nest_protect_smoke_status
+    - sensor.living_room_nest_protect_color_status
+    - sensor.master_bedroom_nest_protect_color_status
+    - sensor.kids_room_nest_protect_color_status
+    - sensor.basement_nest_protect_color_status
+    - sensor.house_electricity
+#    - sensor.object_detection_front
+#    - sensor.object_detection_left
+#    - sensor.object_detection_right
+#    - sensor.object_detection_back
+    - binary_sensor.human_back
+    - binary_sensor.human_front 
+    - binary_sensor.human_left
+    - binary_sensor.human_right
+    - binary_sensor.basement_is_flooding
+    state_filter:
+    - "red"
+    - "Emergency"
+    - "power_out"
+    - "Person Detected"
+    - "on"
+    - "yes"
+    show_empty: false
+  - type: entity-filter
     card: 
       title: Devices Reporting Problems
       show_header_toggle: false
@@ -205,17 +188,6 @@ cards:
     show_empty: false
 
   - type: entity-filter
-    style: |
-       ha-card {
-         background-color: var(--primary-background-color);
-         border-radius: 15px;
-         box-shadow: 
-           {% if is_state('sun.sun', 'above_horizon') %}
-             -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-           {% else %}
-             -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-           {% endif %}    
-       }  
     card:
       title: "Low Battery"
       show_header_toggle: false
@@ -243,76 +215,51 @@ cards:
     - sensor.ecolink_garage_door_battery_level
     show_empty: false
 
-
-  - type: custom:mod-card
-    style: |
-      ha-card {
-       background-color: var(--primary-background-color);
-       border-radius: 15px;
-       box-shadow: 
-         {% if is_state('sun.sun', 'above_horizon') %}
-           -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-         {% else %}
-           -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-         {% endif %}    
-      }
-    card:
-      type: entity-filter
-      style: |
-         ha-card {
-           background-color: var(--primary-background-color);
-           border-radius: 15px;
-           box-shadow: 
-             {% if is_state('sun.sun', 'above_horizon') %}
-               -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-             {% else %}
-               -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-             {% endif %}    
-         }  
-      entities:
-      - variable.posta_variable
-      - variable.dhl_variable
-      - variable.dpd_variable
-      - variable.gls_variable
-      - sensor.bio_odpad_day
-      - sensor.trash_day
-    #      - sensor.gls_packages_coming_today
-    #      - sensor.cp_packages_coming_today
-    #      - sensor.dpd_packages_coming_today
-    #      - sensor.dhl_packages_coming_today
-      - sensor.bike_day
-      - sensor.object_detection_front
-      - sensor.object_detection_left
-      - sensor.object_detection_right
-      - sensor.object_detection_back
-      - binary_sensor.back_door
-    #      - binary_sensor.guest_bedroom_window_1
-      - binary_sensor.garage_door
-      - binary_sensor.front_door_zone_1
-      - sensor.closet_window
-      - input_select.dishwasher_status
-      - binary_sensor.popp_unknown_type_0004_id_0014_sensor
-      - binary_sensor.sebastians_room_left_window
-      - input_select.miele_washing_machine_status
-      - input_select.lg_washing_machine_status
-      - binary_sensor.sophies_room_ceiling_window
-      - binary_sensor.ecolink_closet_left_window
-      - binary_sensor.ecolink_garage_door
-      state_filter:
-      - "on"
-      - "Delivery"
-      - "delivery"
-      - "yes"
-      - "Cat Detected"
-      - "Dog Detected"
-      - "Open"
-      - "Clean"
-      - "Today"
-      - "Tomorrow"
-      card: 
-        type: glance
-        title: "What's Happening Today"
-      show_empty: false      
+  - type: entity-filter
+    entities:
+    - variable.posta_variable
+    - variable.dhl_variable
+    - variable.dpd_variable
+    - variable.gls_variable
+    - sensor.bio_odpad_day
+    - sensor.trash_day
+  #      - sensor.gls_packages_coming_today
+  #      - sensor.cp_packages_coming_today
+  #      - sensor.dpd_packages_coming_today
+  #      - sensor.dhl_packages_coming_today
+    - sensor.bike_day
+    - sensor.object_detection_front
+    - sensor.object_detection_left
+    - sensor.object_detection_right
+    - sensor.object_detection_back
+    - binary_sensor.back_door
+  #      - binary_sensor.guest_bedroom_window_1
+    - binary_sensor.garage_door
+    - binary_sensor.front_door_zone_1
+    - sensor.closet_window
+    - input_select.dishwasher_status
+    - binary_sensor.popp_unknown_type_0004_id_0014_sensor
+    - binary_sensor.sebastians_room_left_window
+    - input_select.miele_washing_machine_status
+    - input_select.lg_washing_machine_status
+    - binary_sensor.sophies_room_ceiling_window
+    - binary_sensor.ecolink_closet_left_window
+    - binary_sensor.ecolink_garage_door
+    state_filter:
+    - "on"
+    - "Delivery"
+    - "delivery"
+    - "yes"
+    - "Cat Detected"
+    - "Dog Detected"
+    - "Open"
+    - "Clean"
+    - "Today"
+    - "Tomorrow"
+    card: 
+      type: glance
+      title: "What's Happening Today"
+    show_empty: false      
 
 #  - type: markdown
 #    content: |
@@ -327,43 +274,28 @@ cards:
     cards:
 
     - type: 'custom:weather-card-chart'
-      style: |
-         ha-card {
-           background-color: var(--primary-background-color);
-           border-radius: 15px;
-           box-shadow: 
-             {% if is_state('sun.sun', 'above_horizon') %}
-               -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-             {% else %}
-               -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-             {% endif %}    
-         }  
       title: Weather / Air Quality
       weather: weather.openweathermap
       sun: sun.sun
       mode: hourly
 
-    - type: custom:mod-card
-      style: |
-        ha-card {
-         border-radius: 15px; 
-        }   
-      card: 
-        type: custom:vertical-stack-in-card
-        cards:
+    - type: custom:vertical-stack-in-card
+      cards:
 
-        - type: "custom:button-card"
-          name: Hlubočepy
-          styles:
-            card:
-              - padding: 8px 0px
+      - type: "custom:button-card"
+        name: Hlubočepy
+        styles:
+          name: 
+            - color: var(--text-primary-color)
+          card:
+            - padding: 8px 0px
 
-        - type: custom:air-visual-card 
-          air_pollution_level: sensor.hlubocepy_air_pollution
-          air_quality_index: sensor.hlubocepy_air_quality
-          main_pollutant: sensor.u_s_main_pollutant
-          hide_title: true
-          svg_location: "/local/icons/aqi_icons"
+      - type: custom:air-visual-card 
+        air_pollution_level: sensor.hlubocepy_air_pollution
+        air_quality_index: sensor.hlubocepy_air_quality
+        main_pollutant: sensor.u_s_main_pollutant
+        hide_title: true
+        svg_location: "/local/icons/aqi_icons"
 
     - type: custom:vertical-stack-in-card
       cards:
@@ -371,6 +303,8 @@ cards:
       - type: "custom:button-card"
         name: Home
         styles:
+          name: 
+            - color: var(--text-primary-color)
           card:
             - padding: 8px 0px
 
@@ -383,17 +317,6 @@ cards:
 
 
   - type: glance
-    style: |
-       ha-card {
-         background-color: var(--primary-background-color);
-         border-radius: 15px;
-         box-shadow: 
-           {% if is_state('sun.sun', 'above_horizon') %}
-             -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-           {% else %}
-             -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-           {% endif %}    
-       }  
     entities:
       - sensor.sean_location
 #        type: "custom:secondaryinfo-entity-row"
@@ -407,38 +330,17 @@ cards:
 #    card:
 
   - type: "custom:calendar-card"
-    style: |
-       ha-card {
-         background-color: var(--primary-background-color);
-         border-radius: 15px;
-         box-shadow: 
-           {% if is_state('sun.sun', 'above_horizon') %}
-             -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-           {% else %}
-             -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-           {% endif %}    
-       }  
     entities:
       - calendar.alena_and_seans_calendar
     title: "Reminders"
     showProgressBar: false
     numberOfDays: 3
+    hidePastEvents: true
 
   - type: vertical-stack
     cards:
 
       - type: picture-glance
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
         title: Outdoor - Front Gate
         aspect_ratio: 16x9
         entities:
@@ -452,17 +354,6 @@ cards:
 
 
         - type: picture-glance
-          style: |
-             ha-card {
-               background-color: var(--primary-background-color);
-               border-radius: 15px;
-               box-shadow: 
-                 {% if is_state('sun.sun', 'above_horizon') %}
-                   -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-                 {% else %}
-                   -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-                 {% endif %}    
-             }  
           title: Outdoor - Left
           aspect_ratio: 9x16
           entities:
@@ -470,17 +361,6 @@ cards:
           camera_image: camera.left
 
         - type: picture-glance
-          style: |
-             ha-card {
-               background-color: var(--primary-background-color);
-               border-radius: 15px;
-               box-shadow: 
-                 {% if is_state('sun.sun', 'above_horizon') %}
-                   -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-                 {% else %}
-                   -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-                 {% endif %}    
-             }  
           title: Outdoor - Right 
           aspect_ratio: 9x16
           entities:
@@ -488,17 +368,6 @@ cards:
           camera_image: camera.right
 
       - type: picture-glance
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
         title: Outdoor - Back Yard
         aspect_ratio: 16x9
         entities:
@@ -537,371 +406,232 @@ cards:
 #    report_size: 6
 #    card:
 
-  - type: vertical-stack
-    cards:
+  - type: custom:mod-card
+    report_size: 5
+    card:
 
-#      - type: entities
-#        title: Whole House
-#        show_header_toggle: false
-#        entities:
-#        - climate.straus_house 
-
-  #      - type: gauge
-  #        entity: sensor.current_rate_power_cost_per_day 
-  #        name: "Current Electricity Use"
-  #        unit: Kč/day
-  #        min: 60
-  #        max: 700
-  #        severity:
-  #          green: 0
-  #          yellow: 250
-  #          red: 350 
-  #        
-
-    - entity: media_player.itunes
-      type: custom:mini-media-player
-      group: true
-
-
-    - type: horizontal-stack
+      type: vertical-stack
       cards:
 
+  #      - type: entities
+  #        title: Whole House
+  #        show_header_toggle: false
+  #        entities:
+  #        - climate.straus_house 
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: SHUFFLE
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: "switch.shuffle"
+    #      - type: gauge
+    #        entity: sensor.current_rate_power_cost_per_day 
+    #        name: "Current Electricity Use"
+    #        unit: Kč/day
+    #        min: 60
+    #        max: 700
+    #        severity:
+    #          green: 0
+    #          yellow: 250
+    #          red: 350 
+    #        
+
+      - entity: media_player.itunes
+        type: custom:mini-media-player
+        group: true
 
 
-    - type: horizontal-stack
-      cards:
+      - type: horizontal-stack
+        cards:
 
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: MIX
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "a-45-star"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: JAZZ
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-jazz"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: ROCK
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-rock"
-            media_content_type: "playlist"           
-
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: POP
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-pop"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: SHUFFLE
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: switch.toggle
+            service_data:
+              entity_id: "switch.shuffle"
 
 
-    - type: horizontal-stack
-      cards:
+      - type: horizontal-stack
+        cards:
 
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: CLASSICAL
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "classical"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: MIX
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "a-45-star"
+              media_content_type: "playlist"
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: BLACK
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-black"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: JAZZ
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-jazz"
+              media_content_type: "playlist"
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: ELECTRO
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-electronica"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: ROCK
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-rock"
+              media_content_type: "playlist"           
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: KIDS
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "kids-english"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: POP
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-pop"
+              media_content_type: "playlist"
 
-    - type: horizontal-stack
-      cards:
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: KULTURA <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "radio-kultura-ru"
-            media_content_type: "playlist"
+      - type: horizontal-stack
+        cards:
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: CLASSICAL <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "radio-swiss-classic"
-            media_content_type: "playlist"
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: JAZZ24 <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "jazz24"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: CLASSICAL
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "classical"
+              media_content_type: "playlist"
 
-      - type: "custom:button-card"
-        style: |
-           ha-card {
-             background-color: var(--primary-background-color);
-             border-radius: 15px;
-             box-shadow: 
-               {% if is_state('sun.sun', 'above_horizon') %}
-                 -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-               {% else %}
-                 -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-               {% endif %}    
-           }  
-        name: EUROPA2 <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "europa2"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: BLACK
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-black"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: ELECTRO
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-electronica"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: KIDS
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "kids-english"
+              media_content_type: "playlist"
+
+      - type: horizontal-stack
+        cards:
+
+        - type: "custom:button-card"
+          name: KULTURA <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "radio-kultura-ru"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: CLASSICAL <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "radio-swiss-classic"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: JAZZ24 <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "jazz24"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: EUROPA2 <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "europa2"
+              media_content_type: "playlist"
 
   #    - type: entities
   #      title: Whole House
@@ -920,17 +650,6 @@ cards:
 #  - type: custom:vertical-stack-in-card
 #    cards:
   - type: entities
-    style: |
-       ha-card {
-         background-color: var(--primary-background-color);
-         border-radius: 15px;
-         box-shadow: 
-           {% if is_state('sun.sun', 'above_horizon') %}
-             -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-           {% else %}
-             -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-           {% endif %}    
-       }   
     title: First Floor
     show_header_toggle: false
     entities:
@@ -1058,17 +777,6 @@ cards:
 #            include: false
 
   - type: entities
-    style: |
-       ha-card {
-         background-color: var(--primary-background-color);
-         border-radius: 15px;
-         box-shadow: 
-           {% if is_state('sun.sun', 'above_horizon') %}
-             -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-           {% else %}
-             -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-           {% endif %}    
-       }   
     title: Second Floor
     show_header_toggle: false
     entities:
@@ -1116,74 +824,50 @@ cards:
     - entity: climate.office_library
       name: Office
 
-  - type: custom:mod-card
-    style: |
-      ha-card {
-       background-color: var(--primary-background-color);
-       border-radius: 15px;
-       box-shadow: 
-         {% if is_state('sun.sun', 'above_horizon') %}
-           -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-         {% else %}
-           -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-         {% endif %}    
-      }   
-    card:
-      type: entities
-      title: Third Floor
-      show_header_toggle: false
-      entities:
-      - entity: input_boolean.sophies_air_purifier
-        name: "Sophie's Room Air Purifier"
-        type: "custom:secondaryinfo-entity-row"
-        secondary_info: "Air Quality: [[  sensor.sophies_room_aqi_description.state ]]"
-      - entity: input_boolean.sebastians_air_purifier
-        name: "Seb's Room Air Purifier"
-        type: "custom:secondaryinfo-entity-row"
-        secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi_description.state ]]"
-      - entity: media_player.sophie_s_room_airtunes_speaker
-        type: custom:mini-media-player
-        name: "Sophie's Room Speakers"
-        hide:
-          controls: true
-          mute: true
-        group: true
-      - entity: media_player.sebastian_s_room_airtunes_speaker
-        type: custom:mini-media-player
-        name: "Seb's Room Speakers"
-        hide:
-          controls: true
-          mute: true
-        group: true
-      - entity: media_player.gym_airtunes_speaker
-        type: custom:mini-media-player
-        name: Gym Speakers
-        hide:
-          controls: true
-          mute: true
-        group: true
-      - climate.sebastian_s_room
-      - climate.sophie_s_room
-      - climate.guest_bedroom
-      style: 
-        font-size: 20px   
+  - type: entities
+    title: Third Floor
+    show_header_toggle: false
+    entities:
+    - entity: input_boolean.sophies_air_purifier
+      name: "Sophie's Room Air Purifier"
+      type: "custom:secondaryinfo-entity-row"
+      secondary_info: "Air Quality: [[  sensor.sophies_room_aqi_description.state ]]"
+    - entity: input_boolean.sebastians_air_purifier
+      name: "Seb's Room Air Purifier"
+      type: "custom:secondaryinfo-entity-row"
+      secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi_description.state ]]"
+    - entity: media_player.sophie_s_room_airtunes_speaker
+      type: custom:mini-media-player
+      name: "Sophie's Room Speakers"
+      hide:
+        controls: true
+        mute: true
+      group: true
+    - entity: media_player.sebastian_s_room_airtunes_speaker
+      type: custom:mini-media-player
+      name: "Seb's Room Speakers"
+      hide:
+        controls: true
+        mute: true
+      group: true
+    - entity: media_player.gym_airtunes_speaker
+      type: custom:mini-media-player
+      name: Gym Speakers
+      hide:
+        controls: true
+        mute: true
+      group: true
+    - climate.sebastian_s_room
+    - climate.sophie_s_room
+    - climate.guest_bedroom
+    style: 
+      font-size: 20px   
 
 #  - type: custom:card-modder
 #    report_size: 8
 #    card:      
 
   - type: entities
-    style: |
-       ha-card {
-         background-color: var(--primary-background-color);
-         border-radius: 15px;
-         box-shadow: 
-           {% if is_state('sun.sun', 'above_horizon') %}
-             -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-           {% else %}
-             -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-           {% endif %}    
-       }   
     title: Basement
     show_header_toggle: false
     entities:
@@ -1191,17 +875,6 @@ cards:
     - climate.laundry_room
 
   - type: entities
-    style: |
-       ha-card {
-         background-color: var(--primary-background-color);
-         border-radius: 15px;
-         box-shadow: 
-           {% if is_state('sun.sun', 'above_horizon') %}
-             -8px -8px 8px 0 rgba(255,255,255,.5),8px 8px 8px 0 rgba(0,0,0,.03);
-           {% else %}
-             -8px -8px 8px 0 rgba(77, 77, 77,.5),8px 8px 8px 0 rgba(0,0,0,.3);
-           {% endif %}    
-       }       
     title: Outside
     show_header_toggle: false
     entities:
@@ -1219,16 +892,4 @@ cards:
         mute: true
       group: true
 
-  - type: custom:mod-card
-    style: |
-      ha-card {
-        background-color: var(--primary-background-color);
-        border-radius: 15px;
-      }
-    card:
-      type: vertical-stack
-      cards:
-        - type: light
-          entity: light.fibaro_system_fgd212_dimmer_2_level
-        - type: light
-          entity:  light.fibaro_system_fgd212_dimmer_2_level_2
+

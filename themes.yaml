@@ -61,6 +61,10 @@ midnight:
   paper-slider-disabled-active-color: 'var(--disabled-text-color)'
   paper-slider-disabled-secondary-color: 'var(--disabled-text-color)'
 
+  ha-card-border-radius: "10px"
+  ha-card-box-shadow: "4px 4px 4px #2E333A"
+
+
   # Google colors
   google-red-500: '#E45E65'
   google-green-500: '#39E949'
@@ -179,9 +183,9 @@ Google - Light:
   paper-font-caption_-_font-family: "var(--primary-font-family)"
   paper-font-title_-_font-family: "var(--primary-font-family)"
 
-  ha-card-border-radius: "0px"
+  ha-card-border-radius: "10px"
   ha-card-header-color: "#757575"
-  ha-card-box-shadow: "0px 0px 1px #eeeeee"
+  ha-card-box-shadow: "4px 4px 4px #eeeeee"
 
   ### Main Interface Colors ###
   app-header-background-color: "#ffffff"
@@ -193,7 +197,7 @@ Google - Light:
   ### Text ###
   primary-text-color: var(--primary-color)
   secondary-text-color: "#757575"
-  text-primary-color: "#061014"
+  text-primary-color: "#606367"
   disabled-text-color: "#a1a1a1"
   ### Sidebar Menu ###
   sidebar-background-color: "#ffffff"
