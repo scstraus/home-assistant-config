@@ -712,3 +712,52 @@
     data_template:
       value: >
           {{ states('sensor.sebastians_room_aqi_description')}}
+
+
+- id: state_holiday_1_week
+  alias: 'Notify - 1 Week to State Holiday'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '15:00:00'
+  condition:
+    condition: template
+    value_template: '{{ state_attr("sensor.czech_holidays_event_0", "eta") == 7 }}'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "State Holiday Coming Up"
+      message: "In one week, it is {{ states('sensor.czech_holidays_event_0')}}"
+
+- id: state_holiday_tomorrow
+  alias: 'Notify - 1 Day to State Holiday'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '15:00:00'
+  condition:
+    condition: template
+    value_template: '{{ state_attr("sensor.czech_holidays_event_0", "eta") == 1 }}'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "State Holiday Coming Up"
+      message: "Tomorrow it is {{ states('sensor.czech_holidays_event_0')}}"
+
+- id: state_holiday_today
+  alias: 'Notify - Today is State Holiday'
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '10:45:00'
+  condition:
+    condition: template
+    value_template: '{{ state_attr("sensor.czech_holidays_event_0", "eta") == 0 }}'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "State Holiday Today"
+      message: "Today it is {{ states('sensor.czech_holidays_event_0')}}, you don't need to go to work!"

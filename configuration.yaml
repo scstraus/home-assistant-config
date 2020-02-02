@@ -63,7 +63,9 @@ mobile_app:
 
 #uncomment for iOS device add
 discovery:
-
+  ignore:
+    - plex_mediaserver
+    
 http:
 
 #uncomment for iOS device add
@@ -967,6 +969,19 @@ variable:
     attributes:
       icon: mdi:gauge-low
     restore: true
+
+  master_bedroom_aqi:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+
+  master_bedroom_aqi_description:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+    
     
 cast:
   media_player:
@@ -1137,9 +1152,11 @@ fan:
     name: sophies_room_air_purifier
     host: !secret xiaomi_air_purifier_sophies_room_ip
     token: !secret xiaomi_air_purifier_sophies_room_token
-
-evohome_rf:
+  - platform: xiaomi_miio
+    name: master_bedroom_air_purifier
+    host: !secret xiaomi_air_purifier_master_bedroom_ip
+    token: !secret xiaomi_air_purifier_master_bedroom_token
+    
+evohome_rf: 
   serial_port: /dev/ttyUSB0
   packet_log: /share/packets.log
-
-

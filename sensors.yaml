@@ -788,20 +788,20 @@
             Tomorrow
           {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
           and now().weekday() in (1,) 
-          and now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
-          and now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01" %}
+          and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
+          or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01") %}
             Today
           {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
           and now().weekday() in (0,) 
-          and now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
-          and now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01" %}
+          and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
+          or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01") %}
             Tomorrow
           {% else %}
             false
           {% endif %}
 
 
-#trash day is wednesday so take it out today=tuesday, tomorrow=monday
+#trash day is thursday so take it out today=wednesday, tomorrow=tuesday
 
   - platform: template
     sensors:
@@ -809,9 +809,9 @@
         friendly_name: "Take Trash Out"
         entity_id: sensor.date
         value_template: >-
-          {% if now().weekday() in (1,) %}
+          {% if now().weekday() in (2,) %}
             Today
-          {% elif now().weekday() in (0,) %}
+          {% elif now().weekday() in (1,) %}
             Tomorrow
           {% else %}
             false
@@ -1214,4 +1214,54 @@
           {% else %}
             Off the Charts
           {% endif %} 
+
+
+  - platform: template
+    sensors:
+      master_bedroom_aqi:
+        friendly_name: "Master Bedroom Air Quality"
+        value_template: >-
+          {% if state_attr('fan.master_bedroom_air_purifier', 'aqi')|float == 0 %}
+            {{ states('variable.master_bedroom_aqi') }}  
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 15.401 %}
+            {{(((state_attr('fan.master_bedroom_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }}
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 40.401 %}
+            {{(((51+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }}
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 65.401 %}
+            {{(((101+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-40.5)|float * 1.96787148594)|float)*1)|round|int }} 
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 150.401 %}
+            {{(((151+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-65.5)|float * 1.73265306122)|float)*1)|round|int }} 
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 250.401 %}
+            {{(((201+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-150.5)|float * 1.00909090909)|float)*1)|round|int }} 
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 500.401 %}
+            {{(((301+(state_attr('fan.master_bedroom_room_air_purifier', 'aqi')-250.5)|float * 1.25577889447)|float)*1)|round|int }}
+          {% endif %} 
+
+
+  - platform: template
+    sensors:
+      master_bedroom_aqi_description:
+        friendly_name: "Master Bedroom Air Quality Description"
+        value_template: >-
+          {% if state_attr('fan.master_bedroom_air_purifier', 'aqi')|float == 0 %}
+            {{ states('variable.master_bedroom_aqi_description') }}  
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 15.401 %}
+            {{(((state_attr('fan.master_bedroom_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }} (Good)
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 40.401 %}
+            {{(((51+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }} (Moderate)
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 65.401 %}
+            {{(((101+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-40.5)|float * 1.96787148594)|float)*1)|round|int }} (Unh. Sens. Groups)
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 150.401 %}
+            {{(((151+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-65.5)|float * 1.73265306122)|float)*1)|round|int }} (Unhealthy)
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 250.401 %}
+            {{(((201+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-150.5)|float * 1.00909090909)|float)*1)|round|int }} (Very Unhealthy)
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 500.401 %}
+            {{(((301+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-250.5)|float * 1.25577889447)|float)*1)|round|int }} (Hazardous)
+          {% else %}
+            Off the Charts
+          {% endif %} 
+
+  - platform: ical
+    name: "Czech Holidays"
+    url: "https://www.officeholidays.com/ics/czech-republic"
 

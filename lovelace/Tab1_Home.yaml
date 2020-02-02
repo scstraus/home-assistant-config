@@ -7,6 +7,14 @@ icon: mdi:home
 background-image: center / cover no-repeat url("/local/day.jpg") fixed
 
 popup_cards:
+
+  weather.openweathermap:
+    title: Weekly Weather Forecast
+    card: 
+      type: 'custom:weather-card-chart'
+      weather: weather.weather_forecast
+      sun: sun.sun
+
   sensor.sean_location:
     title: Sean Location History and Time to Home
     card:
@@ -245,6 +253,7 @@ cards:
     - binary_sensor.sophies_room_ceiling_window
     - binary_sensor.ecolink_closet_left_window
     - binary_sensor.ecolink_garage_door
+    - sensor.czech_holidays_event_0
     state_filter:
     - "on"
     - "Delivery"
@@ -259,7 +268,24 @@ cards:
     card: 
       type: glance
       title: "What's Happening Today"
-    show_empty: false      
+    show_empty: false    
+
+  - type: entity-filter
+    card:
+      title: "Upcoming Holidays"
+      show_header_toggle: false
+    state_filter:
+      - operator: "<"
+        value: 7
+        attribute: eta
+    entities:
+      - sensor.czech_holidays_event_0
+      - sensor.czech_holidays_event_1
+      - sensor.czech_holidays_event_2
+      - sensor.czech_holidays_event_3
+      - sensor.czech_holidays_event_4
+    show_empty: false
+ 
 
 #  - type: markdown
 #    content: |
@@ -779,7 +805,9 @@ cards:
   - type: entities
     title: Second Floor
     show_header_toggle: false
-    entities:
+    entities: 
+    - entity: fan.master_bedroom_air_purifier
+      name: "Master Bedroom Air Purifier"
     - entity: media_player.master_bedroom_airtunes_speaker
       type: custom:mini-media-player
       name: "Master Bedroom Speakers"
@@ -861,7 +889,7 @@ cards:
     - climate.sophie_s_room
     - climate.guest_bedroom
     style: 
-      font-size: 20px   
+      font-size: 20px
 
 #  - type: custom:card-modder
 #    report_size: 8

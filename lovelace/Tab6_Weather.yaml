@@ -22,13 +22,51 @@ cards:
     - sensor.dark_sky_summary
 #    - sensor.u_s_air_pollution_level 
 #    - sensor.u_s_air_quality_index 
-    - type: custom:air-visual-card 
-      air_pollution_level: sensor.u_s_air_pollution_level 
-      air_quality_index: sensor.u_s_air_quality_index
-      main_pollutant: sensor.u_s_main_pollutant
-      svg_location: "/local/icons/aqi_icons"
-#          temp: sensor.dark_sky_temperature 
-      city: 'Prague'
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+      - type: "custom:button-card"
+        name: Hlubočepy
+        styles:
+          name: 
+            - color: var(--text-primary-color)
+          card:
+            - padding: 8px 0px
+
+      - type: custom:air-visual-card 
+        air_pollution_level: sensor.hlubocepy_air_pollution
+        air_quality_index: sensor.hlubocepy_air_quality
+        main_pollutant: sensor.u_s_main_pollutant
+        hide_title: true
+        svg_location: "/local/icons/aqi_icons"
+
+    - type: custom:vertical-stack-in-card
+      cards:
+
+      - type: "custom:button-card"
+        name: Home
+        styles:
+          name: 
+            - color: var(--text-primary-color)
+          card:
+            - padding: 8px 0px
+
+      - type: custom:air-visual-card 
+        air_pollution_level: sensor.home_air_pollution
+        air_quality_index: sensor.home_air_quality
+        main_pollutant: sensor.u_s_main_pollutant
+        hide_title: true
+        svg_location: "/local/icons/aqi_icons"
+
+#
+#    - type: custom:air-visual-card 
+#      air_pollution_level: sensor.u_s_air_pollution_level 
+#      air_quality_index: sensor.u_s_air_quality_index
+#      main_pollutant: sensor.u_s_main_pollutant
+#      svg_location: "/local/icons/aqi_icons"
+##          temp: sensor.dark_sky_temperature 
+#      city: 'Prague'
 
 
   - type: entities

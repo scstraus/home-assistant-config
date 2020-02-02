@@ -475,6 +475,9 @@
     - platform: state
       entity_id: sensor.alarm_state_3_motion_sensors
       to: 'armed'
+  condition:
+    condition: template
+    value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
     service: notify.ios_seans_iphone_x
     data:
