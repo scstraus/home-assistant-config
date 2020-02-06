@@ -50,6 +50,8 @@ sun:
 
 python_script:
 
+stream:
+
 lovelace:
 
   mode: yaml
@@ -638,6 +640,43 @@ nest:
       - 'color_status'
 
 camera:
+
+#  - platform: generic
+#    name: Syno Stream Front
+#    still_image_url: !secret front_still_url
+#    stream_source: !secret syno_front_url
+#    framerate: 4
+#    
+#  - platform: generic
+#    name: Cam Substream Front
+#    still_image_url: !secret front_still_url
+#    stream_source: !secret front_substream_url
+#    framerate: 4
+#    
+
+  - platform: generic
+    name: Front Stream
+    still_image_url: !secret front_still_url
+    stream_source: !secret front_main_stream_url
+    framerate: 4
+
+  - platform: generic
+    name: Back Stream
+    still_image_url: !secret back_still_url
+    stream_source: !secret back_main_stream_url
+    framerate: 4
+
+  - platform: generic
+    name: Left Stream
+    still_image_url: !secret left_still_url
+    stream_source: !secret left_main_stream_url
+    framerate: 4
+
+  - platform: generic
+    name: Right Stream
+    still_image_url: !secret right_still_url
+    stream_source: !secret right_main_stream_url
+    framerate: 4
 
   - name: Right Last Person
     platform: generic

@@ -366,14 +366,22 @@ cards:
   - type: vertical-stack
     cards:
 
+#      - type: picture-entity
+#        entity: camera.cam_mainstream_front
+#        camera_view: live
+
       - type: picture-glance
         title: Outdoor - Front Gate
         aspect_ratio: 16x9
         entities:
   #        - binary_sensor.motion_front_of_house_motion
         - binary_sensor.motion_front
-  #        camera_image: camera.front_outdoor
-        camera_image: camera.front
+#          camera_image: camera.front_outdoor
+#        camera_image: camera.front
+#camera.cam_substream_front
+        camera_image: camera.front_stream
+#        camera_image: camera.front
+        camera_view: live
 
       - type: horizontal-stack
         cards:
@@ -384,14 +392,16 @@ cards:
           aspect_ratio: 9x16
           entities:
           - binary_sensor.motion_left
-          camera_image: camera.left
+          camera_image: camera.left_stream
+          camera_view: live
 
         - type: picture-glance
           title: Outdoor - Right 
           aspect_ratio: 9x16
           entities:
           - binary_sensor.motion_right
-          camera_image: camera.right
+          camera_image: camera.right_stream
+          camera_view: live
 
       - type: picture-glance
         title: Outdoor - Back Yard
@@ -400,7 +410,8 @@ cards:
   #        - binary_sensor.motion_back_of_house_motion
         - binary_sensor.motion_back
   #        camera_image: camera.back_outdoor
-        camera_image: camera.back
+        camera_image: camera.back_stream
+        camera_view: live
 
 
 

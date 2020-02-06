@@ -19,7 +19,8 @@ cards:
       aspect_ratio: 16x9
       entities:
       - binary_sensor.motion_front
-      camera_image: camera.front
+      camera_image: camera.front_stream
+#      camera_view: live
 
     - type: history-graph
       title: 'Front Motion'
@@ -45,7 +46,8 @@ cards:
           aspect_ratio: 9x16
           entities:
           - binary_sensor.motion_left
-          camera_image: camera.left
+          camera_image: camera.left_stream
+ #         camera_view: live
 
         - type: history-graph
           title: 'Left Motion'
@@ -61,7 +63,8 @@ cards:
           aspect_ratio: 9x16
           entities:
           - binary_sensor.motion_right
-          camera_image: camera.right
+          camera_image: camera.right_stream
+#          camera_view: live
 
         - type: history-graph
           title: 'Right Motion'
@@ -74,7 +77,8 @@ cards:
       aspect_ratio: 16x9
       entities:
       - binary_sensor.motion_back
-      camera_image: camera.back
+      camera_image: camera.back_stream
+#      camera_view: live
 
     - type: history-graph
       title: 'Back Motion'

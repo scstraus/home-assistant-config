@@ -570,6 +570,7 @@
         entity_id: camera.back
         deviceID:
           - !secret kindle_kitchen_deviceid
+        large: true
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
@@ -608,6 +609,7 @@
         entity_id: camera.left
         deviceID:
           - !secret kindle_kitchen_deviceid
+        large: true
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
@@ -627,6 +629,7 @@
         entity_id: camera.right
         deviceID:
           - !secret kindle_kitchen_deviceid
+        large: true
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
@@ -743,6 +746,10 @@
     - service: browser_mod.command
       data:
         command: close-popup
+    - service: browser_mod.lovelace_reload
+      data:
+        deviceID:
+          - !secret kindle_kitchen_deviceid
 
 
 - alias: 'Update Last Motion'
