@@ -1,189 +1,95 @@
+######################################################
+#                Bosch Dishwasher Status             #
+######################################################
 
-- id: dishwasher_active_when_power
-  alias: 'Set dishwasher active when power detected'
+# When dishwasher state is run , set status Running
+# When dishwasher switches to finished, set status to Clean
+# When state is Clean and door has been opened for 3 minutes, set status to Dirty
+
+- id: set_dishwasher_running
+  alias: Set Dishwasher Running
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.miele_dishwasher_power
-    above: 20
-  condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: input_select.dishwasher_status
-        state: Dirty
-      - condition: state
-        entity_id: input_select.dishwasher_status
-        state: Emptying
+    platform: state
+    entity_id: sensor.bosch_dishwasher_state
+    to: 'run'
   action:
     - service: input_select.select_option
       data:
-        entity_id: input_select.dishwasher_status
-        option: Starting Up
-
-- id: dishwasher_first_rinse
-  alias: 'Set dishwasher first rinse'
-  hide_entity: true
-  initial_state: 'true'
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.miele_dishwasher_power
-    above: 1000
-  condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: input_select.dishwasher_status
-        state: Starting Up
-      - condition: state
-        entity_id: input_select.dishwasher_status
-        state: Clean
-      - condition: state
-        entity_id: input_select.dishwasher_status
-        state: Drying
-      - condition: state
-        entity_id: input_select.dishwasher_status
-        state: Emptying
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.dishwasher_status
-        option: First Rinse
-
-- id: set_dishwasher_wash
-  alias: 'Set dishwasher wash'
-  hide_entity: true
-  initial_state: 'true'
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.miele_dishwasher_power
-    below: 100
-    for:
-      minutes: 10
-  condition:
-    condition: state
-    entity_id: input_select.dishwasher_status
-    state: First Rinse
-  action:
-    service: input_select.select_option
-    data:
-      entity_id: input_select.dishwasher_status
-      option: Washing
-
-- id: set_dishwasher_rinse
-  alias: Set dishwasher second rinse
-  hide_entity: true
-  initial_state: 'true'
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.miele_dishwasher_power
-    above: 100
-  condition:
-    condition: state
-    entity_id: input_select.dishwasher_status
-    state: Washing
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.dishwasher_status
-        option: Final Rinse
-        
-- id: set_dishwasher_finishing_up
-  alias: 'Set dishwasher finishing up'
-  hide_entity: true
-  initial_state: 'true'
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.miele_dishwasher_power
-    below: 25
-    for:
-      minutes: 10    
-  condition:
-    condition: state
-    entity_id: input_select.dishwasher_status
-    state: Final Rinse
-  action:
-    service: input_select.select_option
-    data:
-      entity_id: input_select.dishwasher_status
-      option: Finishing Up
+        entity_id: input_select.bosch_dishwasher_status
+        option: Running
 
 - id: set_dishwasher_clean
-  alias: 'Set dishwasher clean'
+  alias: Set Dishwasher Clean
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.miele_dishwasher_power
-    below: 1
-    for:
-      minutes: 2
+    platform: state
+    entity_id: sensor.bosch_dishwasher_state
+    to: 'finished'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bosch_dishwasher_status
+        option: Clean
+
+- id: start_dishwasher_emptying
+  alias: Set Dishwasher Emptying
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.bosch_dishwasher_door
+    to: 'open'
   condition:
     condition: state
-    entity_id: input_select.dishwasher_status
-    state: Finishing Up
+    entity_id: input_select.bosch_dishwasher_status
+    state: Clean 
   action:
-    service: input_select.select_option
-    data:
-      entity_id: input_select.dishwasher_status
-      option: Clean
- 
-# Once the dishwasher status has been 'Drying' for 30 minutes, mark the
-# dishwasher as clean
+    - service: timer.start
+      data:
+        entity_id: timer.bosch_dishwasher_emptying
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bosch_dishwasher_status
+        option: Emptying
 
-- id: set_dishwasher_emptying
-  alias: 'Set dishwasher emptying'
+- id: pause_dishwasher_emptying
+  alias: Pause Dishwasher Emptying
   hide_entity: true
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.miele_dishwasher_power
-    below: 0.01
-    for:
-      minutes: 5
-  condition: 
-    condition: state
-    entity_id: input_select.dishwasher_status
-    state: Clean
-  action:
-    service: input_select.select_option
-    data:
-      entity_id: input_select.dishwasher_status
-      option: Emptying
-
-# When the power drops and the dishwasher is Clean or Drying, someone has
-# turned the Dishwasher off and emptied it. We should do this when the state
-# of the Dishwasher is clean or Finishing, just incase someone opens the
-# Dishwasher before the 30 minute timeout has been reached.
- 
-- id: dishwasher_dirty_on_power_off
-  alias: Set Dishwasher dirty when power off
-  hide_entity: true
-  initial_state: 'true'
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.miele_dishwasher_power
-    below: 0.01
-    for:
-      minutes: 15
+    platform: state
+    entity_id: sensor.bosch_dishwasher_door
+    to: 'closed'
   condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: input_select.dishwasher_status
-        state: Clean
-      - condition: state
-        entity_id: input_select.dishwasher_status
-        state: Drying
-      - condition: state
-        entity_id: input_select.dishwasher_status
-        state: Emptying
+    condition: state
+    entity_id: input_select.bosch_dishwasher_status
+    state: Emptying 
   action:
-    service: input_select.select_option
-    data:
-      entity_id: input_select.dishwasher_status
-      option: Dirty
+    - service: timer.pause
+      data:
+        entity_id: timer.bosch_dishwasher_emptying
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bosch_dishwasher_status
+        option: Clean
+
+- id: set_dishwasher_dirty
+  alias: Set Dishwasher Dirty
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.bosch_dishwasher_emptying
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bosch_dishwasher_status
+        option: Dirty
 
 - id: notify_clean_dishes
   alias: Clean Dishes Notification
@@ -191,7 +97,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: input_select.dishwasher_status
+    entity_id: input_select.bosch_dishwasher_status
     to: 'Clean'
   action:
     service: notify.ios_alenas_iphone
@@ -597,7 +503,7 @@
 - id: turn_off_sophie_air_purifier_aqi_left_home
   alias: "Turn off Sophie's Air Purifier for AQI or Left Home"
   hide_entity: true
-  initial_state: 'false'
+  initial_state: 'true'
   trigger:
     - platform: state
       entity_id: device_tracker.sophie
@@ -613,7 +519,7 @@
 - id: turn_off_sophie_air_purifier_if_no_motion
   alias: "Turn off Sophie's Air Purifier for No Motion"
   hide_entity: true
-  initial_state: 'false'
+  initial_state: 'true'
   trigger:
     - platform: state
       entity_id: binary_sensor.sophies_room_zone_10
@@ -670,7 +576,7 @@
 - id: turn_off_sebastians_air_purifier_in_the_morning_or_aqi
   alias: "Turn off Sebastian's Air Purifier in the morning or from AQI"
   hide_entity: true
-  initial_state: 'false'
+  initial_state: 'true'
   trigger:
     - platform: time
       at: '8:00:00'
@@ -719,7 +625,7 @@
 - id: turn_off_sebastians_air_purifier_after_nap
   alias: "Turn off Sebastian's Air Purifier after nap"
   hide_entity: true
-  initial_state: 'false'
+  initial_state: 'true'
   trigger:
     platform: time
     at: '16:30:00'

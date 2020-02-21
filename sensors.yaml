@@ -1265,3 +1265,5 @@
     name: "Czech Holidays"
     url: "https://www.officeholidays.com/ics/czech-republic"
 
+  - platform: home_connect
+    refresh_token: "eyJ4LXJlZyI6IkVVIiwieC1lbnYiOiJQUkQiLCJ0b2tlbiI6ImQ0MjNiM2MwLTBlMDItNDcyMC04NGM1LWY1MmIxNTg0ZjcwMyJ9"

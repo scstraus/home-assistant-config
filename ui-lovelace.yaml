@@ -32,6 +32,10 @@ resources:
     type: module
   - url: /community_plugin/lovelace-home-feed-card/lovelace-home-feed-card.js
     type: js
+  - url: /community_plugin/search-card/search-card.js
+    type: module
+  - url: /community_plugin/lovelace-state-switch/state-switch.js
+    type: module
 
 views:
 

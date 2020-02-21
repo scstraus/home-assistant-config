@@ -9,60 +9,199 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.back_door
-    to: 'Open'
+    entity_id: binary_sensor.back_door
+    to: 'on'
+    for: 
+      minutes: 3
   action:
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.living_room
-        temperature: 5
-        
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.living_room
+      setpoint: 12
+      duration: {"minutes":240}
+  condition:
+    condition: template 
+    value_template: > 
+      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+
 - id: heat_up_closed_living_room
   alias: 'Turn Heat Up In Living Room'
   hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.back_door
-    to: 'Closed'
+    entity_id: binary_sensor.back_door
+    to: 'off'
   action:   
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.living_room
-        preset_mode: 'none'
-        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.living_room
 
-- id: living_room_last_preset_mode
-  alias: 'Living Room Last Mode'
+- id: heat_down_open_sophies_room
+  alias: "Turn Heat Down In Sophie's Room"
+  hide_entity: true
+  initial_state: 'true'
   trigger:
     platform: state
-    entity_id: climate.living_room
+    entity_id: binary_sensor.sophies_room_ceiling_window
+    to: 'on'
+    for: 
+      minutes: 3
   action:
-    service: input_select.select_option
-    data_template:
-      entity_id: input_select.living_room_last_preset_mode
-      option: "{{ states[trigger.from_state.attributes.preset_mode] }}"
-# ^^^^^^this is getting the from_state, but it's not matching the input select. 
-# it gives this error: Invalid option: <template DomainStates('permanent')> (possible options: none, permanent, temporary)
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.sophie_s_room
+      setpoint: 12
+      duration: {"minutes":240}
+  condition:
+    condition: template 
+    value_template: > 
+      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
 
-
-#      option: '{{ trigger.from_state.state }}'
-
-- id: living_room_last_temp
-  alias: 'Living Room Last Temp'
+- id: heat_up_closed_sophies_room
+  alias: "Turn Heat Up In Sophie's Room"
+  hide_entity: true
+  initial_state: 'true'
   trigger:
     platform: state
-    entity_id: climate.living_room
+    entity_id: binary_sensor.sophies_room_ceiling_window
+    to: 'off'
+  action:   
+    - service: evohome.clear_zone_override
+      data:
+        entity_id: climate.sophie_s_room
+
+- id: heat_down_open_sebastians_room
+  alias: "Turn Heat Down In Sebastian's Room"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sebastians_room_left_window
+    to: 'on'
+    for: 
+      minutes: 3
   action:
-    service: input_number.set_value
-    data_template:
-      entity_id: input_number.living_room_last_temp
-      value: "{{ states[trigger.from_state.attributes.temperature]|float }}"
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.sebastian_s_room
+      setpoint: 12
+      duration: {"minutes":240}
+  condition:
+    condition: template 
+    value_template: > 
+      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
 
+- id: heat_up_closed_sebastians_room
+  alias: "Turn Heat Up In Sebastian's Room"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sebastians_room_left_window
+    to: 'off'
+  action:   
+    - service: evohome.clear_zone_override
+      data:
+        entity_id: climate.sebastian_s_room
 
+- id: heat_down_open_master_closet
+  alias: "Turn Heat Down In Master Closet"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_closet_left_window
+    to: 'on'
+    for: 
+      minutes: 2
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.master_closet
+      setpoint: 12
+      duration: {"minutes":240}
+  condition:
+    condition: template 
+    value_template: > 
+      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+
+- id: heat_up_closed_master_closet
+  alias: "Turn Heat Up In Master Closet"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id:  binary_sensor.ecolink_closet_left_window
+    to: 'off'
+  action:   
+    - service: evohome.clear_zone_override
+      data:
+        entity_id: climate.master_closet
+
+- id: heat_down_open_laundry
+  alias: "Turn Heat Down In Laundry Room"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.laundry_room_window_zone_13
+    to: 'on'
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.laundry_room
+      setpoint: 12
+      duration: {"minutes":240}
+  condition:
+    condition: template 
+    value_template: > 
+      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+
+- id: heat_up_closed_laundry
+  alias: "Turn Heat Up In Laundry"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.laundry_room_window_zone_13
+    to: 'off'
+  action:   
+    - service: evohome.clear_zone_override
+      data:
+        entity_id:  climate.laundry_room
+
+- id: heat_down_open_garage
+  alias: "Turn Heat Down In Garage"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_garage_door
+    to: 'on'
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.garage
+      setpoint: 5
+      duration: {"minutes":240}
+  condition:
+    condition: template 
+    value_template: > 
+      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+
+- id: heat_up_closed_garage
+  alias: "Turn Heat Up In Garage"
+  hide_entity: true
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_garage_door
+    to: 'off'
+  action:   
+    - service: evohome.clear_zone_override
+      data:
+        entity_id: climate.garage
 
 ######################################################
 # AUTOMATIONS TO ADJUST HEAT BASED ON WEATHER REPORT #
@@ -94,106 +233,68 @@
             entity_id: sensor.dark_sky_icon_0d
             state: 'clear-day'
   action:
-    - service: climate.set_temperature
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.dining_room
-        temperature: 20
-    - service: climate.set_temperature
+        setpoint: 20
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.entrance
-        temperature: 18
-    - service: climate.set_temperature
+        setpoint: 18
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.garage
-        temperature: 18
-    - service: climate.set_temperature
+        setpoint: 18
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.guest_bedroom
-        temperature: 21
-    - service: climate.set_temperature
+        setpoint: 21
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.living_room
-        temperature: 20
-    - service: climate.set_temperature
+        setpoint: 20
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bath
-        temperature: 22
-    - service: climate.set_temperature
+        setpoint: 22
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bedroom
-        temperature: 21
-    - service: climate.set_temperature
+        setpoint: 21
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_closet
-        temperature: 22
-    - service: climate.set_temperature
+        setpoint: 22
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.office_library
-        temperature: 21.5
-    - service: climate.set_temperature
+        setpoint: 21.5
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sebastian_s_room
-        temperature: 22
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.laundry_room
-        temperature: 21
-    - service: climate.set_temperature
+        setpoint: 22
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sophie_s_room
-        temperature: 21 
-    - service: climate.set_preset_mode
+        setpoint: 21
+        duration: {"minutes":1439}
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.laundry_room
-        preset_mode: 'none'
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
-#   - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.dining_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.entrance
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.garage
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.guest_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.living_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bath
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_closet
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.office_library
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sebastian_s_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sophie_s_room
-#        preset_mode: 'permanent'
 
 - id: warm_cloudy_weather_heat_down
   alias: 'Turn Down Heat For Warm Weather'
@@ -237,110 +338,63 @@
             entity_id: sensor.dark_sky_icon_0d
             state: 'cloudy'     
   action:
-    - service: climate.set_temperature
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.dining_room
-        temperature: 20
-    - service: climate.set_temperature
+        setpoint: 20
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.entrance
-        temperature: 18
-    - service: climate.set_temperature
+        setpoint: 18
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.garage
-        temperature: 18
-    - service: climate.set_temperature
+        setpoint: 18
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.guest_bedroom
-        temperature: 21
-    - service: climate.set_temperature
+        setpoint: 21
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bath
-        temperature: 22
-    - service: climate.set_temperature
+        setpoint: 22
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bedroom
-        temperature: 21
-    - service: climate.set_temperature
+        setpoint: 21
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_closet
-        temperature: 22
-    - service: climate.set_temperature
+        setpoint: 22
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.office_library
-        temperature: 21.5
-    - service: climate.set_temperature
+        setpoint: 21.5
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sebastian_s_room
-        temperature: 22
-    - service: climate.set_temperature
+        setpoint: 22
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sophie_s_room
-        temperature: 21
-    - service: climate.set_temperature
+        setpoint: 21
+        duration: {"minutes":1439}
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.laundry_room
-        temperature: 21     
-
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.laundry_room
-        preset_mode: 'none'
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.dining_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.entrance
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.garage
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.guest_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.living_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bath
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_closet
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.office_library
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sebastian_s_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sophie_s_room
-#        preset_mode: 'permanent'
-
-#      - condition: template
-#        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0d > 5 }}'
-#      - condition: template
-#        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0d > 13 }}'
-
-
                 
 - id: cold_weather_heat_auto_sunny
   alias: 'Turn Heat to Schedule in Cold Sunny Weather'
@@ -364,107 +418,47 @@
             entity_id: sensor.dark_sky_icon_0d
             state: 'clear-day'
   action:
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.dining_room
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.entrance
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.garage
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.guest_bedroom
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.living_room
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.master_bedroom
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.master_bath
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.master_closet
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.office_library
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.sebastian_s_room
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.sophie_s_room
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.laundry_room
-        preset_mode: 'none'
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_up_in_living_room
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.dining_room
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.entrance
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.garage
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.guest_bedroom
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.laundry_room
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.master_bath
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.master_bedroom
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.master_closet
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.office_library
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.sebastian_s_room
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.sophie_s_room
-#        
-#    - service: climate.set_temperature
-#      data:
-#        entity_id: climate.laundry_room
-#        
-       
+
 - id: cold_weather_heat_auto_cloudy
   alias: 'Turn Heat to Schedule in Cold Cloudy Weather'
   hide_entity: true
@@ -505,106 +499,46 @@
             entity_id: sensor.dark_sky_icon_0d
             state: 'cloudy'
   action:
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.dining_room
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.entrance
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.garage
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.guest_bedroom
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.living_room
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.master_bedroom
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.master_bath
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.master_closet
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.office_library
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.sebastian_s_room
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.sophie_s_room
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.laundry_room
-        preset_mode: 'none'
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_up_in_living_room
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.dining_room
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.entrance
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.garage
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.guest_bedroom
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.laundry_room
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.master_bath
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.master_bedroom
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.master_closet
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.office_library
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.sebastian_s_room
-#        
-#    - service: climate.set_hvac_mode
-#      data:
-#        entity_id: climate.sophie_s_room
-#        
-#    - service: climate.set_temperature
-#      data:
-#        entity_id: climate.laundry_room
-#        
 
 - id: living_room_tepid_weather_heat_down
   alias: 'Turn Living Room Heat Down For Tepid Weather'
@@ -625,16 +559,12 @@
         above: 11
         below: 20
   action:
-    - service: climate.set_temperature
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.living_room
-        temperature: 20
-#        
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.living_room
-#        preset_mode: 'permanent'
-        
+        setpoint: 20
+        duration: {"minutes":1439}
+
 - id: living_room_warm_weather_heat_down
   alias: 'Turn Living Room Heat Down For Warm Weather'
   hide_entity: true
@@ -654,15 +584,11 @@
         above: 13
         below: 20
   action:
-    - service: climate.set_temperature
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.living_room
-        temperature: 18
-#         
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.living_room
-#        preset_mode: 'permanent'
+        setpoint: 18
+        duration: {"minutes":1439}
 
 - id: living_room_cold_weather_heat_up
   alias: 'Turn Living Room Heat Up For Cold Weather'
@@ -681,34 +607,12 @@
         entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
         below: 11
   action:
-    - service: climate.set_temperature
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.living_room
-        preset_mode: 'none'
-        
-#      - condition: template
-#        value_template: '{{ states.sensor.dark_sky_overnight_low_temperature_0d < 5 }}'
-#      - condition: template
-#        value_template: '{{ sensor.dark_sky_daytime_high_temperature_0d < 13 }}'
-
-
-#- id: living_room_last_temp
-#  alias: 'Living Room Last Temp'
-#  trigger:
-#    platform: state
-#    entity_id: climate.living_room
-#  action:
-#    service: variable.set_variable
-#    data:
-#      variable: living_room_last_temp_variable
-#      value_template: "{{ states('sensor.climate.living_room')}}"
-#      attributes_template: >
-#        {
-#          "temperature": "{{ state_attr('climate.living_room', 'temperature') }}",
-#        }   
 
 - id: warmer_weather_heat_down_more
-  alias: 'Turn Down Heat For Warm Weather'
+  alias: 'Turn Down Heat More For Warmer Weather'
   hide_entity: true
   initial_state: 'true'
   trigger:
@@ -726,119 +630,70 @@
         above: 20
         below: 23
   action:
-    - service: climate.set_temperature
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.dining_room
-        temperature: 18
-        
-    - service: climate.set_temperature
+        setpoint: 18
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.entrance
-        temperature: 16
-        
-    - service: climate.set_temperature
+        setpoint: 16
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.garage
-        temperature: 15
-        
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.guest_bedroom
-        temperature: 18
-        
-    - service: climate.set_temperature
+        setpoint: 18
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.living_room
-        temperature: 16
-        
-    - service: climate.set_temperature
+        setpoint: 16
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bath
-        temperature: 20
-        
-    - service: climate.set_temperature
+        setpoint: 20
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bedroom
-        temperature: 20
-        
-    - service: climate.set_temperature
+        setpoint: 20
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_closet
-        temperature: 20
-        
-    - service: climate.set_temperature
+        setpoint: 20
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.office_library
-        temperature: 20
-        
-    - service: climate.set_temperature
+        setpoint: 20
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sebastian_s_room
-        temperature: 21
-        
-    - service: climate.set_temperature
+        setpoint: 21
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sophie_s_room
-        temperature: 21
-        
-    - service: climate.set_temperature
+        setpoint: 21
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.laundry_room
-        temperature: 21
-
+        setpoint: 21
+        duration: {"minutes":1439}
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
-#        
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.dining_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.entrance
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.garage
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.guest_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.living_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bath
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_closet
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.office_library
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sebastian_s_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sophie_s_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.laundry_room
-#        preset_mode: 'permanent'
 
 - id: warmer_weather_heat_down_more_2
   alias: 'Turn Down Heat For Warm Weather 2'
@@ -859,107 +714,71 @@
         above: 23
         below: 25
   action:
-    - service: climate.set_temperature
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.dining_room
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.entrance
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.garage
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.guest_bedroom
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.living_room
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bath
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bedroom
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_closet
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.office_library
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sebastian_s_room
-        temperature: 18
-    - service: climate.set_temperature
+        setpoint: 18
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sophie_s_room
-        temperature: 18
-    - service: climate.set_temperature
+        setpoint: 18
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.laundry_room
-        temperature: 19
+        setpoint: 19
+        duration: {"minutes":1439}
 
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.dining_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.entrance
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.garage
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.guest_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.living_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bath
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_closet
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.office_library
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sebastian_s_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sophie_s_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.laundry_room
-#        preset_mode: 'permanent'
 
 - id: hot_weather_turn_heat_off
   alias: 'Turn Heat Off For Hot Weather'
@@ -978,106 +797,70 @@
         entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
         above: 25
   action:
-    - service: climate.set_temperature
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.dining_room
-        temperature: 15  
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.entrance
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.garage
-        temperature: 12
-    - service: climate.set_temperature
+        setpoint: 12
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.guest_bedroom
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.living_room
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bath
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_bedroom
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.master_closet
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.office_library
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sebastian_s_room
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sophie_s_room
-        temperature: 15
-    - service: climate.set_temperature
+        setpoint: 15
+        duration: {"minutes":1439}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.laundry_room
-        temperature: 12
+        setpoint: 12
+        duration: {"minutes":1439}
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.dining_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.entrance
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.garage
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.guest_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.living_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bedroom
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_bath
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.master_closet
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.office_library
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sebastian_s_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.sophie_s_room
-#        preset_mode: 'permanent'
-#    - service: climate.set_preset_mode
-#      data:
-#        entity_id: climate.laundry_room
-#        preset_mode: 'permanent'
 
 - id: sophie_room_heat_up_if_home
   alias: "Turn up the heat in sophie's room if she's home"
@@ -1090,8 +873,8 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.sophies_air_purifier
-        state: 'on'
+        entity_id: 'device_tracker.sophie'
+        state: 'home'
       - condition: time
         weekday:
           - mon
@@ -1100,14 +883,11 @@
           - thu
           - fri    
   action:
-    - service: climate.set_temperature
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.sophie_s_room
-        temperature: 23
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.sophie_s_room
-        preset_mode: 'permanent'  
+        setpoint: 23
+        duration: {"minutes":500}
 
 - id: fire_in_fireplace_tomorrow
   alias: "Fire in Fireplace Tomorrow"
@@ -1137,30 +917,21 @@
     entity_id: input_boolean.fire_in_fireplace_now
     to: 'on'
   action:
-    - service: climate.set_temperature
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.dining_room
-        temperature: 21
-    - service: climate.set_temperature
+        setpoint: 21
+        duration: {"minutes":840}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.entrance
-        temperature: 21
-    - service: climate.set_temperature
+        setpoint: 21
+        duration: {"minutes":840}
+    - service: evohome.set_zone_override
       data:
         entity_id: climate.living_room
-        temperature: 21
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.dining_room
-        preset_mode: 'permanent'
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.entrance
-        preset_mode: 'permanent'
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.living_room
-        preset_mode: 'permanent'
+        setpoint: 21
+        duration: {"minutes":840}
 
 - id: fire_in_fireplace_now_turned_off
   alias: "Fire in Fireplace Now Off"
@@ -1171,15 +942,12 @@
     entity_id: input_boolean.fire_in_fireplace_now
     to: 'off'
   action:
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.dining_room
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.entrance
-        preset_mode: 'none'
-    - service: climate.set_preset_mode
+    - service: evohome.clear_zone_override
       data:
         entity_id: climate.living_room
-        preset_mode: 'none'

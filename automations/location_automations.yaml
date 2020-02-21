@@ -794,19 +794,20 @@
   condition:
     condition: template
     value_template: >
-      {{ (now().strftime('%M')|int <= 56 and
+      {{ ((now().strftime('%M')|int <= 56 and
          now().strftime('%M')|int >= 48) or
          (now().strftime('%M')|int <= 16 and
          now().strftime('%M')|int >= 08) or
          (now().strftime('%M')|int <= 36 and
-         now().strftime('%M')|int >= 28) }}
+         now().strftime('%M')|int >= 28)) and (not is_state('sensor.sean_activity', 'Automotive')) }}
   action:
     service: notify.ios_seans_iphone_x
     data:
       title: "Ferry Notification"
       message: "It's a good time to grab the ferry to work"
 
-- alias: 'Good Time For Ferry to Work'
+
+- alias: 'Good Time For Ferry from Work'
   hide_entity: true
   initial_state: 'true'
   trigger:

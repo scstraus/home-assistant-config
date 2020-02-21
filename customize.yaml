@@ -219,16 +219,16 @@ sensor.back_door_sensor_battery:
 sensor.sophies_phone_battery:
   icon: mdi:battery-60
 sensor.last_object_right:
-  friendly_name: "-"
+  friendly_name: '-'
   icon: none
 sensor.last_object_time_right:
-  friendly_name: "-"
+  friendly_name: '-'
   icon: none
 sensor.last_object_left:
-  friendly_name: "-"
+  friendly_name: '-'
   icon: none
 sensor.last_object_time_left:
-  friendly_name: "-"
+  friendly_name: '-'
   icon: none
 sensor.neo_coolcam_unknown_type_0200_id_1027_alarm_level:
   friendly_name: Dishwasher Alarm Level
@@ -351,8 +351,10 @@ binary_sensor.back_door_sensor:
   friendly_name: Back Door Sensor
   device_class: door
 sensor.bio_odpad_day:
+  friendly_name: Bio Odpad Out
   icon: mdi:recycle
 sensor.trash_day:
+  friendly_name: Trash Out
   icon: mdi:trash-can-outline
 binary_sensor.basement_flooding:
   device_class: moisture
@@ -379,6 +381,6 @@ binary_sensor.ecolink_garage_door:
   friendly_name: Garage Door
   device_class: garage_door
 sensor.sophies_room_aqi:
-   unit_of_measurement: AQI
+  unit_of_measurement: AQI
 sensor.sebastians_room_aqi:
-   unit_of_measurement: AQI   
+  unit_of_measurement: AQI

@@ -264,6 +264,7 @@ cards:
     - binary_sensor.master_bedroom_nest_protect_online
     - binary_sensor.kids_room_nest_protect_online
     - binary_sensor.basement_nest_protect_online
+
 #      - sensor.sean_direction_of_travel
 #      - sensor.alena_direction_of_travel
 #      - sensor.sophie_direction_of_travel

@@ -245,7 +245,7 @@ cards:
     - binary_sensor.garage_door
     - binary_sensor.front_door_zone_1
     - sensor.closet_window
-    - input_select.dishwasher_status
+    - input_select.bosch_dishwasher_status
     - binary_sensor.popp_unknown_type_0004_id_0014_sensor
     - binary_sensor.sebastians_room_left_window
     - input_select.miele_washing_machine_status
@@ -363,85 +363,100 @@ cards:
     numberOfDays: 3
     hidePastEvents: true
 
-  - type: vertical-stack
-    cards:
 
-#      - type: picture-entity
-#        entity: camera.cam_mainstream_front
-#        camera_view: live
+  - type: custom:state-switch
+    entity: template
+    template: "{% if is_state('input_select.sean_location_dropdown', 'Home') %} home {% else %} away {% endif %}"
+    states:
+      home:
 
-      - type: picture-glance
-        title: Outdoor - Front Gate
-        aspect_ratio: 16x9
-        entities:
-  #        - binary_sensor.motion_front_of_house_motion
-        - binary_sensor.motion_front
-#          camera_image: camera.front_outdoor
-#        camera_image: camera.front
-#camera.cam_substream_front
-        camera_image: camera.front_stream
-#        camera_image: camera.front
-        camera_view: live
-
-      - type: horizontal-stack
+        type: vertical-stack
         cards:
 
-
         - type: picture-glance
-          title: Outdoor - Left
-          aspect_ratio: 9x16
-          entities:
-          - binary_sensor.motion_left
-          camera_image: camera.left_stream
+          aspect_ratio: 16x9
+          entities: []
+          camera_image: camera.front_stream
           camera_view: live
 
+        - type: horizontal-stack
+          cards:
+
+          - type: picture-glance
+            aspect_ratio: 9x16
+            entities: []
+            camera_image: camera.left_stream
+            camera_view: live
+
+          - type: picture-glance
+            aspect_ratio: 9x16
+            entities: []
+            camera_image: camera.right_stream
+            camera_view: live
+
         - type: picture-glance
-          title: Outdoor - Right 
-          aspect_ratio: 9x16
-          entities:
-          - binary_sensor.motion_right
-          camera_image: camera.right_stream
+          aspect_ratio: 16x9
+          entities: []
+          camera_image: camera.back_stream
           camera_view: live
 
-      - type: picture-glance
-        title: Outdoor - Back Yard
-        aspect_ratio: 16x9
-        entities:
-  #        - binary_sensor.motion_back_of_house_motion
-        - binary_sensor.motion_back
-  #        camera_image: camera.back_outdoor
-        camera_image: camera.back_stream
-        camera_view: live
 
+      away:
+        type: vertical-stack
+        cards:
 
+        - type: picture-glance
+          aspect_ratio: 16x9
+          entities: []
+          camera_image: camera.front_stream
 
+        - type: horizontal-stack
+          cards:
 
+          - type: picture-glance
+            aspect_ratio: 9x16
+            entities: []
+            camera_image: camera.left_stream
 
-  #      - type: picture-glance
-  #        title: Outdoor - Right Side
-  #        aspect_ratio: 16x9
-  #        entities:
-  #        - binary_sensor.motion_right
-  #        camera_image: camera.right
-  #
-  #      - type: picture-glance
-  #        title: Outdoor - Left Side
-  #        aspect_ratio: 16x9
-  #        entities:
-  #        - binary_sensor.motion_left
-  #        camera_image: camera.left
+          - type: picture-glance
+            aspect_ratio: 9x16
+            entities: []
+            camera_image: camera.right_stream
 
-  #    - type: history-graph
-  #      title: 'Motion Sensor History'
-  #      entities:
-  #      - binary_sensor.motion_back_of_house_motion
-  #      - binary_sensor.motion_front_of_house_motion
-  #      - binary_sensor.motion_left_side_of_house_motion
-  #      - binary_sensor.motion_right_side_of_house_motion
+        - type: picture-glance
+          aspect_ratio: 16x9
+          entities: []
+          camera_image: camera.back_stream
 
-#  - type: custom:card-modder
-#    report_size: 6
-#    card:
+#  - type: vertical-stack
+#    cards:
+#
+#      - type: picture-glance
+#        aspect_ratio: 16x9
+#        entities: []
+#        camera_image: camera.front_stream
+#        camera_view: live
+#
+#      - type: horizontal-stack
+#        cards:
+#
+#        - type: picture-glance
+#          aspect_ratio: 9x16
+#          entities: []
+#          camera_image: camera.left_stream
+#          camera_view: live
+#
+#        - type: picture-glance
+#          aspect_ratio: 9x16
+#          entities: []
+#          camera_image: camera.right_stream
+#          camera_view: live
+#
+#      - type: picture-glance
+#        aspect_ratio: 16x9
+#        entities: []
+#        camera_image: camera.back_stream
+#        camera_view: live
 
   - type: custom:mod-card
     report_size: 5
@@ -932,3 +947,6 @@ cards:
       group: true
 
 
+
+  - type: custom:search-card
+    max_results: 50

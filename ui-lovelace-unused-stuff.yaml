@@ -74,3 +74,79 @@
 #        - climate.dining_room
 #        title: 'Entrance'
 
+#      - type: picture-entity
+#        entity: camera.cam_mainstream_front
+#        camera_view: live
+
+      - type: picture-glance
+#        title: 
+        aspect_ratio: 16x9
+        entities: []
+  #        - binary_sensor.motion_front_of_house_motion
+#        - binary_sensor.motion_front
+#          camera_image: camera.front_outdoor
+#        camera_image: camera.front
+#camera.cam_substream_front
+        camera_image: camera.front_stream
+#        camera_image: camera.front
+        camera_view: live
+
+      - type: horizontal-stack
+        cards:
+
+
+        - type: picture-glance
+#          title: Left
+          aspect_ratio: 9x16
+          entities: []
+#          - binary_sensor.motion_left
+          camera_image: camera.left_stream
+          camera_view: live
+
+        - type: picture-glance
+#          title: Right 
+          aspect_ratio: 9x16
+          entities: []
+#          - binary_sensor.motion_right
+          camera_image: camera.right_stream
+          camera_view: live
+
+      - type: picture-glance
+ #       title: Back
+        aspect_ratio: 16x9
+        entities: []
+  #        - binary_sensor.motion_back_of_house_motion
+#        - binary_sensor.motion_back
+  #        camera_image: camera.back_outdoor
+        camera_image: camera.back_stream
+        camera_view: live
+
+
+
+
+
+  #      - type: picture-glance
+  #        title: Outdoor - Right Side
+  #        aspect_ratio: 16x9
+  #        entities:
+  #        - binary_sensor.motion_right
+  #        camera_image: camera.right
+  #
+  #      - type: picture-glance
+  #        title: Outdoor - Left Side
+  #        aspect_ratio: 16x9
+  #        entities:
+  #        - binary_sensor.motion_left
+  #        camera_image: camera.left
+
+  #    - type: history-graph
+  #      title: 'Motion Sensor History'
+  #      entities:
+  #      - binary_sensor.motion_back_of_house_motion
+  #      - binary_sensor.motion_front_of_house_motion
+  #      - binary_sensor.motion_left_side_of_house_motion
+  #      - binary_sensor.motion_right_side_of_house_motion
+
+#  - type: custom:card-modder
+#    report_size: 6
+#    card:

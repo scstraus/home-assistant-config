@@ -101,6 +101,7 @@ logger:
     homeassistant.components.zwave: warn
     homeassistant.components.openzwave: warn
     homeassistant.components.libopenzwave: warn
+    homeassistant.components.http.view: warn
     libopenzwave: warn
     openzwave: warn
     zwave: warn
@@ -840,16 +841,11 @@ input_select:
       - At Parklane Valdejnska
     initial: Home
 
-  dishwasher_status:
-    name: Dishwasher Status
+  bosch_dishwasher_status:
+    name: Bosch Dishwasher Status
     options:
       - Dirty
-      - Starting Up
-      - First Rinse
-      - Washing
-      - Final Rinse
-      - Finishing Up
-      - Drying
+      - Running
       - Clean
       - Emptying
     initial: Dirty
@@ -1199,3 +1195,7 @@ fan:
 evohome_rf: 
   serial_port: /dev/ttyUSB0
   packet_log: /share/packets.log
+
+timer:
+  bosch_dishwasher_emptying:
+    duration: '00:03:00'
