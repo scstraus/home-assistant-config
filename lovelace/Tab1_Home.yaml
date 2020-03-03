@@ -254,6 +254,9 @@ cards:
     - binary_sensor.ecolink_closet_left_window
     - binary_sensor.ecolink_garage_door
     - sensor.czech_holidays_event_0
+    - alarm_control_panel.laundry_room_window
+    - alarm_control_panel.motion_sensors
+    - alarm_control_panel.windows_and_garage_door
     state_filter:
     - "on"
     - "Delivery"
@@ -265,6 +268,7 @@ cards:
     - "Clean"
     - "Today"
     - "Tomorrow"
+    - "armed_away"
     card: 
       type: glance
       title: "What's Happening Today"

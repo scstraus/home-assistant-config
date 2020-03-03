@@ -145,6 +145,9 @@ cards:
       - binary_sensor.sophies_room_ceiling_window
       - binary_sensor.ecolink_closet_left_window
       - binary_sensor.ecolink_garage_door
+      - alarm_control_panel.laundry_room_window
+      - alarm_control_panel.motion_sensors
+      - alarm_control_panel.windows_and_garage_door
       state_filter:
       - "on"
       - "Delivery"
@@ -156,6 +159,7 @@ cards:
       - "Clean"
       - "Today"
       - "Tomorrow"
+      - "armed_away"
       card: 
         type: glance
         title: "Happening Today"

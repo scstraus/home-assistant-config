@@ -282,3 +282,35 @@
         value_template: >-
           {{ is_state('sensor.dark_sky_icon_0d', 'rain') and 
           is_state('binary_sensor.sophies_room_ceiling_window','on')}}
+
+  - platform: template
+    sensors:
+      garage_open_sean:
+        friendly_name: "Garage is Open and Sean isn't Traveling"
+        device_class: garage_door
+        value_template: >-
+          {{ is_state('binary_sensor.ecolink_garage_door', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
+
+  - platform: template
+    sensors:
+      front_door_open_sean:
+        friendly_name: "Front Door is Open and Sean isn't Traveling"
+        device_class: door
+        value_template: >-
+          {{ is_state('binary_sensor.front_door_zone_1', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
+
+  - platform: template
+    sensors:
+      sebastians_window_open_sean:
+        friendly_name: "Sebastians Window Open and Sean isn't Traveling"
+        device_class: window
+        value_template: >-
+          {{ is_state('binary_sensor.sebastians_room_rain_window', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
+
+  - platform: template
+    sensors:
+      sophies_window_open_sean:
+        friendly_name: "Sophies Window Open and Sean isn't Traveling"
+        device_class: window
+        value_template: >-
+          {{ is_state('binary_sensor.sophies_room_ceiling_window', 'on') and (not is_state('sensor.sean_location', 'Traveling')) }}

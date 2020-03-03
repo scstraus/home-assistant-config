@@ -1085,7 +1085,7 @@ alarm_control_panel:
 #    code_disarm_required: true
 
 alert:
-  garage_door:
+  garage_door_alena:
     name: Garage has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.ecolink_garage_door.last_updated)) | int //60 }} minutes
     done_message: Garage is closed
     entity_id: binary_sensor.ecolink_garage_door
@@ -1094,14 +1094,27 @@ alert:
       - 10
       - 20
       - 30
-      - 60
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - sean_alena
+      - ios_alenas_iphone
+
+  garage_door_sean:
+    name: Garage has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.ecolink_garage_door.last_updated)) | int //60 }} minutes
+    done_message: Garage is closed
+    entity_id: binary_sensor.garage_open_sean
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - ios_seans_iphone_x
 #    entity_id: binary_sensor.garage_door_zone_14
 
-  front_door:
+  front_door_alena:
     name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
     done_message: Front door is closed
     entity_id: binary_sensor.front_door_zone_1
@@ -1110,13 +1123,26 @@ alert:
       - 10
       - 20
       - 30
-      - 60
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - sean_alena
+      - ios_alenas_iphone
 
-  sebastian_window_rain_warning:
+  front_door_sean:
+    name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
+    done_message: Front door is closed
+    entity_id: binary_sensor.front_door_open_sean
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - ios_seans_iphone_x
+
+  sebastian_window_rain_warning_alena:
     name: Sebastian's room window is open and it might rain.
     done_message: Sebastian's room window is closed.
     entity_id: binary_sensor.sebastians_room_rain_window
@@ -1128,9 +1154,23 @@ alert:
     can_acknowledge: true
     skip_first: false
     notifiers:
-      - sean_alena
+      - ios_alenas_iphone
 
-  sophies_window_rain_warning:
+  sebastian_window_rain_warning_sean:
+    name: Sebastian's room window is open and it might rain.
+    done_message: Sebastian's room window is closed.
+    entity_id: binary_sensor.sebastians_window_open_sean
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - ios_seans_iphone_x
+
+  sophies_window_rain_warning_alena:
     name: Sophie's room window is open and it might rain.
     done_message: Sophie's room window is closed.
     entity_id: binary_sensor.sophies_room_ceiling_window
@@ -1142,7 +1182,21 @@ alert:
     can_acknowledge: true
     skip_first: false
     notifiers:
-      - sean_alena
+      - ios_alenas_iphone
+
+  sophies_window_rain_warning_sean:
+    name: Sophie's room window is open and it might rain.
+    done_message: Sophie's room window is closed.
+    entity_id: binary_sensor.sophies_room_ceiling_window
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - ios_seans_iphone_x
 
 input_number:
   living_room_last_temp:
@@ -1199,3 +1253,8 @@ evohome_rf:
 timer:
   bosch_dishwasher_emptying:
     duration: '00:03:00'
+
+dreamscreen:
+  devices:
+    - living_room_tv:
+        address: 10.10.10.45

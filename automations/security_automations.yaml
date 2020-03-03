@@ -510,15 +510,12 @@
   trigger:
     - platform: state
       entity_id: sensor.alarm_state_3_motion_sensors
-      from: 'armed_away'
       to: 'triggered'
     - platform: state
-      entity_id: sensor.alarm_state_3_motion_sensors
-      from: 'armed_night'
+      entity_id: sensor.alarm_state_2_1st_floor
       to: 'triggered'
     - platform: state
-      entity_id: sensor.alarm_state_3_motion_sensors
-      from: 'arm_home'
+      entity_id: sensor.alarm_state_1_laundry
       to: 'triggered'
   action:
     service: notify.sean_alena
