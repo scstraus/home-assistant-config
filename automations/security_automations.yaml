@@ -1,7 +1,6 @@
 
 - id: person_in_front
   alias: Person In Front
-  hide_entity: true
   initial_state: 'true'
   trigger:
 #    platform: numeric_state
@@ -44,7 +43,6 @@
 
 - id: person_in_back
   alias: Person In Back
-  hide_entity: true
   initial_state: 'true'
   trigger:
 #    platform: numeric_state
@@ -85,7 +83,6 @@
 
 - id: person_on_left
   alias: Person On Left
-  hide_entity: true
   initial_state: 'true'
   trigger:
 #    platform: numeric_state
@@ -124,7 +121,6 @@
 
 - id: person_on_right
   alias: Person On Right
-  hide_entity: true
   initial_state: 'true'
   trigger:
 #    platform: numeric_state
@@ -279,7 +275,6 @@
 
 - id: turn_off_front_security_light_if_it_gets_windy
   alias: 'Turn Off Front Security Light If It Gets Windy'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -297,7 +292,6 @@
 
 - id: turn_off_front_security_light_if_its_windy
   alias: "Turn Off Front Security Light If It's Windy"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -313,7 +307,6 @@
 
 - id: turn_on_front_security_light_in_morning
   alias: 'Turn On Front Security Light In Morning'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -325,7 +318,6 @@
 
 - id: front_right_security_lights_on_if_human
   alias: 'Front+Right Security Lights on if Human'
-  hide_entity: true
   initial_state: 'true'
   trigger:
 #    - platform: numeric_state
@@ -351,7 +343,6 @@
 
 - id: back_left_security_lights_on_if_human
   alias: 'Back+Left Security Lights on if Human'
-  hide_entity: true
   initial_state: 'true'
   trigger:
 #    - platform: numeric_state
@@ -377,7 +368,7 @@
 
 #- id: garage_open
 #  alias: 'Garage Door Open'
-#  hide_entity: true
+#  
 #  initial_state: 'true'
 #  trigger:
 #    platform: state
@@ -394,7 +385,6 @@
 
 - id: alarm_is_on_alena_home
   alias: 'Alarm is on - Alena is home'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -411,8 +401,7 @@
       message: "The alarm is turned on. Remember to turn it off before opening the door."
       
 - id: alarm_is_on_sean_home
-  alias: Alarm is on - Sean is home
-  hide_entity: true
+  alias: 'Alarm is on - Sean is home'
   initial_state: 'true'
   trigger:
     platform: state
@@ -430,7 +419,6 @@
       
 - id: alarm_turned_on_alena
   alias: 'Alarm turned on notification - Alena'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     - platform: state
@@ -447,7 +435,6 @@
   
 - id: alarm_turned_off_alena
   alias: 'Alarm turned off notification - Alena'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     - platform: state
@@ -466,7 +453,6 @@
       
 - id: alarm_turned_on_sean
   alias: 'Alarm turned on notification - Sean'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     - platform: state
@@ -486,7 +472,6 @@
   
 - id: alarm_turned_off_sean
   alias: 'Alarm turned off notification - Sean'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     - platform: state
@@ -505,7 +490,6 @@
 
 - id: alarm_triggered
   alias: 'Alarm is triggered'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     - platform: state
@@ -525,7 +509,6 @@
 
 - id: sensor_notification
   alias: 'Sensor Notification'
-  hide_entity: true
   initial_state: 'false'
   trigger:
     - platform: state
@@ -553,8 +536,7 @@
       message: "Activity Notification"
 
 - id: popup_on_kiosk_back
-  alias: Popup on Kiosk Back
-  hide_entity: true
+  alias: 'Popup on Kiosk Back'
   initial_state: 'true'
   trigger:
     platform: state
@@ -568,13 +550,19 @@
         deviceID:
           - !secret kindle_kitchen_deviceid
         large: true
+    - service: browser_mod.command
+      data:
+        command: more-info
+        entity_id: camera.back
+        deviceID:
+          - !secret kindle_master_closet_deviceid
+        large: true
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
 
 - id: popup_on_kiosk_front
-  alias: Popup on Kiosk Front
-  hide_entity: true
+  alias: 'Popup on Kiosk Front'  
   initial_state: 'true'
   trigger:
     platform: state
@@ -587,13 +575,18 @@
         entity_id: camera.front
         deviceID:
           - !secret kindle_kitchen_deviceid
+    - service: browser_mod.command
+      data:
+        command: more-info
+        entity_id: camera.front
+        deviceID:
+          - !secret kindle_master_closet_deviceid
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
 
 - id: popup_on_kiosk_left
-  alias: Popup on Kiosk Left
-  hide_entity: true
+  alias: 'Popup on Kiosk Left'  
   initial_state: 'true'
   trigger:
     platform: state
@@ -607,13 +600,19 @@
         deviceID:
           - !secret kindle_kitchen_deviceid
         large: true
+    - service: browser_mod.command
+      data:
+        command: more-info
+        entity_id: camera.left
+        deviceID:
+          - !secret kindle_master_closet_deviceid
+        large: true
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
 
 - id: popup_on_kiosk_right
   alias: Popup on Kiosk Right
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -627,13 +626,19 @@
         deviceID:
           - !secret kindle_kitchen_deviceid
         large: true
+    - service: browser_mod.command
+      data:
+        command: more-info
+        entity_id: camera.right
+        deviceID:
+          - !secret kindle_master_closet_deviceid
+        large: true
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
 
 - id: keep_fully_kiosk_screen_on_human
   alias: Keep Fully Kiosk Screen On
-  hide_entity: true
   initial_state: 'true'
   trigger:
   - platform: state
@@ -660,10 +665,12 @@
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
+    - service: fully_kiosk.screensaver_stop
+      data:
+        entity_id: display.kindle_fire_master_closet
 
 - id: keep_fully_kiosk_screen_on_human
   alias: Keep Fully Kiosk Screen On
-  hide_entity: true
   initial_state: 'true'
   trigger:
   - platform: state
@@ -690,10 +697,12 @@
     - service: fully_kiosk.screensaver_stop
       data:
         entity_id: display.kindle_fire_kitchen
+    - service: fully_kiosk.screensaver_stop
+      data:
+        entity_id: display.kindle_fire_master_closet
 
 - id: close_popup_on_kiosk_back
   alias: close_Popup on Kiosk Back
-  hide_entity: true
   initial_state: 'true'
   trigger:
   - platform: state
@@ -747,6 +756,10 @@
       data:
         deviceID:
           - !secret kindle_kitchen_deviceid
+    - service: browser_mod.lovelace_reload
+      data:
+        deviceID:
+          - !secret kindle_master_closet_deviceid
 
 
 - alias: 'Update Last Motion'

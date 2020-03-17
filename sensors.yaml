@@ -1081,7 +1081,12 @@
     sensors:
         last_alexa:
           entity_id:
-            - media_player.sean_s_2nd_fire
+            - media_player.kichen_bar_kindle_fire
+            - media_player.master_closet_kindle
+            - media_player.sean_s_4th_fire 
+            - media_player.sean_s_5th_fire
+            - media_player.sean_s_6th_fire 
+            - media_player.sean_s_echo_dot
           value_template: >
             {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
 
@@ -1267,3 +1272,14 @@
 
   - platform: home_connect
     refresh_token: "eyJ4LXJlZyI6IkVVIiwieC1lbnYiOiJQUkQiLCJ0b2tlbiI6ImQ0MjNiM2MwLTBlMDItNDcyMC04NGM1LWY1MmIxNTg0ZjcwMyJ9"
+
+
+
+  - platform: template
+    sensors:
+      car_needs_charging:
+        friendly_name: "Car Needs Charging"
+        value_template: >-
+          {% if is_state('device_tracker.cooper_s_e_all4', 'home') and (states('sensor.cooper_s_e_all4_charging_level_hv')|float < 80) and is_state('sensor.cooper_s_e_all4_connectionstatus', 'disconnected') %} Plug it In 
+          {% else %} unknown
+          {% endif %}

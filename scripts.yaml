@@ -69,28 +69,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -111,7 +111,7 @@
 #        data_template:
 #          operations: >
 #            {% set topic = states.sensor.last_alexa.state %}
-#            {% if topic == 'media_player.sean_s_2nd_fire' %}
+#            {% if topic == 'media_player.kichen_bar_kindle_fire' %}
 #              homeassistant.turn_on|media_player.kitchen_airtunes_speaker|media_player.living_room_airtunes_speaker
 #            {% else %}
 #            {% endif %}
@@ -121,28 +121,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -162,28 +162,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -203,28 +203,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -245,28 +245,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -286,28 +286,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -328,28 +328,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -370,28 +370,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -411,28 +411,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -453,28 +453,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -495,28 +495,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -537,28 +537,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
@@ -578,28 +578,28 @@
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %}  
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
-            {% if states.sensor.last_alexa.state == "media_player.sean_s_2nd_fire" %} 
+            {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
             {% else %}
             {% endif %}

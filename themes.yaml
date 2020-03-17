@@ -61,9 +61,10 @@ midnight:
   paper-slider-disabled-active-color: 'var(--disabled-text-color)'
   paper-slider-disabled-secondary-color: 'var(--disabled-text-color)'
 
+  #Sean Threw these in to get rounded corners and to play nicely for text label colors with google light theme so I could use same variable
   ha-card-border-radius: "10px"
   ha-card-box-shadow: "4px 4px 4px #2E333A"
-
+  ha-card-header-color: "#FFFFFF"
 
   # Google colors
   google-red-500: '#E45E65'

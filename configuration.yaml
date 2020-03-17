@@ -758,6 +758,9 @@ input_boolean:
   sophies_air_purifier:
     name: "Sophie's Air Purifier"
     icon: mdi:fan
+  mini_countryman_clima:
+    name: "Car Klima"
+    icon: mdi:air-conditioner
 #  mix_playlist:
 #    name: Mix Playlist
 #    initial: off
@@ -893,7 +896,7 @@ proximity:
     unit_of_measurement: km
   sean_home: 
     devices:
-      - device_tracker.seans_iphone_x
+      - device_tracker.sean_s_iphone_x
     tolerance: 50
     unit_of_measurement: km
   alena_home: 
@@ -1148,11 +1151,12 @@ alert:
     entity_id: binary_sensor.sebastians_room_rain_window
     state: 'on'
     repeat: 
+      - 5
       - 10
       - 20
       - 30
     can_acknowledge: true
-    skip_first: false
+    skip_first: true
     notifiers:
       - ios_alenas_iphone
 
@@ -1162,11 +1166,12 @@ alert:
     entity_id: binary_sensor.sebastians_window_open_sean
     state: 'on'
     repeat: 
+      - 5
       - 10
       - 20
       - 30
     can_acknowledge: true
-    skip_first: false
+    skip_first: true
     notifiers:
       - ios_seans_iphone_x
 
@@ -1176,11 +1181,12 @@ alert:
     entity_id: binary_sensor.sophies_room_ceiling_window
     state: 'on'
     repeat: 
+      - 5
       - 10
       - 20
       - 30
     can_acknowledge: true
-    skip_first: false
+    skip_first: true
     notifiers:
       - ios_alenas_iphone
 
@@ -1190,11 +1196,12 @@ alert:
     entity_id: binary_sensor.sophies_room_ceiling_window
     state: 'on'
     repeat: 
+      - 5
       - 10
       - 20
       - 30
     can_acknowledge: true
-    skip_first: false
+    skip_first: true
     notifiers:
       - ios_seans_iphone_x
 
@@ -1216,6 +1223,10 @@ display:
     name: Kindle Fire Kitchen
     host: !secret kindle_kitchen_ip
     password: !secret kindle_kitchen_pass
+  - platform: fully_kiosk
+    name: Kindle Fire Master Closet
+    host: !secret kindle_master_closet_ip
+    password: !secret kindle_master_closet_pass
 
 remote:
   - platform: harmony
@@ -1257,4 +1268,10 @@ timer:
 dreamscreen:
   devices:
     - living_room_tv:
-        address: 10.10.10.45
+        address: !secret dreamscreen_ip
+
+bmw_connected_drive:
+  name: 
+    username: !secret mini_uname
+    password: !secret mini_pw
+    region: rest_of_world

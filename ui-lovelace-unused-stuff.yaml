@@ -150,3 +150,88 @@
 #  - type: custom:card-modder
 #    report_size: 6
 #    card:
+
+
+#    - type: markdown
+#      content: |
+#        ### Entrance   
+#    - type: 'custom:card-modder'
+#      style:
+#        --st-font-size-xl: 16px
+#        --st-font-size-m: 16px
+#        --st-font-size-title: 16px
+#        --st-font-size-sensors: 16px
+#        --st-spacing: 0px
+#        padding: 0px 0px 0px !important
+#        padding-top: 0px !important
+#        padding-bottom: 0px !important
+#        border-radius: 0px !important
+#      card:
+#        type: custom:simple-thermostat
+#        entity: climate.entrance
+#        step_size: 0.5
+#        name: false
+#        hide: 
+#          state: true
+#        sensors:
+#          - attribute: preset_mode
+#            name: Mode
+#        modes:
+#          'off':
+#            include: false
+#          heat:
+#            include: false
+#    - type: 'custom:card-modder'
+#      style:
+#        padding-top: 0px !important
+#        padding-bottom: 0px !important
+#        border-radius: 0px !important
+#        padding: 0px 0px 0px !important
+#      card:
+#        type: markdown
+#        content: |
+#          ### Living Room
+#    - type: 'custom:card-modder'
+#      style:
+#        padding-top: 0px !important
+#        padding-bottom: 0px !important
+#        border-radius: 0px !important
+#        padding: 0px 0px 0px !important
+#      card:
+#        type: entities
+#        title: false
+#        show_header_toggle: false
+#        entities:
+#        - entity: media_player.living_room_airtunes_speaker
+#          type: custom:mini-media-player
+#          name: Speaker
+#          hide:
+#            controls: true
+#            mute: true
+#          group: true
+#    - type: 'custom:card-modder'
+#      style:
+#        padding-top: 0px !important
+#        padding-bottom: 0px !important
+#        border-radius: 0px !important
+#        padding: 0px 0px 0px !important
+#        --st-font-size-xl: 16px
+#        --st-font-size-m: 16px
+#        --st-font-size-title: 16px
+#        --st-font-size-sensors: 16px
+#        --st-spacing: 0px
+#      card:
+#        type: custom:simple-thermostat
+#        entity: climate.living_room
+#        step_size: 0.5
+#        name: false
+#        hide: 
+#          state: true
+#        sensors:
+#          - attribute: preset_mode
+#            name: Mode
+#        modes:
+#          'off':
+#            include: false
+#          heat:
+#            include: false

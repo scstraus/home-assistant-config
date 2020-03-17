@@ -1,6 +1,5 @@
 - id: zone_to_dropdown
   alias: 'Zone to Dropdown'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -13,7 +12,6 @@
 
 - id: zone_to_dropdown_home
   alias: 'Zone to Dropdown - home'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -27,7 +25,6 @@
 
 - id: at_home
   alias: 'At Home'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -41,7 +38,6 @@
       
 - id: left_home
   alias: 'Left Home'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -56,7 +52,6 @@
 
 - id: heading_to_work
   alias: 'Heading To Work'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -85,7 +80,6 @@
 
 - id: at_work
   alias: 'At Work'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -99,7 +93,6 @@
 
 - id: left_work_1
   alias: 'Left Work 1'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -127,7 +120,6 @@
 
 - id: heading_home_work_1
   alias: 'Heading Home From Work 1'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -156,7 +148,6 @@
       
 - id: heading_home_work_2
   alias: 'Heading Home From Work 2'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -175,7 +166,6 @@
 
 - id: heading_home_from_hornbach
   alias: 'Heading Home From Hornbach'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -195,7 +185,6 @@
 
 - id: heading_home_from_ikea
   alias: 'Heading Home From Ikea'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -220,7 +209,6 @@
 
 - id: heading_home_from_hornbach_p6
   alias: 'Heading Home From Hornbach P6'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -245,7 +233,6 @@
 
 - id: heading_to_andel_from_p6
   alias: 'Heading Home From P6'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -270,7 +257,6 @@
 
 - id: heading_home_from_winefood
   alias: 'Heading Home From WineFood'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -295,7 +281,6 @@
       
 - id: heading_home_from_andel
   alias: 'Heading Home From Andel'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -320,7 +305,6 @@
 
 - id: to_p6
   alias: 'To Prague 6'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -345,7 +329,6 @@
 
 - id: heading_home_1
   alias: 'Almost Home 1'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -363,7 +346,6 @@
       
 - id: to_center_1
   alias: 'Heading To Center'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -383,7 +365,6 @@
       
 - id: to_winefood_1
   alias: 'Heading To WineFood'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -403,7 +384,6 @@
 
 - id: to_andel
   alias: 'Heading To Andel'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -423,7 +403,6 @@
 
 - id: to_hornbach_p5
   alias: 'Heading To Hornbach'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -443,7 +422,6 @@
 
 - id: at_andel
   alias: 'At Andel'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -468,7 +446,6 @@
 
 - id: at_andel_weekdays
   alias: 'At Andel Weekdays'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -496,7 +473,6 @@
 
 - id: at_winefood
   alias: 'At WineFood'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -517,7 +493,6 @@
       
 - id: at_hornbach
   alias: 'At Hornbach'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -531,7 +506,6 @@
 
 - id: at_hornbach_2
   alias: 'At Hornbach'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -545,7 +519,6 @@
 
 - id: at_billa
   alias: 'At Billa'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -561,7 +534,6 @@
       
 - id: driving
   alias: 'Driving'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -586,7 +558,6 @@
 
 - id: at_ikea
   alias: 'At Ikea Zlicin'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -602,7 +573,6 @@
       
 - id: at_posta
   alias: 'At Posta'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -616,7 +586,6 @@
 
 - id: alena_left_yoga
   alias: 'Alena left yoga'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -634,7 +603,6 @@
 
 - id: alenas_home
   alias: 'Alena is Home'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -656,7 +624,6 @@
 
 - id: traveling
   alias: 'Traveling'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -672,7 +639,6 @@
 
 - id: heading_home_from_airport
   alias: 'Heading Home From The Airport'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -691,7 +657,6 @@
 
 - id: at_little_gym
   alias: 'At Little Gym'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -707,7 +672,6 @@
 
 - id: heading_home_from_little_gym
   alias: 'Heading Home From Little Gym'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -726,7 +690,6 @@
 
 - id: at_parklane_valdejnska
   alias: 'At Parklane Valdejnska'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -742,7 +705,6 @@
 
 - id: heading_home_from_parklane_valdejnska
   alias: 'Heading Home From Parklane Valdejnska'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -761,7 +723,7 @@
 
 #- id: turn_off_automations_when_away
 #  alias: 'Turn off automations when away'
-#  hide_entity: true
+#  
 #  initial_state: 'true'
 #  trigger:
 #    platform: state
@@ -773,7 +735,7 @@
 #
 #- id: turn_on_automations_when_home
 #  alias: 'Turn on automations when home'
-#  hide_entity: true
+#  
 #  initial_state: 'true'
 #  trigger:
 #    platform: state
@@ -785,7 +747,7 @@
 
 
 - alias: 'Good Time For Ferry to Work'
-  hide_entity: true
+  
   initial_state: 'true'
   trigger:
     platform: state
@@ -808,7 +770,6 @@
 
 
 - alias: 'Good Time For Ferry from Work'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -831,7 +792,6 @@
 
 - id: alenas_home
   alias: 'Alena is Heading Home'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -852,7 +812,6 @@
 
 - id: traveling_2
   alias: 'Traveling 2'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state

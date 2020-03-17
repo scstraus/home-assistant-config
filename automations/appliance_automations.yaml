@@ -8,7 +8,6 @@
 
 - id: set_dishwasher_running
   alias: Set Dishwasher Running
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -22,7 +21,6 @@
 
 - id: set_dishwasher_clean
   alias: Set Dishwasher Clean
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -36,7 +34,6 @@
 
 - id: start_dishwasher_emptying
   alias: Set Dishwasher Emptying
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -57,7 +54,6 @@
 
 - id: pause_dishwasher_emptying
   alias: Pause Dishwasher Emptying
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -78,7 +74,6 @@
 
 - id: set_dishwasher_dirty
   alias: Set Dishwasher Dirty
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: event
@@ -93,11 +88,11 @@
 
 - id: notify_clean_dishes
   alias: Clean Dishes Notification
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
     entity_id: input_select.bosch_dishwasher_status
+    from: 'Running'
     to: 'Clean'
   action:
     service: notify.ios_alenas_iphone
@@ -119,7 +114,6 @@
 
 - id: set_miele_washing_wash_cycle
   alias: 'Set Miele washing machine wash cycle'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -137,7 +131,6 @@
 
 - id: miele_washing_first_rest
   alias: 'Set Miele washing machine first rest'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -157,7 +150,6 @@
 
 - id: set_miele_washing_first_spin_cycle
   alias: 'Set Miele washing machine first spin cycle'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -175,7 +167,6 @@
         
 - id: set_miele_washing_second_rest
   alias: 'Set Miele washing machine second rest'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -195,7 +186,6 @@
 
 - id: set_miele_washing_second_spin_cycle
   alias: 'Set Miele washing machine second spin cycle'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -213,7 +203,6 @@
 
 - id: set_miele_washing_finishing
   alias: 'Set Miele washing machine finishing'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -246,7 +235,6 @@
 
 - id: miele_washing_clean
   alias: 'Set Miele washing machine clean'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -264,7 +252,6 @@
 
 - id: miele_washing_empty
   alias: 'Set Miele washing machine empty'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -284,7 +271,6 @@
 
 - id: notify_miele_clean
   alias: Miele clean laundry notification
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -307,7 +293,6 @@
 
 - id: set_lg_washing_starting_up
   alias: 'Set lg washing machine starting up'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -330,7 +315,6 @@
 
 - id: lg_washing_wash_cycle
   alias: 'Set lg washing machine washing'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -348,7 +332,6 @@
 
 - id: lg_washing_washing
   alias: 'Set lg washing machine spin cycle'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -366,7 +349,6 @@
 
 - id: set_lg_washing_clean
   alias: 'Set lg washing machine clean'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -391,7 +373,6 @@
 
 - id: lg_washing_empty
   alias: 'Set lg washing machine empty'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -411,7 +392,6 @@
 
 - id: notify_lg_clean
   alias: LG clean laundry
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -431,7 +411,6 @@
 
 - id: turn_on_sophies_air_purifier_if_air_is_bad
   alias: "Turn on Sophie's Air Purifier if the air is bad"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -449,7 +428,6 @@
 
 - id: turn_on_sophies_air_purifier_if_air_is_bad_2
   alias: "Turn on Sophie's Air Purifier if the air is bad 2"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -465,7 +443,6 @@
 
 - id: turn_off_sophies_air_purifier_in_the_morning
   alias: "Turn off Sophie's Air Purifier in the morning"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -477,7 +454,6 @@
 
 - id: turn_on_sophie_air_purifier_during_day_if_motion
   alias: "Turn on Sophie's Air Purifier During the Day if Motion in Room"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     - platform: state
@@ -502,7 +478,6 @@
 
 - id: turn_off_sophie_air_purifier_aqi_left_home
   alias: "Turn off Sophie's Air Purifier for AQI or Left Home"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     - platform: state
@@ -518,7 +493,6 @@
 
 - id: turn_off_sophie_air_purifier_if_no_motion
   alias: "Turn off Sophie's Air Purifier for No Motion"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     - platform: state
@@ -541,7 +515,6 @@
 
 - id: turn_on_sebastians_air_purifier_if_air_is_bad_at_night
   alias: "Turn on Sebastian's Air Purifier if the air is bad at night"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -559,7 +532,6 @@
 
 - id: turn_on_sebastians_air_purifier_if_air_is_bad_at_night_2
   alias: "Turn on Sebastian's Air Purifier if the air is bad at night 2"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -575,7 +547,6 @@
 
 - id: turn_off_sebastians_air_purifier_in_the_morning_or_aqi
   alias: "Turn off Sebastian's Air Purifier in the morning or from AQI"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     - platform: time
@@ -590,7 +561,6 @@
 
 - id: turn_on_sebastians_air_purifier_if_air_is_bad_for_naptime
   alias: "Turn on Sebastian's Air Purifier if the air is bad for naptime"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: numeric_state
@@ -608,7 +578,6 @@
 
 - id: turn_on_sebastians_air_purifier_if_air_is_bad_for_naptime_2
   alias: "Turn on Sebastian's Air Purifier if the air is bad for naptime 2"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -624,7 +593,6 @@
 
 - id: turn_off_sebastians_air_purifier_after_nap
   alias: "Turn off Sebastian's Air Purifier after nap"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -643,7 +611,6 @@
 
 - id: turn_on_sophies_air_purifier_from_input_select
   alias: "Turn on Sophie's Air Purifier from Input Select"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -661,7 +628,6 @@
 
 - id: turn_on_sophies_air_purifier_from_input_select_after unavailable
   alias: "Turn on Sophie's Air Purifier from Input Select after Unavailable"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -679,7 +645,6 @@
 
 - id: turn_off_sophies_air_purifier_from_input_select
   alias: "Turn off Sophie's Air Purifier from Input Select"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -697,7 +662,6 @@
 
 - id: turn_off_sophies_air_purifier_from_input_select_after unavailable
   alias: "Turn off Sophie's Air Purifier from Input Select after Unavailable"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -717,7 +681,6 @@
       
 - id: sync_sophie_air_purifier_input_boolean_to_manual_on
   alias: "Sync Sophie Air Purifier Input Boolean to Manually Turning Air Purifier On"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -736,7 +699,6 @@
 
 - id: sync_sophie_air_purifier_input_boolean_to_manual_off
   alias: "Sync Sophie Air Purifier Input Boolean to Manually Turning Air Purifier Off"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -763,7 +725,6 @@
 
 - id: turn_on_sebastians_air_purifier_from_input_select
   alias: "Turn on Sebastian's Air Purifier from Input Select"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -781,7 +742,6 @@
 
 - id: turn_on_sebastians_air_purifier_from_input_select_after unavailable
   alias: "Turn on sebastian's Air Purifier from Input Select after Unavailable"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -801,7 +761,6 @@
 
 - id: turn_off_sebastians_air_purifier_from_input_select
   alias: "Turn off sebastian's Air Purifier from Input Select"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -819,7 +778,6 @@
 
 - id: turn_off_sebastians_air_purifier_from_input_select_after unavailable
   alias: "Turn off sebastian's Air Purifier from Input Select after Unavailable"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -839,7 +797,6 @@
       
 - id: sync_sebastian_air_purifier_input_boolean_to_manual_on
   alias: "Sync sebastian Air Purifier Input Boolean to Manually Turning Air Purifier On"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -858,19 +815,43 @@
 
 - id: sync_sebastian_air_purifier_input_boolean_to_manual_off
   alias: "Sync sebastian Air Purifier Input Boolean to Manually Turning Air Purifier Off"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
     entity_id: fan.sebastians_room_air_purifier
     to: 'off'
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.sebastians_air_purifier
-        state: 'on'
+    condition: state
+    entity_id: input_boolean.sebastians_air_purifier
+    state: 'on'
   action:
     service: input_boolean.turn_off
     data:
       entity_id: input_boolean.sebastians_air_purifier
+      
+- id: fire_notify_clean_dishes
+  alias: "TTS Notify Clean Dishes to Bar Kindle"
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.bosch_dishwasher_door
+    to: 'open'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.fire_notify_clean_dishes.attributes.last_triggered | default(0)) | int > 300)}}'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_select.bosch_dishwasher_status
+            state: 'Clean'
+          - condition: state
+            entity_id: input_select.bosch_dishwasher_status
+            state: 'Emptying'
+  action:
+  - data:
+      data:
+        type: tts
+      message: "The dishes are clean."
+    service: notify.alexa_media_sean_s_2nd_fire

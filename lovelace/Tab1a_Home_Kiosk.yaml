@@ -17,7 +17,7 @@ popup_cards:
       sun: sun.sun
 
   sensor.sean_location:
-    title: Sean Location
+    title: Sean Location History and Time to Home
     card:
       type: custom:vertical-stack-in-card
       cards:
@@ -26,10 +26,11 @@ popup_cards:
           - sensor.sean_location
       - type: markdown
         content: |
-          ## [[ sensor.sean_eta ]]
-          [[ sensor.sean_eta_description ]] 
+          ## {{ states('sensor.sean_eta')}}
+          {{ states('sensor.sean_eta_description')}} 
+
   sensor.sophie_location:
-    title: Sophie Location
+    title: Sophie Location History and Time to Home
     card:
       type: custom:vertical-stack-in-card
       cards:
@@ -38,11 +39,11 @@ popup_cards:
           - sensor.sophie_location
       - type: markdown
         content: |
-          ## [[ sensor.sophie_eta ]]
-          [[ sensor.sophie_eta_description ]]
+          ## {{ states('sensor.sophie_eta')}}
+          {{ states('sensor.sophie_eta_description')}} 
 
   sensor.alena_location:
-    title: Alena Location
+    title: Alena Location History and Time to Home
     card:
       type: custom:vertical-stack-in-card
       cards:
@@ -51,8 +52,8 @@ popup_cards:
           - sensor.alena_location
       - type: markdown
         content: |
-          ## [[ sensor.alena_eta ]] 
-          [[ sensor.alena_eta_description ]]
+          ## {{ states('sensor.alena_eta')}}
+          {{ states('sensor.alena_eta_description')}} 
 
   input_boolean.sophies_air_purifier:
     title: "Sophie's Air Purifier"
@@ -148,6 +149,7 @@ cards:
       - alarm_control_panel.laundry_room_window
       - alarm_control_panel.motion_sensors
       - alarm_control_panel.windows_and_garage_door
+      - sensor.czechia_coronavirus_current
       state_filter:
       - "on"
       - "Delivery"
@@ -160,6 +162,8 @@ cards:
       - "Today"
       - "Tomorrow"
       - "armed_away"
+      - operator: ">"
+        value: -1
       card: 
         type: glance
         title: "Happening Today"
@@ -376,14 +380,29 @@ cards:
         - sensor.sophie_location
         - sensor.alena_location
 
+    - type: custom:vertical-stack-in-card
+      cards:
 
-    - type: "custom:calendar-card"
-      entities:
-        - calendar.alena_and_seans_calendar
-      title: "Reminders"
-      showProgressBar: false
-      numberOfDays: 3
-      hidePastEvents: true
+      - type: "custom:button-card"
+        name: Reminders
+        styles:
+          name:
+            - color: var(--ha-card-header-color)
+            - justify-self: start
+            - padding-left: 12px
+          card:
+            - padding-top: 22px
+            - padding-bottom: 4px
+            - font-size: 24px
+
+      - type: "custom:calendar-card"
+        entities:
+          - calendar.alena_and_seans_calendar
+        title: "Reminders"
+        showProgressBar: false
+        numberOfDays: 3
+        hidePastEvents: true
+        hideHeader: true
 
 #      numberOfDays: 3
 #      maxHeight: true
@@ -396,7 +415,8 @@ cards:
         styles:
           card:
             - padding: 8px 0px
-
+          name:
+            - color: var(--ha-card-header-color)
 
       - type: custom:air-visual-card 
         air_pollution_level: sensor.hlubocepy_air_pollution
@@ -413,6 +433,8 @@ cards:
         styles:
           card:
             - padding: 8px 0px
+          name:
+            - color: var(--ha-card-header-color)
 
       - type: custom:air-visual-card 
         air_pollution_level: sensor.home_air_pollution
@@ -851,6 +873,78 @@ cards:
           controls: true
           mute: true
         group: true
+
+
+    - type: custom:vertical-stack-in-card
+      cards: 
+
+  #    - type: entities
+  #      show_header_toggle: false
+  #      entities:
+  #      - entity: sensor.cooper_s_e_all4_max_range_electric
+  #        name: Electric Range
+  #        icon: mdi:car-battery
+  #      - entity: sensor.cooper_s_e_all4_remaining_range_total
+  #        name: Total Range
+  #        icon: mdi:gas-station
+  #      - entity: sensor.cooper_s_e_all4_charging_level_hv
+  #        name: Charge Level
+
+      - type: entity-filter
+  #      style: |
+  #         ha-card {
+  #           padding-top: 0px;
+  #           padding-bottom: 0px;  
+  #           padding: 0px;
+  #         } 
+        card:
+          show_header_toggle: false
+          title: Mini Countryman S E
+        state_filter:
+        - operator: "!="
+          value: "unknown"
+        entities:
+        - entity: sensor.cooper_s_e_all4_charging_time_remaining
+          name: Charging Time
+        - entity: sensor.cooper_s_e_all4_charging_level_hv
+          name: Charge Level
+        - entity: sensor.cooper_s_e_all4_remaining_range_electric
+          name: Electric Range
+          icon: mdi:car-battery
+        - entity: sensor.cooper_s_e_all4_remaining_range_total
+          name: Total Range
+          icon: mdi:gas-station
+        - entity: input_boolean.mini_countryman_clima
+        show_empty: false
+
+      - type: entity-filter
+  #      style: |
+  #         ha-card {
+  #           padding-top: 0px;
+  #           padding-bottom: 0px;  
+  #           padding: 0px;
+  #         } 
+        entities:
+        - entity: binary_sensor.cooper_s_e_all4_charging_status
+          name: Charging
+        - entity: binary_sensor.cooper_s_e_all4_check_control_messages
+          name: Control Problem      
+        - entity: binary_sensor.cooper_s_e_all4_condition_based_services
+          name: Condition Problem
+        - entity: binary_sensor.cooper_s_e_all4_door_lock_state
+          name: Lock
+        - entity: binary_sensor.cooper_s_e_all4_lids
+          name: Doors
+        - entity: binary_sensor.cooper_s_e_all4_lights_parking
+          name: Lights
+        - entity: binary_sensor.cooper_s_e_all4_windows
+          name: Windows
+        state_filter:
+        - "on"
+        - "DISCONNECTED"
+        card: 
+          type: glance
+        show_empty: false  
 
 
     - type: custom:search-card

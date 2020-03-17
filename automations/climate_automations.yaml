@@ -5,7 +5,6 @@
 
 - id: heat_down_open_living_room
   alias: 'Turn Heat Down In Living Room' 
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -26,7 +25,6 @@
 
 - id: heat_up_closed_living_room
   alias: 'Turn Heat Up In Living Room'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -39,7 +37,6 @@
 
 - id: heat_down_open_sophies_room
   alias: "Turn Heat Down In Sophie's Room"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -60,7 +57,6 @@
 
 - id: heat_up_closed_sophies_room
   alias: "Turn Heat Up In Sophie's Room"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -73,7 +69,6 @@
 
 - id: heat_down_open_sebastians_room
   alias: "Turn Heat Down In Sebastian's Room"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -94,7 +89,6 @@
 
 - id: heat_up_closed_sebastians_room
   alias: "Turn Heat Up In Sebastian's Room"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -107,7 +101,6 @@
 
 - id: heat_down_open_master_closet
   alias: "Turn Heat Down In Master Closet"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -128,7 +121,6 @@
 
 - id: heat_up_closed_master_closet
   alias: "Turn Heat Up In Master Closet"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -141,7 +133,6 @@
 
 - id: heat_down_open_laundry
   alias: "Turn Heat Down In Laundry Room"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -160,7 +151,6 @@
 
 - id: heat_up_closed_laundry
   alias: "Turn Heat Up In Laundry"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -173,7 +163,6 @@
 
 - id: heat_down_open_garage
   alias: "Turn Heat Down In Garage"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -192,7 +181,6 @@
 
 - id: heat_up_closed_garage
   alias: "Turn Heat Up In Garage"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -211,7 +199,6 @@
 
 - id: warm_sunny_weather_heat_down
   alias: 'Turn Down Heat For Warm Weather'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -298,7 +285,6 @@
 
 - id: warm_cloudy_weather_heat_down
   alias: 'Turn Down Heat For Warm Weather'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -398,7 +384,6 @@
                 
 - id: cold_weather_heat_auto_sunny
   alias: 'Turn Heat to Schedule in Cold Sunny Weather'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -461,7 +446,6 @@
 
 - id: cold_weather_heat_auto_cloudy
   alias: 'Turn Heat to Schedule in Cold Cloudy Weather'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -542,7 +526,6 @@
 
 - id: living_room_tepid_weather_heat_down
   alias: 'Turn Living Room Heat Down For Tepid Weather'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -567,7 +550,6 @@
 
 - id: living_room_warm_weather_heat_down
   alias: 'Turn Living Room Heat Down For Warm Weather'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -592,7 +574,6 @@
 
 - id: living_room_cold_weather_heat_up
   alias: 'Turn Living Room Heat Up For Cold Weather'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -613,7 +594,6 @@
 
 - id: warmer_weather_heat_down_more
   alias: 'Turn Down Heat More For Warmer Weather'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -697,7 +677,6 @@
 
 - id: warmer_weather_heat_down_more_2
   alias: 'Turn Down Heat For Warm Weather 2'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -774,7 +753,6 @@
         entity_id: climate.laundry_room
         setpoint: 19
         duration: {"minutes":1439}
-
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
@@ -782,7 +760,6 @@
 
 - id: hot_weather_turn_heat_off
   alias: 'Turn Heat Off For Hot Weather'
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -864,7 +841,6 @@
 
 - id: sophie_room_heat_up_if_home
   alias: "Turn up the heat in sophie's room if she's home"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -891,7 +867,6 @@
 
 - id: fire_in_fireplace_tomorrow
   alias: "Fire in Fireplace Tomorrow"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: time
@@ -910,7 +885,6 @@
 
 - id: fire_in_fireplace_now
   alias: "Fire in Fireplace Now"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state
@@ -935,7 +909,6 @@
 
 - id: fire_in_fireplace_now_turned_off
   alias: "Fire in Fireplace Now Off"
-  hide_entity: true
   initial_state: 'true'
   trigger:
     platform: state

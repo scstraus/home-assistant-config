@@ -65,8 +65,10 @@ custom_header:
         hide_unused: true
         voice_hide: true
 #        menu_hide: true
-#        button_text:
-#          menu: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
+        button_text:
+          menu: 'menu'
+          options: '{{ dayNameShort }}, {{ dayNum }} {{ monthNameShort }}       {{ hours24LZ }}:{{ minutesLZ }}'
+#          options: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
     - conditions:
         user: Alena
       config:
