@@ -150,6 +150,8 @@ cards:
       - alarm_control_panel.motion_sensors
       - alarm_control_panel.windows_and_garage_door
       - sensor.czechia_coronavirus_current
+      - sensor.car_needs_charging
+      - sensor.low_gas_in_car
       state_filter:
       - "on"
       - "Delivery"
@@ -162,6 +164,8 @@ cards:
       - "Today"
       - "Tomorrow"
       - "armed_away"
+      - "Plug it In"
+      - "Fill it Up."
       - operator: ">"
         value: -1
       card: 
@@ -849,31 +853,6 @@ cards:
 #      report_size: 8
 #      card:      
 
-    - type: entities
-      title: Basement
-      show_header_toggle: false
-      entities:
-      - climate.garage
-      - climate.laundry_room
-
-    - type: entities
-      title: Outside
-      show_header_toggle: false
-      entities:
-
-    #        - sensor.us_air_pollution_level
-    #          icon: mdi:gauge
-    #        - sensor.us_air_quality_index
-    #        - sensor.us_main_pollutant
-
-      - entity: media_player.back_yard_airtunes_speaker
-        type: custom:mini-media-player
-        name: Back Yard Speakers
-        hide:
-          controls: true
-          mute: true
-        group: true
-
 
     - type: custom:vertical-stack-in-card
       cards: 
@@ -932,7 +911,7 @@ cards:
         - entity: binary_sensor.cooper_s_e_all4_condition_based_services
           name: Condition Problem
         - entity: binary_sensor.cooper_s_e_all4_door_lock_state
-          name: Lock
+          name: Car is
         - entity: binary_sensor.cooper_s_e_all4_lids
           name: Doors
         - entity: binary_sensor.cooper_s_e_all4_lights_parking
@@ -945,8 +924,42 @@ cards:
         card: 
           type: glance
         show_empty: false  
+    
+    - break
 
+    - type: entities
+      title: Outside
+      show_header_toggle: false
+      entities:
+
+    #        - sensor.us_air_pollution_level
+    #          icon: mdi:gauge
+    #        - sensor.us_air_quality_index
+    #        - sensor.us_main_pollutant
+
+      - entity: media_player.back_yard_airtunes_speaker
+        type: custom:mini-media-player
+        name: Back Yard Speakers
+        hide:
+          controls: true
+          mute: true
+        group: true
+
+    - break
+
+    - type: entities
+      title: Basement
+      show_header_toggle: false
+      entities:
+      - climate.garage
+      - climate.laundry_room
+
+    - break
 
     - type: custom:search-card
       max_results: 10
+
+
+
+
 

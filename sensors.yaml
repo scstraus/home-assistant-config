@@ -1283,3 +1283,12 @@
           {% if is_state('device_tracker.cooper_s_e_all4', 'home') and (states('sensor.cooper_s_e_all4_charging_level_hv')|float < 80) and is_state('sensor.cooper_s_e_all4_connectionstatus', 'disconnected') %} Plug it In 
           {% else %} unknown
           {% endif %}
+
+  - platform: template
+    sensors:
+      low_gas_in_car:
+        friendly_name: "Low Gas in Car"
+        value_template: >-
+          {% if (states('sensor.cooper_s_e_all4_remaining_fuel')|float < 5) %} Fill it Up.
+          {% else %} no
+          {% endif %}
