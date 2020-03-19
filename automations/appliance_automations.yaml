@@ -854,4 +854,4 @@
       data:
         type: tts
       message: "The dishes are clean."
-    service: notify.alexa_media_sean_s_2nd_fire
+    service: notify.alexa_media_alexa_kitchen_bar

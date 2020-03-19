@@ -1,42 +1,5 @@
 title: Home
 
-resources:
-
-  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
-    type: js
-  - url: /community_plugin/button-card/button-card.js
-    type: module
-  - url: /community_plugin/lovelace-card-tools/card-tools.js
-    type: module
-  - url: /community_plugin/mini-media-player/mini-media-player-bundle.js
-    type: module
-  - url: /community_plugin/lovelace-layout-card/layout-card.js
-    type: module
-  - url: /community_plugin/calendar-card/calendar-card.js
-    type: js
-  - url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
-    type: module
-  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
-    type: module
-  - url: /community_plugin/secondaryinfo-entity-row/secondaryinfo-entity-row.js
-    type: js
-  - url: /community_plugin/simple-thermostat/simple-thermostat.js
-    type: module
-  - url: /community_plugin/air-visual-card/air-visual-card.js
-    type: js
-  - url: /community_plugin/custom-header/custom-header.js
-    type: module
-  - url: /community_plugin/lovelace-weather-card-chart/weather-card-chart.js
-    type: module
-  - url: /community_plugin/lovelace-card-mod/card-mod.js
-    type: module
-  - url: /community_plugin/lovelace-home-feed-card/lovelace-home-feed-card.js
-    type: js
-  - url: /community_plugin/search-card/search-card.js
-    type: module
-  - url: /community_plugin/lovelace-state-switch/state-switch.js
-    type: module
-
 views:
 
   - !include /config/lovelace/Tab1_Home.yaml

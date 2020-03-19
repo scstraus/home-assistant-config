@@ -1,7 +1,7 @@
-  - platform: airvisual
-    api_key: !secret airvisual_key
-    monitored_conditions:
-      - us
+#  - platform: airvisual
+#    api_key: !secret airvisual_key
+#    monitored_conditions:
+#      - us
 
   - platform: darksky
     api_key: !secret darksky_key
