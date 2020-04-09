@@ -34,6 +34,10 @@
       message: "There's a Person in Front of the House"
       data:
         push:
+          sound:
+            name: "Update.caf"
+            critical: 1
+            volume: 1.0
           category: camera
         entity_id: camera.front_last_person
 
@@ -76,6 +80,10 @@
       message: "There's a Person in Back of the House"
       data:
         push:
+          sound:
+            name: "Update.caf"
+            critical: 1
+            volume: 1.0
           category: camera
         entity_id: camera.back_last_person
 
@@ -116,6 +124,10 @@
       message: "There's a Person on the Left Side of the House"
       data:
         push:
+          sound:
+            name: "Update.caf"
+            critical: 1
+            volume: 1.0
           category: camera
         entity_id: camera.left_last_person
 
@@ -154,8 +166,14 @@
       message: "There's a Person on the Right Side of the House"
       data:
         push:
+          sound:
+            name: "Update.caf"
+            critical: 1
+            volume: 1.0
           category: camera
         entity_id: camera.right_last_person
+        title: hello
+
 
 #- id: person_in_front_hassbian
 #  alias: Person In Front

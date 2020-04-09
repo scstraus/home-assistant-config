@@ -58,44 +58,45 @@ lovelace:
 
   resources:
 
-    - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
       type: js
-    - url: /community_plugin/button-card/button-card.js
+    - url: /hacsfiles/button-card/button-card.js
       type: module
-    - url: /community_plugin/lovelace-card-tools/card-tools.js
+    - url: /hacsfiles/lovelace-card-tools/card-tools.js
       type: module
-    - url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
       type: module
-    - url: /community_plugin/lovelace-layout-card/layout-card.js
+    - url: /hacsfiles/lovelace-layout-card/layout-card.js
       type: module
-    - url: /community_plugin/calendar-card/calendar-card.js
+    - url: /hacsfiles/calendar-card/calendar-card.js
       type: js
-    - url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
       type: module
-    - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
       type: module
-    - url: /community_plugin/secondaryinfo-entity-row/secondaryinfo-entity-row.js
+    - url: /hacsfiles/secondaryinfo-entity-row/secondaryinfo-entity-row.js
       type: js
-    - url: /community_plugin/simple-thermostat/simple-thermostat.js
+    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
       type: module
-    - url: /community_plugin/air-visual-card/air-visual-card.js
+    - url: /hacsfiles/air-visual-card/air-visual-card.js
       type: js
-    - url: /community_plugin/custom-header/custom-header.js
+    - url: /hacsfiles/custom-header/custom-header.js
       type: module
-    - url: /community_plugin/lovelace-weather-card-chart/weather-card-chart.js
+    - url: /hacsfiles/lovelace-weather-card-chart/weather-card-chart.js
       type: module
-    - url: /community_plugin/lovelace-card-mod/card-mod.js
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
       type: module
-    - url: /community_plugin/lovelace-home-feed-card/lovelace-home-feed-card.js
+    - url: /hacsfiles/lovelace-home-feed-card/lovelace-home-feed-card.js
       type: js
-    - url: /community_plugin/search-card/search-card.js
+    - url: /hacsfiles/search-card/search-card.js
       type: module
-    - url: /community_plugin/lovelace-state-switch/state-switch.js
+    - url: /hacsfiles/lovelace-state-switch/state-switch.js
       type: module
+
 
 frontend:
-
-  themes: !include themes.yaml
+  themes: !include_dir_merge_named themes
+#  themes: !include themes.yaml
   javascript_version: auto
 
 mobile_app:
@@ -716,6 +717,26 @@ camera:
     stream_source: !secret right_main_stream_url
     framerate: 4
 
+
+
+#  - name: Right Last Person
+#    platform: mqtt
+#    topic: frigate/right/person/snapshot
+#
+#  - name: Left Last Person
+#    platform: mqtt
+#    topic: frigate/left/person/snapshot
+#
+#  - name: Front Last Person
+#    platform: mqtt
+#    topic: frigate/front/person/snapshot
+#
+#  - name: Back Last Person
+#    platform: mqtt
+#    topic: frigate/back/person/snapshot
+
+#Frigate v.2 cameras
+
   - name: Right Last Person
     platform: generic
     still_image_url: !secret right_best_url
@@ -798,6 +819,9 @@ input_boolean:
   mini_countryman_clima:
     name: "Car Klima"
     icon: mdi:air-conditioner
+  working_from_home:
+    name: "Working From Home"
+    icon: mdi:home-account
 #  mix_playlist:
 #    name: Mix Playlist
 #    initial: off
@@ -1056,7 +1080,28 @@ variable:
     attributes:
       icon: mdi:gauge-low
     restore: true
+
+  czechia_coronavirus_yesterday:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:bug
+    restore: true
     
+  czechia_coronavirus_new_yesterday:
+    value: 'Unknown'
+    attributes:
+      friendly_name: 'New Cases'
+      unit_of_measurement: yesterday
+      icon: mdi:chart-bubble
+    restore: true
+
+  czechia_coronavirus_new_today:
+    value: 'Unknown'
+    attributes:
+      friendly_name: 'New Cases'
+      unit_of_measurement: today
+      icon: mdi:chart-bubble
+    restore: true
     
 cast:
   media_player:
@@ -1136,6 +1181,10 @@ alert:
       - 30
     can_acknowledge: true
     skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Garage-Door-Open.wav"
     notifiers:
       - ios_alenas_iphone
 
@@ -1150,6 +1199,10 @@ alert:
       - 30
     can_acknowledge: true
     skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Garage-Door-Open.wav"
     notifiers:
       - ios_seans_iphone_x
 #    entity_id: binary_sensor.garage_door_zone_14
@@ -1165,6 +1218,10 @@ alert:
       - 30
     can_acknowledge: true
     skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Front-Door-Open.wav"
     notifiers:
       - ios_alenas_iphone
 
@@ -1179,6 +1236,10 @@ alert:
       - 30
     can_acknowledge: true
     skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Front-Door-Open.wav"
     notifiers:
       - ios_seans_iphone_x
 
@@ -1312,3 +1373,6 @@ bmw_connected_drive:
     username: !secret mini_uname
     password: !secret mini_pw
     region: rest_of_world
+
+airvisual:
+  api_key: !secret airvisual_key

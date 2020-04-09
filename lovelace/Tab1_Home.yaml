@@ -98,6 +98,42 @@ popup_cards:
           - fan.sebastians_room_air_purifier
         hours_to_show: 1
 
+
+  fan.master_bedroom_air_purifier:
+    title: "Master Bedroom Air Purifier"
+    card:
+      type: custom:vertical-stack-in-card
+      cards:
+      - type: history-graph
+        entities:
+          - fan.master_bedroom_air_purifier
+      - type: history-graph
+        entities:
+          - sensor.hlubocepy_air_quality
+      - type: history-graph
+        entities:
+          - sensor.master_bedroom_aqi
+
+  binary_sensor.cooper_s_e_all4_door_lock_state:
+    title: "Car Lock"
+    card:
+      type: custom:vertical-stack-in-card
+      cards:
+      - type: entities
+        entities:
+          - binary_sensor.cooper_s_e_all4_door_lock_state
+      - type: history-graph
+        entities:
+          - binary_sensor.cooper_s_e_all4_door_lock_state
+      - type: button
+        name: Press to Lock the Car
+        tap_action:
+          action: call-service
+          service: lock.lock
+          service_data:
+            entity_id: lock.cooper_s_e_all4_lock
+        entity: lock.cooper_s_e_all4_lock
+
 #    card:
 #      type: markdown
 #      content: |
@@ -261,6 +297,8 @@ cards:
     - sensor.alarm_state_2_1st_floor
     - sensor.alarm_state_1_laundry
     - sensor.czechia_coronavirus_current
+    - variable.czechia_coronavirus_new_yesterday
+    - variable.czechia_coronavirus_new_today
     - sensor.car_needs_charging
     - sensor.low_gas_in_car
     state_filter:
@@ -293,11 +331,21 @@ cards:
         value: 7
         attribute: eta
     entities:
-      - sensor.czech_holidays_event_0
-      - sensor.czech_holidays_event_1
-      - sensor.czech_holidays_event_2
-      - sensor.czech_holidays_event_3
-      - sensor.czech_holidays_event_4
+      - entity: sensor.czech_holiday_friendly_0
+        type: "custom:secondaryinfo-entity-row"
+        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+      - entity: sensor.czech_holiday_friendly_1
+        type: "custom:secondaryinfo-entity-row"
+        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+      - entity: sensor.czech_holiday_friendly_2
+        type: "custom:secondaryinfo-entity-row"
+        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+      - entity: sensor.czech_holiday_friendly_3
+        type: "custom:secondaryinfo-entity-row"
+        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+      - entity: sensor.czech_holiday_friendly_4
+        type: "custom:secondaryinfo-entity-row"
+        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
     show_empty: false
  
 
@@ -373,28 +421,34 @@ cards:
 #    report_size: 8
 #    card:
 
-  - type: custom:vertical-stack-in-card
-    cards:
+  - type: custom:mod-card
+    report_size: 4
+    card:
 
-    - type: "custom:button-card"
-      name: Reminders
-      styles:
-        name:
-          - color: var(--ha-card-header-color)
-          - justify-self: start
-          - padding-left: 16px
-        card:
-          - padding-top: 22px
-          - padding-bottom: 4px
-          - font-size: 24px
-    - type: "custom:calendar-card"
-      entities:
-        - calendar.alena_and_seans_calendar
-  #    title: "Reminders"
-      showProgressBar: false
-      numberOfDays: 3
-      hidePastEvents: true
-      hideHeader: true
+      type: custom:vertical-stack-in-card
+      cards:
+
+      - type: "custom:button-card"
+        name: Reminders
+        styles:
+          name:
+            - color: var(--ha-card-header-color)
+            - justify-self: start
+            - padding-left: 16px
+          card:
+            - padding-top: 22px
+            - padding-bottom: 4px
+            - font-size: 24px
+      - type: "custom:calendar-card"
+        entities:
+          - calendar.alena_and_seans_calendar
+    #    title: "Reminders"
+        showProgressBar: false
+        numberOfDays: 3
+        hidePastEvents: true
+        hideHeader: true
+
+
 
   - type: custom:state-switch
     entity: template
@@ -402,35 +456,39 @@ cards:
     states:
       home:
 
-        type: vertical-stack
-        cards:
+        type: custom:mod-card
+        report_size: 14
+        card:
 
-        - type: picture-glance
-          aspect_ratio: 16x9
-          entities: []
-          camera_image: camera.front_stream
-          camera_view: live
-
-        - type: horizontal-stack
+          type: vertical-stack
           cards:
 
           - type: picture-glance
-            aspect_ratio: 9x16
+            aspect_ratio: 16x9
             entities: []
-            camera_image: camera.left_stream
+            camera_image: camera.front_stream
             camera_view: live
+
+          - type: horizontal-stack
+            cards:
+
+            - type: picture-glance
+              aspect_ratio: 9x16
+              entities: []
+              camera_image: camera.left_stream
+              camera_view: live
+
+            - type: picture-glance
+              aspect_ratio: 9x16
+              entities: []
+              camera_image: camera.right_stream
+              camera_view: live
 
           - type: picture-glance
-            aspect_ratio: 9x16
+            aspect_ratio: 16x9
             entities: []
-            camera_image: camera.right_stream
+            camera_image: camera.back_stream
             camera_view: live
-
-        - type: picture-glance
-          aspect_ratio: 16x9
-          entities: []
-          camera_image: camera.back_stream
-          camera_view: live
 
 
       away:
@@ -491,7 +549,7 @@ cards:
 #        camera_view: live
 
   - type: custom:mod-card
-    report_size: 5
+    report_size: 6
     card:
 
       type: vertical-stack
@@ -784,6 +842,8 @@ cards:
     entities: 
     - entity: fan.master_bedroom_air_purifier
       name: "Master Bedroom Air Purifier"
+      type: "custom:secondaryinfo-entity-row"
+      secondary_info: "Air Quality: [[  sensor.master_bedroom_aqi_description.state ]]"
     - entity: media_player.master_bedroom_airtunes_speaker
       type: custom:mini-media-player
       name: "Master Bedroom Speakers"

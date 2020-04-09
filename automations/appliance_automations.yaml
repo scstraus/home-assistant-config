@@ -621,9 +621,13 @@
     entity_id: fan.sophies_room_air_purifier
     state: 'off'
   action:
-    service: fan.turn_on
-    data:
-      entity_id: fan.sophies_room_air_purifier
+    - service: fan.turn_on
+      data:
+        entity_id: fan.sophies_room_air_purifier
+    - service: fan.set_speed
+      data:
+        entity_id: fan.sophies_room_air_purifier
+        speed: Silent
     
 
 - id: turn_on_sophies_air_purifier_from_input_select_after unavailable
@@ -635,13 +639,21 @@
     from: 'unavailable'
     to: 'off'
   condition:
-    condition: state
-    entity_id: input_boolean.sophies_air_purifier
-    state: 'on'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sophies_air_purifier
+        state: 'on'
+      - condition: template
+        value_template: "{{ (as_timestamp(now())-as_timestamp(states.input_boolean.sophies_air_purifier.last_changed)) < 600 }}"
   action:
-    service: fan.turn_on
-    data:
-      entity_id: fan.sophies_room_air_purifier
+    - service: fan.turn_on
+      data:
+        entity_id: fan.sophies_room_air_purifier
+    - service: fan.set_speed
+      data:
+        entity_id: fan.sophies_room_air_purifier
+        speed: Silent
 
 - id: turn_off_sophies_air_purifier_from_input_select
   alias: "Turn off Sophie's Air Purifier from Input Select"
@@ -674,6 +686,14 @@
       - condition: state
         entity_id: input_boolean.sophies_air_purifier
         state: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sophies_air_purifier
+        state: 'off'
+      - condition: template
+        value_template: "{{ (as_timestamp(now())-as_timestamp(states.input_boolean.sophies_air_purifier.last_changed)) < 600 }}"
   action:
     service: fan.turn_off
     data:
@@ -735,9 +755,13 @@
     entity_id: fan.sebastians_room_air_purifier
     state: 'off'
   action:
-    service: fan.turn_on
-    data:
-      entity_id: fan.sebastians_room_air_purifier
+    - service: fan.turn_on
+      data:
+        entity_id: fan.sebastians_room_air_purifier
+    - service: fan.set_speed
+      data:
+        entity_id: fan.sebastians_room_air_purifier
+        speed: Silent
     
 
 - id: turn_on_sebastians_air_purifier_from_input_select_after unavailable
@@ -754,10 +778,16 @@
       - condition: state
         entity_id: input_boolean.sebastians_air_purifier
         state: 'on'
+      - condition: template
+        value_template: "{{ (as_timestamp(now())-as_timestamp(states.input_boolean.sebastians_air_purifier.last_changed)) < 600 }}"
   action:
-    service: fan.turn_on
-    data:
-      entity_id: fan.sebastians_room_air_purifier
+    - service: fan.turn_on
+      data:
+        entity_id: fan.sebastians_room_air_purifier
+    - service: fan.set_speed
+      data:
+        entity_id: fan.sebastians_room_air_purifier
+        speed: Silent
 
 - id: turn_off_sebastians_air_purifier_from_input_select
   alias: "Turn off sebastian's Air Purifier from Input Select"
@@ -790,6 +820,8 @@
       - condition: state
         entity_id: input_boolean.sebastians_air_purifier
         state: 'off'
+      - condition: template
+        value_template: "{{ (as_timestamp(now())-as_timestamp(states.input_boolean.sebastians_air_purifier.last_changed)) < 600 }}"
   action:
     service: fan.turn_off
     data:
@@ -828,6 +860,9 @@
     service: input_boolean.turn_off
     data:
       entity_id: input_boolean.sebastians_air_purifier
+
+################ DISHES ARE CLEAN NOTIFICATION ##############
+
       
 - id: fire_notify_clean_dishes
   alias: "TTS Notify Clean Dishes to Bar Kindle"
@@ -855,3 +890,89 @@
         type: tts
       message: "The dishes are clean."
     service: notify.alexa_media_alexa_kitchen_bar
+
+
+
+############ BEDROOM AIR PURIFIER ON OFF ##############
+
+
+
+- id: turn_on_master_bedroom_air_purifier_if_air_is_bad_at_night
+  alias: "Turn on Master Bedroom Air Purifier if the air is bad at night"
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.hlubocepy_air_quality
+    above: 70
+  condition:
+    condition: time
+    after: '21:00:00'
+    before: '11:00:00'
+  action:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+    - service: fan.set_speed
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+        speed: Silent
+
+
+- id: turn_on_master_bedroom_air_purifier_if_air_is_bad_at_night_2
+  alias: "Turn on Master Bedroom Air Purifier if the air is bad at night 2"
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '21:00:00'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.hlubocepy_air_quality
+    above: 70
+  action:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+    - service: fan.set_speed
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+        speed: Silent
+
+- id: turn_off_master_bedroom_air_purifier_in_the_morning_or_aqi
+  alias: "Turn off Master Bedroom Air Purifier in the morning or from AQI"
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: '11:00:00'
+    - platform: numeric_state
+      entity_id: sensor.hlubocepy_air_quality
+      below: 65
+  action:
+    service: fan.turn_off
+    data:
+      entity_id: fan.master_bedroom_air_purifier
+
+
+- id: turn_on_master_bedroom_air_purifier_if_air_is_bad_after_unavailable
+  alias: "Turn on Master Bedroom Air Purifier if the air is bad after unavailable"
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.master_bedroom_air_purifier
+    from: 'unavailable'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.hlubocepy_air_quality
+        above: 70
+      - condition: time
+        after: '21:00:00'
+        before: '11:00:00'
+  action:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+    - service: fan.set_speed
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+        speed: Silent

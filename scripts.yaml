@@ -72,13 +72,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -86,13 +88,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -124,13 +128,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -138,13 +144,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -165,13 +173,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -179,13 +189,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -206,13 +218,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -220,13 +234,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -248,13 +264,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -262,13 +280,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -289,13 +309,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -303,13 +325,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -331,13 +355,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -345,13 +371,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -373,13 +401,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -387,13 +417,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -414,13 +446,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -428,13 +462,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -456,13 +492,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -470,13 +508,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -498,13 +538,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -512,13 +554,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -540,13 +584,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -554,13 +600,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set
@@ -581,13 +629,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.all_speakers
             {% else %}
+              group.all_speakers
             {% endif %}
       - service: homeassistant.turn_on
         data_template: 
           entity_id: >-
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %}  
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
       - service: homeassistant.turn_off
         data_template: 
@@ -595,13 +645,15 @@
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               media_player.computer_airtunes_speaker
             {% else %}
+              media_player.computer_airtunes_speaker
             {% endif %}
       - service: media_player.volume_set
         data_template: 
           entity_id: >- 
             {% if states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire" %} 
               group.alexa_kitchen_bar_speakers
-            {% else %}
+            {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+              media_player.sophie_s_room_airtunes_speaker
             {% endif %}
           volume_level: 0.5
       - service: media_player.volume_set

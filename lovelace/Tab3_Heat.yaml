@@ -691,80 +691,82 @@ cards:
 #      show_header_toggle: false
 
   - type: entities
+    show_header_toggle: false
     entities: 
+    - input_boolean.working_from_home
     - input_boolean.fire_in_fireplace_tomorrow
     - input_boolean.fire_in_fireplace_now
-    - binary_sensor.04_000722_window
-    - binary_sensor.04_000730_window
-    - binary_sensor.04_000736_window
-    - binary_sensor.04_073121_window
-    - binary_sensor.04_136489_window
-    - binary_sensor.04_136497_window
-    - binary_sensor.04_136499_window
-    - binary_sensor.04_136503_window
-    - binary_sensor.04_136505_window
-    - binary_sensor.04_136509_window
-    - binary_sensor.04_136511_window
-    - binary_sensor.04_136513_window
-    - sensor.00_demand
-    - sensor.04_000722_battery
-    - sensor.04_000722_demand
-    - sensor.04_000722_temp
-    - sensor.04_000730_battery
-    - sensor.04_000730_demand
-    - sensor.04_000730_temp
-    - sensor.04_000736_battery
-    - sensor.04_000736_demand
-    - sensor.04_000736_temp
-    - sensor.04_073121_battery
-    - sensor.04_073121_demand
-    - sensor.04_073121_temp
-    - sensor.04_136489_battery
-    - sensor.04_136489_demand
-    - sensor.04_136489_temp
-    - sensor.04_136497_battery
-    - sensor.04_136497_demand
-    - sensor.04_136497_temp
-    - sensor.04_136499_battery
-    - sensor.04_136499_demand
-    - sensor.04_136499_temp
-    - sensor.04_136503_battery
-    - sensor.04_136503_demand
-    - sensor.04_136503_temp
-    - sensor.04_136505_battery
-    - sensor.04_136505_demand
-    - sensor.04_136505_temp
-    - sensor.04_136509_battery
-    - sensor.04_136509_demand
-    - sensor.04_136509_temp
-    - sensor.04_136511_battery
-    - sensor.04_136511_demand
-    - sensor.04_136511_temp
-    - sensor.04_136513_battery
-    - sensor.04_136513_demand
-    - sensor.04_136513_temp
-
-  - type: custom:mini-graph-card
-    entities:
-      - entity: sensor.04_136503_temp
-        name: "LAUNDRY ROOM RF"
-    hours_to_show: 24
-    points_per_hour: 3
-    height: 150
-    font_size_header: 16
-    decimals: 1
-    show:
-      extrema: true
-    color_thresholds:
-      - value: 18
-        color: "#6666ff"
-      - value: 20
-        color: "#ccccff"
-      - value: 22
-        color: "#f3f300"
-      - value: 24
-        color: "#f39c12"
-      - value: 25
-        color: "#d35400"
-      - value: 26
-        color: "#c0392b"
+#    - binary_sensor.04_000722_window
+#    - binary_sensor.04_000730_window
+#    - binary_sensor.04_000736_window
+#    - binary_sensor.04_073121_window
+#    - binary_sensor.04_136489_window
+#    - binary_sensor.04_136497_window
+#    - binary_sensor.04_136499_window
+#    - binary_sensor.04_136503_window
+#    - binary_sensor.04_136505_window
+#    - binary_sensor.04_136509_window
+#    - binary_sensor.04_136511_window
+#    - binary_sensor.04_136513_window
+#    - sensor.00_demand
+#    - sensor.04_000722_battery
+#    - sensor.04_000722_demand
+#    - sensor.04_000722_temp
+#    - sensor.04_000730_battery
+#    - sensor.04_000730_demand
+#    - sensor.04_000730_temp
+#    - sensor.04_000736_battery
+#    - sensor.04_000736_demand
+#    - sensor.04_000736_temp
+#    - sensor.04_073121_battery
+#    - sensor.04_073121_demand
+#    - sensor.04_073121_temp
+#    - sensor.04_136489_battery
+#    - sensor.04_136489_demand
+#    - sensor.04_136489_temp
+#    - sensor.04_136497_battery
+#    - sensor.04_136497_demand
+#    - sensor.04_136497_temp
+#    - sensor.04_136499_battery
+#    - sensor.04_136499_demand
+#    - sensor.04_136499_temp
+#    - sensor.04_136503_battery
+#    - sensor.04_136503_demand
+#    - sensor.04_136503_temp
+#    - sensor.04_136505_battery
+#    - sensor.04_136505_demand
+#    - sensor.04_136505_temp
+#    - sensor.04_136509_battery
+#    - sensor.04_136509_demand
+#    - sensor.04_136509_temp
+#    - sensor.04_136511_battery
+#    - sensor.04_136511_demand
+#    - sensor.04_136511_temp
+#    - sensor.04_136513_battery
+#    - sensor.04_136513_demand
+#    - sensor.04_136513_temp
+#
+#  - type: custom:mini-graph-card
+#    entities:
+#      - entity: sensor.04_136503_temp
+#        name: "LAUNDRY ROOM RF"
+#    hours_to_show: 24
+#    points_per_hour: 3
+#    height: 150
+#    font_size_header: 16
+#    decimals: 1
+#    show:
+#      extrema: true
+#    color_thresholds:
+#      - value: 18
+#        color: "#6666ff"
+#      - value: 20
+#        color: "#ccccff"
+#      - value: 22
+#        color: "#f3f300"
+#      - value: 24
+#        color: "#f39c12"
+#      - value: 25
+#        color: "#d35400"
+#      - value: 26
+#        color: "#c0392b"

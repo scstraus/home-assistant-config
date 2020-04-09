@@ -595,7 +595,7 @@
       data_template:
         name: >
           {% if states.sun.sun.state == "above_horizon" %}
-            Google - Light
+            Google Light Theme
           {% else %}
             midnight
           {% endif %}
@@ -751,3 +751,45 @@
     data:
       entity_id: input_boolean.mini_countryman_clima 
 
+- id: preserve_yesterdays_coronavirus_cases
+  alias: "Preserve Yesterday's Coronavirus Cases"
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '6:30:00'
+  action:
+    service: variable.set_variable
+    data:
+      variable: czechia_coronavirus_yesterday
+    data_template:
+      value: >
+          {{ states('sensor.czechia_coronavirus_confirmed')}}
+          
+
+- id: calculate_coronavirus_delta_yesterday
+  alias: "Calculate Change in Coronavirus Cases Yesterday"
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '6:00:00'
+  action:
+    service: variable.set_variable
+    data:
+      variable: czechia_coronavirus_new_yesterday
+    data_template:
+      value: >
+          {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+
+- id: calculate_coronavirus_delta_today
+  alias: "Calculate Change in Coronavirus Cases Today"
+  initial_state: 'true'
+  trigger:
+    platform: time_pattern
+    minutes: '/15'
+  action:
+    service: variable.set_variable
+    data:
+      variable: czechia_coronavirus_new_today
+    data_template:
+      value: >
+          {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}

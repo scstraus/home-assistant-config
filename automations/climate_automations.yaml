@@ -37,7 +37,7 @@
 
 - id: heat_down_open_sophies_room
   alias: "Turn Heat Down In Sophie's Room"
-  initial_state: 'true'
+  initial_state: 'false'
   trigger:
     platform: state
     entity_id: binary_sensor.sophies_room_ceiling_window
@@ -282,6 +282,12 @@
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_today
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_now
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
 
 - id: warm_cloudy_weather_heat_down
   alias: 'Turn Down Heat For Warm Weather'
@@ -381,6 +387,12 @@
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_today
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_now
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
                 
 - id: cold_weather_heat_auto_sunny
   alias: 'Turn Heat to Schedule in Cold Sunny Weather'
@@ -443,6 +455,12 @@
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_up_in_living_room
+    - service: homeassistant.turn_on
+      entity_id: automation.working_from_home_today
+    - service: homeassistant.turn_on
+      entity_id: automation.working_from_home_now
+    - service: homeassistant.turn_on
+      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
 
 - id: cold_weather_heat_auto_cloudy
   alias: 'Turn Heat to Schedule in Cold Cloudy Weather'
@@ -523,6 +541,12 @@
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_on
       entity_id: automation.turn_heat_up_in_living_room
+    - service: homeassistant.turn_on
+      entity_id: automation.working_from_home_today
+    - service: homeassistant.turn_on
+      entity_id: automation.working_from_home_now
+    - service: homeassistant.turn_on
+      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
 
 - id: living_room_tepid_weather_heat_down
   alias: 'Turn Living Room Heat Down For Tepid Weather'
@@ -674,6 +698,12 @@
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_today
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_now
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
 
 - id: warmer_weather_heat_down_more_2
   alias: 'Turn Down Heat For Warm Weather 2'
@@ -757,6 +787,12 @@
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_today
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_now
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
 
 - id: hot_weather_turn_heat_off
   alias: 'Turn Heat Off For Hot Weather'
@@ -838,6 +874,12 @@
       entity_id: automation.turn_heat_down_in_living_room
     - service: homeassistant.turn_off
       entity_id: automation.turn_heat_up_in_living_room
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_today
+    - service: homeassistant.turn_off
+      entity_id: automation.working_from_home_now
+    - service: homeassistant.turn_off
+      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
 
 - id: sophie_room_heat_up_if_home
   alias: "Turn up the heat in sophie's room if she's home"
@@ -924,3 +966,41 @@
     - service: evohome.clear_zone_override
       data:
         entity_id: climate.living_room
+
+- id: working_from_home_now
+  alias: "Working From Home Now"
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_boolean.working_from_home
+    to: 'on'
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.office_library
+      setpoint: 23
+      duration: {"minutes":480}
+
+- id: working_from_home_today
+  alias: "Working From Home Today"
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '10:00:00'
+  condition:    
+    - condition: state
+      entity_id: input_boolean.working_from_home
+      state: 'on'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri    
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.office_library
+      setpoint: 23
+      duration: {"minutes":700}

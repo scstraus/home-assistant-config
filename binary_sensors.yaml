@@ -228,6 +228,34 @@
     payload_off: "Disconnected"
     device_class: connectivity
 
+# Frigate 0.5 Human 
+
+#  - name: Human Back
+#    platform: mqtt
+#    state_topic: "frigate/back/person"
+#    device_class: motion
+#    availability_topic: "frigate/available"
+#
+#  - name: Human Front
+#    platform: mqtt
+#    state_topic: "frigate/front/person"
+#    device_class: motion
+#    availability_topic: "frigate/available"
+#    
+#  - name: Human Left
+#    platform: mqtt
+#    state_topic: "frigate/left/person"
+#    device_class: motion
+#    availability_topic: "frigate/available"
+#    
+#  - name: Human Right
+#    platform: mqtt
+#    state_topic: "frigate/right/person"
+#    device_class: motion
+#    availability_topic: "frigate/available"
+
+# Frigate v0.2 human
+#
   - name: "Human Back"
     platform: mqtt
     state_topic: "frigate/back/objects"

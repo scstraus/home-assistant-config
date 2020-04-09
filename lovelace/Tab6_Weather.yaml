@@ -4,7 +4,6 @@
 
 title: Weather
 icon: mdi:weather-lightning
-background: var(--background-image)
 cards:
 
   - type: 'custom:weather-card-chart'

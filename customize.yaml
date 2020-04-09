@@ -392,6 +392,7 @@ sensor.alarm_state_1_laundry:
   icon: mdi:shield-check
 sensor.czechia_coronavirus_current:
   icon: mdi:bug
+  unit_of_measurement: active
 sensor.cooper_s_e_all4_max_range_electric:
   icon: mdi:car-battery
 sensor.cooper_s_e_all4_remaining_range_total:

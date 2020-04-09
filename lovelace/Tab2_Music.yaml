@@ -4,28 +4,38 @@
 
 title: Music
 icon: mdi:music
-background: var(--background-image)
+#background: var(--background-image)
 cards:
+
+
+
+
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+    - type: media-control
+      entity: media_player.itunes 
+
+#      - entity: media_player.itunes
+#        type: custom:mini-media-player
+#        group: true
+
+
+    - type: entities
+      entities:
+
+
+#        - type: section
+#          label: Master Volume
+      - type: custom:slider-entity-row
+        entity: media_player.itunes
+        full_row: true
+
 
   - type: vertical-stack
     cards:
 
-    - type: custom:vertical-stack-in-card
-      cards:
-
-  #      - entity: media_player.itunes
-  #        type: custom:mini-media-player
-  #        group: true
-
-      - type: media-control
-        entity: media_player.itunes 
-      - type: entities
-        entities:
-#        - type: section
-#          label: Master Volume
-        - type: custom:slider-entity-row
-          entity: media_player.itunes
-          full_row: true
 
   #      - entity: media_player.itunes
   #        type: custom:mini-media-player
@@ -239,8 +249,26 @@ cards:
     title: First Floor
     show_header_toggle: false
     entities:
-    - type: media-control
-      entity: media_player.chromecast
+    - entity: media_player.chromecast
+      type: custom:mini-media-player
+      name: Chromecast
+      hide:
+        controls: true
+        mute: true
+      group: true
+#    - entity: media_player.chromecast
+#      name: Chromecast
+#      hide:
+#        controls: false
+#        mute: true
+#      group: true
+    - entity: media_player.apple_tv_airtunes_speaker
+      type: custom:mini-media-player
+      name: Apple TV
+      hide:
+        controls: true
+        mute: true
+      group: true
     - entity: media_player.living_room_airtunes_speaker
       type: custom:mini-media-player
       name: Living Rm
@@ -248,13 +276,7 @@ cards:
         controls: true
         mute: true
       group: true
-    - entity: media_player.media_player.apple_tv_airtunes_speaker
-      type: custom:mini-media-player
-      name: Apple TV
-      hide:
-        controls: true
-        mute: true
-      group: true
+
 #      - entity: media_player.chromecast
 #        type: custom:mini-media-player
 #        name: Chromecast
@@ -356,6 +378,7 @@ cards:
 
   - type: entities
     title: All Speakers
+    show_header_toggle: true
     entities:
     - entity: group.all_speakers
 

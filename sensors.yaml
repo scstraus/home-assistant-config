@@ -1226,9 +1226,7 @@
       master_bedroom_aqi:
         friendly_name: "Master Bedroom Air Quality"
         value_template: >-
-          {% if state_attr('fan.master_bedroom_air_purifier', 'aqi')|float == 0 %}
-            {{ states('variable.master_bedroom_aqi') }}  
-          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 15.401 %}
+          {% if state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 15.401 %}
             {{(((state_attr('fan.master_bedroom_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }}
           {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 40.401 %}
             {{(((51+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }}
@@ -1266,9 +1264,32 @@
             Off the Charts
           {% endif %} 
 
+
+  - platform: template
+    sensors:
+      master_bedroom_aqi:
+        friendly_name: "Master Bedroom Air Quality"
+        value_template: >-
+          {% if state_attr('fan.master_bedroom_air_purifier', 'aqi')|float == 0 %}
+            {{ states('variable.master_bedroom_aqi') }}  
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 15.401 %}
+            {{(((state_attr('fan.master_bedroom_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }}
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 40.401 %}
+            {{(((51+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }}
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 65.401 %}
+            {{(((101+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-40.5)|float * 1.96787148594)|float)*1)|round|int }} 
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 150.401 %}
+            {{(((151+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-65.5)|float * 1.73265306122)|float)*1)|round|int }} 
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 250.401 %}
+            {{(((201+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-150.5)|float * 1.00909090909)|float)*1)|round|int }} 
+          {% elif state_attr('fan.master_bedroom_air_purifier', 'aqi')|float < 500.401 %}
+            {{(((301+(state_attr('fan.master_bedroom_air_purifier', 'aqi')-250.5)|float * 1.25577889447)|float)*1)|round|int }}
+          {% endif %} 
+
+
   - platform: ical
     name: "Czech Holidays"
-    url: "https://www.officeholidays.com/ics/czech-republic"
+    url: "https://www.officeholidays.com/ics-clean/czech-republic"
 
   - platform: home_connect
     refresh_token: "eyJ4LXJlZyI6IkVVIiwieC1lbnYiOiJQUkQiLCJ0b2tlbiI6ImQ0MjNiM2MwLTBlMDItNDcyMC04NGM1LWY1MmIxNTg0ZjcwMyJ9"
@@ -1292,3 +1313,78 @@
           {% if (states('sensor.cooper_s_e_all4_remaining_fuel')|float < 5) %} Fill it Up.
           {% else %} no
           {% endif %}
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_0:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_0', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_0', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_0', 'eta')}}
+          friendly_eta: >-
+            in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days 
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_1:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_1', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_1', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_1', 'eta')}}
+          friendly_eta: >-
+            in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days 
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_2:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_2', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_2', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_2', 'eta')}}
+          friendly_eta: >-
+            in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days 
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_3:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_3', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_3', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_3', 'eta')}}
+          friendly_eta: >-
+            in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days 
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_4:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_4', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_4', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_4', 'eta')}}
+          friendly_eta: >-
+            in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days 
+        icon_template: >-
+            mdi:calendar
