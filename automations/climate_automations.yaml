@@ -1004,3 +1004,42 @@
       entity_id: climate.office_library
       setpoint: 23
       duration: {"minutes":700}
+
+
+- id: notify_windy_weather
+  alias: 'Notify About Windy Weather'
+  initial_state: 'true'
+  trigger:
+    minutes: '/60'
+    platform: time_pattern
+  condition:
+    condition: template 
+    value_template: >
+      {{ if (states('sensor.dark_sky_wind_gust_1h')|float > 20) or (states('sensor.dark_sky_wind_gust_2h')|float > 20) or (states('sensor.dark_sky_wind_gust_3h')|float > 20) or (states('sensor.dark_sky_wind_gust_4h')|float > 20) or (states('sensor.dark_sky_wind_gust_5h')|float > 20) or (states('sensor.dark_sky_wind_gust_6h')|float > 20) or (states('sensor.dark_sky_wind_gust_7h')|float > 20) or (states('sensor.dark_sky_wind_gust_8h')|float > 20) or (states('sensor.dark_sky_wind_gust_9h')|float > 20) }}
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "High Winds Warning"
+    data_template:
+      message: >
+        {% if states('sensor.dark_sky_wind_gust_1h')|float > 20 %}
+        High winds expected in the next hour. Please secure items outside.
+        {% elif states('sensor.dark_sky_wind_gust_2h')|float > 20 %}
+        High winds expected in 2 hours. Please secure items outside.
+        {% elif states('sensor.dark_sky_wind_gust_3h')|float > 20 %}
+        High winds expected in 3 hours. Please secure items outside.
+        {% elif states('sensor.dark_sky_wind_gust_4h')|float > 20 %}
+        High winds expected in 4 hours. Please secure items outside.
+        {% elif states('sensor.dark_sky_wind_gust_5h')|float > 20 %}
+        High winds expected in 5 hours. Please secure items outside.
+        {% elif states('sensor.dark_sky_wind_gust_6h')|float > 20 %}
+        High winds expected in 6 hours. Please secure items outside.
+        {% elif states('sensor.dark_sky_wind_gust_7h')|float > 20 %}
+        High winds expected in 7 hours. Please secure items outside.
+        {% elif states('sensor.dark_sky_wind_gust_8h')|float > 20 %}
+        High winds expected in 8 hours. Please secure items outside.
+        {% elif states('sensor.dark_sky_wind_gust_9h')|float > 20 %}
+        High winds expected in 9 hours. Please secure items outside.
+        {% else %}
+        Error
+        {% endif %}

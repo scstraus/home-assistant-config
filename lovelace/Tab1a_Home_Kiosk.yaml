@@ -382,8 +382,8 @@ cards:
         title: "Upcoming Holidays"
         show_header_toggle: false
       state_filter:
-        - operator: "<"
-          value: 7
+        - operator: regex
+          value: "^([0-7]{1})$"
           attribute: eta
       entities:
         - entity: sensor.czech_holiday_friendly_0
@@ -401,7 +401,22 @@ cards:
         - entity: sensor.czech_holiday_friendly_4
           type: "custom:secondaryinfo-entity-row"
           secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
-      show_empty: false
+        - entity: sensor.parklane_holiday_friendly_0
+          type: "custom:secondaryinfo-entity-row"
+          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        - entity: sensor.parklane_holiday_friendly_1
+          type: "custom:secondaryinfo-entity-row"
+          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        - entity: sensor.parklane_holiday_friendly_2
+          type: "custom:secondaryinfo-entity-row"
+          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        - entity: sensor.parklane_holiday_friendly_3
+          type: "custom:secondaryinfo-entity-row"
+          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        - entity: sensor.parklane_holiday_friendly_4
+          type: "custom:secondaryinfo-entity-row"
+          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+
 
 
 

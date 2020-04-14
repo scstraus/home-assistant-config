@@ -1291,6 +1291,10 @@
     name: "Czech Holidays"
     url: "https://www.officeholidays.com/ics-clean/czech-republic"
 
+  - platform: ical
+    name: "Parklane Calendar"
+    url: "http://www.google.com/calendar/ical/15cd3sk866fbpq83gsiskc93a4%40group.calendar.google.com/public/basic.ics"
+
   - platform: home_connect
     refresh_token: "eyJ4LXJlZyI6IkVVIiwieC1lbnYiOiJQUkQiLCJ0b2tlbiI6ImQ0MjNiM2MwLTBlMDItNDcyMC04NGM1LWY1MmIxNTg0ZjcwMyJ9"
 
@@ -1325,7 +1329,13 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_0', 'eta')}}
           friendly_eta: >-
-            in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days 
+            {% if state_attr('sensor.czech_holidays_event_0', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_0', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days 
+            {% endif %}
         icon_template: >-
             mdi:calendar
 
@@ -1340,7 +1350,13 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_1', 'eta')}}
           friendly_eta: >-
-            in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days 
+            {% if state_attr('sensor.czech_holidays_event_1', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_1', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days 
+            {% endif %}
         icon_template: >-
             mdi:calendar
 
@@ -1355,7 +1371,13 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_2', 'eta')}}
           friendly_eta: >-
-            in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days 
+            {% if state_attr('sensor.czech_holidays_event_2', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_2', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days 
+            {% endif %}          
         icon_template: >-
             mdi:calendar
 
@@ -1370,7 +1392,13 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_3', 'eta')}}
           friendly_eta: >-
-            in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days 
+            {% if state_attr('sensor.czech_holidays_event_3', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_3', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days 
+            {% endif %}
         icon_template: >-
             mdi:calendar
 
@@ -1385,6 +1413,187 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_4', 'eta')}}
           friendly_eta: >-
-            in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days 
+            {% if state_attr('sensor.czech_holidays_event_4', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_4', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days 
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_0:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_0', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_0', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_0') or 'term' in states('sensor.parklane_calendar_event_0') or 'Term' in states('sensor.parklane_calendar_event_0') or 'Holiday' in states('sensor.parklane_calendar_event_0')  %}
+              {% if state_attr('sensor.parklane_calendar_event_0', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_0', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days
+            {% else %}
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_1:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_1', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_1', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_1') or 'term' in states('sensor.parklane_calendar_event_1') or 'Term' in states('sensor.parklane_calendar_event_1') or 'Holiday' in states('sensor.parklane_calendar_event_1')  %}
+              {% if state_attr('sensor.parklane_calendar_event_1', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_1', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days
+            {% else %}
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_2:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_2', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_2', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_2') or 'term' in states('sensor.parklane_calendar_event_2') or 'Term' in states('sensor.parklane_calendar_event_2') or 'Holiday' in states('sensor.parklane_calendar_event_2')  %}
+              {% if state_attr('sensor.parklane_calendar_event_2', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_2', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days
+            {% else %}
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_3:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_3', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_3', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_3') or 'term' in states('sensor.parklane_calendar_event_3') or 'Term' in states('sensor.parklane_calendar_event_3') or 'Holiday' in states('sensor.parklane_calendar_event_3')  %}
+              {% if state_attr('sensor.parklane_calendar_event_3', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_3', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days
+            {% else %}
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_4:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_4', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_4', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_4') or 'term' in states('sensor.parklane_calendar_event_4') or 'Term' in states('sensor.parklane_calendar_event_4') or 'Holiday' in states('sensor.parklane_calendar_event_4')  %}
+              {% if state_attr('sensor.parklane_calendar_event_4', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_4', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days
+            {% else %}
+            {% endif %}
         icon_template: >-
             mdi:calendar

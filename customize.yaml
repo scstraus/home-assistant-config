@@ -384,6 +384,8 @@ sensor.sophies_room_aqi:
   unit_of_measurement: AQI
 sensor.sebastians_room_aqi:
   unit_of_measurement: AQI
+sensor.master_bedroom_aqi:
+  unit_of_measurement: AQI
 sensor.alarm_state_3_motion_sensors:
   icon: mdi:shield-check
 sensor.alarm_state_2_1st_floor:
