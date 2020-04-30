@@ -815,7 +815,7 @@
             Tomorrow
           {% else %}
             false
-          {% endif %}
+          {% endif %}   
 
   - platform: synologydsm
     name: discworld
@@ -1447,6 +1447,9 @@
             {% if state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
             and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days > 0 %}
               {{(state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days == 0 %}
+              Last Day
             {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 0 %}
               Today
             {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 1 %}
@@ -1482,6 +1485,9 @@
             {% if state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
             and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days > 0 %}
               {{(state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days == 0 %}
+              Last Day
             {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 0 %}
               Today
             {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 1 %}
@@ -1517,6 +1523,9 @@
             {% if state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
             and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days > 0 %}
               {{(state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days == 0 %}
+              Last Day
             {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 0 %}
               Today
             {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 1 %}
@@ -1552,6 +1561,9 @@
             {% if state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
             and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days > 0 %}
               {{(state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days == 0 %}
+              Last Day
             {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 0 %}
               Today
             {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 1 %}
@@ -1587,6 +1599,9 @@
             {% if state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
             and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days > 0 %}
               {{(state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days == 0 %}
+              Last Day
             {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 0 %}
               Today
             {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 1 %}
@@ -1597,3 +1612,30 @@
             {% endif %}
         icon_template: >-
             mdi:calendar
+
+
+  - platform: rest
+    name: Frigate Debug
+    resource: !secret frigate_url
+    scan_interval: 5
+    json_attributes:
+      - back
+      - coral
+    value_template: 'OK'  
+  - platform: template
+    sensors:
+      back_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      back_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      back_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_coral_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_coral_inference:
+        value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["inference_speed"] }}' 
+        unit_of_measurement: 'ms'

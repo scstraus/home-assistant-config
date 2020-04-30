@@ -477,8 +477,12 @@
   alias: 'Trash Day'
   initial_state: 'true'
   trigger:
-    platform: time
-    at: '21:00:00'
+    - platform: time
+      at: '21:00:00'
+    - platform: time
+      at: '22:00:00'
+    - platform: time
+      at: '23:00:00'
   condition:
     - condition: and
       conditions:
@@ -793,3 +797,47 @@
     data_template:
       value: >
           {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+
+- id: turn_on_trash_input_boolean
+  alias: "Turn On Trash Input Boolean"
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.trash_day
+    to: 'Today'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.trash_needs_taking_out
+
+- id: turn_off_trash_input_boolean
+  alias: "Turn Off Trash Input Boolean"
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.trash_day
+    to: 'false'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.trash_needs_taking_out
+
+- id: notification_turn_off_trash_input_boolean
+  alias: notification_turn_off_trash_input_boolean
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: TOOK_TRASH_OUT
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.trash_needs_taking_out
+
+- alias: 'nonsmoker_update'
+  trigger:
+    - platform: time_pattern
+      minutes: '/30'
+  action:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.reminders_label

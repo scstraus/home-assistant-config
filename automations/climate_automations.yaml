@@ -194,692 +194,707 @@
 ######################################################
 # AUTOMATIONS TO ADJUST HEAT BASED ON WEATHER REPORT #
 ######################################################
+# this shit all got replaced by a badass python script
+# that runs once a day at 12:30 AM
 
-
-
-- id: warm_sunny_weather_heat_down
-  alias: 'Turn Down Heat For Warm Weather'
+- id: set_heat_overrides_for_warm_weather
+  alias: set_heat_overrides_for_warm_weather
   initial_state: 'true'
   trigger:
     platform: time
     at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        above: 5
-        below: 10
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        above: 13
-        below: 20
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'clear-day'
   action:
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.dining_room
-        setpoint: 20
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.entrance
-        setpoint: 18
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.garage
-        setpoint: 18
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.guest_bedroom
-        setpoint: 21
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.living_room
-        setpoint: 20
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bath
-        setpoint: 22
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bedroom
-        setpoint: 21
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_closet
-        setpoint: 22
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.office_library
-        setpoint: 21.5
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sebastian_s_room
-        setpoint: 22
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sophie_s_room
-        setpoint: 21
-        duration: {"minutes":1439}
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.laundry_room
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_down_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_up_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_today
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_now
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
+    - service: python_script.set_heat_weather_override
 
-- id: warm_cloudy_weather_heat_down
-  alias: 'Turn Down Heat For Warm Weather'
-  initial_state: 'true'
-  trigger:
-    platform: time
-    at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        above: 7
-        below: 10
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        above: 15
-        below: 20
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'partly-cloudy-day'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'rain'          
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'snow'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'sleet'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'wind'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'fog'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'cloudy'     
-  action:
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.dining_room
-        setpoint: 20
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.entrance
-        setpoint: 18
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.garage
-        setpoint: 18
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.guest_bedroom
-        setpoint: 21
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bath
-        setpoint: 22
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bedroom
-        setpoint: 21
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_closet
-        setpoint: 22
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.office_library
-        setpoint: 21.5
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sebastian_s_room
-        setpoint: 22
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sophie_s_room
-        setpoint: 21
-        duration: {"minutes":1439}
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.laundry_room
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_down_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_up_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_today
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_now
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
-                
-- id: cold_weather_heat_auto_sunny
-  alias: 'Turn Heat to Schedule in Cold Sunny Weather'
-  initial_state: 'true'
-  trigger:
-    platform: time
-    at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        below: 5
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        below: 13
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'clear-day'
-  action:
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.dining_room
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.entrance
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.garage
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.guest_bedroom
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.living_room
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.master_bedroom
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.master_bath
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.master_closet
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.office_library
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.sebastian_s_room
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.sophie_s_room
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.laundry_room
-    - service: homeassistant.turn_on
-      entity_id: automation.turn_heat_down_in_living_room
-    - service: homeassistant.turn_on
-      entity_id: automation.turn_heat_up_in_living_room
-    - service: homeassistant.turn_on
-      entity_id: automation.working_from_home_today
-    - service: homeassistant.turn_on
-      entity_id: automation.working_from_home_now
-    - service: homeassistant.turn_on
-      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
+#
+#- id: warm_sunny_weather_heat_down
+#  alias: 'Turn Down Heat For Warm Weather'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        above: 4
+#        below: 11
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        above: 12
+#        below: 21
+#      - condition: or
+#        conditions:
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'clear-day'
+#  action:
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.dining_room
+#        setpoint: 20
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.entrance
+#        setpoint: 18
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.garage
+#        setpoint: 18
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.guest_bedroom
+#        setpoint: 21
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.living_room
+#        setpoint: 20
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bath
+#        setpoint: 22
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bedroom
+#        setpoint: 21
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_closet
+#        setpoint: 22
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.office_library
+#        setpoint: 21.5
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        setpoint: 22
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sophie_s_room
+#        setpoint: 21
+#        duration: {"minutes":1439}
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.laundry_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_down_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_up_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_today
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_now
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
+#
+#- id: warm_cloudy_weather_heat_down
+#  alias: 'Turn Down Heat For Warm Weather'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        above: 6
+#        below: 11
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        above: 14
+#        below: 21
+#      - condition: or
+#        conditions:
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'partly-cloudy-day'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'rain'          
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'snow'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'sleet'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'wind'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'fog'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'cloudy'     
+#  action:
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.dining_room
+#        setpoint: 20
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.entrance
+#        setpoint: 18
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.garage
+#        setpoint: 18
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.guest_bedroom
+#        setpoint: 21
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bath
+#        setpoint: 22
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bedroom
+#        setpoint: 21
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_closet
+#        setpoint: 22
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.office_library
+#        setpoint: 21.5
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        setpoint: 22
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sophie_s_room
+#        setpoint: 21
+#        duration: {"minutes":1439}
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.laundry_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_down_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_up_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_today
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_now
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
+#                
+#- id: cold_weather_heat_auto_sunny
+#  alias: 'Turn Heat to Schedule in Cold Sunny Weather'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        below: 5
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        below: 13
+#      - condition: or
+#        conditions:
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'clear-day'
+#  action:
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.dining_room
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.entrance
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.garage
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.guest_bedroom
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.living_room
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.master_bedroom
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.master_bath
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.master_closet
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.office_library
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.sebastian_s_room
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.sophie_s_room
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.laundry_room
+#    - service: homeassistant.turn_on
+#      entity_id: automation.turn_heat_down_in_living_room
+#    - service: homeassistant.turn_on
+#      entity_id: automation.turn_heat_up_in_living_room
+#    - service: homeassistant.turn_on
+#      entity_id: automation.working_from_home_today
+#    - service: homeassistant.turn_on
+#      entity_id: automation.working_from_home_now
+#    - service: homeassistant.turn_on
+#      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
+#
+#- id: cold_weather_heat_auto_cloudy
+#  alias: 'Turn Heat to Schedule in Cold Cloudy Weather'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        below: 7
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        below: 15
+#      - condition: or
+#        conditions:
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'partly-cloudy-day'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'rain'          
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'snow'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'sleet'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'wind'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'fog'
+#          - condition: state
+#            entity_id: sensor.dark_sky_icon_0d
+#            state: 'cloudy'
+#  action:
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.dining_room
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.entrance
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.garage
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.guest_bedroom
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.living_room
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.master_bedroom
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.master_bath
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.master_closet
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.office_library
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.sebastian_s_room
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.sophie_s_room
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.laundry_room
+#    - service: homeassistant.turn_on
+#      entity_id: automation.turn_heat_down_in_living_room
+#    - service: homeassistant.turn_on
+#      entity_id: automation.turn_heat_up_in_living_room
+#    - service: homeassistant.turn_on
+#      entity_id: automation.working_from_home_today
+#    - service: homeassistant.turn_on
+#      entity_id: automation.working_from_home_now
+#    - service: homeassistant.turn_on
+#      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
+#
+#- id: living_room_tepid_weather_heat_down
+#  alias: 'Turn Living Room Heat Down For Tepid Weather'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        above: 1
+#        below: 11
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        above: 10
+#        below: 21
+#  action:
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.living_room
+#        setpoint: 20
+#        duration: {"minutes":1439}
+#
+#- id: living_room_warm_weather_heat_down
+#  alias: 'Turn Living Room Heat Down For Warm Weather'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        above: 4
+#        below: 11
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        above: 12
+#        below: 21
+#  action:
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.living_room
+#        setpoint: 18
+#        duration: {"minutes":1439}
+#
+#- id: living_room_cold_weather_heat_up
+#  alias: 'Turn Living Room Heat Up For Cold Weather'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        below: 2
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        below: 11
+#  action:
+#    - service: evohome.clear_zone_override
+#      data:
+#        entity_id: climate.living_room
+#
+#- id: warmer_weather_heat_down_more
+#  alias: 'Turn Down Heat More For Warmer Weather'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        above: 9
+#        below: 14
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        above: 19
+#        below: 24
+#  action:
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.dining_room
+#        setpoint: 18
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.entrance
+#        setpoint: 16
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.garage
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.guest_bedroom
+#        setpoint: 18
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.living_room
+#        setpoint: 16
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bath
+#        setpoint: 20
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bedroom
+#        setpoint: 20
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_closet
+#        setpoint: 20
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.office_library
+#        setpoint: 20
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        setpoint: 21
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sophie_s_room
+#        setpoint: 21
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.laundry_room
+#        setpoint: 21
+#        duration: {"minutes":1439}
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_down_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_up_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_today
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_now
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
+#
+#- id: warmer_weather_heat_down_more_2
+#  alias: 'Turn Down Heat For Warm Weather 2'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        above: 11
+#        below: 15
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        above: 22
+#        below: 26
+#  action:
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.dining_room
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.entrance
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.garage
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.guest_bedroom
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.living_room
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bath
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bedroom
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_closet
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.office_library
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        setpoint: 18
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sophie_s_room
+#        setpoint: 18
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.laundry_room
+#        setpoint: 19
+#        duration: {"minutes":1439}
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_down_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_up_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_today
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_now
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
+#
+#- id: hot_weather_turn_heat_off
+#  alias: 'Turn Heat Off For Hot Weather'
+#  initial_state: 'true'
+#  trigger:
+#    platform: time
+#    at: '00:30:00'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
+#        above: 14
+#      - condition: numeric_state
+#        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
+#        above: 25
+#  action:
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.dining_room
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.entrance
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.garage
+#        setpoint: 12
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.guest_bedroom
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.living_room
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bath
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_bedroom
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.master_closet
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.office_library
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sebastian_s_room
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.sophie_s_room
+#        setpoint: 15
+#        duration: {"minutes":1439}
+#    - service: evohome.set_zone_override
+#      data:
+#        entity_id: climate.laundry_room
+#        setpoint: 12
+#        duration: {"minutes":1439}
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_down_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_heat_up_in_living_room
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_today
+#    - service: homeassistant.turn_off
+#      entity_id: automation.working_from_home_now
+#    - service: homeassistant.turn_off
+#      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
 
-- id: cold_weather_heat_auto_cloudy
-  alias: 'Turn Heat to Schedule in Cold Cloudy Weather'
-  initial_state: 'true'
-  trigger:
-    platform: time
-    at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        below: 7
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        below: 15
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'partly-cloudy-day'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'rain'          
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'snow'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'sleet'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'wind'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'fog'
-          - condition: state
-            entity_id: sensor.dark_sky_icon_0d
-            state: 'cloudy'
-  action:
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.dining_room
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.entrance
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.garage
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.guest_bedroom
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.living_room
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.master_bedroom
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.master_bath
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.master_closet
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.office_library
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.sebastian_s_room
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.sophie_s_room
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.laundry_room
-    - service: homeassistant.turn_on
-      entity_id: automation.turn_heat_down_in_living_room
-    - service: homeassistant.turn_on
-      entity_id: automation.turn_heat_up_in_living_room
-    - service: homeassistant.turn_on
-      entity_id: automation.working_from_home_today
-    - service: homeassistant.turn_on
-      entity_id: automation.working_from_home_now
-    - service: homeassistant.turn_on
-      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
 
-- id: living_room_tepid_weather_heat_down
-  alias: 'Turn Living Room Heat Down For Tepid Weather'
-  initial_state: 'true'
-  trigger:
-    platform: time
-    at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        above: 2
-        below: 10
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        above: 11
-        below: 20
-  action:
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.living_room
-        setpoint: 20
-        duration: {"minutes":1439}
-
-- id: living_room_warm_weather_heat_down
-  alias: 'Turn Living Room Heat Down For Warm Weather'
-  initial_state: 'true'
-  trigger:
-    platform: time
-    at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        above: 5
-        below: 10
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        above: 13
-        below: 20
-  action:
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.living_room
-        setpoint: 18
-        duration: {"minutes":1439}
-
-- id: living_room_cold_weather_heat_up
-  alias: 'Turn Living Room Heat Up For Cold Weather'
-  initial_state: 'true'
-  trigger:
-    platform: time
-    at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        below: 2
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        below: 11
-  action:
-    - service: evohome.clear_zone_override
-      data:
-        entity_id: climate.living_room
-
-- id: warmer_weather_heat_down_more
-  alias: 'Turn Down Heat More For Warmer Weather'
-  initial_state: 'true'
-  trigger:
-    platform: time
-    at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        above: 10
-        below: 13
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        above: 20
-        below: 23
-  action:
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.dining_room
-        setpoint: 18
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.entrance
-        setpoint: 16
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.garage
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.guest_bedroom
-        setpoint: 18
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.living_room
-        setpoint: 16
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bath
-        setpoint: 20
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bedroom
-        setpoint: 20
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_closet
-        setpoint: 20
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.office_library
-        setpoint: 20
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sebastian_s_room
-        setpoint: 21
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sophie_s_room
-        setpoint: 21
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.laundry_room
-        setpoint: 21
-        duration: {"minutes":1439}
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_down_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_up_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_today
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_now
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
-
-- id: warmer_weather_heat_down_more_2
-  alias: 'Turn Down Heat For Warm Weather 2'
-  initial_state: 'true'
-  trigger:
-    platform: time
-    at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        above: 12
-        below: 14
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        above: 23
-        below: 25
-  action:
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.dining_room
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.entrance
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.garage
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.guest_bedroom
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.living_room
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bath
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bedroom
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_closet
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.office_library
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sebastian_s_room
-        setpoint: 18
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sophie_s_room
-        setpoint: 18
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.laundry_room
-        setpoint: 19
-        duration: {"minutes":1439}
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_down_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_up_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_today
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_now
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
-
-- id: hot_weather_turn_heat_off
-  alias: 'Turn Heat Off For Hot Weather'
-  initial_state: 'true'
-  trigger:
-    platform: time
-    at: '00:30:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_overnight_low_temperature_0d'
-        above: 14
-      - condition: numeric_state
-        entity_id: 'sensor.dark_sky_daytime_high_temperature_0d'
-        above: 25
-  action:
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.dining_room
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.entrance
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.garage
-        setpoint: 12
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.guest_bedroom
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.living_room
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bath
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_bedroom
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.master_closet
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.office_library
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sebastian_s_room
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.sophie_s_room
-        setpoint: 15
-        duration: {"minutes":1439}
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.laundry_room
-        setpoint: 12
-        duration: {"minutes":1439}
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_down_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_heat_up_in_living_room
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_today
-    - service: homeassistant.turn_off
-      entity_id: automation.working_from_home_now
-    - service: homeassistant.turn_off
-      entity_id: automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home
+####################################################
+# Special Heating Cases Based on Location or Input #
+####################################################
 
 - id: sophie_room_heat_up_if_home
   alias: "Turn up the heat in sophie's room if she's home"
@@ -1005,6 +1020,9 @@
       setpoint: 23
       duration: {"minutes":700}
 
+#####################################
+# Non heating related climate cases #
+#####################################
 
 - id: notify_windy_weather
   alias: 'Notify About Windy Weather'

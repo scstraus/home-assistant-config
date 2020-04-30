@@ -666,6 +666,23 @@ media_player:
     host: !secret itunes_ip
 
 ios:
+  push:
+    categories:
+      - name: Trash
+        identifier: 'trash'
+        actions:
+          - identifier: 'TOOK_TRASH_OUT'
+            title: 'I took it out.'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: false
+            behavior: 'default'
+          - identifier: 'SNOOZE_ALERT'
+            title: 'Remind me later'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: false
+            behavior: 'default'
             
 nest:
 
@@ -717,41 +734,43 @@ camera:
     stream_source: !secret right_main_stream_url
     framerate: 4
 
+#Frigate v.5 cameras 
 
+  - name: Right Last Person
+    platform: mqtt
+    topic: frigate/right/person/snapshot
 
-#  - name: Right Last Person
-#    platform: mqtt
-#    topic: frigate/right/person/snapshot
-#
-#  - name: Left Last Person
-#    platform: mqtt
-#    topic: frigate/left/person/snapshot
-#
-#  - name: Front Last Person
-#    platform: mqtt
-#    topic: frigate/front/person/snapshot
-#
-#  - name: Back Last Person
-#    platform: mqtt
-#    topic: frigate/back/person/snapshot
+  - name: Left Last Person
+    platform: mqtt
+    topic: frigate/left/person/snapshot
+
+  - name: Front Last Person
+    platform: mqtt
+    topic: frigate/front/person/snapshot
+
+  - name: Back Last Person
+    platform: mqtt
+    topic: frigate/back/person/snapshot
 
 #Frigate v.2 cameras
 
-  - name: Right Last Person
-    platform: generic
-    still_image_url: !secret right_best_url
+#  - name: Right Last Person
+#    platform: generic
+#    still_image_url: !secret right_best_url
+#
+#  - name: Left Last Person
+#    platform: generic
+#    still_image_url: !secret left_best_url
+#
+#  - name: Front Last Person
+#    platform: generic
+#    still_image_url: !secret front_best_url
+#
+#  - name: Back Last Person
+#    platform: generic
+#    still_image_url: !secret back_best_url
 
-  - name: Left Last Person
-    platform: generic
-    still_image_url: !secret left_best_url
-
-  - name: Front Last Person
-    platform: generic
-    still_image_url: !secret front_best_url
-
-  - name: Back Last Person
-    platform: generic
-    still_image_url: !secret back_best_url
+# Synology Cameras
 
   - platform: synology
     url: !secret synology_int_url
@@ -822,6 +841,10 @@ input_boolean:
   working_from_home:
     name: "Working From Home"
     icon: mdi:home-account
+  trash_needs_taking_out:
+    name: "Trash Needs to Be Taken Out"
+    icon: mdi:trash
+
 #  mix_playlist:
 #    name: Mix Playlist
 #    initial: off
@@ -1261,7 +1284,7 @@ alert:
   sebastian_window_rain_warning_sean:
     name: Sebastian's room window is open and it might rain.
     done_message: Sebastian's room window is closed.
-    entity_id: binary_sensor.sebastians_window_open_sean
+    entity_id: binary_sensor.sebastians_room_rain_window
     state: 'on'
     repeat: 
       - 5
@@ -1276,7 +1299,7 @@ alert:
   sophies_window_rain_warning_alena:
     name: Sophie's room window is open and it might rain.
     done_message: Sophie's room window is closed.
-    entity_id: binary_sensor.sophies_room_ceiling_window
+    entity_id: binary_sensor.sophies_room_rain_window
     state: 'on'
     repeat: 
       - 5
@@ -1291,7 +1314,7 @@ alert:
   sophies_window_rain_warning_sean:
     name: Sophie's room window is open and it might rain.
     done_message: Sophie's room window is closed.
-    entity_id: binary_sensor.sophies_room_ceiling_window
+    entity_id: binary_sensor.sophies_room_rain_window
     state: 'on'
     repeat: 
       - 5
@@ -1302,6 +1325,23 @@ alert:
     skip_first: true
     notifiers:
       - ios_seans_iphone_x
+
+  trash_needs_to_be_taken_out:
+    name: "It's trash day and the trash still needs to be taken out!"
+    entity_id: binary_sensor.trash_emergency
+    state: 'on'
+    repeat: 
+      - 60
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - ios_seans_iphone_x
+    data:
+      title: "The trash Needs to be Taken Out"
+      message: "It's trash day and the trash still needs to be taken out!"
+      data:
+        push:
+          category: "trash" 
 
 input_number:
   living_room_last_temp:

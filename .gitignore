@@ -8,6 +8,7 @@
 !*.md
 !automations
 !lovelace
+!python_scripts
 
 # Ignore folders.
 .storage

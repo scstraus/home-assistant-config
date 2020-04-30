@@ -230,59 +230,59 @@
 
 # Frigate 0.5 Human 
 
-#  - name: Human Back
-#    platform: mqtt
-#    state_topic: "frigate/back/person"
-#    device_class: motion
-#    availability_topic: "frigate/available"
-#
-#  - name: Human Front
-#    platform: mqtt
-#    state_topic: "frigate/front/person"
-#    device_class: motion
-#    availability_topic: "frigate/available"
-#    
-#  - name: Human Left
-#    platform: mqtt
-#    state_topic: "frigate/left/person"
-#    device_class: motion
-#    availability_topic: "frigate/available"
-#    
-#  - name: Human Right
-#    platform: mqtt
-#    state_topic: "frigate/right/person"
-#    device_class: motion
-#    availability_topic: "frigate/available"
+  - name: Human Back
+    platform: mqtt
+    state_topic: "frigate/back/person"
+    device_class: motion
+    availability_topic: "frigate/available"
+
+  - name: Human Front
+    platform: mqtt
+    state_topic: "frigate/front/person"
+    device_class: motion
+    availability_topic: "frigate/available"
+    
+  - name: Human Left
+    platform: mqtt
+    state_topic: "frigate/left/person"
+    device_class: motion
+    availability_topic: "frigate/available"
+    
+  - name: Human Right
+    platform: mqtt
+    state_topic: "frigate/right/person"
+    device_class: motion
+    availability_topic: "frigate/available"
 
 # Frigate v0.2 human
+##
+#  - name: "Human Back"
+#    platform: mqtt
+#    state_topic: "frigate/back/objects"
+#    value_template: '{{ value_json.person }}'
+#    device_class: motion
+##    availability_topic: "frigate/available"
 #
-  - name: "Human Back"
-    platform: mqtt
-    state_topic: "frigate/back/objects"
-    value_template: '{{ value_json.person }}'
-    device_class: motion
-#    availability_topic: "frigate/available"
-
-  - name: "Human Front"
-    platform: mqtt
-    state_topic: "frigate/front/objects"
-    value_template: '{{ value_json.person }}'
-    device_class: motion
-#    availability_topic: "frigate/available"
-
-  - name: "Human Left"
-    platform: mqtt
-    state_topic: "frigate/left/objects"
-    value_template: '{{ value_json.person }}'
-    device_class: motion
-#    availability_topic: "frigate/available"
-
-  - name: "Human Right"
-    platform: mqtt
-    state_topic: "frigate/right/objects"
-    value_template: '{{ value_json.person }}'
-    device_class: motion
-#    availability_topic: "frigate/available"
+#  - name: "Human Front"
+#    platform: mqtt
+#    state_topic: "frigate/front/objects"
+#    value_template: '{{ value_json.person }}'
+#    device_class: motion
+##    availability_topic: "frigate/available"
+#
+#  - name: "Human Left"
+#    platform: mqtt
+#    state_topic: "frigate/left/objects"
+#    value_template: '{{ value_json.person }}'
+#    device_class: motion
+##    availability_topic: "frigate/available"
+#
+#  - name: "Human Right"
+#    platform: mqtt
+#    state_topic: "frigate/right/objects"
+#    value_template: '{{ value_json.person }}'
+#    device_class: motion
+##    availability_topic: "frigate/available"
 
   - platform: template
     sensors:
@@ -342,3 +342,29 @@
         device_class: window
         value_template: >-
           {{ is_state('binary_sensor.sophies_room_ceiling_window', 'on') and (not is_state('sensor.sean_location', 'Traveling')) }}
+
+  - platform: template
+    sensors:
+      trash_emergency:
+        friendly_name: "Trash Really Needs to be Taken Out"
+        device_class: problem
+        value_template: >-
+          {{ is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Today') and is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.sean_location', 'Home') and ((now().strftime('%H')|int) > 17) and ((now().strftime('%H')|int) < 25) }}
+
+
+  - platform: template
+    sensors:
+      reminders_label:
+        value_template: >-
+          {{((( as_timestamp(strptime(state_attr('calendar.alena_and_seans_calendar', 'start_time'),"%F %T")) - as_timestamp(now())) / 86400)|round(2)) < 2  }}
+
+#
+#
+#          {{((( (strptime(state_attr('calendar.alena_and_seans_calendar', 'start_time'),"%F %T")) - as_timestamp(now())) / 86400)|round(2)) }}
+#
+#{% set testing = (strptime(state_attr('calendar.alena_and_seans_calendar', 'start_time'),"%F %T"))%}
+#{{testing.date()}}
+
+#{% set testing = (state_attr('calendar.alena_and_seans_calendar', 'start_time'))%}
+#{%set testing2=strptime(testing,"%F")%}
+#{{testing2}}

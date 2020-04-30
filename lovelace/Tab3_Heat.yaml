@@ -18,7 +18,7 @@
 
 title: Climate
 icon: mdi:radiator
-background: var(--background-image)
+#background: var(--background-image)
 
 popup_cards:
   sensor.dining_room_temperature:

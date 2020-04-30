@@ -247,7 +247,7 @@ cards:
     - sensor.kids_room_nest_protect_battery_health
     - sensor.basement_nest_protect_battery_health
     - sensor.seans_phone_battery
-    - sensor.alenas_phone_battery
+#    - sensor.alenas_phone_battery
     - sensor.closet_window_sensor_1_battery
     - sensor.back_door_sensor_battery
     - sensor.sophies_phone_battery
@@ -323,6 +323,7 @@ cards:
     show_empty: false    
 
   - type: entity-filter
+    show_empty: false
     card:
       title: "Upcoming Holidays"
       show_header_toggle: false
@@ -435,6 +436,7 @@ cards:
 #    report_size: 8
 #    card:
 
+
   - type: custom:mod-card
     report_size: 4
     card:
@@ -461,6 +463,34 @@ cards:
         numberOfDays: 3
         hidePastEvents: true
         hideHeader: true
+
+
+#      type: conditional
+#      conditions:
+#        - entity: binary_sensor.reminders_label
+#          state: "on"
+#      card:
+#        type: custom:vertical-stack-in-card
+#        cards:
+#        - type: "custom:button-card"
+#          name: Reminders
+#          styles:
+#            name:
+#              - color: var(--ha-card-header-color)
+#              - justify-self: start
+#              - padding-left: 16px
+#            card:
+#              - padding-top: 22px
+#              - padding-bottom: 4px
+#              - font-size: 24px
+#        - type: "custom:calendar-card"
+#          entities:
+#            - calendar.alena_and_seans_calendar
+#      #    title: "Reminders"
+#          showProgressBar: false
+#          numberOfDays: 3
+#          hidePastEvents: true
+#          hideHeader: true
 
 
 
