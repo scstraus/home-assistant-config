@@ -24,13 +24,19 @@ MAX_TEMP = 25
 # Profiles are temperatures of each room in this order (same as order defined in ROOM_ENTITIES:
 # dining [0], entrance [1], garage [2], guest bedroom [3], living [4], master bath [5],	master bedroom [6], master closet [7], office [8], sebs room [9], sophie's room [10], laundry [11]
 ROOM_ENTITIES= ["climate.dining_room", "climate.entrance", "climate.garage", "climate.guest_bedroom", "climate.living_room", "climate.master_bath", "climate.master_bedroom", "climate.master_closet", "climate.office_library", "climate.sebastian_s_room", "climate.sophie_s_room", "climate.laundry_room"]
+
 # Temperature of 0 in profile means to skip that room ##
 # Temperature of 100 in profile means to revert to auto schedule programmed into thermostat for cold weather ##
 SKIP_TOKEN = 0
 AUTO_TOKEN = 100
+
 ## Maximum override time is 1 minute short of a day. Then we decide at the same time the next day what override to apply/not apply, otherwise it just goes back to cold weather schedule, so we can't screw things up too much ##
 OVERRIDE_MINUTES = 1439
+
+
 ## PROFILES DEFINED HERE ##
+
+
 ## Auto is for winter where full heating is needed, A is for still cold weather at night but somewhat warm during day where rooms won't warm up much during day and will cool down a lot during night, from there they are for warmer weather. Profile E is basically just turning the heat off in the whole house because the weather is warm enough that it's not needed even at night for any rooms.
 PROFILE_AUTO = [100,100,100,100,100,100,100,100,100,100,100,100]
 PROFILE_A = [20,18,18,21,0,22,21,22,22,22,21,100]
@@ -38,12 +44,15 @@ PROFILE_B = [19,17,17,20,0,21,21,21,21,21,21,21]
 PROFILE_C = [18,16,15,18,16,20,20,20,20,21,21,21]
 PROFILE_D = [15,15,15,15,15,15,15,15,15,18,18,19]
 PROFILE_E = [15,15,15,15,15,15,15,15,15,15,15,12]
+
 ## Some just for the living room, you probably won't need these, you can delete them and the logic at the bottom of the file for them ##
 LIVING_ROOM_18 = [0,0,0,0,18,0,0,0,0,0,0,0]
 LIVING_ROOM_20 = [0,0,0,0,20,0,0,0,0,0,0,0]
 LIVING_ROOM_AUTO = [0,0,0,0,100,0,0,0,0,0,0,0]
 
+
 ###### Function definitions and startup. Proably don't need to change these ######
+
 
 ## What's actually setting the temperatures ##
 def set_to_profile(profile):
@@ -76,8 +85,6 @@ def startup_log_dump():
 startup_log_dump()
 
 ##### These are the rules for which profile to use based on the weather, you can change these based on any rules you want or try to keep them as a starting point to fine tune your temps. I just made them based on how my house felt under different conditions, so they work well for me, but YMMV #####
-
-#set_to_profile(PROFILE_AUTO)
 
 ## Some general rules for in case we don't match others ##
 if LOW_TEMP > 14 and HIGH_TEMP > 25:
