@@ -1,6 +1,7 @@
 #########################################################
 ## Script to turn down the thermostat progressively in ##
-## each room as the weather warms up so that we can    ## ## "bank" some cold in the house to keep the house     ##
+## each room as the weather warms up so that we can    ## 
+## "bank" some cold in the house to keep the house     ##
 ## cooler during warm days and save money on heat      ##
 #########################################################
 
