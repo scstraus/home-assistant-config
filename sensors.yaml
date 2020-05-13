@@ -1096,7 +1096,7 @@
         friendly_name: "Sebastian's Room Air Quality"
         value_template: >-
           {% if state_attr('fan.sebastians_room_air_purifier', 'aqi')|float == 0 %}
-            {{ states('variable.sophies_room_aqi') }}  
+            {{ states('variable.sebastians_room_aqi') }}  
           {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 15.401 %}           {{(((state_attr('fan.sebastians_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }}
           {% elif state_attr('fan.sebastians_room_air_purifier', 'aqi')|float < 40.401 %}
             {{(((51+(state_attr('fan.sebastians_room_air_purifier', 'aqi')-15.5)|float * 1.96787148594)|float)*1)|round|int }}
@@ -1621,7 +1621,8 @@
     json_attributes:
       - back
       - coral
-    value_template: 'OK'  
+    value_template: 'OK'
+
   - platform: template
     sensors:
       back_fps: 
@@ -1639,3 +1640,23 @@
       frigate_coral_inference:
         value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["inference_speed"] }}' 
         unit_of_measurement: 'ms'
+
+  - platform: command_line
+    name: narnia_mdstat
+    command: "cat /proc/mdstat"
+    scan_interval: 3600
+    
+  - platform: template
+    sensors:
+      narnia_raid_status:
+        friendly_name: "RAID Status"
+        value_template: >-    
+          {% if "UU" in states('sensor.narnia_mdstat') %}
+          Healthy
+          {% elif "U_" in states('sensor.narnia_mdstat')%}
+          Degraded
+          {% elif "_U" in states('sensor.narnia_mdstat')%}
+          Degraded
+          {% else %}
+          Unknown
+          {% endif %}

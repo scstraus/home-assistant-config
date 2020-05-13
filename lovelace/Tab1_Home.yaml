@@ -68,9 +68,9 @@ popup_cards:
       - type: history-graph
         entities:
           - sensor.sophies_room_aqi
-      - type: markdown
-        content: |
-          Last Hour Availability:
+#      - type: markdown
+#        content: |
+#          Last Hour Availability:
       - type: history-graph
         entities:
           - fan.sophies_room_air_purifier
@@ -90,9 +90,9 @@ popup_cards:
       - type: history-graph
         entities:
           - sensor.sebastians_room_aqi
-      - type: markdown
-        content: |
-          Last Hour Availability:
+#      - type: markdown
+#        content: |
+#          Last Hour Availability:
       - type: history-graph
         entities:
           - fan.sebastians_room_air_purifier

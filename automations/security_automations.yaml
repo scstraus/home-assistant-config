@@ -719,8 +719,8 @@
       data:
         entity_id: display.kindle_fire_master_closet
 
-- id: close_popup_on_kiosk_back
-  alias: close_Popup on Kiosk Back
+- id: close_popup_on_kiosk
+  alias: close_popup_on_kiosk
   initial_state: 'true'
   trigger:
   - platform: state
@@ -770,14 +770,17 @@
     - service: browser_mod.command
       data:
         command: close-popup
-    - service: browser_mod.lovelace_reload
-      data:
-        deviceID:
-          - !secret kindle_kitchen_deviceid
-    - service: browser_mod.lovelace_reload
-      data:
-        deviceID:
-          - !secret kindle_master_closet_deviceid
+
+# The below ends up making the "lovelace configuration has been updated, reload?" message.. Not sure why I did it..
+#    - delay: '00:00:15'
+#    - service: browser_mod.lovelace_reload
+#      data:
+#        deviceID:
+#          - !secret kindle_kitchen_deviceid
+#    - service: browser_mod.lovelace_reload
+#      data:
+#        deviceID:
+#          - !secret kindle_master_closet_deviceid
 
 
 - alias: 'Update Last Motion'
@@ -888,3 +891,63 @@
     to: 'on'
   action:
     - service: rest_command.record_human_right
+
+- alias: cam1_history 
+  trigger:
+  - platform: mqtt
+    topic: !secret frigate_cam1_topic
+    encoding: ''
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.cam1
+      filename: /config/www/cam1/latest.jpg
+  - service: shell_command.roll_frigate_history
+    data_template:
+      url: /config/www/cam1 
+      history_size: 10
+
+- alias: cam2_history 
+  trigger:
+  - platform: mqtt
+    topic: !secret frigate_cam2_topic
+    encoding: ''
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.cam2
+      filename: /config/www/cam2/latest.jpg
+  - service: shell_command.roll_frigate_history
+    data_template:
+      url: /config/www/cam2
+      history_size: 10
+
+- alias: cam3_history 
+  trigger:
+  - platform: mqtt
+    topic: !secret frigate_cam3_topic
+    encoding: ''
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.cam3
+      filename: /config/www/cam3/latest.jpg
+  - service: shell_command.roll_frigate_history
+    data_template:
+      url: /config/www/cam3
+      history_size: 10
+
+- alias: cam4_history 
+  trigger:
+  - platform: mqtt
+    topic: !secret frigate_cam4_topic
+    encoding: ''
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.cam4
+      filename: /config/www/cam4/latest.jpg
+  - service: shell_command.roll_frigate_history
+    data_template:
+      url: /config/www/cam4
+      history_size: 10

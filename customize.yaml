@@ -399,3 +399,5 @@ sensor.cooper_s_e_all4_max_range_electric:
   icon: mdi:car-battery
 sensor.cooper_s_e_all4_remaining_range_total:
   icon: mdi:gas-station
+sensor.narnia_raid_status:
+  icon: mdi:server

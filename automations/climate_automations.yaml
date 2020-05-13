@@ -3,8 +3,8 @@
 ##################################################
 
 
-- id: heat_down_open_living_room
-  alias: 'Turn Heat Down In Living Room' 
+- id: heat_down_open_living_room_auto
+  alias: heat_down_open_living_room_auto
   initial_state: 'true'
   trigger:
     platform: state
@@ -19,12 +19,40 @@
       setpoint: 12
       duration: {"minutes":240}
   condition:
-    condition: template 
-    value_template: > 
-      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+    condition: state
+    entity_id: input_select.active_heating_profile_living_room
+    state: 'LIVING_ROOM_AUTO'
+        
+#  condition:
+#    condition: template 
+#    value_template: > 
+#      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
 
-- id: heat_up_closed_living_room
-  alias: 'Turn Heat Up In Living Room'
+# - id: heat_down_open_living_room_profile
+#   alias: heat_down_open_living_room_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.back_door
+#     to: 'on'
+#     for: 
+#       minutes: 3
+#   action:
+#     service: climate.turn_off
+#     data:
+#       entity_id: climate.living_room
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile_living_room
+#         state: 'LIVING_ROOM_20'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile_living_room
+#         state: 'LIVING_ROOM_18'
+
+- id: heat_up_closed_living_room_auto
+  alias: heat_up_closed_living_room_auto
   initial_state: 'true'
   trigger:
     platform: state
@@ -34,10 +62,49 @@
     - service: evohome.clear_zone_override
       data:
         entity_id: climate.living_room
+  condition:
+    condition: state
+    entity_id: input_select.active_heating_profile_living_room
+    state: 'LIVING_ROOM_AUTO'
 
-- id: heat_down_open_sophies_room
-  alias: "Turn Heat Down In Sophie's Room"
-  initial_state: 'false'
+# - id: heat_up_closed_living_room_profile
+#   alias: heat_up_closed_living_room_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.back_door
+#     to: 'off'
+#   action:
+#     service: climate.turn_on
+#     data:
+#       entity_id: climate.living_room
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile_living_room
+#         state: 'LIVING_ROOM_20'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile_living_room
+#         state: 'LIVING_ROOM_18'
+
+- id: heat_down_open_sophies_room_auto
+  alias: heat_down_open_sophies_room_auto
   trigger:
     platform: state
     entity_id: binary_sensor.sophies_room_ceiling_window
@@ -51,13 +118,48 @@
       setpoint: 12
       duration: {"minutes":240}
   condition:
-    condition: template 
-    value_template: > 
-      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
+#  condition:
+#    condition: template 
+#    value_template: > 
+#      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
 
-- id: heat_up_closed_sophies_room
-  alias: "Turn Heat Up In Sophie's Room"
-  initial_state: 'true'
+
+# - id: heat_down_open_sophies_room_profile
+#   alias: heat_down_open_sophies_room_profile
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.sophies_room_ceiling_window
+#     to: 'on'
+#     for: 
+#       minutes: 3
+#   action:
+#     service: climate.turn_off
+#     data:
+#       entity_id: climate.sophie_s_room
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
+- id: heat_up_closed_sophies_room_auto
+  alias: heat_up_closed_sophies_room_auto
   trigger:
     platform: state
     entity_id: binary_sensor.sophies_room_ceiling_window
@@ -66,9 +168,42 @@
     - service: evohome.clear_zone_override
       data:
         entity_id: climate.sophie_s_room
+  condition:
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
 
-- id: heat_down_open_sebastians_room
-  alias: "Turn Heat Down In Sebastian's Room"
+# - id: heat_up_closed_sophies_room_profile
+#   alias: heat_up_closed_sophies_room_profile
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.sophies_room_ceiling_window
+#     to: 'off'
+#   action:
+#     service: climate.turn_on
+#     data:
+#       entity_id: climate.sophie_s_room
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
+- id: heat_down_open_sebastians_room_auto
+  alias: heat_down_open_sebastians_room_auto
   initial_state: 'true'
   trigger:
     platform: state
@@ -83,12 +218,48 @@
       setpoint: 12
       duration: {"minutes":240}
   condition:
-    condition: template 
-    value_template: > 
-      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
+#  condition:
+#    condition: template 
+#    value_template: > 
+#      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
 
-- id: heat_up_closed_sebastians_room
-  alias: "Turn Heat Up In Sebastian's Room"
+# - id: heat_down_open_sebastians_room_profile
+#   alias: heat_down_open_sebastians_room_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.sebastians_room_left_window
+#     to: 'on'
+#     for: 
+#       minutes: 3
+#   action:
+#     service: climate.turn_off
+#     data:
+#       entity_id: climate.sebastian_s_room
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
+- id: heat_up_closed_sebastians_room_auto
+  alias: heat_up_closed_sebastians_room_auto
   initial_state: 'true'
   trigger:
     platform: state
@@ -98,9 +269,43 @@
     - service: evohome.clear_zone_override
       data:
         entity_id: climate.sebastian_s_room
+  condition:
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
 
-- id: heat_down_open_master_closet
-  alias: "Turn Heat Down In Master Closet"
+# - id: heat_up_closed_sebastians_room_profile
+#   alias: heat_up_closed_sebastians_room_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.sebastians_room_left_window
+#     to: 'off'
+#   action:
+#     service: climate.turn_on
+#     data:
+#       entity_id: climate.sebastian_s_room
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
+- id: heat_down_open_master_closet_auto
+  alias: heat_down_open_master_closet_auto
   initial_state: 'true'
   trigger:
     platform: state
@@ -115,24 +320,94 @@
       setpoint: 12
       duration: {"minutes":240}
   condition:
-    condition: template 
-    value_template: > 
-      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
+#  condition:
+#    condition: template 
+#    value_template: > 
+#      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
 
-- id: heat_up_closed_master_closet
-  alias: "Turn Heat Up In Master Closet"
+# - id: heat_down_open_master_closet_profile
+#   alias: heat_down_open_master_closet_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.ecolink_closet_left_window
+#     to: 'on'
+#     for: 
+#       minutes: 2
+#   action:
+#     service: climate.turn_off
+#     data:
+#       entity_id: climate.master_closet
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
+- id: heat_up_closed_master_closet_auto
+  alias: heat_up_closed_master_closet_auto
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id:  binary_sensor.ecolink_closet_left_window
+    entity_id: binary_sensor.ecolink_closet_left_window
     to: 'off'
   action:   
     - service: evohome.clear_zone_override
       data:
         entity_id: climate.master_closet
+  condition:
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
 
-- id: heat_down_open_laundry
-  alias: "Turn Heat Down In Laundry Room"
+# - id: heat_up_closed_master_closet_profile
+#   alias: heat_up_closed_master_closet_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.ecolink_closet_left_window
+#     to: 'off'
+#   action:
+#     service: climate.turn_on
+#     data:
+#       entity_id: climate.master_closet
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
+- id: heat_down_open_laundry_auto
+  alias: heat_down_open_laundry_auto
   initial_state: 'true'
   trigger:
     platform: state
@@ -145,12 +420,51 @@
       setpoint: 12
       duration: {"minutes":240}
   condition:
-    condition: template 
-    value_template: > 
-      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.active_heating_profile
+        state: 'PROFILE_AUTO'
+      - condition: state
+        entity_id: input_select.active_heating_profile
+        state: 'PROFILE_A'
+#  condition:
+#    condition: template 
+#    value_template: > 
+#      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
 
-- id: heat_up_closed_laundry
-  alias: "Turn Heat Up In Laundry"
+# - id: heat_down_open_laundry_profile
+#   alias: heat_down_open_laundry_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.laundry_room_window_zone_13
+#     to: 'on'
+#   action:
+#     service: climate.turn_off
+#     data:
+#       entity_id: climate.laundry_room
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
+- id: heat_up_closed_laundry_auto
+  alias: heat_up_closed_laundry_auto
   initial_state: 'true'
   trigger:
     platform: state
@@ -159,10 +473,49 @@
   action:   
     - service: evohome.clear_zone_override
       data:
-        entity_id:  climate.laundry_room
+        entity_id: climate.laundry_room
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.active_heating_profile
+        state: 'PROFILE_AUTO'
+      - condition: state
+        entity_id: input_select.active_heating_profile
+        state: 'PROFILE_A'
 
-- id: heat_down_open_garage
-  alias: "Turn Heat Down In Garage"
+# - id: heat_up_closed_laundry_profile
+#   alias: heat_up_closed_laundry_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.laundry_room_window_zone_13
+#     to: 'off'
+#   action:
+#     service: climate.turn_on
+#     data:
+#       entity_id: climate.laundry_room
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
+- id: heat_down_open_garage_auto
+  alias: heat_down_open_garage_auto
   initial_state: 'true'
   trigger:
     platform: state
@@ -175,12 +528,46 @@
       setpoint: 5
       duration: {"minutes":240}
   condition:
-    condition: template 
-    value_template: > 
-      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
+#  condition:
+#    condition: template 
+#    value_template: > 
+#      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
 
-- id: heat_up_closed_garage
-  alias: "Turn Heat Up In Garage"
+# - id: heat_down_open_garage_profile
+#   alias: heat_down_open_garage_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.ecolink_garage_door
+#     to: 'on'
+#   action:
+#     service: climate.turn_off
+#     data:
+#       entity_id: climate.garage
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
+- id: heat_up_closed_garage_auto
+  alias: heat_up_closed_garage_auto
   initial_state: 'true'
   trigger:
     platform: state
@@ -190,6 +577,41 @@
     - service: evohome.clear_zone_override
       data:
         entity_id: climate.garage
+  condition:
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
+
+# - id: heat_up_closed_garage_profile
+#   alias: heat_up_closed_garage_profile
+#   initial_state: 'true'
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.ecolink_garage_door
+#     to: 'off'
+#   action:
+#     service: climate.turn_on
+#     data:
+#       entity_id: climate.garage
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_A'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_B'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_C'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_D'
+#       - condition: state
+#         entity_id: input_select.active_heating_profile
+#         state: 'PROFILE_E'
+
 
 ######################################################
 # AUTOMATIONS TO ADJUST HEAT BASED ON WEATHER REPORT #

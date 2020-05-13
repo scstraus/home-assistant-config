@@ -45,6 +45,10 @@ cards:
           yellow: 75
           red: 88
 
+    - type: entities
+      entities:
+        - sensor.narnia_raid_status
+
     - type: custom:mini-graph-card
       name: CPU Usage
       entities:

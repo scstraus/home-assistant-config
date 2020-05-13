@@ -92,6 +92,8 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-state-switch/state-switch.js
       type: module
+    - url: /hacsfiles/swipe-card/swipe-card.js
+      type: module
 
 
 frontend:
@@ -107,7 +109,7 @@ discovery:
 #    - plex_mediaserver
     
 http:
-
+  base_url: https://ykzeuvypwjk18i8n16yph2po160resx0.ui.nabu.casa/
 #uncomment for iOS device add
 #  api_password: !secret API_pass
 
@@ -738,19 +740,19 @@ camera:
 
   - name: Right Last Person
     platform: mqtt
-    topic: frigate/right/person/snapshot
+    topic: !secret frigate_cam2_topic
 
   - name: Left Last Person
     platform: mqtt
-    topic: frigate/left/person/snapshot
+    topic: !secret frigate_cam4_topic
 
   - name: Front Last Person
     platform: mqtt
-    topic: frigate/front/person/snapshot
+    topic:  !secret frigate_cam3_topic
 
   - name: Back Last Person
     platform: mqtt
-    topic: frigate/back/person/snapshot
+    topic: !secret frigate_cam1_topic
 
 #Frigate v.2 cameras
 
@@ -779,6 +781,143 @@ camera:
     timeout: 120
 #    verify_ssl: False
 
+
+  - name: cam1
+    platform: mqtt
+    topic: !secret frigate_cam1_topic
+  - platform: local_file
+    name: cam1_history1
+    file_path: /config/www/cam1/1.jpg       
+  - platform: local_file
+    name: cam1_history2
+    file_path: /config/www/cam1/2.jpg        
+  - platform: local_file
+    name: cam1_history3
+    file_path: /config/www/cam1/3.jpg       
+  - platform: local_file
+    name: cam1_history4
+    file_path: /config/www/cam1/4.jpg       
+  - platform: local_file
+    name: cam1_history5
+    file_path: /config/www/cam1/5.jpg       
+  - platform: local_file
+    name: cam1_history6
+    file_path: /config/www/cam1/6.jpg       
+  - platform: local_file
+    name: cam1_history7
+    file_path: /config/www/cam1/7.jpg       
+  - platform: local_file
+    name: cam1_history8
+    file_path: /config/www/cam1/8.jpg       
+  - platform: local_file
+    name: cam1_history9
+    file_path: /config/www/cam1/9.jpg       
+  - platform: local_file
+    name: cam1_history10
+    file_path: /config/www/cam1/10.jpg           
+
+  - name: cam2
+    platform: mqtt
+    topic: !secret frigate_cam2_topic
+  - platform: local_file
+    name: cam2_history1
+    file_path: /config/www/cam2/1.jpg       
+  - platform: local_file
+    name: cam2_history2
+    file_path: /config/www/cam2/2.jpg        
+  - platform: local_file
+    name: cam2_history3
+    file_path: /config/www/cam2/3.jpg       
+  - platform: local_file
+    name: cam2_history4
+    file_path: /config/www/cam2/4.jpg       
+  - platform: local_file
+    name: cam2_history5
+    file_path: /config/www/cam2/5.jpg       
+  - platform: local_file
+    name: cam2_history6
+    file_path: /config/www/cam2/6.jpg       
+  - platform: local_file
+    name: cam2_history7
+    file_path: /config/www/cam2/7.jpg       
+  - platform: local_file
+    name: cam2_history8
+    file_path: /config/www/cam2/8.jpg       
+  - platform: local_file
+    name: cam2_history9
+    file_path: /config/www/cam2/9.jpg       
+  - platform: local_file
+    name: cam2_history10
+    file_path: /config/www/cam2/10.jpg           
+
+  - name: cam3
+    platform: mqtt
+    topic: !secret frigate_cam3_topic
+  - platform: local_file
+    name: cam3_history1
+    file_path: /config/www/cam3/1.jpg       
+  - platform: local_file
+    name: cam3_history2
+    file_path: /config/www/cam3/2.jpg        
+  - platform: local_file
+    name: cam3_history3
+    file_path: /config/www/cam3/3.jpg       
+  - platform: local_file
+    name: cam3_history4
+    file_path: /config/www/cam3/4.jpg       
+  - platform: local_file
+    name: cam3_history5
+    file_path: /config/www/cam3/5.jpg       
+  - platform: local_file
+    name: cam3_history6
+    file_path: /config/www/cam3/6.jpg       
+  - platform: local_file
+    name: cam3_history7
+    file_path: /config/www/cam3/7.jpg       
+  - platform: local_file
+    name: cam3_history8
+    file_path: /config/www/cam3/8.jpg       
+  - platform: local_file
+    name: cam3_history9
+    file_path: /config/www/cam3/9.jpg       
+  - platform: local_file
+    name: cam3_history10
+    file_path: /config/www/cam3/10.jpg           
+
+
+  - name: cam4
+    platform: mqtt
+    topic: !secret frigate_cam4_topic
+  - platform: local_file
+    name: cam4_history1
+    file_path: /config/www/cam4/1.jpg       
+  - platform: local_file
+    name: cam4_history2
+    file_path: /config/www/cam4/2.jpg        
+  - platform: local_file
+    name: cam4_history3
+    file_path: /config/www/cam4/3.jpg       
+  - platform: local_file
+    name: cam4_history4
+    file_path: /config/www/cam4/4.jpg       
+  - platform: local_file
+    name: cam4_history5
+    file_path: /config/www/cam4/5.jpg       
+  - platform: local_file
+    name: cam4_history6
+    file_path: /config/www/cam4/6.jpg       
+  - platform: local_file
+    name: cam4_history7
+    file_path: /config/www/cam4/7.jpg       
+  - platform: local_file
+    name: cam4_history8
+    file_path: /config/www/cam4/8.jpg       
+  - platform: local_file
+    name: cam4_history9
+    file_path: /config/www/cam4/9.jpg       
+  - platform: local_file
+    name: cam4_history10
+    file_path: /config/www/cam4/10.jpg  
 
 google:
              
@@ -968,6 +1107,22 @@ input_select:
       - Clean
     initial: Empty
 
+  active_heating_profile:
+    name: Active Heating Profile
+    options:
+      - PROFILE_AUTO
+      - PROFILE_A
+      - PROFILE_B
+      - PROFILE_C
+      - PROFILE_D
+      - PROFILE_E
+
+  active_heating_profile_living_room:
+    name: Active Heating Profile Living Room
+    options:
+      - LIVING_ROOM_AUTO
+      - LIVING_ROOM_20
+      - LIVING_ROOM_18
 
 proximity:
   all_home: 
@@ -1353,6 +1508,7 @@ input_number:
 shell_command:
   update_avnodehome_data: !secret avnodehome_update_cmd
   update_avnodehlubocepy_data: !secret avnodehlubocepy_update_cmd
+  roll_frigate_history: !secret roll_frigate_command
 
 browser_mod:
 
@@ -1416,3 +1572,9 @@ bmw_connected_drive:
 
 airvisual:
   api_key: !secret airvisual_key
+
+withings:
+  client_id: !secret withings_client_id
+  client_secret: !secret withings_consumer_secret
+  profiles:
+    - Sean Straus

@@ -156,10 +156,11 @@
     service: notify.alexa_media_alexa_kitchen_bar
     
 
+#### This one isn't working yet. There's no "last changed" attribute for the dishwasher door
 
 - id: fire_notify_dishwasher_door_open
   alias: "TTS Notify Dishwasher Door Open"
-  initial_state: 'true'
+  initial_state: 'false'
   trigger:
     minutes: '/5'
     platform: time_pattern

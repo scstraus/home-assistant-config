@@ -597,12 +597,19 @@
   action:
     - service_template: frontend.set_theme
       data_template:
-        name: >
-          {% if states.sun.sun.state == "above_horizon" %}
-            Google Light Theme
-          {% else %}
-            midnight
-          {% endif %}
+       name: >
+         {% if states.sun.sun.state == "above_horizon" %}
+           Google Light Theme
+         {% else %}
+           midnight
+         {% endif %}
+
+        # name: >
+        #   {% if states.sun.sun.state == "above_horizon" %}
+        #     clear
+        #   {% else %}
+        #     clear-dark
+        #   {% endif %}
 
 - id: backup_snapshots_to_dropbox_nightly
   alias: "Nightly Backup of Snapshots to Dropbox"
@@ -834,10 +841,27 @@
     data:
       entity_id: input_boolean.trash_needs_taking_out
 
-- alias: 'nonsmoker_update'
+- id: reminders_label_update
+  alias: reminders_label_update
   trigger:
     - platform: time_pattern
       minutes: '/30'
   action:
     - service: homeassistant.update_entity
       entity_id: binary_sensor.reminders_label
+      
+- id: narnia_raid_degraded_daily_warning
+  alias: narnia_raid_degraded_daily_warning
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '21:00:00'
+  condition:
+    condition: state
+    entity_id: 'sensor.narnia_raid_status'
+    state: 'Degraded'
+  action:
+    service: notify.ios_seans_iphone_x
+    data:
+      title: "RAID Warning"
+      message: "The RAID Array on Narnia is Degraded"
