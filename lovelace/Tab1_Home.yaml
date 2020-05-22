@@ -219,6 +219,7 @@ cards:
     - zwave.ecolink_closet_left_window
     - zwave.ecolink_garage_door_sensor
     state_filter:
+    - "unavailable"
     - "Warning"
     - "grey"
     - "yellow"

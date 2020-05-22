@@ -347,9 +347,8 @@
     sensors:
       trash_emergency:
         friendly_name: "Trash Really Needs to be Taken Out"
-        device_class: problem
         value_template: >-
-          {{ is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Today') and is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.sean_location', 'Home') and ((now().strftime('%H')|int) > 17) and ((now().strftime('%H')|int) < 25) }}
+          {{ is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Today') and is_state('sensor.sean_location', 'Home') and ((now().strftime('%H')|int) > 17) and ((now().strftime('%H')|int) < 25) }}
 
 
   - platform: template
