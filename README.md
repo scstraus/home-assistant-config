@@ -251,5 +251,3 @@ Here is the system status of my Synology NAS that runs my Plex and Frigate insta
   (current battery levels and disk use)
 
 - [entities card](https://www.home-assistant.io/lovelace/entities/) 
-
-ZZZ
