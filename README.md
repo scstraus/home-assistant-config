@@ -252,5 +252,5 @@ Here is the system status of my Synology NAS that runs my Plex and Frigate insta
 
 - [entities card](https://www.home-assistant.io/lovelace/entities/) 
 
-...
++++
 
