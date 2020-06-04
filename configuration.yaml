@@ -102,6 +102,8 @@ frontend:
   themes: !include_dir_merge_named themes
 #  themes: !include themes.yaml
   javascript_version: auto
+  extra_module_url:
+    - /hacsfiles/custom-sidebar/custom-sidebar.js
 
 mobile_app:
 
@@ -1287,27 +1289,25 @@ cast:
   media_player:
     - host: !secret chromecast_ip
     
-#smartthinq:
-#  token: !secret smartthinq_token
-
 notify:
   - name: sean_alena
     platform: group
     services:
-      - service: ios_seans_iphone_x
-      - service: ios_alenas_iphone
+      - service: mobile_app_sean_s_iphone_x
+      - service: mobile_app_alena_s_iphone
   - name: whole_family
     platform: group
     services:
-      - service: ios_seans_iphone_x
-      - service: ios_alenas_iphone
-      - service: ios_sophies_iphone
+      - service: mobile_app_sean_s_iphone_x
+      - service: mobile_app_alena_s_iphone
+      - service: mobile_app_sophies_iphone_6
 
 speedtestdotnet:
   monitored_conditions:
     - ping
     - download
     - upload
+  manual: true
 
 alarm_control_panel:
   - platform: mqtt
@@ -1365,8 +1365,10 @@ alert:
       push:
         sound:
           name: "EN-US-Daisy-Garage-Door-Open.wav"
+#        thread-id: "info"
     notifiers:
-      - ios_alenas_iphone
+      - mobile_app_alena_s_iphone
+
 
   garage_door_sean:
     name: Garage has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.ecolink_garage_door.last_updated)) | int //60 }} minutes
@@ -1381,10 +1383,11 @@ alert:
     skip_first: true
     data:
       push:
+#        thread-id: "info"
         sound:
           name: "EN-US-Daisy-Garage-Door-Open.wav"
     notifiers:
-      - ios_seans_iphone_x
+      - mobile_app_sean_s_iphone_x
 #    entity_id: binary_sensor.garage_door_zone_14
 
   front_door_alena:
@@ -1402,8 +1405,9 @@ alert:
       push:
         sound:
           name: "EN-US-Daisy-Front-Door-Open.wav"
+#        thread-id: "info"
     notifiers:
-      - ios_alenas_iphone
+      - mobile_app_alena_s_iphone
 
   front_door_sean:
     name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
@@ -1420,8 +1424,9 @@ alert:
       push:
         sound:
           name: "EN-US-Daisy-Front-Door-Open.wav"
+#        thread-id: "info"
     notifiers:
-      - ios_seans_iphone_x
+      - mobile_app_sean_s_iphone_x
 
   sebastian_window_rain_warning_alena:
     name: Sebastian's room window is open and it might rain.
@@ -1436,7 +1441,10 @@ alert:
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - ios_alenas_iphone
+      - mobile_app_alena_s_iphone
+#    data:
+#      push:
+#        thread-id: "weather"
 
   sebastian_window_rain_warning_sean:
     name: Sebastian's room window is open and it might rain.
@@ -1451,7 +1459,10 @@ alert:
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - ios_seans_iphone_x
+      - mobile_app_sean_s_iphone_x
+#    data:
+#      push:
+#        thread-id: "weather"
 
   sophies_window_rain_warning_alena:
     name: Sophie's room window is open and it might rain.
@@ -1466,7 +1477,10 @@ alert:
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - ios_alenas_iphone
+      - mobile_app_alena_s_iphone
+#    data:
+#      push:
+#        thread-id: "weather"
 
   sophies_window_rain_warning_sean:
     name: Sophie's room window is open and it might rain.
@@ -1481,7 +1495,10 @@ alert:
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - ios_seans_iphone_x
+      - mobile_app_sean_s_iphone_x
+#    data:
+#      push:
+#        thread-id: "weather"
 
   trash_needs_to_be_taken_out:
     name: "It's trash day and the trash still needs to be taken out!"
@@ -1492,13 +1509,13 @@ alert:
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - ios_seans_iphone_x
+      - mobile_app_sean_s_iphone_x
     data:
       title: "The trash Needs to be Taken Out"
       message: "It's trash day and the trash still needs to be taken out!"
-      data:
-        push:
-          category: "trash" 
+      push:
+        category: "trash"
+#        thread-id: "info"
 
 input_number:
   living_room_last_temp:
@@ -1579,4 +1596,22 @@ withings:
   client_id: !secret withings_client_id
   client_secret: !secret withings_consumer_secret
   profiles:
-    - Sean Straus
+    - !secret profile_1
+    - !secret profile_2
+    - !secret profile_3
+    - !secret profile_4
+
+panel_custom:
+  - name: zwavegraph2
+    sidebar_title: Z-Wave Graph
+    sidebar_icon: mdi:access-point-network
+    url_path: zwave
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: !secret influxdb_db
+  username: !secret influxdb_uname
+  password: !secret influxdb_pw
+  max_retries: 3
+  default_measurement: state

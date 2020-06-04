@@ -182,10 +182,10 @@ cards:
     - zwave.neo_coolcam_unknown_type_0200_id_1027
     - zwave.popp_unknown_type_0004_id_0014
     - binary_sensor.alarm_connection
-    - sensor.status_smart_sda
-    - sensor.status_smart_sdb
-    - sensor.status_smart_sdc
-    - sensor.status_smart_sdd
+    - sensor.discworld_status_smart_sda
+    - sensor.discworld_status_smart_sdb
+    - sensor.discworld_status_smart_sdc
+    - sensor.discworld_status_smart_sdd
     - zwave.sebastian_room_left_window
     - zwave.basement_flood_sensor
     - zwave.sophies_room_ceiling_window

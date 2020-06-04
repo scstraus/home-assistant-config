@@ -4,238 +4,9 @@ title: Appliances
 icon: mdi:washing-machine
 cards:
 
-
-#  type: 'custom:vertical-stack-in-card'
-#  cards:
-#    - type: picture-elements
-#      image: /local/images/ap.png
-#      elements:
-#        - type: state-icon
-#          entity: fan.master_bedroom_air_purifier
-#          style:
-#            '--iron-icon-height': 45px
-#            '--iron-icon-width': 45px
-#            margin-right: '-10%'
-#            right: 16%
-#            top: 85%
-#          tap_action:
-#            action: call-service
-#            service: fan.toggle
-#            service_data:
-#              entity_id: fan.master_bedroom_air_purifier
-#        - type: icon
-#          icon: 'mdi:water-percent'
-#          style:
-#            '--iron-icon-height': 45px
-#            '--iron-icon-width': 45px
-#            color: dodgerblue
-#            left: 15%
-#            top: 25%
-#          tap_action: none
-#        - attribute: humidity
-#          color_stops: null
-#          entity: fan.master_bedroom_air_purifier
-#          fill: 'rgba(0,0,0,0.3)'
-#          font_style:
-#            color: vhite
-#          gradient: true
-#          max: 100
-#          min: 0
-#          show_card: null
-#          stroke_width: 10
-#          style:
-#            height: 60px
-#            left: 15%
-#            top: 25%
-#            width: 60px
-#          type: 'custom:circle-sensor-card'
-#          units: '%'
-#        - icon: 'mdi:thermometer'
-#          style:
-#            '--iron-icon-height': 45px
-#            '--iron-icon-width': 45px
-#            color: dodgerblue
-#            left: 15%
-#            top: 45%
-#          tap_action: none
-#          type: icon
-#        - attribute: temperature
-#          entity: fan.master_bedroom_air_purifier
-#          fill: 'rgba(0,0,0,0.3)'
-#          font_style:
-#            color: white
-#          gradient: true
-#          max: 50
-#          min: 0
-#          show_card: false
-#          stroke_width: 10
-#          style:
-#            height: 60px
-#            left: 15%
-#            top: 45%
-#            width: 60px
-#          type: 'custom:circle-sensor-card'
-#          units: °C
-#        - type: icon
-#          icon: 'mdi:air-filter'
-#          style:
-#            '--iron-icon-height': 45px
-#            '--iron-icon-width': 45px
-#            color: dodgerblue
-#            left: 15%
-#            top: 65%
-#          tap_action: none
-#        - type: 'custom:circle-sensor-card'
-#          units: ''
-#          attribute: aqi
-#          entity: fan.master_bedroom_air_purifier
-#          fill: 'rgba(0,0,0,0.3)'
-#          font_style:
-#            color: white
-#          gradient: true
-#          max: 70
-#          min: 0
-#          show_card: false
-#          stroke_width: 10
-#          style:
-#            height: 60px
-#            left: 15%
-#            top: 65%
-#            width: 60px
-#        - type: icon
-#          icon: 'mdi:speedometer'
-#          style:
-#            '--iron-icon-height': 45px
-#            '--iron-icon-width': 45px
-#            color: dodgerblue
-#            left: 15%
-#            top: 85%
-#          tap_action: none
-#        - type: 'custom:circle-sensor-card'
-#          units: ''
-#          attribute: motor2_speed
-#          entity: fan.master_bedroom_air_purifier
-#          fill: 'rgba(0,0,0,0.3)'
-#          font_style:
-#            color: white
-#          gradient: true
-#          max: 2000
-#          min: 0
-#          show_card: false
-#          stroke_width: 10
-#          style:
-#            height: 60px
-#            left: 15%
-#            top: 85%
-#            width: 60px
-#        - type: state-label
-#          entity: sensor.purifier_fan_mode
-#          max: 2000
-#          min: 0
-#          prefix: 'mód: '
-#          style:
-#            background-color: 'rgba(0, 0, 0,.0)'
-#            border-color: 'rgb(34, 154, 210,.0)'
-#            border-left-style: solid
-#            color: 'rgba(255, 255, 255,)'
-#            font-family: Trebuchet MS
-#            font-size: 100%
-#            font-weight: bold
-#            left: 80%
-#            margin-right: '-50%'
-#            opacity: 1
-#            pointer-events: none
-#            text-shadow: 1px 1px black
-#            top: 5%
-#            transform: 'translate(-50%,-0%)'
-#        - type: icon
-#          icon: 'mdi:brightness-auto'
-#          style:
-#            '--iron-icon-height': 45px
-#            '--iron-icon-width': 45px
-#            right: 5%
-#            top: 25%
-#          tap_action:
-#            action: call-service
-#            service: fan.set_speed
-#            service_data:
-#              entity_id: fan.master_bedroom_air_purifier
-#              speed: Auto
-#        - type: icon
-#          icon: 'mdi:power-sleep'
-#          style:
-#            '--iron-icon-height': 45px
-#            '--iron-icon-width': 45px
-#            right: 5%
-#            top: 45%
-#          tap_action:
-#            action: call-service
-#            service: fan.set_speed
-#            service_data:
-#              entity_id: fan.master_bedroom_air_purifier
-#              speed: Silent
-#        - type: icon
-#          icon: 'mdi:account-heart'
-#          style:
-#            '--iron-icon-height': 45px
-#            '--iron-icon-width': 45px
-#            right: 5%
-#            top: 65%
-#          tap_action:
-#            action: call-service
-#            service: fan.set_speed
-#            service_data:
-#              entity_id: fan.master_bedroom_air_purifier
-#              speed: Favorite    
-#        - type: state-label
-#          entity: sensor.purifier_filter_life_remaining
-#          prefix: 'filter: '
-#          style:
-#            background-color: 'rgba(0, 0, 0,.0)'
-#            border-color: 'rgb(34, 154, 210,.0)'
-#            border-left-style: solid
-#            color: dodgerblue
-#            font-family: Trebuchet MS
-#            font-size: 100%
-#            font-weight: bold
-#            left: 2%
-#            opacity: 1
-#            pointer-events: none
-#            top: 10%
-#            transform: 'translate(0%,-50%)'  
-#        - type: state-label
-#          entity: sensor.purifier_filter_hours_used
-#          prefix: 'Filter hours used: '
-#          style:
-#            background-color: 'rgba(0, 0, 0,.0)'
-#            border-color: 'rgb(34, 154, 210,.0)'
-#            border-left-style: solid
-#            color: dodgerblue
-#            font-family: Trebuchet MS
-#            font-size: 100%
-#            font-weight: bold
-#            left: 2%
-#            margin-right: '-50%'
-#            opacity: 1
-#            pointer-events: none
-#            top: 5%
-#            transform: 'translate(0%,-50%)'
-  
-#  style:
-#    background-color: 'rgba(0,0,20,0.3)'
-#    background-image: url("/local/pictures/cardback.png")
-#    background-repeat: no-repeat
-#    background-size: 100% 100%
-#    border: 'solid 1px rgba(57,128,228,0.4)'
-#    border-radius: 20px
-#  type: 'custom:card-modder'
-
-
-
-#  card:
-#    cards:
   - type: picture-elements
     image: /local/images/air_purifier.jpeg
+    title: Master Bedroom Air Purifier
     elements:
       - type: state-label
         entity: sensor.master_bedroom_purifier_filter_hours_used
@@ -393,7 +164,9 @@ cards:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
           margin-right: '-10%'
-          right: 17%
+          '--paper-item-icon-color': black
+          '--paper-item-icon-active-color': dodgerblue
+          right: 18%
           top: 17%
         tap_action:
           action: call-service
@@ -405,6 +178,7 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 4%
           top: 17%
         tap_action:
@@ -419,6 +193,7 @@ cards:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
           margin-right: '-10%'
+          color: black
           right: 22%
           top: 34%
         tap_action:
@@ -432,6 +207,7 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 4%
           top: 34%
         tap_action:
@@ -446,11 +222,12 @@ cards:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
           margin-right: '-10%'
+          color: black
           right: 22%
           top: 51%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_LED_ON
+          service: xiaomi_miio.fan_set_led_on
           service_data:
             entity_id: fan.master_bedroom_air_purifier 
       - type: icon
@@ -458,11 +235,12 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 3%
           top: 51%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_LED_OFF
+          service: xiaomi_miio.fan_set_led_off
           service_data:
             entity_id: fan.master_bedroom_air_purifier 
       - type: icon
@@ -471,11 +249,12 @@ cards:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
           margin-right: '-10%'
+          color: black
           right: 22%
           top: 68%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_BUZZER_ON
+          service: xiaomi_miio.fan_set_buzzer_on
           service_data:
             entity_id: fan.master_bedroom_air_purifier
       - type: icon
@@ -484,11 +263,12 @@ cards:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
           margin-right: '-10%'
+          color: black
           right: 22%
           top: 87%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_CHILD_LOCK_ON
+          service: xiaomi_miio.fan_set_child_lock_on
           service_data:
             entity_id: fan.master_bedroom_air_purifier   
       - type: icon
@@ -496,11 +276,12 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 3%
           top: 68%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_BUZZER_OFF
+          service: xiaomi_miio.fan_set_buzzer_off
           service_data:
             entity_id: fan.master_bedroom_air_purifier
       - type: icon
@@ -508,17 +289,19 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 3%
           top: 87%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_CHILD_LOCK_OFF
+          service: xiaomi_miio.fan_set_child_lock_off
           service_data:
             entity_id: fan.master_bedroom_air_purifier
         
   - type: picture-elements
     image: /local/images/air_purifier.jpeg
-    elements:
+    title: Sebastian's Air Purifier
+    elements: 
       - type: state-label
         entity: sensor.sebastians_room_purifier_filter_hours_used
         prefix: 'Used: '
@@ -675,7 +458,9 @@ cards:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
           margin-right: '-10%'
-          right: 17%
+          '--paper-item-icon-color': black
+          '--paper-item-icon-active-color': dodgerblue
+          right: 18%
           top: 17%
         tap_action:
           action: call-service
@@ -687,6 +472,7 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 4%
           top: 17%
         tap_action:
@@ -700,6 +486,7 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           margin-right: '-10%'
           right: 22%
           top: 34%
@@ -714,6 +501,7 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 4%
           top: 34%
         tap_action:
@@ -728,11 +516,12 @@ cards:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
           margin-right: '-10%'
+          color: black
           right: 22%
           top: 51%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_LED_ON
+          service: xiaomi_miio.fan_set_led_on
           service_data:
             entity_id: fan.sebastians_room_air_purifier 
       - type: icon
@@ -740,11 +529,12 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 3%
           top: 51%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_LED_OFF
+          service: xiaomi_miio.fan_set_led_off
           service_data:
             entity_id: fan.sebastians_room_air_purifier 
       - type: icon
@@ -752,12 +542,13 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           margin-right: '-10%'
           right: 22%
           top: 68%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_BUZZER_ON
+          service: xiaomi_miio.fan_set_buzzer_on
           service_data:
             entity_id: fan.sebastians_room_air_purifier
       - type: icon
@@ -765,12 +556,13 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           margin-right: '-10%'
           right: 22%
           top: 87%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_CHILD_LOCK_ON
+          service: xiaomi_miio.fan_set_child_lock_on
           service_data:
             entity_id: fan.sebastians_room_air_purifier   
       - type: icon
@@ -778,11 +570,12 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 3%
           top: 68%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_BUZZER_OFF
+          service: xiaomi_miio.fan_set_buzzer_off
           service_data:
             entity_id: fan.sebastians_room_air_purifier
       - type: icon
@@ -790,20 +583,306 @@ cards:
         style:
           '--iron-icon-height': 22px
           '--iron-icon-width': 22px
+          color: black
           right: 3%
           top: 87%
         tap_action:
           action: call-service
-          service: fan.XIAOMI_MIIO_SET_CHILD_LOCK_OFF
+          service: xiaomi_miio.fan_set_child_lock_off
           service_data:
             entity_id: fan.sebastians_room_air_purifier
-        
 
-#    type: 'custom:vertical-stack-in-card'
-#  style:
-#    background-image: url("/local/xiaomi-mi-air-purifier-2s.jpg")
-#    background-repeat: no-repeat
-#    background-size: 100% 100%
-#    height: 100%
-#    position: relative
-#  type: 'custom:card-modder'
+        
+  - type: picture-elements
+    image: /local/images/air_purifier.jpeg
+    title: Sophie's Air Purifier
+    elements: 
+      - type: state-label
+        entity: sensor.sophies_room_purifier_filter_hours_used
+        prefix: 'Used: '
+        style:
+          background-color: 'rgba(0, 0, 0,.0)'
+          border-color: 'rgb(34, 154, 210,.0)'
+          border-left-style: solid
+          color: dodgerblue
+          font-size: 100%
+          font-weight: bold
+          left: 1.5%
+          opacity: 1
+          pointer-events: none
+          top: 5%
+          transform: 'translate(0%,-50%)' 
+      - type: icon
+        icon: 'mdi:water-percent'
+        style:
+          '--iron-icon-height': 20px
+          '--iron-icon-width': 20px
+          color: dodgerblue
+          left: 8%
+          position: absolute
+          top: 17%
+        tap_action: none
+      - type: custom:circle-sensor-card
+        units: '%'
+        entity: sensor.sophies_room_purifier_humidity
+        fill: 'rgba(0,0,0,0.3)'
+        font_style:
+          color: white
+        gradient: true
+        max: 100
+        min: 0
+        show_card: null
+        stroke_width: 10
+        style:
+          height: 17%
+          left: 15%
+          top: 25%
+          width: 17%
+      - type: icon
+        icon: 'mdi:thermometer'
+        style:
+          '--iron-icon-height': 20px
+          '--iron-icon-width': 20px
+          color: dodgerblue
+          left: 7.5%
+          position: absolute
+          top: 37%
+        tap_action: none
+      - type: custom:circle-sensor-card
+        units: °C
+        entity: sensor.sophies_room_purifier_temperature
+        fill: 'rgba(0,0,0,0.3)'
+        font_style:
+          color: white
+        gradient: true
+        max: 50
+        min: 0
+        show_card: false
+        stroke_width: 10
+        style:
+          height: 17%
+          left: 15%
+          top: 45%
+          width: 17%
+      - type: icon
+        icon: 'mdi:air-filter'
+        style:
+          '--iron-icon-height': 17px
+          '--iron-icon-width': 17px
+          color: dodgerblue
+          left: 8%
+          top: 56%
+        tap_action: none
+      - type: custom:circle-sensor-card
+        units: ''
+        entity: sensor.sophies_room_purifier_filter_life_remaining
+        fill: 'rgba(0,0,0,0.3)'
+        font_style:
+          color: white
+        gradient: true
+        max: 100
+        min: 0
+        show_card: false
+        stroke_width: 10
+        style:
+          height: 17%
+          left: 15%
+          top: 65%
+          width: 17%
+      - type: custom:circle-sensor-card
+        units: p
+        entity: sensor.sophies_room_purifier_aqi
+        fill: 'rgba(0,0,0,0.3)'
+        font_style:
+          color: white
+        gradient: true
+        max: 600
+        min: 0
+        show_card: false
+        stroke_width: 10
+        style:
+          height: 13%
+          left: 50%
+          top: 18.5%
+          width: 13%
+      - type: icon
+        tap_action: none
+        icon: 'mdi:speedometer'
+        style:
+          '--iron-icon-height': 17px
+          '--iron-icon-width': 17px
+          color: dodgerblue
+          left: 8%
+          top: 76%
+      - type: custom:circle-sensor-card
+        units: ''
+        entity: sensor.sophies_room_purifier_fan_speed
+        fill: 'rgba(0,0,0,0.3)'
+        font_style:
+          color: white
+        gradient: true
+        max: 1700
+        min: 0
+        show_card: false
+        stroke_width: 10
+        style:
+          height: 17%
+          left: 15%
+          top: 85%
+          width: 17%  
+      - type: state-label
+        entity: sensor.sophies_room_purifier_fan_mode
+        max: 2000
+        min: 0
+        prefix: 'Mode: '
+        style:
+          background-color: 'rgba(0, 0, 0,.0)'
+          border-color: 'rgb(34, 154, 210,.0)'
+          border-left-style: solid
+          color: dodgerblue
+          font-size: 100%
+          font-weight: bold
+          opacity: 1
+          pointer-events: none
+          right: 1%
+          top: 1%
+          transform: none  
+      - type: state-icon
+        entity: fan.sophies_room_air_purifier
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          margin-right: '-10%'
+          '--paper-item-icon-color': black
+          '--paper-item-icon-active-color': dodgerblue
+          right: 18%
+          top: 17%
+        tap_action:
+          action: call-service
+          service: fan.toggle
+          service_data:
+            entity_id: fan.sophies_room_air_purifier
+      - type: icon
+        icon: 'mdi:brightness-auto'
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          color: black
+          right: 4%
+          top: 17%
+        tap_action:
+          action: call-service
+          service: fan.set_speed
+          service_data:
+            entity_id: fan.sophies_room_air_purifier
+            speed: Auto
+      - type: icon
+        icon: 'mdi:power-sleep'
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          color: black
+          margin-right: '-10%'
+          right: 22%
+          top: 34%
+        tap_action:
+          action: call-service
+          service: fan.set_speed
+          service_data:
+            entity_id: fan.sophies_room_air_purifier
+            speed: Silent 
+      - type: icon
+        icon: 'mdi:account-heart'
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          color: black
+          right: 4%
+          top: 34%
+        tap_action:
+          action: call-service
+          service: fan.set_speed
+          service_data:
+            entity_id: fan.sophies_room_air_purifier
+            speed: Favorite
+      - type: icon
+        icon: 'mdi:monitor'
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          margin-right: '-10%'
+          color: black
+          right: 22%
+          top: 51%
+        tap_action:
+          action: call-service
+          service: xiaomi_miio.fan_set_led_on
+          service_data:
+            entity_id: fan.sophies_room_air_purifier 
+      - type: icon
+        icon: 'mdi:monitor-off'
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          color: black
+          right: 3%
+          top: 51%
+        tap_action:
+          action: call-service
+          service: xiaomi_miio.fan_set_led_off
+          service_data:
+            entity_id: fan.sophies_room_air_purifier 
+      - type: icon
+        icon: 'mdi:bell'
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          color: black
+          margin-right: '-10%'
+          right: 22%
+          top: 68%
+        tap_action:
+          action: call-service
+          service: xiaomi_miio.fan_set_buzzer_on
+          service_data:
+            entity_id: fan.sophies_room_air_purifier
+      - type: icon
+        icon: 'mdi:lock-alert'
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          color: black
+          margin-right: '-10%'
+          right: 22%
+          top: 87%
+        tap_action:
+          action: call-service
+          service: xiaomi_miio.fan_set_child_lock_on
+          service_data:
+            entity_id: fan.sophies_room_air_purifier   
+      - type: icon
+        icon: 'mdi:bell-off-outline'
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          color: black
+          right: 3%
+          top: 68%
+        tap_action:
+          action: call-service
+          service: xiaomi_miio.fan_set_buzzer_off
+          service_data:
+            entity_id: fan.sophies_room_air_purifier
+      - type: icon
+        icon: 'mdi:lock-open-outline'
+        style:
+          '--iron-icon-height': 22px
+          '--iron-icon-width': 22px
+          color: black
+          right: 3%
+          top: 87%
+        tap_action:
+          action: call-service
+          service: xiaomi_miio.fan_set_child_lock_off
+          service_data:
+            entity_id: fan.sophies_room_air_purifier

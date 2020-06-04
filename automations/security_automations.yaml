@@ -28,7 +28,7 @@
         entity_id: sensor.alarm_state_3_motion_sensors
         state: 'triggered'  
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "House Watch"
       message: "There's a Person in Front of the House"
@@ -39,6 +39,7 @@
             critical: 1
             volume: 1.0
           category: camera
+          thread-id: "security"
         entity_id: camera.front_last_person
 
 #      - condition: template
@@ -74,7 +75,7 @@
         entity_id: sensor.alarm_state_3_motion_sensors
         state: 'triggered'
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "House Watch"
       message: "There's a Person in Back of the House"
@@ -85,6 +86,7 @@
             critical: 1
             volume: 1.0
           category: camera
+          thread-id: "security"
         entity_id: camera.back_last_person
 
 
@@ -118,7 +120,7 @@
         entity_id: sensor.alarm_state_3_motion_sensors
         state: 'triggered'  
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "House Watch"
       message: "There's a Person on the Left Side of the House"
@@ -129,6 +131,7 @@
             critical: 1
             volume: 1.0
           category: camera
+          thread-id: "security"
         entity_id: camera.left_last_person
 
 - id: person_on_right
@@ -160,7 +163,7 @@
         entity_id: sensor.alarm_state_3_motion_sensors
         state: 'triggered'  
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "House Watch"
       message: "There's a Person on the Right Side of the House"
@@ -171,6 +174,7 @@
             critical: 1
             volume: 1.0
           category: camera
+          thread-id: "security"
         entity_id: camera.right_last_person
         title: hello
 
@@ -190,7 +194,7 @@
 #    - condition: template
 #      value_template: "{{ states.device_tracker.sean_s_iphone_x.state != 'home' }}"
 #  action:
-#    service: notify.ios_seans_iphone_x
+#    service: notify.mobile_app_sean_s_iphone_x
 #    data:
 #      title: "House Watch"
 #      message: "There's a Person in Front of the House"
@@ -214,7 +218,7 @@
 #    - condition: template
 #      value_template: "{{ states.device_tracker.sean_s_iphone_x.state != 'home' }}"
 #  action:
-#    service: notify.ios_seans_iphone_x
+#    service: notify.mobile_app_sean_s_iphone_x
 #    data:
 #      title: "House Watch"
 #      message: "There's a Person in Back of the House"
@@ -238,7 +242,7 @@
 #    - condition: template
 #      value_template: "{{ states.device_tracker.sean_s_iphone_x.state != 'home' }}"
 #  action:
-#    service: notify.ios_seans_iphone_x
+#    service: notify.mobile_app_sean_s_iphone_x
 #    data:
 #      title: "House Watch"
 #      message: "There's a Person on the Left Side of the House"
@@ -262,7 +266,7 @@
 #    - condition: template
 #      value_template: "{{ states.device_tracker.sean_s_iphone_x.state != 'home' }}"
 #  action:
-#    service: notify.ios_seans_iphone_x
+#    service: notify.mobile_app_sean_s_iphone_x
 #    data:
 #      title: "House Watch"
 #      message: "There's a Person on the Right Side of the House"
@@ -282,7 +286,7 @@
 #    entity_id: 'device_tracker.sean_s_iphone_x'
 #    state: 'home'
 #  action:
-#    service: notify.ios_seans_iphone_x
+#    service: notify.mobile_app_sean_s_iphone_x
 #    data:
 #      title: "House Watch"
 #      message: "There's a Car in Front of the House"
@@ -413,11 +417,13 @@
     entity_id: sensor.alarm_state_3_motion_sensors
     state: armed_away
   action:
-    service: notify.ios_alenas_iphone
+    service: notify.mobile_app_alena_s_iphone
     data:
       title: "Warning: Alarm On"
       message: "The alarm is turned on. Remember to turn it off before opening the door."
-      
+      push:
+        thread-id: "security"
+
 - id: alarm_is_on_sean_home
   alias: 'Alarm is on - Sean is home'
   initial_state: 'true'
@@ -430,10 +436,12 @@
     entity_id: sensor.alarm_state_3_motion_sensors
     state: armed_away
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "Warning: Alarm On"
       message: "The alarm is turned on. Remember to turn it off before opening the door."
+      push:
+        thread-id: "security"
       
 - id: alarm_turned_on_alena
   alias: 'Alarm turned on notification - Alena'
@@ -446,10 +454,12 @@
       entity_id: sensor.alarm_state_3_motion_sensors
       to: 'armed'
   action:
-    service: notify.ios_alenas_iphone
+    service: notify.mobile_app_alena_s_iphone
     data:
       title: "Alarm is On At Home"
       message: "The alarm has been activated at home"
+      push:
+        thread-id: "security"
   
 - id: alarm_turned_off_alena
   alias: 'Alarm turned off notification - Alena'
@@ -464,10 +474,12 @@
       from: 'armed'
       to: 'disarmed'
   action:
-    service: notify.ios_alenas_iphone
+    service: notify.mobile_app_alena_s_iphone
     data:
       title: "Alarm is Off At Home"
       message: "The alarm has been turned off at home"
+      push:
+        thread-id: "security"
       
 - id: alarm_turned_on_sean
   alias: 'Alarm turned on notification - Sean'
@@ -483,11 +495,13 @@
     condition: template
     value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "Alarm is On At Home"
       message: "The alarm has been activated at home"
-  
+      push:
+        thread-id: "security"
+        
 - id: alarm_turned_off_sean
   alias: 'Alarm turned off notification - Sean'
   initial_state: 'true'
@@ -501,10 +515,12 @@
       from: 'armed'
       to: 'disarmed'
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "Alarm is Off At Home"
       message: "The alarm has been turned off at home"
+      push:
+        thread-id: "security"
 
 - id: alarm_triggered
   alias: 'Alarm is triggered'
@@ -524,6 +540,8 @@
     data:
       title: "!!Alarm Triggered!!"
       message: "The alarm at home has been triggered and is now alarming!"
+      push:
+        thread-id: "security"
 
 - id: sensor_notification
   alias: 'Sensor Notification'
@@ -548,10 +566,12 @@
       entity_id: binary_sensor.play_room_zone_3
       to: 'on'
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "Activity Notification"
       message: "Activity Notification"
+      push:
+        thread-id: "security"
 
 - id: popup_on_kiosk_back
   alias: 'Popup on Kiosk Back'

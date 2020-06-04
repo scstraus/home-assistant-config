@@ -10,6 +10,7 @@
 !lovelace
 !python_scripts/
 !python_scripts/**
+!themes
 
 # Ignore folders.
 .storage

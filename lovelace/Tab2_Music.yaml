@@ -9,13 +9,14 @@ cards:
 
 
 
-
+  - type: media-control
+    entity: media_player.itunes 
 
   - type: custom:vertical-stack-in-card
     cards:
 
-    - type: media-control
-      entity: media_player.itunes 
+    # - type: media-control
+    #   entity: media_player.itunes 
 
 #      - entity: media_player.itunes
 #        type: custom:mini-media-player

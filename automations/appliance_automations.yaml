@@ -96,10 +96,12 @@
     from: 'Running'
     to: 'Clean'
   action:
-    service: notify.ios_alenas_iphone
+    service: notify.mobile_app_alena_s_iphone
     data:
       title: "Dishwasher Update"
       message: "Dishes Are Clean"
+      push:
+        thread-id: "appliances"
 
 
 - id: fire_notify_clean_dishes
@@ -192,7 +194,7 @@
   - data:
       title: "Dishwasher Update"
       message: "Looks like you left the dishwasher door open"
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
 
 
 ################### MIELE WASHING MACHINE ####################
@@ -370,10 +372,12 @@
     entity_id: input_select.miele_washing_machine_status
     to: 'Clean'
   action:
-    service: notify.ios_alenas_iphone
+    service: notify.mobile_app_alena_s_iphone
     data:
       title: "Miele Washing Machine Update"
       message: "Laundry is Done"
+      push:
+        thread-id: "appliances"
 
 
 ################### LG WASHING MACHINE ####################
@@ -491,10 +495,12 @@
     entity_id: input_select.lg_washing_machine_status
     to: 'Clean'
   action:
-    service: notify.ios_alenas_iphone
+    service: notify.mobile_app_alena_s_iphone
     data:
       title: "LG Washing Machine Update"
       message: "Laundry is Done"
+      push:
+        thread-id: "appliances"
       
       
       

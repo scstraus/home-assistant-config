@@ -1912,7 +1912,7 @@ automation:
     entity_id: input_select.dishwasher_status
     to: 'Clean'
   action:
-    service: notify.ios_alenas_iphone
+    service: notify.mobile_app_alena_s_iphone
     data:
       title: "Dishwasher Update"
       message: "Dishes Are Clean"

@@ -1457,7 +1457,7 @@
     value_template: >
       {{ if (states('sensor.dark_sky_wind_gust_1h')|float > 20) or (states('sensor.dark_sky_wind_gust_2h')|float > 20) or (states('sensor.dark_sky_wind_gust_3h')|float > 20) or (states('sensor.dark_sky_wind_gust_4h')|float > 20) or (states('sensor.dark_sky_wind_gust_5h')|float > 20) or (states('sensor.dark_sky_wind_gust_6h')|float > 20) or (states('sensor.dark_sky_wind_gust_7h')|float > 20) or (states('sensor.dark_sky_wind_gust_8h')|float > 20) or (states('sensor.dark_sky_wind_gust_9h')|float > 20) }}
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "High Winds Warning"
     data_template:

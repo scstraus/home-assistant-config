@@ -245,15 +245,15 @@
       alenas_phone_battery:
         friendly_name: "Alena's Phone Battery"
         value_template: >-
-          {% if is_state('sensor.alena_battery_state', 'Charging') %}
+          {% if is_state('sensor.alenas_phone_battery', 'Charging') %}
             Charging
-          {% elif states('sensor.alena_battery_level')|float < 15 %}
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 15 %}
             Very Low
-          {% elif states('sensor.alena_battery_level')|float < 25 %}
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 25 %}
             Low
-          {% elif states('sensor.alena_battery_level')|float < 40 %}
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 40 %}
             Needs Charging
-          {% elif states('sensor.alena_battery_level')|float < 70 %}
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 70 %}
             Good
           {% else %}
             Charged
@@ -1815,51 +1815,51 @@
     sensors:
       sophies_room_purifier_fan_mode:
          friendly_name: "Mode"
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.speed }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.speed }}"
       sophies_room_purifier_fan_speed:
          friendly_name: "Motor speed"
          unit_of_measurement: 'rpm'
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.motor_speed }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.motor_speed }}"
       sophies_room_purifier_temperature:
          friendly_name: "Temperature"
          unit_of_measurement: 'C°'
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.temperature }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.temperature }}"
       sophies_room_purifier_humidity:
          friendly_name: "Humidity"
          unit_of_measurement: '%'
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.humidity }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.humidity }}"
       sophies_room_purifier_aqi:
          friendly_name: "Air Quality Index"
          unit_of_measurement: 'aqi'
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.aqi }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.aqi }}"
       sophies_room_purifier_favspeed:
          friendly_name: "Favourite Level"
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.favorite_level }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.favorite_level }}"
       sophies_room_purifier_filter_hours_used:
          friendly_name: "Hours Used"
          unit_of_measurement: 'h'
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.filter_hours_used }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.filter_hours_used }}"
       sophies_room_purifier_filter_life_remaining:
          friendly_name: "Filter"
          unit_of_measurement: '%'
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.filter_life_remaining }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.filter_life_remaining }}"
       sophies_room_purifier_child_lock:
          friendly_name: "Child Lock"
          value_template: "{{ states. fan.sophies_room_air_purifier.attributes.child_lock }}"
       sophies_room_purifier_display:
          friendly_name: "Display"
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.led }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.led }}"
       sophies_room_purifier_button_pressed:
          friendly_name: "Button Pressed"
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.button_pressed }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.button_pressed }}"
       sophies_room_purifier_buzzer:
          friendly_name: "Buzzer"
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.buzzer }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.buzzer }}"
       sophies_room_purifier_filter_type:
          friendly_name: "Filter Type"
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.filter_type }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.filter_type }}"
       sophies_room_purifier_ligt_sensor:
          friendly_name: "Light Sensor"
          unit_of_measurement: 'lux'
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.illuminance }}"
+         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.illuminance }}"
 

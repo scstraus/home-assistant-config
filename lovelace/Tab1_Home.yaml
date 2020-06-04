@@ -209,10 +209,10 @@ cards:
     - zwave.neo_coolcam_unknown_type_0200_id_1027
     - zwave.popp_unknown_type_0004_id_0014
     - binary_sensor.alarm_connection
-    - sensor.status_smart_sda
-    - sensor.status_smart_sdb
-    - sensor.status_smart_sdc
-    - sensor.status_smart_sdd
+    - sensor.discworld_status_smart_sda
+    - sensor.discworld_status_smart_sdb
+    - sensor.discworld_status_smart_sdc
+    - sensor.discworld_status_smart_sdd
     - zwave.sebastian_room_left_window
     - zwave.basement_flood_sensor
     - zwave.sophies_room_ceiling_window
@@ -249,6 +249,7 @@ cards:
     - sensor.basement_nest_protect_battery_health
     - sensor.seans_phone_battery
 #    - sensor.alenas_phone_battery
+    - sensor.sophies_iphone_6_battery_level
     - sensor.closet_window_sensor_1_battery
     - sensor.back_door_sensor_battery
     - sensor.sophies_phone_battery
@@ -273,10 +274,10 @@ cards:
   #      - sensor.dpd_packages_coming_today
   #      - sensor.dhl_packages_coming_today
     - sensor.bike_day
-    - sensor.object_detection_front
-    - sensor.object_detection_left
-    - sensor.object_detection_right
-    - sensor.object_detection_back
+    # - sensor.object_detection_front
+    # - sensor.object_detection_left
+    # - sensor.object_detection_right
+    # - sensor.object_detection_back
     - binary_sensor.back_door
   #      - binary_sensor.guest_bedroom_window_1
     - binary_sensor.garage_door

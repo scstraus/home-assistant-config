@@ -596,10 +596,12 @@
   - condition: template
     value_template: "{{ not is_state('device_tracker.sean_s_iphone_x', 'Traveling') }}"
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "Alena Left Yoga"
       message: "Alena Left Yoga"
+      push:
+        thread-id: "location"
 
 - id: alenas_home
   alias: 'Alena is Home'
@@ -617,10 +619,12 @@
       - condition: template
         value_template: "{{ (as_timestamp(now())-as_timestamp(states.device_tracker.sean_s_iphone_x.last_changed)) > 120 }}"
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "Alena's Home"
       message: "Alena's Almost Arrived"
+      push:
+        thread-id: "location"
 
 - id: traveling
   alias: 'Traveling'
@@ -763,11 +767,12 @@
          (now().strftime('%M')|int <= 36 and
          now().strftime('%M')|int >= 28)) and (not is_state('sensor.sean_activity', 'Automotive')) }}
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "Ferry Notification"
       message: "It's a good time to grab the ferry to work"
-
+      push:
+        thread-id: "location"
 
 - alias: 'Good Time For Ferry from Work'
   initial_state: 'true'
@@ -785,10 +790,12 @@
          (now().strftime('%M')|int <= 40 and
          now().strftime('%M')|int >= 32) }}
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "Ferry Notification"
       message: "It's a good time to grab the ferry from work"
+      push:
+        thread-id: "location"
 
 - id: alenas_home
   alias: 'Alena is Heading Home'
@@ -804,11 +811,12 @@
     entity_id: device_tracker.sean_s_iphone_x
     state: 'home'
   action:
-    service: notify.ios_seans_iphone_x
+    service: notify.mobile_app_sean_s_iphone_x
     data:
       title: "Alena's Heading Home"
       message: "Alena is Heading Home and should arrive in about {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving"
-
+      push:
+        thread-id: "location"
 
 - id: traveling_2
   alias: 'Traveling 2'
