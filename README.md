@@ -316,3 +316,11 @@ I've got it working for the winter when the heating is in auto (schedule) mode b
 
 So, you can see a lot of commented out lines here. I used to have a bunch of automations that did this, but as I fine tuned the cases more, it just became easier and much more understandable when laid out in python code. So, now I just have one automation here which calls my python script at 12:30 AM every day and sets the temperature for the next 24 hours if it's going to be warm enough that the house will warm itself up during the day. I won't bother describing all the rules here because [I documented the python script pretty well, and it's pretty readable if you want to take a look](https://github.com/scstraus/home-assistant-config/blob/master/python_scripts/set_heat_weather_override.py). It publishes what heating profile it chose to my [heating lovelace tab at the bottom](https://raw.githubusercontent.com/scstraus/home-assistant-config/master/readme_images/Tab3_heat.png) via some input_selects.
 
+
+## [Location Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml)
+
+
+## [Security Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/security_automations.yaml)
+
+
+## [Other Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/other_automations.yaml)
