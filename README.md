@@ -16,7 +16,7 @@ There are a lot of other little things that I've not seen anyone else do, but I 
 
 Click the header links to be taken to the relevant file.
 
-## [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
+# [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
 So the first thing you might notice is that I use [custom header](https://github.com/maykar/custom-header) to shrink down the header and change it's color. I also simplify some of the views for my family and kiosks by removing the sidebar. 
 
@@ -253,3 +253,13 @@ Here is the system status of my Synology NAS that runs my Plex and Frigate insta
   (current battery levels and disk use)
 
 - [entities card](https://www.home-assistant.io/lovelace/entities/) 
+
+
+# Automations
+
+Automations are divided into a few files to keep file size ~1000 lines, they are good categories to divide by too, so each category below is a link to a file.
+
+## [Appliance Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/appliance_automations.yaml#L1-L88)
+
+This is everything having to do with automating appliances. Much of this is simply deriving the state of the appliance based on the data we have and sending notifications, but also we do things like run air purfiers based on the air quality outside. More detail below.
+
