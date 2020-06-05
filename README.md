@@ -273,7 +273,7 @@ Then based on the clean and dirty dishes, I have [some automations to yell at yo
 
 ### [Using Zwave power report to determine Miele washing machine state](https://github.com/scstraus/home-assistant-config/blob/master/automations/appliance_automations.yaml#L200-L380)
 
-This one is an idea [I got from this excellent guide](https://philhawthorne.com/making-dumb-dishwashers-and-washing-machines-smart-alerts-when-the-dishes-and-clothes-are-cleaned/) about how to make dumb dishwashers smart with a power monitoring smart plug.
+This one is an idea [I got from this excellent guide](https://philhawthorne.com/making-dumb-dishwashers-and-washing-machines-smart-alerts-when-the-dishes-and-clothes-are-cleaned/) from [Phil Hawthorne of hass podcast fame](https://philhawthorne.com) about how to make dumb dishwashers smart with a power monitoring smart plug.
 
 Basically, it just watches the power utilization for certain spikes and troughs which indicate it's moving through it's washing cycle until it's able to determine that the clothes are clean and then it sends us a notification so that we know it's time to hang the clothes or put it in the dryer. It works pretty well. It would need some kind of door sensor to tell if it was empty or not, but that's not so important, it does the job.
 
