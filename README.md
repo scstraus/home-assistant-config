@@ -3,7 +3,7 @@
 
 Last update: June 2, 2020 (Hass v.107.7)
 
-Hello there. This is an incomplete and probably out of date description of what I'm doing with home assistant, but hopefully it will be of some use for ideas and samples to someone. In some places here I try to link to specific places in the relevant code in the config files. I can't promise all of the highlighted code blocks will be the right ones. If the link looks like it's going to the wrong part of the file, it's because I updated the file without updating the link, just go look elsewhere in that file.
+Hello there. This is an incomplete and probably out of date description of what I'm doing with home assistant, but hopefully it will be of some use for ideas and samples to someone.
 
 Some things that may be interesting to you from my config which are not so common or are unique from how much I've obsessed over them are the:
 
@@ -14,7 +14,7 @@ Some things that may be interesting to you from my config which are not so commo
 
 There are a lot of other little things that I've not seen anyone else do, but I don't want to clutter up the intro too much, so more easter eggs inside. I've tried to include enough description and links to relevant items that you might be able to understand and replicate what I've done. 
 
-Click the header links to be taken to the relevant file.
+Click the header links to be taken to the current version of the relevant file. In some places I link to highlighted parts of a file to show you what config block I'm talking about. Keep in mind that I only refresh those when I write the documentation, so they are likely pointing to an older version of the file than the header links linking to the whole file and there may have been changes/fixes. So if you want to see the current file, use a link to the whole file or just choose it from the file list at the top.
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
