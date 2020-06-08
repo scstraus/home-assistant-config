@@ -328,6 +328,10 @@ Our fireplace warms up the rooms near it a lot so I want the heating off while (
 
 So this one is similar to the one for staying home from school, but I trigger it manually because I don't always go to work at exactly the same time. Sometimes I will work from home only part of the day. But since COVID-19, I've been staying home every day, so it just stays on and heats the office every day.
 
+### [Getting notified of extremely windy weather](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/automations/climate_automations.yaml#L1449-L1485)
+
+Sometimes it gets really windy here and blows all our stuff around. This one warns me of that situation. Though it's never triggered so it either hasn't gotten that windy yet or it doesn't work ;-). More testing needed on this one.
+
 ## [Location Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml)
 
 
