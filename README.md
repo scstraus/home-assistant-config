@@ -360,6 +360,35 @@ So, when I'm riding my bike to work, there are some really nice ferries that I c
 
 ### [Notify me if someone is spotted on our property while we are away or asleep](https://github.com/scstraus/home-assistant-config/blob/6027951c351dbc1df1938c6d099aa1b3218a8039/automations/security_automations.yaml#L2-L180)
 
-Using the excellent tensorflow object detection in [Blake Blashear](https://github.com/blakeblackshear)'s excellent [Frigate](https://github.com/blakeblackshear/frigate), our cameras are scanning 5 times a second for people. If our alarm is on or it's during the times we sleep and it find ones, it will send an emergency notification to our phone which bypasses do not disturb and sends us a picture in the notification of the person it found. I've been tweaking this over a year or so and it's really solid now. It's almost impossible to sneak past the detection and it gives near zero false positives. It's pretty damned impressive. I will try to post some videos of it in action sometime.
+Using the excellent realtime tensorflow object detection in [Blake Blashear](https://github.com/blakeblackshear)'s excellent [Frigate](https://github.com/blakeblackshear/frigate), our cameras are scanning 5 times a second for people. If our alarm is on or it's during the times we sleep and it find ones, it will send an emergency notification to our phone which bypasses do not disturb and sends us a picture in the notification of the person it found. I've been tweaking this over a year or so and it's really solid now. It's pretty much impossible to sneak past the detection and it gives near zero false positives. It's pretty damned impressive. I will try to post some videos of it in action sometime.
+
+### [Turn off the PIR outdoor security lights if it's too windy](https://github.com/scstraus/home-assistant-config/blob/6027951c351dbc1df1938c6d099aa1b3218a8039/automations/security_automations.yaml#L298-L328)
+
+The front security lights that are activated by PIR start turning on all the time if it gets windy and that annoys the neighbors. So we have a fibaro switch on them to turn them off automatically if it gets too windy. They turn on again for the next day. However, even if they have been switched off, they will turn back on if a person is spotted. As the human detection works very well under IR light (we have very good external IR illumination), it's not really a loss to have the lights triggered by human detection rather than PIR. It's much more accurate and pretty much catches everything anyway. Fortunately when the lights are turned on they automatically go to a turned on state, so we don't even have to wait for the PIR to detect something again.
+
+###[Get notified if someone else turns the alarm on while you aren't home](https://github.com/scstraus/home-assistant-config/blob/6027951c351dbc1df1938c6d099aa1b3218a8039/automations/security_automations.yaml#L408-L529)
+
+This can avoid accidentally tripping the alarm when you get home because you didn't realize someone else had armed it.
+
+###[Get notified if the alarm is triggered](https://github.com/scstraus/home-assistant-config/blob/6027951c351dbc1df1938c6d099aa1b3218a8039/automations/security_automations.yaml#L531-L551)
+
+This allows us to check the situation before the security company calls and asks if they need to send the bruisers.
+
+
+###[Pop up the camera feed on my kiosk tablets if it sees someone outside](https://github.com/scstraus/home-assistant-config/blob/6027951c351dbc1df1938c6d099aa1b3218a8039/automations/security_automations.yaml#L584-L800)
+
+This one automatically pulls up the camera feed on the kiosk tablets if a person is spotted outside. Handy for watching the kids while we are inside and they are out.
+
+###[History of last door or window which was activated](https://github.com/scstraus/home-assistant-config/blob/6027951c351dbc1df1938c6d099aa1b3218a8039/automations/security_automations.yaml#L814-L885)
+
+This apparently keeps a history of the last doors and windows that were activated.. I don't think I need it now that I'm using the Home Feed Card for this.. Maybe I had planned to see if this would be faster than the home feed which is a bit slow.. I guess I should either comment it out or test it.
+
+###[Tell my synology security station to start recording if a human is detected](https://github.com/scstraus/home-assistant-config/blob/6027951c351dbc1df1938c6d099aa1b3218a8039/automations/security_automations.yaml#L887-L921)
+
+The synology security station already records using motion detection, but this is an extra trigger which tells it to record when a human is detected. This ensures I don't miss any humans even if somehow the motion detection wasn't triggered (which is very rare). But it gives an added capability too, which is being able to filter the recordings only by ones where humans were detected. That means I can quickly scan only which humans were seen. If I turn up the speed, I can see all of them in a few minutes for a whole week.
+
+###[Generate snapshots of the last 10 humans detected for the swipe card on lovelace](https://github.com/scstraus/home-assistant-config/blob/6027951c351dbc1df1938c6d099aa1b3218a8039/automations/security_automations.yaml#L923-L981)
+
+This and a shell script populates the snapshots of the camera feeds which show the static photos of people who had been detected with the human detection. That way I can swipe through the last 10 detected on each camera using the [swiper card](https://github.com/bramkragten/custom-ui/tree/master/swipe-card).
 
 ## [Other Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/other_automations.yaml)
