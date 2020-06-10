@@ -227,8 +227,9 @@
     data:
       title: "Power is Out at Home"
       message: "There's been a power cut at home. Electricity is now off"
-      push:
-        thread-id: "error"
+      data:
+        push:
+          thread-id: "error"
 
 - id: power_restored
   alias: 'Power is restored'
@@ -242,8 +243,9 @@
     data:
       title: "Power Restored at Home"
       message: "Electricity has been powered back on at home"
-      push:
-        thread-id: "location"
+      data:
+        push:
+          thread-id: "location"
 
 - id: moldy_conditions
   alias: 'Moldy Conditions'
@@ -257,8 +259,9 @@
     data:
       title: "Mold Detector"
       message: "There are conditions for mold formation under the sink right now"
-      push:
-        thread-id: "error"  
+      data:
+        push:
+          thread-id: "error"  
    
 - id: internet_upload_limited
   alias: 'Internet Upload is Limited'   
@@ -271,8 +274,9 @@
     data:
       title: "Internet is Severely Limited"
       message: "The upload speed of the internet is below 250kbit"
-      push:
-        thread-id: "error"
+      data:
+        push:
+          thread-id: "error"
   
 - id: internet_upload_normal
   alias: 'Internet Upload is Normal' 
@@ -285,8 +289,9 @@
     data:
       title: "Internet is Normal"
       message: "The upload speed of the internet is above 1 mbit"
-      push:
-        thread-id: "error" 
+      data:
+        push:
+          thread-id: "error" 
 
 - id: sophie_up_late
   alias: 'Sophie up late'
@@ -321,8 +326,9 @@
     data:
       title: "Sophie is Up Late"
       message: "Sophie is Up Late"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
 
 #          - condition: time
 #            after: '21:30:00'
@@ -389,8 +395,9 @@
     data:
       title: "Bio Odpad Tomorrow"
       message: "Bio odpad should be taken out tonight or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} Morning"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
 
 - id: bio_odpad_day_tomorrow_alena
   alias: 'Bio Odpad Day'
@@ -409,8 +416,9 @@
     data:
       title: "Bio Odpad Tomorrow"
       message: "Bio odpad should be taken out today or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} Morning"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
 
 - id: trash_day_tomorrow_sean
   alias: 'Trash Day'
@@ -431,8 +439,9 @@
     data:
       title: "Trash Tomorrow"
       message: "Trash should be taken out tonight or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} Morning"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
 
 - id: trash_day_tomorrow_alena
   alias: 'Trash Day'
@@ -451,8 +460,9 @@
     data:
       title: "Trash Tomorrow"
       message: "Trash should be taken out today or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} Morning"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
 
 - id: bio_odpad_day_today_sean
   alias: 'Bio Odpad Day'
@@ -473,8 +483,9 @@
     data:
       title: "Bio Odpad Today"
       message: "Bio odpad should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} Morning"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
         
 - id: bio_odpad_day_today_alena
   alias: 'Bio Odpad Day'
@@ -493,8 +504,9 @@
     data:
       title: "Bio Odpad Today"
       message: "Bio odpad should be taken out today for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} Morning"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
         
 
 - id: trash_day_today_sean
@@ -520,8 +532,9 @@
     data:
       title: "Trash Day Today"
       message: "Trash should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} Morning"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
         
 - id: trash_day_today_alena
   alias: 'Trash Day'
@@ -540,8 +553,9 @@
     data:
       title: "Trash Day Today"
       message: "Trash should be taken out today for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} Morning"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
 
 - alias: 'update_bio_odpad_sensor'
   trigger:
@@ -593,8 +607,9 @@
     data:
       title: "Basement Flooding"
       message: "The basement is flooding"
-      push:
-        thread-id: "error"
+      data:
+        push:
+          thread-id: "error"
 
 - id: basement_flooding_2
   alias: 'Basement Flooding 2'
@@ -611,8 +626,9 @@
     data:
       title: "Basement Flooding"
       message: "The basement is flooding"
-      push:
-        thread-id: "error"
+      data:
+        push:
+          thread-id: "error"
 
 - id: automatic_theme_change
   alias: Automatic Theme Change
@@ -739,8 +755,9 @@
     data:
       title: "State Holiday Coming Up"
       message: "In one week, it is {{ states('sensor.czech_holidays_event_0')}}"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
 
 - id: state_holiday_tomorrow
   alias: 'Notify - 1 Day to State Holiday'
@@ -756,8 +773,9 @@
     data:
       title: "State Holiday Coming Up"
       message: "Tomorrow it is {{ states('sensor.czech_holidays_event_0')}}"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
 
 - id: state_holiday_today
   alias: 'Notify - Today is State Holiday'
@@ -773,8 +791,9 @@
     data:
       title: "State Holiday Today"
       message: "Today it is {{ states('sensor.czech_holidays_event_0')}}, you don't need to go to work!"
-      push:
-        thread-id: "info"
+      data:
+        push:
+          thread-id: "info"
 
 - id: mini_countryman_clima_on
   alias: 'Turn on Car Clima'
@@ -902,8 +921,9 @@
     data:
       title: "RAID Warning"
       message: "The RAID Array on Narnia is Degraded"
-      push:
-        thread-id: "error"
+      data:
+        push:
+          thread-id: "error"
 
 - id: run_speedtest
   alias: run_speedtest

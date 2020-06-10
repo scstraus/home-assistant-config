@@ -100,8 +100,9 @@
     data:
       title: "Dishwasher Update"
       message: "Dishes Are Clean"
-      push:
-        thread-id: "appliances"
+      data:
+        push:
+          thread-id: "appliances"
 
 
 - id: fire_notify_clean_dishes
@@ -376,8 +377,9 @@
     data:
       title: "Miele Washing Machine Update"
       message: "Laundry is Done"
-      push:
-        thread-id: "appliances"
+      data:
+        push:
+          thread-id: "appliances"
 
 
 ################### LG WASHING MACHINE ####################
@@ -499,8 +501,9 @@
     data:
       title: "LG Washing Machine Update"
       message: "Laundry is Done"
-      push:
-        thread-id: "appliances"
+      data:
+        push:
+          thread-id: "appliances"
       
       
       

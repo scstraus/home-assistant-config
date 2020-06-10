@@ -41,6 +41,7 @@
           category: camera
           thread-id: "security"
         entity_id: camera.front_last_person
+        clickAction: '/lovelace/4'
 
 #      - condition: template
 #        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
@@ -88,8 +89,7 @@
           category: camera
           thread-id: "security"
         entity_id: camera.back_last_person
-
-
+        clickAction: '/lovelace/4'
 
 - id: person_on_left
   alias: Person On Left
@@ -133,6 +133,7 @@
           category: camera
           thread-id: "security"
         entity_id: camera.left_last_person
+        clickAction: '/lovelace/4'
 
 - id: person_on_right
   alias: Person On Right
@@ -176,8 +177,7 @@
           category: camera
           thread-id: "security"
         entity_id: camera.right_last_person
-        title: hello
-
+        clickAction: '/lovelace/4'
 
 #- id: person_in_front_hassbian
 #  alias: Person In Front
@@ -421,8 +421,9 @@
     data:
       title: "Warning: Alarm On"
       message: "The alarm is turned on. Remember to turn it off before opening the door."
-      push:
-        thread-id: "security"
+      data:
+        push:
+          thread-id: "security"
 
 - id: alarm_is_on_sean_home
   alias: 'Alarm is on - Sean is home'
@@ -440,8 +441,9 @@
     data:
       title: "Warning: Alarm On"
       message: "The alarm is turned on. Remember to turn it off before opening the door."
-      push:
-        thread-id: "security"
+      data:
+        push:
+          thread-id: "security"
       
 - id: alarm_turned_on_alena
   alias: 'Alarm turned on notification - Alena'
@@ -458,8 +460,9 @@
     data:
       title: "Alarm is On At Home"
       message: "The alarm has been activated at home"
-      push:
-        thread-id: "security"
+      data:
+        push:
+          thread-id: "security"
   
 - id: alarm_turned_off_alena
   alias: 'Alarm turned off notification - Alena'
@@ -478,8 +481,9 @@
     data:
       title: "Alarm is Off At Home"
       message: "The alarm has been turned off at home"
-      push:
-        thread-id: "security"
+      data:
+        push:
+          thread-id: "security"
       
 - id: alarm_turned_on_sean
   alias: 'Alarm turned on notification - Sean'
@@ -499,8 +503,9 @@
     data:
       title: "Alarm is On At Home"
       message: "The alarm has been activated at home"
-      push:
-        thread-id: "security"
+      data:
+        push:
+          thread-id: "security"
         
 - id: alarm_turned_off_sean
   alias: 'Alarm turned off notification - Sean'
@@ -519,8 +524,9 @@
     data:
       title: "Alarm is Off At Home"
       message: "The alarm has been turned off at home"
-      push:
-        thread-id: "security"
+      data:
+        push:
+          thread-id: "security"
 
 - id: alarm_triggered
   alias: 'Alarm is triggered'
@@ -540,8 +546,9 @@
     data:
       title: "!!Alarm Triggered!!"
       message: "The alarm at home has been triggered and is now alarming!"
-      push:
-        thread-id: "security"
+      data:
+        push:
+          thread-id: "security"
 
 - id: sensor_notification
   alias: 'Sensor Notification'
@@ -570,8 +577,9 @@
     data:
       title: "Activity Notification"
       message: "Activity Notification"
-      push:
-        thread-id: "security"
+      data:
+        push:
+          thread-id: "security"
 
 - id: popup_on_kiosk_back
   alias: 'Popup on Kiosk Back'

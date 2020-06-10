@@ -465,6 +465,7 @@ cards:
         numberOfDays: 3
         hidePastEvents: true
         hideHeader: true
+        timeFormat: 'hh:mm a'
 
 
 #      type: conditional

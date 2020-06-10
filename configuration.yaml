@@ -1365,7 +1365,7 @@ alert:
       push:
         sound:
           name: "EN-US-Daisy-Garage-Door-Open.wav"
-#        thread-id: "info"
+        thread-id: "info"
     notifiers:
       - mobile_app_alena_s_iphone
 
@@ -1383,9 +1383,9 @@ alert:
     skip_first: true
     data:
       push:
-#        thread-id: "info"
         sound:
           name: "EN-US-Daisy-Garage-Door-Open.wav"
+        thread-id: "info"
     notifiers:
       - mobile_app_sean_s_iphone_x
 #    entity_id: binary_sensor.garage_door_zone_14
@@ -1405,7 +1405,7 @@ alert:
       push:
         sound:
           name: "EN-US-Daisy-Front-Door-Open.wav"
-#        thread-id: "info"
+        thread-id: "info"
     notifiers:
       - mobile_app_alena_s_iphone
 
@@ -1424,7 +1424,7 @@ alert:
       push:
         sound:
           name: "EN-US-Daisy-Front-Door-Open.wav"
-#        thread-id: "info"
+        thread-id: "info"
     notifiers:
       - mobile_app_sean_s_iphone_x
 
@@ -1442,9 +1442,9 @@ alert:
     skip_first: true
     notifiers:
       - mobile_app_alena_s_iphone
-#    data:
-#      push:
-#        thread-id: "weather"
+    data:
+      push:
+        thread-id: "weather"
 
   sebastian_window_rain_warning_sean:
     name: Sebastian's room window is open and it might rain.
@@ -1460,9 +1460,9 @@ alert:
     skip_first: true
     notifiers:
       - mobile_app_sean_s_iphone_x
-#    data:
-#      push:
-#        thread-id: "weather"
+    data:
+      push:
+        thread-id: "weather"
 
   sophies_window_rain_warning_alena:
     name: Sophie's room window is open and it might rain.
@@ -1478,9 +1478,9 @@ alert:
     skip_first: true
     notifiers:
       - mobile_app_alena_s_iphone
-#    data:
-#      push:
-#        thread-id: "weather"
+    data:
+      push:
+        thread-id: "weather"
 
   sophies_window_rain_warning_sean:
     name: Sophie's room window is open and it might rain.
@@ -1496,9 +1496,9 @@ alert:
     skip_first: true
     notifiers:
       - mobile_app_sean_s_iphone_x
-#    data:
-#      push:
-#        thread-id: "weather"
+    data:
+      push:
+        thread-id: "weather"
 
   trash_needs_to_be_taken_out:
     name: "It's trash day and the trash still needs to be taken out!"
@@ -1511,11 +1511,12 @@ alert:
     notifiers:
       - mobile_app_sean_s_iphone_x
     data:
-      title: "The trash Needs to be Taken Out"
-      message: "It's trash day and the trash still needs to be taken out!"
       push:
         category: "trash"
-#        thread-id: "info"
+        thread-id: "info"
+
+#      title: "The trash Needs to be Taken Out"
+#      message: "It's trash day and the trash still needs to be taken out!"
 
 input_number:
   living_room_last_temp:
