@@ -334,6 +334,23 @@ Sometimes it gets really windy here and blows all our stuff around. This one war
 
 ## [Location Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml)
 
+### [Setting my location and direction of travel based on complex rules](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/automations/location_automations.yaml#L1-L585)
+
+[More of the rules are here](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml#L629-L726) and [here](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml#L821-L832) 
+
+As one of the most frequently asked questions of my family is "where are you and when will you be home?", I made some rather complex logic to inform them where I was and if I was heading home or to somewhere else. This answers this question in mostly the same way I would based on which zones I've traveled thorough most recently. This is displayed on my main screen as my location and they can ask Alexa the same. Time to home is calculated using Google and they can also access that by clicking on my location icon on the first tab of my dashboard or by asking Alexa.
+
+### [Tell me when my wife is heading home](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml#L587-L604) also [here](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml#L800-L819)
+
+Usually I am given a list of things to do by the time my wife gets home, so it's good to have some advanced notice to finish those things, also then I know I can call her to discuss dinner, etc.
+
+### [Tell me when my wife is home](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml#L606-L627)
+
+This helps if I know she's been shopping or something, I can come help her with carrying it up the stairs and thereby earning brownie points.
+
+### [Tell me when to take the ferry across the river if I'm biking to work](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml#L753-L798)
+
+So, when I'm riding my bike to work, there are some really nice ferries that I can take across the river instead of riding on the bridge next to the highway, so I am trying to have hass tell me when I can make the ferry since they only come every 20 minutes. This one is a bit tricky to get right because the zones I need to make it happen also cross some roads so I get it while I am driving too which I don't like. I added a filter to make sure I'm not doing an automotive activity, but I haven't tested if it sees me riding a bike as an automotive activity.
 
 ## [Security Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/security_automations.yaml)
 
