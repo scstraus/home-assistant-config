@@ -1,7 +1,7 @@
 # Sean Straus' Home Assistant Configuration <img src="https://avatars1.githubusercontent.com/u/7644023?s=460&u=385a7ff0525e0838f1e302474d6c8931fc6db189&v=4" width="100" height="100" align="right"> 
 (Home Assistant Supervised, Ubuntu Server 18.04.1 LTS, 2011 Mac Mini)
 
-Last update: [June 5, 2020 (Hass v.107.7)](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42)
+Last update: [June 10, 2020 (Hass v.107.7)](https://github.com/scstraus/home-assistant-config/tree/6027951c351dbc1df1938c6d099aa1b3218a8039)
 
 Hello there. This is an incomplete and probably out of date description of what I'm doing with home assistant, but hopefully it will be of some use for ideas and samples to someone.
 
@@ -42,7 +42,7 @@ This view also comes in a [kiosk flavor which I use on my 8" Amazon Kindle Fire 
 But one interesting thing I have on the tablets is that they will use [popup cards](https://github.com/thomasloven/hass-browser_mod#popup) from the [Browser Mod](https://github.com/thomasloven/hass-browser_mod) custom component to popup the camera feeds on the tablets if it sees someone outside while we are home. Mostly we use this for keeping an eye on the kids while they are outside. If we are not at home with the alarm on or asleep, we will get emergency notifications on our phone instead. You can see these in the automations.
 
 
-I will describe the cards I have here in the order I use them in my config so you can find them in the config file linked above.
+I will describe the cards I have here in the order I use them in my config so you can find them in the config file linked above. It's almost all custom cards, so there were a lot of great devs that made it happen. At least half of what I do here is probably somehow enabled by [custom cards from Thomas Loven](https://github.com/thomasloven) so a special shout out and million thanks for all his many contributions. My lovelace view would simply not be possible without these custom card devs.
 
 **[Popup Cards](https://github.com/thomasloven/hass-browser_mod#popup) from custom component [Browser Mod](https://github.com/thomasloven/hass-browser_mod):**
 Some popups that happen when you tap specific things
@@ -303,7 +303,7 @@ Much of the automations you will see here is dedicated to dealing with a problem
 
 ## [Climate Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/climate_automations.yaml)
 
-These are the automations that work alongside my [custom python script](https://github.com/scstraus/home-assistant-config/blob/master/python_scripts/set_heat_weather_override.py) to control the heating in my 12 zone [Honeywell Evohome](https://getconnected.honeywellhome.com/en/evohome) system using the [official integration](https://www.home-assistant.io/integrations/evohome/).
+These are the automations that work alongside my [custom python script](https://github.com/scstraus/home-assistant-config/blob/master/python_scripts/set_heat_weather_override.py) to control the heating in my 12 zone [Honeywell Evohome](https://getconnected.honeywellhome.com/en/evohome) system using the [official integration](https://www.home-assistant.io/integrations/evohome/). Big shout out to [David Bonnes](https://github.com/zxdavb) for his amazing work on this component, and trying to cram every last possible feature into it. It's getting really powerful.
 
 My heating system is a bit complicated but it works pretty well. The Evohome Thermostat has a nice UI for entering complex schedules room by room, so when it's cold enough to be on the normal heating schedule I just use that. When it starts getting warmer and I don't need to run the heat during the day, I start to turn down the heat in some of the rooms more using my [custom python script](https://github.com/scstraus/home-assistant-config/blob/master/python_scripts/set_heat_weather_override.py) to read the weather report and decide what to set the temperature in each room to so that it won't be too cold but also won't run the heat unneccessarily. I think more than half of my heating savings come from not heating up the rooms too much overnight if they will warm themselves up during the day anyway. And everything is still the right temperature. Actually even better because they don't get too hot during the day.
 
@@ -357,5 +357,9 @@ So, when I'm riding my bike to work, there are some really nice ferries that I c
 
 ## [Security Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/security_automations.yaml)
 
+
+### [Notify me if someone is spotted on our property while we are away or asleep](https://github.com/scstraus/home-assistant-config/blob/6027951c351dbc1df1938c6d099aa1b3218a8039/automations/security_automations.yaml#L2-L180)
+
+Using the excellent tensorflow object detection in [Blake Blashear](https://github.com/blakeblackshear)'s excellent [Frigate](https://github.com/blakeblackshear/frigate), our cameras are scanning 5 times a second for people. If our alarm is on or it's during the times we sleep and it find ones, it will send an emergency notification to our phone which bypasses do not disturb and sends us a picture in the notification of the person it found. I've been tweaking this over a year or so and it's really solid now. It's almost impossible to sneak past the detection and it gives near zero false positives. It's pretty damned impressive. I will try to post some videos of it in action sometime.
 
 ## [Other Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/other_automations.yaml)
