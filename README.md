@@ -18,7 +18,7 @@ Click the header links to be taken to the current version of the relevant file. 
 
   - [Sean Straus' Home Assistant Configuration <img src="https](#//avatars1.githubusercontent.com/u/7644023?s=460&u=385a7ff0525e0838f1e302474d6c8931fc6db189&v=4"-width="100"-height="100"-align="right">-)
   - [[Lovelace UI](https](#//github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml))
-    - [[Tab 1](#-main-dashboard](lovelace/tab1_home.yaml))
+    - [Tab 1](#-main-dashboard)
     - [[Tab 2](#-music](lovelace/tab2_music.yaml))
     - [[Tab 3](#-heat](lovelace/tab3_heat.yaml))
     - [[Tab 4](#-cameras](lovelace/tab4_cameras.yaml))
