@@ -40,7 +40,7 @@ Click the header links to be taken to the current version of the relevant file. 
     + [Adjusting the heat based on special situations 2: Fire in the fireplace](#adjusting-the-heat-based-on-special-situations-2--fire-in-the-fireplace)
     + [Adjusting the heat based on special situations 3: Working from home](#adjusting-the-heat-based-on-special-situations-3--working-from-home)
     + [Getting notified of extremely windy weather](#getting-notified-of-extremely-windy-weather)
-  * [[Location Automations](#-location-automations)
+  * [Location Automations](#-location-automations)
     + [Setting my location and direction of travel based on complex rules](#setting-my-location-and-direction-of-travel-based-on-complex-rules)
     + [Tell me when my wife is heading home](#tell-me-when-my-wife-is-heading-home)
     + [Tell me when my wife is home](#tell-me-when-my-wife-is-home)
