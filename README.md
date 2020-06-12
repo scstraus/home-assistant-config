@@ -15,16 +15,18 @@ Some things that may be interesting to you from my config which are not so commo
 There are a lot of other little things that I've not seen anyone else do, but I don't want to clutter up the intro too much, so more easter eggs inside. I've tried to include enough description and links to relevant items that you might be able to understand and replicate what I've done. 
 
 Click the header links to be taken to the current version of the relevant file. In some places I link to highlighted parts of a file to show you what config block I'm talking about. Keep in mind that I only refresh those when I write the documentation, so they are likely pointing to an older version of the file than the header links linking to the whole file and there may have been changes/fixes. So if you want to see the current file, use a link to the whole file or just choose it from the file list at the top.
-- [Sean Straus' Home Assistant Configuration <img src="https://avatars1.githubusercontent.com/u/7644023?s=460&u=385a7ff0525e0838f1e302474d6c8931fc6db189&v=4" width="100" height="100" align="right">](#sean-straus--home-assistant-configuration--img-src--https---avatars1githubusercontentcom-u-7644023-s-460-u-385a7ff0525e0838f1e302474d6c8931fc6db189-v-4--width--100--height--100--align--right--)
-- [[Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)](#-lovelace-ui--https---githubcom-scstraus-home-assistant-config-blob-master-ui-lovelaceyaml-)
+
+# Table of Contents
+
+- [Lovelace UI](#-lovelace-ui--https---githubcom-scstraus-home-assistant-config-blob-master-ui-lovelaceyaml-)
   * [Tab 1: Main Dashboard](#-tab-1--main-dashboard--lovelace-tab1-homeyaml-)
-  * [[Tab 2: Music](lovelace/Tab2_Music.yaml)](#-tab-2--music--lovelace-tab2-musicyaml-)
-  * [[Tab 3: Heat](lovelace/Tab3_Heat.yaml)](#-tab-3--heat--lovelace-tab3-heatyaml-)
-  * [[Tab 4: Cameras](lovelace/Tab4_Cameras.yaml)](#-tab-4--cameras--lovelace-tab4-camerasyaml-)
-  * [[Tab 5: Appliances](lovelace/Tab5_Appliances.yaml)](#-tab-5--appliances--lovelace-tab5-appliancesyaml-)
-  * [[Tab 6: Alarm](lovelace/Tab6_Alarm.yaml)](#-tab-6--alarm--lovelace-tab6-alarmyaml-)
-  * [[Tab 7: Weather](lovelace/Tab7_Weather.yaml)](#-tab-7--weather--lovelace-tab7-weatheryaml-)
-  * [[Tab 8: System](lovelace/Tab8_Tech.yaml)](#-tab-8--system--lovelace-tab8-techyaml-)
+  * [Tab 2: Music](#-tab-2--music--lovelace-tab2-musicyaml-)
+  * [Tab 3: Heat](#-tab-3--heat--lovelace-tab3-heatyaml-)
+  * [Tab 4: Cameras](#-tab-4--cameras--lovelace-tab4-camerasyaml-)
+  * [Tab 5: Appliances](#-tab-5--appliances--lovelace-tab5-appliancesyaml-)
+  * [Tab 6: Alarm](#-tab-6--alarm--lovelace-tab6-alarmyaml-)
+  * [Tab 7: Weather](#-tab-7--weather--lovelace-tab7-weatheryaml-)
+  * [Tab 8: System](#-tab-8--system--lovelace-tab8-techyaml-)
 - [Automations](#automations)
   * [[Appliance Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/appliance_automations.yaml)](#-appliance-automations--https---githubcom-scstraus-home-assistant-config-blob-master-automations-appliance-automationsyaml-)
     + [[Guessing whether the dishes in the dishwasher are clean or dirty based on the Bosch integration](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/automations/appliance_automations.yaml#L1-L88)](#-guessing-whether-the-dishes-in-the-dishwasher-are-clean-or-dirty-based-on-the-bosch-integration--https---githubcom-scstraus-home-assistant-config-blob-9e638272e121710738e05d08d2c5b1a145a0ae42-automations-appliance-automationsyaml-l1-l88-)
