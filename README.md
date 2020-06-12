@@ -383,6 +383,8 @@ Sometimes it gets really windy here and blows all our stuff around. This one war
 
 As one of the most frequently asked questions of my family is "where are you and when will you be home?", I made some rather complex logic to inform them where I was and if I was heading home or to somewhere else. This answers this question in mostly the same way I would based on which zones I've traveled thorough most recently. This is displayed on my main screen as my location and they can ask Alexa the same. Time to home is calculated using Google and they can also access that by clicking on my location icon on the first tab of my dashboard or by asking Alexa.
 
+I don't do this kind of complex logic for my wife or kids, for them I just say which zone they are in or if they aren't in a zone I report their direction of travel. You can find that in my sensors.
+
 ### [Tell me when my wife is heading home](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml#L587-L604) 
 (also [here](https://github.com/scstraus/home-assistant-config/blob/master/automations/location_automations.yaml#L800-L819))
 
