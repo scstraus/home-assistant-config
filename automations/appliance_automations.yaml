@@ -161,6 +161,19 @@
 
 #### This one isn't working yet. There's no "last changed" attribute for the dishwasher door
 
+- id: record_dishwasher_last_door_open_time
+  alias: record_dishwasher_last_door_open_time
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id:  sensor.bosch_dishwasher_door
+    to: 'open'
+  action:
+    service: variable.set_variable
+    data:
+      variable: dishwasher_last_door_open
+      value_template: '{{ as_timestamp(now()) }}'
+
 - id: fire_notify_dishwasher_door_open
   alias: "TTS Notify Dishwasher Door Open"
   initial_state: 'false'
@@ -171,7 +184,7 @@
     condition: and
     conditions:
       - condition: template
-        value_template: '{{ (as_timestamp(now()) - as_timestamp(states.sensor.bosch_dishwasher_door.attributes.last_changed | default(0)) | int > 300)}}'
+        value_template: '{{ ((as_timestamp(now()) - variable.dishwasher_last_door_open | default(0)) | int > 300)}}'
       - condition: state
         entity_id: input_select.bosch_dishwasher_status
         state: 'Running'

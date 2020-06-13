@@ -401,3 +401,5 @@ sensor.cooper_s_e_all4_remaining_range_total:
   icon: mdi:gas-station
 sensor.narnia_raid_status:
   icon: mdi:server
+sensor.car_needs_charging:
+  icon: mdi:battery-30

@@ -315,8 +315,8 @@ cards:
     - "Today"
     - "Tomorrow"
     - "armed_away"
-    - "Plug it In"
-    - "Fill it Up."
+    - "Charge It"
+    - "Fill It"
     - operator: ">"
       value: -1
     card: 
@@ -1006,6 +1006,7 @@ cards:
     - type: entity-filter
       entities:
       - entity: sensor.car_needs_charging
+      - entity: sensor.low_gas_in_car
       - entity: binary_sensor.cooper_s_e_all4_charging_status
         name: Charging
       - entity: binary_sensor.cooper_s_e_all4_check_control_messages
@@ -1023,7 +1024,8 @@ cards:
       state_filter:
       - "on"
       - "DISCONNECTED"
-      - "Plug it In"
+      - "Charge It"
+      - "Fill It"
       card: 
         type: glance
       show_empty: false  

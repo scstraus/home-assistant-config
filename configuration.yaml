@@ -1078,7 +1078,6 @@ input_select:
       - Running
       - Clean
       - Emptying
-    initial: Dirty
     icon: mdi:dishwasher
 
   living_room_last_preset_mode:
@@ -1284,6 +1283,11 @@ variable:
       unit_of_measurement: today
       icon: mdi:chart-bubble
     restore: true
+
+  dishwasher_last_door_open:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:door-open
     
 cast:
   media_player:

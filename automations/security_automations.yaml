@@ -41,7 +41,7 @@
           category: camera
           thread-id: "security"
         entity_id: camera.front_last_person
-        clickAction: '/lovelace/4'
+        clickAction: /lovelace/4
 
 #      - condition: template
 #        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
@@ -89,7 +89,7 @@
           category: camera
           thread-id: "security"
         entity_id: camera.back_last_person
-        clickAction: '/lovelace/4'
+        clickAction: /lovelace/4
 
 - id: person_on_left
   alias: Person On Left
@@ -133,7 +133,7 @@
           category: camera
           thread-id: "security"
         entity_id: camera.left_last_person
-        clickAction: '/lovelace/4'
+        clickAction: /lovelace/4
 
 - id: person_on_right
   alias: Person On Right
@@ -177,7 +177,7 @@
           category: camera
           thread-id: "security"
         entity_id: camera.right_last_person
-        clickAction: '/lovelace/4'
+        clickAction: /lovelace/4
 
 #- id: person_in_front_hassbian
 #  alias: Person In Front
