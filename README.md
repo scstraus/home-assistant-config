@@ -435,3 +435,16 @@ The synology security station already records using motion detection, but this i
 This and a shell script populates the snapshots of the camera feeds which show the static photos of people who had been detected with the human detection. That way I can swipe through the last 10 detected on each camera using the [swiper card](https://github.com/bramkragten/custom-ui/tree/master/swipe-card).
 
 ## [Other Automations](https://github.com/scstraus/home-assistant-config/blob/master/automations/other_automations.yaml)
+
+### [Notify me if it's a good day to bike to work](https://github.com/scstraus/home-assistant-config/blob/1b7eeb8d6f34bf39c57d3072eba643e702401e34/automations/other_automations.yaml#L1-L31)
+
+I live close enough to work that I can bike there in roughly the same time as taking a tram. But I like this to be an enjoyable experience, so this one uses my custom sensor which checks if it will be raining, windy, too hot, or too cold, and the automation checks if I'm actually in town and then will tell me if it's a good day to bike to work. Now that I look at it, it seems I'm trying to send the weather report in the notification, but I don't think this is working properly.
+
+### [Variables to indicate whether packages are being delivered today from each shipping company](https://github.com/scstraus/home-assistant-config/blob/1b7eeb8d6f34bf39c57d3072eba643e702401e34/automations/other_automations.yaml#L34-L216)
+
+These are some automations which preserve the state of whether a package is being delivered from every package delivery service. I actually use the variables as the sensors in my UI rather than the email sensor itself. The reason I'm doing this is because I use one email inbox for all emails that I use to create sensors from (just using forwarding rules from my personal inboxes to this inbox). Then the [imap email content sensor](https://www.home-assistant.io/integrations/imap_email_content/) will analyze that for content to determine if it's about a package or a status update from the UPS. 
+
+The problem is that the status of the IMAP email content sensor changes every time a new email comes to the mailbox, regardless of whether it matches the rule or not (I read that this may have been fixed in more recent versions but this is working so I won't bother checking). So, my workaround to having that sensor only show the status of my packages until the next email came was to put the package status into a variable to store. I then clear out the status with an email that I send once a day to clear the status for the next day (Since I'm using the variable I could have just done this with an automation but this method is a holdover from when I was trying to only use the sensor without the variables). There were a lot of false starts with getting this working, for example, the variable will not store the body of the email correctly with the encodings and size of the body of email. It crashed the variable component. I finally gave up on being able to click through to body, but in english emails it might work.
+
+Anyway, the whole thing is rather convoluted but it works perfectly for displaying a little icon when I'm getting a package from one of these services in my main dashboard..
+
