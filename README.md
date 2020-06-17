@@ -32,7 +32,7 @@ Click the header links to be taken to the current version of the relevant file. 
     + [Guessing whether the dishes in the dishwasher are clean or dirty based on the Bosch integration](#guessing-whether-the-dishes-in-the-dishwasher-are-clean-or-dirty-based-on-the-bosch-integration)
     + [Using Zwave power report to determine Miele washing machine state](#using-zwave-power-report-to-determine-miele-washing-machine-state)
     + [Using Zwave power report to determine LG washing machine state](#using-zwave-power-report-to-determine-lg-washing-machine-state)
-    + [Automate Air Purifiers based on outdoor air quality and make them "avaiable" even when they aren't available](#automate-air-purifiers-based-on-outdoor-air-quality-and-make-them--avaiable--even-when-they-aren-t-available)
+    + [Automate Air Purifiers based on outdoor air quality and make them "available" even when they aren't available](#automate-air-purifiers-based-on-outdoor-air-quality-and-make-them--avaiable--even-when-they-aren-t-available)
   * [Climate Automations](#climate-automations)
     + [Turning down the heater radiator valves when windows are open](#turning-down-the-heater-radiator-valves-when-windows-are-open)
     + [Adjusting the heat based on the weather](#adjusting-the-heat-based-on-the-weather)
