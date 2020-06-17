@@ -55,7 +55,8 @@ Click the header links to be taken to the current version of the relevant file. 
     + [Tell my synology security station to start recording if a human is detected](#tell-my-synology-security-station-to-start-recording-if-a-human-is-detected)
     + [Generate snapshots of the last 10 humans detected for the swipe card on lovelace](#generate-snapshots-of-the-last-10-humans-detected-for-the-swipe-card-on-lovelace)
   * [Other Automations](#other-automations)
-
+    + [Notify me if it's a good day to bike to work](#notify-me-if-its-a-good-day-to-bike-to-work)
+    + [Variables to indicate whether packages are being delivered today from each shipping company](#variables-to-indicate-whether-packages-are-being-delivered-today-from-each-shipping-company)
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
