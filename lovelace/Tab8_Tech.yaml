@@ -107,12 +107,17 @@ cards:
     cards:
 
     - type: gauge
-      entity:  sensor.discworld_volume_used_volume_1  
+      entity: sensor.discworld_volume_1_volume_used 
       name: "% Disk Use Vol. 1"
       severity:
         green: 0
         yellow: 75
         red: 88
+
+    - type: entities
+      entities:
+        - sensor.discworld_volume_1_status
+        - sensor.discworld_volume_1_average_disk_temp
 
     - type: custom:mini-graph-card
       name: CPU Load
@@ -172,15 +177,13 @@ cards:
       height: 200
       show:
         extrema: true
-      
-
 
     - type: entities
       entities:
-      - sensor.discworld_status_smart_sda
-      - sensor.discworld_status_smart_sdb
-      - sensor.discworld_status_smart_sdc
-      - sensor.discworld_status_smart_sdd
+      - sensor.discworld_disk_1_status
+      - sensor.discworld_disk_2_status
+      - sensor.discworld_disk_3_status
+      - sensor.discworld_disk_4_status
 
 
 #    - type: history-graph
@@ -259,6 +262,8 @@ cards:
 
 
   - type: entities
+    card:
+      show_header_toggle: false
     entities:
     - group.internet_notifications
     - automation.sensor_notification

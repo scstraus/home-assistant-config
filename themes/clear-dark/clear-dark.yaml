@@ -60,6 +60,10 @@ clear-dark:
   paper-slider-container-color: 'var(--text-dark-color)'                          # Line Off
   paper-slider-knob-start-color: 'var(--text-medium-light-color)'                 # Knob Off
 
+  # Badges
+  label-badge-text-color: 'var(--text-color)'
+  label-badge-background-color: 'rgba(54, 57, 65, 0.6)'
+
   # Shadows
   ha-card-box-shadow: 'inset 0px 0px 0px 1px var(--border-color)'
 

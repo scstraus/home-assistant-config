@@ -1,5 +1,5 @@
 # Theme based on Google app light theme
-# Creater: Juan - @juanmtech
+# Creator: Juan - @juanmtech
 # Website: https://www.juanmtech.com
 # YouTube Channel: https://youtube.com/juanmtech
 # My Home Assistant Config files: https://github.com/JuanMTech/Home_Assistant_files
@@ -46,10 +46,11 @@ Google Light Theme:
   label-badge-yellow: "#D9B757"
   label-badge-gray: "#5F6267"
   # Cards
-#  ha-card-border-radius: "15px"
-#  ha-card-box-shadow: 1px 1px 5px 0px rgb(230, 230, 230)
-  paper-card-background-color: "#FFFFFF"
-  paper-listbox-background-color: "#FFFFFF"
+  ha-card-border-radius: "10px"
+  ha-card-box-shadow: 1px 1px 5px 0px rgb(230, 230, 230)
+  paper-dialog-background-color: "#FFFFFF"
+  paper-card-background-color: var(--paper-dialog-background-color)
+  paper-listbox-background-color: var(--paper-dialog-background-color)
   # Switches
   switch-checked-button-color: "#5F9BEA"
   switch-checked-track-color: "#75a2f0"
@@ -64,6 +65,10 @@ Google Light Theme:
   table-row-background-color: var(--primary-background-color)
   table-row-alternative-background-color: var(--secondary-background-color)
   data-table-background-color: var(--primary-background-color)
+  # Dropdowns
+  material-background-color: var(--paper-card-background-color)
+  material-secondary-background-color: var(--primary-background-color)
+  mdc-theme-surface: var(--paper-card-background-color)
 
   # Added by Sean
   ha-card-border-radius: "10px"
@@ -77,4 +82,3 @@ Google Light Theme:
   paper-font-headline_-_font-family: "var(--primary-font-family)"
   paper-font-caption_-_font-family: "var(--primary-font-family)"
   paper-font-title_-_font-family: "var(--primary-font-family)"
-  

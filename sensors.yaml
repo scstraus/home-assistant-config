@@ -823,18 +823,18 @@
             false
           {% endif %}   
 
-  - platform: synologydsm
-    name: discworld
-    host: !secret synology_ip
-    username: !secret syn_uname
-    password: !secret hass_pass
-    monitored_conditions:
-      - cpu_total_load
-      - memory_real_usage
-      - network_up
-      - network_down
-      - disk_smart_status
-      - volume_percentage_used
+#  - platform: synologydsm
+#    name: discworld
+#    host: !secret synology_ip
+#    username: !secret syn_uname
+#    password: !secret hass_pass
+#    monitored_conditions:
+#      - cpu_total_load
+#      - memory_real_usage
+#      - network_up
+#      - network_down
+#      - disk_smart_status
+#      - volume_percentage_used
 
 
   - platform: template

@@ -1,0 +1,8 @@
+#title: Health
+#panel: true
+#icon: mdi:power-plug
+#cards:  
+#
+#  - type: iframe
+#    url: !secret grafana_health_url
+##    aspect_ratio: 100%

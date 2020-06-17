@@ -347,7 +347,6 @@
   action:
   - service: shell_command.update_avnodehome_data
   initial_state: 'on'
-  hide_entity: 'true'
 
 - id: 'update_airvisualnode_hlubocepy_data'
   alias: 'Update AirVisual node Hlubocepy data'
@@ -357,11 +356,9 @@
   action:
   - service: shell_command.update_avnodehlubocepy_data
   initial_state: 'on'
-  hide_entity: 'true'
 
 #- alias: Turn off sophie up late in summer
 #  initial_state: 'on'
-#  hide_entity: 'true'
 #  trigger:
 #    - platform: homeassistant
 #      event: start
@@ -957,16 +954,16 @@
   alias: run_speedtest
   initial_state: 'true'
   trigger:
-    - platform: time_pattern
-      minutes: 60
+    platform: time_pattern
+    minutes: 60
   action:
     service: speedtestdotnet.speedtest
 
 - id: update_trash_emergency_sensor
   alias: update_trash_emergency_sensor
   trigger:
-    - platform: time_pattern
-      minutes: 5
+    platform: time_pattern
+    minutes: 5
   action:
-    - service: homeassistant.update_entity
-      entity_id: binary_sensor.trash_emergency
+    service: homeassistant.update_entity
+    entity_id: binary_sensor.trash_emergency

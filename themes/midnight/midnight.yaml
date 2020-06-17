@@ -21,6 +21,7 @@ midnight:
   label-badge-text-color: "var(--primary-text-color)"
   label-badge-yellow: "#f4b400"
   light-primary-color: "var(--accent-color)"
+  markdown-code-background-color: "var(--paper-listbox-background-color)"
   paper-card-background-color: "#434954"
   paper-card-header-color: "var(--accent-color)"
   paper-dialog-background-color: "#434954"
@@ -61,6 +62,8 @@ midnight:
   slider-bar-color: "var(--disabled-text-color)"
   slider-color: "var(--primary-color)"
   slider-secondary-color: "var(--light-primary-color)"
+  st-mode-active-background: "var(--dark-primary-color)"
+  st-mode-background: "var(--primary-background-color)"
   state-icon-active-color: "#FDD835"
   state-icon-color: "#44739e"
   state-icon-unavailable-color: "var(--disabled-text-color)"
@@ -73,9 +76,9 @@ midnight:
   text-primary-color: "var(--primary-text-color)"
   toggle-button-color: "var(--primary-color)"
 
+
 #my additions
   ha-card-border-radius: "10px"
   ha-card-box-shadow: "4px 4px 4px #2E333A"
   ha-card-header-color: "#FFFFFF"
-  
   

@@ -492,7 +492,7 @@ cards:
       - type: custom:air-visual-card 
         air_pollution_level: sensor.hlubocepy_air_pollution
         air_quality_index: sensor.hlubocepy_air_quality
-        main_pollutant: sensor.u_s_main_pollutant
+        main_pollutant: sensor.u_s_main_pollutant_2
         hide_title: true
         svg_location: "/local/icons/aqi_icons"
 
@@ -510,7 +510,7 @@ cards:
       - type: custom:air-visual-card 
         air_pollution_level: sensor.home_air_pollution
         air_quality_index: sensor.home_air_quality
-        main_pollutant: sensor.u_s_main_pollutant
+        main_pollutant: sensor.u_s_main_pollutant_2
         hide_title: true
         svg_location: "/local/icons/aqi_icons"
 

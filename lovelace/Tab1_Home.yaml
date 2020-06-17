@@ -4,7 +4,6 @@
 
 title: Home
 icon: mdi:home
-background-image: center / cover no-repeat url("/local/day.jpg") fixed
 
 popup_cards:
 
@@ -375,63 +374,59 @@ cards:
 #    report_size: 36
 #    card:
 
-  - type: vertical-stack
+#  - type: vertical-stack
+#    cards:
+
+  - type: 'custom:weather-card-chart'
+    title: Weather / Air Quality
+    weather: weather.openweathermap
+    sun: sun.sun
+    mode: hourly
+
+  - type: custom:vertical-stack-in-card
+    cards:
+    - type: "custom:button-card"
+      name: Hlubočepy
+      styles:
+        name:
+          - color: var(--ha-card-header-color)
+        card:
+          - padding: 8px 0px
+
+    - type: custom:air-visual-card 
+      air_pollution_level: sensor.hlubocepy_air_pollution
+      air_quality_index: sensor.hlubocepy_air_quality
+      main_pollutant: sensor.u_s_main_pollutant_2
+      hide_title: true
+      svg_location: "/local/icons/aqi_icons"
+
+  - type: custom:vertical-stack-in-card
     cards:
 
-    - type: 'custom:weather-card-chart'
-      title: Weather / Air Quality
-      weather: weather.openweathermap
-      sun: sun.sun
-      mode: hourly
+    - type: "custom:button-card"
+      name: Home
+      styles:
+        name:
+          - color: var(--ha-card-header-color)
+        card:
+          - padding: 8px 0px
 
-    - type: custom:vertical-stack-in-card
-      cards:
-
-      - type: "custom:button-card"
-        name: Hlubočepy
-        styles:
-#          name: 
-#            - color: var(--text-primary-color)
-          name:
-            - color: var(--ha-card-header-color)
-          card:
-            - padding: 8px 0px
-
-      - type: custom:air-visual-card 
-        air_pollution_level: sensor.hlubocepy_air_pollution
-        air_quality_index: sensor.hlubocepy_air_quality
-        main_pollutant: sensor.u_s_main_pollutant
-        hide_title: true
-        svg_location: "/local/icons/aqi_icons"
-
-    - type: custom:vertical-stack-in-card
-      cards:
-
-      - type: "custom:button-card"
-        name: Home
-        styles:
-          name:
-            - color: var(--ha-card-header-color)
-#          name: 
-#            - color: var(--text-primary-color)
-          card:
-            - padding: 8px 0px
-
-      - type: custom:air-visual-card 
-        air_pollution_level: sensor.home_air_pollution
-        air_quality_index: sensor.home_air_quality
-        main_pollutant: sensor.u_s_main_pollutant
-        hide_title: true
-        svg_location: "/local/icons/aqi_icons"
+    - type: custom:air-visual-card 
+      air_pollution_level: sensor.home_air_pollution
+      air_quality_index: sensor.home_air_quality
+      main_pollutant: sensor.u_s_main_pollutant_2
+      hide_title: true
+      svg_location: "/local/icons/aqi_icons"
 
 
   - type: glance
     entities:
       - sensor.sean_location
-#        type: "custom:secondaryinfo-entity-row"
-#        secondary_info: "ETA: [[ sensor.sean_tram_time_to_home ]]"
+
       - sensor.sophie_location
       - sensor.alena_location
+#        type: "custom:secondaryinfo-entity-row"
+#        secondary_info: "ETA: [[ sensor.sean_tram_time_to_home ]]"
 
 #
 #  - type: custom:card-modder
