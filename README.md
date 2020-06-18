@@ -1,7 +1,7 @@
 # Sean Straus' Home Assistant Configuration <img src="https://avatars1.githubusercontent.com/u/7644023?s=460&u=385a7ff0525e0838f1e302474d6c8931fc6db189&v=4" width="100" height="100" align="right"> 
 (Home Assistant Supervised, Ubuntu Server 18.04.1 LTS, 2011 Mac Mini)
 
-Last update: [June 10, 2020 (Hass v.107.7)](https://github.com/scstraus/home-assistant-config/tree/6027951c351dbc1df1938c6d099aa1b3218a8039)
+Last update: [June 18, 2020 (Hass v.111.3)](https://github.com/scstraus/home-assistant-config/tree/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b)
 
 Hello there. This is an incomplete and probably out of date description of what I'm doing with home assistant, but hopefully it will be of some use for ideas and samples to someone.
 
@@ -443,9 +443,12 @@ I live close enough to work that I can bike there in roughly the same time as ta
 
 ### [Variables to indicate whether packages are being delivered today from each shipping company](https://github.com/scstraus/home-assistant-config/blob/1b7eeb8d6f34bf39c57d3072eba643e702401e34/automations/other_automations.yaml#L34-L216)
 
-These are some automations which preserve the state of whether a package is being delivered from every package delivery service. I actually use the variables as the sensors in my UI rather than the email sensor itself. The reason I'm doing this is because I use one email inbox for all emails that I use to create sensors from (just using forwarding rules from my personal inboxes to this inbox). Then the [imap email content sensor](https://www.home-assistant.io/integrations/imap_email_content/) will analyze that for content to determine if it's about a package or a status update from the UPS. 
+These are some automations which preserve the state of whether a package is being delivered from every package delivery service. I actually use the variables as the sensors in my UI rather than the email sensor itself. The reason I'm doing this is because I use one email inbox for all emails that I use to create sensors from (just using forwarding rules from my personal inboxes to this inbox). Then the [IMAP email content sensor](https://www.home-assistant.io/integrations/imap_email_content/) will analyze that for content to determine if it's about a package or a status update from the UPS. 
 
 The problem is that the status of the IMAP email content sensor changes every time a new email comes to the mailbox, regardless of whether it matches the rule or not (I read that this may have been fixed in more recent versions but this is working so I won't bother checking). So, my workaround to having that sensor only show the status of my packages until the next email came was to put the package status into a variable to store. I then clear out the status using an automation that resets the variable to "no delivery" for the next day until I get an email saying it's coming. There were a lot of false starts with getting this working, for example, the variable will not store the body of the email correctly with the encodings and size of the body of email. It crashed the variable component. I finally gave up on being able to click through to body, but in english emails it might work.
 
 Anyway, the whole thing is rather convoluted but it works perfectly for displaying a little icon when I'm getting a package from one of these services in my main dashboard..
 
+### [Automation to notify me if the power is out at home](https://github.com/scstraus/home-assistant-config/blob/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b/automations/other_automations.yaml#L218-L248)
+
+These automations try to notify me if the power is cut by using an [IMAP email content sensor](https://www.home-assistant.io/integrations/imap_email_content/) to check for emails from the UPS service when the power is cut. It worked when I first made it, but I think it maybe doesn't work now, possibly because my internet access gets cut when my power is out due to the modem being on the roof without a UPS.. I have to investigate it more but don't really have many convenient times to cut the power to the whole house ;-).
