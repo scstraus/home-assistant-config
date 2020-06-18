@@ -449,6 +449,6 @@ The problem is that the status of the IMAP email content sensor changes every ti
 
 Anyway, the whole thing is rather convoluted but it works perfectly for displaying a little icon when I'm getting a package from one of these services in my main dashboard..
 
-### [Automation to notify me if the power is out at home](https://github.com/scstraus/home-assistant-config/blob/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b/automations/other_automations.yaml#L218-L248)
+### [Notify me if the power is out at home](https://github.com/scstraus/home-assistant-config/blob/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b/automations/other_automations.yaml#L218-L248)
 
 These automations try to notify me if the power is cut by using an [IMAP email content sensor](https://www.home-assistant.io/integrations/imap_email_content/) to check for emails from the UPS service when the power is cut. It worked when I first made it, but I think it maybe doesn't work now, possibly because my internet access gets cut when my power is out due to the modem being on the roof without a UPS.. I have to investigate it more but don't really have many convenient times to cut the power to the whole house ;-).
