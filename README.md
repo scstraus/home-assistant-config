@@ -57,6 +57,8 @@ Click the header links to be taken to the current version of the relevant file. 
   * [Other Automations](#other-automations)
     + [Notify me if it's a good day to bike to work](#notify-me-if-its-a-good-day-to-bike-to-work)
     + [Variables to indicate whether packages are being delivered today from each shipping company](#variables-to-indicate-whether-packages-are-being-delivered-today-from-each-shipping-company)
+    + [Notify if we have moldy conditions under the sink](https://github.com/scstraus/home-assistant-config#notify-if-we-have-moldy-conditions-under-the-sink)
+    + [Notify me if the internet isn't working right](https://github.com/scstraus/home-assistant-config#notify-me-if-the-internet-isnt-working-right)
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
