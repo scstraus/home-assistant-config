@@ -90,7 +90,7 @@ cards:
 # object detection (tensorflow)
 
 
-    - type: custom:vertical-stack-in-card
+    - type: vertical-stack
       cards:
 
       - type: 'custom:swipe-card' 
@@ -159,7 +159,7 @@ cards:
     - type: horizontal-stack
       cards:
 
-      - type: custom:vertical-stack-in-card
+      - type: vertical-stack
         cards:          
 
 #         - type: picture-glance
@@ -227,7 +227,7 @@ cards:
 #          entities:
 #          - sensor.last_human_left
 
-      - type: custom:vertical-stack-in-card
+      - type: vertical-stack
         cards:
 
 #         - type: picture-glance
@@ -296,7 +296,7 @@ cards:
 #          - sensor.last_human_right
 
 
-    - type: custom:vertical-stack-in-card
+    - type: vertical-stack
       cards:
 
 

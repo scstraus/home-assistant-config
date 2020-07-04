@@ -403,3 +403,5 @@ sensor.narnia_raid_status:
   icon: mdi:server
 sensor.car_needs_charging:
   icon: mdi:battery-30
+sensor.trash_display:
+  icon: mdi:trash-can-outline

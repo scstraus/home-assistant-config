@@ -506,32 +506,32 @@
           thread-id: "info"
         
 
-- id: trash_day_today_sean
-  alias: 'Trash Day'
-  initial_state: 'true'
-  trigger:
-    - platform: time
-      at: '21:00:00'
-    - platform: time
-      at: '22:00:00'
-    - platform: time
-      at: '23:00:00'
-  condition:
-    - condition: and
-      conditions:
-        - condition: state
-          entity_id: 'sensor.trash_day'
-          state: 'Today'
-        - condition: template
-          value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
-  action:
-    service: notify.mobile_app_sean_s_iphone_x
-    data:
-      title: "Trash Day Today"
-      message: "Trash should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
-      data:
-        push:
-          thread-id: "info"
+#- id: trash_day_today_sean
+#  alias: 'Trash Day'
+#  initial_state: 'true'
+#  trigger:
+#    - platform: time
+#      at: '21:00:00'
+#    - platform: time
+#      at: '22:00:00'
+#    - platform: time
+#      at: '23:00:00'
+#  condition:
+#    - condition: and
+#      conditions:
+#        - condition: state
+#          entity_id: 'sensor.trash_day'
+#          state: 'Today'
+#        - condition: template
+#          value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
+#  action:
+#    service: notify.mobile_app_sean_s_iphone_x
+#    data:
+#      title: "Trash Day Today"
+#      message: "Trash should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
+#      data:
+#        push:
+#          thread-id: "info"
         
 - id: trash_day_today_alena
   alias: 'Trash Day'
@@ -599,39 +599,6 @@
     platform: state
     entity_id: binary_sensor.basement_is_flooding
     to: 'on'
-  action:
-    - service: notify.sean_alena
-      data:
-        title: "Basement Flooding"
-        message: "The basement is flooding"
-        data:
-          push:
-            sound:
-              name: "Update.caf"
-              critical: 1
-              volume: 1.0
-            thread-id: "error"
-    - data:
-        data:
-          type: tts
-        message: "Attention! The basement is flooding! Attention! The basement is flooding!"
-      service: notify.alexa_media_alexa_kitchen_bar
-    - data:
-        data:
-          type: tts
-        message: "Attention! The basement is flooding! Attention! The basement is flooding!"
-      service: notify.alexa_media_alexa_master_closet
-
-- id: basement_flooding_2
-  alias: 'Basement Flooding 2'
-  initial_state: 'true'
-  trigger:
-    - platform: time_pattern
-      minutes: 30
-  condition:
-    condition: state
-    entity_id: 'binary_sensor.basement_is_flooding'
-    state: 'on'
   action:
     - service: notify.sean_alena
       data:
@@ -892,7 +859,7 @@
   trigger:
     platform: state
     entity_id: sensor.trash_day
-    to: 'Today'
+    to: 'Tomorrow'
   action:
     service: input_boolean.turn_on
     data:
@@ -967,3 +934,42 @@
   action:
     service: homeassistant.update_entity
     entity_id: binary_sensor.trash_emergency
+
+- id: server_room_flooding
+  alias: server_room_flooding
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.server_room_flood_sensor
+    to: 'on'
+  action:
+    - service: notify.sean_alena
+      data:
+        title: "Server Room Flooding"
+        message: "The server room is flooding!!"
+        data:
+          push:
+            sound:
+              name: "Update.caf"
+              critical: 1
+              volume: 1.0
+            thread-id: "error"
+    - data:
+        data:
+          type: tts
+        message: "Attention! The server room is flooding! Attention! The server room is flooding!"
+      service: notify.alexa_media_alexa_kitchen_bar
+    - data:
+        data:
+          type: tts
+        message: "Attention! The server room is flooding! Attention! The server room is flooding!"
+      service: notify.alexa_media_alexa_master_closet
+
+- id: update_trash_display
+  alias: update_trash_display
+  trigger:
+    platform: time_pattern
+    minutes: 15
+  action:
+    service: homeassistant.update_entity
+    entity_id: binary_sensor.trash_display

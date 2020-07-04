@@ -154,3 +154,6 @@ sensor.ecolink_garage_door_alarm_level_5:
 sensor.ecolink_garage_door_alarm_type_5:
   ignored: true
   polling_intensity: 0
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_flood:
+  ignored: true
+  polling_intensity: 0

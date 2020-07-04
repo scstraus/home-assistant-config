@@ -20,6 +20,30 @@ cards:
 #  - type: vertical-stack
 #    cards:
 
+  - type: custom:vertical-stack-in-card
+    title: Temperature
+    cards:
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.server_room_temperature
+          name: 
+      hours_to_show: 24
+      points_per_hour: 2
+      show_points: false
+      height: 200
+#      lower_bound: 23
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 23
+          color: "#0da035"
+        - value: 30
+          color: "#daa002"
+        - value: 33
+          color: "#f4b300"
+        - value: 36
+          color: "#e04c23"
 
   - type: custom:vertical-stack-in-card
     title: Narnia
@@ -260,10 +284,105 @@ cards:
         yellow: 25
         red: 12
 
+  - type: custom:vertical-stack-in-card
+    title: Object Detection
+    cards:
+
+
+    - type: custom:mini-graph-card
+      name: Coral FPS
+      entities:
+        - entity: sensor.frigate_coral_fps
+          name: FPS
+#      lower_bound: 0
+      hours_to_show: 24
+      points_per_hour: 2
+      show_points: false
+      height: 300
+      color_thresholds:
+        - value: 50
+          color: "#0da035"
+        - value: 65
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
+
+    - type: custom:mini-graph-card
+      name: Coral Inference
+      entities:
+        - entity: sensor.frigate_coral_inference
+          name: ms
+#      lower_bound: 0
+      hours_to_show: 24
+      points_per_hour: 2
+      show_points: false
+      height: 300
+      color_thresholds:
+        - value: 10
+          color: "#0da035"
+        - value: 13
+          color: "#daa002"
+        - value: 16
+          color: "#f4b300"
+        - value: 20
+          color: "#e04c23"
+
+#
+#    - type: custom:mini-graph-card
+#      name: Camera FPS
+#      entities:
+#        - entity: sensor.front_fps
+#          name: Front FPS
+#        - entity: sensor.back_fps
+#          name: Back FPS
+#        - entity: sensor.left_fps
+#          name: Left FPS
+#        - entity: sensor.right_fps
+#          name: Right FPS
+#      lower_bound: 0
+#      hours_to_show: 24
+#      points_per_hour: 2
+#      show_points: false
+#      height: 300
+
+    - type: custom:mini-graph-card
+      name: Camera Skipped FPS
+      entities:
+        - entity: sensor.front_skipped_fps
+          name: Front FPS
+        - entity: sensor.back_skipped_fps
+          name: Back FPS
+        - entity: sensor.left_skipped_fps
+          name: Left FPS
+        - entity: sensor.right_skipped_fps
+          name: Right FPS
+      lower_bound: 0
+      hours_to_show: 24
+      points_per_hour: 2
+      show_points: false
+      height: 300
+
+    - type: custom:mini-graph-card
+      name: Camera Detection FPS
+      entities:
+        - entity: sensor.front_detection_fps
+          name: Front FPS
+        - entity: sensor.back_detection_fps
+          name: Back FPS
+        - entity: sensor.left_detection_fps
+          name: Left FPS
+        - entity: sensor.right_detection_fps
+          name: Right FPS
+      lower_bound: 0
+      hours_to_show: 24
+      points_per_hour: 2
+      show_points: false
+      height: 300
 
   - type: entities
-    card:
-      show_header_toggle: false
+    show_header_toggle: false
     entities:
     - group.internet_notifications
     - automation.sensor_notification

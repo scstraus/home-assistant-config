@@ -821,7 +821,9 @@
             Tomorrow
           {% else %}
             false
-          {% endif %}   
+          {% endif %}
+        icon_template: >-
+            mdi:trash-can-outline
 
 #  - platform: synologydsm
 #    name: discworld
@@ -1630,6 +1632,9 @@
     scan_interval: 5
     json_attributes:
       - back
+      - front
+      - left
+      - right
       - coral
     value_template: 'OK'
 
@@ -1643,6 +1648,33 @@
         unit_of_measurement: 'FPS'
       back_detection_fps: 
         value_template: '{{ states.sensor.frigate_debug.attributes["back"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      front_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      front_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      front_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      left_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      left_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      left_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      right_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      right_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      right_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["detection_fps"] }}'
         unit_of_measurement: 'FPS'
       frigate_coral_fps: 
         value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["fps"] }}'
@@ -1863,3 +1895,20 @@
          unit_of_measurement: 'lux'
          value_template: "{{ states.fan.sophies_room_air_purifier.attributes.illuminance }}"
 
+  - platform: template
+    sensors:
+      trash_display:
+        friendly_name: "Trash"
+        value_template: >-
+          {% if is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Today')  and ((now().strftime('%H')|int) > 17) and ((now().strftime('%H')|int) < 25) %}
+          !Now!
+          {% elif is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Today')  and ((now().strftime('%H')|int) <= 17) %}   
+          Today
+          {% elif
+          is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Tomorrow') %}  
+          Tomorrow
+          {% else %}
+          off
+          {% endif %}
+        icon_template: >-
+            mdi:trash-can-outline

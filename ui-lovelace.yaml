@@ -63,6 +63,9 @@ custom_header:
         hide_help: true
         hide_config: true
         voice_hide: true
+
+
+
 #        header_text: '{{ hours12 }}:{{ minutesLZ }} {{ ampm }}'
 #        button_text:
 #          menu: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'

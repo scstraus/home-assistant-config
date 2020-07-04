@@ -1629,3 +1629,14 @@ synology_dsm:
 home_connect:
   client_id: homeconnect_client_id
   client_secret: homeconnect_client_secret
+
+device_tracker:
+  - platform: iphonedetect
+    consider_home: 60
+    interval_seconds: 6
+    new_device_defaults:
+      track_new_devices: true
+    hosts:
+      seans_iphone_x_ping: 10.10.10.26
+      alenas_iphone_6_ping: 10.10.10.27
+      sophies_iphone_6_ping: 10.10.10.13

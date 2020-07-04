@@ -133,6 +133,17 @@ popup_cards:
             entity_id: lock.cooper_s_e_all4_lock
         entity: lock.cooper_s_e_all4_lock
 
+  sensor.trash_display:
+    title: "Trash Needs Taking Out"
+    card:
+      type: button
+      name: I took it out!
+      tap_action:
+        action: call-service
+        service: input_boolean.turn_off
+        service_data:
+          entity_id: input_boolean.trash_needs_taking_out
+      entity: sensor.trash_display
 #    card:
 #      type: markdown
 #      content: |
@@ -302,6 +313,7 @@ cards:
     - variable.czechia_coronavirus_new_today
     - sensor.car_needs_charging
     - sensor.low_gas_in_car
+    - sensor.trash_display
     state_filter:
     - "on"
     - "Delivery"
@@ -316,6 +328,7 @@ cards:
     - "armed_away"
     - "Charge It"
     - "Fill It"
+    - "!Now!"
     - operator: ">"
       value: -1
     card: 
@@ -434,33 +447,33 @@ cards:
 #    card:
 
 
-  - type: custom:mod-card
-    report_size: 4
-    card:
+  # - type: custom:mod-card
+  #   report_size: 4
+  #   card:
 
-      type: custom:vertical-stack-in-card
-      cards:
+  - type: custom:vertical-stack-in-card
+    cards:
 
-      - type: "custom:button-card"
-        name: Reminders
-        styles:
-          name:
-            - color: var(--ha-card-header-color)
-            - justify-self: start
-            - padding-left: 16px
-          card:
-            - padding-top: 22px
-            - padding-bottom: 4px
-            - font-size: 24px
-      - type: "custom:calendar-card"
-        entities:
-          - calendar.alena_and_seans_calendar
-    #    title: "Reminders"
-        showProgressBar: false
-        numberOfDays: 3
-        hidePastEvents: true
-        hideHeader: true
-        timeFormat: 'hh:mm a'
+    - type: "custom:button-card"
+      name: Reminders
+      styles:
+        name:
+          - color: var(--ha-card-header-color)
+          - justify-self: start
+          - padding-left: 16px
+        card:
+          - padding-top: 22px
+          - padding-bottom: 4px
+          - font-size: 24px
+    - type: "custom:calendar-card"
+      entities:
+        - calendar.alena_and_seans_calendar
+  #    title: "Reminders"
+      showProgressBar: false
+      numberOfDays: 3
+      hidePastEvents: true
+      hideHeader: true
+      timeFormat: 'hh:mm a'
 
 
 #      type: conditional
@@ -498,39 +511,39 @@ cards:
     states:
       home:
 
-        type: custom:mod-card
-        report_size: 14
-        card:
+        # type: custom:mod-card
+        # report_size: 14
+        # card:
 
-          type: vertical-stack
+        type: vertical-stack
+        cards:
+
+        - type: picture-glance
+          aspect_ratio: 16x9
+          entities: []
+          camera_image: camera.front_stream
+          camera_view: live
+
+        - type: horizontal-stack
           cards:
 
           - type: picture-glance
-            aspect_ratio: 16x9
+            aspect_ratio: 9x16
             entities: []
-            camera_image: camera.front_stream
+            camera_image: camera.left_stream
             camera_view: live
-
-          - type: horizontal-stack
-            cards:
-
-            - type: picture-glance
-              aspect_ratio: 9x16
-              entities: []
-              camera_image: camera.left_stream
-              camera_view: live
-
-            - type: picture-glance
-              aspect_ratio: 9x16
-              entities: []
-              camera_image: camera.right_stream
-              camera_view: live
 
           - type: picture-glance
-            aspect_ratio: 16x9
+            aspect_ratio: 9x16
             entities: []
-            camera_image: camera.back_stream
+            camera_image: camera.right_stream
             camera_view: live
+
+        - type: picture-glance
+          aspect_ratio: 16x9
+          entities: []
+          camera_image: camera.back_stream
+          camera_view: live
 
 
       away:
@@ -590,232 +603,507 @@ cards:
 #        camera_image: camera.back_stream
 #        camera_view: live
 
-  - type: custom:mod-card
-    report_size: 6
-    card:
+  # - type: custom:mod-card
+  #   report_size: 6
+  #   card:
 
-      type: vertical-stack
+  - type: vertical-stack
+    cards:
+
+#      - type: entities
+#        title: Whole House
+#        show_header_toggle: false
+#        entities:
+#        - climate.straus_house 
+
+  #      - type: gauge
+  #        entity: sensor.current_rate_power_cost_per_day 
+  #        name: "Current Electricity Use"
+  #        unit: Kč/day
+  #        min: 60
+  #        max: 700
+  #        severity:
+  #          green: 0
+  #          yellow: 250
+  #          red: 350 
+  #        
+
+    - entity: media_player.itunes
+      type: custom:mini-media-player
+      group: true
+      shortcuts:
+        label: "Other Playlists"
+        list:
+          - name: "San Tropez"
+            type: playlist
+            id: "san-tropez"
+          - name: "3+ star"
+            type: playlist
+            id: "a-3-star"
+          - name: "3+ Star / Unrated"
+            type: playlist
+            id: "a-3-star-unrated"
+          - name: "4+5 Star"
+            type: playlist
+            id: "a-45-star"
+          - name: "4+5 Star / Unrated"
+            type: playlist
+            id: "a-45-star-unrated"
+          - name: "4+5 Star+All Rock+Jazz"
+            type: playlist
+            id: "a-45-starall-rockjazz"
+          - name: "5 Star"
+            type: playlist
+            id: "a-5-star"
+          - name: "New Stuff"
+            type: playlist
+            id: "a-new-stuff"
+          - name: "New Stuff - Highly Rated"
+            type: playlist
+            id: "a-new-stuff-highly-rated"
+          - name: "New Stuff - Unrated"
+            type: playlist
+            id: "a-new-stuff-unrated"
+          - name: "Unrated Songs"
+            type: playlist
+            id: "a-unrated-songs"
+          - name: "All Black"
+            type: playlist
+            id: "all-black"
+          - name: "All Electronica"
+            type: playlist
+            id: "all-electronica"
+          - name: "All Jazz"
+            type: playlist
+            id: "all-jazz"
+          - name: "All Pop"
+            type: playlist
+            id: "all-pop"
+          - name: "All Rock"
+            type: playlist
+            id: "all-rock"
+          - name: "Black - Funk"
+            type: playlist
+            id: "black-funk"
+          - name: "Black - Hip Hop"
+            type: playlist
+            id: "black-hip-hop"
+          - name: "Black - R&B"
+            type: playlist
+            id: "black-rb"
+          - name: "Black - Rap"
+            type: playlist
+            id: "black-rap"
+          - name: "Black - Reggae/Ska/African"
+            type: playlist
+            id: "black-reggaeskaafrican"
+          - name: "Black - Soul"
+            type: playlist
+            id: "black-soul"
+          - name: "Black - Unrated"
+            type: playlist
+            id: "black-unrated"
+          - name: "Christmas"
+            type: playlist
+            id: "christmas"
+          - name: "Classical"
+            type: playlist
+            id: "classical"
+          - name: "Comedy"
+            type: playlist
+            id: "comedy"
+          - name: "Electronica - Ambient"
+            type: playlist
+            id: "electronica-ambient"
+          - name: "Electronica - Chill Out"
+            type: playlist
+            id: "electronica-chill-out"
+          - name: "Electronica - Dance"
+            type: playlist
+            id: "electronica-dance"
+          - name: "Electronica - Drum N Bass"
+            type: playlist
+            id: "electronica-drum-n-bass"
+          - name: "Good Black"
+            type: playlist
+            id: "good-black"
+          - name: "Good Electronica"
+            type: playlist
+            id: "good-electronica"
+          - name: "Good Jazz"
+            type: playlist
+            id: "good-jazz"
+          - name: "Good Pop"
+            type: playlist
+            id: "good-pop"
+          - name: "Good Rock"
+            type: playlist
+            id: "good-rock"
+          - name: "Jazz - 4+5 Star + Unrated"
+            type: playlist
+            id: "jazz-45-star-unrated"
+          - name: "Jazz - 70s Electronic"
+            type: playlist
+            id: "jazz-70s-electronic"
+          - name: "Jazz - Acid"
+            type: playlist
+            id: "jazz-acid"
+          - name: "Jazz - Acid Small"
+            type: playlist
+            id: "jazz-acid-small"
+          - name: "Jazz - Big Band"
+            type: playlist
+            id: "jazz-big-band"
+          - name: "Jazz - Classic"
+            type: playlist
+            id: "jazz-classic"
+          - name: "Jazz - Classic Small"
+            type: playlist
+            id: "jazz-classic-small"
+          - name: "Jazz - Jaco"
+            type: playlist
+            id: "jazz-jaco"
+          - name: "Jazz - Latin"
+            type: playlist
+            id: "jazz-latin"
+          - name: "Jazz - Modern"
+            type: playlist
+            id: "jazz-modern"
+          - name: "Jazz - Unrated"
+            type: playlist
+            id: "jazz-unrated"
+          - name: "Kids - English"
+            type: playlist
+            id: "kids-english"
+          - name: "Kids - Russian"
+            type: playlist
+            id: "kids-russian"
+          - name: "Kids Music Videos"
+            type: playlist
+            id: "kids-music-videos"
+          - name: "Music Videos"
+            type: playlist
+            id: "music-videos"
+          - name: "Pop - 80s"
+            type: playlist
+            id: "pop-80s"
+          - name: "Pop - Crowd Pleasers"
+            type: playlist
+            id: "pop-crowd-pleasers"
+          - name: "Pop - Modern"
+            type: playlist
+            id: "pop-modern"
+          - name: "Pop - Unrated"
+            type: playlist
+            id: "pop-unrated"
+          - name: "Recent Stuff - Highly Rated"
+            type: playlist
+            id: "recent-stuff-highly-rated"
+          - name: "Rock - 90s"
+            type: playlist
+            id: "rock-90s"
+          - name: "Rock - 00s"
+            type: playlist
+            id: "rock-00s"
+          - name: "Rock - 4+5 Star + Unrated"
+            type: playlist
+            id: "rock-45-star-unrated"
+          - name: "Rock - Alternative"
+            type: playlist
+            id: "rock-alternative"
+          - name: "Rock - AltRock"
+            type: playlist
+            id: "rock-altrock"
+          - name: "Rock - Classic"
+            type: playlist
+            id: "rock-classic"
+          - name: "Rock - College"
+            type: playlist
+            id: "rock-college"
+          - name: "Rock - Mellow"
+            type: playlist
+            id: "rock-mellow"
+          - name: "Rock - Metal"
+            type: playlist
+            id: "rock-metal"
+          - name: "Rock - Modern"
+            type: playlist
+            id: "rock-modern"
+          - name: "Rock - Nu Metal"
+            type: playlist
+            id: "rock-nu-metal"
+          - name: "Rock - Progressive"
+            type: playlist
+            id: "rock-progressive"
+          - name: "Rock - Unrated"
+            type: playlist
+            id: "rock-unrated"
+          - name: "Rock + Pop"
+            type: playlist
+            id: "rock-pop"
+          - name: "Ambient Sleeping Pill"
+            type: playlist
+            id: "ambient-sleeping-pill"
+          - name: "Europa2"
+            type: playlist
+            id: "europa2"
+          - name: "Jazz24"
+            type: playlist
+            id: "jazz24"
+          - name: "Radio Kultura RU"
+            type: playlist
+            id: "radio-kultura-ru"
+          - name: "Radio Swiss Classic"
+            type: playlist
+            id: "radio-swiss-classic"
+          - name: "Acid Jazz + Chill Out"
+            type: playlist
+            id: "z-acid-jazz-chill-out"
+          - name: "AlteyRock"
+            type: playlist
+            id: "z-alteyrock"
+          - name: "Jazz+Funk"
+            type: playlist
+            id: "z-jazzfunk"
+          - name: "Jazz+Latin"
+            type: playlist
+            id: "z-jazzlatin"
+          - name: "Mine"
+            type: playlist
+            id: "z-mine"
+          - name: "Proletariat Rock"
+            type: playlist
+            id: "z-proletariat-rock"
+          - name: "Rocker's Rock"
+            type: playlist
+            id: "z-rockers-rock"
+          - name: "Alena's"
+            type: playlist
+            id: "zz-alenas"
+          - name: "Beach Music"
+            type: playlist
+            id: "z-beach-music"
+          - name: "DJ Cuts"
+            type: playlist
+            id: "z-dj-cuts"
+          - name: "Driving Music"
+            type: playlist
+            id: "z-driving-music"
+          - name: "Lounge"
+            type: playlist
+            id: "z-lounge"
+          - name: "Mellow Music"
+            type: playlist
+            id: "z-mellow-music"
+          - name: "Palettable Rock"
+            type: playlist
+            id: "z-palettable-rock"
+          - name: "Wacky Cheerful Music"
+            type: playlist
+            id: "z-wacky-cheerful-music"
+          - name: "Waver Friendly"
+            type: playlist
+            id: "z-waver-friendly"
+          - name: "Wedding music"
+            type: playlist
+            id: "z-wedding-music"
+
+    - type: horizontal-stack
       cards:
 
-  #      - type: entities
-  #        title: Whole House
-  #        show_header_toggle: false
-  #        entities:
-  #        - climate.straus_house 
 
-    #      - type: gauge
-    #        entity: sensor.current_rate_power_cost_per_day 
-    #        name: "Current Electricity Use"
-    #        unit: Kč/day
-    #        min: 60
-    #        max: 700
-    #        severity:
-    #          green: 0
-    #          yellow: 250
-    #          red: 350 
-    #        
-
-      - entity: media_player.itunes
-        type: custom:mini-media-player
-        group: true
+      - type: "custom:button-card"
+        name: SHUFFLE
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: "switch.shuffle"
 
 
-      - type: horizontal-stack
-        cards:
+    - type: horizontal-stack
+      cards:
 
 
-        - type: "custom:button-card"
-          name: SHUFFLE
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: switch.toggle
-            service_data:
-              entity_id: "switch.shuffle"
+      - type: "custom:button-card"
+        name: MIX
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "a-45-star"
+            media_content_type: "playlist"
+
+      - type: "custom:button-card"
+        name: JAZZ
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "best-jazz"
+            media_content_type: "playlist"
+
+      - type: "custom:button-card"
+        name: ROCK
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "best-rock"
+            media_content_type: "playlist"           
+
+      - type: "custom:button-card"
+        name: POP
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "best-pop"
+            media_content_type: "playlist"
 
 
-      - type: horizontal-stack
-        cards:
+    - type: horizontal-stack
+      cards:
 
 
-        - type: "custom:button-card"
-          name: MIX
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "a-45-star"
-              media_content_type: "playlist"
+      - type: "custom:button-card"
+        name: CLASSICAL
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "classical"
+            media_content_type: "playlist"
 
-        - type: "custom:button-card"
-          name: JAZZ
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-jazz"
-              media_content_type: "playlist"
+      - type: "custom:button-card"
+        name: BLACK
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "best-black"
+            media_content_type: "playlist"
 
-        - type: "custom:button-card"
-          name: ROCK
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-rock"
-              media_content_type: "playlist"           
+      - type: "custom:button-card"
+        name: ELECTRO
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "best-electronica"
+            media_content_type: "playlist"
 
-        - type: "custom:button-card"
-          name: POP
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-pop"
-              media_content_type: "playlist"
+      - type: "custom:button-card"
+        name: KIDS
+        styles:
+          card:
+            - padding: 12px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "kids-english"
+            media_content_type: "playlist"
 
+    - type: horizontal-stack
+      cards:
 
-      - type: horizontal-stack
-        cards:
+      - type: "custom:button-card"
+        name: KULTURA <br> RADIO
+        styles:
+          card:
+            - padding: 4px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "radio-kultura-ru"
+            media_content_type: "playlist"
 
+      - type: "custom:button-card"
+        name: CLASSICAL <br> RADIO
+        styles:
+          card:
+            - padding: 4px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "radio-swiss-classic"
+            media_content_type: "playlist"
 
-        - type: "custom:button-card"
-          name: CLASSICAL
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "classical"
-              media_content_type: "playlist"
+      - type: "custom:button-card"
+        name: JAZZ24 <br> RADIO
+        styles:
+          card:
+            - padding: 4px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "jazz24"
+            media_content_type: "playlist"
 
-        - type: "custom:button-card"
-          name: BLACK
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-black"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: ELECTRO
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-electronica"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: KIDS
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "kids-english"
-              media_content_type: "playlist"
-
-      - type: horizontal-stack
-        cards:
-
-        - type: "custom:button-card"
-          name: KULTURA <br> RADIO
-          styles:
-            card:
-              - padding: 4px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "radio-kultura-ru"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: CLASSICAL <br> RADIO
-          styles:
-            card:
-              - padding: 4px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "radio-swiss-classic"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: JAZZ24 <br> RADIO
-          styles:
-            card:
-              - padding: 4px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "jazz24"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: EUROPA2 <br> RADIO
-          styles:
-            card:
-              - padding: 4px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "europa2"
-              media_content_type: "playlist"
+      - type: "custom:button-card"
+        name: EUROPA2 <br> RADIO
+        styles:
+          card:
+            - padding: 4px 0px
+            - font-size: 14px
+        tap_action: 
+          action: call-service
+          service: media_player.play_media 
+          service_data:
+            entity_id: "media_player.itunes"
+            media_content_id: "europa2"
+            media_content_type: "playlist"
 
   #    - type: entities
   #      title: Whole House
