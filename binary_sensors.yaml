@@ -327,6 +327,7 @@
         value_template: >-
           {{ is_state('binary_sensor.front_door_zone_1', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
 
+
   - platform: template
     sensors:
       sebastians_window_open_sean:
@@ -355,7 +356,7 @@
     sensors:
       reminders_label:
         value_template: >-
-          {{((( as_timestamp(strptime(state_attr('calendar.alena_and_seans_calendar', 'start_time'),"%F %T")) - as_timestamp(now())) / 86400)|round(2)) < 2  }}
+          {{(((( as_timestamp(strptime(state_attr('calendar.alena_and_seans_calendar', 'start_time'),"%F %T")) - as_timestamp(now())) / 86400)|round(2)) < 2)  }}
 
 #
 #
@@ -367,3 +368,33 @@
 #{% set testing = (state_attr('calendar.alena_and_seans_calendar', 'start_time'))%}
 #{%set testing2=strptime(testing,"%F")%}
 #{{testing2}}
+
+
+
+  - platform: template
+    sensors:
+      sebs_room_motion:
+        friendly_name: Sebs Room Motion
+        device_class: motion
+        entity_id: camera.sebs_room
+        value_template: "{{ is_state('camera.sebs_room', 'motion') }}"
+        delay_off: 
+            seconds: 30
+
+  - platform: template
+    sensors:
+      seb_naptime:
+        friendly_name: "Sebs Movement Notification"
+        value_template: >-
+          {{  (((now().strftime('%H')|int) >= 22) or ((now().strftime('%H')|int) <= 7))  or (((now().strftime('%H')|int) >= 14) and ((now().strftime('%H')|int) <= 16))}}
+
+#((((now().strftime('%H')|int) > 21) and (now().strftime('%M')|int) > 30) or (((now().strftime('%H')|int) < 7) and (now().strftime('%M')|int) < 30)) or ((((now().strftime('%H')|int) > 13) and (now().strftime('%M')|int) > 30) or (((now().strftime('%H')|int) < 16) and (now().strftime('%M')|int) < 30))
+
+  - platform: template
+    sensors:
+      basement_door_open_sean:
+        friendly_name: "Front Door is Open and Sean isn't Traveling"
+        device_class: door
+        value_template: >-
+          {{ is_state('binary_sensor.basement_sliding_door', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
+

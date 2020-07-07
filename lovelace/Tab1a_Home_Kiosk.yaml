@@ -168,7 +168,7 @@ cards:
       - variable.dpd_variable
       - variable.gls_variable
       - sensor.bio_odpad_day
-      - sensor.trash_day
+#      - sensor.trash_day
     #      - sensor.gls_packages_coming_today
     #      - sensor.cp_packages_coming_today
     #      - sensor.dpd_packages_coming_today
@@ -200,6 +200,7 @@ cards:
       - sensor.car_needs_charging
       - sensor.low_gas_in_car
       - sensor.trash_display
+      - binary_sensor.basement_sliding_door
       state_filter:
       - "on"
       - "Delivery"
@@ -226,6 +227,15 @@ cards:
 
     - type: vertical-stack
       cards:
+
+#      - type: conditional
+#        conditions:
+#          - entity: binary_sensor.seb_naptime
+#            state: "on"
+#        card:
+#          type: picture-glance
+#          camera_image: camera.sebs_room
+#          entities: []
 
       - type: picture-glance
 #          title: Outdoor - Front Gate
@@ -347,6 +357,7 @@ cards:
       - zwave.sophies_room_ceiling_window
       - zwave.ecolink_closet_left_window
       - zwave.ecolink_garage_door_sensor
+      - zwave.ecolink_basement_sliding_door
       state_filter:
       - "Warning"
       - "grey"
@@ -386,6 +397,7 @@ cards:
       - sensor.sophies_room_ceiling_window_sensor_battery_level
       - sensor.ecolink_closet_left_window_battery_level
       - sensor.ecolink_garage_door_battery_level
+      - sensor.ecolink_basement_sliding_door_battery_level
       show_empty: false
 
 

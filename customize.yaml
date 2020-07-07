@@ -405,3 +405,5 @@ sensor.car_needs_charging:
   icon: mdi:battery-30
 sensor.trash_display:
   icon: mdi:trash-can-outline
+binary_sensor.basement_sliding_door:
+  device_class: door

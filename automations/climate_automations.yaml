@@ -1346,7 +1346,6 @@
 
 - id: fire_in_fireplace_tomorrow
   alias: "Fire in Fireplace Tomorrow"
-  initial_state: 'true'
   trigger:
     platform: time
     at: '6:00:00'
@@ -1364,7 +1363,6 @@
 
 - id: fire_in_fireplace_now
   alias: "Fire in Fireplace Now"
-  initial_state: 'true'
   trigger:
     platform: state
     entity_id: input_boolean.fire_in_fireplace_now
@@ -1406,7 +1404,6 @@
 
 - id: working_from_home_now
   alias: "Working From Home Now"
-  initial_state: 'true'
   trigger:
     platform: state
     entity_id: input_boolean.working_from_home
@@ -1420,7 +1417,6 @@
 
 - id: working_from_home_today
   alias: "Working From Home Today"
-  initial_state: 'true'
   trigger:
     platform: time
     at: '10:00:00'

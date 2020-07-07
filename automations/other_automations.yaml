@@ -973,3 +973,37 @@
   action:
     service: homeassistant.update_entity
     entity_id: binary_sensor.trash_display
+
+- id: update_sebs_naptime
+  alias: update_sebs_naptime
+  trigger:
+    platform: time_pattern
+    minutes: 5
+  action:
+    service: homeassistant.update_entity
+    entity_id: binary_sensor.seb_naptime
+
+- id: sebastian_is_up
+  alias: sebastian_is_up
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sebs_room_motion
+      to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: time
+        after: '22:00:00'
+        before: '7:00:00'
+      - condition: time
+        after: '14:00:00'
+        before: '16:00:00'
+  action:
+    service: notify.mobile_app_sean_s_iphone_x
+    data:
+      title: "Sebastian is Awake"
+      message: "Sebastian is Awake"
+      data:
+        push:
+          thread-id: "info"

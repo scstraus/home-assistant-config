@@ -1912,3 +1912,4 @@
           {% endif %}
         icon_template: >-
             mdi:trash-can-outline
+
