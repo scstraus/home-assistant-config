@@ -7,7 +7,7 @@ Hello there. This is an incomplete and probably out of date description of what 
 
 Some things that may be interesting to you from my config which are not so common or are unique from how much I've obsessed over them are the:
 
-* 10 Zone [Apple Airtunes](https://www.home-assistant.io/integrations/itunes/) whole house audio deployment with playlist buttons
+* 10 Zone [Apple Airtunes](https://www.home-assistant.io/integrations/itunes/) whole house audio deployment with playlist buttons and lists
 * The [tensorflow](https://www.tensorflow.org/) based human detection using [frigate](https://github.com/blakeblackshear/frigate) and a [Google coral USB stick](https://coral.ai/products/accelerator/) on my [hikvision cameras](https://www.hikvision.com/content/dam/hikvision/en/support/regional-materials/brazil/DS-2CD2620F-I(S)%20%20-%20customized%20for%20Cangacu%20City%20-%20Bidding%2004-2015.pdf)
 * The 12 zone [Honeywell Evohome](https://www.home-assistant.io/integrations/evohome/) heating system which is heavily automated with a custom [python script](https://github.com/scstraus/home-assistant-config/blob/master/python_scripts/set_heat_weather_override.py) to manage temperature settings and schedules based on the weather and automations to turn down the heat when the windows are open
 * [Paradox Alarm Integration](https://community.home-assistant.io/t/paradox-alarm-mqtt-hassio-addon/38569/260) integrated with the human detection and many notification scenarios
@@ -501,4 +501,23 @@ This uses the [dropbox sync component](https://github.com/danielwelch/hassio-dro
 ### [Fix the intermittent unavailability of our Xiaomi Air Purifiers' AQI sensors](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L667-L733)
 
 Now that I look at this, this should probably be in appliance automations. Anyhow, it does the same thing I described [here](#automate-air-purifiers-based-on-outdoor-air-quality-and-make-them-avaiable-even-when-they-arent-available) which is to make a sensor that reports the AQI based on the last available data, even when the air purifiers go unavailable for short periods of time, and then update again when they become available. That makes the UI for them look and work like they are always available, even though they aren't. See the [link to the other section for more detail](#automate-air-purifiers-based-on-outdoor-air-quality-and-make-them-avaiable-even-when-they-arent-available)
+
+
+### [Notify us when state holidays are coming up](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L736-L788)
+
+As expats, we don't have as good of a feel for the state holidays as locals do, so these automations notify us when the state holidays are coming up (1 week before, 1 day before, and same day). They are also shown on our lovelace dashboards for the week before.
+
+### [Give a switch to turn on the aircon/heating in our car remotely](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L790-L811)
+
+These automations are just giving an action to an input boolean which acts as a switch for our car's climate control so we can turn it on when we are out and about but not in the car. There isn't actually a service call to turn it off, only on, but I like to have the switch to give the visual feedback that you turned it on. When the car doors are unlocked or locked, it automatically turns the input boolean back off, because the advance warming/cooling of the car will stop when someone gets in.
+
+### [Calculate change in number of coronavirus cases since yesterday](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L813-L854)
+
+I find that the change in number of cases from yesterday is the main coronavirus stat that I want that wasn't provided by the standard sensor, so I made some automations to store yesterday's number in a variable and then calculate the delta between yesterday and today inbetween when they publish the numbers (6:00 AM seems to be the sweet spot where I get the right delta that matches the official one). We then publish this on our dashboard alongside the new cases counted so far today and the total amount of cases.
+
+### [More advanced trash day handling that accounts for whether we already took out the trash and harrasses us if we didn't](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L856-L890)
+
+I have some sensors that tell us when the trash day is, and previously it gave me some notifications the day before and 2 days before. But still sometimes we missed trash day, so I had to step up my game. These automations use an additional sensor and input boolean which indicate whether the trash has actually been taken out. Then I use an alert component to keep harrassing me every hour the night before trash day until I tell it via actionable notification or via a pushbutton on the popup from the sensor icon on my dashboard that trash has been taken out. Once I tell it that it's actually out, it will stop bugging me and the icon goes away on the dashboard. Someday I can hopefully rig up a sensor that actually tells when the trash is out so that we don't need the icon. With this logic in place, it will be an easy swap to that sensor. 
+
+
 
