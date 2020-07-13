@@ -66,7 +66,10 @@ Click the header links to be taken to the current version of the relevant file. 
     + [Automatic change between daytime theme and nighttime theme](#automatic-change-between-daytime-theme-and-nighttime-theme)
     + [Send my supervisor snapshots to dropbox nightly](#send-my-supervisor-snapshots-to-dropbox-nightly)
     + [Fix the intermittent unavailability of our Xiaomi Air Purifiers' AQI sensors](#fix-the-intermittent-unavailability-of-our-xiaomi-air-purifiers-aqi-sensors) 
-
+    + [Notify us when state holidays are coming up](#notify-us-when-state-holidays-are-coming-up)
+    + [Give a switch to turn on the aircon/heating in our car remotely](#give-a-switch-to-turn-on-the-airconheating-in-our-car-remotely)
+    + [Calculate change in number of coronavirus cases since yesterday](#calculate-change-in-number-of-coronavirus-cases-since-yesterday)
+    + [More advanced trash day handling that accounts for whether we already took out the trash and harrasses us if we didn't](#more-advanced-trash-day-handling-that-accounts-for-whether-we-already-took-out-the-trash-and-harrasses-us-if-we-didnt)
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
