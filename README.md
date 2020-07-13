@@ -32,7 +32,7 @@ Click the header links to be taken to the current version of the relevant file. 
     + [Guessing whether the dishes in the dishwasher are clean or dirty based on the Bosch integration](#guessing-whether-the-dishes-in-the-dishwasher-are-clean-or-dirty-based-on-the-bosch-integration)
     + [Using Zwave power report to determine Miele washing machine state](#using-zwave-power-report-to-determine-miele-washing-machine-state)
     + [Using Zwave power report to determine LG washing machine state](#using-zwave-power-report-to-determine-lg-washing-machine-state)
-    + [Automate Air Purifiers based on outdoor air quality and make them "available" even when they aren't available](#automate-air-purifiers-based-on-outdoor-air-quality-and-make-them--avaiable--even-when-they-aren-t-available)
+    + [Automate Air Purifiers based on outdoor air quality and make them "available" even when they aren't available](#automate-air-purifiers-based-on-outdoor-air-quality-and-make-them-avaiable-even-when-they-arent-available)
   * [Climate Automations](#climate-automations)
     + [Turning down the heater radiator valves when windows are open](#turning-down-the-heater-radiator-valves-when-windows-are-open)
     + [Adjusting the heat based on the weather](#adjusting-the-heat-based-on-the-weather)
@@ -462,3 +462,35 @@ We had some leak happening under our sink and my wife was worried about mold so 
 ### [Notify me if the internet isn't working right](https://github.com/scstraus/home-assistant-config/blob/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b/automations/other_automations.yaml#L266-L294)
 
 Generally I keep these automations off unless we are having problems and I want to know about it. They just tell me if my speedtest results are showing limited bandwidth.
+
+### [Integrate to my AirVisual Nodes by SMB](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L342-L358)
+
+These ones run a command line script which connects to my AirVisual Nodes to get the data about air quality (AQI) every 5 minutes. 
+
+### [Notify me and my wife on our phones when it's time to take out trash or compost](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L376-L571)
+
+These ones are based on a sensor which tells us when it's almost the trash day and sends us a notification if it's time to take out the trash or compost. I will probably retire the trash one soon as I've stepped up to a more advanced sensor which uses the alert component where I can tell it that I've taken out the trash via a button in the popup in my UI or via actionable location and it will stop sending me notifications, but if I haven't told it that it's out, it will keep sending me notifications until it's out. For the compost, it's usually not as urgent so I'll leave it like this.
+
+There are also automations here which update the template sensors every minute because they won't update themselves otherwise (new "feature" in recent versions)
+
+### [Update my commute sensor in the morning](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L573-L592)
+
+This one updates the calculations about how long my commute will take in the morning very often so the data is always up to date. I haven't done much with this since COVID-19.
+
+
+### [Notify me if the basement is flooding](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L595-L623)
+
+This automation is one of my favorites because it's saved my ass before. It is using a hauppage flood sensor to notify me when the basement is flooding. The flood sensor works perfectly to notify me just in time for me to take the shop vac and vacuum it up, turning what would be a 2-3 hour ordeal into a 5 minute ordeal. I've recently added the TTS to my kindle fire kiosks to notify me via voice too, but haven't tested it yet.
+
+### [Automatic change between daytime theme and nighttime theme](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064)/automations/other_automations.yaml#L625-L652)
+
+This one just automatically changes the theme at 30 minutes after sunset (to sync with when my cameras go to IR illumination) and at sunrise. This makes the kiosks much nicer too look at at night and not so blaring.
+
+### [Send my supervisor snapshots to dropbox nightly](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L654-L665)
+
+This uses the [dropbox sync component](https://github.com/danielwelch/hassio-dropbox-sync) to back up my hass.io supervisor (homeassistant) backups to dropbox so that no matter what happens on the server, I have a copy.
+
+### [Fix the intermittent unavailability of our Xiaomi Air Purifiers' AQI sensors](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L667-L733)
+
+Now that I look at this, this should probably be in appliance automations. Anyhow, it does the same thing I described [here](#automate-air-purifiers-based-on-outdoor-air-quality-and-make-them-avaiable-even-when-they-arent-available) which is to make a sensor that reports the AQI based on the last available data, even when the air purifiers go unavailable for short periods of time, and then update again when they become available. That makes the UI for them look and work like they are always available, even though they aren't. See the [link to the other section for more detail](#automate-air-purifiers-based-on-outdoor-air-quality-and-make-them-avaiable-even-when-they-arent-available)
+
