@@ -1,7 +1,7 @@
 # Sean Straus' Home Assistant Configuration <img src="https://avatars1.githubusercontent.com/u/7644023?s=460&u=385a7ff0525e0838f1e302474d6c8931fc6db189&v=4" width="100" height="100" align="right"> 
 (Home Assistant Supervised, Ubuntu Server 18.04.1 LTS, 2011 Mac Mini)
 
-Last update: [July 13, 2020 (Hass v.112.4)](https://github.com/scstraus/home-assistant-config/tree/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b), but make sure you check the version in the code snippet I linked to because in most cases I documented it on an older version than that and you may have to find the more recent update in the repo for it to work properly on new versions. Unfortunately to link to the snippets directly, I have to use the version I am on when I write the documentation, but I don't go back and update everything when I make changes to each thing.
+Last update: [July 13, 2020 (Hass v.112.4)](https://github.com/scstraus/home-assistant-config/tree/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b), but make sure you check the history in the code snippet I linked to to see which version I was on when I documented it, because in most cases I documented it on an older version than that and you may have to find the more recent update in the repo for it to work properly on new versions. Unfortunately to link to the snippets directly, I have to use the version I am on when I write the documentation, but I don't go back and update everything when I make changes to each thing.
 
 Hello there. This is an incomplete and probably out of date description of what I'm doing with home assistant, but hopefully it will be of some use for ideas and samples to someone.
 
