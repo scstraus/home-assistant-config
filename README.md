@@ -482,7 +482,7 @@ This one updates the calculations about how long my commute will take in the mor
 
 This automation is one of my favorites because it's saved my ass before. It is using a hauppage flood sensor to notify me when the basement is flooding. The flood sensor works perfectly to notify me just in time for me to take the shop vac and vacuum it up, turning what would be a 2-3 hour ordeal into a 5 minute ordeal. I've recently added the TTS to my kindle fire kiosks to notify me via voice too, but haven't tested it yet.
 
-### [Automatic change between daytime theme and nighttime theme](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064)/automations/other_automations.yaml#L625-L652)
+### [Automatic change between daytime theme and nighttime theme](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L625-L652)
 
 This one just automatically changes the theme at 30 minutes after sunset (to sync with when my cameras go to IR illumination) and at sunrise. This makes the kiosks much nicer too look at at night and not so blaring.
 
