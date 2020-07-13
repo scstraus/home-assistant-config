@@ -57,8 +57,16 @@ Click the header links to be taken to the current version of the relevant file. 
   * [Other Automations](#other-automations)
     + [Notify me if it's a good day to bike to work](#notify-me-if-its-a-good-day-to-bike-to-work)
     + [Variables to indicate whether packages are being delivered today from each shipping company](#variables-to-indicate-whether-packages-are-being-delivered-today-from-each-shipping-company)
-    + [Notify if we have moldy conditions under the sink](https://github.com/scstraus/home-assistant-config#notify-if-we-have-moldy-conditions-under-the-sink)
-    + [Notify me if the internet isn't working right](https://github.com/scstraus/home-assistant-config#notify-me-if-the-internet-isnt-working-right)
+    + [Notify if we have moldy conditions under the sink](#notify-if-we-have-moldy-conditions-under-the-sink)
+    + [Notify me if the internet isn't working right](#notify-me-if-the-internet-isnt-working-right)
+    + [Integrate to my AirVisual Nodes by SMB](#integrate-to-my-airvisual-nodes-by-smb)
+    + [Notify me and my wife on our phones when it's time to take out trash or compost](#notify-me-and-my-wife-on-our-phones-when-its-time-to-take-out-trash-or-compost)
+    + [Update my commute sensor in the morning](#update-my-commute-sensor-in-the-morning)
+    + [Notify me if the basement is flooding](#notify-me-if-the-basement-is-flooding)
+    + [Automatic change between daytime theme and nighttime theme](#automatic-change-between-daytime-theme-and-nighttime-theme)
+    + [Send my supervisor snapshots to dropbox nightly](#send-my-supervisor-snapshots-to-dropbox-nightly)
+    + [Fix the intermittent unavailability of our Xiaomi Air Purifiers' AQI sensors](#fix-the-intermittent-unavailability-of-our-xiaomi-air-purifiers-aqi-sensors) 
+
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
