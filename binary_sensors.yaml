@@ -386,7 +386,7 @@
       seb_naptime:
         friendly_name: "Sebs Movement Notification"
         value_template: >-
-          {{  (((now().strftime('%H')|int) >= 22) or ((now().strftime('%H')|int) <= 7))  or (((now().strftime('%H')|int) >= 14) and ((now().strftime('%H')|int) <= 16))}}
+          {{  (((now().strftime('%H')|int) >= 22) or ((now().strftime('%H')|int) <= 6))  or (((now().strftime('%H')|int) >= 14) and ((now().strftime('%H')|int) <= 15))}}
 
 #((((now().strftime('%H')|int) > 21) and (now().strftime('%M')|int) > 30) or (((now().strftime('%H')|int) < 7) and (now().strftime('%M')|int) < 30)) or ((((now().strftime('%H')|int) > 13) and (now().strftime('%M')|int) > 30) or (((now().strftime('%H')|int) < 16) and (now().strftime('%M')|int) < 30))
 

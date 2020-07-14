@@ -64,21 +64,52 @@ custom_header:
         hide_config: true
         voice_hide: true
 
+decluttering_templates:
+  alert:
+    card:  
+      type: custom:button-card
+      name: '[[name]]'
+      deep_press: true
+      icon: 'mdi:alert' 
+      size: 28px
+  #    lock: '[[lock]]'
+      aspect_ratio: 7/1
+  #    entity: fan.sophies_room_air_purifier
+      label: '[[name]]'
+      show_name: true
+      show_icon: true
+      show_state: false
+      show_label: false
+      show_last_changed: false
+  #    tap_action: '[[tap_action]]'
+  #    hold_action: '[[hold_action]]'
+      styles:
+        card:
+  #        - border-radius: '[[border-radius]]'
+          - --ha-card-background: '#d40404'
+  #        - box-shadow: '[[box-shadow]]' # Changed/Added in 0.13.0
+        name:
+          - font-size: 18px
+          - font-family: Helvetica
+          - color: white
+          - justify-self: start
+          - padding-left: 18px
+          - padding-top: 5px
+        img_cell:
+          - align-self: start
+          - text-align: start
+  #        - margin-right: 22px
+          - margin-left: 21px
+        grid: 
+          - grid-template-areas: '"i n"'
+          - grid-template-columns: 8% 1fr
+          - grid-template-rows: 1fr
+        icon:
+          - color: white
+      state:
+        - value: "off"
+  #        spin: '[[spin]]'
 
-
-#        header_text: '{{ hours12 }}:{{ minutesLZ }} {{ ampm }}'
-#        button_text:
-#          menu: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
-
-#        header_text: '{{ hours12 }}:{{ minutesLZ }} {{ ampm }}'
-#        button_text:
-#          menu: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
-
-#        options: clock
-#        clock_format: 24
-#        voice: hide
-#        notifications: hide  
-#        menu: hide
  
 #### EIGHTH TAB ####
 #

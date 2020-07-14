@@ -579,6 +579,9 @@
       message: "Activity Notification"
       data:
         push:
+          sound:
+            critical: 1
+            volume: 1.0
           thread-id: "security"
 
 - id: popup_on_kiosk_back
@@ -603,9 +606,9 @@
         deviceID:
           - !secret kindle_master_closet_deviceid
         large: true
-    - service: fully_kiosk.screensaver_stop
-      data:
-        entity_id: display.kindle_fire_kitchen
+    # - service: fully_kiosk.screensaver_stop
+    #   data:
+    #     entity_id: display.kindle_fire_kitchen
 
 - id: popup_on_kiosk_front
   alias: 'Popup on Kiosk Front'  
@@ -627,9 +630,9 @@
         entity_id: camera.front
         deviceID:
           - !secret kindle_master_closet_deviceid
-    - service: fully_kiosk.screensaver_stop
-      data:
-        entity_id: display.kindle_fire_kitchen
+    # - service: fully_kiosk.screensaver_stop
+    #   data:
+    #     entity_id: display.kindle_fire_kitchen
 
 - id: popup_on_kiosk_left
   alias: 'Popup on Kiosk Left'  
@@ -653,9 +656,9 @@
         deviceID:
           - !secret kindle_master_closet_deviceid
         large: true
-    - service: fully_kiosk.screensaver_stop
-      data:
-        entity_id: display.kindle_fire_kitchen
+    # - service: fully_kiosk.screensaver_stop
+    #   data:
+    #     entity_id: display.kindle_fire_kitchen
 
 - id: popup_on_kiosk_right
   alias: Popup on Kiosk Right
@@ -679,9 +682,9 @@
         deviceID:
           - !secret kindle_master_closet_deviceid
         large: true
-    - service: fully_kiosk.screensaver_stop
-      data:
-        entity_id: display.kindle_fire_kitchen
+    # - service: fully_kiosk.screensaver_stop
+    #   data:
+    #     entity_id: display.kindle_fire_kitchen
 
 - id: keep_fully_kiosk_screen_on_human
   alias: Keep Fully Kiosk Screen On

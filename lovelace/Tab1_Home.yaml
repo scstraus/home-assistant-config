@@ -5,6 +5,9 @@
 title: Home
 icon: mdi:home
 
+#preload:
+#  - custom:vertical-stack-in-card
+
 popup_cards:
 
   weather.openweathermap:
@@ -506,14 +509,6 @@ cards:
 #          hidePastEvents: true
 #          hideHeader: true
 
-#  - type: picture-glance
-#    title: "Seb's Room"
-#    camera_image: camera.sebs_room
-#    entities:
-#      - switch.camera_sebs_room_ir_lights
-#      - switch.camera_sebs_room_email
-#      - switch.camera_sebs_room_ftp
-#      - binary_sensor.sebs_room_motion
 
 
 
@@ -532,16 +527,19 @@ cards:
         cards:
 
 
-        - type: conditional
-          conditions:
-            - entity: binary_sensor.seb_naptime
-              state: "on"
-          card:
-            type: picture-glance
-#            title: "Seb's Room"
-            camera_image: camera.sebs_room
-            camera_view: live
-            entities: []
+  #       - type: conditional
+  #         conditions:
+  #           - entity: binary_sensor.seb_naptime
+  #             state: "on"
+  #         card:
+  #           type: picture-glance
+  # #            title: "Seb's Room"
+  #           camera_image: camera.sebs_room
+  #           camera_view: live
+  #           entities: []
+
+
+
       #        - switch.camera_sebs_room_ir_lights
 #              - binary_sensor.sebs_room_motion
       #        - switch.camera_sebs_room_email

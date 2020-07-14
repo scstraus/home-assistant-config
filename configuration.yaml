@@ -96,7 +96,10 @@ lovelace:
       type: module
     - url: /hacsfiles/circle-sensor-card/circle-sensor-card.js
       type: module
-
+    - url: /hacsfiles/lovelace-card-preloader/lovelace-card-preloader.js
+      type: module 
+    - url: /hacsfiles/decluttering-card/decluttering-card.js
+      type: module
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -170,6 +173,8 @@ history:
     - switch
     - automation
     - script
+    - camera
+    - alert
     entities:
     - sensor.dark_sky_cloud_coverage_0
     - sensor.dark_sky_daily_summary
@@ -399,6 +404,25 @@ history:
     - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_type
     - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_burglar
     - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_sourcenodeid
+    - binary_sensor.04_000722_window
+    - binary_sensor.04_000730_window
+    - binary_sensor.04_000736_window
+    - binary_sensor.04_073121_window
+    - binary_sensor.04_136481_window
+    - binary_sensor.04_136483_window
+    - binary_sensor.04_136485_window
+    - binary_sensor.04_136489_window
+    - binary_sensor.04_136491_window
+    - binary_sensor.04_136495_window
+    - binary_sensor.04_136497_window
+    - binary_sensor.04_136499_window
+    - binary_sensor.04_136503_window
+    - binary_sensor.04_136505_window
+    - binary_sensor.04_136509_window
+    - binary_sensor.04_136511_window
+    - binary_sensor.04_136513_window
+    - binary_sensor.04_136519_window
+    - binary_sensor.04_157929_window
 
 recorder:
   db_url: !secret maria_url
@@ -409,6 +433,8 @@ recorder:
     - history_graph
     - media_player
     - switch
+    - camera
+    - alert
     entities:
     - sensor.dark_sky_cloud_coverage_0
     - sensor.dark_sky_daily_summary
@@ -630,7 +656,25 @@ recorder:
     - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_type
     - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_burglar
     - sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_sourcenodeid
-
+    - binary_sensor.04_000722_window
+    - binary_sensor.04_000730_window
+    - binary_sensor.04_000736_window
+    - binary_sensor.04_073121_window
+    - binary_sensor.04_136481_window
+    - binary_sensor.04_136483_window
+    - binary_sensor.04_136485_window
+    - binary_sensor.04_136489_window
+    - binary_sensor.04_136491_window
+    - binary_sensor.04_136495_window
+    - binary_sensor.04_136497_window
+    - binary_sensor.04_136499_window
+    - binary_sensor.04_136503_window
+    - binary_sensor.04_136505_window
+    - binary_sensor.04_136509_window
+    - binary_sensor.04_136511_window
+    - binary_sensor.04_136513_window
+    - binary_sensor.04_136519_window
+    - binary_sensor.04_157929_window
 
 #custom_updater:
 #  track:
@@ -1592,8 +1636,11 @@ alert:
     state: 'on'
     repeat: 
       - 1
+      - 4
       - 5
       - 10
+      - 10
+      - 15
     can_acknowledge: true
     skip_first: true
     notifiers:

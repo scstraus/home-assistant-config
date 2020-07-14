@@ -228,14 +228,15 @@ cards:
     - type: vertical-stack
       cards:
 
-#      - type: conditional
-#        conditions:
-#          - entity: binary_sensor.seb_naptime
-#            state: "on"
-#        card:
-#          type: picture-glance
-#          camera_image: camera.sebs_room
-#          entities: []
+      # - type: conditional
+      #   conditions:
+      #     - entity: binary_sensor.seb_naptime
+      #       state: "on"
+      #   card:
+      #     type: picture-glance
+      #     camera_image: camera.sebs_room
+      #     camera_view: live
+      #     entities: []
 
       - type: picture-glance
 #          title: Outdoor - Front Gate
