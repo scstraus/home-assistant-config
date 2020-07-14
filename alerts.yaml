@@ -1,0 +1,205 @@
+  garage_door_alena:
+    name: Garage has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.ecolink_garage_door.last_updated)) | int //60 }} minutes
+    done_message: Garage is closed
+    entity_id: binary_sensor.ecolink_garage_door
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Garage-Door-Open.wav"
+        thread-id: "info"
+    notifiers:
+      - mobile_app_alena_s_iphone
+
+
+  garage_door_sean:
+    name: Garage has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.ecolink_garage_door.last_updated)) | int //60 }} minutes
+    done_message: Garage is closed
+    entity_id: binary_sensor.garage_open_sean
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Garage-Door-Open.wav"
+        thread-id: "info"
+    notifiers:
+      - mobile_app_sean_s_iphone_x
+#    entity_id: binary_sensor.garage_door_zone_14
+
+  front_door_alena:
+    name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
+    done_message: Front door is closed
+    entity_id: binary_sensor.front_door_zone_1
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Front-Door-Open.wav"
+        thread-id: "info"
+    notifiers:
+      - mobile_app_alena_s_iphone
+
+  front_door_sean:
+    name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
+    done_message: Front door is closed
+    entity_id: binary_sensor.front_door_open_sean
+    state: 'on'
+    repeat: 
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Front-Door-Open.wav"
+        thread-id: "info"
+    notifiers:
+      - mobile_app_sean_s_iphone_x
+
+  sebastian_window_rain_warning_alena:
+    name: Sebastian's room window is open and it might rain.
+    done_message: Sebastian's room window is closed.
+    entity_id: binary_sensor.sebastians_room_rain_window
+    state: 'on'
+    repeat: 
+      - 5
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - mobile_app_alena_s_iphone
+    data:
+      push:
+        thread-id: "weather"
+
+  sebastian_window_rain_warning_sean:
+    name: Sebastian's room window is open and it might rain.
+    done_message: Sebastian's room window is closed.
+    entity_id: binary_sensor.sebastians_room_rain_window
+    state: 'on'
+    repeat: 
+      - 5
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - mobile_app_sean_s_iphone_x
+    data:
+      push:
+        thread-id: "weather"
+
+  sophies_window_rain_warning_alena:
+    name: Sophie's room window is open and it might rain.
+    done_message: Sophie's room window is closed.
+    entity_id: binary_sensor.sophies_room_rain_window
+    state: 'on'
+    repeat: 
+      - 5
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - mobile_app_alena_s_iphone
+    data:
+      push:
+        thread-id: "weather"
+
+  sophies_window_rain_warning_sean:
+    name: Sophie's room window is open and it might rain.
+    done_message: Sophie's room window is closed.
+    entity_id: binary_sensor.sophies_room_rain_window
+    state: 'on'
+    repeat: 
+      - 5
+      - 10
+      - 20
+      - 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - mobile_app_sean_s_iphone_x
+    data:
+      push:
+        thread-id: "weather"
+
+  trash_needs_to_be_taken_out:
+    name: "It's trash day and the trash still needs to be taken out!"
+    entity_id: binary_sensor.trash_emergency
+    state: 'on'
+    repeat: 
+      - 60
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - mobile_app_sean_s_iphone_x
+    data:
+      push:
+        category: "trash"
+        thread-id: "info"
+
+  basement_sliding_door_sean:
+    name: "Basement sliding door is open"
+    name: Basement sliding door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.basement_sliding_door.last_updated)) | int //60 }} minutes
+    done_message: Basement sliding door is closed
+    entity_id: binary_sensor.basement_door_open_sean
+    state: 'on'
+    repeat: 
+      - 1
+      - 4
+      - 5
+      - 10
+      - 10
+      - 15
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - mobile_app_sean_s_iphone_x
+      
+    data:
+      push:
+        thread-id: "info"
+
+
+  basement_sliding_door_alena:
+    name: "Basement sliding door is open"
+    name: Basement sliding door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.basement_sliding_door.last_updated)) | int //60 }} minutes
+    done_message: Basement sliding door is closed
+    entity_id: binary_sensor.basement_sliding_door
+    state: 'on'
+    repeat: 
+      - 1
+      - 5
+      - 10
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - mobile_app_alena_s_iphone
+    data:
+      push:
+        thread-id: "info"

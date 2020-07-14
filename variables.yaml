@@ -1,0 +1,119 @@
+  dpd_variable:
+    attributes:
+      friendly_name: 'DPD'
+      from: ''
+      subject: ''
+      body: ''
+      date: ''
+      icon: mdi:truck-delivery
+    restore: true
+
+  posta_variable:
+    attributes:
+      friendly_name: 'Posta'
+      from: ''
+      subject: ''
+      body: ''
+      date: ''
+      icon: mdi:truck-delivery
+    restore: true
+      
+  dhl_variable:
+    attributes:
+      friendly_name: 'DHL'
+      from: ''
+      subject: ''
+      body: ''
+      date: ''
+      icon: mdi:truck-delivery
+    restore: true
+    
+  gls_variable:
+    attributes:
+      friendly_name: 'GLS'
+      from: ''
+      subject: ''
+      body: ''
+      date: ''
+      icon: mdi:truck-delivery
+    restore: true
+
+  living_room_last_temp_variable:
+    restore: true
+
+  last_motion:
+    value: 'Not set'
+    restore: true
+    attributes:
+      icon: mdi:format-list-bulleted-square
+      name: 'Last Motion'
+
+  last_door_window:
+    value: 'Not set'
+    restore: true
+    attributes:
+      icon: mdi:format-list-bulleted-square
+      name: 'Last Door/Window'
+
+  sophies_room_aqi:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+    
+  sebastians_room_aqi:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+
+  sophies_room_aqi_description:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+    
+  sebastians_room_aqi_description:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+
+  master_bedroom_aqi:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+
+  master_bedroom_aqi_description:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:gauge-low
+    restore: true
+
+  czechia_coronavirus_yesterday:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:bug
+    restore: true
+    
+  czechia_coronavirus_new_yesterday:
+    value: 'Unknown'
+    attributes:
+      friendly_name: 'New Cases'
+      unit_of_measurement: yesterday
+      icon: mdi:chart-bubble
+    restore: true
+
+  czechia_coronavirus_new_today:
+    value: 'Unknown'
+    attributes:
+      friendly_name: 'New Cases'
+      unit_of_measurement: today
+      icon: mdi:chart-bubble
+    restore: true
+
+  dishwasher_last_door_open:
+    value: 'Unknown'
+    attributes:
+      icon: mdi:door-open
