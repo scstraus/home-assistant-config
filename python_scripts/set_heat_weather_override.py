@@ -36,8 +36,8 @@ OVERRIDE_MINUTES = 1439
 
 ## PROFILES DEFINED HERE ##
 
-
-## Auto is for winter where full heating is needed, 100 is for still cold weather at night but somewhat warm during day where rooms won't warm up much during day and will cool down a lot during night, from there they are for warmer weather. Profile E is basically just turning the heat off in the whole house because the weather is warm enough that it's not needed even at night for any rooms.
+## Note value of skip token and auto token above for when we don't set temp or set it to auto mode ##
+## Auto is for winter where full heating is needed, Profile A is for still cold weather at night but somewhat warm during day where rooms won't warm up much during day and will cool down a lot during night, from there they are for warmer weather. Profile E is basically just turning the heat off in the whole house because the weather is warm enough that it's not needed even at night for any rooms.
 PROFILE_AUTO = [100,100,100,100,100,100,100,100,100,100,100,100]
 PROFILE_A = [20,18,18,21,0,22,21,22,22,22,21,100]
 PROFILE_B = [19,17,17,20,0,21,21,21,21,21,21,21]
