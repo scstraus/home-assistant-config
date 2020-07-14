@@ -206,7 +206,7 @@ There's also a [group](https://www.home-assistant.io/integrations/group/) for wh
 
 This is the in-depth heat control which allows me to see the heat graph for each room and set more of the settings like whether the rooms are running from the schedule that's programmed into evohome, or in override mode. 
 
-Most of the interesting stuff about my heating happens in the heating automations and my custom python script for setting heat profiles based on weather. This tab is mainly for debugging the automated side of it.
+Most of the interesting stuff about my heating happens in the [heating automations](#climate-automations) and my [custom python script](https://github.com/scstraus/home-assistant-config/blob/master/python_scripts/set_heat_weather_override.py) for setting heat profiles based on weather. This tab is mainly for debugging the automated side of it.
 
 ![](readme_images/Tab3_heat.png)
 
