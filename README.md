@@ -57,7 +57,7 @@ Last update: [July 13, 2020 (Hass v.112.4)](https://github.com/scstraus/home-ass
     + [Variables to indicate whether packages are being delivered today from each shipping company](#variables-to-indicate-whether-packages-are-being-delivered-today-from-each-shipping-company)
     + [Notify if we have moldy conditions under the sink](#notify-if-we-have-moldy-conditions-under-the-sink)
     + [Notify me if the internet isn't working right](#notify-me-if-the-internet-isnt-working-right)
-    + [Integrate to my AirVisual Nodes by SMB](#integrate-to-my-airvisual-nodes-by-smb)
+    + [Integrate to my AirVisual Nodes by SMB to get near real time indoor and outdoor air quality information](#integrate-to-my-airvisual-nodes-by-smb-to-get-near-real-time-indoor-and-outdoor-air-quality-information)
     + [Notify me and my wife on our phones when it's time to take out trash or compost](#notify-me-and-my-wife-on-our-phones-when-its-time-to-take-out-trash-or-compost)
     + [Update my commute sensor in the morning](#update-my-commute-sensor-in-the-morning)
     + [Notify me if the basement is flooding](#notify-me-if-the-basement-is-flooding)
@@ -472,7 +472,7 @@ We had some leak happening under our sink and my wife was worried about mold so 
 
 Generally I keep these automations off unless we are having problems and I want to know about it. They just tell me if my speedtest results are showing limited bandwidth.
 
-### [Integrate to my AirVisual Nodes by SMB](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L342-L358)
+### [Integrate to my AirVisual Nodes by SMB to get near real time indoor and outdoor air quality information](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L342-L358)
 
 These ones run a command line script which connects to my AirVisual Nodes to get the data about air quality (AQI) every 5 minutes. 
 
