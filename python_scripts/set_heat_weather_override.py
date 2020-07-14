@@ -39,7 +39,10 @@ AUTO_TOKEN = 100
 OVERRIDE_MINUTES = 1439
 
 
+
 ## PROFILES DEFINED HERE ##
+
+
 
 ## Note value of skip token and auto token above for when we don't set temp or set it to auto mode ##
 
@@ -84,7 +87,10 @@ AUTOMATIONS_PROFILE_C = [1,1,1]
 AUTOMATIONS_PROFILE_D = [0,0,0]
 AUTOMATIONS_PROFILE_E = [0,0,0]
 
+
+
 ###### Function definitions and startup. Proably don't need to change these ######
+
 
 
 ## Function that's actually setting the temperatures ##
