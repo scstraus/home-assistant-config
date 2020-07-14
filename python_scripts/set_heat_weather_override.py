@@ -30,14 +30,27 @@ ROOM_ENTITIES= ["climate.dining_room", "climate.entrance", "climate.garage", "cl
 SKIP_TOKEN = 0
 AUTO_TOKEN = 100
 
-## Maximum override time is 1 minute short of a day. Then we decide at the same time the next day what override to apply/not apply, otherwise it just goes back to cold weather schedule, so we can't screw things up too much ##
+############################################################################################
+## Maximum override time is 1 minute short of a day. Then we decide at the same time the  ##
+## next day what override to apply/not apply, otherwise it just goes back to cold weather ##
+## schedule, so we can't screw things up too much                                         ##
+############################################################################################
+
 OVERRIDE_MINUTES = 1439
 
 
 ## PROFILES DEFINED HERE ##
 
 ## Note value of skip token and auto token above for when we don't set temp or set it to auto mode ##
-## Auto is for winter where full heating is needed, Profile A is for still cold weather at night but somewhat warm during day where rooms won't warm up much during day and will cool down a lot during night, from there they are for warmer weather. Profile E is basically just turning the heat off in the whole house because the weather is warm enough that it's not needed even at night for any rooms.
+
+###########################################################################################
+## Auto is for winter where full heating is needed, Profile A is for still cold weather  ##
+## at night but somewhat warm during day where rooms won't warm up much during day and   ##           
+## will cool down a lot during night, from there they are for warmer weather. Profile E  ##          
+## is basically just turning the heat off in the whole house because the weather is warm ##          
+## enough that it's not needed even at night for any rooms.                              ##
+###########################################################################################
+
 PROFILE_AUTO = [100,100,100,100,100,100,100,100,100,100,100,100]
 PROFILE_A = [20,18,18,21,0,22,21,22,22,22,21,100]
 PROFILE_B = [19,17,17,20,0,21,21,21,21,21,21,21]
@@ -45,12 +58,21 @@ PROFILE_C = [18,16,15,18,16,20,20,20,20,21,21,21]
 PROFILE_D = [15,15,15,15,15,15,15,15,15,18,18,19]
 PROFILE_E = [15,15,15,15,15,15,15,15,15,15,15,12]
 
-## Some just for the living room, you probably won't need these, you can delete them and the logic at the bottom of the file for them ##
+###########################################################################################
+## Some just for the living room, you probably won't need these, you can delete them and ##
+## the logic at the bottom of the file for them                                          ##
+###########################################################################################
+
 LIVING_ROOM_18 = [0,0,0,0,18,0,0,0,0,0,0,0]
 LIVING_ROOM_20 = [0,0,0,0,20,0,0,0,0,0,0,0]
 LIVING_ROOM_AUTO = [0,0,0,0,100,0,0,0,0,0,0,0]
 
-## List of entities of automations for other heat overrides that we may or may not want to be active depending on the chosen profile. These will be activated or deactivated according to the profile ##
+##########################################################################################
+## List of entities of automations for other heat overrides that we may or may not want ##
+## to be active depending on the chosen profile. These will be activated or deactivated ##
+## according to the profile                                                             ##
+##########################################################################################
+
 AUTOMATION_ENTITIES = ["automation.working_from_home_today", "automation.working_from_home_now", "automation.turn_up_the_heat_in_sophie_s_room_if_she_s_home"]
 
 ## 1 is on, 0 is off
@@ -119,7 +141,13 @@ def startup_log_dump():
      
 startup_log_dump()
 
-##### These are the rules for which profile to use based on the weather, you can change these based on any rules you want or try to keep them as a starting point to fine tune your temps. I just made them based on how my house felt under different conditions, so they work well for me, but YMMV #####
+########################################################################
+## These are the rules for which profile to use based on the weather, ##
+## you can change these based on any rules you want or try to keep    ##
+## them as a starting point to fine tune your temps. I just made them ## 
+## based on how my house felt under different conditions, so they     ##
+## work well for me, but YMMV                                         ##
+########################################################################
 
 ## Some general rules for in case we don't match others ##
 if LOW_TEMP > 14 and HIGH_TEMP > 25:
@@ -162,7 +190,11 @@ else:
   set_to_profile(PROFILE_AUTO,"PROFILE_AUTO",AUTOMATIONS_PROFILE_AUTO,"AUTOMATIONS_PROFILE_AUTO")
   logger.error("Didn't match any rules")
 
-## I like to turn down the living room based on different rules because it has lots of west facing windows and the temperature is very sensitive to the sun, you could get rid of the below if the rules above and normal profiles are enough ##
+#########################################################################################
+## I like to turn down the living room based on different rules because it has lots of ##
+## west facing windows and the temperature is very sensitive to the sun, you could get ##
+## rid of the below if the rules above and normal profiles are enough                  ##
+#########################################################################################
 
 if LOW_TEMP >= 2 and LOW_TEMP <= 5 and HIGH_TEMP > 11:
   logger.info("Low 2-5 High > 11 - Choose Living Room 20")
