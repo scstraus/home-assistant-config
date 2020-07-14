@@ -518,7 +518,35 @@ I find that the change in number of cases from yesterday is the main coronavirus
 
 ### [More advanced trash day handling that accounts for whether we already took out the trash and harrasses us if we didn't](https://github.com/scstraus/home-assistant-config/blob/b65e9c2f4b1c10dc66a9d7820585cd3d03ab4064/automations/other_automations.yaml#L856-L890)
 
+Also [here](https://github.com/scstraus/home-assistant-config/blob/4ff91769621bca2f3bcb6fe998b679a15072e364/automations/other_automations.yaml#L929-L936) and [here](https://github.com/scstraus/home-assistant-config/blob/4ff91769621bca2f3bcb6fe998b679a15072e364/automations/other_automations.yaml#L968-L975) to update the needed sensors.
+
 I have some sensors that tell us when the trash day is, and previously it gave me some notifications the day before and 2 days before. But still sometimes we missed trash day, so I had to step up my game. These automations use an additional sensor and input boolean which indicate whether the trash has actually been taken out. Then I use an alert component to keep harrassing me every hour the night before trash day until I tell it via actionable notification or via a pushbutton on the popup from the sensor icon on my dashboard that trash has been taken out. Once I tell it that it's actually out, it will stop bugging me and the icon goes away on the dashboard. Someday I can hopefully rig up a sensor that actually tells when the trash is out so that we don't need the icon. With this logic in place, it will be an easy swap to that sensor. 
 
+
+### [Kludge to fix the header font in the calendar card](https://github.com/scstraus/home-assistant-config/blob/4ff91769621bca2f3bcb6fe998b679a15072e364/automations/other_automations.yaml#L892-L899)
+
+The calendar card uses a different header font and size than the rest of my theme and so I'm trying to make it look like the rest of the theme. Apparently I'm not good enough with CSS to find out a better way to fix this, so I just got rid of the title and made a button card that looked the way I wanted to. But then I have to hide it and unhide it depending on whether the card itself is being shown. I'm sure there's a better way, so if you know it, please tell me.
+
+Anyhow, this just forces the sensor to update itself every 30 minutes to see if it needs to hide the card or not.
+
+### [Notify me if my RAID is degraded](https://github.com/scstraus/home-assistant-config/blob/4ff91769621bca2f3bcb6fe998b679a15072e364/automations/other_automations.yaml#L901-L918)
+
+I run RAID SSD's on the 2011 Mac Mini that's hosting Homeassistant Supervised. A have a sensor that runs a shell script which returns the RAID status to report it on the system dashboard. This automation looks at that sensor and sends me a notification if the RAID is degraded.
+
+### [Run internet speed tests every hour](https://github.com/scstraus/home-assistant-config/blob/4ff91769621bca2f3bcb6fe998b679a15072e364/automations/other_automations.yaml#L920-L927)
+
+The speedtest.net sensor actually can do this itself, but since I'm spending more time on zoom and sometimes getting bandwidth issues, I decided I wanted an option to turn it off, so now the automation triggers the speedtest and I can turn off the automation if needed.
+
+### [Notify me of flooding in the server room](https://github.com/scstraus/home-assistant-config/blob/4ff91769621bca2f3bcb6fe998b679a15072e364/automations/other_automations.yaml#L938-L966)
+
+Thank god this has never happened, but the cutoff for the outside water is in the closet that I've repurposed as a server closet. So a leak would be very bad, especially due to the messy state of this room. This uses another Hauppage leak sensor to tell me if it does, in the same way [as for the basesment](#notify-me-if-the-basement-is-flooding).
+
+### [A couple more automations to update sensors](https://github.com/scstraus/home-assistant-config/blob/4ff91769621bca2f3bcb6fe998b679a15072e364/automations/other_automations.yaml#L968-L984)
+
+This time for my son's naptime and the sensor to show the trash icon on the dashboard.
+
+### [Let us know if our son is awake during his naptime or at night](https://github.com/scstraus/home-assistant-config/blob/4ff91769621bca2f3bcb6fe998b679a15072e364/automations/other_automations.yaml#L986-L1009)
+
+This one uses the motion detection on the Reolink camera we use as a baby monitor to send us a notification if our son is up and about when he should be asleep based on a custom sensor that says when it's his naptime.
 
 
