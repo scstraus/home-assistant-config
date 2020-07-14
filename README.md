@@ -68,7 +68,13 @@ Last update: [July 13, 2020 (Hass v.112.4)](https://github.com/scstraus/home-ass
     + [Give a switch to turn on the aircon/heating in our car remotely](#give-a-switch-to-turn-on-the-airconheating-in-our-car-remotely)
     + [Calculate change in number of coronavirus cases since yesterday](#calculate-change-in-number-of-coronavirus-cases-since-yesterday)
     + [More advanced trash day handling that accounts for whether we already took out the trash and harrasses us if we didn't](#more-advanced-trash-day-handling-that-accounts-for-whether-we-already-took-out-the-trash-and-harrasses-us-if-we-didnt)
-
+    + [Kludge to fix the header font in the calendar card](#kludge-to-fix-the-header-font-in-the-calendar-card)
+    + [Notify me if my RAID is degraded](#notify-me-if-my-raid-is-degraded)
+    + [Run internet speed tests every hour](#run-internet-speed-tests-every-hour)
+    + [Notify me of flooding in the server room](#notify-me-of-flooding-in-the-server-room)
+    + [A couple more automations to update sensors](#a-couple-more-automations-to-update-sensors)
+    + [Let us know if our son is awake during his naptime or at night](#let-us-know-if-our-son-is-awake-during-his-naptime-or-at-night)
+    
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
 My Lovelace UI is geared a lot more at troubleshooting and information than it is at control, as most of the things that need to be controlled I try to fully automate, so the first thing you will notice is a lot of color coded graphs where I can quickly see if there's an issue. I can control things too, but I tend to keep the controls as concise as possible in a long list sorted by floor and room so I can just scroll down and get the one I want quickly.. I don't bother with big fancy controls because I don't use them.
