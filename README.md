@@ -14,6 +14,13 @@ There are a lot of other little things that I've not seen anyone else do, but I 
 
 Last update: [July 13, 2020 (Hass v.112.4)](https://github.com/scstraus/home-assistant-config/tree/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b), but make sure you check the history in the code snippet I linked to to see which version I was on when I documented it, because in most cases I documented it on an older version than that and you may have to find the more recent update in the repo for it to work properly on new versions. Unfortunately to link to the snippets directly, I have to use the version I am on when I write the documentation for the line numbers to match, but I don't go back and update the docs to the latest version every time I make changes to the code. To see the new versions of the code, click on the headers for the whole section or the file links themselves above, those will take you to the latest version of the file with any changes I've made for the version I'm on now shown at the beginning of this paragraph.
 
+How to navigate this readme:
+
+1) Choose something that interests you below and click on it
+2) Read the description of it
+3) Click on the header for the description to be taken to the code (this will be an older version of the code than what I'm currently running which matches the current version when I wrote the documentation but hopefully will be enough to give you the idea and with luck hasn't changed)
+4) The header for category will take you to the latest version of the whole file (this should be up to date, or you can choose the file above for an up to date one)
+
 # Table of Contents
 
 - [Lovelace UI](#lovelace-ui)
@@ -74,7 +81,9 @@ Last update: [July 13, 2020 (Hass v.112.4)](https://github.com/scstraus/home-ass
     + [Notify me of flooding in the server room](#notify-me-of-flooding-in-the-server-room)
     + [A couple more automations to update sensors](#a-couple-more-automations-to-update-sensors)
     + [Let us know if our son is awake during his naptime or at night](#let-us-know-if-our-son-is-awake-during-his-naptime-or-at-night)
-    
+- [Sensors](#sensors)
+  * [Integration Sensors](#integration-sensors)
+
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
 My Lovelace UI is geared a lot more at troubleshooting and information than it is at control, as most of the things that need to be controlled I try to fully automate, so the first thing you will notice is a lot of color coded graphs where I can quickly see if there's an issue. I can control things too, but I tend to keep the controls as concise as possible in a long list sorted by floor and room so I can just scroll down and get the one I want quickly.. I don't bother with big fancy controls because I don't use them.
