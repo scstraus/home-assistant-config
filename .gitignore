@@ -12,6 +12,8 @@
 !python_scripts/**
 !themes/
 !themes/**
+!sensors/
+!sensors/**
 
 # Ignore folders.
 .storage

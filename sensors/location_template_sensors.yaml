@@ -1,0 +1,367 @@
+  - platform: template
+    sensors:
+      sean_location:
+        value_template: '{{ states.input_select.sean_location_dropdown.state }}'
+        friendly_name: "Papa Is:"
+        icon_template: >-
+          {% if is_state('input_select.sean_location_dropdown', 'Home') %}
+            mdi:home
+          {% elif is_state('input_select.sean_location_dropdown', 'At Work') %}
+            mdi:briefcase
+          {% elif is_state('input_select.sean_location_dropdown', 'At Andel') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At WineFood') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At Hornbach') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At Ikea') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At Billa') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At BioStore') %}
+            mdi:cart
+          {% elif is_state('input_select.sean_location_dropdown', 'At Posta') %}
+            mdi:email            
+          {% elif is_state('input_select.sean_location_dropdown', 'At Yoga') %}
+            mdi:human-handsup
+          {% elif is_state('input_select.sean_location_dropdown', 'Traveling') %}
+            mdi:airplane
+          {% elif is_state('input_select.sean_location_dropdown', 'At Parklane Valdejnska') %}
+            mdi:school
+          {% elif is_state('input_select.sean_location_dropdown', 'At Little Gym') %}
+            mdi:human-handsup
+          {% else %}
+            mdi:train-car
+          {% endif %}
+
+  - platform: template
+    sensors:
+      alena_location:
+        friendly_name: "Mama Is:"
+        value_template: >-          
+          {% if is_state('device_tracker.alena_s_iphone', 'home') %}
+            Home
+          {% elif is_state('device_tracker.alena_s_iphone', 'Andel') %}
+            At Andel
+          {% elif is_state('device_tracker.alena_s_iphone', 'WineFood') %}
+            At WineFood
+          {% elif is_state('device_tracker.alena_s_iphone', 'Hornbach') %}
+            At Hornbach
+          {% elif is_state('device_tracker.alena_s_iphone', 'Ikea') %}
+            At Ikea
+          {% elif is_state('device_tracker.alena_s_iphone', 'Billa') %}
+            At Billa
+          {% elif is_state('device_tracker.alena_s_iphone', 'BioStore') %}
+            At Bio Store
+          {% elif is_state('device_tracker.alena_s_iphone', 'Posta') %}
+            At Posta
+          {% elif is_state('device_tracker.alena_s_iphone', 'Yoga') %}
+            At Yoga
+          {% elif is_state('device_tracker.alena_s_iphone', 'LittleGym') %}
+            At Little Gym
+          {% elif is_state('device_tracker.alena_s_iphone', 'ParklaneValdejnska') %}
+            At Parklane Valdejnska
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp6') %}
+            At CMC in P6
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp4') %}
+            At CMC in P4
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp5') %}
+            At CMC in P5
+          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp4') %}
+            At EUC in P4
+          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp1') %}
+            At EUC in P1
+          {% elif is_state('device_tracker.alena_s_iphone', 'Zlichov') %}
+            At Zlichov
+          {% elif is_state('device_tracker.alena_s_iphone', 'Malostranska') %}
+            At Malostranska
+          {% elif states('proximity.alena_home')|float > 120 %}
+            Traveling
+          {% elif is_state('sensor.alena_direction_of_travel', 'away_from') %}
+            Leaving Home
+          {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
+            Somewhere
+          {% elif is_state('sensor.alena_direction_of_travel', 'towards') %}
+            Heading Home
+          {% else %}
+            Somewhere
+          {% endif %}
+        icon_template: >-
+          {% if is_state('device_tracker.alena_s_iphone', 'home') %}
+            mdi:home
+          {% elif is_state('device_tracker.alena_s_iphone', 'Andel') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alena_s_iphone', 'WineFood') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alena_s_iphone', 'Hornbach') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alena_s_iphone', 'Ikea') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alena_s_iphone', 'Billa') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alena_s_iphone', 'BioStore') %}
+            mdi:cart
+          {% elif is_state('device_tracker.alena_s_iphone', 'Posta') %}
+            mdi:email
+          {% elif is_state('device_tracker.alena_s_iphone', 'Yoga') %}
+            mdi:human-handsup
+          {% elif is_state('device_tracker.alena_s_iphone', 'LittleGym') %}
+            mdi:human-handsup
+          {% elif is_state('device_tracker.alena_s_iphone', 'Traveling') %}
+            mdi:airplane
+          {% elif is_state('device_tracker.alena_s_iphone', 'ParklaneValdstejnska') %}
+            mdi:school
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp6') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp4') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp5') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp4') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp1') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'Zlichov') %}
+            mdi:tram
+          {% elif is_state('device_tracker.alena_s_iphone', 'Malostranska') %}
+            mdi:tram
+          {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
+            mdi:help
+          {% elif is_state('sensor.alena_direction_of_travel', 'away_from') %}
+            mdi:car
+          {% elif is_state('sensor.alena_direction_of_travel', 'towards') %}
+            mdi:car
+          {% elif states('proximity.alena_home')|float > 120 %}
+            mdi:airplane
+          {% else %}
+            mdi:help
+          {% endif %}
+
+
+  - platform: template
+    sensors:
+      sophie_location:
+        friendly_name: "Sophie Is:"
+        value_template: >-          
+          {% if is_state('device_tracker.sophie', 'home') %}
+            Home
+          {% elif is_state('device_tracker.sophie', 'Andel') %}
+            At Andel
+          {% elif is_state('device_tracker.sophie', 'WineFood') %}
+            At WineFood
+          {% elif is_state('device_tracker.sophie', 'Parklane Valdstejnska') %}
+            At School
+          {% elif is_state('device_tracker.sophie', 'Hornbach') %}
+            At Hornbach
+          {% elif is_state('device_tracker.sophie', 'Ikea') %}
+            At Ikea
+          {% elif is_state('device_tracker.sophie', 'Billa') %}
+            At Billa
+          {% elif is_state('device_tracker.sophie', 'BioStore') %}
+            At Bio Store
+          {% elif is_state('device_tracker.sophie', 'Posta') %}
+            At Posta
+          {% elif is_state('device_tracker.sophie', 'Yoga') %}
+            At Yoga
+          {% elif is_state('device_tracker.sophie', 'LittleGym') %}
+            At Little Gym
+          {% elif is_state('device_tracker.sophie', 'Airport') %}
+            At Airport
+          {% elif is_state('device_tracker.sophie', 'ParklaneValdstejnska') %}
+            At School
+          {% elif is_state('device_tracker.sophie', 'CMCp6') %}
+            At CMC in P6
+          {% elif is_state('device_tracker.sophie', 'CMCp4') %}
+            At CMC in P4
+          {% elif is_state('device_tracker.sophie', 'CMCp5') %}
+            At CMC in P5
+          {% elif is_state('device_tracker.sophie', 'EUCp4') %}
+            At EUC in P4
+          {% elif is_state('device_tracker.sophie', 'EUCp1') %}
+            At EUC in P1
+          {% elif is_state('device_tracker.sophie', 'Zlichov') %}
+            At Zlichov
+          {% elif is_state('device_tracker.sophie', 'Malostranska') %}
+            At Malostranska
+          {% elif states('proximity.sophie_home')|float > 120 %}
+            Traveling
+          {% elif is_state('sensor.sophie_direction_of_travel', 'away_from') %}
+            Leaving Home
+          {% elif is_state('sensor.sophie_direction_of_travel', 'stationary') %}
+            Somewhere
+          {% elif is_state('sensor.sophie_direction_of_travel', 'towards') %}
+            Heading Home
+          {% endif %}
+        icon_template: >-
+          {% if is_state('device_tracker.sophie', 'home') %}
+            mdi:home
+          {% elif is_state('device_tracker.sophie', 'Parklane Valdstejnska') %}
+            mdi:school
+          {% elif is_state('device_tracker.sophie', 'Andel') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'WineFood') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'Hornbach') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'Ikea') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'Billa') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'BioStore') %}
+            mdi:cart
+          {% elif is_state('device_tracker.sophie', 'Posta') %}
+            mdi:email            
+          {% elif is_state('device_tracker.sophie', 'Yoga') %}
+            mdi:human-handsup  
+          {% elif is_state('device_tracker.sophie', 'LittleGym') %}
+            mdi:human-handsup  
+          {% elif is_state('device_tracker.sophie', 'Airport') %}
+            mdi:airplane
+          {% elif is_state('device_tracker.sophie', 'ParklaneValdstejnska') %}
+            mdi:school
+          {% elif is_state('device_tracker.sophie', 'CMCp6') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.sophie', 'CMCp4') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.sophie', 'CMCp5') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.sophie', 'EUCp4') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.sophie', 'EUCp1') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.sophie', 'Zlichov') %}
+            mdi:tram
+          {% elif is_state('device_tracker.sophie', 'Malostranska') %}
+            mdi:tram
+          {% elif states('proximity.sophie_home')|float > 120 %}
+            mdi:airplane
+          {% elif is_state('sensor.sophie_direction_of_travel', 'stationary') %}
+            mdi:help
+          {% else %}
+            mdi:train-car
+          {% endif %}
+
+  - platform: template
+    sensors:
+      alena_eta_description:
+        friendly_name: "Alena ETA description"
+        value_template: >-
+          {% if is_state('sensor.alena_direction_of_travel', 'away_from') %}Alena is heading away from home. But if she were to turn around and start driving home now, it would take her approximately {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving in a car.
+          {% elif is_state('sensor.alena_location', 'Somewhere') %}Alena is somewhere I don't know. She hasn't started heading home yet, but if she were to start driving home now, it would take her approximately {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving in a car.
+          {% elif is_state('sensor.alena_direction_of_travel', 'towards') %}Alena is heading towards home, if she's driving, she should be home in about {{ states('sensor.alena_driving_time_to_home') }} minutes.
+          {% elif is_state('sensor.alena_location','Home') %}
+          {% else %}Alena is at {{ states('sensor.alena_location') }}. She hasn't started heading home yet. But if she were to start driving home now, it would take her approximately {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving in a car.
+          {% endif %}
+ 
+  - platform: template
+    sensors:
+      sean_eta_description:
+        friendly_name: "Sean ETA description"
+        value_template: >-
+          {% if now().weekday() in (0,1,2,3,4,) %}
+            {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}Sean is {{ states('sensor.sean_location') }} . If he's coming by tram, it should take approximately {{ states('sensor.sean_tram_time_to_home') }} minutes to arrive.
+            {% elif states('sensor.sean_location') in ['Left Home','Heading to Work','Almost at Work','Heading to Center','Heading to Andel','Heading to Hornbach','Heading to WineFood','Heading to P6','Driving','Traveling'] %} Sean is {{ states('sensor.sean_location') }} . He's not heading towards home, but if he were to turn around now and start coming home, it would take approximately {{ states('sensor.sean_tram_time_to_home') }} minutes for him to arrive.
+            {% elif is_state('sensor.sean_location', 'Home') %} 
+            {% else %} Sean is {{ states('sensor.sean_location') }}. He hasn't started heading home yet. But if he were to start taking the tram home now, it would take him approximately {{ states('sensor.sean_tram_time_to_home') }} minutes.
+            {% endif %}
+          {% else %}
+            {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}Sean is {{ states('sensor.sean_location') }} . If he's coming by car, it should take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
+            {% elif states('sensor.sean_location') in ['Left Home','Heading to Work','Almost at Work','Heading to Center','Heading to Andel','Heading to Hornbach','Heading to WineFood','Heading to P6','Driving','Traveling'] %} Sean is {{ states('sensor.sean_location') }} . He's not heading towards home, but if he were to turn around now and start coming home by car, it would take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
+            {% elif is_state('sensor.sean_location', 'Home') %} 
+            {% else %}Sean is {{ states('sensor.sean_location') }}. He hasn't started heading home yet. But if he were to start driving home now, it would take him approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive if he were coming by car.
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      sophie_eta_description:
+        friendly_name: "Sophie ETA description"
+        value_template: >-
+          {% if now().weekday() in (1,2,3,4,5,) %}
+            {% if is_state('sensor.sophie_direction_of_travel', 'away_from') %} Sophie is heading away from home. But if she were to turn around and start heading home now, it would take her approximately {{ states('sensor.sophie_tram_time_to_home') }} minutes if she's in a tram.
+            {% elif is_state('sensor.sophie_location', 'Somewhere') %} Sophie is somewhere I don't know. She hasn't started heading home yet, but if she were to start driving home now, it would take her approximately {{ states('sensor.sophie_tram_time_to_home') }} minutes if she's in a tram.
+            {% elif is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie is heading towards home, if she's in a tram, she should be home in about {{ states('sensor.sophie_tram_time_to_home') }} minutes.
+            {% elif is_state('device_tracker.sophie', 'home') %} 
+            {% else %} Sophie is {{ states('sensor.sophie_location') }}. She hasn't started heading home yet. But if she were to start heading home now, it would take her approximately {{ states('sensor.sophie_tram_time_to_home') }} minutes if she's in a tram.
+            {% endif %}
+          {% else %}
+            {% if is_state('sensor.sophie_direction_of_travel', 'away_from') %} Sophie is heading away from home. But if she were to turn around and start driving home now, it would take her approximately {{ states('sensor.sophie_driving_time_to_home') }} minutes if she's driving in a car.
+            {% elif is_state('sensor.sophie_location', 'Somewhere') %} Sophie is somewhere I don't know. She hasn't started heading home yet, but if she were to start driving home now, it would take her approximately {{ states('sensor.sophie_driving_time_to_home') }} minutes if she's driving in a car.
+            {% elif is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie is heading towards home, if she's driving, she should be home in about {{ states('sensor.sophie_driving_time_to_home') }} minutes.
+            {% elif is_state('device_tracker.sophie', 'home') %} 
+            {% else %} Sophie is {{ states('sensor.sophie_location') }}. She hasn't started heading home yet. But if she were to start driving home now, it would take her approximately {{ states('sensor.sophie_driving_time_to_home') }} minutes if she's driving in a car.
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      alena_eta:
+        friendly_name: "Alena ETA"
+        value_template: >-
+          {% if is_state('sensor.alena_location','Home') %} Alena is at home.
+          {% elif is_state('sensor.alena_direction_of_travel', 'towards') %} Alena ETA: {{ states('sensor.alena_driving_time_to_home') }} minutes by car.
+          {% else %} Alena isn't heading home
+          {% endif %}
+
+  - platform: template
+    sensors:
+      sean_eta:
+        friendly_name: "Sean ETA"
+        value_template: >-
+          {% if now().weekday() in (1,2,3,4,5,) %}
+            {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}  Sean ETA: in {{ states('sensor.sean_tram_time_to_home') }} minutes by tram.
+            {% elif is_state('sensor.sean_location', 'Home') %} Sean is at home.
+            {% else %} Sean isn't heading home
+            {% endif %}
+          {% else %}
+            {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %} Sean ETA: {{ states('sensor.sean_driving_time_to_home') }} minutes by car.
+            {% elif is_state('sensor.sean_location', 'Home') %} Sean is at home.
+            {% else %} Sean isn't heading home.
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      sophie_eta:
+        friendly_name: "Sophie ETA"
+        value_template: >-
+          {% if now().weekday() in (1,2,3,4,5,) %}
+            {% if is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie ETA: {{ states('sensor.sophie_tram_time_to_home') }} minutes by tram.
+            {% elif is_state('device_tracker.sophie', 'home') %} Sophie is at home.
+            {% else %} Sophie isn't heading home
+            {% endif %}
+          {% else %}
+            {% if is_state('sensor.sophie_direction_of_travel', 'towards') %} Sophie ETA: {{ states('sensor.sophie_driving_time_to_home') }} minutes by car.
+            {% elif is_state('device_tracker.sophie', 'home') %} Sophie is at home.
+            {% else %} Sophie isn't heading home
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      sean_commute:
+        friendly_name: "Sean Commute"
+        value_template: >-
+          Sean Route to Work: {{ state_attr('sensor.transport_time_to_work', 'route') }} (ETA: {{ states('sensor.transport_time_to_work') }} minutes)
+
+#          Sean Route to Work:
+#          {{  state_attr('sensor.transport_time_to_work', 'route')|replace(';','  ') }}          
+#          (ETA: {{ states('sensor.transport_time_to_work') }} minutes)
+
+  - platform: template
+    sensors:
+      sean_direction_of_travel:
+        friendly_name: "Sean is Heading"
+        value_template: "{{ state_attr('proximity.sean_home', 'dir_of_travel') }}"
+
+      alena_direction_of_travel:
+        friendly_name: "Alena is Heading"
+        value_template: "{{ state_attr('proximity.alena_home', 'dir_of_travel') }}"
+
+      sophie_direction_of_travel:
+        friendly_name: "Sophie is Heading"
+        value_template: "{{ state_attr('proximity.sophie_home', 'dir_of_travel') }}"
+
+      all_direction_of_travel:
+        friendly_name: "All are Heading"
+        value_template: "{{ state_attr('proximity.all_home', 'dir_of_travel') }}"

@@ -890,7 +890,10 @@ cards:
   - type: custom:decluttering-card
     template: alert
     variables:
-      - name: Person detected on left side of house
+      - entity: sensor.seans_phone_battery
+      - state: Low
+      - name: "Sean's iPhone battery is low"
+      
 
 #
 #  - type: custom:button-card

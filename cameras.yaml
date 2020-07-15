@@ -223,10 +223,10 @@
     name: cam4_history10
     file_path: /config/www/cam4/10.jpg  
 
-  - platform: reolink_dev
-    host: !secret sebs_camera_ip
-    username: !secret sebs_camera_uname
-    password: !secret sebs_camera_pass
-    name: Sebs Room
-    scan_interval: 5
+  # - platform: reolink_dev
+  #   host: !secret sebs_camera_ip
+  #   username: !secret sebs_camera_uname
+  #   password: !secret sebs_camera_pass
+  #   name: Sebs Room
+  #   scan_interval: 5
 

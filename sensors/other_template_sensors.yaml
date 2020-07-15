@@ -1,0 +1,730 @@
+  - platform: template
+    sensors:
+      bike_day:
+        friendly_name: "Bike Day"
+        value_template: >-
+          {% if states('sensor.dark_sky_daytime_high_temperature_0d')|float < 27
+             and states('sensor.dark_sky_temperature')|float > 14 
+             and states('sensor.dark_sky_wind_gust')|float < 20
+             and (states('sensor.dark_sky_precip_probability_0d')|float < 30
+             or ((states('sensor.dark_sky_precip_intensity_1h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_2h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_3h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_4h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_5h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_6h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_7h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_8h')|float < 0.05)
+             and (states('sensor.dark_sky_precip_intensity_9h')|float < 0.05))) %}
+            yes
+          {% else %}
+            no
+          {% endif %}
+
+
+  - platform: template
+    sensors:
+      alenas_phone_battery:
+        friendly_name: "Alena's Phone Battery"
+        value_template: >-
+          {% if is_state('sensor.alenas_phone_battery', 'Charging') %}
+            Charging
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 15 %}
+            Very Low
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 25 %}
+            Low
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 40 %}
+            Needs Charging
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Charged
+          {% endif %}
+
+  - platform: template
+    sensors:
+      sophies_phone_battery:
+        friendly_name: "Sophie's Phone Battery"
+        value_template: >-
+          {% if is_state('sensor.sophies_iphone_6_battery_state', 'Charging') %}
+            Charging
+          {% elif states('sensor.sophies_iphone_6_battery_level')|float < 15 %}
+            Very Low
+          {% elif states('sensor.sophies_iphone_6_battery_level')|float < 25 %}
+            Low
+          {% elif states('sensor.sophies_iphone_6_battery_level')|float < 40 %}
+            Needs Charging
+          {% elif states('sensor.sophies_iphone_6_battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Charged
+          {% endif %}
+
+  - platform: template
+    sensors:
+      closet_window_sensor_1_battery:
+        friendly_name: "Closet Window Sensor 1 Battery"
+        value_template: >-
+          {% if state_attr('zwave.closet_window_1', 'battery_level') == None %}
+            Unavailable
+          {% elif state_attr('zwave.closet_window_1', 'battery_level')|float < 15 %}
+            Very Low
+          {% elif state_attr('zwave.closet_window_1', 'battery_level')|float < 25 %}
+            Low
+          {% elif state_attr('zwave.closet_window_1', 'battery_level')|float < 40 %}
+            Medium
+          {% elif state_attr('zwave.closet_window_1', 'battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Full
+          {% endif %}  
+
+  - platform: template
+    sensors:
+      back_door_sensor_battery:
+        friendly_name: "Back Door Sensor Battery"
+        value_template: >-
+          {% if state_attr('zwave.back_door', 'battery_level') == None %}
+            Unavailable
+          {% elif state_attr('zwave.back_door', 'battery_level')|float < 15 %}
+            Very Low
+          {% elif state_attr('zwave.back_door', 'battery_level')|float < 25 %}
+            Low
+          {% elif state_attr('zwave.back_door', 'battery_level')|float < 40 %}
+            Medium
+          {% elif state_attr('zwave.back_door', 'battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Full
+          {% endif %}            
+
+  - platform: template
+    sensors:
+      guest_bedroom_window_1_battery:
+        friendly_name: "Guest Bedroom Window 1 Sensor Battery"
+        value_template: >-
+          {% if state_attr('zwave.guest_bedroom_window_1', 'battery_level') == None %}
+            Unavailable
+          {% elif  state_attr('zwave.guest_bedroom_window_1', 'battery_level')|float < 15 %}
+            Very Low
+          {% elif state_attr('zwave.guest_bedroom_window_1', 'battery_level')|float < 25 %}
+            Low
+          {% elif state_attr('zwave.guest_bedroom_window_1', 'battery_level')|float < 40 %}
+            Medium
+          {% elif state_attr('zwave.guest_bedroom_window_1', 'battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Full
+          {% endif %}            
+
+
+  - platform: template
+    sensors:
+      seans_phone_battery:
+        friendly_name: "Sean's Phone Battery"
+        value_template: >-
+          {% if is_state('sensor.sean_battery_state', 'Charging') %}
+            Charging
+          {% elif states('sensor.sean_battery_level')|float < 15 %}
+            Very Low
+          {% elif states('sensor.sean_battery_level')|float < 25 %}
+            Low
+          {% elif states('sensor.sean_battery_level')|float < 40 %}
+            Needs Charging
+          {% elif states('sensor.sean_battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Charged
+          {% endif %}
+
+# 04/01/19-11/30/19: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
+# 12/01/19-03/30/20: Pickup is Odd Weeks Wednesday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
+
+  - platform: template
+    sensors:
+      bio_odpad_day:
+        friendly_name: "Take Bio Odpad Out"
+        entity_id: sensor.date
+        value_template: >-
+          {% if (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+          and now().weekday() in (6,) 
+          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-30" 
+          and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-04-01" %}
+            Today
+          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+          and now().weekday() in (5,) 
+          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-30" 
+          and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-04-01" %}
+            Tomorrow
+          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+          and now().weekday() in (1,) 
+          and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
+          or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01") %}
+            Today
+          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+          and now().weekday() in (0,) 
+          and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
+          or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01") %}
+            Tomorrow
+          {% else %}
+            false
+          {% endif %}
+
+
+#trash day is thursday so take it out today=wednesday, tomorrow=tuesday
+
+  - platform: template
+    sensors:
+      trash_day:
+        friendly_name: "Take Trash Out"
+        entity_id: sensor.date
+        value_template: >-
+          {% if now().weekday() in (2,) %}
+            Today
+          {% elif now().weekday() in (1,) %}
+            Tomorrow
+          {% else %}
+            false
+          {% endif %}
+        icon_template: >-
+            mdi:trash-can-outline
+
+  - platform: template
+    sensors:
+      dining_room_temperature:
+        friendly_name: "Temperature-Dining Room"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.dining_room', 'current_temperature')|float }}"
+
+      entrance_temperature:
+        friendly_name: "Temperature-Entrance"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.entrance', 'current_temperature')|float }}"
+
+      garage_temperature:
+        friendly_name: "Temperature-Garage"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.garage', 'current_temperature')|float }}"
+
+      guest_bedroom_temperature:
+        friendly_name: "Temperature-Guest Bedroom"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.guest_bedroom', 'current_temperature')|float }}"
+
+      laundry_room_temperature:
+        friendly_name: "Temperature-Laundry Room"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.laundry_room', 'current_temperature')|float }}"
+
+      living_room_temperature:
+        friendly_name: "Temperature-Living Room"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.living_room', 'current_temperature')|float }}"
+
+      master_bath_temperature:
+        friendly_name: "Temperature-Master Bath"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.master_bath', 'current_temperature')|float }}"
+
+      master_bedroom_temperature:
+        friendly_name: "Temperature-Master Bedroom"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.master_bedroom', 'current_temperature')|float }}"
+
+      master_closet_temperature:
+        friendly_name: "Temperature-Master Closet"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.master_closet', 'current_temperature')|float }}"
+
+      office_library_temperature:
+        friendly_name: "Temperature-Office/Libary"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.office_library', 'current_temperature')|float }}"
+
+      sebastian_s_room_temperature:
+        friendly_name: "Temperature-Sebastian's Room"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.sebastian_s_room', 'current_temperature')|float }}"
+
+      sophie_s_room_temperature:
+        friendly_name: "Temperature-Sophie's Room"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.sophie_s_room', 'current_temperature')|float }}"
+
+      straus_house_temperature:
+        friendly_name: "Temperature-Straus House"
+        device_class: temperature
+        unit_of_measurement: C
+        value_template: "{{ state_attr('climate.straus_house', 'current_temperature')|float }}"
+
+  - platform: template
+    sensors:
+    
+      discworld_network_down_mbit:
+        friendly_name: "Discworld Network Down Mbit"
+        unit_of_measurement: 'Mbit/s'
+        value_template: "{{ states('sensor.discworld_network_down')|float / 1024 }}"
+
+      discworld_network_up_mbit:
+        friendly_name: "Discworld Network Up Mbit"
+        unit_of_measurement: 'Mbit/s'
+        value_template: "{{ states('sensor.discworld_network_up')|float / 1024 }}"
+
+
+  - platform: template
+    sensors:
+      sebastian_left_window_battery:
+        friendly_name: "Sebastian Left Window Battery"
+        value_template: >-
+          {% if state_attr('zwave.sebastian_room_left_window', 'battery_level') == None %}
+            Unavailable
+          {% elif state_attr('zwave.sebastian_room_left_window', 'battery_level')|float < 15 %}
+            Very Low
+          {% elif state_attr('zwave.sebastian_room_left_window', 'battery_level')|float < 25 %}
+            Low
+          {% elif state_attr('zwave.sebastian_room_left_window', 'battery_level')|float < 40 %}
+            Medium
+          {% elif state_attr('zwave.sebastian_room_left_window', 'battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Full
+          {% endif %} 
+
+  - platform: template
+    sensors:
+      basement_flood_sensor_battery:
+        friendly_name: "Basement flood sensor battery"
+        value_template: >-
+          {% if state_attr('zwave.basement_flood_sensor', 'battery_level') == None %}
+            Unavailable
+          {% elif state_attr('zwave.basement_flood_sensor', 'battery_level')|float < 15 %}
+            Very Low
+          {% elif state_attr('zwave.basement_flood_sensor', 'battery_level')|float < 25 %}
+            Low
+          {% elif state_attr('zwave.basement_flood_sensor', 'battery_level')|float < 40 %}
+            Medium
+          {% elif state_attr('zwave.basement_flood_sensor', 'battery_level')|float < 70 %}
+            Good
+          {% else %}
+            Full
+          {% endif %} 
+
+
+  - platform: template
+    sensors:
+        last_alexa:
+          entity_id:
+            - media_player.kichen_bar_kindle_fire
+            - media_player.master_closet_kindle
+            - media_player.sean_s_4th_fire 
+            - media_player.sean_s_5th_fire
+            - media_player.sean_s_6th_fire 
+            - media_player.sean_s_echo_dot
+          value_template: >
+            {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
+
+
+  - platform: template
+    sensors:
+      car_needs_charging:
+        friendly_name: "Car Charge"
+        value_template: >-
+          {% if is_state('device_tracker.cooper_s_e_all4', 'home') and (states('sensor.cooper_s_e_all4_charging_level_hv')|float < 80) and is_state('sensor.cooper_s_e_all4_connectionstatus', 'DISCONNECTED') %} Charge It 
+          {% else %} unknown
+          {% endif %}
+
+  - platform: template
+    sensors:
+      low_gas_in_car:
+        friendly_name: "Car Fuel"
+        value_template: >-
+          {% if (states('sensor.cooper_s_e_all4_remaining_fuel')|float < 5) %} Fill It
+          {% else %} no
+          {% endif %}
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_0:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_0', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_0', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_0', 'eta')}}
+          friendly_eta: >-
+            {% if state_attr('sensor.czech_holidays_event_0', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_0', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days 
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_1:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_1', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_1', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_1', 'eta')}}
+          friendly_eta: >-
+            {% if state_attr('sensor.czech_holidays_event_1', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_1', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days 
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_2:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_2', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_2', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_2', 'eta')}}
+          friendly_eta: >-
+            {% if state_attr('sensor.czech_holidays_event_2', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_2', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days 
+            {% endif %}          
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_3:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_3', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_3', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_3', 'eta')}}
+          friendly_eta: >-
+            {% if state_attr('sensor.czech_holidays_event_3', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_3', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days 
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      czech_holiday_friendly_4:
+        friendly_name_template: >-
+          {{state_attr('sensor.czech_holidays_event_4', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.czech_holidays_event_4', 'start').strftime('%A, %B %d')}}
+        attribute_templates:
+          eta: >-
+            {{state_attr('sensor.czech_holidays_event_4', 'eta')}}
+          friendly_eta: >-
+            {% if state_attr('sensor.czech_holidays_event_4', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.czech_holidays_event_4', 'eta') == 1 %}
+              Tomorrow
+            {% else %}
+              in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days 
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_0:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_0', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_0', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_0') or 'term' in states('sensor.parklane_calendar_event_0') or 'Term' in states('sensor.parklane_calendar_event_0') or 'Holiday' in states('sensor.parklane_calendar_event_0')  %}
+              {% if state_attr('sensor.parklane_calendar_event_0', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_0', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days == 0 %}
+              Last Day
+            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days
+            {% else %}
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_1:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_1', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_1', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_1') or 'term' in states('sensor.parklane_calendar_event_1') or 'Term' in states('sensor.parklane_calendar_event_1') or 'Holiday' in states('sensor.parklane_calendar_event_1')  %}
+              {% if state_attr('sensor.parklane_calendar_event_1', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_1', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days == 0 %}
+              Last Day
+            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days
+            {% else %}
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_2:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_2', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_2', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_2') or 'term' in states('sensor.parklane_calendar_event_2') or 'Term' in states('sensor.parklane_calendar_event_2') or 'Holiday' in states('sensor.parklane_calendar_event_2')  %}
+              {% if state_attr('sensor.parklane_calendar_event_2', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_2', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days == 0 %}
+              Last Day
+            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days
+            {% else %}
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_3:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_3', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_3', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_3') or 'term' in states('sensor.parklane_calendar_event_3') or 'Term' in states('sensor.parklane_calendar_event_3') or 'Holiday' in states('sensor.parklane_calendar_event_3')  %}
+              {% if state_attr('sensor.parklane_calendar_event_3', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_3', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days == 0 %}
+              Last Day
+            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days
+            {% else %}
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+  - platform: template
+    sensors:
+      parklane_holiday_friendly_4:
+        friendly_name_template: >-
+          Parklane {{state_attr('sensor.parklane_calendar_event_4', 'name')}}
+        value_template: >-
+          {{state_attr('sensor.parklane_calendar_event_4', 'start').strftime('%a, %b %d')}}
+        attribute_templates:
+          eta: >-
+            {% if 'holiday' in states('sensor.parklane_calendar_event_4') or 'term' in states('sensor.parklane_calendar_event_4') or 'Term' in states('sensor.parklane_calendar_event_4') or 'Holiday' in states('sensor.parklane_calendar_event_4')  %}
+              {% if state_attr('sensor.parklane_calendar_event_4', 'eta') >=0 %}
+              {{state_attr('sensor.parklane_calendar_event_4', 'eta')}}
+              {% elif (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days>=0 %}
+              0
+              {% else %}
+              -1
+              {% endif %}
+            {% else %}
+            -1
+            {% endif %}
+          friendly_eta: >-
+            {% if state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days > 0 %}
+              {{(state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days}} days more
+            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
+            and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days == 0 %}
+              Last Day
+            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 0 %}
+              Today
+            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 1 %}
+              Tomorrow
+            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') > 1 %}
+              in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days
+            {% else %}
+            {% endif %}
+        icon_template: >-
+            mdi:calendar
+
+
+  - platform: template
+    sensors:
+      back_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      back_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      back_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      front_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      front_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      front_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      left_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      left_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      left_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      right_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      right_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      right_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_coral_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_coral_inference:
+        value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["inference_speed"] }}' 
+        unit_of_measurement: 'ms'
+
+  - platform: template
+    sensors:
+      narnia_raid_status:
+        friendly_name: "RAID Status"
+        value_template: >-    
+          {% if "UU" in states('sensor.narnia_mdstat') %}
+          Healthy
+          {% elif "U_" in states('sensor.narnia_mdstat')%}
+          Degraded
+          {% elif "_U" in states('sensor.narnia_mdstat')%}
+          Degraded
+          {% else %}
+          Unknown
+          {% endif %}
+
+  - platform: template
+    sensors:
+      trash_display:
+        friendly_name: "Trash"
+        value_template: >-
+          {% if is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Today')  and ((now().strftime('%H')|int) > 17) and ((now().strftime('%H')|int) < 25) %}
+          !Now!
+          {% elif is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Today')  and ((now().strftime('%H')|int) <= 17) %}   
+          Today
+          {% elif
+          is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Tomorrow') %}  
+          Tomorrow
+          {% else %}
+          off
+          {% endif %}
+        icon_template: >-
+            mdi:trash-can-outline
+

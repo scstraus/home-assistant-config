@@ -64,51 +64,186 @@ custom_header:
         hide_config: true
         voice_hide: true
 
+
+
 decluttering_templates:
+
+  emergency:
+    card: 
+      type: conditional
+      conditions:
+        - entity: '[[entity]]'
+          state: '[[state]]'
+      card:
+        type: custom:button-card
+        name: '[[name]]'
+        deep_press: true
+        icon: 'mdi:alert' 
+        size: 28px
+        aspect_ratio: 7/1
+        label: '[[name]]'
+        show_name: true
+        show_icon: true
+        show_state: false
+        show_label: false
+        show_last_changed: false
+        styles:
+          card:
+#            - --ha-card-background: '#d40404'
+            - --ha-card-background: '#c0392b'
+            - animation: blink 2s ease infinite
+          name:
+            - font-size: 15px
+            - font-family: Helvetica
+            - color: white
+            - justify-self: start
+            - padding-left: 18px
+            - padding-top: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin-left: 21px
+          grid: 
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 8% 1fr
+            - grid-template-rows: 1fr
+          icon:
+            - color: white
+        state:
+          - value: "off"
+
   alert:
-    card:  
-      type: custom:button-card
-      name: '[[name]]'
-      deep_press: true
-      icon: 'mdi:alert' 
-      size: 28px
-  #    lock: '[[lock]]'
-      aspect_ratio: 7/1
-  #    entity: fan.sophies_room_air_purifier
-      label: '[[name]]'
-      show_name: true
-      show_icon: true
-      show_state: false
-      show_label: false
-      show_last_changed: false
-  #    tap_action: '[[tap_action]]'
-  #    hold_action: '[[hold_action]]'
-      styles:
-        card:
-  #        - border-radius: '[[border-radius]]'
-          - --ha-card-background: '#d40404'
-  #        - box-shadow: '[[box-shadow]]' # Changed/Added in 0.13.0
-        name:
-          - font-size: 18px
-          - font-family: Helvetica
-          - color: white
-          - justify-self: start
-          - padding-left: 18px
-          - padding-top: 5px
-        img_cell:
-          - align-self: start
-          - text-align: start
-  #        - margin-right: 22px
-          - margin-left: 21px
-        grid: 
-          - grid-template-areas: '"i n"'
-          - grid-template-columns: 8% 1fr
-          - grid-template-rows: 1fr
-        icon:
-          - color: white
-      state:
-        - value: "off"
-  #        spin: '[[spin]]'
+    card: 
+      type: conditional
+      conditions:
+        - entity: '[[entity]]'
+          state: '[[state]]'
+      card:
+        type: custom:button-card
+        name: '[[name]]'
+        deep_press: true
+        icon: 'mdi:alert' 
+        size: 28px
+        aspect_ratio: 7/1
+        label: '[[name]]'
+        show_name: true
+        show_icon: true
+        show_state: false
+        show_label: false
+        show_last_changed: false
+        styles:
+          card:
+#            - --ha-card-background: '#d40404'
+            - --ha-card-background: '#c0392b'
+          name:
+            - font-size: 15px
+            - font-family: Helvetica
+            - color: white
+            - justify-self: start
+            - padding-left: 18px
+            - padding-top: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin-left: 21px
+          grid: 
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 8% 1fr
+            - grid-template-rows: 1fr
+          icon:
+            - color: white
+        state:
+          - value: "off"
+
+  low_battery:
+    card: 
+      type: conditional
+      conditions:
+        - entity: '[[entity]]'
+          state: '[[state]]'
+      card:
+        type: custom:button-card
+        name: '[[name]]'
+        deep_press: true
+        icon: 'mdi:battery-10' 
+        size: 28px
+        aspect_ratio: 7/1
+        label: '[[name]]'
+        show_name: true
+        show_icon: true
+        show_state: false
+        show_label: false
+        show_last_changed: false
+        styles:
+          card:
+            - --ha-card-background: '#f9c536'
+          name:
+            - font-size: 15px
+            - font-family: Helvetica
+            - color: black
+            - justify-self: start
+            - padding-left: 18px
+            - padding-top: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin-left: 21px
+          grid: 
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 8% 1fr
+            - grid-template-rows: 1fr
+          icon:
+            - color: black
+        state:
+          - value: "off"
+
+
+
+#decluttering_templates:
+#  alert:
+#    card:  
+#      type: custom:button-card
+#      name: '[[name]]'
+#      deep_press: true
+#      icon: 'mdi:alert' 
+#      size: 28px
+#  #    lock: '[[lock]]'
+#      aspect_ratio: 7/1
+#  #    entity: fan.sophies_room_air_purifier
+#      label: '[[name]]'
+#      show_name: true
+#      show_icon: true
+#      show_state: false
+#      show_label: false
+#      show_last_changed: false
+#  #    tap_action: '[[tap_action]]'
+#  #    hold_action: '[[hold_action]]'
+#      styles:
+#        card:
+#  #        - border-radius: '[[border-radius]]'
+#          - --ha-card-background: '#d40404'
+#  #        - box-shadow: '[[box-shadow]]' # Changed/Added in 0.13.0
+#        name:
+#          - font-size: 18px
+#          - font-family: Helvetica
+#          - color: white
+#          - justify-self: start
+#          - padding-left: 18px
+#          - padding-top: 5px
+#        img_cell:
+#          - align-self: start
+#          - text-align: start
+#  #        - margin-right: 22px
+#          - margin-left: 21px
+#        grid: 
+#          - grid-template-areas: '"i n"'
+#          - grid-template-columns: 8% 1fr
+#          - grid-template-rows: 1fr
+#        icon:
+#          - color: white
+#      state:
+#        - value: "off"
+#  #        spin: '[[spin]]'
 
  
 #### EIGHTH TAB ####

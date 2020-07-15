@@ -1,0 +1,318 @@
+#  - platform: airvisual
+#    api_key: !secret airvisual_key
+#    monitored_conditions:
+#      - us
+
+  - platform: darksky
+    api_key: !secret darksky_key
+    scan_interval:
+      minutes: 12
+    forecast:
+    - 0
+    hourly_forecast:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    monitored_conditions:
+    - temperature_high
+    - temperature_low
+    - apparent_temperature_high
+    - apparent_temperature_low
+    - summary
+    - icon
+    - nearest_storm_distance
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - temperature
+    - apparent_temperature
+    - dew_point
+    - wind_speed
+    - wind_bearing
+    - wind_gust
+    - cloud_cover
+    - humidity
+    - pressure
+    - visibility
+    - ozone
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: cp_packages_coming_today
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - ceskaposta@cpost.cz
+    - !secret wife_email
+    value_template: >-
+      {% if 'Informace o Vaší zásilce' in subject %}
+        Delivery
+      {% elif 'reset state of package sensor' in subject %}
+        no_delivery
+      {% endif %}
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: dpd_packages_coming_today
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - NOREPLY@dpd.cz
+    - !secret wife_email
+    value_template: >-
+      {% if 'Dnes Vám' in subject %}
+        Delivery
+      {% elif 'reset state of package sensor' in subject %}
+        no_delivery
+      {% endif %}
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: dhl_packages_coming_today
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - NoReply.ODD@dhl.com
+    - !secret wife_email
+    value_template: >-
+      {% if 'DHL On Demand Delivery' in subject %}
+        Delivery
+      {% elif 'reset state of package sensor' in subject %}
+        no_delivery
+      {% endif %}
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: gls_packages_coming_today
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - noreply@gls-czech.com
+    - !secret wife_email
+    value_template: >-
+      {% if 'Informace o času doručení balíku' in subject %}
+        Delivery
+      {% elif 'reset state of package sensor' in subject %}
+        no_delivery
+      {% endif %}
+
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: house_electricity
+    port: 993
+    username: !secret gmail_uname
+    password: !secret hass_pass
+    senders:
+    - !secret my_email
+    - no-reply@smartconnect.apc.com
+    value_template: >-
+      {% if 'UPS On Battery' in subject %}
+        power_out
+      {% elif 'Power Restored' in subject %}
+        power_on
+      {% endif %}
+
+#  - platform: gtfs
+#    name: transport
+#    origin: U49Z4
+#    destination: U484Z2
+#    data: jrdata.zip
+
+#  - platform: gtfs_realtime
+#    trip_update_url: 'http://opendata.iprpraha.cz/DPP/JR/jrdata.zip'
+#    departures:
+#    - name: transit
+#      route: 5
+#      stopid: U49N198
+
+#  - platform: waze_travel_time
+#    origin: !secret home_address
+#    destination: !secret work_address
+#    region: 'EU'
+#    name: Driving Time to Work
+ 
+  - platform: waze_travel_time
+    origin: device_tracker.sean_s_iphone_x
+    destination: zone.home
+    region: 'EU'
+    name: Sean Driving Time to Home
+
+  - platform: waze_travel_time
+    origin: device_tracker.alena_s_iphone
+    destination: zone.home
+    region: 'EU'
+    name: Alena Driving Time to Home
+ 
+  - platform: waze_travel_time
+    origin: device_tracker.sophie
+    destination: zone.home
+    region: 'EU'
+    name: Sophie Driving Time to Home
+ 
+  - platform: google_travel_time
+    api_key: !secret google_travel_key
+    origin: device_tracker.sean_s_iphone_x
+    destination: zone.home
+    name: Sean Tram Time to Home
+    options:
+      mode: transit
+
+  - platform: google_travel_time
+    api_key: !secret google_travel_key
+    origin: device_tracker.sophie
+    destination: zone.home
+    name: Sophie Tram Time to Home
+    options:
+      mode: transit
+
+#  - platform: google_travel_time
+#    api_key: !secret google_travel_key
+#    origin: zone.home
+#    destination: zone.work
+#    name: Sean Tram Time to Work
+#    options:
+#      mode: transit
+
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: disk_free
+        arg: /
+      - type: memory_use_percent
+      - type: load_15m
+      - type: processor_use
+
+#  - platform: deluge
+#    host: !secret deluge_ip
+#    username: !secret deluge_uname
+#    password: !secret deluge_pw
+#    monitored_variables:
+#      - 'current_status'
+#      - 'download_speed'
+#      - 'upload_speed'
+
+#  - name: Right Human Detection
+#    platform: mqtt
+#    state_topic: "cameras/1/objects"
+#    value_template: '{{ value_json.person }}'
+#    unit_of_measurement: '%'
+#    availability_topic: "cameras/1/available"
+#
+#  - name: Left Human Detection
+#    platform: mqtt
+#    state_topic: "cameras/2/objects"
+#    value_template: '{{ value_json.person }}'
+#    unit_of_measurement: '%'
+#    availability_topic: "cameras/2/available"
+#
+#  - name: Front Human Detection
+#    platform: mqtt
+#    state_topic: "cameras/3/objects"
+#    value_template: '{{ value_json.person }}'
+#    unit_of_measurement: '%'
+#    availability_topic: "cameras/3/available"
+#
+#  - name: Back Human Detection
+#    platform: mqtt
+#    state_topic: "cameras/4/objects"
+#    value_template: '{{ value_json.person }}'
+#    unit_of_measurement: '%'
+#    availability_topic: "cameras/4/available"
+
+#  - platform: smartthinq_washer
+#    name: LG_Washer
+#    mac: !secret lg_washer_mac        
+
+  - name: Alarm State 1 - Laundry
+    platform: mqtt
+    state_topic: 'paradox/alarm/state/1'
+
+  - name: Alarm State 2 - 1st Floor
+    platform: mqtt
+    state_topic: 'paradox/alarm/state/2'
+    
+  - name: Alarm State 3 - Motion Sensors
+    platform: mqtt
+    state_topic: 'paradox/alarm/state/3'
+
+  - name: Home Air Quality
+    platform: file
+    file_path: "/share/Latest_AirVisual_values.txt"
+    value_template: '{{ value.split(";")[4] }}'
+    unit_of_measurement: 'AQI'
+
+  - name: Hlubocepy Air Quality
+    platform: file
+    file_path: "/share/Latest_AirVisual_Hlu_values.txt"
+    value_template: '{{ value.split(";")[4] }}'
+    unit_of_measurement: 'AQI'
+ 
+#  - platform: synologydsm
+#    name: discworld
+#    host: !secret synology_ip
+#    username: !secret syn_uname
+#    password: !secret hass_pass
+#    monitored_conditions:
+#      - cpu_total_load
+#      - memory_real_usage
+#      - network_up
+#      - network_down
+#      - disk_smart_status
+#      - volume_percentage_used
+
+  - platform: here_travel_time
+    name: transport_time_to_work
+    mode: publicTransportTimeTable
+    traffic_mode: true
+    app_id: !secret here_app_id
+    app_code: !secret here_app_code
+    origin: !secret home_lat_long
+    destination: !secret work_lat_long
+    unit_system: metric
+    scan_interval: 60
+
+  - platform: ical
+    name: "Czech Holidays"
+    url: "https://www.officeholidays.com/ics-clean/czech-republic"
+
+  - platform: ical
+    name: "Parklane Calendar"
+    url: !secret parklane_calendar
+
+  - platform: home_connect
+    refresh_token: !secret homeconnect_refresh_token
+
+  - platform: rest
+    name: Frigate Debug
+    resource: !secret frigate_url
+    scan_interval: 5
+    json_attributes:
+      - back
+      - front
+      - left
+      - right
+      - coral
+    value_template: 'OK'
+
+  - platform: command_line
+    name: narnia_mdstat
+    command: "cat /proc/mdstat"
+    scan_interval: 3600

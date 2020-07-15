@@ -372,6 +372,13 @@ cards:
       - "access error"
       show_empty: false
 
+    - type: custom:decluttering-card
+      template: low_battery
+      variables:
+        - entity: sensor.seans_phone_battery
+        - state: Low
+        - name: "Sean's phone battery is low"
+
     - type: entity-filter
       card:
         title: "Low Battery"
@@ -387,7 +394,7 @@ cards:
       - sensor.master_bedroom_nest_protect_battery_health
       - sensor.kids_room_nest_protect_battery_health
       - sensor.basement_nest_protect_battery_health
-      - sensor.seans_phone_battery
+#      - sensor.seans_phone_battery
 #      - sensor.alenas_phone_battery
       - sensor.closet_window_sensor_1_battery
       - sensor.back_door_sensor_battery
