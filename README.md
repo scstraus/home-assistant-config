@@ -556,3 +556,11 @@ This time for my son's naptime and the sensor to show the trash icon on the dash
 This one uses the motion detection on the Reolink camera we use as a baby monitor to send us a notification if our son is up and about when he should be asleep based on a custom sensor that says when it's his naptime.
 
 
+# [Sensors](https://github.com/scstraus/home-assistant-config/tree/master/sensors)
+
+These are the sensors I use for device integrations as well as many template sensors for reformatting different sensors for the UI and automations. Much of the heavy lifting and calculation that makes my system work in a usable way is done in template sensors.
+
+## [Integration Sensors](https://github.com/scstraus/home-assistant-config/blob/master/sensors/integration_sensors.yaml)
+
+These are the (non binary) sensors which are used for integration to specific components and functionality, so basically anything that's not a binary sensor and not a template sensor.
+
