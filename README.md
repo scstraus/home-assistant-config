@@ -573,3 +573,17 @@ These are the sensors I use for device integrations as well as many template sen
 
 These are the (non binary) sensors which are used for integration to specific components and functionality, so basically anything that's not a binary sensor and not a template sensor.
 
+### [AirVisual](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L1-L4)
+
+For the [AirVisual component](https://www.home-assistant.io/integrations/airvisual/). Not using this one any more because I have my own AirVisual node. I think they might have moved it to UI based config anyway.
+
+### [Dark Sky](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L6-L46)
+
+This is the configuration for the [Dark Sky sensors](https://www.home-assistant.io/integrations/darksky/), not to be confused with the [Dark Sky weather platform component](https://www.home-assistant.io/integrations/weather.darksky). The difference is that this one is used for when you want a single sensor for % chance of rain or for temperature, whereas the weather platform is just used for the weather forecast card, but doesn't publish sensors you can use for your own purpose. 
+
+With the dark sky sensors, you can even use sensors that tell you the forecast for a specific amount of hours in the future, so you can know the projected humidity in 4 hours. These are very useful for creating automations from, and I do that quite often, for example, to see if it's likely to rain when our roof windows are open, or if it's a [nice day for riding my bike to work](https://github.com/scstraus/home-assistant-config#notify-me-if-its-a-good-day-to-bike-to-work). I hope for a good alternative when Apple [closes down this API](https://alerts.home-assistant.io/#dark_sky.markdown) :-(.
+
+
+### [IMAP Email Sensors for detecting when packages will be delivered](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L48-L130)
+
+This one uses the [IMAP Email Content component](https://www.home-assistant.io/integrations/imap_email_content/) to examine the contents of emails which I forward from our email boxes to a special Gmail account I set up only for hass. They look at the sender and the content of the email for a phrase that indicates I have a package arriving from that shipper today. When the conditions match, the sensor will indicate if there is a delivery or not. The only problem is that if another email comes in for a different thing, this sensor will go back to false (unless they fixed this). So I store this state in a variable [using some automations](https://github.com/scstraus/home-assistant-config#variables-to-indicate-whether-packages-are-being-delivered-today-from-each-shipping-company) and then I use the variable to show the state in the UI instead of the sensor. That variable is then reset to "no delivery" at midnight. 
