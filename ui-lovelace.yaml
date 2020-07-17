@@ -19,6 +19,44 @@ custom_header:
   background: var(--primary-background-color)
   exceptions:
     - conditions:
+        template: "{{ 'iPhone' in userAgent or 'iOS' in userAgent }}"
+        user: Alena
+      config:
+        hide_tabs: '1'
+        disable_sidebar: true
+        default_tab: 0
+        hide_help: true
+        hide_config: true
+        hide_unused: true
+        voice_hide: true
+        menu_hide: true
+        options_hide: true
+        voice_hide: true
+    - conditions:
+        template: "{{ 'iPhone' in userAgent or 'iOS' in userAgent }}"
+        user: Sean Straus
+      config:
+        hide_tabs: '1'
+        default_tab: 0
+        hide_help: true
+        hide_config: true
+        voice_hide: true
+        menu_hide: true
+        options_hide: true
+    - conditions:
+        template: "{{ 'iPhone' in userAgent or 'iOS' in userAgent }}"
+        user: Sophie
+      config:
+        hide_tabs: '1'
+        disable_sidebar: true
+        default_tab: 0
+        hide_help: true
+        hide_config: true
+        hide_unused: true
+        voice_hide: true
+        menu_hide: true
+        options_hide: true
+    - conditions:
         user: kiosk
       config:
         hide_tabs: '0'
@@ -64,8 +102,6 @@ custom_header:
         hide_config: true
         voice_hide: true
 
-
-
 decluttering_templates:
 
   emergency:
@@ -81,7 +117,6 @@ decluttering_templates:
         icon: 'mdi:alert' 
         size: 28px
         aspect_ratio: 7/1
-        label: '[[name]]'
         show_name: true
         show_icon: true
         show_state: false
@@ -125,7 +160,6 @@ decluttering_templates:
         icon: 'mdi:alert' 
         size: 28px
         aspect_ratio: 7/1
-        label: '[[name]]'
         show_name: true
         show_icon: true
         show_state: false
@@ -135,6 +169,47 @@ decluttering_templates:
           card:
 #            - --ha-card-background: '#d40404'
             - --ha-card-background: '#c0392b'
+          name:
+            - font-size: 15px
+            - font-family: Helvetica
+            - color: white
+            - justify-self: start
+            - padding-left: 18px
+            - padding-top: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin-left: 21px
+          grid: 
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 8% 1fr
+            - grid-template-rows: 1fr
+          icon:
+            - color: white
+        state:
+          - value: "off"
+
+  warning:
+    card: 
+      type: conditional
+      conditions:
+        - entity: '[[entity]]'
+          state: '[[state]]'
+      card:
+        type: custom:button-card
+        name: '[[name]]'
+        deep_press: true
+        icon: 'mdi:alert-circle' 
+        size: 28px
+        aspect_ratio: 7/1
+        show_name: true
+        show_icon: true
+        show_state: false
+        show_label: false
+        show_last_changed: false
+        styles:
+          card:
+            - --ha-card-background: '#f9c536'
           name:
             - font-size: 15px
             - font-family: Helvetica
@@ -165,10 +240,45 @@ decluttering_templates:
         type: custom:button-card
         name: '[[name]]'
         deep_press: true
+        icon: 'mdi:battery-30' 
+        size: 28px
+        aspect_ratio: 7/1
+        show_name: true
+        show_icon: true
+        show_state: false
+        show_label: false
+        show_last_changed: false
+        styles:
+          name:
+            - font-size: 15px
+            - font-family: Helvetica
+            - justify-self: start
+            - padding-left: 18px
+            - padding-top: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin-left: 21px
+          grid: 
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 8% 1fr
+            - grid-template-rows: 1fr
+        state:
+          - value: "off"
+
+  very_low_battery:
+    card: 
+      type: conditional
+      conditions:
+        - entity: '[[entity]]'
+          state: '[[state]]'
+      card:
+        type: custom:button-card
+        name: '[[name]]'
+        deep_press: true
         icon: 'mdi:battery-10' 
         size: 28px
         aspect_ratio: 7/1
-        label: '[[name]]'
         show_name: true
         show_icon: true
         show_state: false
@@ -197,7 +307,47 @@ decluttering_templates:
         state:
           - value: "off"
 
-
+  very_low_battery_marquee:
+    card: 
+      type: conditional
+      conditions:
+        - entity: '[[entity]]'
+          state: '[[state]]'
+      card:
+        type: custom:button-card
+        name: >
+          [[[return `<marquee>[[name]]<\marquee>`]]]
+        deep_press: true
+        icon: 'mdi:battery-10' 
+        size: 28px
+        aspect_ratio: 7/1
+        show_name: true
+        show_icon: true
+        show_state: false
+        show_label: false
+        show_last_changed: false
+        styles:
+          card:
+            - --ha-card-background: '#f9c536'
+          name:
+            - font-size: 15px
+            - font-family: Helvetica
+            - color: black
+            - justify-self: start
+            - padding-left: 18px
+            - padding-top: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin-left: 21px
+          grid: 
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 8% 1fr
+            - grid-template-rows: 1fr
+          icon:
+            - color: black
+        state:
+          - value: "off"
 
 #decluttering_templates:
 #  alert:

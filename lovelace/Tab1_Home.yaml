@@ -1,6 +1,4 @@
-#### FIRST TAB ####
-
-
+### These are just the cards that you see only sometimes under certain conditions in the first tab (non kiosk flavor)
 
 title: Home
 icon: mdi:home
@@ -164,7 +162,135 @@ cards:
     variables:
       - entity: sensor.seans_phone_battery
       - state: Low
-      - name: "Sean's phone battery is low"
+      - name: "Sean's Phone Battery is Low"
+
+  - type: custom:decluttering-card
+    template: low_battery
+    variables:
+      - entity: sensor.sophies_phone_battery
+      - state: Low
+      - name: "Sophie's Phone Battery is Low"
+
+  - type: custom:decluttering-card
+    template: low_battery
+    variables:
+      - entity: sensor.alenas_phone_battery
+      - state: Low
+      - name: "Alena's Phone Battery is Low"
+
+  - type: custom:decluttering-card
+    template: very_low_battery
+    variables:
+      - entity: sensor.seans_phone_battery
+      - state: Very Low
+      - name: "Sean's Phone Battery is Very Low"
+
+  - type: custom:decluttering-card
+    template: very_low_battery
+    variables:
+      - entity: sensor.sophies_phone_battery
+      - state: Very Low
+      - name: "Sophie's Phone Battery is Very Low"
+
+  - type: custom:decluttering-card
+    template: very_low_battery
+    variables:
+      - entity: sensor.alenas_phone_battery
+      - state: Very Low
+      - name: "Alena's Phone Battery is Very Low"
+
+  - type: custom:decluttering-card
+    template: very_low_battery_marquee
+    variables:
+      - entity: sensor.living_room_nest_protect_battery_health
+      - state: Replace
+      - name: "Replace Battery: Living Room Smoke Alarm"
+
+  - type: custom:decluttering-card
+    template: very_low_battery_marquee
+    variables:
+      - entity: sensor.master_bedroom_nest_protect_battery_health
+      - state: Replace
+      - name: "Replace Battery: Master Bedoom Smoke Alarm"
+
+  - type: custom:decluttering-card
+    template: very_low_battery_marquee
+    variables:
+      - entity: sensor.kids_room_nest_protect_battery_health
+      - state: Replace
+      - name: "Replace Battery: Sophie's Bedoom Smoke Alarm"
+
+  - type: custom:decluttering-card
+    template: very_low_battery_marquee
+    variables:
+      - entity: sensor.basement_nest_protect_battery_health
+      - state: Replace
+      - name: "Replace Battery: Basement Smoke Alarm"
+
+  - type: custom:decluttering-card
+    template: alert
+    variables:
+      - entity: binary_sensor.human_back
+      - state: on
+      - name: "Person Spotted in Back Yard"
+
+  - type: custom:decluttering-card
+    template: alert
+    variables:
+      - entity: binary_sensor.human_front
+      - state: on
+      - name: "Person Spotted in Front of House"
+
+  - type: custom:decluttering-card
+    template: alert
+    variables:
+      - entity: binary_sensor.human_left
+      - state: on
+      - name: "Person Spotted in Left of House"
+
+  - type: custom:decluttering-card
+    template: alert
+    variables:
+      - entity: binary_sensor.human_left
+      - state: on
+      - name: "Person Spotted in Left of House"
+
+  - type: custom:decluttering-card
+    template: very_low_battery
+    variables:
+      - entity: sensor.car_needs_charging
+      - state: "Charge It"
+      - name: "The Car Needs to Be Plugged In"
+
+  - type: custom:decluttering-card
+    template: warning
+    variables:
+      - entity: sensor.low_gas_in_car
+      - state: "Fill It"
+      - name: "The Car Needs Gas"
+
+  - type: custom:decluttering-card
+    template: alert
+    variables:
+      - entity: binary_sensor.trash_emergency
+      - state: true
+      - name: "!Take Out the Trash Now!"
+
+  - type: custom:decluttering-card
+    template: emergency
+    variables:
+      - entity: binary_sensor.basement_is_flooding
+      - state: on
+      - name: "!!The Basement is Flooding!!"
+
+  - type: custom:decluttering-card
+    template: emergency
+    variables:
+      - entity: binary_sensor.server_room_flood_sensor
+      - state: on
+      - name: "!!The Server Room is Flooding!!"
+
+
 
   - type: entity-filter
     card: 
@@ -188,16 +314,16 @@ cards:
 #    - sensor.object_detection_left
 #    - sensor.object_detection_right
 #    - sensor.object_detection_back
-    - binary_sensor.human_back
-    - binary_sensor.human_front 
-    - binary_sensor.human_left
-    - binary_sensor.human_right
-    - binary_sensor.basement_is_flooding
+#    - binary_sensor.human_back
+#    - binary_sensor.human_front 
+#    - binary_sensor.human_left
+#    - binary_sensor.human_right
+#    - binary_sensor.basement_is_flooding
     state_filter:
     - "red"
     - "Emergency"
     - "power_out"
-    - "Person Detected"
+#    - "Person Detected"
     - "on"
     - "yes"
     show_empty: false
@@ -260,7 +386,6 @@ cards:
     state_filter:
     - "Replace"
     - "Low"
-    - "Very Low"
     - operator: "<"
       value: 10
     entities:
@@ -270,7 +395,7 @@ cards:
     - sensor.basement_nest_protect_battery_health
 #    - sensor.seans_phone_battery
 #    - sensor.alenas_phone_battery
-    - sensor.sophies_iphone_6_battery_level
+#    - sensor.sophies_iphone_se_battery_level
     - sensor.closet_window_sensor_1_battery
     - sensor.back_door_sensor_battery
     - sensor.sophies_phone_battery
@@ -323,8 +448,8 @@ cards:
     - sensor.czechia_coronavirus_current
     - variable.czechia_coronavirus_new_yesterday
     - variable.czechia_coronavirus_new_today
-    - sensor.car_needs_charging
-    - sensor.low_gas_in_car
+#    - sensor.car_needs_charging
+#    - sensor.low_gas_in_car
     - sensor.trash_display
     - binary_sensor.basement_sliding_door
     state_filter:
@@ -332,15 +457,15 @@ cards:
     - "Delivery"
     - "delivery"
     - "yes"
-    - "Cat Detected"
-    - "Dog Detected"
+#    - "Cat Detected"
+#    - "Dog Detected"
     - "Open"
     - "Clean"
     - "Today"
     - "Tomorrow"
     - "armed_away"
-    - "Charge It"
-    - "Fill It"
+#    - "Charge It"
+#    - "Fill It"
     - "!Now!"
     - operator: ">"
       value: -1
@@ -389,6 +514,13 @@ cards:
       - entity: sensor.parklane_holiday_friendly_4
         type: "custom:secondaryinfo-entity-row"
         secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+
+
+
+
+
+#### These are the cards you see all the time in the first tab (non kiosk flavor)
+
 
 
 #  - type: markdown

@@ -243,25 +243,25 @@
 
   - name: Alarm State 1 - Laundry
     platform: mqtt
-    state_topic: 'paradox/alarm/state/1'
+    state_topic: !secret alarm_state_1
 
   - name: Alarm State 2 - 1st Floor
     platform: mqtt
-    state_topic: 'paradox/alarm/state/2'
+    state_topic: !secret alarm_state_2
     
   - name: Alarm State 3 - Motion Sensors
     platform: mqtt
-    state_topic: 'paradox/alarm/state/3'
+    state_topic: !secret alarm_state_3
 
   - name: Home Air Quality
     platform: file
-    file_path: "/share/Latest_AirVisual_values.txt"
+    file_path: !secret home_aqi_path
     value_template: '{{ value.split(";")[4] }}'
     unit_of_measurement: 'AQI'
 
   - name: Hlubocepy Air Quality
     platform: file
-    file_path: "/share/Latest_AirVisual_Hlu_values.txt"
+    file_path: !secret hlubocepy_aqi_path
     value_template: '{{ value.split(";")[4] }}'
     unit_of_measurement: 'AQI'
  

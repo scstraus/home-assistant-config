@@ -580,6 +580,7 @@
       data:
         push:
           sound:
+            name: "Alert_SpartanConnecting_Haptic.caf"
             critical: 1
             volume: 1.0
           thread-id: "security"
@@ -598,14 +599,12 @@
         entity_id: camera.back
         deviceID:
           - !secret kindle_kitchen_deviceid
-        large: true
     - service: browser_mod.command
       data:
         command: more-info
         entity_id: camera.back
         deviceID:
           - !secret kindle_master_closet_deviceid
-        large: true
     # - service: fully_kiosk.screensaver_stop
     #   data:
     #     entity_id: display.kindle_fire_kitchen
@@ -648,14 +647,12 @@
         entity_id: camera.left
         deviceID:
           - !secret kindle_kitchen_deviceid
-        large: true
     - service: browser_mod.command
       data:
         command: more-info
         entity_id: camera.left
         deviceID:
           - !secret kindle_master_closet_deviceid
-        large: true
     # - service: fully_kiosk.screensaver_stop
     #   data:
     #     entity_id: display.kindle_fire_kitchen
@@ -674,14 +671,12 @@
         entity_id: camera.right
         deviceID:
           - !secret kindle_kitchen_deviceid
-        large: true
     - service: browser_mod.command
       data:
         command: more-info
         entity_id: camera.right
         deviceID:
           - !secret kindle_master_closet_deviceid
-        large: true
     # - service: fully_kiosk.screensaver_stop
     #   data:
     #     entity_id: display.kindle_fire_kitchen
