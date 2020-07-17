@@ -587,11 +587,11 @@ These are the sensors I use for device integrations as well as many template sen
 
 These are the (non binary) sensors which are used for integration to specific components and functionality, so basically anything that's not a binary sensor and not a template sensor.
 
-### [AirVisual](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L1-L4)
+### [AirVisual for Air Quality](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L1-L4)
 
 For the [AirVisual component](https://www.home-assistant.io/integrations/airvisual/). Not using this one any more because I have my own AirVisual node. I think they might have moved it to UI based config anyway.
 
-### [Dark Sky](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L6-L46)
+### [Dark Sky for Weather](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L6-L46)
 
 This is the configuration for the [Dark Sky sensors](https://www.home-assistant.io/integrations/darksky/), not to be confused with the [Dark Sky weather platform component](https://www.home-assistant.io/integrations/weather.darksky). The difference is that this one is used for when you want a single sensor for % chance of rain or for temperature, whereas the weather platform is just used for the weather forecast card, but doesn't publish sensors you can use for your own purpose. 
 
