@@ -589,3 +589,37 @@ With the dark sky sensors, you can even use sensors that tell you the forecast f
 ### [IMAP Email Sensors for detecting when packages will be delivered](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L48-L130)
 
 This one uses the [IMAP Email Content component](https://www.home-assistant.io/integrations/imap_email_content/) to examine the contents of emails which I forward from our email boxes to a special Gmail account I set up only for hass. They look at the sender and the content of the email for a phrase that indicates I have a package arriving from that shipper today. When the conditions match, the sensor will indicate if there is a delivery or not. The only problem is that if another email comes in for a different thing, this sensor will go back to false (unless they fixed this). So I store this state in a variable [using some automations](https://github.com/scstraus/home-assistant-config#variables-to-indicate-whether-packages-are-being-delivered-today-from-each-shipping-company) and then I use the variable to show the state in the UI instead of the sensor. That variable is then reset to "no delivery" at midnight. 
+
+### [GTFS Sensors for public transport integration](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L132-L143)
+
+Never was able to get [GTFS](https://www.home-assistant.io/integrations/gtfs/) to work properly with Czech public transport GTFS feed unfortunately. I will probably try to do something with the [Here component](https://www.home-assistant.io/integrations/here_travel_time/) which works much better.
+
+### [Waze travel time for driving time calculations to home](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L132-L143)
+
+I've found the [Waze travel time component](https://www.home-assistant.io/integrations/waze_travel_time/) to be more reliable than Google for calculating driving times. I use these for calculating how long it would take for members of the family to drive home. This informs another group of sensors which will read back where people are, if they are heading home, and how long it will take them to get home in natural language using alexa or the UI. 
+
+### [Google travel time for tram travel time calculations to home](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L169-L191)
+
+Google travel time does a pretty good job of calculating travel times by tram. I use these for calculating how long it would take for members of the family to take public transport home. This informs another group of sensors which will read back where people are, if they are heading home, and how long it will take them to get home in natural language using alexa or the UI. 
+
+### [System monitor to monitor my hass server's CPU, RAM, Memory, etc.](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L193-L201)
+
+Always nice to have your server utilization on the dashboard.
+
+### [MQTT sensors for my Paradox alarm system](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L244-L255)
+
+I use the [Paradox addon](https://community.home-assistant.io/t/paradox-alarm-mqtt-hassio-addon/38569) which bridges messages from my alarm system to MQTT, and these sensors tell me the state of the alarm, whether it's armed, disarmed, alarming, etc.
+
+### [File sensors to read the data from my air quality monitors over SMB](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L256-L266)
+
+These sensors take the data from files that I get from an SMB integration to our [AirVisual Node Pros](https://www.iqair.com/us/air-quality-monitors/airvisual-pro) and parse them to get the AQI details. This makes a surprisingly reliable sensor for AQI from the indoor and outdoor AQI modules I have.
+
+### [Synology DSM](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L268-L279)
+
+This one used to take the system status for CPU,RAM and Disk utilization from my Synology DSM, but they moved it into the integration configuration. 
+
+### [Here travel time](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L281-L290)
+
+I use [Here travel time](https://www.home-assistant.io/integrations/here_travel_time/) to check which publich transportation route is fastest to work in the morning. My plans were to make a sensor that would tell me if my usual route options weren't available so that I'd know to reroute if something was closed before I found out the hard way. Since I'm working from home, this one is on the back burner.
+
+
