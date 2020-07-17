@@ -614,11 +614,7 @@ I use the [Paradox addon](https://community.home-assistant.io/t/paradox-alarm-mq
 
 These sensors take the data from files that I get from an SMB integration to our [AirVisual Node Pros](https://www.iqair.com/us/air-quality-monitors/airvisual-pro) and parse them to get the AQI details. This makes a surprisingly reliable sensor for AQI from the indoor and outdoor AQI modules I have.
 
-### [Synology DSM](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L268-L279)
-
-This one used to take the system status for CPU,RAM and Disk utilization from my Synology DSM, but they moved it into the integration configuration. 
-
-### [Here travel time](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L281-L290)
+### [Here travel time to tell me which public transport routes are best to work](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L281-L290)
 
 I use [Here travel time](https://www.home-assistant.io/integrations/here_travel_time/) to check which publich transportation route is fastest to work in the morning. My plans were to make a sensor that would tell me if my usual route options weren't available so that I'd know to reroute if something was closed before I found out the hard way. Since I'm working from home, this one is on the back burner.
 
