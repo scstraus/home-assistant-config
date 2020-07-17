@@ -610,7 +610,7 @@ Always nice to have your server utilization on the dashboard.
 
 I use the [Paradox addon](https://community.home-assistant.io/t/paradox-alarm-mqtt-hassio-addon/38569) which bridges messages from my alarm system to MQTT, and these sensors tell me the state of the alarm, whether it's armed, disarmed, alarming, etc.
 
-### [File sensors to read the data from my air quality monitors over SMB](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L256-L266)
+### [File sensors to read the data from my AirVisual Node Pro air quality monitors over SMB](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L256-L266)
 
 These sensors take the data from files that I get from an SMB integration to our [AirVisual Node Pros](https://www.iqair.com/us/air-quality-monitors/airvisual-pro) and parse them to get the AQI details. This makes a surprisingly reliable sensor for AQI from the indoor and outdoor AQI modules I have.
 
