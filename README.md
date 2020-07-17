@@ -86,6 +86,18 @@ How to navigate this readme:
     + [AirVisual](#airvisual)
     + [Dark Sky](#dark-sky)
     + [IMAP Email Sensors for detecting when packages will be delivered](#imap-email-sensors-for-detecting-when-packages-will-be-delivered)
+    + [GTFS Sensors for public transport integration](#gtfs-sensors-for-public-transport-integration)
+    + [Waze travel time for driving time calculations to home](#waze-travel-time-for-driving-time-calculations-to-home)
+    + [Google travel time for tram travel time calculations to home](#google-travel-time-for-tram-travel-time-calculations-to-home)
+    + [System monitor to monitor my hass server's CPU, RAM, Memory, etc.](#system-monitor-to-monitor-my-hass-servers-cpu-ram-memory-etc)
+    + [MQTT sensors for my Paradox alarm system](#mqtt-sensors-for-my-paradox-alarm-system)
+    + [File sensors to read the data from my AirVisual Node Pro air quality monitors over SMB](#file-sensors-to-read-the-data-from-my-airvisual-node-pro-air-quality-monitors-over-smb)
+    + [Synology DSM](#synology-dsm)
+    + [Here travel time to tell me which public transport routes are best to work](#here-travel-time-to-tell-me-which-public-transport-routes-are-best-to-work)
+
+<BR>
+
+
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
 My Lovelace UI is geared a lot more at troubleshooting and information than it is at control, as most of the things that need to be controlled I try to fully automate, so the first thing you will notice is a lot of color coded graphs where I can quickly see if there's an issue. I can control things too, but I tend to keep the controls as concise as possible in a long list sorted by floor and room so I can just scroll down and get the one I want quickly.. I don't bother with big fancy controls because I don't use them.
@@ -610,11 +622,15 @@ Always nice to have your server utilization on the dashboard.
 
 I use the [Paradox addon](https://community.home-assistant.io/t/paradox-alarm-mqtt-hassio-addon/38569) which bridges messages from my alarm system to MQTT, and these sensors tell me the state of the alarm, whether it's armed, disarmed, alarming, etc.
 
-### [File sensors to read the data from my AirVisual Node Pro air quality monitors over SMB](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L256-L266)
+### [File sensors to read the data from my air quality monitors over SMB](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L256-L266)
 
 These sensors take the data from files that I get from an SMB integration to our [AirVisual Node Pros](https://www.iqair.com/us/air-quality-monitors/airvisual-pro) and parse them to get the AQI details. This makes a surprisingly reliable sensor for AQI from the indoor and outdoor AQI modules I have.
 
-### [Here travel time to tell me which public transport routes are best to work](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L281-L290)
+### [Synology DSM](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L268-L279)
+
+This one used to take the system status for CPU,RAM and Disk utilization from my Synology DSM, but they moved it into the integration configuration. 
+
+### [Here travel time](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L281-L290)
 
 I use [Here travel time](https://www.home-assistant.io/integrations/here_travel_time/) to check which publich transportation route is fastest to work in the morning. My plans were to make a sensor that would tell me if my usual route options weren't available so that I'd know to reroute if something was closed before I found out the hard way. Since I'm working from home, this one is on the back burner.
 
