@@ -62,9 +62,8 @@ stream:
 
 ffmpeg:
 
-#image_processing:
-#  - platform: opencv
-
+image_processing:
+  - platform: opencv
 
 
 frontend:
@@ -121,8 +120,6 @@ lovelace:
     - url: /hacsfiles/lovelace-card-preloader/lovelace-card-preloader.js
       type: module 
     - url: /hacsfiles/decluttering-card/decluttering-card.js
-      type: module
-    - url: /hacsfiles/bignumber-card/bignumber-card.js
       type: module
 
 mobile_app:
@@ -355,8 +352,6 @@ mqtt:
   client_id: homeassistant-001
   username: !secret mqqt_uname
   password: !secret mqqt_pass
-#  discovery: true
-#  discovery_prefix: airthings_upstairs
 
 input_boolean:
   fire_in_fireplace_tomorrow:

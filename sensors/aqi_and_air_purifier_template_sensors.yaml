@@ -350,3 +350,47 @@
          friendly_name: "Light Sensor"
          unit_of_measurement: 'lux'
          value_template: "{{ states.fan.sophies_room_air_purifier.attributes.illuminance }}"
+
+  - platform: mqtt
+    name: "Radon Upstairs"
+    state_topic: "airthings_upstairs/sensor/airthings_short_term_radon/state"
+    unit_of_measurement: 'Bq/m3'
+    icon: mdi:radioactive
+
+  - platform: mqtt
+    name: "Longterm Radon Upstairs"
+    state_topic: "airthings_upstairs/sensor/airthings_long_term_radon/state"
+    unit_of_measurement: 'Bq/m3'
+    icon: mdi:radioactive
+
+  - platform: mqtt
+    name: "TVOCS Upstairs"
+    state_topic: "airthings_upstairs/sensor/airthings_voc/state"
+    unit_of_measurement: 'ppb'
+    icon: mdi:weather-windy
+
+  - platform: mqtt
+    name: "Air Pressure Upstairs"
+    state_topic: "airthings_upstairs/sensor/airthings_pressure/state"
+    unit_of_measurement: 'hpa'
+    icon: mdi:gauge
+    device_class: pressure
+
+  - platform: mqtt
+    name: "CO2 Upstairs"
+    state_topic: "airthings_upstairs/sensor/airthings_co2/state"
+    unit_of_measurement: 'ppm'
+    icon: mdi:cloud-outline
+
+
+  - platform: mqtt
+    name: "Humidity Upstairs"
+    state_topic: "airthings_upstairs/sensor/airthings_humidity/state"
+    unit_of_measurement: '%'
+    icon: mdi:water-percent
+
+  - platform: mqtt
+    name: "Temperature Upstairs Airthings"
+    state_topic: "airthings_upstairs/sensor/airthings_temperature/state"
+    device_class: temperature
+

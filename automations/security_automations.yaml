@@ -593,18 +593,24 @@
     entity_id: binary_sensor.human_back
     to: 'on'
   action:
-    - service: browser_mod.command
+    - service: browser_mod.more_info
       data:
-        command: more-info
         entity_id: camera.back
         deviceID:
           - !secret kindle_kitchen_deviceid
-    - service: browser_mod.command
-      data:
-        command: more-info
-        entity_id: camera.back
-        deviceID:
           - !secret kindle_master_closet_deviceid
+#    - service: browser_mod.command
+#      data:
+#        command: more-info
+#        entity_id: camera.back
+#        deviceID:
+#          - !secret kindle_kitchen_deviceid
+#    - service: browser_mod.command
+#      data:
+#        command: more-info
+#        entity_id: camera.back
+#        deviceID:
+#          - !secret kindle_master_closet_deviceid
     # - service: fully_kiosk.screensaver_stop
     #   data:
     #     entity_id: display.kindle_fire_kitchen
@@ -617,18 +623,24 @@
     entity_id: binary_sensor.human_front
     to: 'on'
   action:
-    - service: browser_mod.command
+    - service: browser_mod.more_info
       data:
-        command: more-info
         entity_id: camera.front
         deviceID:
           - !secret kindle_kitchen_deviceid
-    - service: browser_mod.command
-      data:
-        command: more-info
-        entity_id: camera.front
-        deviceID:
           - !secret kindle_master_closet_deviceid
+#    - service: browser_mod.command
+#      data:
+#        command: more-info
+#        entity_id: camera.front
+#        deviceID:
+#          - !secret kindle_kitchen_deviceid
+#    - service: browser_mod.command
+#      data:
+#        command: more-info
+#        entity_id: camera.front
+#        deviceID:
+#          - !secret kindle_master_closet_deviceid
     # - service: fully_kiosk.screensaver_stop
     #   data:
     #     entity_id: display.kindle_fire_kitchen
@@ -641,18 +653,24 @@
     entity_id: binary_sensor.human_left
     to: 'on'
   action:
-    - service: browser_mod.command
+    - service: browser_mod.more_info
       data:
-        command: more-info
         entity_id: camera.left
         deviceID:
           - !secret kindle_kitchen_deviceid
-    - service: browser_mod.command
-      data:
-        command: more-info
-        entity_id: camera.left
-        deviceID:
           - !secret kindle_master_closet_deviceid
+#    - service: browser_mod.command
+#      data:
+#        command: more-info
+#        entity_id: camera.left
+#        deviceID:
+#          - !secret kindle_kitchen_deviceid
+#    - service: browser_mod.command
+#      data:
+#        command: more-info
+#        entity_id: camera.left
+#        deviceID:
+#          - !secret kindle_master_closet_deviceid
     # - service: fully_kiosk.screensaver_stop
     #   data:
     #     entity_id: display.kindle_fire_kitchen
@@ -665,18 +683,24 @@
     entity_id: binary_sensor.human_right
     to: 'on'
   action:
-    - service: browser_mod.command
+    - service: browser_mod.more_info
       data:
-        command: more-info
         entity_id: camera.right
         deviceID:
           - !secret kindle_kitchen_deviceid
-    - service: browser_mod.command
-      data:
-        command: more-info
-        entity_id: camera.right
-        deviceID:
           - !secret kindle_master_closet_deviceid
+#    - service: browser_mod.command
+#      data:
+#        command: more-info
+#        entity_id: camera.right
+#        deviceID:
+#          - !secret kindle_kitchen_deviceid
+#    - service: browser_mod.command
+#      data:
+#        command: more-info
+#        entity_id: camera.right
+#        deviceID:
+#          - !secret kindle_master_closet_deviceid
     # - service: fully_kiosk.screensaver_stop
     #   data:
     #     entity_id: display.kindle_fire_kitchen

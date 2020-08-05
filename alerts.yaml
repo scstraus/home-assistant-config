@@ -164,7 +164,6 @@
         thread-id: "info"
 
   basement_sliding_door_sean:
-    name: "Basement sliding door is open"
     name: Basement sliding door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.basement_sliding_door.last_updated)) | int //60 }} minutes
     done_message: Basement sliding door is closed
     entity_id: binary_sensor.basement_door_open_sean
@@ -187,7 +186,6 @@
 
 
   basement_sliding_door_alena:
-    name: "Basement sliding door is open"
     name: Basement sliding door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.basement_sliding_door.last_updated)) | int //60 }} minutes
     done_message: Basement sliding door is closed
     entity_id: binary_sensor.basement_sliding_door

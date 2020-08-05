@@ -94,7 +94,7 @@
   czechia_coronavirus_yesterday:
     value: 'Unknown'
     attributes:
-      icon: mdi:bug
+      icon: mdi:virus-outline
     restore: true
     
   czechia_coronavirus_new_yesterday:

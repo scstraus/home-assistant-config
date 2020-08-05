@@ -96,6 +96,7 @@ cards:
           color: "#f4b300"
         - value: 90
           color: "#e04c23"
+
     - type: custom:mini-graph-card
       name: 'Memory Used (%)'
       entities:
@@ -393,59 +394,4 @@ cards:
     - binary_sensor.kids_room_nest_protect_online
     - binary_sensor.basement_nest_protect_online
 
-#      - sensor.sean_direction_of_travel
-#      - sensor.alena_direction_of_travel
-#      - sensor.sophie_direction_of_travel
-#      - sensor.all_direction_of_travel
-
-#
-#    - type: history-graph
-#      title: 'Dishwasher Status'
-#      entities:
-#      - input_select.dishwasher_status
-#
-#  - type: custom:tracker-card
-#    title:
-#    trackers:
-#      - sensor.custom_card_tracker
-#      - sensor.custom_component_tracker
-
-#    - type: vertical-stack
-#      cards:
-#
-#      - type: history-graph
-#        title: 'device_tracker.sean_s_iphone_x'
-#        entities:
-#        - device_tracker.sean_s_iphone_x
-#
-#      - type: history-graph
-#        title: 'input_select.sean_last_zone_dropdown'
-#        entities:
-#        - input_select.sean_last_zone_dropdown
-#
-#      - type: history-graph
-#        title: 'input_select.sean_location_dropdown'
-#        entities:
-#        - input_select.sean_location_dropdown
-#
-#      - type: history-graph
-#        title: 'sensor.sean_location'
-#        entities:
-#        - sensor.sean_location
-
-
-#    - type: history-graph
-#      title: 'Humidity Under Sink'
-#      entities:
-#      - sensor.popp_unknown_type_0004_id_0014_relative_humidity
-#
-#    - type: history-graph
-#      title: 'Temperature Under Sink'
-#      entities:
-#      - sensor.popp_unknown_type_0004_id_0014_temperature
-#
-#    - type: history-graph
-#      title: 'Dew Point Under Sink'
-#      entities:
-#      - sensor.popp_unknown_type_0004_id_0014_dew_point
 

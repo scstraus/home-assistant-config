@@ -7,11 +7,11 @@ views:
   - !include /config/lovelace/Tab2_Music.yaml
   - !include /config/lovelace/Tab3_Heat.yaml
   - !include /config/lovelace/Tab4_Cameras.yaml
-  - !include /config/lovelace/Tab9_Health.yaml
   - !include /config/lovelace/Tab5_Appliances.yaml
   - !include /config/lovelace/Tab6_Alarm.yaml
   - !include /config/lovelace/Tab7_Weather.yaml
   - !include /config/lovelace/Tab8_Tech.yaml
+  - !include /config/lovelace/Tab9_Health.yaml
 
 custom_header:
   compact_mode: true

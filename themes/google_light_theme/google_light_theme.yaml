@@ -46,8 +46,8 @@ Google Light Theme:
   label-badge-yellow: "#D9B757"
   label-badge-gray: "#5F6267"
   # Cards
-  ha-card-border-radius: "10px"
-  ha-card-box-shadow: 1px 1px 5px 0px rgb(230, 230, 230)
+#  ha-card-border-radius: "10px"
+#  ha-card-box-shadow: 1px 1px 5px 0px rgb(230, 230, 230)
   paper-dialog-background-color: "#FFFFFF"
   paper-card-background-color: var(--paper-dialog-background-color)
   paper-listbox-background-color: var(--paper-dialog-background-color)

@@ -36,6 +36,22 @@
     stream_source: !secret right_main_stream_url
     framerate: 4
 
+#  - platform: ffmpeg
+#    input: !secret front_main_stream_url
+#    name: Front Stream
+#
+#  - platform: ffmpeg
+#    input: !secret back_main_stream_url
+#    name: Back Stream
+#
+#  - platform: ffmpeg
+#    input: !secret left_main_stream_url
+#    name: Left Stream
+#
+#  - platform: ffmpeg
+#    input: !secret right_main_stream_url
+#    name: Right Stream
+
 #Frigate v.5 cameras 
 
   - name: Right Last Person
@@ -72,13 +88,13 @@
 #    platform: generic
 #    still_image_url: !secret back_best_url
 
-# Synology Cameras
+# Synology Cameras (non stream) - Used for popups on tablets
 
-#  - platform: synology
-#    url: !secret synology_int_url
-#    username: !secret syn_uname
-#    password: !secret hass_pass
-#    timeout: 120
+  - platform: synology
+    url: !secret synology_int_url
+    username: !secret syn_uname
+    password: !secret hass_pass
+    timeout: 120
 
 
 

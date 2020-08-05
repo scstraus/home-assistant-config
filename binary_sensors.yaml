@@ -398,3 +398,10 @@
         value_template: >-
           {{ is_state('binary_sensor.basement_sliding_door', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
 
+  - platform: template
+    sensors:
+      car_charging_problem:
+        friendly_name: "Car Charging Problem"
+        device_class: problem
+        value_template: >-
+          {{  state_attr('binary_sensor.cooper_s_e_all4_check_control_messages', 'check_control_messages')=='Unable to charge'}}

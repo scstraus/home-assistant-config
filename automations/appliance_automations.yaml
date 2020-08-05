@@ -800,11 +800,9 @@
     from: 'unavailable'
     to: 'on'
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.sophies_air_purifier
-        state: 'off'
+    condition: state
+    entity_id: input_boolean.sophies_air_purifier
+    state: 'off'
   condition:
     condition: and
     conditions:

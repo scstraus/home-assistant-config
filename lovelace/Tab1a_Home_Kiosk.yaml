@@ -162,27 +162,47 @@ cards:
     layout: vertical
     cards:
 
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.basement_is_flooding
+        - state: 'on'
+        - name: "!!The Basement is Flooding!!"
 
     - type: custom:decluttering-card
-      template: low_battery
+      template: emergency
       variables:
-        - entity: sensor.seans_phone_battery
-        - state: Low
-        - name: "Sean's Phone Battery is Low"
+        - entity: binary_sensor.server_room_flood_sensor
+        - state: 'on'
+        - name: "!!The Server Room is Flooding!!"
 
     - type: custom:decluttering-card
-      template: low_battery
+      template: alert
       variables:
-        - entity: sensor.sophies_phone_battery
-        - state: Low
-        - name: "Sophie's Phone Battery is Low"
+        - entity: binary_sensor.trash_emergency
+        - state: 'on'
+        - name: "!Take Out the Trash Now!"
 
     - type: custom:decluttering-card
-      template: low_battery
+      template: warning
       variables:
-        - entity: sensor.alenas_phone_battery
-        - state: Low
-        - name: "Alena's Phone Battery is Low"
+        - entity: sensor.low_gas_in_car
+        - state: "Fill It"
+        - name: "The Car Needs Gas"
+
+#    - type: custom:decluttering-card
+#      template: warning_marquee
+#      variables:
+#        - entity: binary_sensor.car_charging_problem
+#        - state: 'on'
+#        - name: "Car Charging Problem: Unplug it, turn the car off and on, and plug it back in."
+
+    - type: custom:decluttering-card
+      template: very_low_battery
+      variables:
+        - entity: sensor.car_needs_charging
+        - state: "Charge It"
+        - name: "The Car Needs to Be Plugged In"
 
     - type: custom:decluttering-card
       template: very_low_battery_marquee
@@ -234,40 +254,26 @@ cards:
         - name: "Replace Battery: Basement Smoke Alarm"
 
     - type: custom:decluttering-card
-      template: very_low_battery
+      template: low_battery
       variables:
-        - entity: sensor.car_needs_charging
-        - state: "Charge It"
-        - name: "The Car Needs to Be Plugged In"
+        - entity: sensor.seans_phone_battery
+        - state: Low
+        - name: "Sean's Phone Battery is Low"
 
     - type: custom:decluttering-card
-      template: warning
+      template: low_battery
       variables:
-        - entity: sensor.low_gas_in_car
-        - state: "Fill It"
-        - name: "The Car Needs Gas"
+        - entity: sensor.sophies_phone_battery
+        - state: Low
+        - name: "Sophie's Phone Battery is Low"
+
+    - type: custom:decluttering-card
+      template: low_battery
+      variables:
+        - entity: sensor.alenas_phone_battery
+        - state: Low
+        - name: "Alena's Phone Battery is Low"
         
-    - type: custom:decluttering-card
-      template: alert
-      variables:
-        - entity: binary_sensor.trash_emergency
-        - state: true
-        - name: "!Take Out the Trash Now!"
-
-    - type: custom:decluttering-card
-      template: emergency
-      variables:
-        - entity: binary_sensor.basement_is_flooding
-        - state: on
-        - name: "!!The Basement is Flooding!!"
-
-    - type: custom:decluttering-card
-      template: emergency
-      variables:
-        - entity: binary_sensor.server_room_flood_sensor
-        - state: on
-        - name: "!!The Server Room is Flooding!!"
-
     - type: entity-filter
       entities:
       - variable.posta_variable
@@ -330,8 +336,11 @@ cards:
       show_empty: false      
 
 
+
+
     - type: vertical-stack
       cards:
+
 
       # - type: conditional
       #   conditions:
@@ -352,6 +361,9 @@ cards:
   #        camera_image: camera.front_outdoor
         camera_image: camera.front_stream
 #          camera_view: live
+        show_state: false
+        show_name: false
+
 
       - type: horizontal-stack
         cards:
@@ -364,6 +376,8 @@ cards:
 #            - binary_sensor.motion_left
           camera_image: camera.left_stream
 #            camera_view: live
+          show_state: false
+          show_name: false
 
         - type: picture-glance
 #            title: Outdoor - Right 
@@ -372,6 +386,8 @@ cards:
 #            - binary_sensor.motion_right
           camera_image: camera.right_stream
 #            camera_view: live
+          show_state: false
+          show_name: false
 
       - type: picture-glance
 #          title: Outdoor - Back Yard
@@ -382,6 +398,8 @@ cards:
   #        camera_image: camera.back_outdoor
         camera_image: camera.back_stream
 #          camera_view: live
+        show_state: false
+        show_name: false
 
   #  - type: markdown
   #    content: |
@@ -603,44 +621,214 @@ cards:
           hidePastEvents: true
           hideHeader: true
           timeFormat: 'hh:mm a'
-    
-    - type: custom:vertical-stack-in-card
+
+#These are the colors to use for the environment graph cards
+#HSV: X°, 100%, 77%
+#card green: #00c40a
+#card yellow: #c1c400
+#card orange: #c48600
+#card red: #c41700
+#card magenta: #c4007c
+#card violet: #b000c4
+#
+#HSV: X°, 39%, 100%
+#graph green: #9cffa1
+#graph yellow: #fdff9c
+#graph orange: #ffe09c
+#graph red: #ffa79c
+#graph magenta: #ff9cdb
+#graph violet: #f59cff
+
+    - type: vertical-stack
       cards:
 
-      - type: "custom:button-card"
-        name: Hlubočepy
-        styles:
-          card:
-            - padding: 8px 0px
-          name:
-            - color: var(--ha-card-header-color)
+      - type: horizontal-stack
+        cards:
 
-      - type: custom:air-visual-card 
-        air_pollution_level: sensor.hlubocepy_air_pollution
-        air_quality_index: sensor.hlubocepy_air_quality
-        main_pollutant: sensor.u_s_main_pollutant_2
-        hide_title: true
-        svg_location: "/local/icons/aqi_icons"
+        - type: custom:mini-graph-card
+          name: AQI Outside 
+          icon: mdi:air-filter
+          style: |
+            ha-card {
+              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
+              #00c40a
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
+              #c1c400 
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
+              #c48600
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
+              #c41700
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
+              #b000c4
+              {% else %}
+              #c4007c
+              {% endif %}
+          entities:
+            - entity: sensor.hlubocepy_air_quality
+              name: 
+          color_thresholds:
+            - value: 25
+              color: "#9cffa1"
+            - value: 75
+              color: "#fdff9c"
+            - value: 125
+              color: "#ffe09c"
+            - value: 175
+              color: "#ffa79c"
+            - value: 250
+              color: "#f59cff"
+            - value: 350
+              color: "#ff9cdb"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 60
 
-    - type: custom:vertical-stack-in-card
-      cards:
+        - type: custom:mini-graph-card
+          name: AQI Inside
+          icon: mdi:air-filter
+          style: |
+            ha-card {
+              background: {% if states('sensor.home_air_quality')|int <= 50 %}
+              #00c40a
+              {% elif states('sensor.home_air_quality')|int <= 100 %} 
+              #c1c400 
+              {% elif states('sensor.home_air_quality')|int <= 150 %}
+              #c48600
+              {% elif states('sensor.home_air_quality')|int <= 200 %}
+              #c41700
+              {% elif states('sensor.home_air_quality')|int <= 300 %}
+              #b000c4
+              {% else %}
+              #c4007c
+              {% endif %}
+          entities:
+            - entity: sensor.home_air_quality
+              name: 
+          color_thresholds:
+            - value: 25
+              color: "#9cffa1"
+            - value: 75
+              color: "#fdff9c"
+            - value: 125
+              color: "#ffe09c"
+            - value: 175
+              color: "#ffa79c"
+            - value: 250
+              color: "#f59cff"
+            - value: 350
+              color: "#ff9cdb"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 60
 
-      - type: "custom:button-card"
-        name: Home
-        styles:
-          card:
-            - padding: 8px 0px
-          name:
-            - color: var(--ha-card-header-color)
 
-      - type: custom:air-visual-card 
-        air_pollution_level: sensor.home_air_pollution
-        air_quality_index: sensor.home_air_quality
-        main_pollutant: sensor.u_s_main_pollutant_2
-        hide_title: true
-        svg_location: "/local/icons/aqi_icons"
+      - type: horizontal-stack
+        cards:
 
+        - type: custom:mini-graph-card
+          name: Radon Upstairs
+          style: |
+            ha-card {
+              background: {% if states('sensor.radon_upstairs')|int <= 100 %}
+              #00c40a
+              {% elif states('sensor.radon_upstairs')|int <= 150 %} 
+              #c1c400 
+              {% else %}
+              #c41700
+              {% endif %} 
+          entities:
+            - entity: sensor.radon_upstairs
+              name: 
+          color_thresholds:
+            - value: 0
+              color: "#9cffa1"
+            - value: 90
+              color: "#9cffa1"
+            - value: 110
+              color: "#fdff9c"
+            - value: 140
+              color: "#fdff9c"
+            - value: 160
+              color: "#ffe09c"
+            - value: 200
+              color: "#ffe09c"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 60
 
+        - type: custom:mini-graph-card
+          name: VOC Upstairs
+          style: |
+            ha-card {
+              background: {% if states('sensor.radon_upstairs')|int <= 250 %}
+              #00c40a
+              {% elif states('sensor.radon_upstairs')|int <= 2000 %} 
+              #c1c400 
+              {% else %}
+              #c41700
+              {% endif %}
+          entities:
+            - entity: sensor.tvocs_upstairs
+              name: 
+          color_thresholds:
+            - value: 0
+              color: "#9cffa1"
+            - value: 240
+              color: "#9cffa1"
+            - value: 260
+              color: "#fdff9c"
+            - value: 1990
+              color: "#fdff9c"
+            - value: 2010
+              color: "#ffe09c"
+            - value: 3000
+              color: "#ffe09c"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 60
+
+#    
+#    - type: custom:vertical-stack-in-card
+#      cards:
+#
+#      - type: "custom:button-card"
+#        name: Hlubočepy
+#        styles:
+#          card:
+#            - padding: 8px 0px
+#          name:
+#            - color: var(--ha-card-header-color)
+#
+#      - type: custom:air-visual-card 
+#        air_pollution_level: sensor.hlubocepy_air_pollution
+#        air_quality_index: sensor.hlubocepy_air_quality
+#        main_pollutant: sensor.u_s_main_pollutant_2
+#        hide_title: true
+#        svg_location: "/local/icons/aqi_icons"
+#
+#    - type: custom:vertical-stack-in-card
+#      cards:
+#
+#      - type: "custom:button-card"
+#        name: Home
+#        styles:
+#          card:
+#            - padding: 8px 0px
+#          name:
+#            - color: var(--ha-card-header-color)
+#
+#      - type: custom:air-visual-card 
+#        air_pollution_level: sensor.home_air_pollution
+#        air_quality_index: sensor.home_air_quality
+#        main_pollutant: sensor.u_s_main_pollutant_2
+#        hide_title: true
+#        svg_location: "/local/icons/aqi_icons"
+#
+#
 
 
 

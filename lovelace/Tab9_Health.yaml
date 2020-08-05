@@ -1,8 +1,8 @@
-#title: Health
-#panel: true
-#icon: mdi:power-plug
-#cards:  
-#
-#  - type: iframe
-#    url: !secret grafana_health_url
-##    aspect_ratio: 100%
+title: Health
+icon: mdi:stethoscope
+panel: true
+cards:
+
+  - type: iframe
+    url: !secret grafana_health_url
+    aspect_ratio: 1020%

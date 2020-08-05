@@ -407,3 +407,7 @@ sensor.trash_display:
   icon: mdi:trash-can-outline
 binary_sensor.basement_sliding_door:
   device_class: door
+sensor.hlubocepy_air_quality:
+  icon: mdi:air-filter
+sensor.home_air_quality:
+  icon: mdi:air-filter
