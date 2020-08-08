@@ -1,3 +1,4 @@
+# I used to use synology streams when I couldn't get the camera streams working directly for frigate, but the camera streams seem better now. No point in streaming it through 2 devices.
 
 #  - platform: generic
 #    name: Syno Stream Front
@@ -5,12 +6,9 @@
 #    stream_source: !secret syno_front_url
 #    framerate: 4
 #    
-#  - platform: generic
-#    name: Cam Substream Front
-#    still_image_url: !secret front_still_url
-#    stream_source: !secret front_substream_url
-#    framerate: 4
-#    
+
+# Generic cameras work the best with stream component and use very little CPU that way, but are unreliable with stream turned off. Unfortunately with stream they have a 10-20 second lag but the upside is they use very little CPU and show up properly in the UI.
+    
 
   - platform: generic
     name: Front Stream
@@ -35,7 +33,52 @@
     still_image_url: !secret right_still_url
     stream_source: !secret right_main_stream_url
     framerate: 4
+#
+#  - platform: generic
+#    name: Right SubStream
+#    still_image_url: !secret right_sub_still_url
+#    stream_source: !secret right_substream_url
+#    framerate: 4
+#
+#  - platform: generic
+#    name: Left SubStream
+#    still_image_url: !secret right_sub_still_url
+#    stream_source: !secret right_substream_url
+#    framerate: 4
+#
+#  - platform: generic
+#    name: Front Substream
+#    still_image_url: !secret front_sub_still_url
+#    stream_source: !secret front_substream_url
+#    framerate: 4
+#
+#  - platform: generic
+#    name: Back Substream
+#    still_image_url: !secret back_sub_still_url
+#    stream_source: !secret back_substream_url
+#    framerate: 4
+##
+#  - platform: ffmpeg
+#    input: !secret front_substream_url
+#    name: Front Subtream
+#
+#  - platform: ffmpeg
+#    input: !secret back_substream_url
+#    name: Back Substream
+#
+#  - platform: ffmpeg
+#    input: !secret left_substream_url
+#    name: Left Substream
+#
+#  - platform: ffmpeg
+#    input: !secret right_substream_url
+#    name: Right Substream
 
+# FFMPEG work pretty well if you turn off stream:
+# They are real time but not 100% reliable
+# With stream, generic is more reliable, both have same 10+
+# second lag with stream turned on.
+#
 #  - platform: ffmpeg
 #    input: !secret front_main_stream_url
 #    name: Front Stream
@@ -52,7 +95,7 @@
 #    input: !secret right_main_stream_url
 #    name: Right Stream
 
-#Frigate v.5 cameras 
+# Frigate v.5 cameras 
 
   - name: Right Last Person
     platform: mqtt
@@ -101,6 +144,7 @@
 
 #    verify_ssl: False
 
+# Cameras for history of person detection
 
   - name: cam1
     platform: mqtt

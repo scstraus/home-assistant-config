@@ -65,8 +65,6 @@ ffmpeg:
 #image_processing:
 #  - platform: opencv
 
-
-
 frontend:
   themes: !include_dir_merge_named themes
 #  themes: !include themes.yaml
@@ -209,6 +207,7 @@ switch:
         command_on: !secret shuffle_on_cmd
         command_off: !secret shuffle_off_cmd
         value_template: "{{state_attr('media_player.itunes', 'shuffle')}}"
+
 
 #  - platform: rest
 #    name: "shuffle_status"
@@ -638,6 +637,8 @@ shell_command:
   update_avnodehome_data: !secret avnodehome_update_cmd
   update_avnodehlubocepy_data: !secret avnodehlubocepy_update_cmd
   roll_frigate_history: !secret roll_frigate_command
+  screensaver_stop_kindle_fire_kitchen: !secret kitchen_kindle_stop_screensaver
+  screensaver_stop_kindle_fire_closet: !secret closet_kindle_stop_screensaver
 
 browser_mod:
 

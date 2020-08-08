@@ -598,7 +598,13 @@
         entity_id: camera.back
         deviceID:
           - !secret kindle_kitchen_deviceid
+    - service: browser_mod.more_info
+      data:
+        entity_id: camera.back
+        deviceID:
           - !secret kindle_master_closet_deviceid
+    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+    - service: shell_command.screensaver_stop_kindle_fire_closet
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -628,7 +634,13 @@
         entity_id: camera.front
         deviceID:
           - !secret kindle_kitchen_deviceid
+    - service: browser_mod.more_info
+      data:
+        entity_id: camera.front
+        deviceID:
           - !secret kindle_master_closet_deviceid
+    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+    - service: shell_command.screensaver_stop_kindle_fire_closet
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -658,7 +670,13 @@
         entity_id: camera.left
         deviceID:
           - !secret kindle_kitchen_deviceid
+    - service: browser_mod.more_info
+      data:
+        entity_id: camera.left
+        deviceID:
           - !secret kindle_master_closet_deviceid
+    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+    - service: shell_command.screensaver_stop_kindle_fire_closet
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -688,7 +706,13 @@
         entity_id: camera.right
         deviceID:
           - !secret kindle_kitchen_deviceid
+    - service: browser_mod.more_info
+      data:
+        entity_id: camera.right
+        deviceID:
           - !secret kindle_master_closet_deviceid
+    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+    - service: shell_command.screensaver_stop_kindle_fire_closet
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -730,12 +754,8 @@
     for:
       seconds: 15
   action:
-    - service: fully_kiosk.screensaver_stop
-      data:
-        entity_id: display.kindle_fire_kitchen
-    - service: fully_kiosk.screensaver_stop
-      data:
-        entity_id: display.kindle_fire_master_closet
+    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+    - service: shell_command.screensaver_stop_kindle_fire_closet
 
 - id: keep_fully_kiosk_screen_on_human
   alias: Keep Fully Kiosk Screen On
@@ -762,12 +782,8 @@
     for:
       seconds: 30
   action:
-    - service: fully_kiosk.screensaver_stop
-      data:
-        entity_id: display.kindle_fire_kitchen
-    - service: fully_kiosk.screensaver_stop
-      data:
-        entity_id: display.kindle_fire_master_closet
+    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+    - service: shell_command.screensaver_stop_kindle_fire_closet
 
 - id: close_popup_on_kiosk
   alias: close_popup_on_kiosk
@@ -817,9 +833,11 @@
       for:
         minutes: 1
   action:
-    - service: browser_mod.command
-      data:
-        command: close-popup
+    - service: browser_mod.close_popup
+
+#    - service: browser_mod.command
+#      data:
+#        command: close-popup
 
 # The below ends up making the "lovelace configuration has been updated, reload?" message.. Not sure why I did it..
 #    - delay: '00:00:15'

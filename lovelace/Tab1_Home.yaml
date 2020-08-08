@@ -691,9 +691,9 @@ cards:
         name: VOC Upstairs
         style: |
           ha-card {
-            background: {% if states('sensor.radon_upstairs')|int <= 250 %}
+            background: {% if states('sensor.tvocs_upstairs')|int <= 250 %}
             #00c40a
-            {% elif states('sensor.radon_upstairs')|int <= 2000 %} 
+            {% elif states('sensor.tvocs_upstairs')|int <= 2000 %} 
             #c1c400 
             {% else %}
             #c41700
