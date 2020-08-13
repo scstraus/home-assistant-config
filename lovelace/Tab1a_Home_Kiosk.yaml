@@ -360,7 +360,7 @@ cards:
 #          - binary_sensor.motion_front
   #        camera_image: camera.front_outdoor
         camera_image: camera.front_stream
-#        camera_view: live
+        camera_view: live
         show_state: false
         show_name: false
 
@@ -375,7 +375,7 @@ cards:
           entities: []
 #            - binary_sensor.motion_left
           camera_image: camera.left_stream
-#          camera_view: live
+          camera_view: live
           show_state: false
           show_name: false
 
@@ -385,7 +385,7 @@ cards:
           entities: []
 #            - binary_sensor.motion_right
           camera_image: camera.right_stream
-#          camera_view: live
+          camera_view: live
           show_state: false
           show_name: false
 
@@ -397,7 +397,7 @@ cards:
 #          - binary_sensor.motion_back
   #        camera_image: camera.back_outdoor
         camera_image: camera.back_stream
-#        camera_view: live
+        camera_view: live
         show_state: false
         show_name: false
 
@@ -1160,17 +1160,22 @@ cards:
         cards:
 
 
-        - type: "custom:button-card"
-          name: SHUFFLE
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: switch.toggle
-            service_data:
-              entity_id: "switch.shuffle"
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: input_boolean.itunes_shuffle
+
+#        - type: "custom:button-card"
+#          name: SHUFFLE
+#          styles:
+#            card:
+#              - padding: 12px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: switch.toggle
+#            service_data:
+#              entity_id: "switch.shuffle"
 
 
       - type: horizontal-stack

@@ -22,8 +22,9 @@ cards:
 #    - sensor.u_s_air_pollution_level 
 #    - sensor.u_s_air_quality_index 
 
-    - type: custom:vertical-stack-in-card
-      cards:
+    - type: vertical-stack
+      in_card: true
+      cards: 
 
       - type: "custom:button-card"
         name: Hlubočepy
@@ -40,9 +41,10 @@ cards:
         hide_title: true
         svg_location: "/local/icons/aqi_icons"
 
-    - type: custom:vertical-stack-in-card
-      cards:
-
+    - type: vertical-stack
+      in_card: true
+      cards: 
+    
       - type: "custom:button-card"
         name: Home
         styles:
@@ -87,9 +89,9 @@ cards:
 #    entities: 
 #    - sensor.u_s_air_quality_index
 
-  - type: custom:vertical-stack-in-card
-#    title: Internet
-    cards:
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
     - type: custom:mini-graph-card
   #      name: Internet
@@ -133,9 +135,9 @@ cards:
 #    title: 'Wind Speed'
 #    entities:
 #    - sensor.dark_sky_wind_speed
-  - type: custom:vertical-stack-in-card
-#    title: Internet
-    cards:
+  - type: vertical-stack
+    in_card: true
+    cards: 
     
     - type: custom:mini-graph-card
   #      name: Internet
@@ -193,9 +195,9 @@ cards:
 #    entities:
 #    - sensor.dark_sky_humidity
 
-  - type: custom:vertical-stack-in-card
-#    title: Internet
-    cards:
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
     - type: custom:mini-graph-card
       entities:

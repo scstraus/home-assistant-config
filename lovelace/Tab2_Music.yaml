@@ -12,8 +12,9 @@ cards:
 #  - type: media-control
 #    entity: media_player.itunes 
 
-  - type: custom:vertical-stack-in-card
-    cards:
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
     - type: media-control
       entity: media_player.itunes 
@@ -32,6 +33,7 @@ cards:
       - type: custom:slider-entity-row
         entity: media_player.itunes
         full_row: true
+      - input_boolean.itunes_shuffle
 
 
   - type: vertical-stack
@@ -48,22 +50,26 @@ cards:
   #        hide_power: true
 
 
-
-    - type: horizontal-stack
-      cards:
-
-
-      - type: "custom:button-card"
-        name: SHUFFLE
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: "switch.shuffle"
+#
+#    - type: horizontal-stack
+#      cards:
+#
+#      - type: entities
+#        show_header_toggle: false
+#        entities:
+#          - entity: input_boolean.itunes_shuffle
+#
+#      - type: "custom:button-card"
+#        name: SHUFFLE
+#        styles:
+#          card:
+#            - padding: 12px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: switch.toggle
+#          service_data:
+#            entity_id: "switch.shuffle"
 
 
     - type: horizontal-stack
@@ -382,5 +388,3 @@ cards:
     show_header_toggle: true
     entities:
     - entity: group.all_speakers
-
-

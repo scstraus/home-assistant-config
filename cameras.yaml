@@ -1,11 +1,11 @@
 # I used to use synology streams when I couldn't get the camera streams working directly for frigate, but the camera streams seem better now. No point in streaming it through 2 devices.
 
-#  - platform: generic
-#    name: Syno Stream Front
-#    still_image_url: !secret front_still_url
-#    stream_source: !secret syno_front_url
-#    framerate: 4
-#    
+  - platform: generic
+    name: Syno Stream Front
+    still_image_url: !secret front_still_url
+    stream_source: !secret syno_front_url
+    framerate: 4
+    
 
 # Generic cameras work the best with stream component and use very little CPU that way, but are unreliable with stream turned off. Unfortunately with stream they have a 10-20 second lag but the upside is they use very little CPU and show up properly in the UI.
     
@@ -81,18 +81,22 @@
 #
 #  - platform: ffmpeg
 #    input: !secret front_main_stream_url
+#    extra_arguments: "-q:v 32"
 #    name: Front Stream
 #
 #  - platform: ffmpeg
 #    input: !secret back_main_stream_url
+#    extra_arguments: "-q:v 32"
 #    name: Back Stream
 #
 #  - platform: ffmpeg
 #    input: !secret left_main_stream_url
+#    extra_arguments: "-q:v 32"
 #    name: Left Stream
 #
 #  - platform: ffmpeg
 #    input: !secret right_main_stream_url
+#    extra_arguments: "-q:v 32"
 #    name: Right Stream
 
 # Frigate v.5 cameras 

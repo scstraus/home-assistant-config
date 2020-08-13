@@ -104,7 +104,6 @@
         push:
           thread-id: "appliances"
 
-
 - id: fire_notify_clean_dishes
   alias: "TTS Notify Clean Dishes to Bar Kindle"
   initial_state: 'true'
@@ -131,7 +130,7 @@
         type: tts
       message: "The dishes are clean."
     service: notify.alexa_media_alexa_kitchen_bar
-      
+
       
 - id: fire_notify_running_dishes
   alias: "TTS Notify Dishes Still Running to Bar Kindle"
@@ -141,16 +140,15 @@
     entity_id: sensor.bosch_dishwasher_door
     to: 'open'
   condition:
+  condition:
     condition: and
     conditions:
-      - condition: template
-        value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.fire_notify_clean_dishes.attributes.last_triggered | default(0)) | int > 150)}}'
       - condition: state
         entity_id: sensor.bosch_dishwasher_state
         state: 'run'
-      - condition: template
-        value_template: >
-          {{ if (states('sensor.bosch_dishwasher_time_remaining')|int < 1800) }}
+      - condition: numeric_state
+        entity_id: 'sensor.bosch_dishwasher_time_remaining'
+        below: 1900
   action:
   - data:
       data:
@@ -159,24 +157,41 @@
     service: notify.alexa_media_alexa_kitchen_bar
     
 
-#### This one isn't working yet. There's no "last changed" attribute for the dishwasher door
-
-- id: record_dishwasher_last_door_open_time
-  alias: record_dishwasher_last_door_open_time
+- id: dishwasher_running_door_open_timer
+  alias: dishwasher_running_door_open_timer
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id:  sensor.bosch_dishwasher_door
+    entity_id: sensor.bosch_dishwasher_door
     to: 'open'
+  condition:
+    condition: state
+    entity_id: sensor.bosch_dishwasher_state
+    state: 'run'
   action:
-    service: variable.set_variable
-    data:
-      variable: dishwasher_last_door_open
-      value_template: '{{ as_timestamp(now()) }}'
+    - service: timer.start
+      data:
+        entity_id: timer.bosch_dishwasher_running_door_open
+
+- id: dishwasher_running_door_closed_timer_reset
+  alias: dishwasher_running_door_closed_timer_reset
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.bosch_dishwasher_door
+    to: 'closed'
+  condition:
+    condition: state
+    entity_id: sensor.bosch_dishwasher_state
+    state: 'run'
+  action:
+    - service: timer.cancel
+      data:
+        entity_id: timer.bosch_dishwasher_running_door_open  
 
 - id: fire_notify_dishwasher_door_open
   alias: "TTS Notify Dishwasher Door Open"
-  initial_state: 'false'
+  initial_state: 'true'
   trigger:
     minutes: '/5'
     platform: time_pattern
@@ -184,10 +199,10 @@
     condition: and
     conditions:
       - condition: template
-        value_template: '{{ ((as_timestamp(now()) - variable.dishwasher_last_door_open | default(0)) | int > 300)}}'
+        value_template: '{{ state_attr("timer.bosch_dishwasher_running_door_open", "remaining")=="0:00:00"}}'
       - condition: state
-        entity_id: input_select.bosch_dishwasher_status
-        state: 'Running'
+        entity_id: sensor.bosch_dishwasher_state
+        state: 'run'
       - condition: state
         entity_id: sensor.bosch_dishwasher_door
         state: 'open'

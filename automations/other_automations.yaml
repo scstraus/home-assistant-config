@@ -1007,3 +1007,73 @@
       data:
         push:
           thread-id: "info"
+
+- id: turn_on_shuffle_from_input_boolean
+  alias: turn_on_shuffle_from_input_boolean
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_boolean.itunes_shuffle
+    from: 'off'
+    to: 'on'
+  condition: 
+    condition: template
+    value_template: '{{ state_attr("media_player.itunes", "shuffle") == false}}'
+  action:
+    service: rest_command.shuffle_on
+
+- id: turn_off_shuffle_from_input_boolean
+  alias: turn_off_shuffle_from_input_boolean
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: input_boolean.itunes_shuffle
+    from: 'on'
+    to: 'off'
+  condition: 
+    condition: template
+    value_template: '{{ state_attr("media_player.itunes", "shuffle") == true}}'
+  action:
+    service: rest_command.shuffle_off
+      
+- id: sync_shuffle_input_boolean_to_external_on
+  alias: sync_shuffle_input_boolean_to_external_on
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: media_player.itunes
+    - platform: homeassistant
+      event: start
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ state_attr("media_player.itunes", "shuffle") == true}}'
+      - condition: state
+        entity_id: input_boolean.itunes_shuffle
+        state: 'off'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.itunes_shuffle
+
+- id: sync_shuffle_input_boolean_to_external_off
+  alias: sync_shuffle_input_boolean_to_external_off
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: media_player.itunes
+    - platform: homeassistant
+      event: start
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ state_attr("media_player.itunes", "shuffle") == false}}'
+      - condition: state
+        entity_id: input_boolean.itunes_shuffle
+        state: 'on'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.itunes_shuffle

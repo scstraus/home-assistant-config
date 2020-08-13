@@ -106,14 +106,19 @@ cards:
 
 #    - type: vertical-stack
 #      cards:
+#
+#  - type: custom:vertical-stack-in-card
+#    cards:
 
-  - type: custom:vertical-stack-in-card
-    cards:
 
 #    - type: history-graph
 #      title: 'Entrance'
 #      entities:
 #      - climate.entrance
+
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
     - type: custom:mini-graph-card
       entities:
@@ -157,8 +162,9 @@ cards:
 
 
 
-  - type: custom:vertical-stack-in-card
-    cards:
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 
 #    - type: history-graph
@@ -203,10 +209,9 @@ cards:
 #        entities:
 #        - automation.dining_room_climate_kid_lock
 
-
-  - type: custom:vertical-stack-in-card
-    cards:
-
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: 'Living Room'
@@ -246,10 +251,9 @@ cards:
         - attribute: preset_mode
           name: Mode
 
-
-  - type: custom:vertical-stack-in-card
-    cards:
-
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: 'Master Bedroom'
@@ -289,10 +293,9 @@ cards:
         - attribute: preset_mode
           name: Mode
 
-
-
-  - type: custom:vertical-stack-in-card
-    cards:
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: 'Master Bath'
@@ -332,9 +335,9 @@ cards:
         - attribute: preset_mode
           name: Mode
 
-
-  - type: custom:vertical-stack-in-card
-    cards:
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: 'Master Closet'
@@ -374,11 +377,9 @@ cards:
         - attribute: preset_mode
           name: Mode
 
-
-
-  - type: custom:vertical-stack-in-card
-    cards:
-
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: 'Office / Library'
@@ -418,11 +419,9 @@ cards:
         - attribute: preset_mode
           name: Mode
 
-
-
-  - type: custom:vertical-stack-in-card
-    cards:
-
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: "Sebastian's Room"
@@ -462,11 +461,9 @@ cards:
         - attribute: preset_mode
           name: Mode
 
-
-
-  - type: custom:vertical-stack-in-card
-    cards:
-
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: "Sophie's Room"
@@ -506,10 +503,9 @@ cards:
         - attribute: preset_mode
           name: Mode
 
-
-
-  - type: custom:vertical-stack-in-card
-    cards:
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 
 #    - type: history-graph
@@ -550,11 +546,9 @@ cards:
         - attribute: preset_mode
           name: Mode
 
-
-
-  - type: custom:vertical-stack-in-card
-    cards:
-
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: 'Garage'
@@ -594,11 +588,9 @@ cards:
         - attribute: preset_mode
           name: Mode
 
-
-
-  - type: custom:vertical-stack-in-card
-    cards:
-
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: 'Laundry Room'
@@ -646,9 +638,9 @@ cards:
 #          margin-left: 0
 #          margin-right: 0
 #          background: '#3670a0'
-  - type: custom:vertical-stack-in-card
-    cards:
-
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
 #    - type: history-graph
 #      title: 'House Average'

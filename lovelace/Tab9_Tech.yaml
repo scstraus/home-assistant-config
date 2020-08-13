@@ -20,9 +20,9 @@ cards:
 #  - type: vertical-stack
 #    cards:
 
-  - type: custom:vertical-stack-in-card
-    title: Temperature
-    cards:
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
     - type: custom:mini-graph-card
       entities:
@@ -45,89 +45,8 @@ cards:
         - value: 36
           color: "#e04c23"
 
-  - type: custom:vertical-stack-in-card
-    title: Narnia
-    cards:
-
-    - type: horizontal-stack
-      cards:
-
-      - type: gauge
-        entity: sensor.disk_free   
-        name: "Disk Free"
-        max: 256
-        severity:
-          green: 32
-          yellow: 16
-          red: 8
-
-      - type: gauge
-        entity: sensor.disk_use_percent  
-        name: "% Disk Use"
-        severity:
-          green: 0
-          yellow: 75
-          red: 88
-
-    - type: entities
-      entities:
-        - sensor.narnia_raid_status
-
-    - type: custom:mini-graph-card
-      name: CPU Usage
-      entities:
-#        - entity: sensor.load_15m
-#          name: Load (15m)
-        - entity: sensor.processor_use
-          name: CPU %
-      hours_to_show: 24
-      points_per_hour: 20
-      show_points: false
-      height: 200
-      lower_bound: 0
-      show:
-        extrema: true
-      color_thresholds:
-        - value: 20
-          color: "#0da035"
-        - value: 50
-          color: "#daa002"
-        - value: 75
-          color: "#f4b300"
-        - value: 90
-          color: "#e04c23"
-
-    - type: custom:mini-graph-card
-      name: 'Memory Used (%)'
-      entities:
-        - entity: sensor.memory_use_percent
-          name: 'Memory Used (%)'
-      hours_to_show: 24
-      points_per_hour: 20
-      show_points: false
-      height: 200
-      lower_bound: 0
-      upper_bound: 100
-      color_thresholds:
-        - value: 20
-          color: "#0da035"
-        - value: 50
-          color: "#daa002"
-        - value: 75
-          color: "#f4b300"
-        - value: 90
-          color: "#e04c23"
-#
-#    - type: gauge
-#      name: "% Memory Used"
-#      entity: sensor.memory_use_percent
-#      severity:
-#        green: 0
-#        yellow: 50
-#        red: 80
-
-
-  - type: custom:vertical-stack-in-card
+  - type: vertical-stack
+    in_card: true
     title: Discworld
     cards:
 
@@ -217,7 +136,92 @@ cards:
 #      - sensor.load_15m
 
 
-  - type: custom:vertical-stack-in-card
+  - type: vertical-stack
+    title: Narnia
+    in_card: true
+    cards: 
+
+    - type: horizontal-stack
+      cards:
+
+      - type: gauge
+        entity: sensor.disk_free   
+        name: "Disk Free"
+        max: 256
+        severity:
+          green: 32
+          yellow: 16
+          red: 8
+
+      - type: gauge
+        entity: sensor.disk_use_percent  
+        name: "% Disk Use"
+        severity:
+          green: 0
+          yellow: 75
+          red: 88
+
+    - type: entities
+      entities:
+        - sensor.narnia_raid_status
+
+    - type: custom:mini-graph-card
+      name: CPU Usage
+      entities:
+#        - entity: sensor.load_15m
+#          name: Load (15m)
+        - entity: sensor.processor_use
+          name: CPU %
+      hours_to_show: 24
+      points_per_hour: 20
+      show_points: false
+      height: 200
+      lower_bound: 0
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
+
+    - type: custom:mini-graph-card
+      name: 'Memory Used (%)'
+      entities:
+        - entity: sensor.memory_use_percent
+          name: 'Memory Used (%)'
+      hours_to_show: 24
+      points_per_hour: 20
+      show_points: false
+      height: 200
+      lower_bound: 0
+      upper_bound: 100
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
+#
+#    - type: gauge
+#      name: "% Memory Used"
+#      entity: sensor.memory_use_percent
+#      severity:
+#        green: 0
+#        yellow: 50
+#        red: 80
+
+
+
+  - type: vertical-stack
+    in_card: true
     title: Internet
     cards:
 
@@ -256,8 +260,8 @@ cards:
 #  - type: vertical-stack
 #    cards:
 
-
-  - type: custom:vertical-stack-in-card
+  - type: vertical-stack
+    in_card: true
     title: Battery Levels
     cards:
 
@@ -285,7 +289,8 @@ cards:
         yellow: 25
         red: 12
 
-  - type: custom:vertical-stack-in-card
+  - type: vertical-stack
+    in_card: true
     title: Object Detection
     cards:
 

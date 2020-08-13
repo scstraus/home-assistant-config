@@ -3,8 +3,8 @@
 title: Home
 icon: mdi:home
 
-#preload:
-#  - custom:vertical-stack-in-card
+
+###### START COMMENT BLOCK 1: POPUP CARDS
 
 popup_cards:
 
@@ -155,8 +155,13 @@ popup_cards:
 #
 #        [[ sensor.alena_eta_description ]]
 
+### END COMMENT BLOCK 1: POPUP CARDS
+
+
+
 cards: 
 
+### START COMMENT BLOCK 2: DECLUTTERING CARDS 
 
   - type: custom:decluttering-card
     template: emergency
@@ -299,9 +304,9 @@ cards:
       - name: "Alena's Phone Battery is Low"
 
 
+### END COMMENT BLOCK 2: DECLUTTERING CARDS 
 
-
-
+### START COMMENT BLOCK 3: ENTITY FILTER CARDS
   - type: entity-filter
     card: 
       title: "!!! EMERGENCY ALERT !!!"
@@ -525,7 +530,7 @@ cards:
         type: "custom:secondaryinfo-entity-row"
         secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
 
-
+### END COMMENT BLOCK 3: ENTITY FILTER CARDS
 
 
 
@@ -542,12 +547,21 @@ cards:
 #    report_size: 9
 #    card:
 
+### START COMMENT BLOCK 4: Weather and air quality
 
-  - type: 'custom:weather-card-chart'
-    title: Weather / Air Quality
-    weather: weather.openweathermap
-    sun: sun.sun
-    mode: hourly
+
+  - type: custom:mod-card
+    report_size: 14
+    card:
+
+      type: vertical-stack
+      cards:
+
+      - type: 'custom:weather-card-chart'
+        title: Weather / Air Quality
+        weather: weather.openweathermap
+        sun: sun.sun
+        mode: hourly
 
 
 #These are the colors to use for the environment graph cards
@@ -567,204 +581,165 @@ cards:
 #graph magenta: #ff9cdb
 #graph violet: #f59cff
 
-  - type: vertical-stack
-    cards:
+      - type: horizontal-stack
+        cards:
 
-    - type: horizontal-stack
-      cards:
+        - type: custom:mini-graph-card
+          name: AQI Outside 
+          icon: mdi:air-filter
+          style: |
+            ha-card {
+              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
+              #00c40a
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
+              #c1c400 
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
+              #c48600
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
+              #c41700
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
+              #b000c4
+              {% else %}
+              #c4007c
+              {% endif %}
+          entities:
+            - entity: sensor.hlubocepy_air_quality
+              name: 
+          color_thresholds:
+            - value: 25
+              color: "#9cffa1"
+            - value: 75
+              color: "#fdff9c"
+            - value: 125
+              color: "#ffe09c"
+            - value: 175
+              color: "#ffa79c"
+            - value: 250
+              color: "#f59cff"
+            - value: 350
+              color: "#ff9cdb"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 60
 
-      - type: custom:mini-graph-card
-        name: AQI Outside 
-        icon: mdi:air-filter
-        style: |
-          ha-card {
-            background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
-            #00c40a
-            {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
-            #c1c400 
-            {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
-            #c48600
-            {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
-            #c41700
-            {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
-            #b000c4
-            {% else %}
-            #c4007c
-            {% endif %}
-        entities:
-          - entity: sensor.hlubocepy_air_quality
-            name: 
-        color_thresholds:
-          - value: 25
-            color: "#9cffa1"
-          - value: 75
-            color: "#fdff9c"
-          - value: 125
-            color: "#ffe09c"
-          - value: 175
-            color: "#ffa79c"
-          - value: 250
-            color: "#f59cff"
-          - value: 350
-            color: "#ff9cdb"
-        hours_to_show: 24
-        points_per_hour: 2
-        show_points: false
-        height: 60
-
-      - type: custom:mini-graph-card
-        name: AQI Inside
-        icon: mdi:air-filter
-        style: |
-          ha-card {
-            background: {% if states('sensor.home_air_quality')|int <= 50 %}
-            #00c40a
-            {% elif states('sensor.home_air_quality')|int <= 100 %} 
-            #c1c400 
-            {% elif states('sensor.home_air_quality')|int <= 150 %}
-            #c48600
-            {% elif states('sensor.home_air_quality')|int <= 200 %}
-            #c41700
-            {% elif states('sensor.home_air_quality')|int <= 300 %}
-            #b000c4
-            {% else %}
-            #c4007c
-            {% endif %}
-        entities:
-          - entity: sensor.home_air_quality
-            name: 
-        color_thresholds:
-          - value: 25
-            color: "#9cffa1"
-          - value: 75
-            color: "#fdff9c"
-          - value: 125
-            color: "#ffe09c"
-          - value: 175
-            color: "#ffa79c"
-          - value: 250
-            color: "#f59cff"
-          - value: 350
-            color: "#ff9cdb"
-        hours_to_show: 24
-        points_per_hour: 2
-        show_points: false
-        height: 60
+        - type: custom:mini-graph-card
+          name: AQI Inside
+          icon: mdi:air-filter
+          style: |
+            ha-card {
+              background: {% if states('sensor.home_air_quality')|int <= 50 %}
+              #00c40a
+              {% elif states('sensor.home_air_quality')|int <= 100 %} 
+              #c1c400 
+              {% elif states('sensor.home_air_quality')|int <= 150 %}
+              #c48600
+              {% elif states('sensor.home_air_quality')|int <= 200 %}
+              #c41700
+              {% elif states('sensor.home_air_quality')|int <= 300 %}
+              #b000c4
+              {% else %}
+              #c4007c
+              {% endif %}
+          entities:
+            - entity: sensor.home_air_quality
+              name: 
+          color_thresholds:
+            - value: 25
+              color: "#9cffa1"
+            - value: 75
+              color: "#fdff9c"
+            - value: 125
+              color: "#ffe09c"
+            - value: 175
+              color: "#ffa79c"
+            - value: 250
+              color: "#f59cff"
+            - value: 350
+              color: "#ff9cdb"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 60
 
 
-    - type: horizontal-stack
-      cards:
+      - type: horizontal-stack
+        cards:
 
-      - type: custom:mini-graph-card
-        name: Radon Upstairs
-        style: |
-          ha-card {
-            background: {% if states('sensor.radon_upstairs')|int <= 100 %}
-            #00c40a
-            {% elif states('sensor.radon_upstairs')|int <= 150 %} 
-            #c1c400 
-            {% else %}
-            #c41700
-            {% endif %} 
-        entities:
-          - entity: sensor.radon_upstairs
-            name: 
-        color_thresholds:
-          - value: 0
-            color: "#9cffa1"
-          - value: 90
-            color: "#9cffa1"
-          - value: 110
-            color: "#fdff9c"
-          - value: 140
-            color: "#fdff9c"
-          - value: 160
-            color: "#ffe09c"
-          - value: 200
-            color: "#ffe09c"
-        hours_to_show: 24
-        points_per_hour: 2
-        show_points: false
-        height: 60
+        - type: custom:mini-graph-card
+          name: Radon Upstairs
+          style: |
+            ha-card {
+              background: {% if states('sensor.radon_upstairs')|int <= 100 %}
+              #00c40a
+              {% elif states('sensor.radon_upstairs')|int <= 150 %} 
+              #c1c400 
+              {% else %}
+              #c41700
+              {% endif %} 
+          entities:
+            - entity: sensor.radon_upstairs
+              name: 
+          color_thresholds:
+            - value: 0
+              color: "#9cffa1"
+            - value: 90
+              color: "#9cffa1"
+            - value: 110
+              color: "#fdff9c"
+            - value: 140
+              color: "#fdff9c"
+            - value: 160
+              color: "#ffe09c"
+            - value: 200
+              color: "#ffe09c"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 60
 
-      - type: custom:mini-graph-card
-        name: VOC Upstairs
-        style: |
-          ha-card {
-            background: {% if states('sensor.tvocs_upstairs')|int <= 250 %}
-            #00c40a
-            {% elif states('sensor.tvocs_upstairs')|int <= 2000 %} 
-            #c1c400 
-            {% else %}
-            #c41700
-            {% endif %}
-        entities:
-          - entity: sensor.tvocs_upstairs
-            name: 
-        color_thresholds:
-          - value: 0
-            color: "#9cffa1"
-          - value: 240
-            color: "#9cffa1"
-          - value: 260
-            color: "#fdff9c"
-          - value: 1990
-            color: "#fdff9c"
-          - value: 2010
-            color: "#ffe09c"
-          - value: 3000
-            color: "#ffe09c"
-        hours_to_show: 24
-        points_per_hour: 2
-        show_points: false
-        height: 60
-#
-#  - type: custom:mod-card
-#    report_size: 3
-#    card:
-#      type: custom:vertical-stack-in-card
-#      cards:
-#      - type: "custom:button-card"
-#        name: Hlubočepy
-#        styles:
-#          name:
-#            - color: var(--ha-card-header-color)
-#          card:
-#            - padding: 8px 0px
-#
-#      - type: custom:air-visual-card 
-#        air_pollution_level: sensor.hlubocepy_air_pollution
-#        air_quality_index: sensor.hlubocepy_air_quality
-#        main_pollutant: sensor.u_s_main_pollutant_2
-#        hide_title: true
-#        svg_location: "/local/icons/aqi_icons"
-#
-#  - type: custom:mod-card
-#    report_size: 3
-#    card:
-#      type: custom:vertical-stack-in-card
-#      cards:
-#
-#      - type: "custom:button-card"
-#        name: Home
-#        styles:
-#          name:
-#            - color: var(--ha-card-header-color)
-#          card:
-#            - padding: 8px 0px
-#
-#      - type: custom:air-visual-card 
-#        air_pollution_level: sensor.home_air_pollution
-#        air_quality_index: sensor.home_air_quality
-#        main_pollutant: sensor.u_s_main_pollutant_2
-#        hide_title: true
-#        svg_location: "/local/icons/aqi_icons"
+        - type: custom:mini-graph-card
+          name: VOC Upstairs
+          style: |
+            ha-card {
+              background: {% if states('sensor.tvocs_upstairs')|int <= 250 %}
+              #00c40a
+              {% elif states('sensor.tvocs_upstairs')|int <= 2000 %} 
+              #c1c400 
+              {% else %}
+              #c41700
+              {% endif %}
+          entities:
+            - entity: sensor.tvocs_upstairs
+              name: 
+          color_thresholds:
+            - value: 0
+              color: "#9cffa1"
+            - value: 240
+              color: "#9cffa1"
+            - value: 260
+              color: "#fdff9c"
+            - value: 1990
+              color: "#fdff9c"
+            - value: 2010
+              color: "#ffe09c"
+            - value: 3000
+              color: "#ffe09c"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 60
 
+
+### END COMMENT BLOCK 4: Weather and air quality
+
+
+
+#### START COMMENT BLOCK 5: Location and Reminders
 
   - type: glance
     entities:
       - sensor.sean_location
-
       - sensor.sophie_location
       - sensor.alena_location
 #        type: "custom:secondaryinfo-entity-row"
@@ -776,175 +751,192 @@ cards:
 #    card:
 
 
-  - type: custom:mod-card
-    report_size: 4
+
+
+##    - type: custom:vertical-stack-in-card
+#  - type: vertical-stack
+##      in_card: true
+#    cards:
+#
+#    - type: "custom:button-card"
+#      name: Reminders
+#      styles:
+#        name:
+#          - color: var(--ha-card-header-color)
+#          - justify-self: start
+#          - padding-left: 16px
+#        card:
+#          - padding-top: 22px
+#          - padding-bottom: 4px
+#          - font-size: 24px
+
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.reminders_label
+        state: "on"
     card:
 
-      type: custom:vertical-stack-in-card
-      cards:
-
-      - type: "custom:button-card"
-        name: Reminders
-        styles:
-          name:
-            - color: var(--ha-card-header-color)
-            - justify-self: start
-            - padding-left: 16px
-          card:
-            - padding-top: 22px
-            - padding-bottom: 4px
-            - font-size: 24px
-      - type: "custom:calendar-card"
+      type: custom:mod-card
+      report_size: 2
+      card:
+        type: "custom:calendar-card"
         entities:
           - calendar.alena_and_seans_calendar
       #    title: "Reminders"
+        title: Reminders
         showProgressBar: false
         numberOfDays: 3
         hidePastEvents: true
-        hideHeader: true
+        hideHeader: false
         timeFormat: 'hh:mm a'
 
+#### END COMMENT BLOCK 5: Location and Reminders
+#
+##      type: conditional
+##      conditions:
+##        - entity: binary_sensor.reminders_label
+##          state: "on"
+##      card:
+##        type: custom:vertical-stack-in-card
+##        cards:
+##        - type: "custom:button-card"
+##          name: Reminders
+##          styles:
+##            name:
+##              - color: var(--ha-card-header-color)
+##              - justify-self: start
+##              - padding-left: 16px
+##            card:
+##              - padding-top: 22px
+##              - padding-bottom: 4px
+##              - font-size: 24px
+##        - type: "custom:calendar-card"
+##          entities:
+##            - calendar.alena_and_seans_calendar
+##      #    title: "Reminders"
+##          showProgressBar: false
+##          numberOfDays: 3
+##          hidePastEvents: true
+##          hideHeader: true
+#
+#
+#
+#### START COMMENT BLOCK 6: Cameras
 
-#      type: conditional
-#      conditions:
-#        - entity: binary_sensor.reminders_label
-#          state: "on"
-#      card:
-#        type: custom:vertical-stack-in-card
+
+#  - type: custom:state-switch
+#    entity: input_select.sean_location_dropdown
+#
+#    states:
+#      Home:
+
+  - type: custom:mod-card
+    report_size: 14
+    card:
+
+      type: vertical-stack
+      cards:
+
+
+    #       - type: conditional
+    #         conditions:
+    #           - entity: binary_sensor.seb_naptime
+    #             state: "on"
+    #         card:
+    #           type: picture-glance
+    # #            title: "Seb's Room"
+    #           camera_image: camera.sebs_room
+    #           camera_view: live
+    #           entities: []
+
+
+
+    #        - switch.camera_sebs_room_ir_lights
+    #              - binary_sensor.sebs_room_motion
+    #        - switch.camera_sebs_room_email
+    #        - switch.camera_sebs_room_ftp
+
+      - type: picture-glance
+        aspect_ratio: 16x9
+        entities: []
+        show_state: false
+        show_name: false
+        camera_image: camera.front_stream
+        camera_view: live
+
+      - type: horizontal-stack
+        cards:
+
+        - type: picture-glance
+          aspect_ratio: 9x16
+          entities: []
+          show_state: false
+          show_name: false
+          camera_image: camera.left_stream
+          camera_view: live
+
+        - type: picture-glance
+          aspect_ratio: 9x16
+          show_state: false
+          show_name: false
+          entities: []
+          camera_image: camera.right_stream
+          camera_view: live
+
+      - type: picture-glance
+        aspect_ratio: 16x9
+        entities: []
+        show_state: false
+        show_name: false
+        camera_image: camera.back_stream
+        camera_view: live
+#
+#
+#      default:
+#        type: vertical-stack
 #        cards:
-#        - type: "custom:button-card"
-#          name: Reminders
-#          styles:
-#            name:
-#              - color: var(--ha-card-header-color)
-#              - justify-self: start
-#              - padding-left: 16px
-#            card:
-#              - padding-top: 22px
-#              - padding-bottom: 4px
-#              - font-size: 24px
-#        - type: "custom:calendar-card"
-#          entities:
-#            - calendar.alena_and_seans_calendar
-#      #    title: "Reminders"
-#          showProgressBar: false
-#          numberOfDays: 3
-#          hidePastEvents: true
-#          hideHeader: true
+#
+##        - type: conditional
+##          conditions:
+##            - entity: binary_sensor.seb_naptime
+##              state: "on"
+##          card:
+##            type: picture-glance
+###            title: "Seb's Room"
+##            camera_image: camera.sebs_room
+###            camera_view: live
+##            entities: []
+##      #        - switch.camera_sebs_room_ir_lights
+###              - binary_sensor.sebs_room_motion
+##      #        - switch.camera_sebs_room_email
+##      #        - switch.camera_sebs_room_ftp
+#
+#        - type: picture-glance
+#          aspect_ratio: 16x9
+#          entities: []
+#          camera_image: camera.front_stream
+#
+#        - type: horizontal-stack
+#          cards:
+#
+#          - type: picture-glance
+#            aspect_ratio: 9x16
+#            entities: []
+#            camera_image: camera.left_stream
+#
+#          - type: picture-glance
+#            aspect_ratio: 9x16
+#            entities: []
+#            camera_image: camera.right_stream
+#
+#        - type: picture-glance
+#          aspect_ratio: 16x9
+#          entities: []
+#          camera_image: camera.back_stream
+#
 
+#### END COMMENT BLOCK 6: Cameras
 
-
-
-  - type: custom:state-switch
-    entity: input_select.sean_location_dropdown
-#    entity: template
-#    template: "{% if is_state('input_select.sean_location_dropdown', 'Home') %} home {% else %} away {% endif %}"
-    states:
-      Home:
-
-        # type: custom:mod-card
-        # report_size: 14
-        # card:
-
-        type: vertical-stack
-        cards:
-
-
-  #       - type: conditional
-  #         conditions:
-  #           - entity: binary_sensor.seb_naptime
-  #             state: "on"
-  #         card:
-  #           type: picture-glance
-  # #            title: "Seb's Room"
-  #           camera_image: camera.sebs_room
-  #           camera_view: live
-  #           entities: []
-
-
-
-      #        - switch.camera_sebs_room_ir_lights
-#              - binary_sensor.sebs_room_motion
-      #        - switch.camera_sebs_room_email
-      #        - switch.camera_sebs_room_ftp
-
-        - type: picture-glance
-          aspect_ratio: 16x9
-          entities: []
-          show_state: false
-          show_name: false
-          camera_image: camera.front_stream
-          camera_view: live
-
-        - type: horizontal-stack
-          cards:
-
-          - type: picture-glance
-            aspect_ratio: 9x16
-            entities: []
-            show_state: false
-            show_name: false
-            camera_image: camera.left_stream
-            camera_view: live
-
-          - type: picture-glance
-            aspect_ratio: 9x16
-            show_state: false
-            show_name: false
-            entities: []
-            camera_image: camera.right_stream
-            camera_view: live
-
-        - type: picture-glance
-          aspect_ratio: 16x9
-          entities: []
-          show_state: false
-          show_name: false
-          camera_image: camera.back_stream
-          camera_view: live
-
-
-      default:
-        type: vertical-stack
-        cards:
-
-        - type: conditional
-          conditions:
-            - entity: binary_sensor.seb_naptime
-              state: "on"
-          card:
-            type: picture-glance
-#            title: "Seb's Room"
-            camera_image: camera.sebs_room
-#            camera_view: live
-            entities: []
-      #        - switch.camera_sebs_room_ir_lights
-#              - binary_sensor.sebs_room_motion
-      #        - switch.camera_sebs_room_email
-      #        - switch.camera_sebs_room_ftp
-
-        - type: picture-glance
-          aspect_ratio: 16x9
-          entities: []
-          camera_image: camera.front_stream
-
-        - type: horizontal-stack
-          cards:
-
-          - type: picture-glance
-            aspect_ratio: 9x16
-            entities: []
-            camera_image: camera.left_stream
-
-          - type: picture-glance
-            aspect_ratio: 9x16
-            entities: []
-            camera_image: camera.right_stream
-
-        - type: picture-glance
-          aspect_ratio: 16x9
-          entities: []
-          camera_image: camera.back_stream
 
 #  - type: vertical-stack
 #    cards:
@@ -980,509 +972,515 @@ cards:
   #   report_size: 6
   #   card:
 
-  - type: vertical-stack
-    cards:
 
-#      - type: entities
-#        title: Whole House
-#        show_header_toggle: false
-#        entities:
-#        - climate.straus_house 
+### START COMMENT BLOCK 7: Music
 
-  #      - type: gauge
-  #        entity: sensor.current_rate_power_cost_per_day 
-  #        name: "Current Electricity Use"
-  #        unit: Kč/day
-  #        min: 60
-  #        max: 700
-  #        severity:
-  #          green: 0
-  #          yellow: 250
-  #          red: 350 
-  #        
+  - type: custom:mod-card
+    report_size: 8
+    card:
 
-    - entity: media_player.itunes
-      type: custom:mini-media-player
-      group: true
-      shortcuts:
-        label: "Other Playlists"
-        list:
-          - name: "3+ star"
-            type: playlist
-            id: "a-3-star"
-          - name: "3+ Star / Unrated"
-            type: playlist
-            id: "a-3-star-unrated"
-          - name: "4+5 Star"
-            type: playlist
-            id: "a-45-star"
-          - name: "4+5 Star / Unrated"
-            type: playlist
-            id: "a-45-star-unrated"
-          - name: "4+5 Star+All Rock+Jazz"
-            type: playlist
-            id: "a-45-starall-rockjazz"
-          - name: "5 Star"
-            type: playlist
-            id: "a-5-star"
-          - name: "New Stuff"
-            type: playlist
-            id: "a-new-stuff"
-          - name: "New Stuff - Highly Rated"
-            type: playlist
-            id: "a-new-stuff-highly-rated"
-          - name: "New Stuff - Unrated"
-            type: playlist
-            id: "a-new-stuff-unrated"
-          - name: "Unrated Songs"
-            type: playlist
-            id: "a-unrated-songs"
-          - name: "All Black"
-            type: playlist
-            id: "all-black"
-          - name: "All Electronica"
-            type: playlist
-            id: "all-electronica"
-          - name: "All Jazz"
-            type: playlist
-            id: "all-jazz"
-          - name: "All Pop"
-            type: playlist
-            id: "all-pop"
-          - name: "All Rock"
-            type: playlist
-            id: "all-rock"
-          - name: "Black - Funk"
-            type: playlist
-            id: "black-funk"
-          - name: "Black - Hip Hop"
-            type: playlist
-            id: "black-hip-hop"
-          - name: "Black - R&B"
-            type: playlist
-            id: "black-rb"
-          - name: "Black - Rap"
-            type: playlist
-            id: "black-rap"
-          - name: "Black - Reggae/Ska/African"
-            type: playlist
-            id: "black-reggaeskaafrican"
-          - name: "Black - Soul"
-            type: playlist
-            id: "black-soul"
-          - name: "Black - Unrated"
-            type: playlist
-            id: "black-unrated"
-          - name: "Christmas"
-            type: playlist
-            id: "christmas"
-          - name: "Classical"
-            type: playlist
-            id: "classical"
-          - name: "Comedy"
-            type: playlist
-            id: "comedy"
-          - name: "Electronica - Ambient"
-            type: playlist
-            id: "electronica-ambient"
-          - name: "Electronica - Chill Out"
-            type: playlist
-            id: "electronica-chill-out"
-          - name: "Electronica - Dance"
-            type: playlist
-            id: "electronica-dance"
-          - name: "Electronica - Drum N Bass"
-            type: playlist
-            id: "electronica-drum-n-bass"
-          - name: "Good Black"
-            type: playlist
-            id: "good-black"
-          - name: "Good Electronica"
-            type: playlist
-            id: "good-electronica"
-          - name: "Good Jazz"
-            type: playlist
-            id: "good-jazz"
-          - name: "Good Pop"
-            type: playlist
-            id: "good-pop"
-          - name: "Good Rock"
-            type: playlist
-            id: "good-rock"
-          - name: "Jazz - 4+5 Star + Unrated"
-            type: playlist
-            id: "jazz-45-star-unrated"
-          - name: "Jazz - 70s Electronic"
-            type: playlist
-            id: "jazz-70s-electronic"
-          - name: "Jazz - Acid"
-            type: playlist
-            id: "jazz-acid"
-          - name: "Jazz - Acid Small"
-            type: playlist
-            id: "jazz-acid-small"
-          - name: "Jazz - Big Band"
-            type: playlist
-            id: "jazz-big-band"
-          - name: "Jazz - Classic"
-            type: playlist
-            id: "jazz-classic"
-          - name: "Jazz - Classic Small"
-            type: playlist
-            id: "jazz-classic-small"
-          - name: "Jazz - Jaco"
-            type: playlist
-            id: "jazz-jaco"
-          - name: "Jazz - Latin"
-            type: playlist
-            id: "jazz-latin"
-          - name: "Jazz - Modern"
-            type: playlist
-            id: "jazz-modern"
-          - name: "Jazz - Unrated"
-            type: playlist
-            id: "jazz-unrated"
-          - name: "Kids - English"
-            type: playlist
-            id: "kids-english"
-          - name: "Kids - Russian"
-            type: playlist
-            id: "kids-russian"
-          - name: "Kids Music Videos"
-            type: playlist
-            id: "kids-music-videos"
-          - name: "Music Videos"
-            type: playlist
-            id: "music-videos"
-          - name: "Pop - 80s"
-            type: playlist
-            id: "pop-80s"
-          - name: "Pop - Crowd Pleasers"
-            type: playlist
-            id: "pop-crowd-pleasers"
-          - name: "Pop - Modern"
-            type: playlist
-            id: "pop-modern"
-          - name: "Pop - Unrated"
-            type: playlist
-            id: "pop-unrated"
-          - name: "Recent Stuff - Highly Rated"
-            type: playlist
-            id: "recent-stuff-highly-rated"
-          - name: "Rock - 90s"
-            type: playlist
-            id: "rock-90s"
-          - name: "Rock - 00s"
-            type: playlist
-            id: "rock-00s"
-          - name: "Rock - 4+5 Star + Unrated"
-            type: playlist
-            id: "rock-45-star-unrated"
-          - name: "Rock - Alternative"
-            type: playlist
-            id: "rock-alternative"
-          - name: "Rock - AltRock"
-            type: playlist
-            id: "rock-altrock"
-          - name: "Rock - Classic"
-            type: playlist
-            id: "rock-classic"
-          - name: "Rock - College"
-            type: playlist
-            id: "rock-college"
-          - name: "Rock - Mellow"
-            type: playlist
-            id: "rock-mellow"
-          - name: "Rock - Metal"
-            type: playlist
-            id: "rock-metal"
-          - name: "Rock - Modern"
-            type: playlist
-            id: "rock-modern"
-          - name: "Rock - Nu Metal"
-            type: playlist
-            id: "rock-nu-metal"
-          - name: "Rock - Progressive"
-            type: playlist
-            id: "rock-progressive"
-          - name: "Rock - Unrated"
-            type: playlist
-            id: "rock-unrated"
-          - name: "Rock + Pop"
-            type: playlist
-            id: "rock-pop"
-          - name: "Ambient Sleeping Pill"
-            type: playlist
-            id: "ambient-sleeping-pill"
-          - name: "Europa2"
-            type: playlist
-            id: "europa2"
-          - name: "Jazz24"
-            type: playlist
-            id: "jazz24"
-          - name: "Radio Kultura RU"
-            type: playlist
-            id: "radio-kultura-ru"
-          - name: "Radio Swiss Classic"
-            type: playlist
-            id: "radio-swiss-classic"
-          - name: "Acid Jazz + Chill Out"
-            type: playlist
-            id: "z-acid-jazz-chill-out"
-          - name: "AlteyRock"
-            type: playlist
-            id: "z-alteyrock"
-          - name: "Jazz+Funk"
-            type: playlist
-            id: "z-jazzfunk"
-          - name: "Jazz+Latin"
-            type: playlist
-            id: "z-jazzlatin"
-          - name: "Mine"
-            type: playlist
-            id: "z-mine"
-          - name: "Proletariat Rock"
-            type: playlist
-            id: "z-proletariat-rock"
-          - name: "Rocker's Rock"
-            type: playlist
-            id: "z-rockers-rock"
-          - name: "Alena's"
-            type: playlist
-            id: "zz-alenas"
-          - name: "Beach Music"
-            type: playlist
-            id: "z-beach-music"
-          - name: "DJ Cuts"
-            type: playlist
-            id: "z-dj-cuts"
-          - name: "Driving Music"
-            type: playlist
-            id: "z-driving-music"
-          - name: "Lounge"
-            type: playlist
-            id: "z-lounge"
-          - name: "Mellow Music"
-            type: playlist
-            id: "z-mellow-music"
-          - name: "Palettable Rock"
-            type: playlist
-            id: "z-palettable-rock"
-          - name: "San Tropez"
-            type: playlist
-            id: "san-tropez"
-          - name: "Wacky Cheerful Music"
-            type: playlist
-            id: "z-wacky-cheerful-music"
-          - name: "Waver Friendly"
-            type: playlist
-            id: "z-waver-friendly"
-          - name: "Wedding music"
-            type: playlist
-            id: "z-wedding-music"
-
-#    - type: horizontal-stack
-#      cards:
-
-    - type: entities
-      show_header_toggle: false
-      entities:
-        - entity: switch.shuffle
-          icon: mdi:shuffle-variant
-          state_color: true
-
-#    - type: "custom:button-card"
-#      name: SHUFFLE
-#      styles:
-#        card:
-#          - padding: 12px 0px
-#          - font-size: 14px
-#      tap_action: 
-#        action: call-service
-#        service: switch.toggle
-#        service_data:
-#          entity_id: "switch.shuffle"
-
-
-    - type: horizontal-stack
+      type: vertical-stack
       cards:
 
+  #      - type: entities
+  #        title: Whole House
+  #        show_header_toggle: false
+  #        entities:
+  #        - climate.straus_house 
 
-      - type: "custom:button-card"
-        name: MIX
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "a-45-star"
-            media_content_type: "playlist"
+    #      - type: gauge
+    #        entity: sensor.current_rate_power_cost_per_day 
+    #        name: "Current Electricity Use"
+    #        unit: Kč/day
+    #        min: 60
+    #        max: 700
+    #        severity:
+    #          green: 0
+    #          yellow: 250
+    #          red: 350 
+    #        
 
-      - type: "custom:button-card"
-        name: JAZZ
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-jazz"
-            media_content_type: "playlist"
+      - type: vertical-stack
+        in_card: true
+        cards:
 
-      - type: "custom:button-card"
-        name: ROCK
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-rock"
-            media_content_type: "playlist"           
+        - entity: media_player.itunes
+          type: custom:mini-media-player
+          group: true
+          shortcuts:
+            label: "Other Playlists"
+            list:
+              - name: "3+ star"
+                type: playlist
+                id: "a-3-star"
+              - name: "3+ Star / Unrated"
+                type: playlist
+                id: "a-3-star-unrated"
+              - name: "4+5 Star"
+                type: playlist
+                id: "a-45-star"
+              - name: "4+5 Star / Unrated"
+                type: playlist
+                id: "a-45-star-unrated"
+              - name: "4+5 Star+All Rock+Jazz"
+                type: playlist
+                id: "a-45-starall-rockjazz"
+              - name: "5 Star"
+                type: playlist
+                id: "a-5-star"
+              - name: "New Stuff"
+                type: playlist
+                id: "a-new-stuff"
+              - name: "New Stuff - Highly Rated"
+                type: playlist
+                id: "a-new-stuff-highly-rated"
+              - name: "New Stuff - Unrated"
+                type: playlist
+                id: "a-new-stuff-unrated"
+              - name: "Unrated Songs"
+                type: playlist
+                id: "a-unrated-songs"
+              - name: "All Black"
+                type: playlist
+                id: "all-black"
+              - name: "All Electronica"
+                type: playlist
+                id: "all-electronica"
+              - name: "All Jazz"
+                type: playlist
+                id: "all-jazz"
+              - name: "All Pop"
+                type: playlist
+                id: "all-pop"
+              - name: "All Rock"
+                type: playlist
+                id: "all-rock"
+              - name: "Black - Funk"
+                type: playlist
+                id: "black-funk"
+              - name: "Black - Hip Hop"
+                type: playlist
+                id: "black-hip-hop"
+              - name: "Black - R&B"
+                type: playlist
+                id: "black-rb"
+              - name: "Black - Rap"
+                type: playlist
+                id: "black-rap"
+              - name: "Black - Reggae/Ska/African"
+                type: playlist
+                id: "black-reggaeskaafrican"
+              - name: "Black - Soul"
+                type: playlist
+                id: "black-soul"
+              - name: "Black - Unrated"
+                type: playlist
+                id: "black-unrated"
+              - name: "Christmas"
+                type: playlist
+                id: "christmas"
+              - name: "Classical"
+                type: playlist
+                id: "classical"
+              - name: "Comedy"
+                type: playlist
+                id: "comedy"
+              - name: "Electronica - Ambient"
+                type: playlist
+                id: "electronica-ambient"
+              - name: "Electronica - Chill Out"
+                type: playlist
+                id: "electronica-chill-out"
+              - name: "Electronica - Dance"
+                type: playlist
+                id: "electronica-dance"
+              - name: "Electronica - Drum N Bass"
+                type: playlist
+                id: "electronica-drum-n-bass"
+              - name: "Good Black"
+                type: playlist
+                id: "good-black"
+              - name: "Good Electronica"
+                type: playlist
+                id: "good-electronica"
+              - name: "Good Jazz"
+                type: playlist
+                id: "good-jazz"
+              - name: "Good Pop"
+                type: playlist
+                id: "good-pop"
+              - name: "Good Rock"
+                type: playlist
+                id: "good-rock"
+              - name: "Jazz - 4+5 Star + Unrated"
+                type: playlist
+                id: "jazz-45-star-unrated"
+              - name: "Jazz - 70s Electronic"
+                type: playlist
+                id: "jazz-70s-electronic"
+              - name: "Jazz - Acid"
+                type: playlist
+                id: "jazz-acid"
+              - name: "Jazz - Acid Small"
+                type: playlist
+                id: "jazz-acid-small"
+              - name: "Jazz - Big Band"
+                type: playlist
+                id: "jazz-big-band"
+              - name: "Jazz - Classic"
+                type: playlist
+                id: "jazz-classic"
+              - name: "Jazz - Classic Small"
+                type: playlist
+                id: "jazz-classic-small"
+              - name: "Jazz - Jaco"
+                type: playlist
+                id: "jazz-jaco"
+              - name: "Jazz - Latin"
+                type: playlist
+                id: "jazz-latin"
+              - name: "Jazz - Modern"
+                type: playlist
+                id: "jazz-modern"
+              - name: "Jazz - Unrated"
+                type: playlist
+                id: "jazz-unrated"
+              - name: "Kids - English"
+                type: playlist
+                id: "kids-english"
+              - name: "Kids - Russian"
+                type: playlist
+                id: "kids-russian"
+              - name: "Kids Music Videos"
+                type: playlist
+                id: "kids-music-videos"
+              - name: "Music Videos"
+                type: playlist
+                id: "music-videos"
+              - name: "Pop - 80s"
+                type: playlist
+                id: "pop-80s"
+              - name: "Pop - Crowd Pleasers"
+                type: playlist
+                id: "pop-crowd-pleasers"
+              - name: "Pop - Modern"
+                type: playlist
+                id: "pop-modern"
+              - name: "Pop - Unrated"
+                type: playlist
+                id: "pop-unrated"
+              - name: "Recent Stuff - Highly Rated"
+                type: playlist
+                id: "recent-stuff-highly-rated"
+              - name: "Rock - 90s"
+                type: playlist
+                id: "rock-90s"
+              - name: "Rock - 00s"
+                type: playlist
+                id: "rock-00s"
+              - name: "Rock - 4+5 Star + Unrated"
+                type: playlist
+                id: "rock-45-star-unrated"
+              - name: "Rock - Alternative"
+                type: playlist
+                id: "rock-alternative"
+              - name: "Rock - AltRock"
+                type: playlist
+                id: "rock-altrock"
+              - name: "Rock - Classic"
+                type: playlist
+                id: "rock-classic"
+              - name: "Rock - College"
+                type: playlist
+                id: "rock-college"
+              - name: "Rock - Mellow"
+                type: playlist
+                id: "rock-mellow"
+              - name: "Rock - Metal"
+                type: playlist
+                id: "rock-metal"
+              - name: "Rock - Modern"
+                type: playlist
+                id: "rock-modern"
+              - name: "Rock - Nu Metal"
+                type: playlist
+                id: "rock-nu-metal"
+              - name: "Rock - Progressive"
+                type: playlist
+                id: "rock-progressive"
+              - name: "Rock - Unrated"
+                type: playlist
+                id: "rock-unrated"
+              - name: "Rock + Pop"
+                type: playlist
+                id: "rock-pop"
+              - name: "Ambient Sleeping Pill"
+                type: playlist
+                id: "ambient-sleeping-pill"
+              - name: "Europa2"
+                type: playlist
+                id: "europa2"
+              - name: "Jazz24"
+                type: playlist
+                id: "jazz24"
+              - name: "Radio Kultura RU"
+                type: playlist
+                id: "radio-kultura-ru"
+              - name: "Radio Swiss Classic"
+                type: playlist
+                id: "radio-swiss-classic"
+              - name: "Acid Jazz + Chill Out"
+                type: playlist
+                id: "z-acid-jazz-chill-out"
+              - name: "AlteyRock"
+                type: playlist
+                id: "z-alteyrock"
+              - name: "Jazz+Funk"
+                type: playlist
+                id: "z-jazzfunk"
+              - name: "Jazz+Latin"
+                type: playlist
+                id: "z-jazzlatin"
+              - name: "Mine"
+                type: playlist
+                id: "z-mine"
+              - name: "Proletariat Rock"
+                type: playlist
+                id: "z-proletariat-rock"
+              - name: "Rocker's Rock"
+                type: playlist
+                id: "z-rockers-rock"
+              - name: "Alena's"
+                type: playlist
+                id: "zz-alenas"
+              - name: "Beach Music"
+                type: playlist
+                id: "z-beach-music"
+              - name: "DJ Cuts"
+                type: playlist
+                id: "z-dj-cuts"
+              - name: "Driving Music"
+                type: playlist
+                id: "z-driving-music"
+              - name: "Lounge"
+                type: playlist
+                id: "z-lounge"
+              - name: "Mellow Music"
+                type: playlist
+                id: "z-mellow-music"
+              - name: "Palettable Rock"
+                type: playlist
+                id: "z-palettable-rock"
+              - name: "San Tropez"
+                type: playlist
+                id: "san-tropez"
+              - name: "Wacky Cheerful Music"
+                type: playlist
+                id: "z-wacky-cheerful-music"
+              - name: "Waver Friendly"
+                type: playlist
+                id: "z-waver-friendly"
+              - name: "Wedding music"
+                type: playlist
+                id: "z-wedding-music"
 
-      - type: "custom:button-card"
-        name: POP
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-pop"
-            media_content_type: "playlist"
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: input_boolean.itunes_shuffle
+
+  #    - type: "custom:button-card"
+  #      name: SHUFFLE
+  #      styles:
+  #        card:
+  #          - padding: 12px 0px
+  #          - font-size: 14px
+  #      tap_action: 
+  #        action: call-service
+  #        service: switch.toggle
+  #        service_data:
+  #          entity_id: "switch.shuffle"
 
 
-    - type: horizontal-stack
-      cards:
+      - type: horizontal-stack
+        cards:
 
 
-      - type: "custom:button-card"
-        name: CLASSICAL
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "classical"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: MIX
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "a-45-star"
+              media_content_type: "playlist"
 
-      - type: "custom:button-card"
-        name: BLACK
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-black"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: JAZZ
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-jazz"
+              media_content_type: "playlist"
 
-      - type: "custom:button-card"
-        name: ELECTRO
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-electronica"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: ROCK
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-rock"
+              media_content_type: "playlist"           
 
-      - type: "custom:button-card"
-        name: KIDS
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "kids-english"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: POP
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-pop"
+              media_content_type: "playlist"
 
-    - type: horizontal-stack
-      cards:
 
-      - type: "custom:button-card"
-        name: KULTURA <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "radio-kultura-ru"
-            media_content_type: "playlist"
+      - type: horizontal-stack
+        cards:
 
-      - type: "custom:button-card"
-        name: CLASSICAL <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "radio-swiss-classic"
-            media_content_type: "playlist"
 
-      - type: "custom:button-card"
-        name: JAZZ24 <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "jazz24"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: CLASSICAL
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "classical"
+              media_content_type: "playlist"
 
-      - type: "custom:button-card"
-        name: EUROPA2 <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "europa2"
-            media_content_type: "playlist"
+        - type: "custom:button-card"
+          name: BLACK
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-black"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: ELECTRO
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "best-electronica"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: KIDS
+          styles:
+            card:
+              - padding: 12px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "kids-english"
+              media_content_type: "playlist"
+
+      - type: horizontal-stack
+        cards:
+
+        - type: "custom:button-card"
+          name: KULTURA <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "radio-kultura-ru"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: CLASSICAL <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "radio-swiss-classic"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: JAZZ24 <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "jazz24"
+              media_content_type: "playlist"
+
+        - type: "custom:button-card"
+          name: EUROPA2 <br> RADIO
+          styles:
+            card:
+              - padding: 4px 0px
+              - font-size: 14px
+          tap_action: 
+            action: call-service
+            service: media_player.play_media 
+            service_data:
+              entity_id: "media_player.itunes"
+              media_content_id: "europa2"
+              media_content_type: "playlist"
 
   #    - type: entities
   #      title: Whole House
@@ -1500,6 +1498,11 @@ cards:
 
 #  - type: custom:vertical-stack-in-card
 #    cards:
+
+#### END COMMENT BLOCK 7: Music
+
+### START COMMENT BLOCK 8: Entity Cards
+
   - type: entities
     title: First Floor
     show_header_toggle: false
@@ -1639,60 +1642,62 @@ cards:
 #  - type: custom:card-modder
 #    report_size: 8
 #    card:      
-  - type: custom:mod-card
-    report_size: 5
-    card:
+#  - type: custom:mod-card
+#    report_size: 5
+#    card:
 
-      type: custom:vertical-stack-in-card
-      cards: 
+#      type: custom:vertical-stack-in-card
+  - type: vertical-stack
+    in_card: true
+    cards: 
 
-      - type: entity-filter
-        card:
-          show_header_toggle: false
-          title: Mini Countryman S E
-        state_filter:
-        - operator: "!="
-          value: "unknown"
-        entities:
-        - entity: sensor.cooper_s_e_all4_charging_time_remaining
-          name: Charging Time
-        - entity: sensor.cooper_s_e_all4_charging_level_hv
-          name: Charge Level
-        - entity: sensor.cooper_s_e_all4_remaining_range_electric
-          name: Electric Range
-          icon: mdi:car-battery
-        - entity: sensor.cooper_s_e_all4_remaining_range_total
-          name: Total Range
-          icon: mdi:gas-station
-        - entity: input_boolean.mini_countryman_clima
-        show_empty: false
+    - type: entity-filter
+      card:
+        show_header_toggle: false
+        title: Mini Countryman S E
+      state_filter:
+      - operator: "!="
+        value: "unknown"
+      entities:
+      - entity: sensor.cooper_s_e_all4_charging_time_remaining
+        name: Charging Time
+      - entity: sensor.cooper_s_e_all4_charging_level_hv
+        name: Charge Level
+      - entity: sensor.cooper_s_e_all4_remaining_range_electric
+        name: Electric Range
+        icon: mdi:car-battery
+      - entity: sensor.cooper_s_e_all4_remaining_range_total
+        name: Total Range
+        icon: mdi:gas-station
+      - entity: input_boolean.mini_countryman_clima
+      show_empty: false
 
-      - type: entity-filter
-        entities:
-        - entity: sensor.car_needs_charging
-        - entity: sensor.low_gas_in_car
-        - entity: binary_sensor.cooper_s_e_all4_charging_status
-          name: Charging
-        - entity: binary_sensor.cooper_s_e_all4_check_control_messages
-          name: Control Problem
-        - entity: binary_sensor.cooper_s_e_all4_condition_based_services
-          name: Condition Problem
-        - entity: binary_sensor.cooper_s_e_all4_door_lock_state
-          name: Car is
-        - entity: binary_sensor.cooper_s_e_all4_lids
-          name: Doors
-        - entity: binary_sensor.cooper_s_e_all4_lights_parking
-          name: Lights
-        - entity: binary_sensor.cooper_s_e_all4_windows
-          name: Windows
-        state_filter:
-        - "on"
-        - "DISCONNECTED"
-        - "Charge It"
-        - "Fill It"
-        card: 
-          type: glance
-        show_empty: false  
+    - type: entity-filter
+      entities:
+      - entity: sensor.car_needs_charging
+      - entity: sensor.low_gas_in_car
+      - entity: binary_sensor.cooper_s_e_all4_charging_status
+        name: Charging
+      - entity: binary_sensor.cooper_s_e_all4_check_control_messages
+        name: Control Problem
+      - entity: binary_sensor.cooper_s_e_all4_condition_based_services
+        name: Condition Problem
+      - entity: binary_sensor.cooper_s_e_all4_door_lock_state
+        name: Car is
+      - entity: binary_sensor.cooper_s_e_all4_lids
+        name: Doors
+      - entity: binary_sensor.cooper_s_e_all4_lights_parking
+        name: Lights
+      - entity: binary_sensor.cooper_s_e_all4_windows
+        name: Windows
+      state_filter:
+      - "on"
+      - "DISCONNECTED"
+      - "Charge It"
+      - "Fill It"
+      card: 
+        type: glance
+      show_empty: false  
 
   - type: entities
     title: Basement
@@ -1719,6 +1724,15 @@ cards:
         mute: true
       group: true
 
+### END COMMENT BLOCK 8: Entity Cards
+
+
+### START COMMENT BLOCK 9: Search Card
 
   - type: custom:search-card
     max_results: 50
+
+### END COMMENT BLOCK 9: Search Card
+
+
+

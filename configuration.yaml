@@ -116,11 +116,9 @@ lovelace:
       type: module
     - url: /hacsfiles/circle-sensor-card/circle-sensor-card.js
       type: module
-    - url: /hacsfiles/lovelace-card-preloader/lovelace-card-preloader.js
-      type: module 
     - url: /hacsfiles/decluttering-card/decluttering-card.js
       type: module
-    - url: /hacsfiles/bignumber-card/bignumber-card.js
+    - url: /hacsfiles/lovelace-canary/canary.js
       type: module
 
 mobile_app:
@@ -193,20 +191,21 @@ switch:
 #  - platform: rest
 #    name: shuffle2
 #    resource: !secret shuffle_resource
-#    body_on: '{"mode": "songs"}'
-#    body_off: '{"mode": "off"}'
+#    method: put
+#    body_on: "mode:songs"
+#    body_off: "mode:off"
 #    headers:
-#      Content-Type: application/x-www-form-urlencoded
+#      Content-Type: "application/x-www-form-urlencoded"
 #    verify_ssl: false
 #    is_on_template: "{{ state_attr('media_player.itunes', 'shuffle') }}"
 
-  - platform: command_line
-    switches:
-      shuffle:
-        friendly_name: Shuffle
-        command_on: !secret shuffle_on_cmd
-        command_off: !secret shuffle_off_cmd
-        value_template: "{{state_attr('media_player.itunes', 'shuffle')}}"
+#  - platform: command_line
+#    switches:
+#      shuffle:
+#        friendly_name: Shuffle
+#        command_on: !secret shuffle_on_cmd
+#        command_off: !secret shuffle_off_cmd
+#        value_template: "{{state_attr('media_player.itunes', 'shuffle')}}"
 
 
 #  - platform: rest
@@ -381,6 +380,9 @@ input_boolean:
   trash_needs_taking_out:
     name: "Trash Needs to Be Taken Out"
     icon: mdi:trash
+  itunes_shuffle:
+    name: "Shuffle"
+    icon: mdi:shuffle-variant
 
 #  mix_playlist:
 #    name: Mix Playlist
@@ -666,7 +668,16 @@ rest_command:
     url: !secret human_record_left_url
   record_human_right: 
     url: !secret human_record_right_url
-
+  shuffle_on: 
+    url: !secret shuffle_on_rest_cmd
+    method: put
+    content_type: "application/x-www-form-urlencoded"
+    payload: "mode=songs"
+  shuffle_off: 
+    url: !secret shuffle_off_rest_cmd
+    method: put
+    content_type: "application/x-www-form-urlencoded"
+    payload: "mode=off"
 fan:
   - platform: xiaomi_miio
     name: sebastians_room_air_purifier
@@ -688,6 +699,8 @@ evohome_rf:
 timer:
   bosch_dishwasher_emptying:
     duration: '00:03:00'
+  bosch_dishwasher_running_door_open:
+    duration: '00:01:00'
 
 dreamscreen:
   devices:
