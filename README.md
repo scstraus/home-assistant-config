@@ -92,9 +92,9 @@ How to navigate this readme:
     + [System monitor to monitor my hass server's CPU, RAM, Memory, etc.](#system-monitor-to-monitor-my-hass-servers-cpu-ram-memory-etc)
     + [MQTT sensors for my Paradox alarm system](#mqtt-sensors-for-my-paradox-alarm-system)
     + [File sensors to read the data from my AirVisual Node Pro air quality monitors over SMB](#file-sensors-to-read-the-data-from-my-airvisual-node-pro-air-quality-monitors-over-smb)
-    + [Synology DSM](#synology-dsm)
+    + [Synology DSM for System Stats](#synology-dsm)
     + [Here travel time to tell me which public transport routes are best to work](#here-travel-time-to-tell-me-which-public-transport-routes-are-best-to-work)
-    + [Siemens Home Connect](#siemens-home-connect)
+    + [Siemens Home Connect for Dishwasher](#siemens-home-connect)
     + [Rest Sensors for Frigate Tensorflow Human Detection](#rest-sensors-for-frigate-tensorflow-human-detection)
     + [Command Line Sensor for Checking RAID Status of My Hass Server](#command-line-sensor-for-checking-raid-status-of-my-hass-server)
     
@@ -629,19 +629,19 @@ I use the [Paradox addon](https://community.home-assistant.io/t/paradox-alarm-mq
 
 These sensors take the data from files that I get from an SMB integration to our [AirVisual Node Pros](https://www.iqair.com/us/air-quality-monitors/airvisual-pro) and parse them to get the AQI details. This makes a surprisingly reliable sensor for AQI from the indoor and outdoor AQI modules I have.
 
-### [Synology DSM](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L268-L279)
+### [Synology DSM for System Stats](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L268-L279)
 
 This one used to take the system status for CPU,RAM and Disk utilization from my Synology DSM, but they moved it into the integration configuration. 
 
-### [Here travel time](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L281-L290)
+### [Here travel time for Commute Transport Route](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L281-L290)
 
 I use [Here travel time](https://www.home-assistant.io/integrations/here_travel_time/) to check which publich transportation route is fastest to work in the morning. My plans were to make a sensor that would tell me if my usual route options weren't available so that I'd know to reroute if something was closed before I found out the hard way. Since I'm working from home, this one is on the back burner.
 
-### [iCal](https://github.com/scstraus/home-assistant-config/blob/bd3db4f1bd948064a2f858d9de159c5775c91789/sensors/integration_sensors.yaml#L292-L298) 
+### [iCal for Holidays](https://github.com/scstraus/home-assistant-config/blob/bd3db4f1bd948064a2f858d9de159c5775c91789/sensors/integration_sensors.yaml#L292-L298) 
 
 These ones are used for the conditional card on my first lovelace tab in order to tell me when there are state or school holidays coming up. They are run through some other template sensors to format them for the frontend before they are displayed, because the standard sensor you get here isn't very useful or pretty.
 
-### [Siemens Home Connect](https://github.com/scstraus/home-assistant-config/blob/bd3db4f1bd948064a2f858d9de159c5775c91789/sensors/integration_sensors.yaml#L300-L301)
+### [Siemens Home Connect for Dishwasher](https://github.com/scstraus/home-assistant-config/blob/bd3db4f1bd948064a2f858d9de159c5775c91789/sensors/integration_sensors.yaml#L300-L301)
 
 I use this one for my Bosch washing machine to see if it's washing and/if the door is open. This is then used in some other template sensors and automations to tell me if the dishes are clean or if I left the door open while it was washing or if the dishes aren't done yet via alexa announcements and push notifications.
 
