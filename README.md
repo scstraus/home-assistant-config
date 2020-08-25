@@ -12,7 +12,7 @@ Some things that may be interesting to you from my config which are not so commo
 
 There are a lot of other little things that I've not seen anyone else do, but I don't want to clutter up the intro too much, so more easter eggs inside. I've tried to include enough description and links to relevant items that you might be able to understand and replicate what I've done. Many of the more useful things I have automated require nothing other than a plain vanilla homeassistant install and some free things like weather components and iOS device trackers which everyone can have out of the box, so don't feel like you need special hardware to take part.
 
-Last update: [July 13, 2020 (Hass v.112.4)](https://github.com/scstraus/home-assistant-config/tree/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b), but make sure you check the history in the code snippet I linked to to see which version I was on when I documented it, because in most cases I documented it on an older version than that and you may have to find the more recent update in the repo for it to work properly on new versions. Unfortunately to link to the snippets directly, I have to use the version I am on when I write the documentation for the line numbers to match, but I don't go back and update the docs to the latest version every time I make changes to the code. To see the new versions of the code, click on the headers for the whole section or the file links themselves above, those will take you to the latest version of the file with any changes I've made for the version I'm on now shown at the beginning of this paragraph.
+Last update: [August 25, 2020 (Hass v.113.3)](https://github.com/scstraus/home-assistant-config/tree/af7c89d6bd5ebc9326ff00f6ab0cd645ae37e87b), but make sure you check the history in the code snippet I linked to to see which version I was on when I documented it, because in most cases I documented it on an older version than that and you may have to find the more recent update in the repo for it to work properly on new versions. Unfortunately to link to the snippets directly, I have to use the version I am on when I write the documentation for the line numbers to match, but I don't go back and update the docs to the latest version every time I make changes to the code. To see the new versions of the code, click on the headers for the whole section or the file links themselves above, those will take you to the latest version of the file with any changes I've made for the version I'm on now shown at the beginning of this paragraph.
 
 How to navigate this readme:
 
@@ -94,6 +94,10 @@ How to navigate this readme:
     + [File sensors to read the data from my AirVisual Node Pro air quality monitors over SMB](#file-sensors-to-read-the-data-from-my-airvisual-node-pro-air-quality-monitors-over-smb)
     + [Synology DSM](#synology-dsm)
     + [Here travel time to tell me which public transport routes are best to work](#here-travel-time-to-tell-me-which-public-transport-routes-are-best-to-work)
+    + [Siemens Home Connect](#siemens-home-connect)
+    + [Rest Sensors for Frigate Tensorflow Human Detection](#rest-sensors-for-frigate-tensorflow-human-detection)
+    + [Command Line Sensor for Checking RAID Status of My Hass Server](#command-line-sensor-for-checking-raid-status-of-my-hass-server)
+    
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
