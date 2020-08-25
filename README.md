@@ -158,7 +158,7 @@ These are how I get important statuses on lots of things without creating a lot 
 
   (love having the chart in my weather forecast)
 
-- [custom:vertical-stack-in-card](https://github.com/ofekashery/vertical-stack-in-card)
+- [custom:lovelace-canary](https://github.com/jcwillox/lovelace-canary)
 
   (just combines the other cards into one card)
 
@@ -176,7 +176,7 @@ These are how I get important statuses on lots of things without creating a lot 
 
 - [custom:mod-card](https://github.com/thomasloven/lovelace-card-mod#mod-card) from the [card-mod addon](https://github.com/thomasloven/lovelace-card-mod)
 
-  (to report a size for vertical stack-ins (so far lovelace couldn't handle this properly, but it looks like this [might get fixed finally](https://github.com/home-assistant/frontend/issues/5321#event-3379916050)))
+  (to report a semi correct size for cards that don't correctly do this themselves)
 
 - [custom:calendar-card](https://github.com/ljmerza/calendar-card)
 
@@ -241,7 +241,7 @@ Most of the interesting stuff about my heating happens in the [heating automatio
 
 I use [popup cards](https://github.com/thomasloven/hass-browser_mod#popup) from the custom component [browser_mod](https://github.com/thomasloven/hass-browser_mod) to ensure I get the standard [history-graph](https://www.home-assistant.io/lovelace/history-graph/) graph if you tap on the pretty [custom:mini-graph-card](https://github.com/kalkih/mini-graph-card). The history graph also shows the historical setpoint of the thermostat and some guess at when the TRV was open, but lacks the color coding and beauty of the mini graph card. So I use the mini graph card for a quick overview of where there might be issues and to keep things pretty, and then I click if I want to dig into the "why" of what's happening with the heating to see the uglier and more detailed view. Maybe someday I will see if I can consolidate it all onto one graph, but I'm not sure it's possible with the graph card.
 
-What I'm using for most of the view is mostly just a bunch of [custom:vertical-stack-in-cards](https://github.com/ofekashery/vertical-stack-in-card) to stack the [custom:mini-graph-card](https://github.com/kalkih/mini-graph-card) for each room on top of a [custom:lovelace-mini-thermostat card](https://github.com/Devqon/lovelace-mini-thermostat) for each room. That gives you the temperature history of each room with nice color coding for hot and cold on top of the control to set it manually. Mini thermostat saves a lot of space over the normal thermostat card here. 
+What I'm using for most of the view is mostly just a bunch of [custom:lovelace-canary](https://github.com/jcwillox/lovelace-canary) to stack the [custom:mini-graph-card](https://github.com/kalkih/mini-graph-card) for each room on top of a [custom:lovelace-mini-thermostat card](https://github.com/Devqon/lovelace-mini-thermostat) for each room. That gives you the temperature history of each room with nice color coding for hot and cold on top of the control to set it manually. Mini thermostat saves a lot of space over the normal thermostat card here. 
 
 Way down at the bottom, you will see an entities card with some input-selects for special heating cases like when I'm working from home or when there's a fire in the fireplace. Others happen automatically through automation like when my daughter is home from school for the day. The input selects are the output from my [python script](https://github.com/scstraus/home-assistant-config/blob/master/python_scripts/set_heat_weather_override.py) which takes the heating off of the schedule and turns it down depending on the weather.
 
@@ -326,7 +326,7 @@ Here is the system status of my Synology NAS that runs my Plex and Frigate insta
 
 ![](readme_images/Tab8_System.png)
 
-- [custom:vertical-stack-in-card](https://github.com/ofekashery/vertical-stack-in-card)
+- [custom:lovelace-canary](https://github.com/jcwillox/lovelace-canary)
 
   (to merge everything for each server into a card)
 
