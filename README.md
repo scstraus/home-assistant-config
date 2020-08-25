@@ -633,4 +633,18 @@ This one used to take the system status for CPU,RAM and Disk utilization from my
 
 I use [Here travel time](https://www.home-assistant.io/integrations/here_travel_time/) to check which publich transportation route is fastest to work in the morning. My plans were to make a sensor that would tell me if my usual route options weren't available so that I'd know to reroute if something was closed before I found out the hard way. Since I'm working from home, this one is on the back burner.
 
+### [iCal](https://github.com/scstraus/home-assistant-config/blob/bd3db4f1bd948064a2f858d9de159c5775c91789/sensors/integration_sensors.yaml#L292-L298) 
 
+These ones are used for the conditional card on my first lovelace tab in order to tell me when there are state or school holidays coming up. They are run through some other template sensors to format them for the frontend before they are displayed, because the standard sensor you get here isn't very useful or pretty.
+
+### [Siemens Home Connect](https://github.com/scstraus/home-assistant-config/blob/bd3db4f1bd948064a2f858d9de159c5775c91789/sensors/integration_sensors.yaml#L300-L301)
+
+I use this one for my Bosch washing machine to see if it's washing and/if the door is open. This is then used in some other template sensors and automations to tell me if the dishes are clean or if I left the door open while it was washing or if the dishes aren't done yet via alexa announcements and push notifications.
+
+### [Rest Sensors for Frigate Tensorflow Human Detection](https://github.com/scstraus/home-assistant-config/blob/bd3db4f1bd948064a2f858d9de159c5775c91789/sensors/integration_sensors.yaml#L303-L313)
+
+These are just some statistics about how the tensorflow human detection is working such as FPS that it's sending to the Google Coral device. I have some graphs in the latest version of my system tab to show these.
+
+### [Command Line Sensor for Checking RAID Status of My Hass Server](https://github.com/scstraus/home-assistant-config/blob/bd3db4f1bd948064a2f858d9de159c5775c91789/sensors/integration_sensors.yaml#L315-L318)
+
+This is just a simple command that checks to see if my RAID array is still healthy and reports back to a sensor which I show in my system tab on lovelace.
