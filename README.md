@@ -92,8 +92,9 @@ How to navigate this readme:
     + [System monitor to monitor my hass server's CPU, RAM, Memory, etc.](#system-monitor-to-monitor-my-hass-servers-cpu-ram-memory-etc)
     + [MQTT sensors for my Paradox alarm system](#mqtt-sensors-for-my-paradox-alarm-system)
     + [File sensors to read the data from my AirVisual Node Pro air quality monitors over SMB](#file-sensors-to-read-the-data-from-my-airvisual-node-pro-air-quality-monitors-over-smb)
-    + [Synology DSM for System Stats](#synology-dsm)
+    + [Synology DSM for System Stats](#synology-dsm-for-system-stats)
     + [Here travel time to tell me which public transport routes are best to work](#here-travel-time-to-tell-me-which-public-transport-routes-are-best-to-work)
+    + [iCal for Holidays](#ical-for-holidays) 
     + [Siemens Home Connect for Dishwasher](#siemens-home-connect)
     + [Rest Sensors for Frigate Tensorflow Human Detection](#rest-sensors-for-frigate-tensorflow-human-detection)
     + [Command Line Sensor for Checking RAID Status of My Hass Server](#command-line-sensor-for-checking-raid-status-of-my-hass-server)
@@ -633,7 +634,7 @@ These sensors take the data from files that I get from an SMB integration to our
 
 This one used to take the system status for CPU,RAM and Disk utilization from my Synology DSM, but they moved it into the integration configuration. 
 
-### [Here travel time for Commute Transport Route](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L281-L290)
+### [Here travel time to tell me which public transport routes are best to work](https://github.com/scstraus/home-assistant-config/blob/6f86a9d8b470762bce17ad1ddf5b2802cfff1976/sensors/integration_sensors.yaml#L281-L290)
 
 I use [Here travel time](https://www.home-assistant.io/integrations/here_travel_time/) to check which publich transportation route is fastest to work in the morning. My plans were to make a sensor that would tell me if my usual route options weren't available so that I'd know to reroute if something was closed before I found out the hard way. Since I'm working from home, this one is on the back burner.
 
