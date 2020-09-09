@@ -20,30 +20,26 @@ cards:
 #  - type: vertical-stack
 #    cards:
 
-  - type: vertical-stack
-    in_card: true
-    cards: 
-
-    - type: custom:mini-graph-card
-      entities:
-        - entity: sensor.server_room_temperature
-          name: 
-      hours_to_show: 24
-      points_per_hour: 2
-      show_points: false
-      height: 200
+  - type: custom:mini-graph-card
+    entities:
+      - entity: sensor.server_room_temperature
+        name: 
+    hours_to_show: 24
+    points_per_hour: 2
+    show_points: false
+    height: 200
 #      lower_bound: 23
-      show:
-        extrema: true
-      color_thresholds:
-        - value: 23
-          color: "#0da035"
-        - value: 30
-          color: "#daa002"
-        - value: 33
-          color: "#f4b300"
-        - value: 36
-          color: "#e04c23"
+    show:
+      extrema: true
+    color_thresholds:
+      - value: 23
+        color: "#0da035"
+      - value: 30
+        color: "#daa002"
+      - value: 33
+        color: "#f4b300"
+      - value: 36
+        color: "#e04c23"
 
   - type: vertical-stack
     in_card: true
@@ -219,81 +215,116 @@ cards:
 #        red: 80
 
 
-
   - type: vertical-stack
     in_card: true
-    title: Internet
+    title: Cameras
     cards:
 
     - type: custom:mini-graph-card
-#      name: Internet
+      name: Front CPU Usage
       entities:
-        - entity: sensor.speedtest_download
-          name: Download
-        - entity: sensor.speedtest_upload
-          name: Upload
-        - entity: sensor.speedtest_ping
-          name: Ping
-      lower_bound: 0
+#        - entity: sensor.load_15m
+#          name: Load (15m)
+        - entity: sensor.camera_front_processor_usage
+          name: CPU %
       hours_to_show: 24
-      points_per_hour: 2
+      points_per_hour: 20
       show_points: false
-      height: 300
-      
-#    - type: history-graph
-#      title: 'Download Speed'
-#      entities:
-#      - sensor.speedtest_download
-#
-#    - type: history-graph
-#      title: 'Upload Speed'
-#      entities:
-#      - sensor.speedtest_upload
-#
-#    - type: history-graph
-#      title: 'Ping Time'
-#      entities:
-#      - sensor.speedtest_ping
+      height: 200
+      lower_bound: 0
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
 
 
+    - type: custom:mini-graph-card
+      name: Back CPU Usage
+      entities:
+#        - entity: sensor.load_15m
+#          name: Load (15m)
+        - entity: sensor.camera_back_processor_usage
+          name: CPU %
+      hours_to_show: 24
+      points_per_hour: 20
+      show_points: false
+      height: 200
+      lower_bound: 0
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
 
-#  - type: vertical-stack
-#    cards:
 
-  - type: vertical-stack
-    in_card: true
-    title: Battery Levels
-    cards:
+    - type: custom:mini-graph-card
+      name: Right CPU Usage
+      entities:
+#        - entity: sensor.load_15m
+#          name: Load (15m)
+        - entity: sensor.camera_right_processor_usage
+          name: CPU %
+      hours_to_show: 24
+      points_per_hour: 20
+      show_points: false
+      height: 200
+      lower_bound: 0
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
 
-    - type: gauge
-      entity: sensor.alena_battery_level
-      name: "     Alena"
-      severity:
-        green: 50
-        yellow: 25
-        red: 12
 
-    - type: gauge
-      entity: sensor.sean_battery_level   
-      name: "     Sean"
-      severity:
-        green: 50
-        yellow: 25
-        red: 12
+    - type: custom:mini-graph-card
+      name: Left CPU Usage
+      entities:
+#        - entity: sensor.load_15m
+#          name: Load (15m)
+        - entity: sensor.camera_left_processor_usage
+          name: CPU %
+      hours_to_show: 24
+      points_per_hour: 20
+      show_points: false
+      height: 200
+      lower_bound: 0
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 20
+          color: "#0da035"
+        - value: 50
+          color: "#daa002"
+        - value: 75
+          color: "#f4b300"
+        - value: 90
+          color: "#e04c23"
 
-    - type: gauge
-      entity: sensor.sophies_iphone_6_battery_level   
-      name: "     Sophie"
-      severity:
-        green: 50
-        yellow: 25
-        red: 12
+
 
   - type: vertical-stack
     in_card: true
     title: Object Detection
     cards:
-
 
     - type: custom:mini-graph-card
       name: Coral FPS
@@ -387,6 +418,78 @@ cards:
       show_points: false
       height: 300
 
+
+  - type: vertical-stack
+    in_card: true
+    title: Internet
+    cards:
+
+    - type: custom:mini-graph-card
+#      name: Internet
+      entities:
+        - entity: sensor.speedtest_download
+          name: Download
+        - entity: sensor.speedtest_upload
+          name: Upload
+        - entity: sensor.speedtest_ping
+          name: Ping
+      lower_bound: 0
+      hours_to_show: 24
+      points_per_hour: 2
+      show_points: false
+      height: 300
+      
+#    - type: history-graph
+#      title: 'Download Speed'
+#      entities:
+#      - sensor.speedtest_download
+#
+#    - type: history-graph
+#      title: 'Upload Speed'
+#      entities:
+#      - sensor.speedtest_upload
+#
+#    - type: history-graph
+#      title: 'Ping Time'
+#      entities:
+#      - sensor.speedtest_ping
+
+
+
+#  - type: vertical-stack
+#    cards:
+
+  - type: vertical-stack
+    in_card: true
+    title: Battery Levels
+    cards:
+
+    - type: gauge
+      entity: sensor.alena_battery_level
+      name: "     Alena"
+      severity:
+        green: 50
+        yellow: 25
+        red: 12
+
+    - type: gauge
+      entity: sensor.sean_battery_level   
+      name: "     Sean"
+      severity:
+        green: 50
+        yellow: 25
+        red: 12
+
+    - type: gauge
+      entity: sensor.sophies_iphone_6_battery_level   
+      name: "     Sophie"
+      severity:
+        green: 50
+        yellow: 25
+        red: 12
+
+
+
   - type: entities
     show_header_toggle: false
     entities:
@@ -398,5 +501,6 @@ cards:
     - binary_sensor.master_bedroom_nest_protect_online
     - binary_sensor.kids_room_nest_protect_online
     - binary_sensor.basement_nest_protect_online
+
 
 

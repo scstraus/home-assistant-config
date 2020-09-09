@@ -38,6 +38,8 @@ recorder: !include recorder_exclude.yaml
 
 alert: !include alerts.yaml
 
+camera: !include cameras.yaml
+
 config:
 
 hassio:
@@ -58,9 +60,9 @@ sun:
 
 python_script:
 
-stream:
+#stream:
 
-ffmpeg:
+#ffmpeg:
 
 #image_processing:
 #  - platform: opencv
@@ -78,8 +80,6 @@ lovelace:
 
   resources:
 
-    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
-      type: js
     - url: /hacsfiles/button-card/button-card.js
       type: module
     - url: /hacsfiles/lovelace-card-tools/card-tools.js
@@ -119,6 +119,12 @@ lovelace:
     - url: /hacsfiles/decluttering-card/decluttering-card.js
       type: module
     - url: /hacsfiles/lovelace-canary/canary.js
+      type: module
+    - url: /hacsfiles/lovelace-badge-card/badge-card.js
+      type: module
+    - url: /hacsfiles/lovelace-gap-card/gap-card.js
+      type: module
+    - url: /hacsfiles/text-element/text-element.js
       type: module
 
 mobile_app:
@@ -162,11 +168,18 @@ logger:
     homeassistant.components.openzwave: warn
     homeassistant.components.libopenzwave: warn
     homeassistant.components.http.view: warn
+    pyipp: warn
+    homeassistant.components.ipp: warn
+    homeassistant.components.dreamscreen: warn
     libopenzwave: warn
     openzwave: warn
     zwave: warn
+    zeroconf: warn
+    homeassistant.components.proxy.camera: warn
     homeassistant.components.evohome_rf: debug
     evohome: debug
+    pydreamscreen: warn
+
 #    hass_nabucasa: debug
 #    homeassistant.components.cloud: debug
 #    homeassistant.components.nest: debug
@@ -312,7 +325,7 @@ nest:
       - 'battery_health'
       - 'color_status'
 
-camera: !include cameras.yaml
+
 
 google:
              
@@ -641,6 +654,10 @@ shell_command:
   roll_frigate_history: !secret roll_frigate_command
   screensaver_stop_kindle_fire_kitchen: !secret kitchen_kindle_stop_screensaver
   screensaver_stop_kindle_fire_closet: !secret closet_kindle_stop_screensaver
+  screen_on_kindle_fire_closet: !secret closet_kindle_screen_on
+  screen_on_kindle_fire_kitchen: !secret kitchen_kindle_screen_on
+  reload_ui_kindle_fire_closet: !secret closet_kindle_reload_ui
+  reload_ui_kindle_fire_kitchen: !secret kitchen_kindle_reload_ui
 
 browser_mod:
 

@@ -12,6 +12,7 @@ views:
   - !include /config/lovelace/Tab7_Alarm.yaml
   - !include /config/lovelace/Tab8_Weather.yaml
   - !include /config/lovelace/Tab9_Tech.yaml
+#  - !include /config/lovelace/Tab10_Test.yaml
 
 custom_header:
   compact_mode: true

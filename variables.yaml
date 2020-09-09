@@ -101,7 +101,8 @@
     value: 'Unknown'
     attributes:
       friendly_name: 'New Cases'
-      unit_of_measurement: yesterday
+#      unit_of_measurement: yesterday
+      unit_of_measurement:
       icon: mdi:chart-bubble
     restore: true
 
@@ -109,7 +110,8 @@
     value: 'Unknown'
     attributes:
       friendly_name: 'New Cases'
-      unit_of_measurement: today
+#      unit_of_measurement: today
+      unit_of_measurement:
       icon: mdi:chart-bubble
     restore: true
 

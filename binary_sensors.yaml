@@ -405,3 +405,15 @@
         device_class: problem
         value_template: >-
           {{  state_attr('binary_sensor.cooper_s_e_all4_check_control_messages', 'check_control_messages')=='Unable to charge'}}
+
+  - platform: template 
+    sensors:
+      open_window_making_house_cold:
+        friendly_name: "Open Window Making House Cold"
+        device_class: problem
+        value_template: >- 
+          {{ (
+             ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or  (is_state('binary_sensor.ecolink_garage_door','on'))) 
+             and ((is_state('input_select.active_heating_profile','PROFILE_AUTO')) or (is_state('input_select.active_heating_profile','PROFILE_A')) or (is_state('input_select.active_heating_profile','PROFILE_B')) or (is_state('input_select.active_heating_profile','PROFILE_C')))
+             and (states('sensor.dark_sky_temperature')|float < 20)
+             ) }}

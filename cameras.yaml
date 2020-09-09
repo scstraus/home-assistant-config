@@ -1,38 +1,49 @@
-# I used to use synology streams when I couldn't get the camera streams working directly for frigate, but the camera streams seem better now. No point in streaming it through 2 devices.
+# I am currently using Onvif integration with UDP multicasting
+# It is basically realtime, and seems reliable when there is
+# enough CPU. Once there are about 3 devices streaming, I run out
+# of CPU without the stream component.
+# I have it configured without the stream component as it
+# still ads the 13 second delay.
 
-  - platform: generic
-    name: Syno Stream Front
-    still_image_url: !secret front_still_url
-    stream_source: !secret syno_front_url
-    framerate: 4
-    
+
+# I used to use synology streams when I couldn't get the camera streams working directly for frigate, but the camera streams seem better now. No point in streaming it through 2 devices.
+#
+#  - platform: generic
+#    name: Syno Stream Front
+#    still_image_url: !secret front_still_url
+#    stream_source: !secret syno_front_url
+#    framerate: 4
+#    
 
 # Generic cameras work the best with stream component and use very little CPU that way, but are unreliable with stream turned off. Unfortunately with stream they have a 10-20 second lag but the upside is they use very little CPU and show up properly in the UI.
     
+#
+#  - platform: generic
+#    name: Front Stream
+#    still_image_url: !secret front_still_url
+#    stream_source: !secret front_main_stream_url
+#    framerate: 4
+#
+#  - platform: generic
+#    name: Back Stream
+#    still_image_url: !secret back_still_url
+#    stream_source: !secret back_main_stream_url
+#    framerate: 4
+#
+#  - platform: generic
+#    name: Left Stream
+#    still_image_url: !secret left_still_url
+#    stream_source: !secret left_main_stream_url
+#    framerate: 4
+#
+#  - platform: generic
+#    name: Right Stream
+#    still_image_url: !secret right_still_url
+#    stream_source: !secret right_main_stream_url
+#    framerate: 4
 
-  - platform: generic
-    name: Front Stream
-    still_image_url: !secret front_still_url
-    stream_source: !secret front_main_stream_url
-    framerate: 4
 
-  - platform: generic
-    name: Back Stream
-    still_image_url: !secret back_still_url
-    stream_source: !secret back_main_stream_url
-    framerate: 4
 
-  - platform: generic
-    name: Left Stream
-    still_image_url: !secret left_still_url
-    stream_source: !secret left_main_stream_url
-    framerate: 4
-
-  - platform: generic
-    name: Right Stream
-    still_image_url: !secret right_still_url
-    stream_source: !secret right_main_stream_url
-    framerate: 4
 #
 #  - platform: generic
 #    name: Right SubStream
@@ -74,8 +85,43 @@
 #    input: !secret right_substream_url
 #    name: Right Substream
 
+# MJPEG cameras are extremely close to realtime, 
+# even with streaming component turned on.
+# The downside seems to be that only one thing can be streaming
+# the camera URL at a time. This even applies to hass endpoints,
+# So if one hass session is viewing the camera, the other hass
+# sessions cannot.
+
+# Synology forces you to choose 
+# H.264 or MJPEG for all the streams, so you will have to use the 
+# main stream for everything. Also they seem to disappear
+# sometimes
+#
+#  - platform: mjpeg 
+#    mjpeg_url: !secret back_mjpeg_substream_url
+#    still_image_url: !secret back_sub_still_url
+#    name: Back Substream
+#
+#  - platform: mjpeg 
+#    mjpeg_url: !secret front_mjpeg_substream_url
+#    still_image_url: !secret front_sub_still_url
+#    name: Front Substream
+#
+#  - platform: mjpeg 
+#    mjpeg_url: !secret left_mjpeg_substream_url
+#    still_image_url: !secret left_sub_still_url
+#    name: Left Substream
+#
+#  - platform: mjpeg 
+#    mjpeg_url: !secret right_mjpeg_substream_url
+#    still_image_url: !secret right_sub_still_url
+#    name: Right Substream
+
 # FFMPEG work pretty well if you turn off stream:
-# They are real time but not 100% reliable
+# They are near real time ~2-3 sec lag but not 100% reliable. 
+# Sometimes they
+# vanish and are replaced with text of the name of the camera,
+# even on machines with plenty of CPU.
 # With stream, generic is more reliable, both have same 10+
 # second lag with stream turned on.
 #
@@ -136,13 +182,13 @@
 #    still_image_url: !secret back_best_url
 
 # Synology Cameras (non stream) - Used for popups on tablets
-
-  - platform: synology
-    url: !secret synology_int_url
-    username: !secret syn_uname
-    password: !secret hass_pass
-    timeout: 120
-
+#
+#  - platform: synology
+#    url: !secret synology_int_url
+#    username: !secret syn_uname
+#    password: !secret hass_pass
+#    timeout: 120
+#
 
 
 
@@ -294,3 +340,41 @@
   #   name: Sebs Room
   #   scan_interval: 5
 
+# Proxy cameras worked for a couple weeks to give me a low
+# res, low frame rate preview stream for my tablets, but 
+# weren't as reliable as the source stream. Using ONVIF 
+# seems more reliable but needs about 30% CPU per device to
+# display the feeds with stream turned on
+
+
+  - platform: proxy
+    name: front_preview
+    entity_id: camera.front_stream
+    max_stream_width: 320
+    max_image_width: 320
+    image_refresh_rate: 1.0
+    cache_images: true
+
+  - platform: proxy
+    name: back_preview
+    entity_id: camera.back_stream
+    max_stream_width: 320
+    max_image_width: 320
+    image_refresh_rate: 1.0
+    cache_images: true
+
+  - platform: proxy
+    name: left_preview
+    entity_id: camera.left_stream
+    max_stream_width: 180
+    max_image_width: 180
+    image_refresh_rate: 1.0
+    cache_images: true
+
+  - platform: proxy
+    name: right_preview
+    entity_id: camera.right_stream
+    max_stream_width: 180
+    max_image_width: 180
+    image_refresh_rate: 1.0
+    cache_images: true

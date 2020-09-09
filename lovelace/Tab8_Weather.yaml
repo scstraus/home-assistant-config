@@ -7,7 +7,14 @@ icon: mdi:weather-lightning
 cards:
 
   - type: 'custom:weather-card-chart'
-    title: Weather
+    title: Weather Today
+    weather: weather.openweathermap
+    sun: sun.sun
+    mode: hourly
+
+
+  - type: 'custom:weather-card-chart'
+    title: Weather This Week
     weather: weather.weather_forecast
     sun: sun.sun
 
@@ -19,46 +26,224 @@ cards:
     show_header_toggle: false
     entities:
     - sensor.dark_sky_summary
+
+
+  - type: custom:mod-card
+    report_size: 14
+    card:
+
+      type: vertical-stack
+      cards:
+
+
+
+#These are the colors to use for the environment graph cards
+#HSV: X°, 100%, 77%
+#card green: #00c40a
+#card yellow: #c1c400
+#card orange: #c48600
+#card red: #c41700
+#card magenta: #c4007c
+#card violet: #b000c4
+#
+#HSV: X°, 39%, 100%
+#graph green: #9cffa1
+#graph yellow: #fdff9c
+#graph orange: #ffe09c
+#graph red: #ffa79c
+#graph magenta: #ff9cdb
+#graph violet: #f59cff
+
+#      - type: horizontal-stack
+#        cards:
+
+      - type: custom:mini-graph-card
+        name: AQI Outside 
+        icon: mdi:air-filter
+#          style: |
+#            ha-card {
+#              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
+#              #00c40a
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
+#              #c1c400 
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
+#              #c48600
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
+#              #c41700
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
+#              #b000c4
+#              {% else %}
+#              #c4007c
+#              {% endif %}
+        entities:
+          - entity: sensor.hlubocepy_air_quality
+            name: 
+        color_thresholds:
+          - value: 25
+            color: "#9cffa1"
+          - value: 75
+            color: "#fdff9c"
+          - value: 125
+            color: "#ffe09c"
+          - value: 175
+            color: "#ffa79c"
+          - value: 250
+            color: "#f59cff"
+          - value: 350
+            color: "#ff9cdb"
+        hours_to_show: 24
+        points_per_hour: 2
+        show_points: false
+        height: 150
+
+      - type: custom:mini-graph-card
+        name: AQI Inside
+        icon: mdi:air-filter
+#          style: |
+#            ha-card {
+#              background: {% if states('sensor.home_air_quality')|int <= 50 %}
+#              #00c40a
+#              {% elif states('sensor.home_air_quality')|int <= 100 %} 
+#              #c1c400 
+#              {% elif states('sensor.home_air_quality')|int <= 150 %}
+#              #c48600
+#              {% elif states('sensor.home_air_quality')|int <= 200 %}
+#              #c41700
+#              {% elif states('sensor.home_air_quality')|int <= 300 %}
+#              #b000c4
+#              {% else %}
+#              #c4007c
+#              {% endif %}
+        entities:
+          - entity: sensor.home_air_quality
+            name: 
+        color_thresholds:
+          - value: 25
+            color: "#9cffa1"
+          - value: 75
+            color: "#fdff9c"
+          - value: 125
+            color: "#ffe09c"
+          - value: 175
+            color: "#ffa79c"
+          - value: 250
+            color: "#f59cff"
+          - value: 350
+            color: "#ff9cdb"
+        hours_to_show: 24
+        points_per_hour: 2
+        show_points: false
+        height: 150
+
+#
+#      - type: horizontal-stack
+#        cards:
+
+      - type: custom:mini-graph-card
+        name: Radon Upstairs
+#          style: |
+#            ha-card {
+#              background: {% if states('sensor.radon_upstairs')|int <= 100 %}
+#              #00c40a
+#              {% elif states('sensor.radon_upstairs')|int <= 150 %} 
+#              #c1c400 
+#              {% else %}
+#              #c41700
+#              {% endif %} 
+        entities:
+          - entity: sensor.radon_upstairs
+            name: 
+        color_thresholds:
+          - value: 0
+            color: "#9cffa1"
+          - value: 90
+            color: "#9cffa1"
+          - value: 110
+            color: "#fdff9c"
+          - value: 140
+            color: "#fdff9c"
+          - value: 160
+            color: "#ffe09c"
+          - value: 200
+            color: "#ffe09c"
+        hours_to_show: 24
+        points_per_hour: 2
+        show_points: false
+        height: 150
+
+      - type: custom:mini-graph-card
+        name: VOC Upstairs
+#          style: |
+#            ha-card {
+#              background: {% if states('sensor.tvocs_upstairs')|int <= 250 %}
+#              #00c40a
+#              {% elif states('sensor.tvocs_upstairs')|int <= 2000 %} 
+#              #c1c400 
+#              {% else %}
+#              #c41700
+#              {% endif %}
+        entities:
+          - entity: sensor.tvocs_upstairs
+            name: 
+        color_thresholds:
+          - value: 0
+            color: "#9cffa1"
+          - value: 240
+            color: "#9cffa1"
+          - value: 260
+            color: "#fdff9c"
+          - value: 1990
+            color: "#fdff9c"
+          - value: 2010
+            color: "#ffe09c"
+          - value: 3000
+            color: "#ffe09c"
+        hours_to_show: 24
+        points_per_hour: 2
+        show_points: false
+        height: 150
+
+
 #    - sensor.u_s_air_pollution_level 
 #    - sensor.u_s_air_quality_index 
-
-    - type: vertical-stack
-      in_card: true
-      cards: 
-
-      - type: "custom:button-card"
-        name: Hlubočepy
-        styles:
-          name: 
-            - color: var(--text-primary-color)
-          card:
-            - padding: 8px 0px
-
-      - type: custom:air-visual-card 
-        air_pollution_level: sensor.hlubocepy_air_pollution
-        air_quality_index: sensor.hlubocepy_air_quality
-        main_pollutant: sensor.u_s_main_pollutant_2
-        hide_title: true
-        svg_location: "/local/icons/aqi_icons"
-
-    - type: vertical-stack
-      in_card: true
-      cards: 
-    
-      - type: "custom:button-card"
-        name: Home
-        styles:
-          name: 
-            - color: var(--text-primary-color)
-          card:
-            - padding: 8px 0px
-
-      - type: custom:air-visual-card 
-        air_pollution_level: sensor.home_air_pollution
-        air_quality_index: sensor.home_air_quality
-        main_pollutant: sensor.u_s_main_pollutant_2
-        hide_title: true
-        svg_location: "/local/icons/aqi_icons"
+#
+#    - type: vertical-stack
+#      in_card: true
+#      cards: 
+#
+#      - type: "custom:button-card"
+#        name: Hlubočepy
+#        styles:
+#          name: 
+#            - color: var(--text-primary-color)
+#          card:
+#            - padding: 8px 0px
+#
+#      - type: custom:air-visual-card 
+#        air_pollution_level: sensor.hlubocepy_air_pollution
+#        air_quality_index: sensor.hlubocepy_air_quality
+#        main_pollutant: sensor.u_s_main_pollutant_2
+#        hide_title: true
+#        svg_location: "/local/icons/aqi_icons"
+#
+#    - type: vertical-stack
+#      in_card: true
+#      cards: 
+#    
+#      - type: "custom:button-card"
+#        name: Home
+#        styles:
+#          name: 
+#            - color: var(--text-primary-color)
+#          card:
+#            - padding: 8px 0px
+#
+#      - type: custom:air-visual-card 
+#        air_pollution_level: sensor.home_air_pollution
+#        air_quality_index: sensor.home_air_quality
+#        main_pollutant: sensor.u_s_main_pollutant_2
+#        hide_title: true
+#        svg_location: "/local/icons/aqi_icons"
 
 #
 #    - type: custom:air-visual-card 

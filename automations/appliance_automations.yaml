@@ -129,7 +129,7 @@
       data:
         type: tts
       message: "The dishes are clean."
-    service: notify.alexa_media_alexa_kitchen_bar
+    service: notify.alexa_media_alexa_master_closet
 
       
 - id: fire_notify_running_dishes
@@ -139,7 +139,6 @@
     platform: state
     entity_id: sensor.bosch_dishwasher_door
     to: 'open'
-  condition:
   condition:
     condition: and
     conditions:
@@ -154,7 +153,7 @@
       data:
         type: tts
       message: "The dishes are not done yet."
-    service: notify.alexa_media_alexa_kitchen_bar
+    service: notify.alexa_media_alexa_master_closet
     
 
 - id: dishwasher_running_door_open_timer
@@ -629,7 +628,7 @@
       entity_id: binary_sensor.sophies_room_zone_10
       to: 'off'
       for: 
-        minutes: 60
+        minutes: 59
   condition:
     condition: time
     after: '8:00:00'

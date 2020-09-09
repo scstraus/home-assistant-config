@@ -18,7 +18,8 @@ popup_cards:
   sensor.sean_location:
     title: Sean Location History and Time to Home
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -31,7 +32,8 @@ popup_cards:
   sensor.sophie_location:
     title: Sophie Location History and Time to Home
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -44,7 +46,8 @@ popup_cards:
   sensor.alena_location:
     title: Alena Location History and Time to Home
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -57,7 +60,8 @@ popup_cards:
   input_boolean.sophies_air_purifier:
     title: "Sophie's Air Purifier"
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -79,7 +83,8 @@ popup_cards:
   input_boolean.sebastians_air_purifier:
     title: "Sebastian's Air Purifier"
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -102,7 +107,8 @@ popup_cards:
   fan.master_bedroom_air_purifier:
     title: "Master Bedroom Air Purifier"
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -117,7 +123,8 @@ popup_cards:
   binary_sensor.cooper_s_e_all4_door_lock_state:
     title: "Car Lock"
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: entities
         entities:
@@ -161,7 +168,11 @@ popup_cards:
 
 cards: 
 
+
 ### START COMMENT BLOCK 2: DECLUTTERING CARDS 
+
+
+
 
   - type: custom:decluttering-card
     template: emergency
@@ -306,6 +317,7 @@ cards:
 
 ### END COMMENT BLOCK 2: DECLUTTERING CARDS 
 
+
 ### START COMMENT BLOCK 3: ENTITY FILTER CARDS
   - type: entity-filter
     card: 
@@ -423,6 +435,109 @@ cards:
     - sensor.ecolink_basement_sliding_door_battery_level
     show_empty: false
 
+#  - type: custom:badge-card
+#    badges:
+#    - entity: sensor.czechia_coronavirus_current
+#    - entity: variable.czechia_coronavirus_new_yesterday
+#    - entity: variable.czechia_coronavirus_new_today
+
+  #Coronavirus card
+  - type: picture-elements
+    image: /local/images/coronavirus_transparent.png
+    elements:
+      - type: icon
+        icon: mdi:virus-outline
+        style:
+          top: 18%
+          left: 10%
+          color: var(--ha-card-header-color)
+      - type: icon
+        icon: mdi:virus-outline
+        style:
+          top: 18%
+          right: 1%
+          color: var(--ha-card-header-color)
+      # Header
+      - style:
+          font-size: large
+          left: 35%
+          top: 18%
+          color: var(--ha-card-header-color)
+        text: Coronavirus
+        type: 'custom:text-element'
+      - style:
+          font-size: large
+          left: 56%
+          top: 18%
+          color: var(--ha-card-header-color)
+        text: In
+        type: 'custom:text-element'
+      - style:
+          font-size: large
+          left: 71%
+          top: 18%
+          color: var(--ha-card-header-color)
+        text: Czechia
+        type: 'custom:text-element'
+      #Numbers
+      - type: state-label  
+        entity: sensor.czechia_coronavirus_current
+        style:
+          font-size: x-large
+          left: 20%
+          top: 46%
+      - type: state-label  
+        entity: variable.czechia_coronavirus_new_yesterday
+        style:
+          font-size: x-large
+          left: 51%
+          top: 46%
+      - type: state-label  
+        entity:  variable.czechia_coronavirus_new_today
+        style:
+          font-size: x-large
+          left: 82%
+          top: 46%
+      #Units top row
+      - style:
+          font-size: small
+          left: 20%
+          top: 68%
+        text: Active
+        type: 'custom:text-element'
+      - style:
+          font-size: small
+          left: 51%
+          top: 68%
+        text: New
+        type: 'custom:text-element'
+      - style:
+          font-size: small
+          left: 82%
+          top: 68%
+        text: New
+        type: 'custom:text-element'
+      #Units bottom row
+      - style:
+          font-size: small
+          left: 20%
+          top: 83%
+        text: Cases
+        type: 'custom:text-element'
+      - style:
+          font-size: small
+          left: 51%
+          top: 83%
+        text: Yesterday
+        type: 'custom:text-element'
+      - style:
+          font-size: small
+          left: 82%
+          top: 83%
+        text: Today
+        type: 'custom:text-element'
+
+
   - type: entity-filter
     entities:
     - variable.posta_variable
@@ -460,9 +575,9 @@ cards:
     - sensor.alarm_state_3_motion_sensors
     - sensor.alarm_state_2_1st_floor
     - sensor.alarm_state_1_laundry
-    - sensor.czechia_coronavirus_current
-    - variable.czechia_coronavirus_new_yesterday
-    - variable.czechia_coronavirus_new_today
+#    - sensor.czechia_coronavirus_current
+#    - variable.czechia_coronavirus_new_yesterday
+#    - variable.czechia_coronavirus_new_today
 #    - sensor.car_needs_charging
 #    - sensor.low_gas_in_car
     - sensor.trash_display
@@ -501,34 +616,34 @@ cards:
     entities:
       - entity: sensor.czech_holiday_friendly_0
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
       - entity: sensor.czech_holiday_friendly_1
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
       - entity: sensor.czech_holiday_friendly_2
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
       - entity: sensor.czech_holiday_friendly_3
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
       - entity: sensor.czech_holiday_friendly_4
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
       - entity: sensor.parklane_holiday_friendly_0
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
       - entity: sensor.parklane_holiday_friendly_1
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
       - entity: sensor.parklane_holiday_friendly_2
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
       - entity: sensor.parklane_holiday_friendly_3
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
       - entity: sensor.parklane_holiday_friendly_4
         type: "custom:secondaryinfo-entity-row"
-        secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+        secondary_info: "[[ {entity}.attributes.date ]]"
 
 ### END COMMENT BLOCK 3: ENTITY FILTER CARDS
 
@@ -548,6 +663,7 @@ cards:
 #    card:
 
 ### START COMMENT BLOCK 4: Weather and air quality
+
 
 
   - type: custom:mod-card
@@ -831,7 +947,7 @@ cards:
 #      Home:
 
   - type: custom:mod-card
-    report_size: 14
+    report_size: 12
     card:
 
       type: vertical-stack
@@ -861,7 +977,7 @@ cards:
         entities: []
         show_state: false
         show_name: false
-        camera_image: camera.front_stream
+        camera_image: camera.front_preview
         camera_view: live
 
       - type: horizontal-stack
@@ -872,7 +988,7 @@ cards:
           entities: []
           show_state: false
           show_name: false
-          camera_image: camera.left_stream
+          camera_image: camera.left_preview
           camera_view: live
 
         - type: picture-glance
@@ -880,7 +996,7 @@ cards:
           show_state: false
           show_name: false
           entities: []
-          camera_image: camera.right_stream
+          camera_image: camera.right_preview
           camera_view: live
 
       - type: picture-glance
@@ -888,7 +1004,7 @@ cards:
         entities: []
         show_state: false
         show_name: false
-        camera_image: camera.back_stream
+        camera_image: camera.back_preview
         camera_view: live
 #
 #

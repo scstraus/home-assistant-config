@@ -15,83 +15,101 @@ cards:
 # live views and motion detection
 
     - type: picture-glance
-      title: Outdoor - Front Gate
+      # title: Outdoor - Front Gate
       aspect_ratio: 16x9
-      entities:
-      - binary_sensor.motion_front
+      entities: []
+      show_state: false
+      show_name: false
+  #      - binary_sensor.motion_front
       camera_image: camera.front_stream
-#      camera_view: live
+  #      camera_view: live
 
-    - type: history-graph
-      title: 'Front Motion'
-      entities:
-#        - binary_sensor.motion_front_of_house_motion
-      - binary_sensor.motion_front
 
-#      - type: picture-glance
-#        title: Outdoor - Right Side
-#        aspect_ratio: 16x9
-#        entities:
-#        - binary_sensor.motion_right
-#        camera_image: camera.right
+
+  #    - type: history-graph
+  #      title: 'Front Motion'
+  #      entities:
+  ##        - binary_sensor.motion_front_of_house_motion
+  #      - binary_sensor.motion_front
+
+  #      - type: picture-glance
+    #        title: Outdoor - Right Side
+      #        aspect_ratio: 16x9
+      #        entities:
+      #        - binary_sensor.motion_right
+      #        camera_image: camera.right
 
     - type: horizontal-stack
       cards:
 
-      - type: vertical-stack
-        cards:    
+        # - type: vertical-stack
+        #   cards:    
 
-        - type: picture-glance
-          title: Outdoor - Left
-          aspect_ratio: 9x16
-          entities:
-          - binary_sensor.motion_left
-          camera_image: camera.left_stream
- #         camera_view: live
+      - type: picture-glance
+        # title: Outdoor - Left
+        aspect_ratio: 9x16
+        entities: []
+        show_state: false
+        show_name: false
+        # entities:
+        # - binary_sensor.motion_left
+        camera_image: camera.left_stream
+  #         camera_view: live
 
-        - type: history-graph
-          title: 'Left Motion'
-          entities:
-  #        - binary_sensor.motion_left_side_of_house_motion
-          - binary_sensor.motion_left
+  #        - type: history-graph
+  #          title: 'Left Motion'
+  #          entities:
+#  #        - binary_sensor.motion_left_side_of_house_motion
+#          - binary_sensor.motion_left
 
-      - type: vertical-stack
-        cards:
+      # - type: vertical-stack
+      #   cards:
 
-        - type: picture-glance
-          title: Outdoor - Right 
-          aspect_ratio: 9x16
-          entities:
-          - binary_sensor.motion_right
-          camera_image: camera.right_stream
-#          camera_view: live
-
-        - type: history-graph
-          title: 'Right Motion'
-          entities:
-  #        - binary_sensor.motion_right_side_of_house_motion
-          - binary_sensor.motion_right
+      - type: picture-glance
+        # title: Outdoor - Right 
+        aspect_ratio: 9x16
+        show_state: false
+        show_name: false
+        entities: []
+#        - binary_sensor.motion_right
+        camera_image: camera.right_stream
+  #          camera_view: live
+  #
+  #        - type: history-graph
+  #          title: 'Right Motion'
+  #          entities:
+  #  #        - binary_sensor.motion_right_side_of_house_motion
+  #          - binary_sensor.motion_right
 
     - type: picture-glance
-      title: Outdoor - Back Yard
+      # title: Outdoor - Back Yard
       aspect_ratio: 16x9
-      entities:
-      - binary_sensor.motion_back
+      entities: []
+      show_state: false
+      show_name: false
+      # entities:
+      # - binary_sensor.motion_back
       camera_image: camera.back_stream
-#      camera_view: live
+  #      camera_view: live
+  #
+  #    - type: history-graph
+  #      title: 'Back Motion'
+  #      entities:
+  ##        - binary_sensor.motion_back_of_house_motion
+  #      - binary_sensor.motion_back
 
-    - type: history-graph
-      title: 'Back Motion'
-      entities:
-#        - binary_sensor.motion_back_of_house_motion
-      - binary_sensor.motion_back
 
-
-# object detection (tensorflow)
+  # object detection (tensorflow)
 
 
     - type: vertical-stack
       cards:
+
+      - type: history-graph
+        title: 'Back Human Detection'
+        entities:
+  #        - sensor.back_human_detection
+        - binary_sensor.human_back
 
       - type: 'custom:swipe-card' 
         start_card: 10
@@ -137,24 +155,20 @@ cards:
             name: Last Person in Back
             tap_action: more-info
 
-#       - type: picture-glance
-#         title: Back Last Person Detected
-#         entities:
-# #        - sensor.object_detection_back
-#         - binary_sensor.human_back
-#         camera_image: camera.back_last_person
+  #       - type: picture-glance
+  #         title: Back Last Person Detected
+  #         entities:
+  # #        - sensor.object_detection_back
+  #         - binary_sensor.human_back
+  #         camera_image: camera.back_last_person
 
-      - type: history-graph
-        title: 'Back Human Detection'
-        entities:
-#        - sensor.back_human_detection
-        - binary_sensor.human_back
 
-#      - type: entities
-#        title: 
-#        show_header_toggle: false
-#        entities:           
-#        - sensor.last_human_back
+
+  #      - type: entities
+  #        title: 
+  #        show_header_toggle: false
+  #        entities:           
+  #        - sensor.last_human_back
 
     - type: horizontal-stack
       cards:
@@ -162,14 +176,18 @@ cards:
       - type: vertical-stack
         cards:          
 
-#         - type: picture-glance
-#           title: Left Last Person Detected
-#           entities:
-# #          - sensor.object_detection_left
-#           - binary_sensor.human_left
-#           camera_image: camera.left_last_person
+  #         - type: picture-glance
+  #           title: Left Last Person Detected
+  #           entities:
+  # #          - sensor.object_detection_left
+  #           - binary_sensor.human_left
+  #           camera_image: camera.left_last_person
 
-
+        - type: history-graph
+          title: 'Human Left'
+          entities:
+  #          - sensor.left_human_detection
+          - binary_sensor.human_left
 
         - type: 'custom:swipe-card' 
           start_card: 10
@@ -215,28 +233,29 @@ cards:
               name: Last Person on Left
               tap_action: more-info
 
-        - type: history-graph
-          title: 'Human Left'
-          entities:
-#          - sensor.left_human_detection
-          - binary_sensor.human_left
 
-#        - type: entities
-#          title: 
-#          show_header_toggle: false
-#          entities:
-#          - sensor.last_human_left
+
+  #        - type: entities
+  #          title: 
+  #          show_header_toggle: false
+  #          entities:
+  #          - sensor.last_human_left
 
       - type: vertical-stack
         cards:
 
-#         - type: picture-glance
-#           title: Right Last Person Detected
-#           entities:
-# #          - sensor.object_detection_right
-#           - binary_sensor.human_right
-#           camera_image: camera.right_last_person
+  #         - type: picture-glance
+  #           title: Right Last Person Detected
+  #           entities:
+  # #          - sensor.object_detection_right
+  #           - binary_sensor.human_right
+  #           camera_image: camera.right_last_person
 
+        - type: history-graph
+          title: 'Human Right'
+          entities:
+          -  binary_sensor.human_right
+  #          - sensor.right_human_detection
 
         - type: 'custom:swipe-card' 
           start_card: 10
@@ -283,23 +302,22 @@ cards:
               tap_action: more-info
 
               
-        - type: history-graph
-          title: 'Human Right'
-          entities:
-          -  binary_sensor.human_right
-#          - sensor.right_human_detection
 
-#        - type: entities
-#          title: 
-#          show_header_toggle: false
-#          entities:
-#          - sensor.last_human_right
+
+  #        - type: entities
+  #          title: 
+  #          show_header_toggle: false
+  #          entities:
+  #          - sensor.last_human_right
 
 
     - type: vertical-stack
       cards:
 
-
+      - type: history-graph
+        title: 'Front Human Detection'
+        entities:
+        - binary_sensor.human_front
 
       - type: 'custom:swipe-card' 
         start_card: 10
@@ -345,23 +363,18 @@ cards:
             name: Last Person in Front
             tap_action: more-info
 
-#       - type: picture-glance
-#         title: Front Last Person Detected
-#         entities:
-# #          - sensor.object_detection_right
-#         - binary_sensor.human_front
-#         camera_image: camera.front_last_person
+  #       - type: picture-glance
+  #         title: Front Last Person Detected
+  #         entities:
+  # #          - sensor.object_detection_right
+  #         - binary_sensor.human_front
+  #         camera_image: camera.front_last_person
 
-      - type: history-graph
-        title: 'Front Human Detection'
-        entities:
-        - binary_sensor.human_front
-
-#      - type: entities
-#        title: 
-#        show_header_toggle: false
-#        entities:
-#        - sensor.last_human_front
+  #      - type: entities
+  #        title: 
+  #        show_header_toggle: false
+  #        entities:
+  #        - sensor.last_human_front
 
 
 

@@ -19,7 +19,8 @@ popup_cards:
   sensor.sean_location:
     title: Sean Location History and Time to Home
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -32,7 +33,8 @@ popup_cards:
   sensor.sophie_location:
     title: Sophie Location History and Time to Home
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -45,7 +47,8 @@ popup_cards:
   sensor.alena_location:
     title: Alena Location History and Time to Home
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -58,7 +61,8 @@ popup_cards:
   input_boolean.sophies_air_purifier:
     title: "Sophie's Air Purifier"
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -80,7 +84,8 @@ popup_cards:
   input_boolean.sebastians_air_purifier:
     title: "Sebastian's Air Purifier"
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -102,7 +107,8 @@ popup_cards:
   fan.master_bedroom_air_purifier:
     title: "Master Bedroom Air Purifier"
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: history-graph
         entities:
@@ -117,7 +123,8 @@ popup_cards:
   binary_sensor.cooper_s_e_all4_door_lock_state:
     title: "Car Lock"
     card:
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
+      in_card: true
       cards:
       - type: entities
         entities:
@@ -158,9 +165,14 @@ popup_cards:
 cards: 
 
 
+
   - type: custom:layout-card
     layout: vertical
     cards:
+
+
+
+
 
     - type: custom:decluttering-card
       template: emergency
@@ -189,6 +201,7 @@ cards:
         - entity: sensor.low_gas_in_car
         - state: "Fill It"
         - name: "The Car Needs Gas"
+
 
 #    - type: custom:decluttering-card
 #      template: warning_marquee
@@ -273,7 +286,7 @@ cards:
         - entity: sensor.alenas_phone_battery
         - state: Low
         - name: "Alena's Phone Battery is Low"
-        
+
     - type: entity-filter
       entities:
       - variable.posta_variable
@@ -307,9 +320,9 @@ cards:
       - alarm_control_panel.laundry_room_window
       - alarm_control_panel.motion_sensors
       - alarm_control_panel.windows_and_garage_door
-      - sensor.czechia_coronavirus_current
-      - variable.czechia_coronavirus_new_yesterday
-      - variable.czechia_coronavirus_new_today
+#      - sensor.czechia_coronavirus_current
+#      - variable.czechia_coronavirus_new_yesterday
+#      - variable.czechia_coronavirus_new_today
       - sensor.trash_display
       - binary_sensor.basement_sliding_door
       state_filter:
@@ -331,12 +344,105 @@ cards:
         value: -1
       card: 
         type: glance
-        title: "Happening Today"
+#        title: "Happening Today"
         columns: 3
       show_empty: false      
 
-
-
+    #coronavirus card
+    - type: picture-elements
+      image: /local/images/coronavirus_transparent.png
+      elements:
+        - type: icon
+          icon: mdi:virus-outline
+          style:
+            top: 15%
+            left: 5%
+            color: var(--ha-card-header-color)
+        - type: icon
+          icon: mdi:virus-outline
+          style:
+            top: 15%
+            right: -2%
+            color: var(--ha-card-header-color)
+        # Header
+        - style:
+            font-size: large
+            left: 31%
+            top: 16%
+            color: var(--ha-card-header-color)
+          text: Coronavirus
+          type: 'custom:text-element'
+        - style:
+            font-size: large
+            left: 57%
+            top: 16%
+            color: var(--ha-card-header-color)
+          text: In
+          type: 'custom:text-element'
+        - style:
+            font-size: large
+            left: 76%
+            top: 16%
+            color: var(--ha-card-header-color)
+          text: Czechia
+          type: 'custom:text-element'
+        #Numbers
+        - type: state-label  
+          entity: sensor.czechia_coronavirus_current
+          style:
+            font-size: x-large
+            left: 20%
+            top: 44%
+        - type: state-label  
+          entity: variable.czechia_coronavirus_new_yesterday
+          style:
+            font-size: x-large
+            left: 51%
+            top: 44%
+        - type: state-label  
+          entity:  variable.czechia_coronavirus_new_today
+          style:
+            font-size: x-large
+            left: 82%
+            top: 44%
+        #Units top row
+        - style:
+            font-size: small
+            left: 20%
+            top: 66%
+          text: Active
+          type: 'custom:text-element'
+        - style:
+            font-size: small
+            left: 51%
+            top: 66%
+          text: New
+          type: 'custom:text-element'
+        - style:
+            font-size: small
+            left: 82%
+            top: 66%
+          text: New
+          type: 'custom:text-element'
+        #Units bottom row
+        - style:
+            font-size: small
+            left: 20%
+            top: 85%
+          text: Cases
+          type: 'custom:text-element'
+        - style:
+            font-size: small
+            left: 51%
+            top: 85%
+          text: Yesterday
+          type: 'custom:text-element'
+        - style:
+            font-size: small
+            left: 82%
+            top: 85%
+          text: Today
+          type: 'custom:text-element'
 
     - type: vertical-stack
       cards:
@@ -359,7 +465,7 @@ cards:
   #        - binary_sensor.motion_front_of_house_motion
 #          - binary_sensor.motion_front
   #        camera_image: camera.front_outdoor
-        camera_image: camera.front_stream
+        camera_image: camera.front_preview
         camera_view: live
         show_state: false
         show_name: false
@@ -374,7 +480,7 @@ cards:
           aspect_ratio: 9x16
           entities: []
 #            - binary_sensor.motion_left
-          camera_image: camera.left_stream
+          camera_image: camera.left_preview
           camera_view: live
           show_state: false
           show_name: false
@@ -384,7 +490,7 @@ cards:
           aspect_ratio: 9x16
           entities: []
 #            - binary_sensor.motion_right
-          camera_image: camera.right_stream
+          camera_image: camera.right_preview
           camera_view: live
           show_state: false
           show_name: false
@@ -396,7 +502,7 @@ cards:
   #        - binary_sensor.motion_back_of_house_motion
 #          - binary_sensor.motion_back
   #        camera_image: camera.back_outdoor
-        camera_image: camera.back_stream
+        camera_image: camera.back_preview
         camera_view: live
         show_state: false
         show_name: false
@@ -531,42 +637,48 @@ cards:
       entities:
         - entity: sensor.czech_holiday_friendly_0
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
         - entity: sensor.czech_holiday_friendly_1
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
         - entity: sensor.czech_holiday_friendly_2
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
         - entity: sensor.czech_holiday_friendly_3
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
         - entity: sensor.czech_holiday_friendly_4
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
         - entity: sensor.parklane_holiday_friendly_0
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
         - entity: sensor.parklane_holiday_friendly_1
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
         - entity: sensor.parklane_holiday_friendly_2
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
         - entity: sensor.parklane_holiday_friendly_3
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
         - entity: sensor.parklane_holiday_friendly_4
           type: "custom:secondaryinfo-entity-row"
-          secondary_info: "[[ {entity}.attributes.friendly_eta ]]"
+          secondary_info: "[[ {entity}.attributes.date ]]"
 
+#    - type: custom:gap-card
+#      height: 25
 
 
 
 ### These are the cards you see all the time in the first tab on the kiosks
 
-    - type: custom:vertical-stack-in-card
+    - type: vertical-stack
+      in_card: true
       cards:
+#
+#      - type: custom:gap-card
+##        height: 25
 
       - type: 'custom:weather-card-chart'
         title: Weather
@@ -599,7 +711,8 @@ cards:
         - entity: binary_sensor.reminders_label
           state: "on"
       card:
-        type: custom:vertical-stack-in-card
+        type: vertical-stack
+        in_card: true
         cards:
         - type: "custom:button-card"
           name: Reminders
@@ -876,289 +989,293 @@ cards:
     #        
     - type: vertical-stack
       cards:
-      - entity: media_player.itunes
-        type: custom:mini-media-player
-        group: true
-        shortcuts:
-          label: "Other Playlists"
-          list:
-            - name: "San Tropez"
-              type: playlist
-              id: "san-tropez"
-            - name: "3+ star"
-              type: playlist
-              id: "a-3-star"
-            - name: "3+ Star / Unrated"
-              type: playlist
-              id: "a-3-star-unrated"
-            - name: "4+5 Star"
-              type: playlist
-              id: "a-45-star"
-            - name: "4+5 Star / Unrated"
-              type: playlist
-              id: "a-45-star-unrated"
-            - name: "4+5 Star+All Rock+Jazz"
-              type: playlist
-              id: "a-45-starall-rockjazz"
-            - name: "5 Star"
-              type: playlist
-              id: "a-5-star"
-            - name: "New Stuff"
-              type: playlist
-              id: "a-new-stuff"
-            - name: "New Stuff - Highly Rated"
-              type: playlist
-              id: "a-new-stuff-highly-rated"
-            - name: "New Stuff - Unrated"
-              type: playlist
-              id: "a-new-stuff-unrated"
-            - name: "Unrated Songs"
-              type: playlist
-              id: "a-unrated-songs"
-            - name: "All Black"
-              type: playlist
-              id: "all-black"
-            - name: "All Electronica"
-              type: playlist
-              id: "all-electronica"
-            - name: "All Jazz"
-              type: playlist
-              id: "all-jazz"
-            - name: "All Pop"
-              type: playlist
-              id: "all-pop"
-            - name: "All Rock"
-              type: playlist
-              id: "all-rock"
-            - name: "Black - Funk"
-              type: playlist
-              id: "black-funk"
-            - name: "Black - Hip Hop"
-              type: playlist
-              id: "black-hip-hop"
-            - name: "Black - R&B"
-              type: playlist
-              id: "black-rb"
-            - name: "Black - Rap"
-              type: playlist
-              id: "black-rap"
-            - name: "Black - Reggae/Ska/African"
-              type: playlist
-              id: "black-reggaeskaafrican"
-            - name: "Black - Soul"
-              type: playlist
-              id: "black-soul"
-            - name: "Black - Unrated"
-              type: playlist
-              id: "black-unrated"
-            - name: "Christmas"
-              type: playlist
-              id: "christmas"
-            - name: "Classical"
-              type: playlist
-              id: "classical"
-            - name: "Comedy"
-              type: playlist
-              id: "comedy"
-            - name: "Electronica - Ambient"
-              type: playlist
-              id: "electronica-ambient"
-            - name: "Electronica - Chill Out"
-              type: playlist
-              id: "electronica-chill-out"
-            - name: "Electronica - Dance"
-              type: playlist
-              id: "electronica-dance"
-            - name: "Electronica - Drum N Bass"
-              type: playlist
-              id: "electronica-drum-n-bass"
-            - name: "Good Black"
-              type: playlist
-              id: "good-black"
-            - name: "Good Electronica"
-              type: playlist
-              id: "good-electronica"
-            - name: "Good Jazz"
-              type: playlist
-              id: "good-jazz"
-            - name: "Good Pop"
-              type: playlist
-              id: "good-pop"
-            - name: "Good Rock"
-              type: playlist
-              id: "good-rock"
-            - name: "Jazz - 4+5 Star + Unrated"
-              type: playlist
-              id: "jazz-45-star-unrated"
-            - name: "Jazz - 70s Electronic"
-              type: playlist
-              id: "jazz-70s-electronic"
-            - name: "Jazz - Acid"
-              type: playlist
-              id: "jazz-acid"
-            - name: "Jazz - Acid Small"
-              type: playlist
-              id: "jazz-acid-small"
-            - name: "Jazz - Big Band"
-              type: playlist
-              id: "jazz-big-band"
-            - name: "Jazz - Classic"
-              type: playlist
-              id: "jazz-classic"
-            - name: "Jazz - Classic Small"
-              type: playlist
-              id: "jazz-classic-small"
-            - name: "Jazz - Jaco"
-              type: playlist
-              id: "jazz-jaco"
-            - name: "Jazz - Latin"
-              type: playlist
-              id: "jazz-latin"
-            - name: "Jazz - Modern"
-              type: playlist
-              id: "jazz-modern"
-            - name: "Jazz - Unrated"
-              type: playlist
-              id: "jazz-unrated"
-            - name: "Kids - English"
-              type: playlist
-              id: "kids-english"
-            - name: "Kids - Russian"
-              type: playlist
-              id: "kids-russian"
-            - name: "Kids Music Videos"
-              type: playlist
-              id: "kids-music-videos"
-            - name: "Music Videos"
-              type: playlist
-              id: "music-videos"
-            - name: "Pop - 80s"
-              type: playlist
-              id: "pop-80s"
-            - name: "Pop - Crowd Pleasers"
-              type: playlist
-              id: "pop-crowd-pleasers"
-            - name: "Pop - Modern"
-              type: playlist
-              id: "pop-modern"
-            - name: "Pop - Unrated"
-              type: playlist
-              id: "pop-unrated"
-            - name: "Recent Stuff - Highly Rated"
-              type: playlist
-              id: "recent-stuff-highly-rated"
-            - name: "Rock - 90s"
-              type: playlist
-              id: "rock-90s"
-            - name: "Rock - 00s"
-              type: playlist
-              id: "rock-00s"
-            - name: "Rock - 4+5 Star + Unrated"
-              type: playlist
-              id: "rock-45-star-unrated"
-            - name: "Rock - Alternative"
-              type: playlist
-              id: "rock-alternative"
-            - name: "Rock - AltRock"
-              type: playlist
-              id: "rock-altrock"
-            - name: "Rock - Classic"
-              type: playlist
-              id: "rock-classic"
-            - name: "Rock - College"
-              type: playlist
-              id: "rock-college"
-            - name: "Rock - Mellow"
-              type: playlist
-              id: "rock-mellow"
-            - name: "Rock - Metal"
-              type: playlist
-              id: "rock-metal"
-            - name: "Rock - Modern"
-              type: playlist
-              id: "rock-modern"
-            - name: "Rock - Nu Metal"
-              type: playlist
-              id: "rock-nu-metal"
-            - name: "Rock - Progressive"
-              type: playlist
-              id: "rock-progressive"
-            - name: "Rock - Unrated"
-              type: playlist
-              id: "rock-unrated"
-            - name: "Rock + Pop"
-              type: playlist
-              id: "rock-pop"
-            - name: "Ambient Sleeping Pill"
-              type: playlist
-              id: "ambient-sleeping-pill"
-            - name: "Europa2"
-              type: playlist
-              id: "europa2"
-            - name: "Jazz24"
-              type: playlist
-              id: "jazz24"
-            - name: "Radio Kultura RU"
-              type: playlist
-              id: "radio-kultura-ru"
-            - name: "Radio Swiss Classic"
-              type: playlist
-              id: "radio-swiss-classic"
-            - name: "Acid Jazz + Chill Out"
-              type: playlist
-              id: "z-acid-jazz-chill-out"
-            - name: "AlteyRock"
-              type: playlist
-              id: "z-alteyrock"
-            - name: "Jazz+Funk"
-              type: playlist
-              id: "z-jazzfunk"
-            - name: "Jazz+Latin"
-              type: playlist
-              id: "z-jazzlatin"
-            - name: "Mine"
-              type: playlist
-              id: "z-mine"
-            - name: "Proletariat Rock"
-              type: playlist
-              id: "z-proletariat-rock"
-            - name: "Rocker's Rock"
-              type: playlist
-              id: "z-rockers-rock"
-            - name: "Alena's"
-              type: playlist
-              id: "zz-alenas"
-            - name: "Beach Music"
-              type: playlist
-              id: "z-beach-music"
-            - name: "DJ Cuts"
-              type: playlist
-              id: "z-dj-cuts"
-            - name: "Driving Music"
-              type: playlist
-              id: "z-driving-music"
-            - name: "Lounge"
-              type: playlist
-              id: "z-lounge"
-            - name: "Mellow Music"
-              type: playlist
-              id: "z-mellow-music"
-            - name: "Palettable Rock"
-              type: playlist
-              id: "z-palettable-rock"
-            - name: "Wacky Cheerful Music"
-              type: playlist
-              id: "z-wacky-cheerful-music"
-            - name: "Waver Friendly"
-              type: playlist
-              id: "z-waver-friendly"
-            - name: "Wedding music"
-              type: playlist
-              id: "z-wedding-music"
 
-      - type: horizontal-stack
+      - type: vertical-stack
+        in_card: true
         cards:
 
+        - entity: media_player.itunes
+          type: custom:mini-media-player
+          group: true
+          shortcuts:
+            label: "Other Playlists"
+            list:
+              - name: "San Tropez"
+                type: playlist
+                id: "san-tropez"
+              - name: "3+ star"
+                type: playlist
+                id: "a-3-star"
+              - name: "3+ Star / Unrated"
+                type: playlist
+                id: "a-3-star-unrated"
+              - name: "4+5 Star"
+                type: playlist
+                id: "a-45-star"
+              - name: "4+5 Star / Unrated"
+                type: playlist
+                id: "a-45-star-unrated"
+              - name: "4+5 Star+All Rock+Jazz"
+                type: playlist
+                id: "a-45-starall-rockjazz"
+              - name: "5 Star"
+                type: playlist
+                id: "a-5-star"
+              - name: "New Stuff"
+                type: playlist
+                id: "a-new-stuff"
+              - name: "New Stuff - Highly Rated"
+                type: playlist
+                id: "a-new-stuff-highly-rated"
+              - name: "New Stuff - Unrated"
+                type: playlist
+                id: "a-new-stuff-unrated"
+              - name: "Unrated Songs"
+                type: playlist
+                id: "a-unrated-songs"
+              - name: "All Black"
+                type: playlist
+                id: "all-black"
+              - name: "All Electronica"
+                type: playlist
+                id: "all-electronica"
+              - name: "All Jazz"
+                type: playlist
+                id: "all-jazz"
+              - name: "All Pop"
+                type: playlist
+                id: "all-pop"
+              - name: "All Rock"
+                type: playlist
+                id: "all-rock"
+              - name: "Black - Funk"
+                type: playlist
+                id: "black-funk"
+              - name: "Black - Hip Hop"
+                type: playlist
+                id: "black-hip-hop"
+              - name: "Black - R&B"
+                type: playlist
+                id: "black-rb"
+              - name: "Black - Rap"
+                type: playlist
+                id: "black-rap"
+              - name: "Black - Reggae/Ska/African"
+                type: playlist
+                id: "black-reggaeskaafrican"
+              - name: "Black - Soul"
+                type: playlist
+                id: "black-soul"
+              - name: "Black - Unrated"
+                type: playlist
+                id: "black-unrated"
+              - name: "Christmas"
+                type: playlist
+                id: "christmas"
+              - name: "Classical"
+                type: playlist
+                id: "classical"
+              - name: "Comedy"
+                type: playlist
+                id: "comedy"
+              - name: "Electronica - Ambient"
+                type: playlist
+                id: "electronica-ambient"
+              - name: "Electronica - Chill Out"
+                type: playlist
+                id: "electronica-chill-out"
+              - name: "Electronica - Dance"
+                type: playlist
+                id: "electronica-dance"
+              - name: "Electronica - Drum N Bass"
+                type: playlist
+                id: "electronica-drum-n-bass"
+              - name: "Good Black"
+                type: playlist
+                id: "good-black"
+              - name: "Good Electronica"
+                type: playlist
+                id: "good-electronica"
+              - name: "Good Jazz"
+                type: playlist
+                id: "good-jazz"
+              - name: "Good Pop"
+                type: playlist
+                id: "good-pop"
+              - name: "Good Rock"
+                type: playlist
+                id: "good-rock"
+              - name: "Jazz - 4+5 Star + Unrated"
+                type: playlist
+                id: "jazz-45-star-unrated"
+              - name: "Jazz - 70s Electronic"
+                type: playlist
+                id: "jazz-70s-electronic"
+              - name: "Jazz - Acid"
+                type: playlist
+                id: "jazz-acid"
+              - name: "Jazz - Acid Small"
+                type: playlist
+                id: "jazz-acid-small"
+              - name: "Jazz - Big Band"
+                type: playlist
+                id: "jazz-big-band"
+              - name: "Jazz - Classic"
+                type: playlist
+                id: "jazz-classic"
+              - name: "Jazz - Classic Small"
+                type: playlist
+                id: "jazz-classic-small"
+              - name: "Jazz - Jaco"
+                type: playlist
+                id: "jazz-jaco"
+              - name: "Jazz - Latin"
+                type: playlist
+                id: "jazz-latin"
+              - name: "Jazz - Modern"
+                type: playlist
+                id: "jazz-modern"
+              - name: "Jazz - Unrated"
+                type: playlist
+                id: "jazz-unrated"
+              - name: "Kids - English"
+                type: playlist
+                id: "kids-english"
+              - name: "Kids - Russian"
+                type: playlist
+                id: "kids-russian"
+              - name: "Kids Music Videos"
+                type: playlist
+                id: "kids-music-videos"
+              - name: "Music Videos"
+                type: playlist
+                id: "music-videos"
+              - name: "Pop - 80s"
+                type: playlist
+                id: "pop-80s"
+              - name: "Pop - Crowd Pleasers"
+                type: playlist
+                id: "pop-crowd-pleasers"
+              - name: "Pop - Modern"
+                type: playlist
+                id: "pop-modern"
+              - name: "Pop - Unrated"
+                type: playlist
+                id: "pop-unrated"
+              - name: "Recent Stuff - Highly Rated"
+                type: playlist
+                id: "recent-stuff-highly-rated"
+              - name: "Rock - 90s"
+                type: playlist
+                id: "rock-90s"
+              - name: "Rock - 00s"
+                type: playlist
+                id: "rock-00s"
+              - name: "Rock - 4+5 Star + Unrated"
+                type: playlist
+                id: "rock-45-star-unrated"
+              - name: "Rock - Alternative"
+                type: playlist
+                id: "rock-alternative"
+              - name: "Rock - AltRock"
+                type: playlist
+                id: "rock-altrock"
+              - name: "Rock - Classic"
+                type: playlist
+                id: "rock-classic"
+              - name: "Rock - College"
+                type: playlist
+                id: "rock-college"
+              - name: "Rock - Mellow"
+                type: playlist
+                id: "rock-mellow"
+              - name: "Rock - Metal"
+                type: playlist
+                id: "rock-metal"
+              - name: "Rock - Modern"
+                type: playlist
+                id: "rock-modern"
+              - name: "Rock - Nu Metal"
+                type: playlist
+                id: "rock-nu-metal"
+              - name: "Rock - Progressive"
+                type: playlist
+                id: "rock-progressive"
+              - name: "Rock - Unrated"
+                type: playlist
+                id: "rock-unrated"
+              - name: "Rock + Pop"
+                type: playlist
+                id: "rock-pop"
+              - name: "Ambient Sleeping Pill"
+                type: playlist
+                id: "ambient-sleeping-pill"
+              - name: "Europa2"
+                type: playlist
+                id: "europa2"
+              - name: "Jazz24"
+                type: playlist
+                id: "jazz24"
+              - name: "Radio Kultura RU"
+                type: playlist
+                id: "radio-kultura-ru"
+              - name: "Radio Swiss Classic"
+                type: playlist
+                id: "radio-swiss-classic"
+              - name: "Acid Jazz + Chill Out"
+                type: playlist
+                id: "z-acid-jazz-chill-out"
+              - name: "AlteyRock"
+                type: playlist
+                id: "z-alteyrock"
+              - name: "Jazz+Funk"
+                type: playlist
+                id: "z-jazzfunk"
+              - name: "Jazz+Latin"
+                type: playlist
+                id: "z-jazzlatin"
+              - name: "Mine"
+                type: playlist
+                id: "z-mine"
+              - name: "Proletariat Rock"
+                type: playlist
+                id: "z-proletariat-rock"
+              - name: "Rocker's Rock"
+                type: playlist
+                id: "z-rockers-rock"
+              - name: "Alena's"
+                type: playlist
+                id: "zz-alenas"
+              - name: "Beach Music"
+                type: playlist
+                id: "z-beach-music"
+              - name: "DJ Cuts"
+                type: playlist
+                id: "z-dj-cuts"
+              - name: "Driving Music"
+                type: playlist
+                id: "z-driving-music"
+              - name: "Lounge"
+                type: playlist
+                id: "z-lounge"
+              - name: "Mellow Music"
+                type: playlist
+                id: "z-mellow-music"
+              - name: "Palettable Rock"
+                type: playlist
+                id: "z-palettable-rock"
+              - name: "Wacky Cheerful Music"
+                type: playlist
+                id: "z-wacky-cheerful-music"
+              - name: "Waver Friendly"
+                type: playlist
+                id: "z-waver-friendly"
+              - name: "Wedding music"
+                type: playlist
+                id: "z-wedding-music"
+
+  #      - type: horizontal-stack
+  #        cards:
 
         - type: entities
           show_header_toggle: false
@@ -1515,7 +1632,8 @@ cards:
         
     - break
 
-    - type: custom:vertical-stack-in-card
+    - type: vertical-stack
+      in_card: true
       cards: 
 
       - type: entity-filter

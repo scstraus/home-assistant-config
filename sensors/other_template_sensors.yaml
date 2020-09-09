@@ -360,18 +360,18 @@
         friendly_name_template: >-
           {{state_attr('sensor.czech_holidays_event_0', 'name')}}
         value_template: >-
-          {{state_attr('sensor.czech_holidays_event_0', 'start').strftime('%A, %B %d')}}
+          {% if state_attr('sensor.czech_holidays_event_0', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.czech_holidays_event_0', 'eta') == 1 %}
+            Tomorrow
+          {% else %}
+            in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days 
+          {% endif %}
         attribute_templates:
           eta: >-
             {{state_attr('sensor.czech_holidays_event_0', 'eta')}}
-          friendly_eta: >-
-            {% if state_attr('sensor.czech_holidays_event_0', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.czech_holidays_event_0', 'eta') == 1 %}
-              Tomorrow
-            {% else %}
-              in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days 
-            {% endif %}
+          date: >-
+            {{state_attr('sensor.czech_holidays_event_0', 'start').strftime('%A, %B %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -381,18 +381,18 @@
         friendly_name_template: >-
           {{state_attr('sensor.czech_holidays_event_1', 'name')}}
         value_template: >-
-          {{state_attr('sensor.czech_holidays_event_1', 'start').strftime('%A, %B %d')}}
+          {% if state_attr('sensor.czech_holidays_event_1', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.czech_holidays_event_1', 'eta') == 1 %}
+            Tomorrow
+          {% else %}
+            in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days 
+          {% endif %}
         attribute_templates:
           eta: >-
             {{state_attr('sensor.czech_holidays_event_1', 'eta')}}
-          friendly_eta: >-
-            {% if state_attr('sensor.czech_holidays_event_1', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.czech_holidays_event_1', 'eta') == 1 %}
-              Tomorrow
-            {% else %}
-              in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days 
-            {% endif %}
+          date: >-
+            {{state_attr('sensor.czech_holidays_event_1', 'start').strftime('%A, %B %d')}} 
         icon_template: >-
             mdi:calendar
 
@@ -402,18 +402,18 @@
         friendly_name_template: >-
           {{state_attr('sensor.czech_holidays_event_2', 'name')}}
         value_template: >-
-          {{state_attr('sensor.czech_holidays_event_2', 'start').strftime('%A, %B %d')}}
+          {% if state_attr('sensor.czech_holidays_event_2', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.czech_holidays_event_2', 'eta') == 1 %}
+            Tomorrow
+          {% else %}
+            in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days 
+          {% endif %}
         attribute_templates:
           eta: >-
             {{state_attr('sensor.czech_holidays_event_2', 'eta')}}
-          friendly_eta: >-
-            {% if state_attr('sensor.czech_holidays_event_2', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.czech_holidays_event_2', 'eta') == 1 %}
-              Tomorrow
-            {% else %}
-              in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days 
-            {% endif %}          
+          date: >-
+            {{state_attr('sensor.czech_holidays_event_2', 'start').strftime('%A, %B %d')}}       
         icon_template: >-
             mdi:calendar
 
@@ -423,18 +423,18 @@
         friendly_name_template: >-
           {{state_attr('sensor.czech_holidays_event_3', 'name')}}
         value_template: >-
-          {{state_attr('sensor.czech_holidays_event_3', 'start').strftime('%A, %B %d')}}
+          {% if state_attr('sensor.czech_holidays_event_3', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.czech_holidays_event_3', 'eta') == 1 %}
+            Tomorrow
+          {% else %}
+            in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days 
+          {% endif %}
         attribute_templates:
           eta: >-
             {{state_attr('sensor.czech_holidays_event_3', 'eta')}}
-          friendly_eta: >-
-            {% if state_attr('sensor.czech_holidays_event_3', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.czech_holidays_event_3', 'eta') == 1 %}
-              Tomorrow
-            {% else %}
-              in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days 
-            {% endif %}
+          date: >-
+            {{state_attr('sensor.czech_holidays_event_3', 'start').strftime('%A, %B %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -444,18 +444,18 @@
         friendly_name_template: >-
           {{state_attr('sensor.czech_holidays_event_4', 'name')}}
         value_template: >-
-          {{state_attr('sensor.czech_holidays_event_4', 'start').strftime('%A, %B %d')}}
+          {% if state_attr('sensor.czech_holidays_event_4', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.czech_holidays_event_4', 'eta') == 1 %}
+            Tomorrow
+          {% else %}
+            in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days 
+          {% endif %}
         attribute_templates:
           eta: >-
             {{state_attr('sensor.czech_holidays_event_4', 'eta')}}
-          friendly_eta: >-
-            {% if state_attr('sensor.czech_holidays_event_4', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.czech_holidays_event_4', 'eta') == 1 %}
-              Tomorrow
-            {% else %}
-              in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days 
-            {% endif %}
+          date: >-
+            {{state_attr('sensor.czech_holidays_event_4', 'start').strftime('%A, %B %d')}} 
         icon_template: >-
             mdi:calendar
 
@@ -465,7 +465,20 @@
         friendly_name_template: >-
           Parklane {{state_attr('sensor.parklane_calendar_event_0', 'name')}}
         value_template: >-
-          {{state_attr('sensor.parklane_calendar_event_0', 'start').strftime('%a, %b %d')}}
+          {% if state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days == 0 %}
+            Last Day
+          {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 1 %}
+            Tomorrow
+          {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') > 1 %}
+            in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days
+          {% else %}
+          {% endif %}
         attribute_templates:
           eta: >-
             {% if 'holiday' in states('sensor.parklane_calendar_event_0') or 'term' in states('sensor.parklane_calendar_event_0') or 'Term' in states('sensor.parklane_calendar_event_0') or 'Holiday' in states('sensor.parklane_calendar_event_0')  %}
@@ -479,21 +492,8 @@
             {% else %}
             -1
             {% endif %}
-          friendly_eta: >-
-            {% if state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days > 0 %}
-              {{(state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days}} days more
-            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days == 0 %}
-              Last Day
-            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 1 %}
-              Tomorrow
-            {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') > 1 %}
-              in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days
-            {% else %}
-            {% endif %}
+          date: >-
+            {{state_attr('sensor.parklane_calendar_event_0', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -503,7 +503,20 @@
         friendly_name_template: >-
           Parklane {{state_attr('sensor.parklane_calendar_event_1', 'name')}}
         value_template: >-
-          {{state_attr('sensor.parklane_calendar_event_1', 'start').strftime('%a, %b %d')}}
+          {% if state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days == 0 %}
+            Last Day
+          {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 1 %}
+            Tomorrow
+          {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') > 1 %}
+            in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days
+          {% else %}
+          {% endif %}
         attribute_templates:
           eta: >-
             {% if 'holiday' in states('sensor.parklane_calendar_event_1') or 'term' in states('sensor.parklane_calendar_event_1') or 'Term' in states('sensor.parklane_calendar_event_1') or 'Holiday' in states('sensor.parklane_calendar_event_1')  %}
@@ -517,21 +530,8 @@
             {% else %}
             -1
             {% endif %}
-          friendly_eta: >-
-            {% if state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days > 0 %}
-              {{(state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days}} days more
-            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days == 0 %}
-              Last Day
-            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 1 %}
-              Tomorrow
-            {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') > 1 %}
-              in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days
-            {% else %}
-            {% endif %}
+          date: >-
+            {{state_attr('sensor.parklane_calendar_event_1', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -541,7 +541,20 @@
         friendly_name_template: >-
           Parklane {{state_attr('sensor.parklane_calendar_event_2', 'name')}}
         value_template: >-
-          {{state_attr('sensor.parklane_calendar_event_2', 'start').strftime('%a, %b %d')}}
+          {% if state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days == 0 %}
+            Last Day
+          {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 1 %}
+            Tomorrow
+          {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') > 1 %}
+            in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days
+          {% else %}
+          {% endif %}
         attribute_templates:
           eta: >-
             {% if 'holiday' in states('sensor.parklane_calendar_event_2') or 'term' in states('sensor.parklane_calendar_event_2') or 'Term' in states('sensor.parklane_calendar_event_2') or 'Holiday' in states('sensor.parklane_calendar_event_2')  %}
@@ -555,21 +568,8 @@
             {% else %}
             -1
             {% endif %}
-          friendly_eta: >-
-            {% if state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days > 0 %}
-              {{(state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days}} days more
-            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days == 0 %}
-              Last Day
-            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 1 %}
-              Tomorrow
-            {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') > 1 %}
-              in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days
-            {% else %}
-            {% endif %}
+          date: >-
+            {{state_attr('sensor.parklane_calendar_event_2', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -579,7 +579,20 @@
         friendly_name_template: >-
           Parklane {{state_attr('sensor.parklane_calendar_event_3', 'name')}}
         value_template: >-
-          {{state_attr('sensor.parklane_calendar_event_3', 'start').strftime('%a, %b %d')}}
+          {% if state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days == 0 %}
+            Last Day
+          {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 1 %}
+            Tomorrow
+          {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') > 1 %}
+            in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days
+          {% else %}
+          {% endif %}
         attribute_templates:
           eta: >-
             {% if 'holiday' in states('sensor.parklane_calendar_event_3') or 'term' in states('sensor.parklane_calendar_event_3') or 'Term' in states('sensor.parklane_calendar_event_3') or 'Holiday' in states('sensor.parklane_calendar_event_3')  %}
@@ -594,20 +607,7 @@
             -1
             {% endif %}
           friendly_eta: >-
-            {% if state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days > 0 %}
-              {{(state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days}} days more
-            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days == 0 %}
-              Last Day
-            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 1 %}
-              Tomorrow
-            {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') > 1 %}
-              in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days
-            {% else %}
-            {% endif %}
+            {{state_attr('sensor.parklane_calendar_event_3', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -617,7 +617,20 @@
         friendly_name_template: >-
           Parklane {{state_attr('sensor.parklane_calendar_event_4', 'name')}}
         value_template: >-
-          {{state_attr('sensor.parklane_calendar_event_4', 'start').strftime('%a, %b %d')}}
+          {% if state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
+          and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days == 0 %}
+            Last Day
+          {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 0 %}
+            Today
+          {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 1 %}
+            Tomorrow
+          {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') > 1 %}
+            in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days
+          {% else %}
+          {% endif %}
         attribute_templates:
           eta: >-
             {% if 'holiday' in states('sensor.parklane_calendar_event_4') or 'term' in states('sensor.parklane_calendar_event_4') or 'Term' in states('sensor.parklane_calendar_event_4') or 'Holiday' in states('sensor.parklane_calendar_event_4')  %}
@@ -631,21 +644,8 @@
             {% else %}
             -1
             {% endif %}
-          friendly_eta: >-
-            {% if state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days > 0 %}
-              {{(state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days}} days more
-            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
-            and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days == 0 %}
-              Last Day
-            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 0 %}
-              Today
-            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 1 %}
-              Tomorrow
-            {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') > 1 %}
-              in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days
-            {% else %}
-            {% endif %}
+          date: >-
+            {{state_attr('sensor.parklane_calendar_event_4', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 

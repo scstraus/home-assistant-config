@@ -589,22 +589,27 @@
   alias: 'Popup on Kiosk Back'
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: binary_sensor.human_back
-    to: 'on'
+    - platform: state
+      entity_id: binary_sensor.human_back
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.camera_back_motion_alarm  
+      to: 'on'
   action:
     - service: browser_mod.more_info
       data:
-        entity_id: camera.back
+        entity_id: camera.back_substream
         deviceID:
           - !secret kindle_kitchen_deviceid
     - service: browser_mod.more_info
       data:
-        entity_id: camera.back
+        entity_id: camera.back_substream
         deviceID:
           - !secret kindle_master_closet_deviceid
     - service: shell_command.screensaver_stop_kindle_fire_kitchen
     - service: shell_command.screensaver_stop_kindle_fire_closet
+    - service: shell_command.screen_on_kindle_fire_kitchen
+    - service: shell_command.screen_on_kindle_fire_closet 
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -631,16 +636,18 @@
   action:
     - service: browser_mod.more_info
       data:
-        entity_id: camera.front
+        entity_id: camera.front_substream
         deviceID:
           - !secret kindle_kitchen_deviceid
     - service: browser_mod.more_info
       data:
-        entity_id: camera.front
+        entity_id: camera.front_substream
         deviceID:
           - !secret kindle_master_closet_deviceid
     - service: shell_command.screensaver_stop_kindle_fire_kitchen
     - service: shell_command.screensaver_stop_kindle_fire_closet
+    - service: shell_command.screen_on_kindle_fire_kitchen
+    - service: shell_command.screen_on_kindle_fire_closet 
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -661,22 +668,27 @@
   alias: 'Popup on Kiosk Left'  
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: binary_sensor.human_left
-    to: 'on'
+    - platform: state
+      entity_id: binary_sensor.human_left
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.camera_left_motion_alarm  
+      to: 'on'
   action:
     - service: browser_mod.more_info
       data:
-        entity_id: camera.left
+        entity_id: camera.left_substream
         deviceID:
           - !secret kindle_kitchen_deviceid
     - service: browser_mod.more_info
       data:
-        entity_id: camera.left
+        entity_id: camera.left_substream
         deviceID:
           - !secret kindle_master_closet_deviceid
     - service: shell_command.screensaver_stop_kindle_fire_kitchen
     - service: shell_command.screensaver_stop_kindle_fire_closet
+    - service: shell_command.screen_on_kindle_fire_kitchen
+    - service: shell_command.screen_on_kindle_fire_closet 
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -703,16 +715,18 @@
   action:
     - service: browser_mod.more_info
       data:
-        entity_id: camera.right
+        entity_id: camera.right_substream
         deviceID:
           - !secret kindle_kitchen_deviceid
     - service: browser_mod.more_info
       data:
-        entity_id: camera.right
+        entity_id: camera.right_substream
         deviceID:
           - !secret kindle_master_closet_deviceid
     - service: shell_command.screensaver_stop_kindle_fire_kitchen
     - service: shell_command.screensaver_stop_kindle_fire_closet
+    - service: shell_command.screen_on_kindle_fire_kitchen
+    - service: shell_command.screen_on_kindle_fire_closet    
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -753,9 +767,22 @@
     to: 'off'
     for:
       seconds: 15
+  - platform: state
+    entity_id: binary_sensor.camera_left_motion_alarm  
+    to: 'off'
+    for:
+      seconds: 15
+  - platform: state
+    entity_id: binary_sensor.camera_back_motion_alarm  
+    to: 'off'
+    for:
+      seconds: 15
   action:
     - service: shell_command.screensaver_stop_kindle_fire_kitchen
     - service: shell_command.screensaver_stop_kindle_fire_closet
+    - service: shell_command.screen_on_kindle_fire_kitchen
+    - service: shell_command.screen_on_kindle_fire_closet  
+ 
 
 - id: keep_fully_kiosk_screen_on_human
   alias: Keep Fully Kiosk Screen On
@@ -781,9 +808,21 @@
     to: 'off'
     for:
       seconds: 30
+  - platform: state
+    entity_id: binary_sensor.camera_left_motion_alarm  
+    to: 'off'
+    for:
+      seconds: 30
+  - platform: state
+    entity_id: binary_sensor.camera_back_motion_alarm  
+    to: 'off'
+    for:
+      seconds: 30
   action:
     - service: shell_command.screensaver_stop_kindle_fire_kitchen
     - service: shell_command.screensaver_stop_kindle_fire_closet
+    - service: shell_command.screen_on_kindle_fire_kitchen
+    - service: shell_command.screen_on_kindle_fire_closet  
 
 - id: close_popup_on_kiosk
   alias: close_popup_on_kiosk
