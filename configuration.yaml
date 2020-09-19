@@ -194,6 +194,16 @@ logger:
 
 switch:
 
+  - platform: switchbot
+    name: Switchbot Hub Wifi
+    mac: '48:3F:DA:5A:31:4E'
+  - platform: switchbot
+    name: Switchbot Hub BLE
+    mac: 'C2:A4:5B:3A:02:06'
+  - platform: switchbot
+    name: Switchbot Curtian Right BLE
+    mac: 'EE:C3:79:9B:1A:07'
+
 #  - platform: command_line
 #    switches:
 #      shuffle:
@@ -776,3 +786,14 @@ device_tracker:
       seans_iphone_x_ping: 10.10.10.26
       alenas_iphone_6_ping: 10.10.10.27
       sophies_iphone_6_ping: 10.10.10.13
+
+input_text:
+  windows_making_house_hot:
+    name: Windows Making House Hot
+    max: 250
+  windows_making_house_cold:
+    name: Windows Making House Cold
+    max: 250
+  windows_letting_pollution_in:
+    name: Windows Making House Cold
+    max: 250

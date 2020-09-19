@@ -1099,7 +1099,7 @@
     service: notify.mobile_app_alena_s_iphone
     data:
       title: "Take out that trash!"
-      message: "Hello there, now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
+      message: "Hello there, today is trash day and now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
 
 - id: coming_home_trash_day_sean
   alias: coming_home_trash_day_sean
@@ -1123,12 +1123,3 @@
       title: "Take out that trash!"
       message: "Hello there, now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
 
-
-- id: update_open_window_sensor
-  alias: update_open_window_sensor
-  trigger:
-    - platform: time_pattern
-      minutes: '/5'
-  action:
-    - service: homeassistant.update_entity
-      entity_id: binary_sensor.open_window_making_house_cold

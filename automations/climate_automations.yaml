@@ -434,3 +434,153 @@
         {% else %}
         Error
         {% endif %}
+
+
+#- id: update_open_window_sensor_and_message
+#  alias: update_open_window_sensor_and_message
+#  trigger:
+#    - platform: time_pattern
+#      minutes: '/5'
+#  action:
+#    - service: homeassistant.update_entity
+#      entity_id: binary_sensor.open_window_making_house_cold
+
+- id: update_open_window_cold_sensor
+  alias: update_open_window_cold_sensor
+  trigger:
+    platform: state
+    entity_id: 
+    - binary_sensor.back_door
+    - binary_sensor.sebastians_room_left_window
+    - binary_sensor.sophies_room_ceiling_window
+    - binary_sensor.ecolink_closet_left_window
+    - binary_sensor.laundry_room_window_zone_13
+    - binary_sensor.ecolink_garage_door
+  action:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.open_window_making_house_cold
+    
+- id: update_open_window_cold_message
+  alias: update_open_window_cold_message
+  trigger:
+    platform: state
+    entity_id: 
+      - binary_sensor.back_door
+      - binary_sensor.sebastians_room_left_window
+      - binary_sensor.sophies_room_ceiling_window
+      - binary_sensor.ecolink_closet_left_window
+      - binary_sensor.laundry_room_window_zone_13
+      - binary_sensor.ecolink_garage_door      
+  condition:
+    condition: state
+    entity_id: binary_sensor.open_window_making_house_cold
+    state: "on"
+  action: 
+    - service: python_script.set_open_window_message
+      data:
+        message_type: cold
+      
+- id: update_open_window_cold_sensor
+  alias: update_open_window_cold_sensor
+  trigger:
+    platform: state
+    entity_id: 
+    - binary_sensor.back_door
+    - binary_sensor.sebastians_room_left_window
+    - binary_sensor.sophies_room_ceiling_window
+    - binary_sensor.ecolink_closet_left_window
+    - binary_sensor.laundry_room_window_zone_13
+    - binary_sensor.ecolink_garage_door
+  action:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.open_window_making_house_cold
+    
+- id: update_open_window_cold_message
+  alias: update_open_window_cold_message
+  trigger:
+    platform: state
+    entity_id: 
+      - binary_sensor.back_door
+      - binary_sensor.sebastians_room_left_window
+      - binary_sensor.sophies_room_ceiling_window
+      - binary_sensor.ecolink_closet_left_window
+      - binary_sensor.laundry_room_window_zone_13
+      - binary_sensor.ecolink_garage_door
+#  condition:
+#    condition: state
+#    entity_id: binary_sensor.open_window_making_house_hot
+#    state: "on"
+  action: 
+    - service: python_script.set_open_window_message
+      data:
+        message_type: cold
+
+- id: update_open_window_hot_sensor
+  alias: update_open_window_hot_sensor
+  trigger:
+    platform: state
+    entity_id: 
+    - binary_sensor.back_door
+    - binary_sensor.sebastians_room_left_window
+    - binary_sensor.sophies_room_ceiling_window
+    - binary_sensor.ecolink_closet_left_window
+    - binary_sensor.laundry_room_window_zone_13
+    - binary_sensor.ecolink_garage_door
+  action:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.open_window_making_house_hot
+    
+- id: update_open_window_hot_message
+  alias: update_open_window_hot_message
+  trigger:
+    platform: state
+    entity_id: 
+      - binary_sensor.back_door
+      - binary_sensor.sebastians_room_left_window
+      - binary_sensor.sophies_room_ceiling_window
+      - binary_sensor.ecolink_closet_left_window
+      - binary_sensor.laundry_room_window_zone_13
+      - binary_sensor.ecolink_garage_door      
+#  condition:
+#    condition: state
+#    entity_id: binary_sensor.open_window_making_house_hot
+#    state: "on"
+  action: 
+    - service: python_script.set_open_window_message
+      data:
+        message_type: hot
+
+- id: update_open_window_aqi_sensor
+  alias: update_open_window_aqi_sensor
+  trigger:
+    platform: state
+    entity_id: 
+    - binary_sensor.back_door
+    - binary_sensor.sebastians_room_left_window
+    - binary_sensor.sophies_room_ceiling_window
+    - binary_sensor.ecolink_closet_left_window
+    - binary_sensor.laundry_room_window_zone_13
+    - binary_sensor.ecolink_garage_door
+  action:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.open_window_letting_pollution_in
+
+- id: update_open_window_aqi_message
+  alias: update_open_window_aqi_message
+  trigger:
+    platform: state
+    entity_id: 
+      - binary_sensor.back_door
+      - binary_sensor.sebastians_room_left_window
+      - binary_sensor.sophies_room_ceiling_window
+      - binary_sensor.ecolink_closet_left_window
+      - binary_sensor.laundry_room_window_zone_13
+      - binary_sensor.ecolink_garage_door      
+#  condition:
+#    condition: state
+#    entity_id: binary_sensor.open_window_making_house_hot
+#    state: "on"
+  action: 
+    - service: python_script.set_open_window_message
+      data:
+        message_type: aqi

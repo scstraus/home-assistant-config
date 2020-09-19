@@ -213,7 +213,7 @@ decluttering_templates:
           name:
             - font-size: 15px
             - font-family: Helvetica
-            - color: white
+            - color: black
             - justify-self: start
             - padding-left: 18px
             - padding-top: 5px
@@ -226,7 +226,7 @@ decluttering_templates:
             - grid-template-columns: 8% 1fr
             - grid-template-rows: 1fr
           icon:
-            - color: white
+            - color: black
         state:
           - value: "off"
 
@@ -269,6 +269,43 @@ decluttering_templates:
             - grid-template-rows: 1fr
           icon:
             - color: white
+        state:
+          - value: "off"
+
+  notice_marquee:
+    card: 
+      type: conditional
+      conditions:
+        - entity: '[[entity]]'
+          state: '[[state]]'
+      card:
+        type: custom:button-card
+        name: >
+          [[[return `<marquee>[[name]]<\marquee>`]]]
+        deep_press: true
+        icon: 'mdi:information' 
+        size: 28px
+        aspect_ratio: 7/1
+        show_name: true
+        show_icon: true
+        show_state: false
+        show_label: false
+        show_last_changed: false
+        styles:
+          name:
+            - font-size: 15px
+            - font-family: Helvetica
+            - justify-self: start
+            - padding-left: 18px
+            - padding-top: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin-left: 21px
+          grid: 
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 8% 1fr
+            - grid-template-rows: 1fr
         state:
           - value: "off"
 
@@ -388,6 +425,80 @@ decluttering_templates:
             - grid-template-rows: 1fr
           icon:
             - color: black
+        state:
+          - value: "off"
+
+  open_windows_hot:
+    card: 
+      type: conditional
+      conditions:
+        - entity: 'binary_sensor.open_window_making_house_hot'
+          state: 'on'
+      card:
+        type: custom:button-card
+        name: >
+          [[[return `<marquee> ${states['input_text.windows_making_house_hot'].state} <\marquee>`]]]
+        deep_press: true
+        icon: 'mdi:fire' 
+        size: 28px
+        aspect_ratio: 7/1
+        show_name: true
+        show_icon: true
+        show_state: false
+        show_label: false
+        show_last_changed: false
+        styles:
+          name:
+            - font-size: 15px
+            - font-family: Helvetica
+            - justify-self: start
+            - padding-left: 18px
+            - padding-top: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin-left: 21px
+          grid: 
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 8% 1fr
+            - grid-template-rows: 1fr
+        state:
+          - value: "off"
+
+  open_windows_cold:
+    card: 
+      type: conditional
+      conditions:
+        - entity: 'binary_sensor.open_window_making_house_cold'
+          state: 'on'
+      card:
+        type: custom:button-card
+        name: >
+          [[[return `<marquee> ${states['input_text.windows_making_house_cold'].state} <\marquee>`]]]
+        deep_press: true
+        icon: 'mdi:snowflake' 
+        size: 28px
+        aspect_ratio: 7/1
+        show_name: true
+        show_icon: true
+        show_state: false
+        show_label: false
+        show_last_changed: false
+        styles:
+          name:
+            - font-size: 15px
+            - font-family: Helvetica
+            - justify-self: start
+            - padding-left: 18px
+            - padding-top: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin-left: 21px
+          grid: 
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 8% 1fr
+            - grid-template-rows: 1fr
         state:
           - value: "off"
 

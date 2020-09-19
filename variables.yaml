@@ -119,3 +119,9 @@
     value: 'Unknown'
     attributes:
       icon: mdi:door-open
+
+  basement_absolute_humidity:
+    value: 0
+    attributes:
+      friendly_name: 'Basement Absolute Humidity'
+      icon: mdi:water-percent

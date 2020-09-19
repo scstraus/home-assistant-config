@@ -196,28 +196,28 @@ cards:
       - name: "Take Out the Trash Now!"
 
   - type: custom:decluttering-card
-    template: alert
+    template: warning
     variables:
       - entity: binary_sensor.human_back
       - state: 'on'
       - name: "Person Spotted in Back Yard"
 
   - type: custom:decluttering-card
-    template: alert
+    template: warning
     variables:
       - entity: binary_sensor.human_front
       - state: 'on'
       - name: "Person Spotted in Front of House"
 
   - type: custom:decluttering-card
-    template: alert
+    template: warning
     variables:
       - entity: binary_sensor.human_left
       - state: 'on'
       - name: "Person Spotted on Left of House"
 
   - type: custom:decluttering-card
-    template: alert
+    template: warning
     variables:
       - entity: binary_sensor.human_right
       - state: on
@@ -559,14 +559,14 @@ cards:
   #      - binary_sensor.guest_bedroom_window_1
     - binary_sensor.garage_door
     - binary_sensor.front_door_zone_1
-    - sensor.closet_window
+#    - sensor.closet_window
     - input_select.bosch_dishwasher_status
     - binary_sensor.popp_unknown_type_0004_id_0014_sensor
-    - binary_sensor.sebastians_room_left_window
+#    - binary_sensor.sebastians_room_left_window
     - input_select.miele_washing_machine_status
     - input_select.lg_washing_machine_status
-    - binary_sensor.sophies_room_ceiling_window
-    - binary_sensor.ecolink_closet_left_window
+#    - binary_sensor.sophies_room_ceiling_window
+#    - binary_sensor.ecolink_closet_left_window
     - binary_sensor.ecolink_garage_door
     - sensor.czech_holidays_event_0
 #    - alarm_control_panel.laundry_room_window

@@ -277,25 +277,18 @@ cards:
   - type: vertical-stack
     in_card: true
     cards: 
+#
+#    - type: custom:mini-graph-card
+#  #      name: Internet
+#      entities:
+#        - entity: sensor.u_s_air_quality_index
+#          name: Prague Air Quality
+#      hours_to_show: 24
+#      points_per_hour: 2
+#      height: 150
+#      lower_bound: 0
 
-    - type: custom:mini-graph-card
-  #      name: Internet
-      entities:
-        - entity: sensor.u_s_air_quality_index
-          name: Prague Air Quality
-      hours_to_show: 24
-      points_per_hour: 2
-      height: 150
-      lower_bound: 0
 
-    - type: custom:mini-graph-card
-  #      name: Internet
-      entities:
-        - entity: sensor.dark_sky_ozone
-          name: 'Ozone'
-      hours_to_show: 24
-      points_per_hour: 2
-      height: 150
 
 #  - type: history-graph
 #    title: 'Temperature'
@@ -310,6 +303,19 @@ cards:
     hours_to_show: 24
     points_per_hour: 2
     height: 150
+    color_thresholds:
+      - value: 0
+        color: "#ccccff"
+      - value: 15
+        color: "#6666ff"
+      - value: 20
+        color: "#f3f300"
+      - value: 23
+        color: "#f39c12"
+      - value: 25
+        color: "#d35400"
+      - value: 28
+        color: "#c0392b"
     
 #  - type: history-graph
 #    title: 'Feels Like Temp'
@@ -333,6 +339,19 @@ cards:
       points_per_hour: 2
       height: 150
       lower_bound: 0
+      color_thresholds:
+        - value: 0
+          color: "#ccccff"
+        - value: 6
+          color: "#6666ff"
+        - value: 30
+          color: "#0da035"
+        - value: 45
+          color: "#daa002"
+        - value: 60
+          color: "#d35400"
+        - value: 75
+          color: "#e04c23"
 
 
     - type: custom:mini-graph-card
@@ -344,6 +363,19 @@ cards:
       points_per_hour: 2
       height: 150
       lower_bound: 0
+      color_thresholds:
+        - value: 0
+          color: "#ccccff"
+        - value: 6
+          color: "#6666ff"
+        - value: 30
+          color: "#0da035"
+        - value: 45
+          color: "#daa002"
+        - value: 60
+          color: "#d35400"
+        - value: 75
+          color: "#e04c23"
 #    
 #  - type: history-graph
 #    title: 'Wind Gust'
@@ -374,6 +406,14 @@ cards:
     points_per_hour: 2
     height: 150
     lower_bound: 0
+    upper_bound: 100
+    color_thresholds:
+      - value: 15
+        color: "#daa002"
+      - value: 35
+        color: "#0da035"
+      - value: 85
+        color: "#daa002"
 
 #  - type: history-graph
 #    title: 'Humidity'
@@ -426,6 +466,13 @@ cards:
     points_per_hour: 2
     height: 150
     lower_bound: 0
+    upper_bound: 100
+    color_thresholds:
+        - value: 10
+          color: "#6666ff"
+        - value: 90
+          color: "#ffffff"
+
 
   - type: custom:mini-graph-card
 #      name: Internet
@@ -435,6 +482,14 @@ cards:
     hours_to_show: 24
     points_per_hour: 1
     height: 150
+    lower_bound: 0
+    upper_bound: 16.09
+    color_thresholds:
+        - value: 1
+          color: "#ffffff"
+        - value: 15
+          color: "#6666ff"
+
 #
 #  - type: history-graph
 #    title: 'Visibility'
@@ -449,7 +504,6 @@ cards:
 #    - sensor.dark_sky_ozone
 
   - type: custom:mini-graph-card
-#      name: Internet
     entities:
       - entity: sensor.dark_sky_pressure
         name: 'Air Pressure'
@@ -463,7 +517,6 @@ cards:
 #    - sensor.dark_sky_pressure
 
   - type: custom:mini-graph-card
-#      name: Internet
     entities:
       - entity: sensor.dark_sky_dew_point
         name: 'Dew Point'
