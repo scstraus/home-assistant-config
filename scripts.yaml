@@ -800,3 +800,12 @@
             {% else %}
               No, today isn't a good day to bike to work
             {% endif %}
+
+  xbox_pause_play:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony
+          command:
+            - OK
+          device: Xbox-SystemOS

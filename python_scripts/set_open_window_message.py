@@ -32,6 +32,8 @@ def make_open_windows_message(num_open_windows):
   window_counter = 0
   first_floor_windows = 0
   message=""
+  if ((hass.states.get("binary_sensor.laundry_room_window_zone_13").state) == "on") and (MESSAGE_TYPE == "hot"):
+    counter = counter - 1
   if (hass.states.get("binary_sensor.back_door").state) == "on":
     message = "The open Back Door"
     counter = counter - 1
@@ -48,12 +50,19 @@ def make_open_windows_message(num_open_windows):
       message = "Open windows on the First Floor"
     counter = counter - 1
     first_floor_windows = 1
-  if (num_open_windows > counter) and (first_floor_windows == 1):
-    message = message + " and open windows in"
-  elif num_open_windows > counter:
-    message = message + ", and open windows in"
+    if (num_open_windows > counter) and (first_floor_windows == 1):
+      message = message + " and in"
+    elif num_open_windows > counter:
+      message = message + ", in"
+    else:
+      message = message + "Open windows in"
   else:
-    message = message + "Open windows in"
+    if (num_open_windows > counter) and (first_floor_windows == 1):
+      message = message + " and open windows in"
+    elif num_open_windows > counter:
+      message = message + ", and open windows in"
+    else:
+      message = message + "Open windows in"
   if (hass.states.get("binary_sensor.sebastians_room_left_window").state) == "on":
     message = message + " Sebastian's Room"
     counter = counter - 1
@@ -78,7 +87,7 @@ def make_open_windows_message(num_open_windows):
     message = message + " the Master Closet"
     counter = counter - 1
     window_counter = window_counter + 1  
-  if (hass.states.get("binary_sensor.laundry_room_window_zone_13").state) == "on":
+  if ((hass.states.get("binary_sensor.laundry_room_window_zone_13").state) == "on") and (MESSAGE_TYPE != "hot"):
     if counter == 1 and window_counter == 1:
       message = message + " and"
     if counter == 1 and window_counter > 1:
@@ -88,10 +97,7 @@ def make_open_windows_message(num_open_windows):
     message = message + " the Laundry Room"
     counter = counter - 1
     window_counter = window_counter + 1
-  if num_open_windows == 1:
-    message = message + " is"
-  elif num_open_windows > 1:
-    message = message + " are"
+  message = message + " are"
   if MESSAGE_TYPE == "hot":
     message = message + " making the house hot."
     hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_house_hot", "value" : message}, False)

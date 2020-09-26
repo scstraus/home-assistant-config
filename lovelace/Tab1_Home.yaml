@@ -700,39 +700,79 @@ cards:
       - type: horizontal-stack
         cards:
 
+#        - type: custom:mini-graph-card
+#          name: AQI Outside 
+#          icon: mdi:air-filter
+#          style: |
+#            ha-card {
+#              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
+#              #00c40a
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
+#              #c1c400 
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
+#              #c48600
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
+#              #c41700
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
+#              #b000c4
+#              {% else %}
+#              #c4007c
+#              {% endif %}
+#          entities:
+#            - entity: sensor.hlubocepy_air_quality
+#              name: 
+#          color_thresholds:
+#            - value: 25
+#              color: "#9cffa1"
+#            - value: 75
+#              color: "#fdff9c"
+#            - value: 125
+#              color: "#ffe09c"
+#            - value: 175
+#              color: "#ffa79c"
+#            - value: 250
+#              color: "#f59cff"
+#            - value: 350
+#              color: "#ff9cdb"
+#          hours_to_show: 24
+#          points_per_hour: 2
+#          show_points: false
+#          height: 60
+
+
         - type: custom:mini-graph-card
-          name: AQI Outside 
+          name: CO2 Indoors
           icon: mdi:air-filter
           style: |
             ha-card {
-              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
+              background: {% if states('sensor.hlubocepy_air_quality')|int <= 700 %}
               #00c40a
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 1000 %} 
               #c1c400 
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 1500 %}
               #c48600
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 2000 %}
               #c41700
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 5000 %}
               #b000c4
               {% else %}
               #c4007c
               {% endif %}
           entities:
-            - entity: sensor.hlubocepy_air_quality
+            - entity: sensor.home_co2
               name: 
           color_thresholds:
-            - value: 25
-              color: "#9cffa1"
-            - value: 75
-              color: "#fdff9c"
-            - value: 125
-              color: "#ffe09c"
-            - value: 175
-              color: "#ffa79c"
-            - value: 250
-              color: "#f59cff"
             - value: 350
+              color: "#9cffa1"
+            - value: 850
+              color: "#fdff9c"
+            - value: 1250
+              color: "#ffe09c"
+            - value: 1750
+              color: "#ffa79c"
+            - value: 3500
+              color: "#f59cff"
+            - value: 6500
               color: "#ff9cdb"
           hours_to_show: 24
           points_per_hour: 2
@@ -977,7 +1017,7 @@ cards:
         entities: []
         show_state: false
         show_name: false
-        camera_image: camera.front_preview
+        camera_image: camera.front_stream
         camera_view: live
 
       - type: horizontal-stack
@@ -988,7 +1028,7 @@ cards:
           entities: []
           show_state: false
           show_name: false
-          camera_image: camera.left_preview
+          camera_image: camera.left_stream
           camera_view: live
 
         - type: picture-glance
@@ -996,7 +1036,7 @@ cards:
           show_state: false
           show_name: false
           entities: []
-          camera_image: camera.right_preview
+          camera_image: camera.right_stream
           camera_view: live
 
       - type: picture-glance
@@ -1004,7 +1044,7 @@ cards:
         entities: []
         show_state: false
         show_name: false
-        camera_image: camera.back_preview
+        camera_image: camera.back_stream
         camera_view: live
 #
 #

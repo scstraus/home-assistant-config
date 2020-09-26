@@ -343,7 +343,9 @@ google:
   client_secret: !secret google_calendar_secret
 
 zwave:
-  usb_path: /dev/ttyACM0
+#  usb_path: /dev/ttyACM0
+  usb_path: /dev/serial/by-id/usb-0658_0200-if00
+#  usb_path: /dev/ttyS0_0200-if00
   device_config: !include zwave_device_config.yaml
 
 weather:
@@ -588,8 +590,8 @@ life360:
     minutes: 30
     
 cast:
-  media_player:
-    - host: !secret chromecast_ip
+#  media_player:
+#    - host: !secret chromecast_ip
     
 notify:
   - name: sean_alena
@@ -659,8 +661,8 @@ input_number:
     step: 0.5
 
 shell_command:
-  update_avnodehome_data: !secret avnodehome_update_cmd
-  update_avnodehlubocepy_data: !secret avnodehlubocepy_update_cmd
+#  update_avnodehome_data: !secret avnodehome_update_cmd
+#  update_avnodehlubocepy_data: !secret avnodehlubocepy_update_cmd
   roll_frigate_history: !secret roll_frigate_command
   screensaver_stop_kindle_fire_kitchen: !secret kitchen_kindle_stop_screensaver
   screensaver_stop_kindle_fire_closet: !secret closet_kindle_stop_screensaver
@@ -728,6 +730,13 @@ timer:
     duration: '00:03:00'
   bosch_dishwasher_running_door_open:
     duration: '00:01:00'
+  tablet_wake_screen_timer_1:
+    duration: '00:00:15'
+  tablet_wake_screen_timer_2:
+    duration: '00:00:30'
+  tablet_close_camera_popup_timer:
+    duration: '00:01:00'
+
 
 dreamscreen:
   devices:

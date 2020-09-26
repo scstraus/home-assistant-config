@@ -338,24 +338,24 @@
 #          - condition: template
 #            value_template: "{{ now().strftime('%m')|int = 8 or now().strftime('%m')|int = 7 }}"
 
-
-- id: 'update_airvisualnode_home_data'
-  alias: 'Update AirVisual node home data'
-  trigger:
-    minutes: '/5'
-    platform: time_pattern
-  action:
-  - service: shell_command.update_avnodehome_data
-  initial_state: 'on'
-
-- id: 'update_airvisualnode_hlubocepy_data'
-  alias: 'Update AirVisual node Hlubocepy data'
-  trigger:
-    minutes: '/5'
-    platform: time_pattern
-  action:
-  - service: shell_command.update_avnodehlubocepy_data
-  initial_state: 'on'
+#
+#- id: 'update_airvisualnode_home_data'
+#  alias: 'Update AirVisual node home data'
+#  trigger:
+#    minutes: '/5'
+#    platform: time_pattern
+#  action:
+#  - service: shell_command.update_avnodehome_data
+#  initial_state: 'on'
+#
+#- id: 'update_airvisualnode_hlubocepy_data'
+#  alias: 'Update AirVisual node Hlubocepy data'
+#  trigger:
+#    minutes: '/5'
+#    platform: time_pattern
+#  action:
+#  - service: shell_command.update_avnodehlubocepy_data
+#  initial_state: 'on'
 
 #- alias: Turn off sophie up late in summer
 #  initial_state: 'on'
@@ -1122,4 +1122,28 @@
     data:
       title: "Take out that trash!"
       message: "Hello there, now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
+
+#- id: update_airvisualnode_home_data
+#  alias: update_airvisualnode_home_data
+#  initial_state: 'on'
+#  trigger:
+#    minutes: '/5'
+#    platform: time_pattern
+#  action:
+#    - service: homeassistant.update_entity
+#      entity_id: sensor.home_air_quality
+#    - service: homeassistant.update_entity
+#      entity_id: sensor.home_co2
+#    - service: homeassistant.update_entity
+#      entity_id: sensor.home_pm0_1_particulate_level
+#    - service: homeassistant.update_entity
+#      entity_id: sensor.home_pm10_particulate_level
+#    - service: homeassistant.update_entity
+#      entity_id: sensor.home_pm2_5_particulate_level
+#    - service: homeassistant.update_entity
+#      entity_id: sensor.home_pm2_5_sensor_life    
+
+
+
+
 

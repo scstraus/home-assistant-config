@@ -159,7 +159,8 @@ cards:
 
     - type: entities
       entities:
-        - sensor.narnia_raid_status
+        - sensor.narnia_ssd_raid_status
+        - sensor.narnia_hdd_raid_status
 
     - type: custom:mini-graph-card
       name: CPU Usage
@@ -214,112 +215,112 @@ cards:
 #        yellow: 50
 #        red: 80
 
-
-  - type: vertical-stack
-    in_card: true
-    title: Cameras
-    cards:
-
-    - type: custom:mini-graph-card
-      name: Front CPU Usage
-      entities:
-#        - entity: sensor.load_15m
-#          name: Load (15m)
-        - entity: sensor.camera_front_processor_usage
-          name: CPU %
-      hours_to_show: 24
-      points_per_hour: 20
-      show_points: false
-      height: 200
-      lower_bound: 0
-      show:
-        extrema: true
-      color_thresholds:
-        - value: 20
-          color: "#0da035"
-        - value: 50
-          color: "#daa002"
-        - value: 75
-          color: "#f4b300"
-        - value: 90
-          color: "#e04c23"
-
-
-    - type: custom:mini-graph-card
-      name: Back CPU Usage
-      entities:
-#        - entity: sensor.load_15m
-#          name: Load (15m)
-        - entity: sensor.camera_back_processor_usage
-          name: CPU %
-      hours_to_show: 24
-      points_per_hour: 20
-      show_points: false
-      height: 200
-      lower_bound: 0
-      show:
-        extrema: true
-      color_thresholds:
-        - value: 20
-          color: "#0da035"
-        - value: 50
-          color: "#daa002"
-        - value: 75
-          color: "#f4b300"
-        - value: 90
-          color: "#e04c23"
-
-
-    - type: custom:mini-graph-card
-      name: Right CPU Usage
-      entities:
-#        - entity: sensor.load_15m
-#          name: Load (15m)
-        - entity: sensor.camera_right_processor_usage
-          name: CPU %
-      hours_to_show: 24
-      points_per_hour: 20
-      show_points: false
-      height: 200
-      lower_bound: 0
-      show:
-        extrema: true
-      color_thresholds:
-        - value: 20
-          color: "#0da035"
-        - value: 50
-          color: "#daa002"
-        - value: 75
-          color: "#f4b300"
-        - value: 90
-          color: "#e04c23"
-
-
-    - type: custom:mini-graph-card
-      name: Left CPU Usage
-      entities:
-#        - entity: sensor.load_15m
-#          name: Load (15m)
-        - entity: sensor.camera_left_processor_usage
-          name: CPU %
-      hours_to_show: 24
-      points_per_hour: 20
-      show_points: false
-      height: 200
-      lower_bound: 0
-      show:
-        extrema: true
-      color_thresholds:
-        - value: 20
-          color: "#0da035"
-        - value: 50
-          color: "#daa002"
-        - value: 75
-          color: "#f4b300"
-        - value: 90
-          color: "#e04c23"
-
-
+#
+#  - type: vertical-stack
+#    in_card: true
+#    title: Cameras
+#    cards:
+#
+#    - type: custom:mini-graph-card
+#      name: Front CPU Usage
+#      entities:
+##        - entity: sensor.load_15m
+##          name: Load (15m)
+#        - entity: sensor.camera_front_processor_usage
+#          name: CPU %
+#      hours_to_show: 24
+#      points_per_hour: 20
+#      show_points: false
+#      height: 200
+#      lower_bound: 0
+#      show:
+#        extrema: true
+#      color_thresholds:
+#        - value: 20
+#          color: "#0da035"
+#        - value: 50
+#          color: "#daa002"
+#        - value: 75
+#          color: "#f4b300"
+#        - value: 90
+#          color: "#e04c23"
+#
+#
+#    - type: custom:mini-graph-card
+#      name: Back CPU Usage
+#      entities:
+##        - entity: sensor.load_15m
+##          name: Load (15m)
+#        - entity: sensor.camera_back_processor_usage
+#          name: CPU %
+#      hours_to_show: 24
+#      points_per_hour: 20
+#      show_points: false
+#      height: 200
+#      lower_bound: 0
+#      show:
+#        extrema: true
+#      color_thresholds:
+#        - value: 20
+#          color: "#0da035"
+#        - value: 50
+#          color: "#daa002"
+#        - value: 75
+#          color: "#f4b300"
+#        - value: 90
+#          color: "#e04c23"
+#
+#
+#    - type: custom:mini-graph-card
+#      name: Right CPU Usage
+#      entities:
+##        - entity: sensor.load_15m
+##          name: Load (15m)
+#        - entity: sensor.camera_right_processor_usage
+#          name: CPU %
+#      hours_to_show: 24
+#      points_per_hour: 20
+#      show_points: false
+#      height: 200
+#      lower_bound: 0
+#      show:
+#        extrema: true
+#      color_thresholds:
+#        - value: 20
+#          color: "#0da035"
+#        - value: 50
+#          color: "#daa002"
+#        - value: 75
+#          color: "#f4b300"
+#        - value: 90
+#          color: "#e04c23"
+#
+#
+#    - type: custom:mini-graph-card
+#      name: Left CPU Usage
+#      entities:
+##        - entity: sensor.load_15m
+##          name: Load (15m)
+#        - entity: sensor.camera_left_processor_usage
+#          name: CPU %
+#      hours_to_show: 24
+#      points_per_hour: 20
+#      show_points: false
+#      height: 200
+#      lower_bound: 0
+#      show:
+#        extrema: true
+#      color_thresholds:
+#        - value: 20
+#          color: "#0da035"
+#        - value: 50
+#          color: "#daa002"
+#        - value: 75
+#          color: "#f4b300"
+#        - value: 90
+#          color: "#e04c23"
+#
+#
 
   - type: vertical-stack
     in_card: true

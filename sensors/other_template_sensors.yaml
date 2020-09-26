@@ -371,7 +371,7 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_0', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_0', 'start').strftime('%A, %B %d')}}
+            {{state_attr('sensor.czech_holidays_event_0', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -392,7 +392,7 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_1', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_1', 'start').strftime('%A, %B %d')}} 
+            {{state_attr('sensor.czech_holidays_event_1', 'start').strftime('%a, %b %d')}} 
         icon_template: >-
             mdi:calendar
 
@@ -413,7 +413,7 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_2', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_2', 'start').strftime('%A, %B %d')}}       
+            {{state_attr('sensor.czech_holidays_event_2', 'start').strftime('%a, %b %d')}}       
         icon_template: >-
             mdi:calendar
 
@@ -434,7 +434,7 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_3', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_3', 'start').strftime('%A, %B %d')}}
+            {{state_attr('sensor.czech_holidays_event_3', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -455,7 +455,7 @@
           eta: >-
             {{state_attr('sensor.czech_holidays_event_4', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_4', 'start').strftime('%A, %B %d')}} 
+            {{state_attr('sensor.czech_holidays_event_4', 'start').strftime('%a, %b %d')}} 
         icon_template: >-
             mdi:calendar
 
@@ -476,7 +476,7 @@
           {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 1 %}
             Tomorrow
           {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') > 1 %}
-            in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days
+            in {{state_attr('sensor.parklane_calendar_event_0', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
@@ -514,7 +514,7 @@
           {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 1 %}
             Tomorrow
           {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') > 1 %}
-            in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days
+            in {{state_attr('sensor.parklane_calendar_event_1', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
@@ -552,7 +552,7 @@
           {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 1 %}
             Tomorrow
           {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') > 1 %}
-            in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days
+            in {{state_attr('sensor.parklane_calendar_event_2', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
@@ -590,7 +590,7 @@
           {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 1 %}
             Tomorrow
           {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') > 1 %}
-            in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days
+            in {{state_attr('sensor.parklane_calendar_event_3', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
@@ -628,7 +628,7 @@
           {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 1 %}
             Tomorrow
           {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') > 1 %}
-            in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days
+            in {{state_attr('sensor.parklane_calendar_event_4', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
@@ -697,18 +697,53 @@
 
   - platform: template
     sensors:
-      narnia_raid_status:
-        friendly_name: "RAID Status"
+      narnia_ssd_raid_status:
+        friendly_name: "SSD RAID Status"
         value_template: >-    
-          {% if "UU" in states('sensor.narnia_mdstat') %}
+          {% if "[U_]" in states('sensor.narnia_ssd_mdstat')%}
+          Degraded (Disk 2)
+          {% elif "[_U]" in states('sensor.narnia_ssd_mdstat')%}
+          Degraded (Disk 1)
+          {% elif "[UU]" in states('sensor.narnia_ssd_mdstat') %}
           Healthy
-          {% elif "U_" in states('sensor.narnia_mdstat')%}
-          Degraded
-          {% elif "_U" in states('sensor.narnia_mdstat')%}
-          Degraded
           {% else %}
           Unknown
           {% endif %}
+        icon_template: >-
+          {% if "[U_]" in states('sensor.narnia_ssd_mdstat')%}
+          mdi:harddisk-remove
+          {% elif "[_U]" in states('sensor.narnia_ssd_mdstat')%}
+          mdi:harddisk-remove
+          {% elif "[UU]" in states('sensor.narnia_ssd_mdstat') %}
+          mdi:harddisk
+          {% else %}
+          help-network
+          {% endif %}  
+
+  - platform: template
+    sensors:
+      narnia_hdd_raid_status:
+        friendly_name: "HDD RAID Status"
+        value_template: >-    
+          {% if "U_" in states('sensor.narnia_hdd_mdstat')%}
+          Degraded
+          {% elif "_U" in states('sensor.narnia_hdd_mdstat')%}
+          Degraded
+          {% elif "[UUU]" in states('sensor.narnia_hdd_mdstat') %}
+          Healthy
+          {% else %}
+          Unknown
+          {% endif %}
+        icon_template: >-
+          {% if "U_" in states('sensor.narnia_hdd_mdstat')%}
+          mdi:harddisk-remove
+          {% elif "_U" in states('sensor.narnia_hdd_mdstat')%}
+          mdi:harddisk-remove
+          {% elif "[UUU]" in states('sensor.narnia_hdd_mdstat') %}
+          mdi:harddisk
+          {% else %}
+          help-network
+          {% endif %}          
 
   - platform: template
     sensors:
@@ -720,12 +755,11 @@
           {% elif is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Today')  and ((now().strftime('%H')|int) <= 17) %}   
           Today
           {% elif
-          is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Tomorrow') %}  
+          is_state('input_boolean.trash_needs_taking_out', 'on') and is_state('sensor.trash_day','Tomorrow') %} 
           Tomorrow
           {% else %}
           off
           {% endif %}
         icon_template: >-
-            mdi:trash-can-outline
-
+          mdi:trash-can-outline
  

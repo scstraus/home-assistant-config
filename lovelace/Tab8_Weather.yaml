@@ -274,9 +274,9 @@ cards:
 #    entities: 
 #    - sensor.u_s_air_quality_index
 
-  - type: vertical-stack
-    in_card: true
-    cards: 
+#  - type: vertical-stack
+#    in_card: true
+#    cards: 
 #
 #    - type: custom:mini-graph-card
 #  #      name: Internet
@@ -355,7 +355,6 @@ cards:
 
 
     - type: custom:mini-graph-card
-  #      name: Internet
       entities:
         - entity: sensor.dark_sky_wind_gust
           name: Wind Gust
@@ -384,7 +383,6 @@ cards:
 
 
     - type: custom:mini-graph-card
-  #      name: Internet
       entities:
         - entity: sensor.dark_sky_wind_bearing
           name: Wind Bearing
@@ -398,7 +396,6 @@ cards:
 #    - sensor.dark_sky_wind_bearing  
 
   - type: custom:mini-graph-card
-#      name: Internet
     entities:
       - entity: sensor.dark_sky_humidity
         name: Humidity
@@ -510,6 +507,13 @@ cards:
     hours_to_show: 24
     points_per_hour: 2
     height: 150
+    lower_bound: 1000
+    upper_bound: 1030
+    color_thresholds:
+        - value: 1022.689
+          color: "#6666ff"
+        - value: 1009.144
+          color: "#ffffff"
 
 #  - type: history-graph
 #    title: 'Pressure'
@@ -523,6 +527,19 @@ cards:
     hours_to_show: 24
     points_per_hour: 2
     height: 150
+    color_thresholds:
+      - value: 0
+        color: "#ccccff"
+      - value: 15
+        color: "#6666ff"
+      - value: 20
+        color: "#f3f300"
+      - value: 23
+        color: "#f39c12"
+      - value: 25
+        color: "#d35400"
+      - value: 28
+        color: "#c0392b"
 
 #  - type: history-graph
 #    title: 'Dew Point'

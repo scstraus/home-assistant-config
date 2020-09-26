@@ -4,6 +4,7 @@
 # of CPU without the stream component.
 # I have it configured without the stream component as it
 # still ads the 13 second delay.
+# Onvif is configured via the integrations pane in the UI.
 
 
 # I used to use synology streams when I couldn't get the camera streams working directly for frigate, but the camera streams seem better now. No point in streaming it through 2 devices.
@@ -42,6 +43,70 @@
 #    stream_source: !secret right_main_stream_url
 #    framerate: 4
 
+# Trying to use generic cameras against synology proxy to allow for more streams at a time
+# Not very reliable, only 1 FPS or so, but low CPU usage. I suspect they are just using the still url instead.
+
+  # - platform: generic
+  #   name: Front Stream
+  #   stream_source: !secret syno_front_main_stream_url
+  #   still_image_url: !secret front_still_url
+  #   framerate: 4
+
+  # - platform: generic
+  #   name: Back Stream
+  #   stream_source: !secret syno_back_main_stream_url
+  #   still_image_url: !secret back_still_url
+  #   framerate: 4
+
+  # - platform: generic
+  #   name: Left Stream
+  #   stream_source: !secret syno_left_main_stream_url
+  #   still_image_url: !secret left_still_url
+  #   framerate: 4
+
+  # - platform: generic
+  #   name: Right Stream
+  #   stream_source: !secret syno_right_main_stream_url
+  #   still_image_url: !secret right_still_url
+  #   framerate: 4
+
+# synology proxy streams with ffmpeg component test 
+# (only gets the substream, probably have to change camera settings in synology)
+
+  # - platform: ffmpeg
+  #   name: Front Stream
+  #   input: !secret syno_front_main_stream_url
+
+  # - platform: ffmpeg
+  #   name: Back Stream
+  #   input: !secret syno_back_main_stream_url
+
+  # - platform: ffmpeg
+  #   name: Left Stream
+  #   input: !secret syno_left_main_stream_url
+
+  # - platform: ffmpeg
+  #   name: Right Stream
+  #   input: !secret syno_right_main_stream_url
+
+# live 555 proxy streams with ffmpeg component test 
+
+
+  - platform: ffmpeg
+    name: Front Stream
+    input: !secret proxy_front_main_stream_url
+
+  - platform: ffmpeg
+    name: Back Stream
+    input: !secret proxy_back_main_stream_url
+
+  - platform: ffmpeg
+    name: Left Stream
+    input: !secret proxy_left_main_stream_url
+
+  - platform: ffmpeg
+    name: Right Stream
+    input: !secret proxy_right_main_stream_url
 
 
 #
@@ -69,21 +134,21 @@
 #    stream_source: !secret back_substream_url
 #    framerate: 4
 ##
-#  - platform: ffmpeg
-#    input: !secret front_substream_url
-#    name: Front Subtream
-#
-#  - platform: ffmpeg
-#    input: !secret back_substream_url
-#    name: Back Substream
-#
-#  - platform: ffmpeg
-#    input: !secret left_substream_url
-#    name: Left Substream
-#
-#  - platform: ffmpeg
-#    input: !secret right_substream_url
-#    name: Right Substream
+  - platform: ffmpeg
+    input: !secret front_substream_url
+    name: Front Subtream
+
+  - platform: ffmpeg
+    input: !secret back_substream_url
+    name: Back Substream
+
+  - platform: ffmpeg
+    input: !secret left_substream_url
+    name: Left Substream
+
+  - platform: ffmpeg
+    input: !secret right_substream_url
+    name: Right Substream
 
 # MJPEG cameras are extremely close to realtime, 
 # even with streaming component turned on.
@@ -347,34 +412,34 @@
 # display the feeds with stream turned on
 
 
-  - platform: proxy
-    name: front_preview
-    entity_id: camera.front_stream
-    max_stream_width: 320
-    max_image_width: 320
-    image_refresh_rate: 1.0
-    cache_images: true
+  # - platform: proxy
+  #   name: front_preview
+  #   entity_id: camera.front_stream
+  #   max_stream_width: 320
+  #   max_image_width: 320
+  #   image_refresh_rate: 1.0
+  #   cache_images: true
 
-  - platform: proxy
-    name: back_preview
-    entity_id: camera.back_stream
-    max_stream_width: 320
-    max_image_width: 320
-    image_refresh_rate: 1.0
-    cache_images: true
+  # - platform: proxy
+  #   name: back_preview
+  #   entity_id: camera.back_stream
+  #   max_stream_width: 320
+  #   max_image_width: 320
+  #   image_refresh_rate: 1.0
+  #   cache_images: true
 
-  - platform: proxy
-    name: left_preview
-    entity_id: camera.left_stream
-    max_stream_width: 180
-    max_image_width: 180
-    image_refresh_rate: 1.0
-    cache_images: true
+  # - platform: proxy
+  #   name: left_preview
+  #   entity_id: camera.left_stream
+  #   max_stream_width: 180
+  #   max_image_width: 180
+  #   image_refresh_rate: 1.0
+  #   cache_images: true
 
-  - platform: proxy
-    name: right_preview
-    entity_id: camera.right_stream
-    max_stream_width: 180
-    max_image_width: 180
-    image_refresh_rate: 1.0
-    cache_images: true
+  # - platform: proxy
+  #   name: right_preview
+  #   entity_id: camera.right_stream
+  #   max_stream_width: 180
+  #   max_image_width: 180
+  #   image_refresh_rate: 1.0
+  #   cache_images: true

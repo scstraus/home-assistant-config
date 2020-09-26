@@ -610,6 +610,15 @@
     - service: shell_command.screensaver_stop_kindle_fire_closet
     - service: shell_command.screen_on_kindle_fire_kitchen
     - service: shell_command.screen_on_kindle_fire_closet 
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_wake_screen_timer_1
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_wake_screen_timer_2
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_close_camera_popup_timer
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -648,6 +657,15 @@
     - service: shell_command.screensaver_stop_kindle_fire_closet
     - service: shell_command.screen_on_kindle_fire_kitchen
     - service: shell_command.screen_on_kindle_fire_closet 
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_wake_screen_timer_1
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_wake_screen_timer_2
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_close_camera_popup_timer
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -689,6 +707,17 @@
     - service: shell_command.screensaver_stop_kindle_fire_closet
     - service: shell_command.screen_on_kindle_fire_kitchen
     - service: shell_command.screen_on_kindle_fire_closet 
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_wake_screen_timer_1
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_wake_screen_timer_2
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_close_camera_popup_timer
+        
+        
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -726,7 +755,18 @@
     - service: shell_command.screensaver_stop_kindle_fire_kitchen
     - service: shell_command.screensaver_stop_kindle_fire_closet
     - service: shell_command.screen_on_kindle_fire_kitchen
-    - service: shell_command.screen_on_kindle_fire_closet    
+    - service: shell_command.screen_on_kindle_fire_closet 
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_wake_screen_timer_1
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_wake_screen_timer_2
+    - service: timer.start
+      data:
+        entity_id: timer.tablet_close_camera_popup_timer
+        
+        
 #    - service: browser_mod.command
 #      data:
 #        command: more-info
@@ -747,132 +787,148 @@
   alias: Keep Fully Kiosk Screen On
   initial_state: 'true'
   trigger:
-  - platform: state
-    entity_id: binary_sensor.human_back
-    to: 'off'
-    for:
-      seconds: 15
-  - platform: state
-    entity_id: binary_sensor.human_front
-    to: 'off'
-    for:
-      seconds: 15
-  - platform: state
-    entity_id: binary_sensor.human_left
-    to: 'off'
-    for:
-      seconds: 15
-  - platform: state
-    entity_id: binary_sensor.human_right
-    to: 'off'
-    for:
-      seconds: 15
-  - platform: state
-    entity_id: binary_sensor.camera_left_motion_alarm  
-    to: 'off'
-    for:
-      seconds: 15
-  - platform: state
-    entity_id: binary_sensor.camera_back_motion_alarm  
-    to: 'off'
-    for:
-      seconds: 15
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.tablet_wake_screen_timer_1
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.tablet_wake_screen_timer_2
   action:
     - service: shell_command.screensaver_stop_kindle_fire_kitchen
     - service: shell_command.screensaver_stop_kindle_fire_closet
     - service: shell_command.screen_on_kindle_fire_kitchen
-    - service: shell_command.screen_on_kindle_fire_closet  
- 
+    - service: shell_command.screen_on_kindle_fire_closet 
 
-- id: keep_fully_kiosk_screen_on_human
-  alias: Keep Fully Kiosk Screen On
-  initial_state: 'true'
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.human_back
-    to: 'off'
-    for:
-      seconds: 30
-  - platform: state
-    entity_id: binary_sensor.human_front
-    to: 'off'
-    for:
-      seconds: 30
-  - platform: state
-    entity_id: binary_sensor.human_left
-    to: 'off'
-    for:
-      seconds: 30
-  - platform: state
-    entity_id: binary_sensor.human_right
-    to: 'off'
-    for:
-      seconds: 30
-  - platform: state
-    entity_id: binary_sensor.camera_left_motion_alarm  
-    to: 'off'
-    for:
-      seconds: 30
-  - platform: state
-    entity_id: binary_sensor.camera_back_motion_alarm  
-    to: 'off'
-    for:
-      seconds: 30
-  action:
-    - service: shell_command.screensaver_stop_kindle_fire_kitchen
-    - service: shell_command.screensaver_stop_kindle_fire_closet
-    - service: shell_command.screen_on_kindle_fire_kitchen
-    - service: shell_command.screen_on_kindle_fire_closet  
+
+#  - platform: state
+#    entity_id: binary_sensor.human_back
+#    to: 'off'
+#    for:
+#      seconds: 15
+#  - platform: state
+#    entity_id: binary_sensor.human_front
+#    to: 'off'
+#    for:
+#      seconds: 15
+#  - platform: state
+#    entity_id: binary_sensor.human_left
+#    to: 'off'
+#    for:
+#      seconds: 15
+#  - platform: state
+#    entity_id: binary_sensor.human_right
+#    to: 'off'
+#    for:
+#      seconds: 15
+#  - platform: state
+#    entity_id: binary_sensor.camera_left_motion_alarm  
+#    to: 'off'
+#    for:
+#      seconds: 15
+#  - platform: state
+#    entity_id: binary_sensor.camera_back_motion_alarm  
+#    to: 'off'
+#    for:
+#      seconds: 15
+ 
+ 
+#
+#- id: keep_fully_kiosk_screen_on_human
+#  alias: Keep Fully Kiosk Screen On
+#  initial_state: 'true'
+#  trigger:
+#  - platform: state
+#    entity_id: binary_sensor.human_back
+#    to: 'off'
+#    for:
+#      seconds: 30
+#  - platform: state
+#    entity_id: binary_sensor.human_front
+#    to: 'off'
+#    for:
+#      seconds: 30
+#  - platform: state
+#    entity_id: binary_sensor.human_left
+#    to: 'off'
+#    for:
+#      seconds: 30
+#  - platform: state
+#    entity_id: binary_sensor.human_right
+#    to: 'off'
+#    for:
+#      seconds: 30
+#  - platform: state
+#    entity_id: binary_sensor.camera_left_motion_alarm  
+#    to: 'off'
+#    for:
+#      seconds: 30
+#  - platform: state
+#    entity_id: binary_sensor.camera_back_motion_alarm  
+#    to: 'off'
+#    for:
+#      seconds: 30
+#  action:
+#    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+#    - service: shell_command.screensaver_stop_kindle_fire_closet
+#    - service: shell_command.screen_on_kindle_fire_kitchen
+#    - service: shell_command.screen_on_kindle_fire_closet  
 
 - id: close_popup_on_kiosk
   alias: close_popup_on_kiosk
   initial_state: 'true'
   trigger:
-  - platform: state
-    entity_id: binary_sensor.human_back
-    to: 'off'
-    for:
-      minutes: 1
-  - platform: state
-    entity_id: binary_sensor.human_front
-    to: 'off'
-    for:
-      minutes: 1
-  - platform: state
-    entity_id: binary_sensor.human_left
-    to: 'off'
-    for:
-      minutes: 1
-  - platform: state
-    entity_id: binary_sensor.human_right
-    to: 'off'
-    for:
-      minutes: 1
-  condition:
-    condition: and
-    conditions:
-    - condition: state
-      entity_id: binary_sensor.human_right
-      state: 'off'
-      for:
-        minutes: 1
-    - condition: state
-      entity_id: binary_sensor.human_left
-      state: 'off'
-      for:
-        minutes: 1
-    - condition: state
-      entity_id: binary_sensor.human_front
-      state: 'off'
-      for:
-        minutes: 1
-    - condition: state
-      entity_id: binary_sensor.human_back
-      state: 'off'
-      for:
-        minutes: 1
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: tablet_close_camera_popup_timer
   action:
     - service: browser_mod.close_popup
+
+#  - platform: state
+#    entity_id: binary_sensor.human_back
+#    to: 'off'
+#    for:
+#      minutes: 1
+#  - platform: state
+#    entity_id: binary_sensor.human_front
+#    to: 'off'
+#    for:
+#      minutes: 1
+#  - platform: state
+#    entity_id: binary_sensor.human_left
+#    to: 'off'
+#    for:
+#      minutes: 1
+#  - platform: state
+#    entity_id: binary_sensor.human_right
+#    to: 'off'
+#    for:
+#      minutes: 1
+#  condition:
+#    condition: and
+#    conditions:
+#    - condition: state
+#      entity_id: binary_sensor.human_right
+#      state: 'off'
+#      for:
+#        minutes: 1
+#    - condition: state
+#      entity_id: binary_sensor.human_left
+#      state: 'off'
+#      for:
+#        minutes: 1
+#    - condition: state
+#      entity_id: binary_sensor.human_front
+#      state: 'off'
+#      for:
+#        minutes: 1
+#    - condition: state
+#      entity_id: binary_sensor.human_back
+#      state: 'off'
+#      for:
+#        minutes: 1
 
 #    - service: browser_mod.command
 #      data:

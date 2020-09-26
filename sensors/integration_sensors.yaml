@@ -253,18 +253,18 @@
     platform: mqtt
     state_topic: !secret alarm_state_3
 
-  - name: Home Air Quality
-    platform: file
-    file_path: !secret home_aqi_path
-    value_template: '{{ value.split(";")[4] }}'
-    unit_of_measurement: 'AQI'
-
-  - name: Hlubocepy Air Quality
-    platform: file
-    file_path: !secret hlubocepy_aqi_path
-    value_template: '{{ value.split(";")[4] }}'
-    unit_of_measurement: 'AQI'
- 
+#  - name: Home Air Quality
+#    platform: file
+#    file_path: !secret home_aqi_path
+#    value_template: '{{ value.split(";")[4] }}'
+#    unit_of_measurement: 'AQI'
+#
+#  - name: Hlubocepy Air Quality
+#    platform: file
+#    file_path: !secret hlubocepy_aqi_path
+#    value_template: '{{ value.split(";")[4] }}'
+#    unit_of_measurement: 'AQI'
+# 
 #  - platform: synologydsm
 #    name: discworld
 #    host: !secret synology_ip
@@ -313,6 +313,12 @@
     value_template: 'OK'
 
   - platform: command_line
-    name: narnia_mdstat
-    command: "cat /proc/mdstat"
+    name: narnia_ssd_mdstat
+    command: "cat /proc/mdstat | tail -n 5"
     scan_interval: 3600
+
+  - platform: command_line
+    name: narnia_hdd_mdstat
+    command: "cat /proc/mdstat | head -n 4 | tail -n 3"
+    scan_interval: 3600
+

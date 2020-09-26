@@ -412,3 +412,51 @@ sensor.hlubocepy_air_quality:
   icon: mdi:air-filter
 sensor.home_air_quality:
   icon: mdi:air-filter
+sensor.memory_use_percent:
+  icon: mdi:chip
+sensor.discworld_disk_1_status:
+  icon: mdi:harddisk
+sensor.discworld_disk_2_status:
+  icon: mdi:harddisk
+sensor.discworld_disk_3_status:
+  icon: mdi:harddisk
+sensor.discworld_disk_4_status:
+  icon: mdi:harddisk
+sensor.discworld_volume_1_volume_used:
+  icon: mdi:nas
+sensor.discworld_network_down_mbit:
+  icon: mdi:gauge
+sensor.discworld_network_up_mbit:
+  icon: mdi:gauge
+sensor.discworld_network_up:
+  icon: mdi:gauge
+sensor.discworld_network_down:
+  icon: mdi:gauge
+sensor.frigate_coral_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.back_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.back_skipped_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.frigate_coral_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.front_detection_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.front_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.front_skipped_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.left_detection_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.left_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.left_skipped_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.right_detection_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.right_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.right_skipped_fps:
+  icon: mdi:filmstrip-box-multiple
+sensor.frigate_coral_inference:
+  icon: mdi:timer-outline
