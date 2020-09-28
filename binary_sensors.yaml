@@ -413,7 +413,7 @@
         device_class: problem
         value_template: >- 
           {{ (
-             ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2 ','on')) or  (is_state('binary_sensor.ecolink_garage_door','on'))) 
+             ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2','on')) or  (is_state('binary_sensor.ecolink_garage_door','on'))) 
              and ((is_state('input_select.active_heating_profile','PROFILE_AUTO')) or (is_state('input_select.active_heating_profile','PROFILE_A')) or (is_state('input_select.active_heating_profile','PROFILE_B')) or (is_state('input_select.active_heating_profile','PROFILE_C')))
              and (states('sensor.dark_sky_temperature')|float < 18)
              ) }}
@@ -425,7 +425,7 @@
         device_class: problem
         value_template: >- 
           {{ (
-             ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2 ','on')) or (is_state('binary_sensor.ecolink_garage_door','on'))) 
+             ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2','on')) or (is_state('binary_sensor.ecolink_garage_door','on'))) 
              and (is_state('input_select.active_heating_profile','PROFILE_E'))
              and (states('sensor.dark_sky_temperature')|float > 26)
              and (states('sensor.dark_sky_daytime_high_temperature_0d')|float > 30)
@@ -438,6 +438,6 @@
         device_class: problem
         value_template: >- 
           {{ (
-             ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2 ','on')) or (is_state('binary_sensor.ecolink_garage_door','on'))) 
+             ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2','on')) or (is_state('binary_sensor.ecolink_garage_door','on'))) 
              and (states('sensor.hlubocepy_air_quality')|float > 50)
              ) }}

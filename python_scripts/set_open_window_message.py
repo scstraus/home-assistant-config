@@ -48,14 +48,10 @@ def make_open_windows_message(num_open_windows):
       message = message + ", open windows on the First Floor"
     else:
       message = "Open windows on the First Floor"
+    if num_open_windows > counter:
+      message = message + " and in"
     counter = counter - 1
     first_floor_windows = 1
-    if (num_open_windows > counter) and (first_floor_windows == 1):
-      message = message + " and in"
-    elif num_open_windows > counter:
-      message = message + ", in"
-    else:
-      message = message + "Open windows in"
   else:
     if (num_open_windows > counter) and (first_floor_windows == 1):
       message = message + " and open windows in"
