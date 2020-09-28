@@ -1179,3 +1179,69 @@
     data:
       title: "Take out that trash!"
       message: "Hello there, now would be a really great time to take out the bio odpad, what do you think? Let's do it, what do you say?!?"
+#
+#
+#- id: switch_dreamscreen_to_xbox_input_2
+#  alias: switch_dreamscreen_to_xbox_input_2
+#  initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: remote.harmony
+#    attribute: current_activity
+#    to: "Play Xbox"
+#  action:
+#    service: dreamscreen.set_hdmi_source
+#    data:
+#      entity_id: dreamscreen.living_room_tv
+#      source: 2
+#
+#- id: switch_dreamscreen_to_hdmi_switch_input_1
+#  alias: switch_dreamscreen_to_hdmi_switch_input_1
+#  initial_state: 'true'
+#  trigger:
+#  - platform: state
+#    entity_id: remote.harmony
+#    attribute: current_activity
+#    to: "Watch English TV"
+#  - platform: state
+#    entity_id: remote.harmony
+#    attribute: current_activity
+#    to: "Watch Apple TV"
+#  - platform: state
+#    entity_id: remote.harmony
+#    attribute: current_activity
+#    to: "Go to My Mac"
+#  - platform: state
+#    entity_id: remote.harmony
+#    attribute: current_activity
+#    to: "Chrome Cast"
+#  - platform: state
+#    entity_id: remote.harmony
+#    attribute: current_activity
+#    to: "Play Nintendo"
+#  action:
+#    service: dreamscreen.set_hdmi_source
+#    data:
+#      entity_id: dreamscreen.living_room_tv
+#      source: 1
+#
+#- id: switch_dreamscreen_off
+#  alias: switch_dreamscreen_off
+#  initial_state: 'true'
+#  trigger:
+#  - platform: state
+#    entity_id: remote.harmony
+#    attribute: current_activity
+#    to: "Watch Russian TV"
+#  - platform: state
+#    entity_id: remote.harmony
+#    attribute: current_activity
+#    to: "Watch Czech TV"
+#  - platform: state
+#    entity_id: remote.harmony
+#    to: off
+#  action:
+#    service: dreamscreen.set_mode
+#    data:
+#      entity_id: dreamscreen.living_room_tv
+#      mode: 0
