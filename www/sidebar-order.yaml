@@ -1,0 +1,21 @@
+order:
+  - item: overview
+  - item: developer tools
+  - item: configuration
+  - item: supervisor
+  - item: logbook
+  - item: history
+  - item: HACS
+  - item: Grafana
+  - item: Visual Studio Code
+  - item: Calendar
+    hide: true
+  - item: InfluxDB
+    bottom: true
+  - item: Z-Wave Graph
+    bottom: true
+  - item: map
+    bottom: true
+  - item: Test
+    bottom: true
+    hide: true

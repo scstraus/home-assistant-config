@@ -15,8 +15,8 @@
 !sensors/
 !sensors/**
 !www/images/
-!www/images/**
-
+!www/images/*
+!www
 # Ignore folders.
 .storage
 .cloud
