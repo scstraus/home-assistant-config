@@ -1,5 +1,5 @@
 # Sean Straus' Home Assistant Configuration <img src="https://avatars1.githubusercontent.com/u/7644023?s=460&u=385a7ff0525e0838f1e302474d6c8931fc6db189&v=4" width="100" height="100" align="right"> 
-(Home Assistant Supervised, Ubuntu Server 18.04.1 LTS, 2011 Mac Mini)
+(Home Assistant Supervised, Debian 10, [Shuttle SZ270R8](http://www.shuttle.eu/products/mini-pc/sz270r8/), [Intel Core I5 7500T 35W](https://ark.intel.com/content/www/us/en/ark/products/97121/intel-core-i5-7500t-processor-6m-cache-up-to-3-30-ghz.html), 8GB DDR4 2400Mhz, 2x [Samsung 970 Evo Plus 256GB](https://www.samsung.com/semiconductor/minisite/ssd/product/consumer/970evoplus/) in RAID1, 3x [WD RED 2GB](https://shop.westerndigital.com/en-ie/products/internal-drives/wd-red-sata-hdd#WD20EFAX) in RAID5)
 
 Hello there. This is an incomplete and probably out of date description of what I'm doing with home assistant, but hopefully it will be of some use for ideas and samples to someone.
 
