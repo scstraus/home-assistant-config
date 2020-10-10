@@ -5,7 +5,6 @@
       - media_player.kitchen_airtunes_speaker
       - media_player.bathroom_1st_floor_airtunes_speaker
       - media_player.apple_tv_airtunes_speaker
-      - media_player.master_bedroom_airtunes_speaker
       - media_player.master_bath_airtunes_speaker
       - media_player.office_airtunes_speaker
       - media_player.library_airtunes_speaker
@@ -13,6 +12,7 @@
       - media_player.sophie_s_room_airtunes_speaker
       - media_player.sebastian_s_room_airtunes_speaker
       - media_player.gym_airtunes_speaker
+#      - media_player.master_bedroom_airtunes_speaker
 
   Alena_And_Sean:
     name: Alena and Sean
@@ -32,6 +32,20 @@
     entities: 
       - media_player.kitchen_airtunes_speaker
       - media_player.living_room_airtunes_speaker
+
+  alexas:
+    name: All Alexas
+    entities:
+      - media_player.kichen_bar_kindle_fire
+      - media_player.master_closet_kindle
+      - media_player.sean_s_4th_fire 
+      - media_player.sean_s_5th_fire
+      - media_player.sean_s_6th_fire 
+      - media_player.alexa_kitchen
+      - media_player.alexa_living_room
+      - media_player.alexa_master_bath
+      - media_player.office_alexa
+      - media_player.sophies_room_echo_dot
 
 #  default_view:
 #    view: yes

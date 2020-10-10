@@ -129,7 +129,10 @@
       data:
         type: tts
       message: "The dishes are clean."
-    service: notify.alexa_media_alexa_master_closet
+      target: 
+        - media_player.kichen_bar_kindle_fire
+        - media_player.alexa_kitchen
+    service: notify.alexa_media
 
       
 - id: fire_notify_running_dishes
@@ -153,8 +156,11 @@
       data:
         type: tts
       message: "The dishes are not done yet."
-    service: notify.alexa_media_alexa_master_closet
-    
+      target: 
+        - media_player.kichen_bar_kindle_fire
+        - media_player.alexa_kitchen
+        - notify.alexa_media_alexa_master_closet
+    service: notify.alexa_media    
 
 - id: dishwasher_running_door_open_timer
   alias: dishwasher_running_door_open_timer
@@ -213,12 +219,11 @@
       data:
         type: tts
       message: "Sorry, it looks like you wanted to run the dishes but you left the door open on the dishwasher."
-    service: notify.alexa_media_alexa_kitchen_bar
-  - data:
-      data:
-        type: tts
-      message: "Sorry, it looks like you wanted to run the dishes but you left the door open on the dishwasher."
-    service: notify.alexa_media_alexa_master_closet
+      target: 
+        - media_player.kichen_bar_kindle_fire
+        - media_player.alexa_kitchen
+        - notify.alexa_media_alexa_master_closet
+    service: notify.alexa_media 
   - data:
       title: "Dishwasher Update"
       message: "Looks like you left the dishwasher door open"
@@ -1084,3 +1089,17 @@
       data:
         entity_id: fan.master_bedroom_air_purifier
         speed: Silent
+
+- id: towel_warmer_turn_off_timer
+  alias: towel_warmer_turn_off_timer
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.master_bath_towel_warmer
+      to: 'on'
+      for: 
+        minutes: 240
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.master_bath_towel_warmer

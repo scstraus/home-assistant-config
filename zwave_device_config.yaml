@@ -157,3 +157,12 @@ sensor.ecolink_garage_door_alarm_type_5:
 sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_flood:
   ignored: true
   polling_intensity: 0
+sensor.fibaro_system_fgwpe_f_wall_plug_gen5_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgwpe_f_wall_plug_gen5_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgwpe_f_wall_plug_gen5_sourcenodeid:
+  ignored: true
+  polling_intensity: 0

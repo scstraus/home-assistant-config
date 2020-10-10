@@ -364,11 +364,15 @@
     entity_id: input_boolean.working_from_home
     to: 'on'
   action:
-    service: evohome.set_zone_override
-    data:
-      entity_id: climate.office_library
-      setpoint: 23
-      duration: {"minutes":480}
+    - service: evohome.set_zone_override
+      data:
+        entity_id: climate.office_library
+        setpoint: 23
+        duration: {"minutes":480}
+    - service: switch.turn_on
+      data:
+        entity_id: switch.office_alexa_do_not_disturb_switch
+
 
 - id: working_from_home_today
   alias: "Working From Home Today"
@@ -387,11 +391,34 @@
         - thu
         - fri    
   action:
-    service: evohome.set_zone_override
+    - service: evohome.set_zone_override
+      data:
+        entity_id: climate.office_library
+        setpoint: 23
+        duration: {"minutes":700}
+    - service: switch.turn_on
+      data:
+        entity_id: switch.office_alexa_do_not_disturb_switch
+
+
+- id: end_working_from_home_today
+  alias: end_working_from_home_today
+  trigger:
+    platform: time
+    at: '18:30:00'
+  condition:    
+    condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: switch.turn_off
     data:
-      entity_id: climate.office_library
-      setpoint: 23
-      duration: {"minutes":700}
+      entity_id: switch.office_alexa_do_not_disturb_switch  
+
 
 #####################################
 # Non heating related climate cases #
@@ -444,43 +471,6 @@
 #  action:
 #    - service: homeassistant.update_entity
 #      entity_id: binary_sensor.open_window_making_house_cold
-
-- id: update_open_window_cold_sensor
-  alias: update_open_window_cold_sensor
-  trigger:
-    - platform: state
-      entity_id: 
-        - binary_sensor.back_door
-        - binary_sensor.sebastians_room_left_window
-        - binary_sensor.sophies_room_ceiling_window
-        - binary_sensor.ecolink_closet_left_window
-        - binary_sensor.laundry_room_window_zone_13
-        - binary_sensor.ecolink_garage_door
-        - binary_sensor.windows_1st_floor_zone_2
-    - platform: homeassistant
-      event: start
-  action:
-    - service: homeassistant.update_entity
-      entity_id: binary_sensor.open_window_making_house_cold
-    
-- id: update_open_window_cold_message
-  alias: update_open_window_cold_message
-  trigger:
-    - platform: state
-      entity_id: 
-        - binary_sensor.back_door
-        - binary_sensor.sebastians_room_left_window
-        - binary_sensor.sophies_room_ceiling_window
-        - binary_sensor.ecolink_closet_left_window
-        - binary_sensor.laundry_room_window_zone_13
-        - binary_sensor.ecolink_garage_door
-        - binary_sensor.windows_1st_floor_zone_2
-    - platform: homeassistant
-      event: start 
-  action: 
-    - service: python_script.set_open_window_message
-      data:
-        message_type: cold
       
 - id: update_open_window_cold_sensor
   alias: update_open_window_cold_sensor

@@ -324,16 +324,22 @@
 
   - platform: template
     sensors:
-        last_alexa:
-          entity_id:
-            - media_player.kichen_bar_kindle_fire
-            - media_player.master_closet_kindle
-            - media_player.sean_s_4th_fire 
-            - media_player.sean_s_5th_fire
-            - media_player.sean_s_6th_fire 
-            - media_player.sean_s_echo_dot
-          value_template: >
-            {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
+      last_alexa:
+        value_template: >
+          {{ expand(states.group.alexas) | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
+
+#  - platform: template
+#    sensors:
+#        last_alexa:
+#          entity_id:
+#            - media_player.kichen_bar_kindle_fire
+#            - media_player.master_closet_kindle
+#            - media_player.sean_s_4th_fire 
+#            - media_player.sean_s_5th_fire
+#            - media_player.sean_s_6th_fire 
+#            - media_player.sean_s_echo_dot
+#          value_template: >
+#            {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
 
 
   - platform: template

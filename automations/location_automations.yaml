@@ -604,8 +604,8 @@
         push:
           thread-id: "location"
 
-- id: alenas_home
-  alias: 'Alena is Home'
+- id: alenas_is_home
+  alias: alenas_is_home
   initial_state: 'true'
   trigger:
     platform: state
@@ -801,8 +801,8 @@
         push:
           thread-id: "location"
 
-- id: alenas_home
-  alias: 'Alena is Heading Home'
+- id: alenas_heading_home
+  alias: alenas_heading_home
   initial_state: 'true'
   trigger:
     platform: state

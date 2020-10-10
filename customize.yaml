@@ -432,8 +432,6 @@ sensor.discworld_network_up:
   icon: mdi:gauge
 sensor.discworld_network_down:
   icon: mdi:gauge
-sensor.frigate_coral_fps:
-  icon: mdi:filmstrip-box-multiple
 sensor.back_fps:
   icon: mdi:filmstrip-box-multiple
 sensor.back_skipped_fps:

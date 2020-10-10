@@ -70,9 +70,8 @@ python_script:
 frontend:
   themes: !include_dir_merge_named themes
 #  themes: !include themes.yaml
-  javascript_version: auto
-  extra_module_url:
-    - /hacsfiles/custom-sidebar/custom-sidebar.js
+#  extra_module_url:
+#    - /hacsfiles/custom-sidebar/custom-sidebar.js
 
 lovelace:
 
@@ -126,6 +125,9 @@ lovelace:
       type: module
     - url: /hacsfiles/text-element/text-element.js
       type: module
+    - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
+      type: module
+                
 
 mobile_app:
 
@@ -135,7 +137,7 @@ discovery:
 #    - plex_mediaserver
     
 http:
-  base_url: https://ykzeuvypwjk18i8n16yph2po160resx0.ui.nabu.casa/
+
 #uncomment for iOS device add
 #  api_password: !secret API_pass
 
@@ -176,9 +178,10 @@ logger:
     zwave: warn
     zeroconf: warn
     homeassistant.components.proxy.camera: warn
-    homeassistant.components.evohome_rf: debug
+    homeassistant.components.evohome_cc: debug
     evohome: debug
     pydreamscreen: warn
+    homeassistant.helpers.event: warn
 
 #    hass_nabucasa: debug
 #    homeassistant.components.cloud: debug
@@ -192,17 +195,17 @@ logger:
 
 
 
-switch:
-
-  - platform: switchbot
-    name: Switchbot Hub Wifi
-    mac: '48:3F:DA:5A:31:4E'
-  - platform: switchbot
-    name: Switchbot Hub BLE
-    mac: 'C2:A4:5B:3A:02:06'
-  - platform: switchbot
-    name: Switchbot Curtian Right BLE
-    mac: 'EE:C3:79:9B:1A:07'
+#switch:
+#
+#  - platform: switchbot
+#    name: Switchbot Hub Wifi
+#    mac: '48:3F:DA:5A:31:4E'
+#  - platform: switchbot
+#    name: Switchbot Hub BLE
+#    mac: 'C2:A4:5B:3A:02:06'
+#  - platform: switchbot
+#    name: Switchbot Curtian Right BLE
+#    mac: 'EE:C3:79:9B:1A:07'
 
 #  - platform: command_line
 #    switches:
@@ -548,6 +551,50 @@ input_select:
       - LIVING_ROOM_20
       - LIVING_ROOM_18
 
+  dreamscreen_mode:
+    name: Dreamscreen Mode
+    options:
+      - Turn Off
+      - Video
+      - Music
+      - Ambient
+
+  dreamscreen_color:
+    name: Dreamscreen Color
+    options:
+      - Black
+      - White
+      - Red
+      - Orange
+      - Yellow
+      - Green
+      - Blue
+      - Indigo
+      - Violet
+      - Lime
+      - Cyan
+      - Magenta
+      - Silver
+      - Gray
+      - Maroon
+      - Olive
+      - Purple
+      - Teal
+      - Navy
+
+  dreamscreen_scene:
+    name: Dreamscreen Scene
+    options:
+      - Random
+      - Fire 
+      - Twinkle
+      - Ocean 
+      - Pride
+      - Fireworks
+      - Holiday
+      - Pop
+      - Forest
+
 proximity:
   all_home: 
     devices:
@@ -660,6 +707,12 @@ input_number:
     max: 25.0
     step: 0.5
 
+  dreamscreen_brightness:
+    name: Brightness
+    min: 0
+    max: 100
+    step: 1
+
 shell_command:
 #  update_avnodehome_data: !secret avnodehome_update_cmd
 #  update_avnodehlubocepy_data: !secret avnodehlubocepy_update_cmd
@@ -720,10 +773,26 @@ fan:
     name: master_bedroom_air_purifier
     host: !secret xiaomi_air_purifier_master_bedroom_ip
     token: !secret xiaomi_air_purifier_master_bedroom_token
+
+#
+#evohome_cc:
+#  scan_interval: 60
+#  serial_port: /dev/ttyUSB0
+#  packet_log: /share/packet.log
+#  schema:
+#    controller: !secret evohome_controller_id
+#    
     
-evohome_rf: 
-  serial_port: /dev/ttyUSB0
-  packet_log: /share/packets.log
+    
+#  ignore_list:
+#    - 13:237335
+#    - 01:032820
+#    - 12:207082
+#    - 12:227486
+#
+#evohome_rf: 
+#  serial_port: /dev/ttyUSB0
+#  packet_log: /share/packets.log
 
 timer:
   bosch_dishwasher_emptying:
@@ -761,11 +830,11 @@ withings:
 #    - !secret profile_3
 #    - !secret profile_4
 
-panel_custom:
-  - name: zwavegraph2
-    sidebar_title: Z-Wave Graph
-    sidebar_icon: mdi:access-point-network
-    url_path: zwave
+#panel_custom:
+#  - name: zwavegraph2
+#    sidebar_title: Z-Wave Graph
+#    sidebar_icon: mdi:access-point-network
+#    url_path: zwave
 
 influxdb:
   host: a0d7b954-influxdb

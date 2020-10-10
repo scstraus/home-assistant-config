@@ -882,7 +882,7 @@
     - platform: event
       event_type: timer.finished
       event_data:
-        entity_id: tablet_close_camera_popup_timer
+        entity_id: timer.tablet_close_camera_popup_timer
   action:
     - service: browser_mod.close_popup
 

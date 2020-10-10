@@ -196,6 +196,20 @@ cards:
       - name: "Take Out the Trash Now!"
 
   - type: custom:decluttering-card
+    template: warning_2line
+    variables:
+      - entity: binary_sensor.sebastians_room_rain_window
+      - state: 'on'
+      - name: "Sebastian's window is open and there is a forecast for rain"
+
+  - type: custom:decluttering-card
+    template: warning_2line
+    variables:
+      - entity: binary_sensor.sophies_room_rain_window
+      - state: 'on'
+      - name: "Sophie's window is open and there is a forecast for rain"
+
+  - type: custom:decluttering-card
     template: warning
     variables:
       - entity: binary_sensor.human_back
@@ -664,8 +678,6 @@ cards:
 
 ### START COMMENT BLOCK 4: Weather and air quality
 
-
-
   - type: custom:mod-card
     report_size: 14
     card:
@@ -678,6 +690,13 @@ cards:
         weather: weather.openweathermap
         sun: sun.sun
         mode: hourly
+
+      - type: custom:decluttering-card
+        template: open_windows_cold_nomarquee
+
+      - type: custom:decluttering-card
+        template: open_windows_hot_nomarquee
+
 
 
 #These are the colors to use for the environment graph cards
@@ -738,7 +757,6 @@ cards:
 #          points_per_hour: 2
 #          show_points: false
 #          height: 60
-
 
         - type: custom:mini-graph-card
           name: CO2 Indoors
@@ -1698,6 +1716,16 @@ cards:
         controls: true
         mute: true
       group: true
+    - type: custom:fold-entity-row
+      head: 
+        entity: input_number.dreamscreen_brightness
+        icon: mdi:looks
+        name: Dreamscreen
+      entities:
+        - entity: input_select.dreamscreen_mode
+          name: Mode
+        - input_select.dreamscreen_scene
+#      name: Dreamscreen
     - climate.entrance
     - climate.living_room
     - climate.dining_room

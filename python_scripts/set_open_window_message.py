@@ -48,17 +48,28 @@ def make_open_windows_message(num_open_windows):
       message = message + ", open windows on the First Floor"
     else:
       message = "Open windows on the First Floor"
-    if num_open_windows > counter:
-      message = message + " and in"
     counter = counter - 1
     first_floor_windows = 1
-  else:
-    if (num_open_windows > counter) and (first_floor_windows == 1):
-      message = message + " and open windows in"
-    elif num_open_windows > counter:
-      message = message + ", and open windows in"
-    else:
-      message = message + "Open windows in"
+
+## num open windows > (counter + 1) means we did multiple things already
+## num open windows > counter means we did at least one thing already
+## num_open_windows <= (counter+1) means we did one or less thing already 
+## first_floor_windows means they are open
+## counter == 1 means this is the last one
+## counter > 1 means there are multiple more coming
+
+
+  # At least one open door and open first floor windows, any amount more windows open
+  if (num_open_windows > (counter+1) ) and (first_floor_windows == 1):
+    message = message + ", and open windows in"
+  # No door open, only open first floor windows, and other window(s) open
+  elif (num_open_windows <= (counter+1)) and (first_floor_windows == 1) and (counter == 1) :
+    message = message + " and open windows in"
+  # no open door or open first floor windows but some open window
+  elif (counter > 0):
+    message = message + "Open windows in"
+    
+
   if (hass.states.get("binary_sensor.sebastians_room_left_window").state) == "on":
     message = message + " Sebastian's Room"
     counter = counter - 1
@@ -109,5 +120,6 @@ def make_open_windows_message(num_open_windows):
 num_open_windows = count_open_windows()
 if num_open_windows > 0:
   message=make_open_windows_message(num_open_windows)
-logger.debug("The message is: %s",message)
-
+  logger.debug("The message is: %s",message)
+else: 
+  logger.debug("Message not set")

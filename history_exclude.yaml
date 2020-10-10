@@ -3,7 +3,6 @@
     - calendar
     - history_graph
     - media_player
-    - switch
     - automation
     - script
     - camera
@@ -256,3 +255,18 @@
     - binary_sensor.04_136513_window
     - binary_sensor.04_136519_window
     - binary_sensor.04_157929_window
+    - switch.sean_s_4th_fire_do_not_disturb_switch
+    - switch.sean_s_4th_fire_repeat_switch
+    - switch.sean_s_4th_fire_shuffle_switch
+    - switch.sean_s_5th_fire_do_not_disturb_switch
+    - switch.sean_s_5th_fire_repeat_switch
+    - switch.sean_s_5th_fire_shuffle_switch
+    - switch.sean_s_6th_fire_do_not_disturb_switch
+    - switch.sean_s_6th_fire_repeat_switch
+    - switch.sean_s_6th_fire_shuffle_switch
+    - switch.sophies_room_echo_dot_do_not_disturb_switch
+    - switch.sophies_room_echo_dot_repeat_switch
+    - switch.sophies_room_echo_dot_shuffle_switch
+    - switch.this_device_do_not_disturb_switch
+    - switch.this_device_shuffle_switch
+    - switch.this_device_repeat_switch
