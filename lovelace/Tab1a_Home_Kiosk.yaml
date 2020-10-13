@@ -1600,6 +1600,25 @@ cards:
           controls: true
           mute: true
         group: true
+      - type: custom:fold-entity-row
+        head: 
+          entity: input_number.dreamscreen_brightness
+          icon: mdi:looks
+          name: Dreamscreen
+  #    - type: custom:fold-entity-row
+  #      head: 
+  #        entity: custom:slider-entity-row
+  #        entity: light.dreamscreen
+  #        icon: mdi:looks
+  #        name: Dreamscreen
+        entities:
+          - entity: light.dreamscreen
+            name: Color / Switch
+          - entity: input_select.dreamscreen_mode
+            name: Mode
+          - entity: input_select.dreamscreen_scene
+            name: Scene
+
       - climate.entrance
       - climate.living_room
       - climate.dining_room

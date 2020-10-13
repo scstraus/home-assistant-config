@@ -127,6 +127,9 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
       type: module
+#    - url: /hacsfiles/light-entity-card/light-entity-card.js
+#      type: module
+                
                 
 
 mobile_app:
@@ -875,3 +878,32 @@ input_text:
   windows_letting_pollution_in:
     name: Windows Making House Cold
     max: 250
+
+light:
+  - platform: template
+    lights:
+      dreamscreen:
+        friendly_name: "Dreamscreen"
+        level_template: "{{ (state_attr('dreamscreen.living_room_tv', 'brightness')|float*2.56)|int }}"
+        value_template: "{{ state_attr('dreamscreen.living_room_tv', 'device_mode')|int > 0 }}"
+        availability_template: "{{ states('dreamscreen.living_room_tv') != 'unknown' }}"
+        turn_on:
+          service: dreamscreen.set_mode
+          data:
+            entity_id: dreamscreen.living_room_tv
+            mode: 3
+        turn_off:
+          service: dreamscreen.set_mode
+          data:
+            entity_id: dreamscreen.living_room_tv
+            mode: 0
+        set_level:
+          service: python_script.set_dreamscreen_brightness
+          data:
+            brightness: "{{ brightness }}"
+        set_color:
+          - service: python_script.set_dreamscreen_color
+            data:
+              h: "{{ h }}"
+              s: "{{ s }}"
+              v: "{{ state_attr('dreamscreen.living_room_tv', 'brightness')|int }}"

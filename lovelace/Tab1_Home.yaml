@@ -1721,15 +1721,28 @@ cards:
         entity: input_number.dreamscreen_brightness
         icon: mdi:looks
         name: Dreamscreen
+#    - type: custom:fold-entity-row
+#      head: 
+#        entity: custom:slider-entity-row
+#        entity: light.dreamscreen
+#        icon: mdi:looks
+#        name: Dreamscreen
       entities:
+        - entity: light.dreamscreen
+          name: Color / Switch
         - entity: input_select.dreamscreen_mode
           name: Mode
-        - input_select.dreamscreen_scene
-#      name: Dreamscreen
+        - entity: input_select.dreamscreen_scene
+          name: Scene
+
+      name: Dreamscreen
     - climate.entrance
     - climate.living_room
     - climate.dining_room
-
+#  - type: custom:light-entity-card
+#    entity: light.dreamscreen
+#    effects_list: input_select.dreamscreen_scene
+#    shorten_cards: true
 
 
   - type: entities

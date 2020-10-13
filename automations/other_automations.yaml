@@ -1300,6 +1300,55 @@
               entity_id: dreamscreen.living_room_tv
               mode: 3
 
+- id: sync_dreamscreen_mode
+  alias: sync_dreamscreen_mode
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: dreamscreen.living_room_tv
+  action:
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: device_mode
+          state: '0'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_mode
+              option: 'Turn Off'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: device_mode
+          state: '1'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_mode
+              option: 'Video'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: device_mode
+          state: '2'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_mode
+              option: 'Music'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: device_mode
+          state: '3'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_mode
+              option: 'Ambient'
+
 - id: set_dreamscreen_brightness
   alias: set_dreamscreen_brightness
   initial_state: 'true'
@@ -1312,6 +1361,19 @@
       entity_id: dreamscreen.living_room_tv
       brightness: >
         {{ states('input_number.dreamscreen_brightness')|int}}
+
+- id: sync_dreamscreen_brightness
+  alias: sync_dreamscreen_brightness
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: dreamscreen.living_room_tv
+  action:
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.dreamscreen_brightness
+      value: >
+        {{ state_attr('dreamscreen.living_room_tv', 'brightness')|int }}
  
 - id: switch_dreamscreen_visualization
   alias: switch_dreamscreen_visualization
@@ -1402,3 +1464,102 @@
             data:
               entity_id: dreamscreen.living_room_tv
               scene: 8
+
+- id: sync_dreamscreen_visualization
+  alias: sync_dreamscreen_visualization
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: dreamscreen.living_room_tv
+  action:
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: ambient_scene
+          state: '0'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_scene
+              option: 'Random'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: ambient_scene
+          state: '1'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_scene
+              option: 'Fire'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: ambient_scene
+          state: '2'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_scene
+              option: 'Twinkle'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: ambient_scene
+          state: '3'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_scene
+              option: 'Ocean'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: ambient_scene
+          state: '4'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_scene
+              option: 'Pride'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: ambient_scene
+          state: '5'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_scene
+              option: 'Fireworks'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: ambient_scene
+          state: '6'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_scene
+              option: 'Holiday'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: ambient_scene
+          state: '7'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_scene
+              option: 'Pop'
+      - conditions:
+        - condition: state
+          entity_id: dreamscreen.living_room_tv
+          attribute: ambient_scene
+          state: '8'
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.dreamscreen_scene
+              option: 'Forest'
