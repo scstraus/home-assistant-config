@@ -562,29 +562,6 @@ input_select:
       - Music
       - Ambient
 
-  dreamscreen_color:
-    name: Dreamscreen Color
-    options:
-      - Black
-      - White
-      - Red
-      - Orange
-      - Yellow
-      - Green
-      - Blue
-      - Indigo
-      - Violet
-      - Lime
-      - Cyan
-      - Magenta
-      - Silver
-      - Gray
-      - Maroon
-      - Olive
-      - Purple
-      - Teal
-      - Navy
-
   dreamscreen_scene:
     name: Dreamscreen Scene
     options:
