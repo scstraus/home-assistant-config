@@ -127,6 +127,8 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
       type: module
+    - url: /hacsfiles/lovelace-theme-maker/theme-maker.js?v=1
+      type: js
 #    - url: /hacsfiles/light-entity-card/light-entity-card.js
 #      type: module
                 
@@ -754,14 +756,14 @@ fan:
     host: !secret xiaomi_air_purifier_master_bedroom_ip
     token: !secret xiaomi_air_purifier_master_bedroom_token
 
-#
-#evohome_cc:
-#  scan_interval: 60
-#  serial_port: /dev/ttyUSB0
-#  packet_log: /share/packet.log
-#  schema:
-#    controller: !secret evohome_controller_id
-#    
+
+evohome_cc:
+  scan_interval: 60
+  serial_port: /dev/ttyUSB0
+  packet_log: /share/packet.log
+  schema:
+    controller: !secret evohome_controller_id
+    
     
     
 #  ignore_list:

@@ -138,6 +138,27 @@
     condition: state
     entity_id: input_select.active_heating_profile
     state: 'PROFILE_AUTO'
+
+- id: heat_down_open_master_bedroom_auto
+  alias: heat_down_open_master_bedroom_auto
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.master_bedroom_window
+    to: 'on'
+    for: 
+      minutes: 2
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.master_bedroom
+      setpoint: 12
+      duration: {"minutes":480}
+  condition:
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
+
 #  condition:
 #    condition: template 
 #    value_template: > 
@@ -250,6 +271,21 @@
     entity_id: input_select.active_heating_profile
     state: 'PROFILE_AUTO'
 
+- id: heat_up_closed_master_bedroom_auto
+  alias: heat_up_closed_master_bedroom_auto
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.master_bedroom_window
+    to: 'off'
+  action:   
+    - service: evohome.clear_zone_override
+      data:
+        entity_id: climate.master_bedroom
+  condition:
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
 
 
 ######################################################

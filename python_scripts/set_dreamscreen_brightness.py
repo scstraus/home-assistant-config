@@ -1,5 +1,5 @@
 #####################################################
-# Set Dreamscreen color using RGB from HSV input    #
+# Set Dreamscreen brightness by converting 256 levels to 100   #
 #####################################################
 
 ###### Service Call Parameters #######

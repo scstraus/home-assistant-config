@@ -10,7 +10,7 @@ MESSAGE_TYPE = data.get("message_type")
 
 ###### Global Variables #######
 
-WINDOW_ENTITIES= ["binary_sensor.back_door", "binary_sensor.sebastians_room_left_window", "binary_sensor.sophies_room_ceiling_window", "binary_sensor.ecolink_closet_left_window", "binary_sensor.laundry_room_window_zone_13", "binary_sensor.ecolink_garage_door","binary_sensor.windows_1st_floor_zone_2"]
+WINDOW_ENTITIES= ["binary_sensor.back_door", "binary_sensor.sebastians_room_left_window", "binary_sensor.sophies_room_ceiling_window", "binary_sensor.ecolink_closet_left_window", "binary_sensor.laundry_room_window_zone_13", "binary_sensor.ecolink_garage_door","binary_sensor.windows_1st_floor_zone_2","binary_sensor.master_bedroom_window"]
 
 ###### Function definitions ######
 
@@ -79,6 +79,16 @@ def make_open_windows_message(num_open_windows):
     message = message + "Open windows in"
   if (hass.states.get("binary_sensor.sebastians_room_left_window").state) == "on":
     message = message + " Sebastian's Room"
+    counter = counter - 1
+    window_counter = window_counter + 1
+  if (hass.states.get("binary_sensor.master_bedroom_window").state) == "on":
+    if counter == 1 and window_counter == 1:
+      message = message + " and"
+    if counter == 1 and window_counter > 1:
+      message = message + ", and"
+    if counter > 1 and ((window_counter-counter)>1):
+      message = message + ","
+    message = message + " the Master Bedroom"
     counter = counter - 1
     window_counter = window_counter + 1
   if (hass.states.get("binary_sensor.sophies_room_ceiling_window").state) == "on":

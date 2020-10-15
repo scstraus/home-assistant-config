@@ -166,3 +166,15 @@ sensor.fibaro_system_fgwpe_f_wall_plug_gen5_exporting:
 sensor.fibaro_system_fgwpe_f_wall_plug_gen5_sourcenodeid:
   ignored: true
   polling_intensity: 0
+sensor.ecolink_door_window_sensor_access_control_3:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_burglar_3:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_power_management_3:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_sourcenodeid_3:
+  ignored: true
+  polling_intensity: 0

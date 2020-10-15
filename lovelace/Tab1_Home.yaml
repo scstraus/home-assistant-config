@@ -402,10 +402,11 @@ cards:
     - sensor.discworld_status_smart_sdd
     - zwave.sebastian_room_left_window
     - zwave.basement_flood_sensor
-    - zwave.sophies_room_ceiling_window
+    - zwave.ecolink_sophies_room_ceiling_window
     - zwave.ecolink_closet_left_window
     - zwave.ecolink_garage_door_sensor
     - zwave.ecolink_basement_sliding_door
+    - zwave.ecolink_master_bedroom_window_sensor
     state_filter:
     - "unavailable"
     - "Warning"
@@ -447,6 +448,7 @@ cards:
     - sensor.ecolink_closet_left_window_battery_level
     - sensor.ecolink_garage_door_battery_level
     - sensor.ecolink_basement_sliding_door_battery_level
+    - sensor.master_bedroom_window_sensor_battery_level
     show_empty: false
 
 #  - type: custom:badge-card
@@ -1928,6 +1930,7 @@ cards:
 
   - type: custom:search-card
     max_results: 50
+#  - type: custom:theme-maker
 
 ### END COMMENT BLOCK 9: Search Card
 
