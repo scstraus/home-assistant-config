@@ -64,16 +64,17 @@ def make_open_windows_message(num_open_windows):
 ## first_floor_windows means they are open
 ## counter == 1 means this is the last one
 ## counter == 2 means there is one more coming
-## counter > 1 means there are one or more coming
-## counter > 2 means there are multiple more coming
+## counter > 0 means there is this one or more coming
+## counter > 1 means there is this one plus one or more coming
+## counter > 2 means there is this one plus 2 or more coming
 
 
   # At least one open door and open first floor windows, any amount more windows open
   if (num_open_windows > (counter+1) ) and (first_floor_windows == 1) and (counter > 1):
     message = message + ", and open windows in"
   # No door open, only open first floor windows, and other window(s) open
-  elif (num_open_windows <= (counter+1)) and (first_floor_windows == 1) and (counter == 1):
-    message = message + " and open windows in"
+  elif (num_open_windows <= (counter+1)) and (first_floor_windows == 1) and (counter >= 1):
+    message = message + " and in"
   # no open door or open first floor windows but some open window
   elif (counter > 0):
     message = message + "Open windows in"

@@ -1,17 +1,17 @@
 #    #turn input booleans for all playlist states to off
-  turn_playlists_off:
-    sequence:
-    - service: input_boolean.turn_off
-      data: 
-        entities:  
-        - input_boolean.mix_playlist
-        - input_boolean.jazz_playlist
-        - input_boolean.rock_playlist
-        - input_boolean.pop_playlist
-        - input_boolean.black_playlist
-        - input_boolean.best-black_playlist
-        - input_boolean.electronica_playlist
-        - input_boolean.kids_playlist
+#  turn_playlists_off:
+#    sequence:
+#    - service: input_boolean.turn_off
+#      data: 
+#        entities:  
+#        - input_boolean.mix_playlist
+#        - input_boolean.jazz_playlist
+#        - input_boolean.rock_playlist
+#        - input_boolean.pop_playlist
+#        - input_boolean.black_playlist
+#        - input_boolean.best-black_playlist
+#        - input_boolean.electronica_playlist
+#        - input_boolean.kids_playlist
 
 
 
@@ -28,21 +28,21 @@
 
   #turn input booleans for all playlist states to off
 
-
-  turn_playlists_on:
-    sequence:
-    - service: input_boolean.turn_on
-      data: 
-        entities:
-        - input_boolean.mix_playlist
-        - input_boolean.jazz_playlist
-        - input_boolean.rock_playlist
-        - input_boolean.pop_playlist
-        - input_boolean.black_playlist
-        - input_boolean.classical_playlist
-        - input_boolean.electronica_playlist
-        - input_boolean.kids_playlist
-      
+#
+#  turn_playlists_on:
+#    sequence:
+#    - service: input_boolean.turn_on
+#      data: 
+#        entities:
+#        - input_boolean.mix_playlist
+#        - input_boolean.jazz_playlist
+#        - input_boolean.rock_playlist
+#        - input_boolean.pop_playlist
+#        - input_boolean.black_playlist
+#        - input_boolean.classical_playlist
+#        - input_boolean.electronica_playlist
+#        - input_boolean.kids_playlist
+#      
 #      input_boolean.mix_playlist, input_boolean.jazz_playlist, input_boolean.rock_playlist, input_boolean.pop_playlist, input_boolean.black_playlist, input_boolean.classical_playlist, input_boolean.electronica_playlist, input_boolean.kids_playlist
 #      input_boolean.mix_playlist
 #      input_boolean.jazz_playlist
@@ -64,320 +64,320 @@
 #      - input_boolean.kids_playlist
 
 ###### Automations to bridge Alexa to iTunes and play selected playlists on house speakers over AirPlay. I define node anchors in the first occurence and just reuse them in the subsequent ones so I only have one place to edit when I need to change the logic, since those parts are the same for all automations.
-
-  play_good_music:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: &turn_off_speakers_data_template_anchor
-          data_template: 
-            entity_id: >- 
-              {% if (states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire") or (states.sensor.last_alexa.state == "media_player.alexa_living_room") or (states.sensor.last_alexa.state == "media_player.alexa_kitchen") %} 
-                group.all_speakers
-              {% else %}
-                group.all_speakers
-              {% endif %}
-      - service: homeassistant.turn_on
-        <<: &turn_on_speakers_data_template_anchor
-          data_template: 
-            entity_id: >-
-              {% if (states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire") or (states.sensor.last_alexa.state == "media_player.alexa_living_room") or (states.sensor.last_alexa.state == "media_player.alexa_kitchen") %} 
-                group.alexa_kitchen_bar_speakers
-              {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
-                media_player.sophie_s_room_airtunes_speaker
-              {% elif states.sensor.last_alexa.state == "media_player.office_alexa" %} 
-                media_player.office_airtunes_speaker
-              {% elif states.sensor.last_alexa.state == "media_player.alexa_master_bath" %} 
-                media_player.master_bath_airtunes_speaker
-              {% endif %}
-      - service: homeassistant.turn_off
-        <<: &turn_off_computer_speakers_data_template_anchor
-          data_template: 
-            entity_id: >- 
-              {% if (states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire") or (states.sensor.last_alexa.state == "media_player.alexa_living_room") or (states.sensor.last_alexa.state == "media_player.alexa_kitchen") %}  
-                media_player.computer_airtunes_speaker
-              {% else %}
-                media_player.computer_airtunes_speaker
-              {% endif %}
-      - service: media_player.volume_set
-        <<: &turn_on_target_speakers_data_template_anchor
-          data_template: 
-            entity_id: >- 
-              {% if (states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire") or (states.sensor.last_alexa.state == "media_player.alexa_living_room") or (states.sensor.last_alexa.state == "media_player.alexa_kitchen") %} 
-                group.alexa_kitchen_bar_speakers
-              {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
-                media_player.sophie_s_room_airtunes_speaker
-              {% elif states.sensor.last_alexa.state == "media_player.office_alexa" %} 
-                media_player.office_airtunes_speaker
-              {% elif states.sensor.last_alexa.state == "media_player.alexa_master_bath" %} 
-                media_player.master_bath_airtunes_speaker
-              {% endif %}
-            volume_level: 0.5
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'a-45-star'
-          media_content_type: 'playlist'
-
-#      - delay:
-#          seconds: 2
-#      - service: python_script.call_service_on_multiple_entities
-#        data_template:
-#          operations: >
-#            {% set topic = states.sensor.last_alexa.state %}
-#            {% if topic == 'media_player.kichen_bar_kindle_fire' %}
-#              homeassistant.turn_on|media_player.kitchen_airtunes_speaker|media_player.living_room_airtunes_speaker
-#            {% else %}
-#            {% endif %}
-
-  play_jazz_music:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'best-jazz'
-          media_content_type: 'playlist'
-
-  play_rock_music:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'best-rock'
-          media_content_type: 'playlist'
-
-  play_pop_music:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'best-pop'
-          media_content_type: 'playlist'
-
-
-  play_classical_music:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'classical'
-          media_content_type: 'playlist'
-
-  play_black_music:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'best-black'
-          media_content_type: 'playlist'
-
-
-  play_electronic_music:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'best-electronica'
-          media_content_type: 'playlist'
-
-
-  play_kids_music:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'kids-english'
-          media_content_type: 'playlist'
-          
-  play_kultoora_radio:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'radio-kultura-ru'
-          media_content_type: 'playlist'
-
-          
-  play_clasical_radio:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'radio-swiss-classic'
-          media_content_type: 'playlist'
-
-          
-  play_jazz_radio:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'jazz24'
-          media_content_type: 'playlist'
-
-          
-  play_ambient_radio:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'ambient-sleeping-pill'
-          media_content_type: 'playlist'
-
-  play_europa2_radio:
-    sequence:
-      - service: homeassistant.turn_off
-        <<: *turn_off_speakers_data_template_anchor
-      - service: homeassistant.turn_on
-        <<: *turn_on_speakers_data_template_anchor
-      - service: homeassistant.turn_off
-        <<: *turn_off_computer_speakers_data_template_anchor
-      - service: media_player.volume_set
-        <<: *turn_on_target_speakers_data_template_anchor
-      - service: media_player.volume_set
-        data: 
-          entity_id: media_player.itunes
-          volume_level: 0.5
-      - service: media_player.play_media
-        data:
-          entity_id: 'media_player.itunes'
-          media_content_id: 'europa2'
-          media_content_type: 'playlist'
+#
+#  play_good_music:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: &turn_off_speakers_data_template_anchor
+#          data_template: 
+#            entity_id: >- 
+#              {% if (states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire") or (states.sensor.last_alexa.state == "media_player.alexa_living_room") or (states.sensor.last_alexa.state == "media_player.alexa_kitchen") %} 
+#                group.all_speakers
+#              {% else %}
+#                group.all_speakers
+#              {% endif %}
+#      - service: homeassistant.turn_on
+#        <<: &turn_on_speakers_data_template_anchor
+#          data_template: 
+#            entity_id: >-
+#              {% if (states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire") or (states.sensor.last_alexa.state == "media_player.alexa_living_room") or (states.sensor.last_alexa.state == "media_player.alexa_kitchen") %} 
+#                group.alexa_kitchen_bar_speakers
+#              {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+#                media_player.sophie_s_room_airtunes_speaker
+#              {% elif states.sensor.last_alexa.state == "media_player.office_alexa" %} 
+#                media_player.office_airtunes_speaker
+#              {% elif states.sensor.last_alexa.state == "media_player.alexa_master_bath" %} 
+#                media_player.master_bath_airtunes_speaker
+#              {% endif %}
+#      - service: homeassistant.turn_off
+#        <<: &turn_off_computer_speakers_data_template_anchor
+#          data_template: 
+#            entity_id: >- 
+#              {% if (states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire") or (states.sensor.last_alexa.state == "media_player.alexa_living_room") or (states.sensor.last_alexa.state == "media_player.alexa_kitchen") %}  
+#                media_player.computer_airtunes_speaker
+#              {% else %}
+#                media_player.computer_airtunes_speaker
+#              {% endif %}
+#      - service: media_player.volume_set
+#        <<: &turn_on_target_speakers_data_template_anchor
+#          data_template: 
+#            entity_id: >- 
+#              {% if (states.sensor.last_alexa.state == "media_player.kichen_bar_kindle_fire") or (states.sensor.last_alexa.state == "media_player.alexa_living_room") or (states.sensor.last_alexa.state == "media_player.alexa_kitchen") %} 
+#                group.alexa_kitchen_bar_speakers
+#              {% elif states.sensor.last_alexa.state == "media_player.sophies_room_echo_dot" %} 
+#                media_player.sophie_s_room_airtunes_speaker
+#              {% elif states.sensor.last_alexa.state == "media_player.office_alexa" %} 
+#                media_player.office_airtunes_speaker
+#              {% elif states.sensor.last_alexa.state == "media_player.alexa_master_bath" %} 
+#                media_player.master_bath_airtunes_speaker
+#              {% endif %}
+#            volume_level: 0.5
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'a-45-star'
+#          media_content_type: 'playlist'
+#
+##      - delay:
+##          seconds: 2
+##      - service: python_script.call_service_on_multiple_entities
+##        data_template:
+##          operations: >
+##            {% set topic = states.sensor.last_alexa.state %}
+##            {% if topic == 'media_player.kichen_bar_kindle_fire' %}
+##              homeassistant.turn_on|media_player.kitchen_airtunes_speaker|media_player.living_room_airtunes_speaker
+##            {% else %}
+##            {% endif %}
+#
+#  play_jazz_music:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'best-jazz'
+#          media_content_type: 'playlist'
+#
+#  play_rock_music:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'best-rock'
+#          media_content_type: 'playlist'
+#
+#  play_pop_music:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'best-pop'
+#          media_content_type: 'playlist'
+#
+#
+#  play_classical_music:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'classical'
+#          media_content_type: 'playlist'
+#
+#  play_black_music:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'best-black'
+#          media_content_type: 'playlist'
+#
+#
+#  play_electronic_music:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'best-electronica'
+#          media_content_type: 'playlist'
+#
+#
+#  play_kids_music:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'kids-english'
+#          media_content_type: 'playlist'
+#          
+#  play_kultoora_radio:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'radio-kultura-ru'
+#          media_content_type: 'playlist'
+#
+#          
+#  play_clasical_radio:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'radio-swiss-classic'
+#          media_content_type: 'playlist'
+#
+#          
+#  play_jazz_radio:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'jazz24'
+#          media_content_type: 'playlist'
+#
+#          
+#  play_ambient_radio:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'ambient-sleeping-pill'
+#          media_content_type: 'playlist'
+#
+#  play_europa2_radio:
+#    sequence:
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_speakers_data_template_anchor
+#      - service: homeassistant.turn_on
+#        <<: *turn_on_speakers_data_template_anchor
+#      - service: homeassistant.turn_off
+#        <<: *turn_off_computer_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        <<: *turn_on_target_speakers_data_template_anchor
+#      - service: media_player.volume_set
+#        data: 
+#          entity_id: media_player.itunes
+#          volume_level: 0.5
+#      - service: media_player.play_media
+#        data:
+#          entity_id: 'media_player.itunes'
+#          media_content_id: 'europa2'
+#          media_content_type: 'playlist'
 
   stop_music:
     sequence:
@@ -522,3 +522,97 @@
           command:
             - OK
           device: Xbox-SystemOS
+
+## New playlist scripts which use app daemon
+
+
+  play_good_music:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "a-45-star"
+
+  play_jazz_music:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "best-jazz"
+          
+  play_rock_music:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "best-rock"
+
+  play_pop_music:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "best-pop"
+
+  play_classical_music:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "classical"
+
+  play_black_music:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "best-black"
+
+  play_electronic_music:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "best-electronica"
+
+  play_kids_music:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "kids-english"
+
+  play_kultoora_radio:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "radio-kultura-ru"
+
+  play_classical_radio:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "radio-swiss-classic"
+
+  play_jazz_radio:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "jazz24"
+
+  play_ambient_radio:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "ambient-sleeping-pill"
+
+  play_europa2_radio:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "europa2"

@@ -238,7 +238,7 @@
 
   - name: Human Front
     platform: mqtt
-    state_topic: "frigate/front/person"
+    state_topic: "frigate/on_property/person"
     device_class: motion
     availability_topic: "frigate/available"
     
@@ -253,6 +253,49 @@
     state_topic: "frigate/right/person"
     device_class: motion
     availability_topic: "frigate/available"
+
+  - name: Truck On Road
+    platform: mqtt
+    state_topic: "frigate/on_street/truck"
+    device_class: motion
+    availability_topic: "frigate/available"
+
+  - name: Person Inside Gate
+    platform: mqtt
+    state_topic: "frigate/inside_gate/person"
+    device_class: motion
+    availability_topic: "frigate/available"    
+    
+  - name: Car Pulling Up  
+    platform: mqtt
+    state_topic: "frigate/car_pulling_in/car"
+    device_class: motion
+    availability_topic: "frigate/available"  
+    
+  - name: Person on Sidewalk 
+    platform: mqtt
+    state_topic: "frigate/on_sidewalk/person"
+    device_class: motion
+    availability_topic: "frigate/available"    
+
+  - name: Person on Street 
+    platform: mqtt
+    state_topic: "frigate/on_street/person"
+    device_class: motion
+    availability_topic: "frigate/available"   
+
+  - name: Person Outside Gate 
+    platform: mqtt
+    state_topic: "frigate/at_gate/person"
+    device_class: motion
+    availability_topic: "frigate/available" 
+    
+  - name: Car on Sidewalk
+    platform: mqtt
+    state_topic: "frigate/on_sidewalk/car"
+    device_class: motion
+    availability_topic: "frigate/available"     
+
 
 # Frigate v0.2 human
 ##

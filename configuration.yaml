@@ -187,7 +187,9 @@ logger:
     evohome: debug
     pydreamscreen: warn
     homeassistant.helpers.event: warn
-
+    homeassistant.helpers.ratelimit: warn
+    iphonedetect: warn
+    homeassistant.components.influxdb: warn
 #    hass_nabucasa: debug
 #    homeassistant.components.cloud: debug
 #    homeassistant.components.nest: debug

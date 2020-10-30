@@ -523,6 +523,7 @@
     - platform: homeassistant
       event: start
   action:
+    - delay: '00:00:01'
     - service: homeassistant.update_entity
       entity_id: binary_sensor.open_window_making_house_cold
     
@@ -560,6 +561,7 @@
     - platform: homeassistant
       event: start
   action:
+    - delay: '00:00:01'
     - service: homeassistant.update_entity
       entity_id: binary_sensor.open_window_making_house_hot
     
@@ -597,6 +599,7 @@
     - platform: homeassistant
       event: start
   action:
+    - delay: '00:00:01'
     - service: homeassistant.update_entity
       entity_id: binary_sensor.open_window_letting_pollution_in
 

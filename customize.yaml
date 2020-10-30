@@ -458,3 +458,5 @@ sensor.right_skipped_fps:
   icon: mdi:filmstrip-box-multiple
 sensor.frigate_coral_inference:
   icon: mdi:timer-outline
+sensor.low_gas_in_car:
+  icon: mdi:gas-station

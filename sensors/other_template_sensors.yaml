@@ -144,7 +144,6 @@
     sensors:
       bio_odpad_day:
         friendly_name: "Take Bio Odpad Out"
-        entity_id: sensor.date
         value_template: >-
           {% if (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
           and now().weekday() in (6,) 
@@ -177,7 +176,6 @@
     sensors:
       trash_day:
         friendly_name: "Take Trash Out"
-        entity_id: sensor.date
         value_template: >-
           {% if now().weekday() in (2,) %}
             Today
@@ -356,7 +354,7 @@
       low_gas_in_car:
         friendly_name: "Car Fuel"
         value_template: >-
-          {% if (states('sensor.cooper_s_e_all4_remaining_fuel')|float < 5) %} Fill It
+          {% if ((states('sensor.cooper_s_e_all4_remaining_fuel')|float < 5)and (states('sensor.cooper_s_e_all4_remaining_fuel')!='unavailable')) %} Fill It
           {% else %} no
           {% endif %}
 
