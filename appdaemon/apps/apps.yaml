@@ -1,0 +1,10 @@
+---
+hello_world:
+  module: hello
+  class: HelloWorld
+#set_heat_weather_override:
+#  module: set_heat_weather_override
+#  class: SetHeatWeatherOverride
+playlist_in_room:
+  module: playlist_in_room
+  class: PlaylistInRoom

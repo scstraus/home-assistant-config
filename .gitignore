@@ -10,6 +10,8 @@
 !lovelace
 !python_scripts/
 !python_scripts/**
+!appdaemon/
+!appdaemon/**
 !themes/
 !themes/**
 !sensors/
