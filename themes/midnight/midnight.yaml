@@ -76,7 +76,6 @@ midnight:
   table-row-background-color: "#353840"
   text-primary-color: "var(--primary-text-color)"
   toggle-button-color: "var(--primary-color)"
-
 # Sean's additions
   ha-card-border-radius: "10px"
 #  ha-card-box-shadow: "4px 4px 4px #2E333A"
@@ -88,3 +87,45 @@ midnight:
   paper-listbox-background-color: "#1f2223"
   primary-text-color: "#E8E8E8"
   ha-card-header-color: "#FFFFFF"
+  header-height: 48px
+  app-header-background-color: "#181A1B" 
+
+  card-mod-theme: "midnight"
+  card-mod-root-yaml: |
+    .: |
+      /* This hides the help button, menu button and title */
+      ha-menu-button {
+        display: none !important;
+      }
+
+      @media (orientation: portrait) {
+        a.menu-link[target="_blank"], ha-button-menu, [main-title] {
+          display: none;
+        }
+        paper-icon-button[icon="paper-tabs:chevron-right"] {
+          display: none;
+        }
+        paper-icon-button[icon="paper-tabs:chevron-left"] {
+          display: none;
+        }
+      }
+
+      /* This adds the time */
+      {% if user == 'kiosk' %}
+
+      mwc-icon-button[slot="trigger"] > ha-svg-icon {
+        display: none;
+      }
+
+      mwc-icon-button[slot="trigger"]::after {
+        font-size: 22px;
+        height: 20px; 
+        width: 100px;
+        margin-left: 0px;
+        margin-right: 0px;
+        content: "{{ states('sensor.time') }}";
+        position: absolute;
+        top: 14px;
+        right: 0px;
+      }
+      {% endif %}

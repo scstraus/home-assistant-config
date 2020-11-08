@@ -8,7 +8,7 @@ class PlaylistInRoom(hass.Hass):
 
   AIRPLAY_ENTITIES = ["media_player.apple_tv_airtunes_speaker", "media_player.back_yard_airtunes_speaker", "media_player.bathroom_1st_floor_airtunes_speaker", "media_player.computer_airtunes_speaker", "media_player.gym_airtunes_speaker", "media_player.kitchen_airtunes_speaker", "media_player.laundry_room_airtunes_speaker", "media_player.library_airtunes_speaker", "media_player.living_room_airtunes_speaker", "media_player.master_bath_airtunes_speaker", "media_player.office_airtunes_speaker", "media_player.sebastian_s_room_airtunes_speaker", "media_player.sophie_s_room_airtunes_speaker"]
   
-  AIRPLAY_ENTITY_VOLUMES = {"media_player.apple_tv_airtunes_speaker": 0.5, "media_player.back_yard_airtunes_speaker": 0.5, "media_player.bathroom_1st_floor_airtunes_speaker": 0.5, "media_player.computer_airtunes_speaker": 0.5, "media_player.gym_airtunes_speaker": 0.5, "media_player.kitchen_airtunes_speaker": 0.35, "media_player.laundry_room_airtunes_speaker": 0.5, "media_player.library_airtunes_speaker": 0.5, "media_player.living_room_airtunes_speaker": 0.25, "media_player.master_bath_airtunes_speaker": 0.5, "media_player.office_airtunes_speaker": 0.5, "media_player.sebastian_s_room_airtunes_speaker": 0.5, "media_player.sophie_s_room_airtunes_speaker": 0.5}
+  AIRPLAY_ENTITY_VOLUMES = {"media_player.apple_tv_airtunes_speaker": 0.5, "media_player.back_yard_airtunes_speaker": 0.5, "media_player.bathroom_1st_floor_airtunes_speaker": 0.5, "media_player.computer_airtunes_speaker": 0.5, "media_player.gym_airtunes_speaker": 0.5, "media_player.kitchen_airtunes_speaker": 0.35, "media_player.laundry_room_airtunes_speaker": 0.5, "media_player.library_airtunes_speaker": 0.5, "media_player.living_room_airtunes_speaker": 0.25, "media_player.master_bath_airtunes_speaker": 0.6, "media_player.office_airtunes_speaker": 0.5, "media_player.sebastian_s_room_airtunes_speaker": 0.5, "media_player.sophie_s_room_airtunes_speaker": 0.5}
 
   SPEAKER_REQUEST_COUNT = 0
   SPEAKER_RESPONSE_COUNT = 0
@@ -161,7 +161,7 @@ class PlaylistInRoom(hass.Hass):
     self.log("iTunes started playing.")
     if self.REQUESTED_PLAY == 1:
       self.ITUNES_BEING_ASSHOLE_PROTECTION = 1
-      self.run_in(self.disable_itunes_being_asshole_protection, 10)
+      self.run_in(self.disable_itunes_being_asshole_protection, 11)
     
   def itunes_stopped_playing(self, entity, attribute, old, new, kwargs):
     self.log("iTunes stopped playing.")
@@ -170,7 +170,7 @@ class PlaylistInRoom(hass.Hass):
       self.log("Setting iTunes to play %s playlist again, goddamnit", self.PLAYLIST)
       self.call_service("media_player/media_play", entity_id = self.ITUNES_ENTITY)
       self.ITUNES_BEING_ASSHOLE_ENGAGED = 1
-      self.run_in(self.disable_itunes_being_asshole_protection, 10)
+      self.run_in(self.disable_itunes_being_asshole_protection, 11)
 
   def disable_itunes_being_asshole_protection(self, kwargs):
     if self.ITUNES_BEING_ASSHOLE_ENGAGED == 1:

@@ -4,6 +4,7 @@ views:
 
   - !include /config/lovelace/Tab1_Home.yaml
   - !include /config/lovelace/Tab1a_Home_Kiosk.yaml
+  - !include /config/lovelace/Tab1b_Entrance_Kiosk.yaml
   - !include /config/lovelace/Tab2_Music.yaml
   - !include /config/lovelace/Tab3_Heat.yaml
   - !include /config/lovelace/Tab4_Cameras.yaml
@@ -14,94 +15,94 @@ views:
   - !include /config/lovelace/Tab9_Tech.yaml
 #  - !include /config/lovelace/Tab10_Test.yaml
 
-custom_header:
-  compact_mode: true
-  background: var(--primary-background-color)
-  exceptions:
-    - conditions:
-        template: "{{ 'iPhone' in userAgent or 'iOS' in userAgent }}"
-        user: Alena
-      config:
-        hide_tabs: '1'
-        disable_sidebar: true
-        default_tab: 0
-        hide_help: true
-        hide_config: true
-        menu_hide: true
-        options_hide: true
-        voice_hide: true
-        chevrons: false
-    - conditions:
-        template: "{{ 'iPhone' in userAgent or 'iOS' in userAgent }}"
-        user: Sean Straus
-      config:
-        hide_tabs: '1'
-        default_tab: 0
-        hide_help: true
-        hide_config: true
-        voice_hide: true
-        menu_hide: true
-        options_hide: true
-        chevrons: false
-    - conditions:
-        template: "{{ 'iPhone' in userAgent or 'iOS' in userAgent }}"
-        user: Sophie
-      config:
-        hide_tabs: '1'
-        disable_sidebar: true
-        default_tab: 0
-        hide_help: true
-        hide_config: true
-        hide_unused: true
-        voice_hide: true
-        menu_hide: true
-        options_hide: true
-        chevrons: false
-    - conditions:
-        user: kiosk
-      config:
-        hide_tabs: '0'
-        disable_sidebar: true
-        default_tab: '1'
-        hide_help: true
-        hide_config: true
-        hide_unused: true
-        voice_hide: true
+#custom_header:
+#  compact_mode: true
+#  background: var(--primary-background-color)
+#  exceptions:
+#    - conditions:
+#        template: "{{ 'iPhone' in userAgent or 'iOS' in userAgent }}"
+#        user: Alena
+#      config:
+#        hide_tabs: '1'
+#        disable_sidebar: true
+#        default_tab: 0
+#        hide_help: true
+#        hide_config: true
 #        menu_hide: true
-        button_text:
-          menu: 'menu'
-          options: '{{ dayNameShort }}, {{ dayNum }} {{ monthNameShort }}       {{ hours24LZ }}:{{ minutesLZ }}'
-#          options: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
-    - conditions:
-        user: Alena
-      config:
-        hide_tabs: '1'
-        disable_sidebar: true
-        default_tab: 0
-        hide_help: true
-        hide_config: true
-        hide_unused: true
-        voice_hide: true
-        menu_hide: true
-    - conditions:
-        user: Sophie
-      config:
-        hide_tabs: '1'
-        disable_sidebar: true
-        default_tab: 0
-        hide_help: true
-        hide_config: true
-        hide_unused: true
-        voice_hide: true
-        menu_hide: true
-    - conditions:
-        user: Sean Straus
-      config:
-        hide_tabs: '1'
-        default_tab: 0
-        hide_help: true
-        hide_config: true
-        voice_hide: true
+#        options_hide: true
+#        voice_hide: true
+#        chevrons: false
+#    - conditions:
+#        template: "{{ 'iPhone' in userAgent or 'iOS' in userAgent }}"
+#        user: Sean Straus
+#      config:
+#        hide_tabs: '1'
+#        default_tab: 0
+#        hide_help: true
+#        hide_config: true
+#        voice_hide: true
+#        menu_hide: true
+#        options_hide: true
+#        chevrons: false
+#    - conditions:
+#        template: "{{ 'iPhone' in userAgent or 'iOS' in userAgent }}"
+#        user: Sophie
+#      config:
+#        hide_tabs: '1'
+#        disable_sidebar: true
+#        default_tab: 0
+#        hide_help: true
+#        hide_config: true
+#        hide_unused: true
+#        voice_hide: true
+#        menu_hide: true
+#        options_hide: true
+#        chevrons: false
+#    - conditions:
+#        user: kiosk
+#      config:
+#        hide_tabs: '0'
+#        disable_sidebar: true
+#        default_tab: '1'
+#        hide_help: true
+#        hide_config: true
+#        hide_unused: true
+#        voice_hide: true
+##        menu_hide: true
+#        button_text:
+#          menu: 'menu'
+#          options: '{{ dayNameShort }}, {{ dayNum }} {{ monthNameShort }}       {{ hours24LZ }}:{{ minutesLZ }}'
+##          options: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
+#    - conditions:
+#        user: Alena
+#      config:
+#        hide_tabs: '1'
+#        disable_sidebar: true
+#        default_tab: 0
+#        hide_help: true
+#        hide_config: true
+#        hide_unused: true
+#        voice_hide: true
+#        menu_hide: true
+#    - conditions:
+#        user: Sophie
+#      config:
+#        hide_tabs: '1'
+#        disable_sidebar: true
+#        default_tab: 0
+#        hide_help: true
+#        hide_config: true
+#        hide_unused: true
+#        voice_hide: true
+#        menu_hide: true
+#    - conditions:
+#        user: Sean Straus
+#      config:
+#        hide_tabs: '1'
+#        default_tab: 0
+#        hide_help: true
+#        hide_config: true
+#        voice_hide: true
 
 decluttering_templates:
 

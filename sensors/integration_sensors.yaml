@@ -113,21 +113,21 @@
         no_delivery
       {% endif %}
 
-  - platform: imap_email_content
-    server: imap.gmail.com
-    name: house_electricity
-    port: 993
-    username: !secret gmail_uname
-    password: !secret hass_pass
-    senders:
-    - !secret my_email
-    - no-reply@smartconnect.apc.com
-    value_template: >-
-      {% if 'UPS On Battery' in subject %}
-        power_out
-      {% elif 'Power Restored' in subject %}
-        power_on
-      {% endif %}
+  # - platform: imap_email_content
+  #   server: imap.gmail.com
+  #   name: house_electricity
+  #   port: 993
+  #   username: !secret gmail_uname
+  #   password: !secret hass_pass
+  #   senders:
+  #   - !secret my_email
+  #   - no-reply@smartconnect.apc.com
+  #   value_template: >-
+  #     {% if 'UPS On Battery' in subject %}
+  #       power_out
+  #     {% elif 'Power Restored' in subject %}
+  #       power_on
+  #     {% endif %}
 
 #  - platform: gtfs
 #    name: transport
@@ -322,3 +322,6 @@
     command: "cat /proc/mdstat | head -n 4 | tail -n 3"
     scan_interval: 3600
 
+  - platform: time_date
+    display_options:
+      - 'time'

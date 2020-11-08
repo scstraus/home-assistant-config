@@ -50,8 +50,6 @@ system_health:
 
 api:
 
-conversation:
-    
 logbook:
 
 map:
@@ -99,8 +97,8 @@ lovelace:
       type: module
     - url: /hacsfiles/air-visual-card/air-visual-card.js
       type: js
-    - url: /hacsfiles/custom-header/custom-header.js
-      type: module
+#    - url: /hacsfiles/custom-header/custom-header.js
+#      type: module
     - url: /hacsfiles/lovelace-weather-card-chart/weather-card-chart.js
       type: module
     - url: /hacsfiles/lovelace-card-mod/card-mod.js
@@ -369,6 +367,10 @@ weather:
   - platform: openweathermap
     api_key: !secret openweathermap_key
     mode: hourly
+
+  - platform: openweathermap
+    api_key: !secret openweathermap_key
+    mode: daily
 
 #panel_iframe:
 #cloud9:
@@ -710,15 +712,15 @@ shell_command:
 
 browser_mod:
 
-display:
-  - platform: fully_kiosk
-    name: Kindle Fire Kitchen
-    host: !secret kindle_kitchen_ip
-    password: !secret kindle_kitchen_pass
-  - platform: fully_kiosk
-    name: Kindle Fire Master Closet
-    host: !secret kindle_master_closet_ip
-    password: !secret kindle_master_closet_pass
+#display:
+#  - platform: fully_kiosk
+#    name: Kindle Fire Kitchen
+#    host: !secret kindle_kitchen_ip
+#    password: !secret kindle_kitchen_pass
+#  - platform: fully_kiosk
+#    name: Kindle Fire Master Closet
+#    host: !secret kindle_master_closet_ip
+#    password: !secret kindle_master_closet_pass
 
 remote:
   - platform: harmony

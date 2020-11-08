@@ -1149,9 +1149,6 @@
   alias: someone_at_gate
   initial_state: 'true'
   trigger:
-#    platform: numeric_state
-#    entity_id: sensor.front_human_detection
-#    above: 18
     platform: state
     entity_id: binary_sensor.person_outside_gate
     to: 'on'
@@ -1239,9 +1236,6 @@
   alias: person_on_sidewalk
   initial_state: 'true'
   trigger:
-#    platform: numeric_state
-#    entity_id: sensor.front_human_detection
-#    above: 18
     platform: state
     entity_id: binary_sensor.person_on_sidewalk 
     to: 'on'

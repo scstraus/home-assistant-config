@@ -5,9 +5,9 @@
 title: Home
 icon: mdi:home
 panel: true
-#background-image: center / cover no-repeat url("/local/day.jpg") fixed
 visible:
-  - user: 2a6556f191a44915998a20ea2ac28057
+  - user: 5d20dcdf0c8f4905b0d3ee79fb195c99
+#background-image: center / cover no-repeat url("/local/day.jpg") fixed
 
 popup_cards:
 
@@ -166,14 +166,9 @@ popup_cards:
 
 cards: 
 
-
-
   - type: custom:layout-card
     layout: vertical
     cards:
-
-
-
 
 
     - type: custom:decluttering-card
@@ -378,171 +373,6 @@ cards:
         columns: 3
       show_empty: false      
 
-    #coronavirus card
-    - type: picture-elements
-      image: /local/images/coronavirus_transparent.png
-      elements:
-        - type: icon
-          icon: mdi:virus-outline
-          style:
-            top: 15%
-            left: 5%
-            color: var(--ha-card-header-color)
-        - type: icon
-          icon: mdi:virus-outline
-          style:
-            top: 15%
-            right: -2%
-            color: var(--ha-card-header-color)
-        # Header
-        - style:
-            font-size: large
-            left: 31%
-            top: 16%
-            color: var(--ha-card-header-color)
-          text: Coronavirus
-          type: 'custom:text-element'
-        - style:
-            font-size: large
-            left: 57%
-            top: 16%
-            color: var(--ha-card-header-color)
-          text: In
-          type: 'custom:text-element'
-        - style:
-            font-size: large
-            left: 76%
-            top: 16%
-            color: var(--ha-card-header-color)
-          text: Czechia
-          type: 'custom:text-element'
-        #Numbers
-        - type: state-label  
-          entity: sensor.czechia_coronavirus_current
-          style:
-            font-size: large
-            left: 20%
-            top: 44%
-        - type: state-label  
-          entity: variable.czechia_coronavirus_new_yesterday
-          style:
-            font-size: large
-            left: 51%
-            top: 44%
-        - type: state-label  
-          entity:  variable.czechia_coronavirus_new_today
-          style:
-            font-size: large
-            left: 82%
-            top: 44%
-        #Units top row
-        - style:
-            font-size: small
-            left: 20%
-            top: 66%
-          text: Active
-          type: 'custom:text-element'
-        - style:
-            font-size: small
-            left: 51%
-            top: 66%
-          text: New
-          type: 'custom:text-element'
-        - style:
-            font-size: small
-            left: 82%
-            top: 66%
-          text: New
-          type: 'custom:text-element'
-        #Units bottom row
-        - style:
-            font-size: small
-            left: 20%
-            top: 85%
-          text: Cases
-          type: 'custom:text-element'
-        - style:
-            font-size: small
-            left: 51%
-            top: 85%
-          text: Yesterday
-          type: 'custom:text-element'
-        - style:
-            font-size: small
-            left: 82%
-            top: 85%
-          text: Today
-          type: 'custom:text-element'
-
-    - type: vertical-stack
-      cards:
-
-
-      # - type: conditional
-      #   conditions:
-      #     - entity: binary_sensor.seb_naptime
-      #       state: "on"
-      #   card:
-      #     type: picture-glance
-      #     camera_image: camera.sebs_room
-      #     camera_view: live
-      #     entities: []
-
-      - type: picture-glance
-#          title: Outdoor - Front Gate
-        aspect_ratio: 16x9
-        entities: []
-  #        - binary_sensor.motion_front_of_house_motion
-#          - binary_sensor.motion_front
-  #        camera_image: camera.front_outdoor
-        camera_image: camera.front_stream
-        camera_view: live
-        show_state: false
-        show_name: false
-
-
-      - type: horizontal-stack
-        cards:
-
-
-        - type: picture-glance
-#           title: Outdoor - Left
-          aspect_ratio: 9x16
-          entities: []
-#            - binary_sensor.motion_left
-          camera_image: camera.left_stream
-          camera_view: live
-          show_state: false
-          show_name: false
-
-        - type: picture-glance
-#            title: Outdoor - Right 
-          aspect_ratio: 9x16
-          entities: []
-#            - binary_sensor.motion_right
-          camera_image: camera.right_stream
-          camera_view: live
-          show_state: false
-          show_name: false
-
-      - type: picture-glance
-#          title: Outdoor - Back Yard
-        aspect_ratio: 16x9
-        entities: []
-  #        - binary_sensor.motion_back_of_house_motion
-#          - binary_sensor.motion_back
-  #        camera_image: camera.back_outdoor
-        camera_image: camera.back_stream
-        camera_view: live
-        show_state: false
-        show_name: false
-
-  #  - type: markdown
-  #    content: |
-  #      ## [[ sensor.sean_commute ]]
-    - break
-
-
 
     - type: entity-filter
       card: 
@@ -701,16 +531,13 @@ cards:
 #    - type: custom:gap-card
 #      height: 25
 
-
-
-### These are the cards you see all the time in the first tab on the kiosks
-
     - type: vertical-stack
       in_card: true
       cards:
 #
 #      - type: custom:gap-card
 ##        height: 25
+
 
       - type: 'custom:weather-card-chart'
         title: Weather
@@ -728,7 +555,12 @@ cards:
   #        - sensor.u_s_air_pollution_level 
   #        - sensor.u_s_air_quality_index 
 
+
+
+
     - break
+
+### These are the cards you see all the time in the first tab on the kiosks
 
     - type: glance
       entities:
@@ -737,6 +569,11 @@ cards:
   #        secondary_info: "ETA: [[ sensor.sean_tram_time_to_home ]]"
         - sensor.sophie_location
         - sensor.alena_location
+
+
+    - type: iframe
+      url: https://todoist.com/app/#start
+      aspect_ratio: 160%
 
     - type: conditional
       conditions:
@@ -767,6 +604,64 @@ cards:
           hideHeader: true
           timeFormat: 'hh:mm a'
 
+
+    - type: vertical-stack
+      in_card: true
+      cards: 
+
+      - type: entity-filter
+        card:
+          show_header_toggle: false
+          title: Mini Countryman S E
+        state_filter:
+        - operator: "!="
+          value: "unknown"
+        entities:
+        - entity: sensor.cooper_s_e_all4_charging_time_remaining
+          name: Charging Time
+        - entity: sensor.cooper_s_e_all4_charging_level_hv
+          name: Charge Level
+        - entity: sensor.cooper_s_e_all4_remaining_range_electric
+          name: Electric Range
+          icon: mdi:car-battery
+        - entity: sensor.cooper_s_e_all4_remaining_range_total
+          name: Total Range
+          icon: mdi:gas-station
+        - entity: input_boolean.mini_countryman_clima
+        show_empty: false
+
+      - type: entity-filter
+        entities:
+        - entity: sensor.car_needs_charging
+        - entity: sensor.low_gas_in_car
+        - entity: binary_sensor.cooper_s_e_all4_charging_status
+          name: Charging
+        - entity: binary_sensor.cooper_s_e_all4_check_control_messages
+          name: Control Problem
+        - entity: binary_sensor.cooper_s_e_all4_condition_based_services
+          name: Condition Problem
+        - entity: binary_sensor.cooper_s_e_all4_door_lock_state
+          name: Car is
+        - entity: binary_sensor.cooper_s_e_all4_lids
+          name: Doors
+        - entity: binary_sensor.cooper_s_e_all4_lights_parking
+          name: Lights
+        - entity: binary_sensor.cooper_s_e_all4_windows
+          name: Windows
+        state_filter:
+        - "on"
+        - "DISCONNECTED"
+        - "Charge It"
+        - "Fill It"
+        card: 
+          type: glance
+        show_empty: false  
+
+
+
+    - break
+
+
 #These are the colors to use for the environment graph cards
 #HSV: X°, 100%, 77%
 #card green: #00c40a
@@ -784,91 +679,166 @@ cards:
 #graph magenta: #ff9cdb
 #graph violet: #f59cff
 
+
+    - type: vertical-stack
+      cards:
+
+
+      # - type: conditional
+      #   conditions:
+      #     - entity: binary_sensor.seb_naptime
+      #       state: "on"
+      #   card:
+      #     type: picture-glance
+      #     camera_image: camera.sebs_room
+      #     camera_view: live
+      #     entities: []
+
+      - type: picture-glance
+#          title: Outdoor - Front Gate
+        aspect_ratio: 16x9
+        entities: []
+  #        - binary_sensor.motion_front_of_house_motion
+#          - binary_sensor.motion_front
+  #        camera_image: camera.front_outdoor
+        camera_image: camera.front_stream
+        camera_view: live
+        show_state: false
+        show_name: false
+
+
+      - type: horizontal-stack
+        cards:
+
+
+        - type: picture-glance
+#           title: Outdoor - Left
+          aspect_ratio: 9x16
+          entities: []
+#            - binary_sensor.motion_left
+          camera_image: camera.left_stream
+          camera_view: live
+          show_state: false
+          show_name: false
+
+        - type: picture-glance
+#            title: Outdoor - Right 
+          aspect_ratio: 9x16
+          entities: []
+#            - binary_sensor.motion_right
+          camera_image: camera.right_stream
+          camera_view: live
+          show_state: false
+          show_name: false
+
+      - type: picture-glance
+#          title: Outdoor - Back Yard
+        aspect_ratio: 16x9
+        entities: []
+  #        - binary_sensor.motion_back_of_house_motion
+#          - binary_sensor.motion_back
+  #        camera_image: camera.back_outdoor
+        camera_image: camera.back_stream
+        camera_view: live
+        show_state: false
+        show_name: false
+
+  #  - type: markdown
+  #    content: |
+  #      ## [[ sensor.sean_commute ]]
+
+
+    - break
+
+
+
     - type: vertical-stack
       cards:
 
       - type: horizontal-stack
         cards:
 
-#        - type: custom:mini-graph-card
-#          name: AQI Outside 
-#          icon: mdi:air-filter
-#          style: |
-#            ha-card {
-#              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
-#              #00c40a
-#              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
-#              #c1c400 
-#              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
-#              #c48600
-#              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
-#              #c41700
-#              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
-#              #b000c4
-#              {% else %}
-#              #c4007c
-#              {% endif %}
-#          entities:
-#            - entity: sensor.hlubocepy_air_quality
-#              name: 
-#          color_thresholds:
-#            - value: 25
-#              color: "#9cffa1"
-#            - value: 75
-#              color: "#fdff9c"
-#            - value: 125
-#              color: "#ffe09c"
-#            - value: 175
-#              color: "#ffa79c"
-#            - value: 250
-#              color: "#f59cff"
-#            - value: 350
-#              color: "#ff9cdb"
-#          hours_to_show: 24
-#          points_per_hour: 2
-#          show_points: false
-#          height: 60
-
-
         - type: custom:mini-graph-card
-          name: CO2 Indoors
+          name: AQI Outside 
           icon: mdi:air-filter
           style: |
             ha-card {
-              background: {% if states('sensor.hlubocepy_air_quality')|int <= 700 %}
+              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
               #00c40a
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 1000 %} 
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
               #c1c400 
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 1500 %}
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
               #c48600
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 2000 %}
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
               #c41700
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 5000 %}
+              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
               #b000c4
               {% else %}
               #c4007c
               {% endif %}
           entities:
-            - entity: sensor.home_co2
+            - entity: sensor.hlubocepy_air_quality
               name: 
           color_thresholds:
-            - value: 350
+            - value: 25
               color: "#9cffa1"
-            - value: 850
+            - value: 75
               color: "#fdff9c"
-            - value: 1250
+            - value: 125
               color: "#ffe09c"
-            - value: 1750
+            - value: 175
               color: "#ffa79c"
-            - value: 3500
+            - value: 250
               color: "#f59cff"
-            - value: 6500
+            - value: 350
               color: "#ff9cdb"
           hours_to_show: 24
           points_per_hour: 2
           show_points: false
           height: 60
+#          show:
+#            graph: bar
 
+#
+#        - type: custom:mini-graph-card
+#          name: CO2 Indoors
+#          icon: mdi:air-filter
+#          style: |
+#            ha-card {
+#              background: {% if states('sensor.hlubocepy_air_quality')|int <= 700 %}
+#              #00c40a
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 1000 %} 
+#              #c1c400 
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 1500 %}
+#              #c48600
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 2000 %}
+#              #c41700
+#              {% elif states('sensor.hlubocepy_air_quality')|int <= 5000 %}
+#              #b000c4
+#              {% else %}
+#              #c4007c
+#              {% endif %}
+#          entities:
+#            - entity: sensor.home_co2
+#              name: 
+#          color_thresholds:
+#            - value: 350
+#              color: "#9cffa1"
+#            - value: 850
+#              color: "#fdff9c"
+#            - value: 1250
+#              color: "#ffe09c"
+#            - value: 1750
+#              color: "#ffa79c"
+#            - value: 3500
+#              color: "#f59cff"
+#            - value: 6500
+#              color: "#ff9cdb"
+#          hours_to_show: 24
+#          points_per_hour: 2
+#          show_points: false
+#          height: 60
+#
 
         - type: custom:mini-graph-card
           name: AQI Inside
@@ -977,6 +947,104 @@ cards:
           show_points: false
           height: 60
 
+
+    #coronavirus card
+    - type: picture-elements
+      image: /local/images/coronavirus_transparent.png
+      elements:
+        - type: icon
+          icon: mdi:virus-outline
+          style:
+            top: 15%
+            left: 5%
+            color: var(--ha-card-header-color)
+        - type: icon
+          icon: mdi:virus-outline
+          style:
+            top: 15%
+            right: -2%
+            color: var(--ha-card-header-color)
+        # Header
+        - style:
+            font-size: large
+            left: 31%
+            top: 16%
+            color: var(--ha-card-header-color)
+          text: Coronavirus
+          type: 'custom:text-element'
+        - style:
+            font-size: large
+            left: 57%
+            top: 16%
+            color: var(--ha-card-header-color)
+          text: In
+          type: 'custom:text-element'
+        - style:
+            font-size: large
+            left: 76%
+            top: 16%
+            color: var(--ha-card-header-color)
+          text: Czechia
+          type: 'custom:text-element'
+        #Numbers
+        - type: state-label  
+          entity: sensor.czechia_coronavirus_current
+          style:
+            font-size: large
+            left: 20%
+            top: 44%
+        - type: state-label  
+          entity: variable.czechia_coronavirus_new_yesterday
+          style:
+            font-size: large
+            left: 51%
+            top: 44%
+        - type: state-label  
+          entity:  variable.czechia_coronavirus_new_today
+          style:
+            font-size: large
+            left: 82%
+            top: 44%
+        #Units top row
+        - style:
+            font-size: small
+            left: 20%
+            top: 66%
+          text: Active
+          type: 'custom:text-element'
+        - style:
+            font-size: small
+            left: 51%
+            top: 66%
+          text: New
+          type: 'custom:text-element'
+        - style:
+            font-size: small
+            left: 82%
+            top: 66%
+          text: New
+          type: 'custom:text-element'
+        #Units bottom row
+        - style:
+            font-size: small
+            left: 20%
+            top: 85%
+          text: Cases
+          type: 'custom:text-element'
+        - style:
+            font-size: small
+            left: 51%
+            top: 85%
+          text: Yesterday
+          type: 'custom:text-element'
+        - style:
+            font-size: small
+            left: 82%
+            top: 85%
+          text: Today
+          type: 'custom:text-element'
+
+
 #    
 #    - type: custom:vertical-stack-in-card
 #      cards:
@@ -1060,6 +1128,9 @@ cards:
     #          yellow: 250
     #          red: 350 
     #        
+
+    - break
+
     - type: vertical-stack
       cards:
 
@@ -1562,7 +1633,6 @@ cards:
     #      - switch.kids
 
     - break
-    - break
 
     - type: entities
       title: First Floor
@@ -1722,61 +1792,20 @@ cards:
       style: 
         font-size: 20px   
         
-    - break
-
-    - type: vertical-stack
-      in_card: true
-      cards: 
-
-      - type: entity-filter
-        card:
-          show_header_toggle: false
-          title: Mini Countryman S E
-        state_filter:
-        - operator: "!="
-          value: "unknown"
-        entities:
-        - entity: sensor.cooper_s_e_all4_charging_time_remaining
-          name: Charging Time
-        - entity: sensor.cooper_s_e_all4_charging_level_hv
-          name: Charge Level
-        - entity: sensor.cooper_s_e_all4_remaining_range_electric
-          name: Electric Range
-          icon: mdi:car-battery
-        - entity: sensor.cooper_s_e_all4_remaining_range_total
-          name: Total Range
-          icon: mdi:gas-station
-        - entity: input_boolean.mini_countryman_clima
-        show_empty: false
-
-      - type: entity-filter
-        entities:
-        - entity: sensor.car_needs_charging
-        - entity: sensor.low_gas_in_car
-        - entity: binary_sensor.cooper_s_e_all4_charging_status
-          name: Charging
-        - entity: binary_sensor.cooper_s_e_all4_check_control_messages
-          name: Control Problem
-        - entity: binary_sensor.cooper_s_e_all4_condition_based_services
-          name: Condition Problem
-        - entity: binary_sensor.cooper_s_e_all4_door_lock_state
-          name: Car is
-        - entity: binary_sensor.cooper_s_e_all4_lids
-          name: Doors
-        - entity: binary_sensor.cooper_s_e_all4_lights_parking
-          name: Lights
-        - entity: binary_sensor.cooper_s_e_all4_windows
-          name: Windows
-        state_filter:
-        - "on"
-        - "DISCONNECTED"
-        - "Charge It"
-        - "Fill It"
-        card: 
-          type: glance
-        show_empty: false  
 
     
+    - break
+
+    - type: entities
+      title: Basement
+      show_header_toggle: false
+      entities:
+      - climate.garage
+      - climate.laundry_room
+
+    - type: custom:search-card
+      max_results: 10
+
     - break
 
     - type: entities
@@ -1797,18 +1826,6 @@ cards:
           mute: true
         group: true
 
-    - break
 
-    - type: entities
-      title: Basement
-      show_header_toggle: false
-      entities:
-      - climate.garage
-      - climate.laundry_room
-
-    - break
-
-    - type: custom:search-card
-      max_results: 10
 
 

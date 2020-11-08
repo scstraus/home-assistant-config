@@ -520,6 +520,7 @@
         - binary_sensor.laundry_room_window_zone_13
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
+        - binary_sensor.master_bedroom_window
     - platform: homeassistant
       event: start
   action:
@@ -539,6 +540,7 @@
         - binary_sensor.laundry_room_window_zone_13
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
+        - binary_sensor.master_bedroom_window
     - platform: homeassistant
       event: start
   action: 
@@ -558,6 +560,7 @@
         - binary_sensor.laundry_room_window_zone_13
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
+        - binary_sensor.master_bedroom_window
     - platform: homeassistant
       event: start
   action:
@@ -577,6 +580,7 @@
         - binary_sensor.laundry_room_window_zone_13
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
+        - binary_sensor.master_bedroom_window
     - platform: homeassistant
       event: start   
   action: 
@@ -596,6 +600,7 @@
         - binary_sensor.laundry_room_window_zone_13
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
+        - binary_sensor.master_bedroom_window
     - platform: homeassistant
       event: start
   action:
@@ -615,6 +620,7 @@
         - binary_sensor.laundry_room_window_zone_13
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
+        - binary_sensor.master_bedroom_window
     - platform: homeassistant
       event: start
   action: 

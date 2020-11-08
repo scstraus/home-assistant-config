@@ -419,3 +419,8 @@
       home_pm2_5_sensor_life:
         friendly_name: "Home AirVisual Sensor Life"
         value_template: "{{ states.air_quality.home.attributes.pm2_5_sensor_life }}"
+      hlubocepy_air_quality:
+        friendly_name: "Outside Air Quality"
+        unit_of_measurement: 'aqi'
+        value_template: "{{ states.air_quality.hlubocepy_node_pro_air_quality.attributes.air_quality_index }}"
+
