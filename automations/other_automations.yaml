@@ -20,7 +20,7 @@
             - thu
             - fri
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "Bike Day"
       message: "It's a good day to ride your bike to work today!"
@@ -270,7 +270,7 @@
     entity_id: sensor.speedtest_upload
     below: 0.25
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "Internet is Severely Limited"
       message: "The upload speed of the internet is below 250kbit"
@@ -285,7 +285,7 @@
     entity_id: sensor.speedtest_upload
     above: 1
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "Internet is Normal"
       message: "The upload speed of the internet is above 1 mbit"
@@ -309,7 +309,7 @@
             after: '22:30:00'
             before: '5:00:00'
           - condition: template
-            value_template: "{{ not is_state('device_tracker.sean_s_iphone_x', 'Traveling') }}"
+            value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
           - condition: template
             value_template: "{{ now().strftime('%m')|int > 6 or now().strftime('%m')|int < 9 }}"
       - condition: and
@@ -318,11 +318,11 @@
             after: '21:30:00'
             before: '5:00:00'
           - condition: template
-            value_template: "{{ not is_state('device_tracker.sean_s_iphone_x', 'Traveling') }}"
+            value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
           - condition: template
             value_template: "{{ now().strftime('%m')|int > 8 or now().strftime('%m')|int < 7 }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "Sophie is Up Late"
       message: "Sophie is Up Late"
@@ -334,7 +334,7 @@
 #            after: '21:30:00'
 #            before: '5:00:00'
 #          - condition: template
-#            value_template: "{{ not is_state('device_tracker.sean_s_iphone_x', 'Traveling') }}"
+#            value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
 #          - condition: template
 #            value_template: "{{ now().strftime('%m')|int = 8 or now().strftime('%m')|int = 7 }}"
 
@@ -388,7 +388,7 @@
         - condition: template
           value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "Bio Odpad Tomorrow"
       message: "Bio odpad should be taken out tonight or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
@@ -432,7 +432,7 @@
         - condition: template
           value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "Trash Tomorrow"
       message: "Trash should be taken out tonight or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
@@ -476,7 +476,7 @@
         - condition: template
           value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "Bio Odpad Today"
       message: "Bio odpad should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
@@ -525,7 +525,7 @@
 #        - condition: template
 #          value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
 #  action:
-#    service: notify.mobile_app_sean_s_iphone_x
+#    service: notify.mobile_app_sean_s_iphone_12
 #    data:
 #      title: "Trash Day Today"
 #      message: "Trash should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
@@ -743,7 +743,7 @@
     condition: template
     value_template: '{{ state_attr("sensor.czech_holidays_event_0", "eta") == 7 }}'
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "State Holiday Coming Up"
       message: "In one week, it is {{ states('sensor.czech_holidays_event_0')}}"
@@ -761,7 +761,7 @@
     condition: template
     value_template: '{{ state_attr("sensor.czech_holidays_event_0", "eta") == 1 }}'
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "State Holiday Coming Up"
       message: "Tomorrow it is {{ states('sensor.czech_holidays_event_0')}}"
@@ -779,7 +779,7 @@
     condition: template
     value_template: '{{ state_attr("sensor.czech_holidays_event_0", "eta") == 0 }}'
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "State Holiday Today"
       message: "Today it is {{ states('sensor.czech_holidays_event_0')}}, you don't need to go to work!"
@@ -832,12 +832,18 @@
     platform: time
     at: '6:00:00'
   action:
-    service: variable.set_variable
-    data:
-      variable: czechia_coronavirus_new_yesterday
-    data_template:
-      value: >
-          {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+    - service: variable.set_variable
+      data:
+        variable: czechia_coronavirus_new_yesterday
+      data_template:
+        value: >
+            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+    - service: variable.set_variable
+      data:
+        variable: czechia_coronavirus_new_yesterday_units
+      data_template:
+        value: >
+            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
 
 - id: calculate_coronavirus_delta_today
   alias: "Calculate Change in Coronavirus Cases Today"
@@ -846,12 +852,18 @@
     platform: time_pattern
     minutes: '/15'
   action:
-    service: variable.set_variable
-    data:
-      variable: czechia_coronavirus_new_today
-    data_template:
-      value: >
-          {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+    - service: variable.set_variable
+      data:
+        variable: czechia_coronavirus_new_today
+      data_template:
+        value: >
+            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+    - service: variable.set_variable
+      data:
+        variable: czechia_coronavirus_new_today_units
+      data_template:
+        value: >
+            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
 
 - id: turn_on_trash_input_boolean
   alias: "Turn On Trash Input Boolean"
@@ -909,7 +921,7 @@
     entity_id: 'sensor.narnia_raid_status'
     state: 'Degraded'
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "RAID Warning"
       message: "The RAID Array on Narnia is Degraded"
@@ -1106,7 +1118,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.sean_s_iphone_x
+    entity_id: device_tracker.sean_s_iphone_12
     to: 'home'
   condition:
     condition: and
@@ -1118,7 +1130,7 @@
       entity_id: 'input_boolean.trash_needs_taking_out'
       state: 'on'
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "Take out that trash!"
       message: "Hello there, now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
@@ -1168,14 +1180,14 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.sean_s_iphone_x
+    entity_id: device_tracker.sean_s_iphone_12
     to: 'home'
   condition:
     condition: state
     entity_id: 'sensor.bio_odpad_day'
     state: 'Today'
   action:
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "Take out that trash!"
       message: "Hello there, now would be a really great time to take out the bio odpad, what do you think? Let's do it, what do you say?!?"

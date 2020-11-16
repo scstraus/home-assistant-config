@@ -149,7 +149,7 @@
 #    name: Driving Time to Work
  
   - platform: waze_travel_time
-    origin: device_tracker.sean_s_iphone_x
+    origin: device_tracker.sean_s_iphone_12
     destination: zone.home
     region: 'EU'
     name: Sean Driving Time to Home
@@ -168,7 +168,7 @@
  
   - platform: google_travel_time
     api_key: !secret google_travel_key
-    origin: device_tracker.sean_s_iphone_x
+    origin: device_tracker.sean_s_iphone_12
     destination: zone.home
     name: Sean Tram Time to Home
     options:
@@ -325,3 +325,17 @@
   - platform: time_date
     display_options:
       - 'time'
+
+  - platform: plex_recently_added
+    token: !secret plex_token
+    host: !secret synology_ip
+    max: 15
+    port: 32400
+
+  - platform: sonarr_upcoming_media
+    api_key: !secret sonarr_api_key
+    host: !secret synology_ip
+    port: 8989
+    days: 14
+    ssl: false
+    max: 15

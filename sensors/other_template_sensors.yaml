@@ -692,11 +692,11 @@
       right_detection_fps: 
         value_template: '{{ states.sensor.frigate_debug.attributes["right"]["detection_fps"] }}'
         unit_of_measurement: 'FPS'
-      frigate_coral_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["fps"] }}'
+      frigate_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["detection_fps"] }}'
         unit_of_measurement: 'FPS'
       frigate_coral_inference:
-        value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["inference_speed"] }}' 
+        value_template: '{{ states.sensor.frigate_debug.attributes["detectors"]["coral"]["inference_speed"] }}' 
         unit_of_measurement: 'ms'
 
   - platform: template

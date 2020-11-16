@@ -1,5 +1,3 @@
-### These are just the cards that you see only sometimes under certain conditions in the first tab (non kiosk flavor)
-
 title: Home
 icon: mdi:home
 visible:
@@ -8,6 +6,7 @@ visible:
   - user: a4425eb8f5064e0bb63712f390023ee2
   - user: cb904806764d46bfbfb049d6e6939586
 
+### These are just the cards that you see only sometimes under certain conditions in the first tab (non kiosk flavor)
 ###### START COMMENT BLOCK 1: POPUP CARDS
 
 popup_cards:
@@ -693,7 +692,7 @@ cards:
 
       - type: 'custom:weather-card-chart'
         title: Weather / Air Quality
-        weather: weather.openweathermap
+        weather: weather.weather_forecast
         sun: sun.sun
         mode: hourly
 

@@ -4,16 +4,18 @@ views:
 
   - !include /config/lovelace/Tab1_Home.yaml
   - !include /config/lovelace/Tab1a_Home_Kiosk.yaml
-  - !include /config/lovelace/Tab1b_Entrance_Kiosk.yaml
+  - !include /config/lovelace/Tab1b_Home_EntranceKiosk.yaml
   - !include /config/lovelace/Tab2_Music.yaml
   - !include /config/lovelace/Tab3_Heat.yaml
-  - !include /config/lovelace/Tab4_Cameras.yaml
-  - !include /config/lovelace/Tab5_Health.yaml
-  - !include /config/lovelace/Tab6_Appliances.yaml
-  - !include /config/lovelace/Tab7_Alarm.yaml
-  - !include /config/lovelace/Tab8_Weather.yaml
-  - !include /config/lovelace/Tab9_Tech.yaml
-#  - !include /config/lovelace/Tab10_Test.yaml
+  - !include /config/lovelace/Tab4_ShoppingList.yaml 
+  - !include /config/lovelace/Tab5_Media.yaml
+  - !include /config/lovelace/Tab6_Health.yaml
+  - !include /config/lovelace/Tab7_Cameras.yaml
+  - !include /config/lovelace/Tab8_Alarm.yaml
+  - !include /config/lovelace/Tab9_Appliances.yaml
+  - !include /config/lovelace/Tab10_Weather.yaml
+  - !include /config/lovelace/Tab11_Tech.yaml
+#  - !include /config/lovelace/Tab12_Test.yaml
 
 #custom_header:
 #  compact_mode: true

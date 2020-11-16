@@ -1,0 +1,14 @@
+title: Media
+icon: mdi:television-clean
+#panel: true
+#visible:
+#  - user: 2a6556f191a44915998a20ea2ac28057
+cards:
+  - type: custom:upcoming-media-card
+    entity: sensor.plex_recently_added
+    title: Recently Added Media
+    max: 15
+  - type: custom:upcoming-media-card
+    entity: sensor.sonarr_upcoming_media
+    title: Upcoming Media
+    max: 15

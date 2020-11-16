@@ -115,6 +115,22 @@
       icon: mdi:chart-bubble
     restore: true
 
+  czechia_coronavirus_new_yesterday_units:
+    value: 'Unknown'
+    attributes:
+      friendly_name: 'New Cases'
+      unit_of_measurement: yesterday
+      icon: mdi:chart-bubble
+    restore: true
+
+  czechia_coronavirus_new_today_units:
+    value: 'Unknown'
+    attributes:
+      friendly_name: 'New Cases'
+      unit_of_measurement: today
+      icon: mdi:chart-bubble
+    restore: true
+
   dishwasher_last_door_open:
     value: 'Unknown'
     attributes:

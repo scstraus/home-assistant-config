@@ -212,7 +212,7 @@
         entity_id: sensor.bosch_dishwasher_door
         state: 'open'
       - condition: state
-        entity_id: device_tracker.sean_s_iphone_x
+        entity_id: device_tracker.sean_s_iphone_12
         state: 'home'
   action:
   - data:
@@ -227,7 +227,7 @@
   - data:
       title: "Dishwasher Update"
       message: "Looks like you left the dishwasher door open"
-    service: notify.mobile_app_sean_s_iphone_x
+    service: notify.mobile_app_sean_s_iphone_12
 
 
 ################### MIELE WASHING MACHINE ####################

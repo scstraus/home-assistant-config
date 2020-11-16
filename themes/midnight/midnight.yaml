@@ -111,7 +111,7 @@ midnight:
       }
 
       /* This adds the time */
-      {% if user == 'kiosk' %}
+      {% if (user == 'kiosk') or (user == 'entrancekiosk') %}
 
       mwc-icon-button[slot="trigger"] > ha-svg-icon {
         display: none;

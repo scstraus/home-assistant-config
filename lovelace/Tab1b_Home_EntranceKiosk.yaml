@@ -541,7 +541,7 @@ cards:
 
       - type: 'custom:weather-card-chart'
         title: Weather
-        weather: weather.openweathermap
+        weather: weather.weather_forecast
         sun: sun.sun
         mode: hourly
 

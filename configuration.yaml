@@ -129,6 +129,9 @@ lovelace:
       type: js
 #    - url: /hacsfiles/light-entity-card/light-entity-card.js
 #      type: module
+    - url: /hacsfiles/upcoming-media-card/upcoming-media-card.js
+      type: module
+                
                 
                 
 
@@ -361,16 +364,19 @@ weather:
   - platform: darksky
     api_key: !secret darksky_key
     name: Weather Forecast
-    mode: daily
+    mode: hourly
     scan_interval: 720
     
   - platform: openweathermap
     api_key: !secret openweathermap_key
     mode: hourly
 
-  - platform: openweathermap
-    api_key: !secret openweathermap_key
-    mode: daily
+  - platform: buienradar
+    name: buienradar
+#
+#  - platform: openweathermap
+#    api_key: !secret openweathermap_key
+#    mode: daily
 
 #panel_iframe:
 #cloud9:
@@ -592,7 +598,7 @@ proximity:
     unit_of_measurement: km
   sean_home: 
     devices:
-      - device_tracker.sean_s_iphone_x
+      - device_tracker.sean_s_iphone_12
     tolerance: 50
     unit_of_measurement: km
   alena_home: 
@@ -630,12 +636,12 @@ notify:
   - name: sean_alena
     platform: group
     services:
-      - service: mobile_app_sean_s_iphone_x
+      - service: mobile_app_sean_s_iphone_12
       - service: mobile_app_alena_s_iphone
   - name: whole_family
     platform: group
     services:
-      - service: mobile_app_sean_s_iphone_x
+      - service: mobile_app_sean_s_iphone_12
       - service: mobile_app_alena_s_iphone
       - service: mobile_app_sophies_iphone_6
 

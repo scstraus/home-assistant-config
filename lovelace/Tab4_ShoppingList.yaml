@@ -1,0 +1,9 @@
+title: Shopping
+icon: mdi:order-bool-ascending-variant
+panel: true
+visible:
+  - user: 2a6556f191a44915998a20ea2ac28057
+cards:
+  - type: iframe
+    url: https://todoist.com/app/#start
+    aspect_ratio: 500%
