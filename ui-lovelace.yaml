@@ -74,6 +74,7 @@ views:
 #        button_text:
 #          menu: 'menu'
 #          options: '{{ dayNameShort }}, {{ dayNum }} {{ monthNameShort }}       {{ hours24LZ }}:{{ minutesLZ }}'
+# %a, %b %e %R
 ##          options: '{{ dayNameShort }}. {{ monthNameShort }}. {{ dayNum }} {{ year4d }}'
 #    - conditions:
 #        user: Alena

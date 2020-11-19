@@ -94,12 +94,13 @@ Google Light Theme:
 
   card-mod-theme: "Google Light Theme"
   card-mod-root-yaml: |
-
     .: |
       /* This hides the help button, menu button and title */
       ha-menu-button {
         display: none !important;
       }
+
+      {% if (user != 'entrancekiosk') %}
 
       @media (orientation: portrait) {
         a.menu-link[target="_blank"], ha-button-menu, [main-title] {
@@ -112,9 +113,29 @@ Google Light Theme:
           display: none;
         }
       }
+      {% endif %}
 
       /* This adds the time */
-      {% if user == 'kiosk' %}
+      {% if (user == 'entrancekiosk') %}
+
+      mwc-icon-button[slot="trigger"] > ha-svg-icon {
+        display: none;
+      }
+
+      mwc-icon-button[slot="trigger"]::after {
+        font-size: 20px;
+        height: 20px; 
+        width: 100px;
+        margin-left: 0px;
+        margin-right: 0px;
+        content: "{{ states('sensor.time') }}";
+        position: absolute;
+        top: 8px;
+        right: 0px;
+      }
+      {% endif %}
+
+      {% if (user == 'kiosk') %}
 
       mwc-icon-button[slot="trigger"] > ha-svg-icon {
         display: none;
@@ -123,35 +144,12 @@ Google Light Theme:
       mwc-icon-button[slot="trigger"]::after {
         font-size: 22px;
         height: 20px; 
-        width: 100px;
+        width: 300px;
         margin-left: 0px;
         margin-right: 0px;
-        content: "{{ states('sensor.time') }}";
+        content: "{{ states('sensor.time_formatted') }}";
         position: absolute;
         top: 14px;
         right: 0px;
       }
       {% endif %}
-
-#  card-mod-theme: "Google Light Theme"
-#  card-mod-root-yaml: |
-#
-#
-#    ha-app-layout$: |
-#    .: |
-#      /* This hides the help button, menu button and title */
-#      ha-menu-button {
-#        display: none !important;
-#      }
-#
-#      @media (orientation: portrait) {
-#        a.menu-link[target="_blank"], ha-button-menu, [main-title] {
-#          display: none;
-#        }
-#        paper-icon-button[icon="paper-tabs:chevron-right"] {
-#          display: none;
-#        }
-#        paper-icon-button[icon="paper-tabs:chevron-left"] {
-#          display: none;
-#        }
-#      }

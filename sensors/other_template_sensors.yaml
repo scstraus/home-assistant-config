@@ -766,4 +766,11 @@
           {% endif %}
         icon_template: >-
           mdi:trash-can-outline
+
+  - platform: template
+    sensors:
+      time_formatted:
+        friendly_name: "Date and time"
+        value_template: "{{ as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%a, %b %e  %R') }}"
+        icon_template: mdi:calendar-clock
  

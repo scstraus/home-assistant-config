@@ -1119,31 +1119,51 @@
   alias: truck_outside
   initial_state: 'true'
   trigger:
-#    platform: numeric_state
-#    entity_id: sensor.front_human_detection
-#    above: 18
     platform: state
     entity_id: binary_sensor.truck_on_road
     to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: template
-      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.truck_outside.attributes.last_triggered | default(0)) | int > 600)}}'
-    - condition: state
-      entity_id: device_tracker.sean_s_iphone_12
-      state: 'home'
   action:
-    service: notify.mobile_app_sean_s_iphone_12
-    data:
-      title: "Special Delivery?"
-      message: "There's a Truck Out Front"
-      data:
-        push:
-          category: camera
-          thread-id: "security"
-        entity_id: camera.front_stream
-        clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.truck_outside.attributes.last_triggered | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.sean_s_iphone_12
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_sean_s_iphone_12
+            data:
+              title: "Special Delivery?"
+              message: "There's a Truck Out Front"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.truck_outside.attributes.last_triggered | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.alena_s_iphone
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_alena_s_iphone
+            data:
+              title: "Special Delivery?"
+              message: "There's a Truck Out Front"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4
+
 
 - id: someone_at_gate
   alias: someone_at_gate
@@ -1152,85 +1172,146 @@
     platform: state
     entity_id: binary_sensor.person_outside_gate
     to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: template
-      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.someone_at_gate.attributes.last_triggered | default(0)) | int > 600)}}'
-    - condition: state
-      entity_id: device_tracker.sean_s_iphone_12
-      state: 'home'
   action:
-    service: notify.mobile_app_sean_s_iphone_12
-    data:
-      title: "Special Delivery?"
-      message: "There's someone at the gate"
-      data:
-        push:
-          category: camera
-          thread-id: "security"
-        entity_id: camera.front_stream
-        clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.someone_at_gate.attributes.last_triggered  | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.sean_s_iphone_12
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_sean_s_iphone_12
+            data:
+              title: "Person at gate"
+              message: "There's someone at the front gate"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.someone_at_gate.attributes.last_triggered  | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.alena_s_iphone
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_alena_s_iphone
+            data:
+              title: "Person at gate"
+              message: "There's someone at the front gate"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4
 
 - id: someone_through_gate
   alias: someone_through_gate
   initial_state: 'true'
   trigger:
-#    platform: numeric_state
-#    entity_id: sensor.front_human_detection
-#    above: 18
     platform: state
     entity_id: binary_sensor.person_inside_gate
     to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: template
-      value_template: '{{ (((as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 20) or (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int < 2)) and (as_timestamp(now()) - as_timestamp(states.automation.person_on_left.attributes.last_triggered | default(0)) | int > 20) and (as_timestamp(now()) - as_timestamp(states.automation.someone_through_gate.attributes.last_triggered | default(0)) | int > 3)) }}'
-    - condition: state
-      entity_id: device_tracker.sean_s_iphone_12
-      state: 'home'
   action:
-    service: notify.mobile_app_sean_s_iphone_12
-    data:
-      title: "Special Delivery?"
-      message: "Looks like someone is going to or from the gate"
-      data:
-        push:
-          category: camera
-          thread-id: "security"
-        entity_id: camera.front_stream
-        clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.sean_s_iphone_12
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_sean_s_iphone_12
+            data:
+              title: "Person Coming Through Gate"
+              message: "Looks like someone is going to or coming from the front gate to the front door"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.alena_s_iphone
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_alena_s_iphone
+            data:
+              title: "Person Coming Through Gate"
+              message: "Looks like someone is going to or coming from the front gate to the front door"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4
+
 
 - id: car_arrived
   alias: car_arrived
   initial_state: 'true'
   trigger:
-#    platform: numeric_state
-#    entity_id: sensor.front_human_detection
-#    above: 18
     platform: state
     entity_id: binary_sensor.car_pulling_up
     to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: template
-      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_arrived.attributes.last_triggered | default(0)) | int > 600)}}'
-    - condition: state
-      entity_id: device_tracker.sean_s_iphone_12
-      state: 'home'
   action:
-    service: notify.mobile_app_sean_s_iphone_12
-    data:
-      title: "Car Pulling Up"
-      message: "There's a Car Pulling Up"
-      data:
-        push:
-          category: camera
-          thread-id: "security"
-        entity_id: camera.front_stream
-        clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_arrived.attributes.last_triggered | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.sean_s_iphone_12
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_sean_s_iphone_12
+            data:
+              title: "Car Arrived"
+              message: "The car has come through the gate into the driveway"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_arrived.attributes.last_triggered | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.alena_s_iphone
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_alena_s_iphone
+            data:
+              title: "Car Arrived"
+              message: "The car has come through the gate into the driveway"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4
 
 - id: person_on_sidewalk
   alias: person_on_sidewalk
@@ -1271,22 +1352,44 @@
     to: 'on'
     for:
       seconds: 7
-  condition:
-    condition: and
-    conditions:
-    - condition: template
-      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_on_sidewalk.attributes.last_triggered | default(0)) | int > 600)}}'
-    - condition: state
-      entity_id: device_tracker.sean_s_iphone_12
-      state: 'home'
   action:
-    service: notify.mobile_app_sean_s_iphone_12
-    data:
-      title: "House Watch"
-      message: "A new car pulled up outside"
-      data:
-        push:
-          category: camera
-          thread-id: "security"
-        entity_id: camera.front_stream
-        clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_on_sidewalk.attributes.last_triggered  | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.sean_s_iphone_12
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_sean_s_iphone_12
+            data:
+              title: "New Car In Front of Gate"
+              message: "A new car has arrived and is parked in front of the gate"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4
+    - choose:
+        - conditions:
+            - condition: and
+              conditions:
+              - condition: template
+                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_on_sidewalk.attributes.last_triggered  | default(0)) | int > 600)}}'
+              - condition: state
+                entity_id: device_tracker.alena_s_iphone
+                state: 'home'
+          sequence:
+            service: notify.mobile_app_alena_s_iphone
+            data:
+              title: "New Car In Front of Gate"
+              message: "A new car has arrived and is parked in front of the gate"
+              data:
+                push:
+                  category: camera
+                  thread-id: "security"
+                entity_id: camera.front_stream
+                clickAction: /lovelace/4

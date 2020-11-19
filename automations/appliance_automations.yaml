@@ -157,9 +157,9 @@
         type: tts
       message: "The dishes are not done yet."
       target: 
-        - media_player.kichen_bar_kindle_fire
+#        - media_player.kichen_bar_kindle_fire
         - media_player.alexa_kitchen
-        - notify.alexa_media_alexa_master_closet
+#        - notify.alexa_media_alexa_master_closet
     service: notify.alexa_media    
 
 - id: dishwasher_running_door_open_timer
@@ -220,7 +220,7 @@
         type: tts
       message: "Sorry, it looks like you wanted to run the dishes but you left the door open on the dishwasher."
       target: 
-        - media_player.kichen_bar_kindle_fire
+#        - media_player.kichen_bar_kindle_fire
         - media_player.alexa_kitchen
         - notify.alexa_media_alexa_master_closet
     service: notify.alexa_media 
