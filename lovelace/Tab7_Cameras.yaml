@@ -29,7 +29,7 @@ cards:
       show_name: false
   #      - binary_sensor.motion_front
       camera_image: camera.front_stream
-  #      camera_view: live
+      camera_view: live
 
 
 
@@ -61,7 +61,7 @@ cards:
         # entities:
         # - binary_sensor.motion_left
         camera_image: camera.left_stream
-  #         camera_view: live
+        camera_view: live
 
   #        - type: history-graph
   #          title: 'Left Motion'
@@ -80,7 +80,7 @@ cards:
         entities: []
 #        - binary_sensor.motion_right
         camera_image: camera.right_stream
-  #          camera_view: live
+        camera_view: live
   #
   #        - type: history-graph
   #          title: 'Right Motion'
@@ -97,7 +97,7 @@ cards:
       # entities:
       # - binary_sensor.motion_back
       camera_image: camera.back_stream
-  #      camera_view: live
+      camera_view: live
   #
   #    - type: history-graph
   #      title: 'Back Motion'
@@ -112,62 +112,66 @@ cards:
     - type: vertical-stack
       cards:
 
+      - type: picture-glance
+        title: Back Last Person Detected
+        entities:
+      #        - sensor.object_detection_back
+          - binary_sensor.human_back
+        camera_image: camera.cam1
+
       - type: history-graph
         title: 'Back Human Detection'
         entities:
   #        - sensor.back_human_detection
         - binary_sensor.human_back
 
-      - type: 'custom:swipe-card' 
-        start_card: 10
-        cards:
-          - entity: camera.cam1_history1
-            type: picture-entity
-            name: Tenth from Last Person in Back
-            tap_action: more-info
-          - entity: camera.cam1_history2
-            type: picture-entity
-            name: Ninth from Last Person in Back
-            tap_action: more-info
-          - entity: camera.cam1_history3
-            type: picture-entity
-            name: Eighth from Last Person in Back
-            tap_action: more-info
-          - entity: camera.cam1_history4
-            type: picture-entity
-            name: Seventh from Last Person in Back
-            tap_action: more-info
-          - entity: camera.cam1_history5
-            type: picture-entity
-            name: Sixth from Last Person in Back
-            tap_action: more-info
-          - entity: camera.cam1_history6
-            type: picture-entity
-            name: Fifth from Last Person in Back
-            tap_action: more-info
-          - entity: camera.cam1_history7
-            type: picture-entity
-            name: Fourth from Last Person in Back
-            tap_action: more-info
-          - entity: camera.cam1_history8
-            type: picture-entity
-            name: Third from Last Person in Back
-            tap_action: more-info
-          - entity: camera.cam1_history9
-            type: picture-entity
-            name: Next to Last Person in Back
-            tap_action: more-info
-          - entity: camera.cam1_history10
-            type: picture-entity
-            name: Last Person in Back
-            tap_action: more-info
 
-  #       - type: picture-glance
-  #         title: Back Last Person Detected
-  #         entities:
-  # #        - sensor.object_detection_back
-  #         - binary_sensor.human_back
-  #         camera_image: camera.back_last_person
+#
+#      - type: 'custom:swipe-card' 
+#        start_card: 10
+#        cards:
+#          - entity: camera.cam1_history1
+#            type: picture-entity
+#            name: Tenth from Last Person in Back
+#            tap_action: more-info
+#          - entity: camera.cam1_history2
+#            type: picture-entity
+#            name: Ninth from Last Person in Back
+#            tap_action: more-info
+#          - entity: camera.cam1_history3
+#            type: picture-entity
+#            name: Eighth from Last Person in Back
+#            tap_action: more-info
+#          - entity: camera.cam1_history4
+#            type: picture-entity
+#            name: Seventh from Last Person in Back
+#            tap_action: more-info
+#          - entity: camera.cam1_history5
+#            type: picture-entity
+#            name: Sixth from Last Person in Back
+#            tap_action: more-info
+#          - entity: camera.cam1_history6
+#            type: picture-entity
+#            name: Fifth from Last Person in Back
+#            tap_action: more-info
+#          - entity: camera.cam1_history7
+#            type: picture-entity
+#            name: Fourth from Last Person in Back
+#            tap_action: more-info
+#          - entity: camera.cam1_history8
+#            type: picture-entity
+#            name: Third from Last Person in Back
+#            tap_action: more-info
+#          - entity: camera.cam1_history9
+#            type: picture-entity
+#            name: Next to Last Person in Back
+#            tap_action: more-info
+#          - entity: camera.cam1_history10
+#            type: picture-entity
+#            name: Last Person in Back
+#            tap_action: more-info
+
+
 
 
 
@@ -190,73 +194,86 @@ cards:
   #           - binary_sensor.human_left
   #           camera_image: camera.left_last_person
 
+        - type: picture-glance
+          title: Back Last Person Detected
+          entities:
+        #        - sensor.object_detection_back
+            - binary_sensor.human_left
+          camera_image: camera.cam4
+
         - type: history-graph
           title: 'Human Left'
           entities:
   #          - sensor.left_human_detection
           - binary_sensor.human_left
 
-        - type: 'custom:swipe-card' 
-          start_card: 10
-          cards:
-            - entity: camera.cam4_history1
-              type: picture-entity
-              name: Tenth from Last Person on Left
-              tap_action: more-info
-            - entity: camera.cam4_history2
-              type: picture-entity
-              name: Ninth from Last Person on Left
-              tap_action: more-info
-            - entity: camera.cam4_history3
-              type: picture-entity
-              name: Eighth from Last Person on Left
-              tap_action: more-info
-            - entity: camera.cam4_history4
-              type: picture-entity
-              name: Seventh from Last Person on Left
-              tap_action: more-info
-            - entity: camera.cam4_history5
-              type: picture-entity
-              name: Sixth from Last Person on Left
-              tap_action: more-info
-            - entity: camera.cam4_history6
-              type: picture-entity
-              name: Fifth from Last Person on Left
-              tap_action: more-info
-            - entity: camera.cam4_history7
-              type: picture-entity
-              name: Fourth from Last Person on Left
-              tap_action: more-info
-            - entity: camera.cam4_history8
-              type: picture-entity
-              name: Third from Last Person on Left
-              tap_action: more-info
-            - entity: camera.cam4_history9
-              type: picture-entity
-              name: Next to Last Person on Left
-              tap_action: more-info
-            - entity: camera.cam4_history10
-              type: picture-entity
-              name: Last Person on Left
-              tap_action: more-info
+
+#        - type: entities
+#          title: 
+#          show_header_toggle: false
+#          entities:
+#          - binary_sensor.human_left
+
+
+#
+#        - type: 'custom:swipe-card' 
+#          start_card: 10
+#          cards:
+#            - entity: camera.cam4_history1
+#              type: picture-entity
+#              name: Tenth from Last Person on Left
+#              tap_action: more-info
+#            - entity: camera.cam4_history2
+#              type: picture-entity
+#              name: Ninth from Last Person on Left
+#              tap_action: more-info
+#            - entity: camera.cam4_history3
+#              type: picture-entity
+#              name: Eighth from Last Person on Left
+#              tap_action: more-info
+#            - entity: camera.cam4_history4
+#              type: picture-entity
+#              name: Seventh from Last Person on Left
+#              tap_action: more-info
+#            - entity: camera.cam4_history5
+#              type: picture-entity
+#              name: Sixth from Last Person on Left
+#              tap_action: more-info
+#            - entity: camera.cam4_history6
+#              type: picture-entity
+#              name: Fifth from Last Person on Left
+#              tap_action: more-info
+#            - entity: camera.cam4_history7
+#              type: picture-entity
+#              name: Fourth from Last Person on Left
+#              tap_action: more-info
+#            - entity: camera.cam4_history8
+#              type: picture-entity
+#              name: Third from Last Person on Left
+#              tap_action: more-info
+#            - entity: camera.cam4_history9
+#              type: picture-entity
+#              name: Next to Last Person on Left
+#              tap_action: more-info
+#            - entity: camera.cam4_history10
+#              type: picture-entity
+#              name: Last Person on Left
+#              tap_action: more-info
 
 
 
-  #        - type: entities
-  #          title: 
-  #          show_header_toggle: false
-  #          entities:
-  #          - sensor.last_human_left
+
 
       - type: vertical-stack
         cards:
 
-  #         - type: picture-glance
-  #           title: Right Last Person Detected
-  #           entities:
-  # #          - sensor.object_detection_right
-  #           - binary_sensor.human_right
-  #           camera_image: camera.right_last_person
+        - type: picture-glance
+          title: Right Last Person Detected
+          entities:
+        #          - sensor.object_detection_right
+            - binary_sensor.human_right
+          camera_image: camera.cam2
+
 
         - type: history-graph
           title: 'Human Right'
@@ -264,52 +281,59 @@ cards:
           -  binary_sensor.human_right
   #          - sensor.right_human_detection
 
-        - type: 'custom:swipe-card' 
-          start_card: 10
-          cards:
-            - entity: camera.cam2_history1
-              type: picture-entity
-              name: Tenth from Last Person on Right
-              tap_action: more-info
-            - entity: camera.cam2_history2
-              type: picture-entity
-              name: Ninth from Last Person on Right
-              tap_action: more-info
-            - entity: camera.cam2_history3
-              type: picture-entity
-              name: Eighth from Last Person on Right
-              tap_action: more-info
-            - entity: camera.cam2_history4
-              type: picture-entity
-              name: Seventh from Last Person on Right
-              tap_action: more-info
-            - entity: camera.cam2_history5
-              type: picture-entity
-              name: Sixth from Last Person on Right
-              tap_action: more-info
-            - entity: camera.cam2_history6
-              type: picture-entity
-              name: Fifth from Last Person on Right
-              tap_action: more-info
-            - entity: camera.cam2_history7
-              type: picture-entity
-              name: Fourth from Last Person on Right
-              tap_action: more-info
-            - entity: camera.cam2_history8
-              type: picture-entity
-              name: Third from Last Person on Right
-              tap_action: more-info
-            - entity: camera.cam2_history9
-              type: picture-entity
-              name: Next to Last Person on Right
-              tap_action: more-info
-            - entity: camera.cam2_history10
-              type: picture-entity
-              name: Last Person on Right
-              tap_action: more-info
 
-              
-
+#
+#        - entity: camera.cam2_history10
+#          type: picture-entity
+#          name: Last Person on Right
+#          tap_action: more-info
+##
+#        - type: 'custom:swipe-card' 
+#          start_card: 10
+#          cards:
+#            - entity: camera.cam2_history1
+#              type: picture-entity
+#              name: Tenth from Last Person on Right
+#              tap_action: more-info
+#            - entity: camera.cam2_history2
+#              type: picture-entity
+#              name: Ninth from Last Person on Right
+#              tap_action: more-info
+#            - entity: camera.cam2_history3
+#              type: picture-entity
+#              name: Eighth from Last Person on Right
+#              tap_action: more-info
+#            - entity: camera.cam2_history4
+#              type: picture-entity
+#              name: Seventh from Last Person on Right
+#              tap_action: more-info
+#            - entity: camera.cam2_history5
+#              type: picture-entity
+#              name: Sixth from Last Person on Right
+#              tap_action: more-info
+#            - entity: camera.cam2_history6
+#              type: picture-entity
+#              name: Fifth from Last Person on Right
+#              tap_action: more-info
+#            - entity: camera.cam2_history7
+#              type: picture-entity
+#              name: Fourth from Last Person on Right
+#              tap_action: more-info
+#            - entity: camera.cam2_history8
+#              type: picture-entity
+#              name: Third from Last Person on Right
+#              tap_action: more-info
+#            - entity: camera.cam2_history9
+#              type: picture-entity
+#              name: Next to Last Person on Right
+#              tap_action: more-info
+#            - entity: camera.cam2_history10
+#              type: picture-entity
+#              name: Last Person on Right
+#              tap_action: more-info
+#
+#              
+#
 
   #        - type: entities
   #          title: 
@@ -321,61 +345,70 @@ cards:
     - type: vertical-stack
       cards:
 
+
+      - type: picture-glance
+        title: Front Last Person Detected
+        entities:
+      #          - sensor.object_detection_right
+          - binary_sensor.human_front
+        camera_image: camera.cam3
+
       - type: history-graph
         title: 'Front Human Detection'
         entities:
         - binary_sensor.human_front
 
-      - type: 'custom:swipe-card' 
-        start_card: 10
-        cards:
-          - entity: camera.cam3_history1
-            type: picture-entity
-            name: Tenth from Last Person in Front
-            tap_action: more-info
-          - entity: camera.cam3_history2
-            type: picture-entity
-            name: Ninth from Last Person in Front
-            tap_action: more-info
-          - entity: camera.cam3_history3
-            type: picture-entity
-            name: Eighth from Last Person in Front
-            tap_action: more-info
-          - entity: camera.cam3_history4
-            type: picture-entity
-            name: Seventh from Last Person in Front
-            tap_action: more-info
-          - entity: camera.cam3_history5
-            type: picture-entity
-            name: Sixth from Last Person in Front
-            tap_action: more-info
-          - entity: camera.cam3_history6
-            type: picture-entity
-            name: Fifth from Last Person in Front
-            tap_action: more-info
-          - entity: camera.cam3_history7
-            type: picture-entity
-            name: Fourth from Last Person in Front
-            tap_action: more-info
-          - entity: camera.cam3_history8
-            type: picture-entity
-            name: Third from Last Person in Front
-            tap_action: more-info
-          - entity: camera.cam3_history9
-            type: picture-entity
-            name: Next to Last Person in Front
-            tap_action: more-info
-          - entity: camera.cam3_history10
-            type: picture-entity
-            name: Last Person in Front
-            tap_action: more-info
 
-  #       - type: picture-glance
-  #         title: Front Last Person Detected
-  #         entities:
-  # #          - sensor.object_detection_right
-  #         - binary_sensor.human_front
-  #         camera_image: camera.front_last_person
+#      - entity: camera.cam3_history10
+#        type: picture-entity
+#        name: Last Person in Front
+#        tap_action: more-info
+#
+#      - type: 'custom:swipe-card' 
+#        start_card: 10
+#        cards:
+#          - entity: camera.cam3_history1
+#            type: picture-entity
+#            name: Tenth from Last Person in Front
+#            tap_action: more-info
+#          - entity: camera.cam3_history2
+#            type: picture-entity
+#            name: Ninth from Last Person in Front
+#            tap_action: more-info
+#          - entity: camera.cam3_history3
+#            type: picture-entity
+#            name: Eighth from Last Person in Front
+#            tap_action: more-info
+#          - entity: camera.cam3_history4
+#            type: picture-entity
+#            name: Seventh from Last Person in Front
+#            tap_action: more-info
+#          - entity: camera.cam3_history5
+#            type: picture-entity
+#            name: Sixth from Last Person in Front
+#            tap_action: more-info
+#          - entity: camera.cam3_history6
+#            type: picture-entity
+#            name: Fifth from Last Person in Front
+#            tap_action: more-info
+#          - entity: camera.cam3_history7
+#            type: picture-entity
+#            name: Fourth from Last Person in Front
+#            tap_action: more-info
+#          - entity: camera.cam3_history8
+#            type: picture-entity
+#            name: Third from Last Person in Front
+#            tap_action: more-info
+#          - entity: camera.cam3_history9
+#            type: picture-entity
+#            name: Next to Last Person in Front
+#            tap_action: more-info
+#          - entity: camera.cam3_history10
+#            type: picture-entity
+#            name: Last Person in Front
+#            tap_action: more-info
+
+
 
   #      - type: entities
   #        title: 

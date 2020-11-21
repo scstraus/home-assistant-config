@@ -424,3 +424,10 @@
         unit_of_measurement: 'aqi'
         value_template: "{{ states.air_quality.hlubocepy_node_pro_air_quality.attributes.air_quality_index }}"
 
+
+        # - platform: template
+        # sensors:
+        #   hlubocepy_air_quality:
+        #     friendly_name: "Sebastian's Room Air Quality"
+        #     value_template: >-
+        #       {{ state_attr('air_quality.hlubocepy_node_pro_air_quality', 'air_quality_index')}}

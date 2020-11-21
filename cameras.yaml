@@ -264,139 +264,139 @@
   - name: cam1
     platform: mqtt
     topic: !secret frigate_cam1_topic
-  - platform: local_file
-    name: cam1_history1
-    file_path: /config/www/cam1/1.jpg       
-  - platform: local_file
-    name: cam1_history2
-    file_path: /config/www/cam1/2.jpg        
-  - platform: local_file
-    name: cam1_history3
-    file_path: /config/www/cam1/3.jpg       
-  - platform: local_file
-    name: cam1_history4
-    file_path: /config/www/cam1/4.jpg       
-  - platform: local_file
-    name: cam1_history5
-    file_path: /config/www/cam1/5.jpg       
-  - platform: local_file
-    name: cam1_history6
-    file_path: /config/www/cam1/6.jpg       
-  - platform: local_file
-    name: cam1_history7
-    file_path: /config/www/cam1/7.jpg       
-  - platform: local_file
-    name: cam1_history8
-    file_path: /config/www/cam1/8.jpg       
-  - platform: local_file
-    name: cam1_history9
-    file_path: /config/www/cam1/9.jpg       
-  - platform: local_file
-    name: cam1_history10
-    file_path: /config/www/cam1/10.jpg           
+#  - platform: local_file
+#    name: cam1_history1
+#    file_path: /config/www/cam1/1.jpg       
+#  - platform: local_file
+#    name: cam1_history2
+#    file_path: /config/www/cam1/2.jpg        
+#  - platform: local_file
+#    name: cam1_history3
+#    file_path: /config/www/cam1/3.jpg       
+#  - platform: local_file
+#    name: cam1_history4
+#    file_path: /config/www/cam1/4.jpg       
+#  - platform: local_file
+#    name: cam1_history5
+#    file_path: /config/www/cam1/5.jpg       
+#  - platform: local_file
+#    name: cam1_history6
+#    file_path: /config/www/cam1/6.jpg       
+#  - platform: local_file
+#    name: cam1_history7
+#    file_path: /config/www/cam1/7.jpg       
+#  - platform: local_file
+#    name: cam1_history8
+#    file_path: /config/www/cam1/8.jpg       
+#  - platform: local_file
+#    name: cam1_history9
+#    file_path: /config/www/cam1/9.jpg       
+#  - platform: local_file
+#    name: cam1_history10
+#    file_path: /config/www/cam1/10.jpg           
 
   - name: cam2
     platform: mqtt
     topic: !secret frigate_cam2_topic
-  - platform: local_file
-    name: cam2_history1
-    file_path: /config/www/cam2/1.jpg       
-  - platform: local_file
-    name: cam2_history2
-    file_path: /config/www/cam2/2.jpg        
-  - platform: local_file
-    name: cam2_history3
-    file_path: /config/www/cam2/3.jpg       
-  - platform: local_file
-    name: cam2_history4
-    file_path: /config/www/cam2/4.jpg       
-  - platform: local_file
-    name: cam2_history5
-    file_path: /config/www/cam2/5.jpg       
-  - platform: local_file
-    name: cam2_history6
-    file_path: /config/www/cam2/6.jpg       
-  - platform: local_file
-    name: cam2_history7
-    file_path: /config/www/cam2/7.jpg       
-  - platform: local_file
-    name: cam2_history8
-    file_path: /config/www/cam2/8.jpg       
-  - platform: local_file
-    name: cam2_history9
-    file_path: /config/www/cam2/9.jpg       
-  - platform: local_file
-    name: cam2_history10
-    file_path: /config/www/cam2/10.jpg           
+#  - platform: local_file
+#    name: cam2_history1
+#    file_path: /config/www/cam2/1.jpg       
+#  - platform: local_file
+#    name: cam2_history2
+#    file_path: /config/www/cam2/2.jpg        
+#  - platform: local_file
+#    name: cam2_history3
+#    file_path: /config/www/cam2/3.jpg       
+#  - platform: local_file
+#    name: cam2_history4
+#    file_path: /config/www/cam2/4.jpg       
+#  - platform: local_file
+#    name: cam2_history5
+#    file_path: /config/www/cam2/5.jpg       
+#  - platform: local_file
+#    name: cam2_history6
+#    file_path: /config/www/cam2/6.jpg       
+#  - platform: local_file
+#    name: cam2_history7
+#    file_path: /config/www/cam2/7.jpg       
+#  - platform: local_file
+#    name: cam2_history8
+#    file_path: /config/www/cam2/8.jpg       
+#  - platform: local_file
+#    name: cam2_history9
+#    file_path: /config/www/cam2/9.jpg       
+#  - platform: local_file
+#    name: cam2_history10
+#    file_path: /config/www/cam2/10.jpg           
 
   - name: cam3
     platform: mqtt
     topic: !secret frigate_cam3_topic
-  - platform: local_file
-    name: cam3_history1
-    file_path: /config/www/cam3/1.jpg       
-  - platform: local_file
-    name: cam3_history2
-    file_path: /config/www/cam3/2.jpg        
-  - platform: local_file
-    name: cam3_history3
-    file_path: /config/www/cam3/3.jpg       
-  - platform: local_file
-    name: cam3_history4
-    file_path: /config/www/cam3/4.jpg       
-  - platform: local_file
-    name: cam3_history5
-    file_path: /config/www/cam3/5.jpg       
-  - platform: local_file
-    name: cam3_history6
-    file_path: /config/www/cam3/6.jpg       
-  - platform: local_file
-    name: cam3_history7
-    file_path: /config/www/cam3/7.jpg       
-  - platform: local_file
-    name: cam3_history8
-    file_path: /config/www/cam3/8.jpg       
-  - platform: local_file
-    name: cam3_history9
-    file_path: /config/www/cam3/9.jpg       
-  - platform: local_file
-    name: cam3_history10
-    file_path: /config/www/cam3/10.jpg           
+#  - platform: local_file
+#    name: cam3_history1
+#    file_path: /config/www/cam3/1.jpg       
+#  - platform: local_file
+#    name: cam3_history2
+#    file_path: /config/www/cam3/2.jpg        
+#  - platform: local_file
+#    name: cam3_history3
+#    file_path: /config/www/cam3/3.jpg       
+#  - platform: local_file
+#    name: cam3_history4
+#    file_path: /config/www/cam3/4.jpg       
+#  - platform: local_file
+#    name: cam3_history5
+#    file_path: /config/www/cam3/5.jpg       
+#  - platform: local_file
+#    name: cam3_history6
+#    file_path: /config/www/cam3/6.jpg       
+#  - platform: local_file
+#    name: cam3_history7
+#    file_path: /config/www/cam3/7.jpg       
+#  - platform: local_file
+#    name: cam3_history8
+#    file_path: /config/www/cam3/8.jpg       
+#  - platform: local_file
+#    name: cam3_history9
+#    file_path: /config/www/cam3/9.jpg       
+#  - platform: local_file
+#    name: cam3_history10
+#    file_path: /config/www/cam3/10.jpg           
 
 
   - name: cam4
     platform: mqtt
     topic: !secret frigate_cam4_topic
-  - platform: local_file
-    name: cam4_history1
-    file_path: /config/www/cam4/1.jpg       
-  - platform: local_file
-    name: cam4_history2
-    file_path: /config/www/cam4/2.jpg        
-  - platform: local_file
-    name: cam4_history3
-    file_path: /config/www/cam4/3.jpg       
-  - platform: local_file
-    name: cam4_history4
-    file_path: /config/www/cam4/4.jpg       
-  - platform: local_file
-    name: cam4_history5
-    file_path: /config/www/cam4/5.jpg       
-  - platform: local_file
-    name: cam4_history6
-    file_path: /config/www/cam4/6.jpg       
-  - platform: local_file
-    name: cam4_history7
-    file_path: /config/www/cam4/7.jpg       
-  - platform: local_file
-    name: cam4_history8
-    file_path: /config/www/cam4/8.jpg       
-  - platform: local_file
-    name: cam4_history9
-    file_path: /config/www/cam4/9.jpg       
-  - platform: local_file
-    name: cam4_history10
-    file_path: /config/www/cam4/10.jpg  
+#  - platform: local_file
+#    name: cam4_history1
+#    file_path: /config/www/cam4/1.jpg       
+#  - platform: local_file
+#    name: cam4_history2
+#    file_path: /config/www/cam4/2.jpg        
+#  - platform: local_file
+#    name: cam4_history3
+#    file_path: /config/www/cam4/3.jpg       
+#  - platform: local_file
+#    name: cam4_history4
+#    file_path: /config/www/cam4/4.jpg       
+#  - platform: local_file
+#    name: cam4_history5
+#    file_path: /config/www/cam4/5.jpg       
+#  - platform: local_file
+#    name: cam4_history6
+#    file_path: /config/www/cam4/6.jpg       
+#  - platform: local_file
+#    name: cam4_history7
+#    file_path: /config/www/cam4/7.jpg       
+#  - platform: local_file
+#    name: cam4_history8
+#    file_path: /config/www/cam4/8.jpg       
+#  - platform: local_file
+#    name: cam4_history9
+#    file_path: /config/www/cam4/9.jpg       
+#  - platform: local_file
+#    name: cam4_history10
+#    file_path: /config/www/cam4/10.jpg  
 
   # - platform: reolink_dev
   #   host: !secret sebs_camera_ip

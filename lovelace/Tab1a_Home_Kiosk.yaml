@@ -17,6 +17,8 @@ popup_cards:
       type: 'custom:weather-card-chart'
       weather: weather.weather_forecast
       sun: sun.sun
+      temp: sensor.smartweather_temperature
+      wind: sensor.smartweather_wind_speed
 
   sensor.sean_location:
     title: Sean Location History and Time to Home
@@ -355,6 +357,7 @@ cards:
 #      - variable.czechia_coronavirus_new_today
       - sensor.trash_display
       - binary_sensor.basement_sliding_door
+      - sensor.kite_day
       state_filter:
       - "on"
       - "Delivery"
@@ -714,9 +717,11 @@ cards:
 
       - type: 'custom:weather-card-chart'
         title: Weather
-        weather: weather.weather_forecast
+        weather: weather.smartweather_home
         sun: sun.sun
         mode: hourly
+        temp: sensor.smartweather_temperature
+        wind: sensor.smartweather_wind_speed
 
       - type: entities
     #        title: Weather Forecast

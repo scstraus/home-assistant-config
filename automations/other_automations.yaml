@@ -97,9 +97,24 @@
           "date": "{{ state_attr('sensor.dpd_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.dpd_packages_coming_today', 'subject') }}"
         } 
-    data_template:
-      value: >
-        {{ states('sensor.dpd_packages_coming_today')}}
+      value_template: "{{ states('sensor.dpd_packages_coming_today')}}"
+
+
+
+
+
+    # service: variable.set_variable
+    # data:
+    #   variable: dpd_variable
+    #   attributes_template: >
+    #     {
+    #       "from": "{{ state_attr('sensor.dpd_packages_coming_today', 'from') }}",
+    #       "date": "{{ state_attr('sensor.dpd_packages_coming_today', 'date') }}",
+    #       "subject": "{{ state_attr('sensor.dpd_packages_coming_today', 'subject') }}"
+    #     } 
+    # data_template:
+    #   value: >
+    #     {{ states('sensor.dpd_packages_coming_today')}}
 
 #,
 #          "body": "{{ state_attr('sensor.dpd_packages_coming_today', 'body') }}"
@@ -136,16 +151,30 @@
   action:
     service: variable.set_variable
     data:
-      variable: dhl_variable   
+      variable: dhl_variable 
       attributes_template: >
         {
           "from": "{{ state_attr('sensor.dhl_packages_coming_today', 'from') }}",
           "date": "{{ state_attr('sensor.dhl_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.dhl_packages_coming_today', 'subject') }}"
         } 
-    data_template:
-      value: >
-        {{ states('sensor.dhl_packages_coming_today')}}
+      value_template: "{{ states('sensor.dhl_packages_coming_today')}}"
+
+
+
+
+    # service: variable.set_variable
+    # data:
+    #   variable: dhl_variable   
+    #   attributes_template: >
+    #     {
+    #       "from": "{{ state_attr('sensor.dhl_packages_coming_today', 'from') }}",
+    #       "date": "{{ state_attr('sensor.dhl_packages_coming_today', 'date') }}",
+    #       "subject": "{{ state_attr('sensor.dhl_packages_coming_today', 'subject') }}"
+    #     } 
+    # data_template:
+    #   value: >
+    #     {{ states('sensor.dhl_packages_coming_today')}}
 
 
  #,
@@ -183,16 +212,28 @@
   action:
     service: variable.set_variable
     data:
-      variable: gls_variable
+      variable: gls_variable 
       attributes_template: >
         {
           "from": "{{ state_attr('sensor.gls_packages_coming_today', 'from') }}",
           "date": "{{ state_attr('sensor.gls_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.gls_packages_coming_today', 'subject') }}"
-        }
-    data_template:
-      value: >
-        {{ states('sensor.gls_packages_coming_today')}}
+        } 
+      value_template: "{{ states('sensor.gls_packages_coming_today')}}"
+
+
+    # service: variable.set_variable
+    # data:
+    #   variable: gls_variable
+    #   attributes_template: >
+    #     {
+    #       "from": "{{ state_attr('sensor.gls_packages_coming_today', 'from') }}",
+    #       "date": "{{ state_attr('sensor.gls_packages_coming_today', 'date') }}",
+    #       "subject": "{{ state_attr('sensor.gls_packages_coming_today', 'subject') }}"
+    #     }
+    # data_template:
+    #   value: >
+    #     {{ states('sensor.gls_packages_coming_today')}}
 
 #,
 #          "body": "{{ state_attr('sensor.gls_packages_coming_today', 'body') }}"

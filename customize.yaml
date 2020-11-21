@@ -370,6 +370,8 @@ binary_sensor.sebastians_room_left_window:
   device_class: window
 binary_sensor.sophies_room_ceiling_window:
   device_class: window
+binary_sensor.master_bedroom_window:
+  device_class: window
 input_select.lg_washing_machine_status:
   icon: mdi:washing-machine
 input_select.miele_washing_machine_status:

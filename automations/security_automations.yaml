@@ -1054,66 +1054,66 @@
     to: 'on'
   action:
     - service: rest_command.record_human_right
-
-- alias: cam1_history 
-  trigger:
-  - platform: mqtt
-    topic: !secret frigate_cam1_topic
-    encoding: ''
-  action:
-  - service: camera.snapshot
-    data:
-      entity_id: camera.cam1
-      filename: /config/www/cam1/latest.jpg
-  - service: shell_command.roll_frigate_history
-    data_template:
-      url: /config/www/cam1 
-      history_size: 10
-
-- alias: cam2_history 
-  trigger:
-  - platform: mqtt
-    topic: !secret frigate_cam2_topic
-    encoding: ''
-  action:
-  - service: camera.snapshot
-    data:
-      entity_id: camera.cam2
-      filename: /config/www/cam2/latest.jpg
-  - service: shell_command.roll_frigate_history
-    data_template:
-      url: /config/www/cam2
-      history_size: 10
-
-- alias: cam3_history 
-  trigger:
-  - platform: mqtt
-    topic: !secret frigate_cam3_topic
-    encoding: ''
-  action:
-  - service: camera.snapshot
-    data:
-      entity_id: camera.cam3
-      filename: /config/www/cam3/latest.jpg
-  - service: shell_command.roll_frigate_history
-    data_template:
-      url: /config/www/cam3
-      history_size: 10
-
-- alias: cam4_history 
-  trigger:
-  - platform: mqtt
-    topic: !secret frigate_cam4_topic
-    encoding: ''
-  action:
-  - service: camera.snapshot
-    data:
-      entity_id: camera.cam4
-      filename: /config/www/cam4/latest.jpg
-  - service: shell_command.roll_frigate_history
-    data_template:
-      url: /config/www/cam4
-      history_size: 10
+#
+#- alias: cam1_history 
+#  trigger:
+#  - platform: mqtt
+#    topic: !secret frigate_cam1_topic
+#    encoding: ''
+#  action:
+#  - service: camera.snapshot
+#    data:
+#      entity_id: camera.cam1
+#      filename: /config/www/cam1/latest.jpg
+#  - service: shell_command.roll_frigate_history
+#    data_template:
+#      url: /config/www/cam1 
+#      history_size: 10
+#
+#- alias: cam2_history 
+#  trigger:
+#  - platform: mqtt
+#    topic: !secret frigate_cam2_topic
+#    encoding: ''
+#  action:
+#  - service: camera.snapshot
+#    data:
+#      entity_id: camera.cam2
+#      filename: /config/www/cam2/latest.jpg
+#  - service: shell_command.roll_frigate_history
+#    data_template:
+#      url: /config/www/cam2
+#      history_size: 10
+#
+#- alias: cam3_history 
+#  trigger:
+#  - platform: mqtt
+#    topic: !secret frigate_cam3_topic
+#    encoding: ''
+#  action:
+#  - service: camera.snapshot
+#    data:
+#      entity_id: camera.cam3
+#      filename: /config/www/cam3/latest.jpg
+#  - service: shell_command.roll_frigate_history
+#    data_template:
+#      url: /config/www/cam3
+#      history_size: 10
+#
+#- alias: cam4_history 
+#  trigger:
+#  - platform: mqtt
+#    topic: !secret frigate_cam4_topic
+#    encoding: ''
+#  action:
+#  - service: camera.snapshot
+#    data:
+#      entity_id: camera.cam4
+#      filename: /config/www/cam4/latest.jpg
+#  - service: shell_command.roll_frigate_history
+#    data_template:
+#      url: /config/www/cam4
+#      history_size: 10
 
 - id: truck_outside
   alias: truck_outside

@@ -95,8 +95,8 @@ lovelace:
       type: js
     - url: /hacsfiles/simple-thermostat/simple-thermostat.js
       type: module
-    - url: /hacsfiles/air-visual-card/air-visual-card.js
-      type: js
+#    - url: /hacsfiles/air-visual-card/air-visual-card.js
+#      type: js
 #    - url: /hacsfiles/custom-header/custom-header.js
 #      type: module
     - url: /hacsfiles/lovelace-weather-card-chart/weather-card-chart.js
@@ -810,8 +810,6 @@ bmw_connected_drive:
     password: !secret mini_pw
     region: rest_of_world
 
-airvisual:
-  api_key: !secret airvisual_key
 
 withings:
   client_id: !secret withings_client_id

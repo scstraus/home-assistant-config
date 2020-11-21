@@ -774,3 +774,23 @@
         value_template: "{{ as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%a, %b %e  %R') }}"
         icon_template: mdi:calendar-clock
  
+
+
+  - platform: template
+    sensors:
+      kite_day:
+        friendly_name: "Kite Day"
+        value_template: >-
+          {% if states('sensor.smartweather_temperature')|float < 27
+              and states('sensor.smartweather_temperature')|float > 10 
+              and states('sensor.smartweather_wind_speed')|float < 15
+              and states('sensor.smartweather_wind_speed')|float > 7
+              and (states('sensor.dark_sky_precip_probability_0d')|float < 30
+              or ((states('sensor.dark_sky_precip_intensity_1h')|float < 0.05)
+              and (states('sensor.dark_sky_precip_intensity_2h')|float < 0.05)
+              and (states('sensor.dark_sky_precip_intensity_3h')|float < 0.05))) %}
+            yes
+          {% else %}
+            no
+          {% endif %}
+        icon_template: mdi:windsock    

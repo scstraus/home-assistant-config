@@ -17,6 +17,8 @@ popup_cards:
       type: 'custom:weather-card-chart'
       weather: weather.weather_forecast
       sun: sun.sun
+      temp: sensor.smartweather_temperature
+      wind: sensor.smartweather_wind_speed
 
   sensor.sean_location:
     title: Sean Location History and Time to Home
@@ -601,6 +603,7 @@ cards:
 #    - sensor.low_gas_in_car
     - sensor.trash_display
     - binary_sensor.basement_sliding_door
+    - sensor.kite_day
     state_filter:
     - "on"
     - "Delivery"
@@ -692,9 +695,11 @@ cards:
 
       - type: 'custom:weather-card-chart'
         title: Weather / Air Quality
-        weather: weather.weather_forecast
+        weather: weather.smartweather_home
         sun: sun.sun
         mode: hourly
+        temp: sensor.smartweather_temperature
+        wind: sensor.smartweather_wind_speed
 
       - type: custom:decluttering-card
         template: open_windows_cold_nomarquee

@@ -95,6 +95,42 @@ cards:
 #        entities:
 #        - binary_sensor.alarm_connection
 
+
+
+#
+#
+#  - type: logbook
+#    title: Last Door and Window Activity
+#    entities:
+#    - binary_sensor.garage_door_zone_14
+#    - binary_sensor.front_door_zone_1
+#    - binary_sensor.laundry_room_window_zone_13
+#    - binary_sensor.windows_1st_floor_zone_2
+##    - binary_sensor.closet_window_1
+#    - binary_sensor.back_door
+#    - binary_sensor.back_door_2
+#    - binary_sensor.sebastians_room_left_window
+#    - binary_sensor.sophies_room_ceiling_window
+#    - binary_sensor.ecolink_closet_left_window
+#    - binary_sensor.ecolink_garage_door
+#    - binary_sensor.basement_sliding_door
+#    - binary_sensor.master_bedroom_window
+#    hours_to_show: 4
+#
+#
+#  - type: logbook
+#    title: Last Motion Detected
+#    entities:
+#    - binary_sensor.play_room_zone_3
+#    - binary_sensor.living_room_zone_4
+#    - binary_sensor.master_bedroom_zone_5
+#    - binary_sensor.library_zone_6
+#    - binary_sensor.master_closet_zone_8
+#    - binary_sensor.sophies_room_zone_10
+#    - binary_sensor.garage_zone_12
+#    - binary_sensor.glass_break_sensor_zone_11
+#    hours_to_show: 4
+
   - type: custom:home-feed-card
     title: Last Door And Window Activity
     id_filter: ^nothing.*
