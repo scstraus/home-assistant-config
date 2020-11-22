@@ -323,10 +323,10 @@ class WeatherCardChart extends Polymer.Element {
     var tempLow = [];
     var precip = [];
     var averagecount = 1;
-    var dateTimeAvg = 0;
-    var tempHighAvg = 0;
-    var tempLowAvg = 0;
-    var precipAvg = 0;
+    var dateTimeAvg = null;
+    var tempHighAvg = null;
+    var tempLowAvg = null;
+    var precipAvg = null;
     for (i = 0; i < data.length; i++) {
       var d = data[i];
       if (mode == 'daily') {
@@ -343,19 +343,19 @@ class WeatherCardChart extends Polymer.Element {
           dateTime.push(new Date(d.datetime));
           }
         if (averagecount == 3) {
-          tempHighAvg/=3;
-          tempLowAvg/=3;
+          if (tempHighAvg!=null) {
+            tempHighAvg/=3;
+            }
           tempHigh.push(tempHighAvg);
-          tempLow.push(tempLowAvg);
           precip.push(precipAvg);
           averagecount = 0;
-          dateTimeAvg = 0;
-          tempLowAvg = 0;
-          precipAvg = 0;
+          dateTimeAvg = null;
+          tempLowAvg = null;
+          precipAvg = null;
           }
         averagecount += 1;        
         }
-    }
+      }
     var style = getComputedStyle(document.body);
     var textColor = style.getPropertyValue('--primary-text-color');
     var dividerColor = style.getPropertyValue('--divider-color');
