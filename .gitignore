@@ -19,6 +19,9 @@
 !www/images/
 !www/images/*
 !www
+!www/community/
+!www/community/lovelace-weather-card-chart/
+!www/community/lovelace-weather-card-chart/**
 # Ignore folders.
 .storage
 .cloud

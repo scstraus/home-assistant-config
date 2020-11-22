@@ -178,3 +178,15 @@ sensor.ecolink_door_window_sensor_power_management_3:
 sensor.ecolink_door_window_sensor_sourcenodeid_3:
   ignored: true
   polling_intensity: 0
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_level_3:
+  ignored: true
+  polling_intensity: 0
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_alarm_type_3:
+  ignored: true
+  polling_intensity: 0
+sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_temperature:
+  ignored: false
+  polling_intensity: 0
+sensor.hauppage_furnace_flood_sensor_battery_level:
+  ignored: false
+  polling_intensity: 0

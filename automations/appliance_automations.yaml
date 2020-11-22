@@ -130,7 +130,7 @@
         type: tts
       message: "The dishes are clean."
       target: 
-        - media_player.kichen_bar_kindle_fire
+#        - media_player.kichen_bar_kindle_fire
         - media_player.alexa_kitchen
     service: notify.alexa_media
 
