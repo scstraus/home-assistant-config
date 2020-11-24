@@ -250,8 +250,15 @@ class WeatherCardChart extends Polymer.Element {
     this.sunObj = 'sun.sun' in hass.states ? hass.states['sun.sun'] : null;
     this.tempObj = this.config.temp in hass.states ? hass.states[this.config.temp] : null;
     this.windObj = this.config.wind in hass.states ? hass.states[this.config.wind] : null;
-    this.forecast = this.weatherObj.attributes.forecast.slice(0,9);
     this.windBearing = this.weatherObj.attributes.wind_bearing;
+    var mode = this.config.mode;
+    if (mode == 'daily') {
+      this.forecast = this.weatherObj.attributes.forecast.slice(0,9);
+    } else {
+    this.forecast = this.weatherObj.attributes.forecast.slice(0,27).filter(function(value, index, Arr) {
+        return index % 3 == 1;
+        }); 
+    }
   }
 
   dataChanged() {
