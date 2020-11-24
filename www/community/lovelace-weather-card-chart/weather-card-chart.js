@@ -304,16 +304,19 @@ class WeatherCardChart extends Polymer.Element {
   }
 
   drawChart() {
+    //var data = this.weatherObj.attributes.forecast.slice(0,9);
     var mode = this.mode;
+    var data = null;
     if (mode == 'hourly') {
-      var data = this.weatherObj.attributes.forecast.slice(0,27);
+      data = this.weatherObj.attributes.forecast.slice(0,27);
     } else {
-      var data = this.weatherObj.attributes.forecast.slice(0,9);
+      data = this.weatherObj.attributes.forecast.slice(0,9);
     }
     var locale = this._hass.selectedLanguage || this._hass.language;
     var tempUnit = this._hass.config.unit_system.temperature;
     var lengthUnit = this._hass.config.unit_system.length;
     var precipUnit = lengthUnit === 'km' ? this.ll('uPrecip') : 'in';
+//    var mode = this.mode;
     var i;
     if (!this.weatherObj.attributes.forecast) {
       return [];
@@ -322,6 +325,15 @@ class WeatherCardChart extends Polymer.Element {
     var tempHigh = [];
     var tempLow = [];
     var precip = [];
+    /*
+    for (i = 0; i < data.length; i++) {
+      var d = data[i];
+      dateTime.push(new Date(d.datetime));
+      tempHigh.push(d.temperature);
+      tempLow.push(d.templow);
+      precip.push(d.precipitation);
+    }
+    */
     var averagecount = 1;
     var dateTimeAvg = null;
     var tempHighAvg = null;
@@ -343,16 +355,32 @@ class WeatherCardChart extends Polymer.Element {
           dateTime.push(new Date(d.datetime));
           }
         if (averagecount == 3) {
-          if (tempHighAvg!=null) {
-            tempHighAvg/=3;
+          if (precipAvg<=0) {
+            precipAvg=null;
             }
+          tempHighAvg/=3;
           tempHigh.push(tempHighAvg);
           precip.push(precipAvg);
+//          console.log ("i=",i);
+//          console.log ("averagecount=",averagecount);
+//          console.log ("d=",d);
+//          console.log ("tempHighAvg=",tempHighAvg);
+//          console.log ("precipAvg=",precipAvg);
+//          console.log ("tempLowAvg=",tempLowAvg);
+//          console.log ("dateTimeAvg=",dateTimeAvg);
           averagecount = 0;
           dateTimeAvg = null;
           tempLowAvg = null;
+          tempHighAvg = null;
           precipAvg = null;
           }
+//        console.log ("i=",i);
+//        console.log ("averagecount=",averagecount);
+//        console.log ("d=",d);
+//        console.log ("tempHighAvg=",tempHighAvg);
+//        console.log ("precipAvg=",precipAvg);
+//        console.log ("tempLowAvg=",tempLowAvg);
+//        console.log ("dateTimeAvg=",dateTimeAvg);
         averagecount += 1;        
         }
       }
@@ -545,3 +573,4 @@ class WeatherCardChart extends Polymer.Element {
 }
 
 customElements.define('weather-card-chart', WeatherCardChart);
+

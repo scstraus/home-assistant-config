@@ -95,8 +95,6 @@ lovelace:
       type: js
     - url: /hacsfiles/simple-thermostat/simple-thermostat.js
       type: module
-#    - url: /hacsfiles/air-visual-card/air-visual-card.js
-#      type: js
 #    - url: /hacsfiles/custom-header/custom-header.js
 #      type: module
     - url: /hacsfiles/lovelace-weather-card-chart/weather-card-chart.js

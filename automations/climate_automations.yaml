@@ -44,7 +44,7 @@
 
 - id: heat_down_open_sophies_room_auto
   alias: heat_down_open_sophies_room_auto
-  initial_state: 'false'
+  initial_state: 'true'
   trigger:
     platform: state
     entity_id: binary_sensor.sophies_room_ceiling_window
@@ -69,6 +69,7 @@
 
 - id: heat_up_closed_sophies_room_auto
   alias: heat_up_closed_sophies_room_auto
+  initial_state: 'true'
   trigger:
     platform: state
     entity_id: binary_sensor.sophies_room_ceiling_window
