@@ -489,6 +489,37 @@ cards:
       show_empty: false
 
 
+    - type: conditional
+      conditions:
+        - entity: binary_sensor.reminders_label
+          state: "on"
+      card:
+        type: vertical-stack
+        in_card: true
+        cards:
+        - type: "custom:button-card"
+          name: Reminders
+          styles:
+            name:
+              - color: var(--ha-card-header-color)
+              - justify-self: start
+              - padding-left: 16px
+            card:
+              - padding-top: 22px
+              - padding-bottom: 4px
+              - font-size: 24px
+        - type: "custom:calendar-card"
+          entities:
+            - calendar.alena_and_seans_calendar
+      #    title: "Reminders"
+          showProgressBar: false
+          numberOfDays: 3
+          hidePastEvents: true
+          hideHeader: true
+          timeFormat: 'hh:mm a'
+
+
+
     
     - type: entity-filter
       card:
@@ -579,36 +610,6 @@ cards:
     - type: iframe
       url: https://todoist.com/app/#start
       aspect_ratio: 160%
-
-    - type: conditional
-      conditions:
-        - entity: binary_sensor.reminders_label
-          state: "on"
-      card:
-        type: vertical-stack
-        in_card: true
-        cards:
-        - type: "custom:button-card"
-          name: Reminders
-          styles:
-            name:
-              - color: var(--ha-card-header-color)
-              - justify-self: start
-              - padding-left: 16px
-            card:
-              - padding-top: 22px
-              - padding-bottom: 4px
-              - font-size: 24px
-        - type: "custom:calendar-card"
-          entities:
-            - calendar.alena_and_seans_calendar
-      #    title: "Reminders"
-          showProgressBar: false
-          numberOfDays: 3
-          hidePastEvents: true
-          hideHeader: true
-          timeFormat: 'hh:mm a'
-
 
     - type: vertical-stack
       in_card: true

@@ -423,19 +423,19 @@ cards:
         - type: state-label  
           entity: sensor.czechia_coronavirus_current
           style:
-            font-size: large
+            font-size: x-large
             left: 20%
             top: 44%
         - type: state-label  
           entity: variable.czechia_coronavirus_new_yesterday
           style:
-            font-size: large
+            font-size: x-large
             left: 51%
             top: 44%
         - type: state-label  
           entity:  variable.czechia_coronavirus_new_today
           style:
-            font-size: large
+            font-size: x-large
             left: 82%
             top: 44%
         #Units top row

@@ -45,7 +45,7 @@
     service: variable.set_variable
     data:
       variable: posta_variable
-      attributes_template: >
+      attributes: >
         {
           "from": "{{ state_attr('sensor.cp_packages_coming_today', 'from') }}",
           "date": "{{ state_attr('sensor.cp_packages_coming_today', 'date') }}",
@@ -54,6 +54,7 @@
     data_template:
       value: >
           {{ states('sensor.cp_packages_coming_today')}}
+      # attributes_template: >
 
 #,
 #          "body": "{{ state_attr('sensor.cp_packages_coming_today', 'body') }}"
@@ -91,13 +92,14 @@
     service: variable.set_variable
     data:
       variable: dpd_variable
-      attributes_template: >
+      attributes: >
         {
           "from": "{{ state_attr('sensor.dpd_packages_coming_today', 'from') }}",
           "date": "{{ state_attr('sensor.dpd_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.dpd_packages_coming_today', 'subject') }}"
         } 
       value_template: "{{ states('sensor.dpd_packages_coming_today')}}"
+      # attributes_template: >
 
 
 
@@ -152,13 +154,14 @@
     service: variable.set_variable
     data:
       variable: dhl_variable 
-      attributes_template: >
+      attributes: >
         {
           "from": "{{ state_attr('sensor.dhl_packages_coming_today', 'from') }}",
           "date": "{{ state_attr('sensor.dhl_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.dhl_packages_coming_today', 'subject') }}"
         } 
       value_template: "{{ states('sensor.dhl_packages_coming_today')}}"
+      # attributes_template: >
 
 
 
@@ -213,13 +216,14 @@
     service: variable.set_variable
     data:
       variable: gls_variable 
-      attributes_template: >
+      attributes: >
         {
           "from": "{{ state_attr('sensor.gls_packages_coming_today', 'from') }}",
           "date": "{{ state_attr('sensor.gls_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.gls_packages_coming_today', 'subject') }}"
         } 
       value_template: "{{ states('sensor.gls_packages_coming_today')}}"
+      # attributes_template: >
 
 
     # service: variable.set_variable

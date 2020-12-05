@@ -794,3 +794,42 @@
             no
           {% endif %}
         icon_template: mdi:windsock    
+
+  - platform: template
+    sensors:
+      bathroom_humidity_change_rate:
+        friendly_name: "Bathroom Humidity Change Rate"
+        unit_of_measurement: 'rate'
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.change_rate }}"
+      bathroom_humidity_standard_deviation:
+        friendly_name: "Bathroom Humidity Standard Deviation"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.standard_deviation }}"
+      bathroom_humidity_variance:
+        friendly_name: "Bathroom Humidity Variance"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.variance }}"
+      bathroom_humidity_change:
+        friendly_name: "Bathroom Humidity Change"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.change }}"
+      bathroom_humidity_average_change:
+        friendly_name: "Bathroom Humidity Average Change"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.average_change }}"
+      bathroom_humidity_mean:
+        friendly_name: "Bathroom Humidity Mean"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.mean}}"
+      bathroom_humidity_median:
+        friendly_name: "Bathroom Humidity Median"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.median }}" 
+      bathroom_humidity_min_value:
+        friendly_name: "Bathroom Humidity Min Value"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.min_value}}"
+      bathroom_humidity_max_value:
+        friendly_name: "Bathroom Humidity Max Value"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.max_value }}"               

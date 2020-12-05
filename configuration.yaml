@@ -129,6 +129,9 @@ lovelace:
 #      type: module
     - url: /hacsfiles/upcoming-media-card/upcoming-media-card.js
       type: module
+    - url: /hacsfiles/compass-card/compass-card.js
+      type: module
+                
                 
                 
                 

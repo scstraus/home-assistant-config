@@ -305,7 +305,7 @@ cards:
   - type: custom:mini-graph-card
 #      name: Internet
     entities:
-      - entity: sensor.dark_sky_temperature
+      - entity: sensor.smartweather_temperature
         name: Temperature
     hours_to_show: 24
     points_per_hour: 2
@@ -337,10 +337,16 @@ cards:
     in_card: true
     cards: 
     
+    - type: custom:compass-card
+      entity:  sensor.smartweather_wind_bearing
+      secondary_entity:  sensor.smartweather_wind_speed
+      compass:
+        indicator: arrow_inward
+
     - type: custom:mini-graph-card
   #      name: Internet
       entities:
-        - entity: sensor.dark_sky_wind_speed
+        - entity: sensor.smartweather_wind_speed
           name: Wind Speed
       hours_to_show: 24
       points_per_hour: 2
@@ -363,7 +369,7 @@ cards:
 
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.dark_sky_wind_gust
+        - entity: sensor.smartweather_wind_gust
           name: Wind Gust
       hours_to_show: 24
       points_per_hour: 2
@@ -391,7 +397,7 @@ cards:
 
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.dark_sky_wind_bearing
+        - entity: sensor.smartweather_wind_bearing
           name: Wind Bearing
       hours_to_show: 24
       points_per_hour: 4
@@ -404,7 +410,7 @@ cards:
 
   - type: custom:mini-graph-card
     entities:
-      - entity: sensor.dark_sky_humidity
+      - entity: sensor.smartweather_humidity
         name: Humidity
     hours_to_show: 24
     points_per_hour: 2
@@ -449,8 +455,8 @@ cards:
 
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.dark_sky_precip_intensity
-          name: 'Precip. Intensity'
+        - entity: sensor.smartweather_rain_rate
+          name: 'Rain Rate (mm)'
       hours_to_show: 24
       points_per_hour: 2
       height: 150
@@ -464,18 +470,26 @@ cards:
   - type: custom:mini-graph-card
 #      name: Internet
     entities:
-      - entity: sensor.dark_sky_cloud_coverage 
-        name: 'Cloud Coverage'
+      - entity: sensor.smartweather_brightness
+        name: 'Sunlight'
     hours_to_show: 24
     points_per_hour: 2
     height: 150
     lower_bound: 0
-    upper_bound: 100
+    upper_bound: 120000
     color_thresholds:
-        - value: 10
-          color: "#6666ff"
-        - value: 90
-          color: "#ffffff"
+        - value: 80000
+          color: "#f3f300"
+        - value: 2000
+          color: "#777777"
+        - value: 100
+          color: "#777777"
+        - value: 50
+          color: "#222222"
+        - value: 5
+          color: "#000000"
+        - value: 0
+          color: "#000000"
 
 
   - type: custom:mini-graph-card
@@ -509,7 +523,7 @@ cards:
 
   - type: custom:mini-graph-card
     entities:
-      - entity: sensor.dark_sky_pressure
+      - entity: sensor.smartweather_pressure
         name: 'Air Pressure'
     hours_to_show: 24
     points_per_hour: 2
@@ -529,7 +543,7 @@ cards:
 
   - type: custom:mini-graph-card
     entities:
-      - entity: sensor.dark_sky_dew_point
+      - entity: sensor.smartweather_dewpoint
         name: 'Dew Point'
     hours_to_show: 24
     points_per_hour: 2

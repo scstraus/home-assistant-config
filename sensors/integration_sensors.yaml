@@ -362,3 +362,18 @@
       - wind_kph
       - wind_1d_kph
       - alerts
+
+  - platform: mqtt
+    name: "Genesys 5490 Idle Time"
+    state_topic: !secret genesys_5490_idle_time_topic
+    unit_of_measurement: 'seconds'
+    icon: mdi:timer
+    value_template: "{{ value }}"
+    availability_topic: !secret genesys_5490_availability_topic
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: statistics
+    name: bathroom_humidity_stats
+    entity_id: sensor.boiler_flood_sensor_humidity_level

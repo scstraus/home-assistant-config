@@ -29,7 +29,8 @@ class PlaylistInRoom(hass.Hass):
   ["media_player.alexa_master_bath","media_player.master_bath_airtunes_speaker"],
   ["media_player.kichen_bar_kindle_fire","media_player.living_room_airtunes_speaker","media_player.kitchen_airtunes_speaker"],
   ["media_player.office_alexa","media_player.office_airtunes_speaker"],  
-  ["media_player.sophies_room_echo_dot","media_player.sophie_s_room_airtunes_speaker"]]
+  ["media_player.sophies_room_echo_dot","media_player.sophie_s_room_airtunes_speaker"]
+  ["media_player.master_closet_kindle","media_player.office_airtunes_speaker"]]
 
 
 
