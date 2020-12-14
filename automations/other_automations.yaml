@@ -1620,3 +1620,29 @@
             data:
               entity_id: input_select.dreamscreen_scene
               option: 'Forest'
+
+- id: kitchen_sink_flooding
+  alias: kitchen_sink_flooding
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_sink_flood_sensor
+    to: 'on'
+  action:
+    - service: notify.sean_alena
+      data:
+        title: "Water under the Kitchen Sink"
+        message: "It's wet under the kitchen sink"
+        data:
+          push:
+            thread-id: "error"
+    - data:
+        data:
+          type: tts
+        message: "Attention! There is water under the sink! Attention! There's water under the sink!"
+      service: notify.alexa_media_everywhere
+    - data:
+        data:
+          type: tts
+        message: "Attention! There is water under the sink! Attention! There's water under the sink!"
+      service: notify.alexa_media_office_alexa

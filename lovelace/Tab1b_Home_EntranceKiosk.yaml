@@ -201,6 +201,12 @@ cards:
         - state: "Fill It"
         - name: "The Car Needs Gas"
 
+    - type: custom:decluttering-card
+      template: warning
+      variables:
+        - entity: binary_sensor.kitchen_sink_flood_sensor
+        - state: 'on'
+        - name: "Water Under the Kitchen Sink"
 
 #    - type: custom:decluttering-card
 #      template: warning_marquee

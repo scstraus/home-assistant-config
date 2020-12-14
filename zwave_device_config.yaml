@@ -190,3 +190,6 @@ sensor.philio_technology_corp_ph_pat02_eu_flood_multisensor_3in1_temperature:
 sensor.hauppage_furnace_flood_sensor_battery_level:
   ignored: false
   polling_intensity: 0
+binary_sensor.boiler_flood_sensor:
+  ignored: false
+  polling_intensity: 0

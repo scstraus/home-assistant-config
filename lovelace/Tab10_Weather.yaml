@@ -15,14 +15,14 @@ cards:
 
   - type: 'custom:weather-card-chart'
     title: Weather Today
-    weather: weather.openweathermap
+    weather: weather.smartweather_home
     sun: sun.sun
     mode: hourly
 
 
   - type: 'custom:weather-card-chart'
     title: Weather This Week
-    weather: weather.weather_forecast
+    weather: weather.openweathermap
     sun: sun.sun
 
 #    - type: vertical-stack

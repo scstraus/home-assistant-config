@@ -368,16 +368,16 @@ weather:
     mode: hourly
     scan_interval: 720
     
-  - platform: openweathermap
-    api_key: !secret openweathermap_key
-    mode: hourly
+#  - platform: openweathermap
+#    api_key: !secret openweathermap_key
+#    mode: hourly
 
   - platform: buienradar
     name: buienradar
-#
-#  - platform: openweathermap
-#    api_key: !secret openweathermap_key
-#    mode: daily
+
+  - platform: openweathermap
+    api_key: !secret openweathermap_key
+    mode: daily
 
 #panel_iframe:
 #cloud9:
@@ -588,6 +588,18 @@ input_select:
       - Pop
       - Forest
 
+  last_inside_aqi_notification:
+    name: Last Inside AQI notification
+    options:
+      - Good
+      - Bad
+
+  last_outside_aqi_notification:
+    name: Last Outside AQI notification
+    options:
+      - Good
+      - Bad
+
 proximity:
   all_home: 
     devices:
@@ -613,11 +625,7 @@ proximity:
     tolerance: 50
     unit_of_measurement: km    
     
-#device_tracker:
-#  - platform: life360
-#    username: !secret life360_uname
-#    password: !secret life360_pw
-#    filename: life360.conf
+
 
 life360:
   accounts:
@@ -846,15 +854,22 @@ home_connect:
   client_secret: homeconnect_client_secret
 
 device_tracker:
-  - platform: iphonedetect
-    consider_home: 60
-    interval_seconds: 6
-    new_device_defaults:
-      track_new_devices: true
-    hosts:
-      seans_iphone_x_ping: 10.10.10.26
-      alenas_iphone_6_ping: 10.10.10.27
-      sophies_iphone_6_ping: 10.10.10.13
+  - platform: nmap_tracker
+    hosts: 10.10.10.12
+
+#  - platform: iphonedetect
+#    consider_home: 60
+#    interval_seconds: 6
+#    new_device_defaults:
+#      track_new_devices: true
+#    hosts:
+#      seans_iphone_x_ping: 10.10.10.26
+#      alenas_iphone_6_ping: 10.10.10.27
+#      sophies_iphone_6_ping: 10.10.10.13
+#  - platform: life360
+#    username: !secret life360_uname
+#    password: !secret life360_pw
+#    filename: life360.conf
 
 input_text:
   windows_making_house_hot:

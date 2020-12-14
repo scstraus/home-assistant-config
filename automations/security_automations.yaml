@@ -301,7 +301,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.smartweather_wind_gust
-    above: 30
+    above: 10
   condition:
     condition: time
     after: '21:00:00'
@@ -321,7 +321,7 @@
   condition:
     condition: numeric_state
     entity_id: sensor.smartweather_wind_gust
-    above: 30
+    above: 10
   action:
     service: switch.turn_off
     data:

@@ -224,6 +224,13 @@ cards:
   - type: custom:decluttering-card
     template: warning
     variables:
+      - entity: binary_sensor.kitchen_sink_flood_sensor
+      - state: 'on'
+      - name: "Water Under the Kitchen Sink"
+
+  - type: custom:decluttering-card
+    template: warning
+    variables:
       - entity: binary_sensor.human_front
       - state: 'on'
       - name: "Person Spotted in Front of House"

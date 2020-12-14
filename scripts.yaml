@@ -523,6 +523,23 @@
             - OK
           device: Xbox-SystemOS
 
+#  xbox_pause_play:
+#    sequence:
+#      - choose:
+#          - conditions:
+#              - condition: state
+#                entity_id: media_player.xbox_systemos_2
+#                attribute: media_title
+#                state: heat
+#            sequence:
+#              - service: script.sim_morning
+#        default:
+#          - service: remote.send_command
+#            data:
+#              entity_id: remote.harmony
+#              command:
+#                - OK
+
 ## New playlist scripts which use app daemon
 
 
@@ -616,3 +633,46 @@
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
           playlist: "europa2"
+
+  turn_on_christmas:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "christmas"
+          playlist: "christmas"
+      - service: dreamscreen.set_ambient_scene
+        data:
+          entity_id: dreamscreen.living_room_tv
+          scene: 6
+      - service: switch.turn_on
+        data:
+          entity_id: switch.miele_dishwasher_switch
+
+  turn_off_christmas:
+    sequence:
+      - service: media_player.media_stop
+        data:
+          entity_id: media_player.itunes
+      - service: dreamscreen.set_ambient_scene
+        data:
+          entity_id: dreamscreen.living_room_tv
+          scene: 6
+      - service: switch.turn_off
+        data:
+          entity_id: switch.miele_dishwasher_switch
+      - service: dreamscreen.set_mode
+        data:
+          entity_id: dreamscreen.living_room_tv
+          mode: 0
+
+  turn_on_christmas_tree:
+    sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.miele_dishwasher_switch
+
+  turn_off_christmas_tree:
+    sequence:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.miele_dishwasher_switch

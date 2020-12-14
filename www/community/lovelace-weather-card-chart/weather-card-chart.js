@@ -505,7 +505,7 @@ class WeatherCardChart extends Polymer.Element {
               fontColor: textColor,
             },
             afterFit: function(scaleInstance) {
-              scaleInstance.width = 28;
+              scaleInstance.width = 35;
             },
           },
           {

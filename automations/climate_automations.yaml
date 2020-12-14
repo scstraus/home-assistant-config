@@ -466,7 +466,7 @@
   initial_state: 'true'
   mode: single
   trigger:
-    minutes: '/59'
+    minutes: '/361'
     platform: time_pattern
   condition:
     condition: template 
@@ -476,6 +476,9 @@
     - service: notify.mobile_app_sean_s_iphone_12
       data:
         title: "High Winds Warning"
+        data:
+          push:
+            thread-id: "weather"
       data_template:
         message: >
           {% if states('sensor.dark_sky_wind_gust_1h')|float > 17 %}
@@ -499,8 +502,9 @@
           {% else %}
           Error
           {% endif %}
+
     - delay:
-        minutes: 50
+        hours: 6
 
 #- id: update_open_window_sensor_and_message
 #  alias: update_open_window_sensor_and_message
@@ -648,16 +652,21 @@
               - condition: state
                 entity_id: device_tracker.sean_s_iphone_12
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+              - condition: state
+                entity_id: input_select.last_inside_aqi_notification
+                state: 'good' 
           sequence:
-            service: notify.mobile_app_sean_s_iphone_12
-            data:
-              title: "Home indoor air quality is poor"
-              message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}. Turn on an air purifier."
+            - service: notify.mobile_app_sean_s_iphone_12
               data:
-                push:
-                  thread-id: "error"
+                title: "Home indoor air quality is poor"
+                message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}. Turn on an air purifier."
+                data:
+                  push:
+                    thread-id: "weather"
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_inside_aqi_notification
+                option: 'bad'
     - choose:
         - conditions: 
             - condition: and
@@ -665,16 +674,21 @@
               - condition: state
                 entity_id: device_tracker.alena_s_iphone
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+              - condition: state
+                entity_id: input_select.last_inside_aqi_notification
+                state: 'good' 
           sequence:
-            service: notify.mobile_app_alena_s_iphone
-            data:
-              title: "Home indoor air quality is poor"
-              message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}. Turn on an air purifier."             
+            - service: notify.mobile_app_alena_s_iphone
               data:
-                push:
-                  thread-id: "error"
+                title: "Home indoor air quality is poor"
+                message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}. Turn on an air purifier."             
+                data:
+                  push:
+                    thread-id: "weather"
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_inside_aqi_notification
+                option: 'bad'
     - choose:
         - conditions: 
             - condition: and
@@ -682,13 +696,22 @@
               - condition: state
                 entity_id: device_tracker.sean_s_iphone_12
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+              - condition: state
+                entity_id: input_select.last_inside_aqi_notification
+                state: 'good' 
           sequence:
             - service: mqtt.publish
               data:
                 topic: !secret genesys_5490_notify_topic
                 payload: !secret genesys_5490_inside_aqi_poor
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_inside_aqi_notification
+                option: 'bad'
+
+#              - condition: template
+#                value_template: '{{((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+
 
 - id: notify_home_aqi_low
   alias: notify_home_aqi_low
@@ -705,16 +728,21 @@
             - condition: state
               entity_id: device_tracker.sean_s_iphone_12
               state: 'home'
-            - condition: template
-              value_template: '{{ ((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+            - condition: state
+              entity_id: input_select.last_inside_aqi_notification
+              state: 'bad' 
           sequence:
-            service: notify.mobile_app_sean_s_iphone_12
-            data:
-              title: "Home indoor air quality is good again"
-              message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}."             
+            - service: notify.mobile_app_sean_s_iphone_12
               data:
-                push:
-                  thread-id: "error"
+                title: "Home indoor air quality is good again"
+                message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}."             
+                data:
+                  push:
+                    thread-id: "weather"
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_inside_aqi_notification
+                option: 'good'
     - choose:
         - conditions: 
             - condition: and
@@ -722,16 +750,21 @@
               - condition: state
                 entity_id: device_tracker.alena_s_iphone
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+              - condition: state
+                entity_id: input_select.last_inside_aqi_notification
+                state: 'bad'
           sequence:
-            service: notify.mobile_app_alena_s_iphone
-            data:
-              title: "Home indoor air quality is good again"
-              message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}."             
+            - service: notify.mobile_app_alena_s_iphone
               data:
-                push:
-                  thread-id: "error"
+                title: "Home indoor air quality is good again"
+                message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}."             
+                data:
+                  push:
+                    thread-id: "weather"
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_inside_aqi_notification
+                option: 'good'
     - choose:
         - conditions: 
             - condition: and
@@ -739,13 +772,22 @@
               - condition: state
                 entity_id: device_tracker.sean_s_iphone_12
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+              - condition: state
+                entity_id: input_select.last_inside_aqi_notification
+                state: 'bad'
           sequence:
             - service: mqtt.publish
               data:
                 topic: !secret genesys_5490_notify_topic
                 payload: !secret genesys_5490_inside_aqi_good
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_inside_aqi_notification
+                option: 'good'
+
+#              - condition: template
+#                value_template: '{{((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+
 
 - id: notify_hlubocepy_aqi_high
   alias: notify_hlubocepy_aqi_high
@@ -764,16 +806,21 @@
               - condition: state
                 entity_id: device_tracker.sean_s_iphone_12
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int > 0)}}'
+              - condition: state
+                entity_id: input_select.last_outside_aqi_notification
+                state: 'good'
           sequence:
-            service: notify.mobile_app_sean_s_iphone_12
-            data:
-              title: "Home outdoor air quality is poor"
-              message: "The outdoor Air Quality Index at home is currently {{states(' sensor.hlubocepy_air_quality')}}. Turn on an air purifier."
+            - service: notify.mobile_app_sean_s_iphone_12
               data:
-                push:
-                  thread-id: "error"
+                title: "Home outdoor air quality is poor"
+                message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}. Turn on an air purifier."
+                data:
+                  push:
+                    thread-id: "weather"
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_outside_aqi_notification
+                option: 'bad'
     - choose:
         - conditions: 
             - condition: and
@@ -781,16 +828,21 @@
               - condition: state
                 entity_id: device_tracker.alena_s_iphone
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int > 0)}}'
+              - condition: state
+                entity_id: input_select.last_outside_aqi_notification
+                state: 'good'
           sequence:
-            service: notify.mobile_app_alena_s_iphone
-            data:
-              title: "Home outdoor air quality is poor"
-              message: "The outdoor Air Quality Index at home is currently {{states(' sensor.hlubocepy_air_quality')}}. Turn on an air purifier."             
+            - service: notify.mobile_app_alena_s_iphone
               data:
-                push:
-                  thread-id: "error"
+                title: "Home outdoor air quality is poor"
+                message: "The outdoor Air Quality Index at home is currently {{states(' sensor.hlubocepy_air_quality')}}. Turn on an air purifier."             
+                data:
+                  push:
+                    thread-id: "weather"
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_outside_aqi_notification
+                option: 'bad'
     - choose:
         - conditions: 
             - condition: and
@@ -798,13 +850,22 @@
               - condition: state
                 entity_id: device_tracker.sean_s_iphone_12
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int > 0)}}'
+              - condition: state
+                entity_id: input_select.last_outside_aqi_notification
+                state: 'good'
           sequence:
             - service: mqtt.publish
               data:
                 topic: !secret genesys_5490_notify_topic
                 payload: !secret genesys_5490_outside_aqi_poor
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_outside_aqi_notification
+                option: 'bad'
+
+#              - condition: template
+#                value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int > 0)}}'
+
 
 - id: notify_hlubocepy_aqi_low
   alias: notify_hlubocepy_aqi_low
@@ -823,16 +884,21 @@
               - condition: state
                 entity_id: device_tracker.sean_s_iphone_12
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+              - condition: state
+                entity_id: input_select.last_outside_aqi_notification
+                state: 'bad'
           sequence:
-            service: notify.mobile_app_sean_s_iphone_12
-            data:
-              title: "Home outdoor air quality is good again"
-              message: "The outdoor Air Quality Index at home is currently {{states(' sensor.hlubocepy_air_quality')}}."             
+            - service: notify.mobile_app_sean_s_iphone_12
               data:
-                push:
-                  thread-id: "error"
+                title: "Home outdoor air quality is good again"
+                message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}."             
+                data:
+                  push:
+                    thread-id: "weather"
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_outside_aqi_notification
+                option: 'good'
     - choose:
         - conditions: 
             - condition: and
@@ -840,16 +906,21 @@
               - condition: state
                 entity_id: device_tracker.alena_s_iphone
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+              - condition: state
+                entity_id: input_select.last_outside_aqi_notification
+                state: 'bad'
           sequence:
-            service: notify.mobile_app_alena_s_iphone
-            data:
-              title: "Home outdoor air quality is good again"
-              message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}."             
+            - service: notify.mobile_app_alena_s_iphone
               data:
-                push:
-                  thread-id: "error"
+                title: "Home outdoor air quality is good again"
+                message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}."             
+                data:
+                  push:
+                    thread-id: "weather"
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_outside_aqi_notification
+                option: 'good'
     - choose:
         - conditions: 
             - condition: and
@@ -857,10 +928,76 @@
               - condition: state
                 entity_id: device_tracker.sean_s_iphone_12
                 state: 'home'
-              - condition: template
-                value_template: '{{ ((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+              - condition: state
+                entity_id: input_select.last_outside_aqi_notification
+                state: 'bad'
           sequence:
             - service: mqtt.publish
               data:
                 topic: !secret genesys_5490_notify_topic
                 payload: !secret genesys_5490_outside_aqi_good
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.last_outside_aqi_notification
+                option: 'good'
+
+#              - condition: template
+#                value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+
+#
+#              - condition: template
+#                value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+#
+##
+#- id: notify_hlubocepy_aqi_low_nochoice
+#  alias: notify_hlubocepy_aqi_low_nochoice
+#  initial_state: 'true'
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.hlubocepy_air_quality
+#    below: 50
+#    for: 
+#      minutes: 5
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: state
+#        entity_id: device_tracker.sean_s_iphone_12
+#        state: 'home'
+#      - condition: template
+#        value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+#  action:
+#    service: notify.mobile_app_sean_s_iphone_12
+#    data:
+#      title: "Home outdoor air quality is good again"
+#      message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}."             
+#      data:
+#        push:
+#          thread-id: "weather"
+#
+#
+#- id: notify_hlubocepy_aqi_high_nochoice
+#  alias: notify_hlubocepy_aqi_high_nochoice
+#  initial_state: 'true'
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.hlubocepy_air_quality
+#    above: 70
+#    for: 
+#      minutes: 5
+#  condition:    
+#    condition: and
+#    conditions:
+#      - condition: state
+#        entity_id: device_tracker.sean_s_iphone_12
+#        state: 'home'
+#      - condition: template
+#        value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int > 0)}}'
+#  action:
+#    service: notify.mobile_app_sean_s_iphone_12
+#    data:
+#      title: "Home outdoor air quality is poor"
+#      message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}. Turn on an air purifier."
+#      data:
+#        push:
+#          thread-id: "weather"
