@@ -17,10 +17,11 @@ class PlaylistInRoom(hass.Hass):
   ITUNES_BEING_ASSHOLE_PROTECTION = 0
   ITUNES_BEING_ASSHOLE_ENGAGED = 0
   ITUNES_VOLUME_CHANGE_HAPPENED = 0
+  ITUNES_BEING_ASSHOLE_CALLBACK_COUNT = 0
   TIME_TO_PLAY_PLAYLIST = 0
   REQUESTED_PLAY = 0
   ITUNES_BEING_ASSHOLE_CHECK_SECS = 12
-  NO_VOLUME_CHANGE_FALLBACK_CHECK_SECS = 14
+  NO_VOLUME_CHANGE_FALLBACK_CHECK_SECS = 16
 
 #########################################################################################################
 #              THINGS WHICH CAN BE USER DEFINED THAT I SHOULD MOVE TO THE CONFIG FILE                   #
@@ -130,7 +131,9 @@ class PlaylistInRoom(hass.Hass):
   def itunes_started_playing(self, entity, attribute, old, new, kwargs):
     self.log("iTunes started playing.")
     if self.REQUESTED_PLAY == 1:
-      self.ITUNES_BEING_ASSHOLE_PROTECTION == 1
+      self.ITUNES_BEING_ASSHOLE_PROTECTION = 1
+      self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT += 1
+      self.log("itunes being asshole callback count:",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
       self.run_in(self.disable_itunes_being_asshole_protection, self.ITUNES_BEING_ASSHOLE_CHECK_SECS)
     
   def itunes_stopped_playing(self, entity, attribute, old, new, kwargs):
@@ -140,16 +143,21 @@ class PlaylistInRoom(hass.Hass):
       self.log("Setting iTunes to play %s playlist again, goddamnit", self.PLAYLIST)
       self.call_service("media_player/media_play", entity_id = self.ITUNES_ENTITY)
       self.ITUNES_BEING_ASSHOLE_ENGAGED += 1
+      self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT +=1
+      self.log("itunes being asshole callback count:",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
       self.run_in(self.disable_itunes_being_asshole_protection, self.ITUNES_BEING_ASSHOLE_CHECK_SECS)
 
   def disable_itunes_being_asshole_protection(self, kwargs):
-    if self.ITUNES_BEING_ASSHOLE_ENGAGED > 0:
+    self.log("itunes being asshole callback count:",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
+    if (self.ITUNES_BEING_ASSHOLE_ENGAGED >= 0):
       #not time to turn off the asshole protection yet.
       self.ITUNES_BEING_ASSHOLE_ENGAGED -= 1
       self.log("Callback for ITUNES BEING ASSHOLE PROTECTION(TM) Disable Made, but there's still more assholling possible, so holding off.")
     else:
       self.ITUNES_BEING_ASSHOLE_PROTECTION = 0
       self.log("Looks like iTunes won't be an asshole this time. Enjoy your music!")
+    self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT -= 1
+    self.log("itunes being asshole callback count reduced, now:",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
 
   def no_volume_change_fallback(self, kwargs):
     self.log("Double checking that the iTunes volume change event happened in case we need to launch playlist without it.")
