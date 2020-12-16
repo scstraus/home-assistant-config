@@ -19,6 +19,8 @@ class PlaylistInRoom(hass.Hass):
   ITUNES_VOLUME_CHANGE_HAPPENED = 0
   TIME_TO_PLAY_PLAYLIST = 0
   REQUESTED_PLAY = 0
+  ITUNES_BEING_ASSHOLE_CHECK_SECS = 12
+  NO_VOLUME_CHANGE_FALLBACK_CHECK_SECS = 14
 
 #########################################################################################################
 #              THINGS WHICH CAN BE USER DEFINED THAT I SHOULD MOVE TO THE CONFIG FILE                   #
@@ -104,7 +106,7 @@ class PlaylistInRoom(hass.Hass):
       self.TIME_TO_PLAY_PLAYLIST = 1
       self.log("Now we play the playlist.")
       # Backup in case we don't get a volume changed event.
-      self.run_in(self.no_volume_change_fallback, 13)             
+      self.run_in(self.no_volume_change_fallback, self.NO_VOLUME_CHANGE_FALLBACK_CHECK_SECS)             
 
 
 #########################################################################################################
@@ -129,7 +131,7 @@ class PlaylistInRoom(hass.Hass):
     self.log("iTunes started playing.")
     if self.REQUESTED_PLAY == 1:
       self.ITUNES_BEING_ASSHOLE_PROTECTION == 1
-      self.run_in(self.disable_itunes_being_asshole_protection, 11)
+      self.run_in(self.disable_itunes_being_asshole_protection, self.ITUNES_BEING_ASSHOLE_CHECK_SECS)
     
   def itunes_stopped_playing(self, entity, attribute, old, new, kwargs):
     self.log("iTunes stopped playing.")
@@ -138,7 +140,7 @@ class PlaylistInRoom(hass.Hass):
       self.log("Setting iTunes to play %s playlist again, goddamnit", self.PLAYLIST)
       self.call_service("media_player/media_play", entity_id = self.ITUNES_ENTITY)
       self.ITUNES_BEING_ASSHOLE_ENGAGED += 1
-      self.run_in(self.disable_itunes_being_asshole_protection, 11)
+      self.run_in(self.disable_itunes_being_asshole_protection, self.ITUNES_BEING_ASSHOLE_CHECK_SECS)
 
   def disable_itunes_being_asshole_protection(self, kwargs):
     if self.ITUNES_BEING_ASSHOLE_ENGAGED > 0:
