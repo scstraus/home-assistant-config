@@ -655,11 +655,28 @@ These are just some statistics about how the tensorflow human detection is worki
 This is just a simple command that checks to see if my RAID array is still healthy and reports back to a sensor which I show in my system tab on lovelace.
 
 
+## [AQI and Air Purifier Template Sensors](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml)
+
+These are all the sensors I use to make my [AirVisual Nodes](https://www.iqair.com/us/air-quality-monitors/airvisual-pro) and Xiaomi Air Purifiers very human readable and easy to use. Together, these tools monitor the air inside and outside and automatically run the air purifiers when needed. The reason we have separate AQI sensors when there are already ones that are built into the air purifiers is that the ones in the air purifiers aren't very good. They have low resolution and accuracy and as soon as you turn on the air purifiers, they start reporting the AQI as perfect, when in reality it's not. I've found it to be most reliable to simply rely on the outdoor AQI from the AirVisual node we have outside in order to run the air purifiers, because when the AQI is bad outside, it doesn't take very long before it's bad inside. You can see the automations for this in the automations section.
 
 ### [Sensors to create human readable AQI sensors from the Xaiomi Air Purifier AQI Data](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml#L1-L88)
 
 As we already had some Airvisual AQI sensors in the house which reports using a standard AQI measurement, I wanted to convert these sensors from a particles per volume of air measurement into AQI. So for each of the air purifiers, there are 2 template sensors. One shows the numeric AQI value and the other creates the description of the state. These are displayed as secondary info underneath the air purifiers on my lovelace dashboards.
 
+### [Sensors to create AQI descriptions for the AirVisual Nodes](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml#L89-L129)
 
+These are similar to the ones above, except for the airvisual nodes, they just create a description of how bad the air quality is on the air visual nodes. I used to need these for the AirVisual Lovelace Card, but since have switched to Mini Graph Cards which take up less space on my dashboard and show a little graph, so these sensors aren't actually used at the moment.
+
+### [Turn all the attributes of air purifiers into their own sensors](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml#L198-L352)
+
+These sensors take the attributes of the air purifiers and make them into individual sensors so that I can use them in the picture elements cards on the [appliances tab of my lovelace dashboard](https://github.com/scstraus/home-assistant-config#tab-5-appliances). This gives me sensor info like humidity, filter life, air quality, temperature, and the state of various settings like the child lock or fan speed. All of that is displayed on the card for the air purifier.
+
+### [Get air quality data from my Airthings Wave air quality sensor](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml#L354-L395)
+
+We also have an AirThings Wave air quality sensor which reports some different air quality data than the AirVisual Node does. This sensor gives us additional Radon, Air Pressure, and TVOC readings in addition to CO2 which both devices show. This rounds out the data given from AirVisual into a quite complete picture of air quality in the house. 
+
+### [Break out attributes of AirVisual Node into individual sensors](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml#L397-L425)
+
+The new official Airvisual Node integration doesn't split out these sensors like my unofficial direct integration to the SMB files on the device did. So now I have to split them out from the attributes of the main sensor. Interestingly, all the PM .1, 2.5, and 10 move in almost exact synchrony, so using them individually doesn't give you much additional context. I wonder how accurate these readings really are. Also I have no idea of the units of sensor life. AQI is useful though as it's more human understandable and has nice categories which I color code on the background on the graph card so that you can see if the air quality is green, yellow, red, etc.
 
 
