@@ -46,6 +46,8 @@
       - media_player.alexa_master_bath
       - media_player.office_alexa
       - media_player.sophies_room_echo_dot
+      - media_player.seans_5_echo_flex
+      - media_player.seans_6_echo_flex
 
 #  default_view:
 #    view: yes

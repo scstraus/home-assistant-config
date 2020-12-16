@@ -1234,7 +1234,7 @@
   action:
     service: notify.mobile_app_sean_s_iphone_12
     data:
-      title: "Take out that trash!"
+      title: "Take out that bio odpas!"
       message: "Hello there, now would be a really great time to take out the bio odpad, what do you think? Let's do it, what do you say?!?"
 
 
@@ -1646,3 +1646,18 @@
           type: tts
         message: "Attention! There is water under the sink! Attention! There's water under the sink!"
       service: notify.alexa_media_office_alexa
+
+- id: christmas_tree_toggle
+  alias: christmas_tree_toggle
+  initial_state: 'true'
+  trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.fibaro_button_white
+      scene_data: 7680
+      scene_id: 1
+  action:
+    - service: switch.toggle
+      data:
+        entity_id: switch.miele_dishwasher_switch

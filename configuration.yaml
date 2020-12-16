@@ -637,7 +637,7 @@ life360:
   max_update_wait:
     minutes: 30
     
-cast:
+#cast:
 #  media_player:
 #    - host: !secret chromecast_ip
     

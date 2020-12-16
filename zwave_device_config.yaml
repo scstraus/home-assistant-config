@@ -193,3 +193,18 @@ sensor.hauppage_furnace_flood_sensor_battery_level:
 binary_sensor.boiler_flood_sensor:
   ignored: false
   polling_intensity: 0
+sensor.fibaro_system_fgpb101_button_alarm_level_2:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgpb101_button_alarm_type_2:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgpb101_button_burglar_2:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgpb101_button_general_2:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgpb101_button_sourcenodeid_2:
+  ignored: true
+  polling_intensity: 0

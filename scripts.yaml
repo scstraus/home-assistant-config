@@ -599,6 +599,13 @@
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
           playlist: "kids-english"
 
+  play_christmas_music:
+    sequence:
+      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+        event_data_template: 
+          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+          playlist: "christmas"
+
   play_kultoora_radio:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
@@ -636,6 +643,21 @@
 
   turn_on_christmas:
     sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.miele_dishwasher_switch
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.chromecast
+          media_content_type: cast
+          media_content_id: '
+            {
+              "app_name": "youtube",
+              "media_id": "8WBThkkpnaA"
+            }'
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.itunes_shuffle
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "christmas"
@@ -644,26 +666,88 @@
         data:
           entity_id: dreamscreen.living_room_tv
           scene: 6
-      - service: switch.turn_on
+      - service: dreamscreen.set_brightness
         data:
-          entity_id: switch.miele_dishwasher_switch
+          entity_id: dreamscreen.living_room_tv
+          brightness: 90
+      - service: remote.turn_on
+        entity_id: remote.harmony
+        data:
+           activity: "Chrome Cast"
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony
+          command:
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown   
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown 
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown
+            - VolumeDown          
+          device: "Sony TV"
+          delay_secs: 0.0
+
+
+#entity_id: media_player.chromecast
+#media_content_type: movie
+#media_content_id: 'plex://{"Discworld": "Movies", "title": "A.Charlie.Brown.Christmas.1965.1080p.BluRay.H264.AAC-RARBG"}'
 
   turn_off_christmas:
     sequence:
-      - service: media_player.media_stop
+      - service: media_player.media_pause
         data:
           entity_id: media_player.itunes
-      - service: dreamscreen.set_ambient_scene
-        data:
-          entity_id: dreamscreen.living_room_tv
-          scene: 6
       - service: switch.turn_off
         data:
           entity_id: switch.miele_dishwasher_switch
+      - service: dreamscreen.set_brightness
+        data:
+          entity_id: dreamscreen.living_room_tv
+          brightness: 42
+      - service: dreamscreen.set_mode
+        data:
+          entity_id: dreamscreen.living_room_tv
+          mode: 1
       - service: dreamscreen.set_mode
         data:
           entity_id: dreamscreen.living_room_tv
           mode: 0
+      - service: remote.turn_off
+        data:
+          entity_id: remote.harmony
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.chromecast
 
   turn_on_christmas_tree:
     sequence:
