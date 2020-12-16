@@ -12,7 +12,7 @@ Some things that may be interesting to you from my config which are not so commo
 
 There are a lot of other little things that I've not seen anyone else do, but I don't want to clutter up the intro too much, so more easter eggs inside. I've tried to include enough description and links to relevant items that you might be able to understand and replicate what I've done. Many of the more useful things I have automated require nothing other than a plain vanilla homeassistant install and some free things like weather components and iOS device trackers which everyone can have out of the box, so don't feel like you need special hardware to take part.
 
-Last update: [September 29, 2020 (Hass v.115.4)](https://github.com/scstraus/home-assistant-config/tree/9ede552d667d233cb2fe6ff18defe2c58edf5517), but make sure you check the history in the code snippet I linked to to see which version I was on when I documented it, because in most cases I documented it on an older version than that and you may have to find the more recent update in the repo for it to work properly on new versions. Unfortunately to link to the snippets directly, I have to use the version I am on when I write the documentation for the line numbers to match, but I don't go back and update the docs to the latest version every time I make changes to the code. To see the new versions of the code, click on the headers for the whole section or the file links themselves above, those will take you to the latest version of the file with any changes I've made for the version I'm on now shown at the beginning of this paragraph.
+Last update: [December 17, 2020 (Hass v.118.4)](https://github.com/scstraus/home-assistant-config/tree/642fd49891bb6eecec8607b905cd76805d35fb48#sean-straus-home-assistant-configuration-), but make sure you check the history in the code snippet I linked to to see which version I was on when I documented it, because in most cases I documented it on an older version than that and you may have to find the more recent update in the repo for it to work properly on new versions. Unfortunately to link to the snippets directly, I have to use the version I am on when I write the documentation for the line numbers to match, but I don't go back and update the docs to the latest version every time I make changes to the code. To see the new versions of the code, click on the headers for the whole section or the file links themselves above, those will take you to the latest version of the file with any changes I've made for the version I'm on now shown at the beginning of this paragraph.
 
 How to navigate this readme:
 
@@ -98,7 +98,12 @@ How to navigate this readme:
     + [Siemens Home Connect for Dishwasher](#siemens-home-connect)
     + [Rest Sensors for Frigate Tensorflow Human Detection](#rest-sensors-for-frigate-tensorflow-human-detection)
     + [Command Line Sensor for Checking RAID Status of My Hass Server](#command-line-sensor-for-checking-raid-status-of-my-hass-server)
-    
+  * [AQI and Air Purifier Sensors](#aqi-and-air-purifier-template-sensors)
+    + [Sensors to create human readable AQI sensors from the Xaiomi Air Purifier AQI Data](#sensors-to-create-human-readable-aqi-sensors-from-the-xaiomi-air-purifier-aqi-data)
+    + [Sensors to create AQI descriptions for the AirVisual Nodes](#sensors-to-create-aqi-descriptions-for-the-airvisual-nodes)
+    + [Turn all the attributes of air purifiers into their own sensors](#turn-all-the-attributes-of-air-purifiers-into-their-own-sensors)
+    + [Get air quality data from my Airthings Wave air quality sensor](#get-air-quality-data-from-my-airthings-wave-air-quality-sensor)
+    + [Break out attributes of AirVisual Node into individual sensors](#break-out-attributes-of-airvisual-node-into-individual-sensors)
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
@@ -657,7 +662,9 @@ This is just a simple command that checks to see if my RAID array is still healt
 
 ## [AQI and Air Purifier Template Sensors](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml)
 
-These are all the sensors I use to make my [AirVisual Nodes](https://www.iqair.com/us/air-quality-monitors/airvisual-pro) and Xiaomi Air Purifiers very human readable and easy to use. Together, these tools monitor the air inside and outside and automatically run the air purifiers when needed. The reason we have separate AQI sensors when there are already ones that are built into the air purifiers is that the ones in the air purifiers aren't very good. They have low resolution and accuracy and as soon as you turn on the air purifiers, they start reporting the AQI as perfect, when in reality it's not. I've found it to be most reliable to simply rely on the outdoor AQI from the AirVisual node we have outside in order to run the air purifiers, because when the AQI is bad outside, it doesn't take very long before it's bad inside. You can see the automations for this in the automations section.
+These are all the sensors I use to make my [AirVisual Nodes](https://www.iqair.com/us/air-quality-monitors/airvisual-pro), [AirThings Wave Plus](https://www.airthings.com/en/wave-plus), and [Xiaomi Mi Air Purifier Pro](https://www.mi.com/global/air/) very human readable and easy to use. Together, these tools monitor the air quality inside and outside and automatically run the air purifiers when needed to clean it. 
+
+The reason we have separate AQI sensors when there are already ones that are built into the air purifiers is that the ones in the air purifiers aren't very good. They have low resolution and accuracy and as soon as you turn on the air purifiers, they start reporting the AQI as perfect, when in reality it's not. I've found it to be most reliable to simply rely on the outdoor AQI from the AirVisual node we have outside in order to run the air purifiers, because when the AQI is bad outside, it doesn't take very long before it's bad inside, and then they will correctly run for as long as needed but not a minute longer, which saves the filters a lot. This is something the air purfiers do not do well on their own. In auto mode they will just keep running forever. You can see the automations for this in the automations section.
 
 ### [Sensors to create human readable AQI sensors from the Xaiomi Air Purifier AQI Data](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml#L1-L88)
 
@@ -678,5 +685,7 @@ We also have an AirThings Wave air quality sensor which reports some different a
 ### [Break out attributes of AirVisual Node into individual sensors](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml#L397-L425)
 
 The new official Airvisual Node integration doesn't split out these sensors like my unofficial direct integration to the SMB files on the device did. So now I have to split them out from the attributes of the main sensor. Interestingly, all the PM .1, 2.5, and 10 move in almost exact synchrony, so using them individually doesn't give you much additional context. I wonder how accurate these readings really are. Also I have no idea of the units of sensor life. AQI is useful though as it's more human understandable and has nice categories which I color code on the background on the graph card so that you can see if the air quality is green, yellow, red, etc.
+
+To get this data, I actually have another homeassistant instance running on my old Pi3 which simply connects to the AirThings Wave device by bluetooth and scrapes the data which it then publishes to the [MQTT Eventstream](https://www.home-assistant.io/integrations/mqtt_eventstream/) integration when sends it to this instance for use (after decoding by the sensors).
 
 
