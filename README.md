@@ -653,3 +653,13 @@ These are just some statistics about how the tensorflow human detection is worki
 ### [Command Line Sensor for Checking RAID Status of My Hass Server](https://github.com/scstraus/home-assistant-config/blob/bd3db4f1bd948064a2f858d9de159c5775c91789/sensors/integration_sensors.yaml#L315-L318)
 
 This is just a simple command that checks to see if my RAID array is still healthy and reports back to a sensor which I show in my system tab on lovelace.
+
+
+
+### [Sensors to create human readable AQI sensors from the Xaiomi Air Purifier AQI Data](https://github.com/scstraus/home-assistant-config/blob/de2535e6b28a83e290e92a1874bdb3dbd1bb61a5/sensors/aqi_and_air_purifier_template_sensors.yaml#L1-L88)
+
+As we already had some Airvisual AQI sensors in the house which reports using a standard AQI measurement, I wanted to convert these sensors from a particles per volume of air measurement into AQI. So for each of the air purifiers, there are 2 template sensors. One shows the numeric AQI value and the other creates the description of the state. These are displayed as secondary info underneath the air purifiers on my lovelace dashboards.
+
+
+
+
