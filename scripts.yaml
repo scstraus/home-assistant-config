@@ -643,6 +643,9 @@
 
   turn_on_christmas:
     sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.itunes_shuffle
       - service: switch.turn_on
         data:
           entity_id: switch.miele_dishwasher_switch
@@ -655,9 +658,6 @@
               "app_name": "youtube",
               "media_id": "8WBThkkpnaA"
             }'
-      - service: input_boolean.turn_on
-        data:
-          entity_id: input_boolean.itunes_shuffle
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "christmas"
@@ -716,6 +716,9 @@
             - VolumeDown          
           device: "Sony TV"
           delay_secs: 0.0
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.christmas_mode
 
 
 #entity_id: media_player.chromecast
@@ -748,6 +751,9 @@
       - service: media_player.turn_off
         data:
           entity_id: media_player.chromecast
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.christmas_mode
 
   turn_on_christmas_tree:
     sequence:

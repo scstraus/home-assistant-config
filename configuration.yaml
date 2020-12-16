@@ -427,6 +427,10 @@ input_boolean:
   itunes_shuffle:
     name: "Shuffle"
     icon: mdi:shuffle-variant
+  christmas_mode:
+    name: "Christmas"
+    icon: mdi:pine-tree
+  
 
 #  mix_playlist:
 #    name: Mix Playlist
