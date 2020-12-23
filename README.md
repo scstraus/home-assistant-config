@@ -689,3 +689,16 @@ The new official Airvisual Node integration doesn't split out these sensors like
 To get this data, I actually have another homeassistant instance running on my old Pi3 which simply connects to the AirThings Wave device by bluetooth and scrapes the data which it then publishes to the [MQTT Eventstream](https://www.home-assistant.io/integrations/mqtt_eventstream/) integration when sends it to this instance for use (after decoding by the sensors).
 
 
+## [Location Template Sensors](https://github.com/scstraus/home-assistant-config/blob/master/sensors/location_template_sensors.yaml)
+
+These sensors prepare some nice human readable descriptions and states with icons of where people are based on the more complex rules made in the [location automations](https://github.com/scstraus/home-assistant-config#location-automations). These are the sensors I use in the lovelace dashboard to describe the location of our family members. These sensors also can tell which direction people are traveling in, so that if you click on the location icon in Lovelace or ask Alexa where someone is or when they will be home, you will get some estimation of location, direction of travel, and time to home if someone is heading home.
+
+### [Simple status to show location of family members with icon](https://github.com/scstraus/home-assistant-config/blob/ebcc13a8a67e7991cd55a4c2d7479443ee6590d7/sensors/location_template_sensors.yaml#L1-L242)
+
+These just improve a little bit on the existing zone names to describe where someone is, and adjust the icon to show something appropriate for where people are. In the case of my wife and daughter, these are pulled directly from the zone, but in my case, it does a bit more calculation to determine if I'm at work or not, because I can be moving around in the city while still in my work day, so I don't want to misrepresent that I'm coming home when I'm not. 
+
+### [Create a sentence describing if someone is heading home, and if so, when they will be home](https://github.com/scstraus/home-assistant-config/blob/ebcc13a8a67e7991cd55a4c2d7479443ee6590d7/sensors/location_template_sensors.yaml#L244-L294)
+
+This sensor will make a human readable sentence describing when someone will be home if they are coming home or, if not, how far away they are and which direction they are traveling in. Alexa can read that out when asked, or you can read from the more info popup of the location in the lovelace dashboard. It takes in information from the [Google Maps Travel Time Sensor](https://www.home-assistant.io/integrations/google_travel_time/) and the [proximity component](https://www.home-assistant.io/integrations/proximity/) primarily to do this. The proximity component updates a bit slowly, so that's the weakest link here. Since the question about when someone will be home is mostly asked about me to determing when I am coming home from work, I have a different way of handling this for me which looks at which zones I've passed through most recently in order to determine my direction instead of the proximity component, so it's quite instant in vectoring where I'm headed as long as I'm heading through the zones as expected and the location sensors are working alright. Generally my commute is the same almost every day, this works quite well for me.
+
+
