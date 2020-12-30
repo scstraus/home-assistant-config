@@ -47,10 +47,12 @@ def make_open_windows_message(num_open_windows):
     counter = counter - 1
     door_counter = door_counter + 1
   if (hass.states.get("binary_sensor.windows_1st_floor_zone_2").state) == "on":
-    if (num_open_windows > counter) and (counter == 1):
-      message = message + " and open windows on the First Floor"
-    elif (num_open_windows > (counter+1)) and (counter == 1):
+    # Both the back door and garage door are open and windows on the first floor are the last thing left
+    if (num_open_windows > (counter+1)) and (counter == 1):
       message = message + ", and open windows on the First Floor"
+    # We did one thing already and windows on the first floor are last thing left
+    elif (num_open_windows > counter) and (counter == 1):
+      message = message + " and open windows on the First Floor"
     elif (num_open_windows > counter) and (counter > 1):
       message = message + ", open windows on the First Floor"
     else:
@@ -72,6 +74,9 @@ def make_open_windows_message(num_open_windows):
   # At least one open door and open first floor windows, any amount more windows open
   if (num_open_windows > (counter+1) ) and (first_floor_windows == 1) and (counter > 1):
     message = message + ", and open windows in"
+  # First floor windows are open and 2 or more more windows are open
+  elif (first_floor_windows == 1) and (counter >= 2):
+    message = message + ", in"
   # No door open, only open first floor windows, and other window(s) open
   elif (num_open_windows <= (counter+1)) and (first_floor_windows == 1) and (counter >= 1):
     message = message + " and in"

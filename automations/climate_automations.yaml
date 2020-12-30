@@ -644,17 +644,16 @@
     above: 55
     for: 
       minutes: 5
+  condition:
+    condition: state
+    entity_id: input_select.last_inside_aqi_notification
+    state: 'Good' 
   action:
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.sean_s_iphone_12
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_inside_aqi_notification
-                state: 'good' 
+            - condition: state
+              entity_id: device_tracker.sean_s_iphone_12
+              state: 'home'
           sequence:
             - service: notify.mobile_app_sean_s_iphone_12
               data:
@@ -666,17 +665,12 @@
             - service: input_select.select_option
               data:
                 entity_id: input_select.last_inside_aqi_notification
-                option: 'bad'
+                option: 'Bad'
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.alena_s_iphone
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_inside_aqi_notification
-                state: 'good' 
+            - condition: state
+              entity_id: device_tracker.alena_s_iphone
+              state: 'home'
           sequence:
             - service: notify.mobile_app_alena_s_iphone
               data:
@@ -688,26 +682,21 @@
             - service: input_select.select_option
               data:
                 entity_id: input_select.last_inside_aqi_notification
-                option: 'bad'
+                option: 'Bad'
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.sean_s_iphone_12
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_inside_aqi_notification
-                state: 'good' 
+            - condition: state
+              entity_id: device_tracker.sean_s_iphone_12
+              state: 'home'
           sequence:
             - service: mqtt.publish
               data:
                 topic: !secret genesys_5490_notify_topic
                 payload: !secret genesys_5490_inside_aqi_poor
-            - service: input_select.select_option
-              data:
-                entity_id: input_select.last_inside_aqi_notification
-                option: 'bad'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.last_inside_aqi_notification
+        option: 'Bad'
 
 #              - condition: template
 #                value_template: '{{((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
@@ -722,15 +711,16 @@
     below: 45
     for: 
       minutes: 5
+  condition:
+    condition: state
+    entity_id: input_select.last_inside_aqi_notification
+    state: 'Bad'
   action:
     - choose:
         - conditions:
             - condition: state
               entity_id: device_tracker.sean_s_iphone_12
               state: 'home'
-            - condition: state
-              entity_id: input_select.last_inside_aqi_notification
-              state: 'bad' 
           sequence:
             - service: notify.mobile_app_sean_s_iphone_12
               data:
@@ -739,20 +729,12 @@
                 data:
                   push:
                     thread-id: "weather"
-            - service: input_select.select_option
-              data:
-                entity_id: input_select.last_inside_aqi_notification
-                option: 'good'
+
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.alena_s_iphone
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_inside_aqi_notification
-                state: 'bad'
+            - condition: state
+              entity_id: device_tracker.alena_s_iphone
+              state: 'home'
           sequence:
             - service: notify.mobile_app_alena_s_iphone
               data:
@@ -761,29 +743,20 @@
                 data:
                   push:
                     thread-id: "weather"
-            - service: input_select.select_option
-              data:
-                entity_id: input_select.last_inside_aqi_notification
-                option: 'good'
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.sean_s_iphone_12
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_inside_aqi_notification
-                state: 'bad'
+            - condition: state
+              entity_id: device_tracker.sean_s_iphone_12
+              state: 'home'
           sequence:
             - service: mqtt.publish
               data:
                 topic: !secret genesys_5490_notify_topic
                 payload: !secret genesys_5490_inside_aqi_good
-            - service: input_select.select_option
-              data:
-                entity_id: input_select.last_inside_aqi_notification
-                option: 'good'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.last_inside_aqi_notification
+        option: 'Good'
 
 #              - condition: template
 #                value_template: '{{((as_timestamp(states.automation.notify_home_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_home_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
@@ -798,17 +771,16 @@
     above: 70
     for: 
       minutes: 5
+  condition:
+    condition: state
+    entity_id: input_select.last_outside_aqi_notification
+    state: 'Good'
   action:
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.sean_s_iphone_12
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_outside_aqi_notification
-                state: 'good'
+            - condition: state
+              entity_id: device_tracker.sean_s_iphone_12
+              state: 'home'
           sequence:
             - service: notify.mobile_app_sean_s_iphone_12
               data:
@@ -817,20 +789,11 @@
                 data:
                   push:
                     thread-id: "weather"
-            - service: input_select.select_option
-              data:
-                entity_id: input_select.last_outside_aqi_notification
-                option: 'bad'
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.alena_s_iphone
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_outside_aqi_notification
-                state: 'good'
+            - condition: state
+              entity_id: device_tracker.alena_s_iphone
+              state: 'home'
           sequence:
             - service: notify.mobile_app_alena_s_iphone
               data:
@@ -839,29 +802,20 @@
                 data:
                   push:
                     thread-id: "weather"
-            - service: input_select.select_option
-              data:
-                entity_id: input_select.last_outside_aqi_notification
-                option: 'bad'
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.sean_s_iphone_12
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_outside_aqi_notification
-                state: 'good'
+            - condition: state
+              entity_id: device_tracker.sean_s_iphone_12
+              state: 'home'
           sequence:
             - service: mqtt.publish
               data:
                 topic: !secret genesys_5490_notify_topic
                 payload: !secret genesys_5490_outside_aqi_poor
-            - service: input_select.select_option
-              data:
-                entity_id: input_select.last_outside_aqi_notification
-                option: 'bad'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.last_outside_aqi_notification
+        option: 'Bad'
 
 #              - condition: template
 #                value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int > 0)}}'
@@ -876,17 +830,16 @@
     below: 50
     for: 
       minutes: 5
+  condition:
+    condition: state
+    entity_id: input_select.last_outside_aqi_notification
+    state: 'Bad'
   action:
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.sean_s_iphone_12
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_outside_aqi_notification
-                state: 'bad'
+            - condition: state
+              entity_id: device_tracker.sean_s_iphone_12
+              state: 'home'
           sequence:
             - service: notify.mobile_app_sean_s_iphone_12
               data:
@@ -898,17 +851,12 @@
             - service: input_select.select_option
               data:
                 entity_id: input_select.last_outside_aqi_notification
-                option: 'good'
+                option: 'Good'
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.alena_s_iphone
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_outside_aqi_notification
-                state: 'bad'
+            - condition: state
+              entity_id: device_tracker.alena_s_iphone
+              state: 'home'
           sequence:
             - service: notify.mobile_app_alena_s_iphone
               data:
@@ -920,26 +868,21 @@
             - service: input_select.select_option
               data:
                 entity_id: input_select.last_outside_aqi_notification
-                option: 'good'
+                option: 'Good'
     - choose:
         - conditions: 
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: device_tracker.sean_s_iphone_12
-                state: 'home'
-              - condition: state
-                entity_id: input_select.last_outside_aqi_notification
-                state: 'bad'
+            - condition: state
+              entity_id: device_tracker.sean_s_iphone_12
+              state: 'home'
           sequence:
             - service: mqtt.publish
               data:
                 topic: !secret genesys_5490_notify_topic
                 payload: !secret genesys_5490_outside_aqi_good
-            - service: input_select.select_option
-              data:
-                entity_id: input_select.last_outside_aqi_notification
-                option: 'good'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.last_outside_aqi_notification
+        option: 'Good'
 
 #              - condition: template
 #                value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'

@@ -115,7 +115,7 @@ popup_cards:
       in_card: true
       cards:
       - type: history-graph
-        entities:
+        entities:   
           - fan.master_bedroom_air_purifier
       - type: history-graph
         entities:
@@ -1670,7 +1670,7 @@ cards:
           controls: true
           mute: true
         group: true
-      - entity: media_player.media_player.library_airtunes_speaker
+      - entity: media_player.library_airtunes_speaker
         type: custom:mini-media-player
         name: Library Speakers
         hide:

@@ -337,11 +337,23 @@ cards:
     in_card: true
     cards: 
     
+#    - type: custom:compass-card
+#      entity:  sensor.smartweather_wind_bearing
+#      secondary_entity:  sensor.smartweather_wind_speed
+#      compass:
+#        indicator: arrow_inward
+
     - type: custom:compass-card
-      entity:  sensor.smartweather_wind_bearing
-      secondary_entity:  sensor.smartweather_wind_speed
+      indicator_sensors:
+        - sensor:  sensor.smartweather_wind_bearing
+          indicator:
+            type: arrow_inward
+      value_sensors:
+        - sensor: sensor.smartweather_wind_speed
       compass:
-        indicator: arrow_inward
+        north:
+          show: true
+          offset: 15
 
     - type: custom:mini-graph-card
   #      name: Internet

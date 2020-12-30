@@ -860,7 +860,7 @@
   initial_state: 'true'
   trigger:
     platform: time
-    at: '6:30:00'
+    at: '12:30:00'
   action:
     service: variable.set_variable
     data:
@@ -875,7 +875,7 @@
   initial_state: 'true'
   trigger:
     platform: time
-    at: '6:00:00'
+    at: '12:00:00'
   action:
     - service: variable.set_variable
       data:
@@ -1255,6 +1255,10 @@
       data:
         entity_id: dreamscreen.living_room_tv
         source: 1
+    - service: dreamscreen.set_brightness
+      data:
+        entity_id: dreamscreen.living_room_tv
+        brightness: 42
 
 - id: switch_dreamscreen_to_hdmi_switch_input_1
   alias: switch_dreamscreen_to_hdmi_switch_input_1
@@ -1795,6 +1799,7 @@
 - id: christmas_day_automation
   alias: christmas_day_automation
   initial_state: 'true'
+  mode: single
   trigger:
     platform: state
     entity_id: binary_sensor.play_room_zone_3
@@ -1890,3 +1895,5 @@
           - service: input_boolean.turn_on
             data:
               entity_id: input_boolean.christmas_mode
+          - delay: 
+              hours: 18

@@ -24,7 +24,8 @@ cards:
     cards: 
 
     - type: media-control
-      entity: media_player.itunes 
+      entity: media_player.forked_daapd_server
+#      entity: media_player.itunes 
 
 #    - entity: media_player.itunes
 #      type: custom:mini-media-player

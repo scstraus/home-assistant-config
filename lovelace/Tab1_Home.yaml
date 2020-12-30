@@ -1195,290 +1195,298 @@ cards:
         in_card: true
         cards:
 
-        - entity: media_player.itunes
+        - entity: media_player.forked_daapd_server
           type: custom:mini-media-player
+          name: Music
+          source: icon
+          artwork: cover
+#          icon: mdi:disc-player
           group: true
-          shortcuts:
-            label: "Other Playlists"
-            list:
-              - name: "3+ star"
-                type: playlist
-                id: "a-3-star"
-              - name: "3+ Star / Unrated"
-                type: playlist
-                id: "a-3-star-unrated"
-              - name: "4+5 Star"
-                type: playlist
-                id: "a-45-star"
-              - name: "4+5 Star / Unrated"
-                type: playlist
-                id: "a-45-star-unrated"
-              - name: "4+5 Star+All Rock+Jazz"
-                type: playlist
-                id: "a-45-starall-rockjazz"
-              - name: "5 Star"
-                type: playlist
-                id: "a-5-star"
-              - name: "New Stuff"
-                type: playlist
-                id: "a-new-stuff"
-              - name: "New Stuff - Highly Rated"
-                type: playlist
-                id: "a-new-stuff-highly-rated"
-              - name: "New Stuff - Unrated"
-                type: playlist
-                id: "a-new-stuff-unrated"
-              - name: "Unrated Songs"
-                type: playlist
-                id: "a-unrated-songs"
-              - name: "All Black"
-                type: playlist
-                id: "all-black"
-              - name: "All Electronica"
-                type: playlist
-                id: "all-electronica"
-              - name: "All Jazz"
-                type: playlist
-                id: "all-jazz"
-              - name: "All Pop"
-                type: playlist
-                id: "all-pop"
-              - name: "All Rock"
-                type: playlist
-                id: "all-rock"
-              - name: "Black - Funk"
-                type: playlist
-                id: "black-funk"
-              - name: "Black - Hip Hop"
-                type: playlist
-                id: "black-hip-hop"
-              - name: "Black - R&B"
-                type: playlist
-                id: "black-rb"
-              - name: "Black - Rap"
-                type: playlist
-                id: "black-rap"
-              - name: "Black - Reggae/Ska/African"
-                type: playlist
-                id: "black-reggaeskaafrican"
-              - name: "Black - Soul"
-                type: playlist
-                id: "black-soul"
-              - name: "Black - Unrated"
-                type: playlist
-                id: "black-unrated"
-              - name: "Christmas"
-                type: playlist
-                id: "christmas"
-              - name: "Classical"
-                type: playlist
-                id: "classical"
-              - name: "Comedy"
-                type: playlist
-                id: "comedy"
-              - name: "Electronica - Ambient"
-                type: playlist
-                id: "electronica-ambient"
-              - name: "Electronica - Chill Out"
-                type: playlist
-                id: "electronica-chill-out"
-              - name: "Electronica - Dance"
-                type: playlist
-                id: "electronica-dance"
-              - name: "Electronica - Drum N Bass"
-                type: playlist
-                id: "electronica-drum-n-bass"
-              - name: "Good Black"
-                type: playlist
-                id: "good-black"
-              - name: "Good Electronica"
-                type: playlist
-                id: "good-electronica"
-              - name: "Good Jazz"
-                type: playlist
-                id: "good-jazz"
-              - name: "Good Pop"
-                type: playlist
-                id: "good-pop"
-              - name: "Good Rock"
-                type: playlist
-                id: "good-rock"
-              - name: "Jazz - 4+5 Star + Unrated"
-                type: playlist
-                id: "jazz-45-star-unrated"
-              - name: "Jazz - 70s Electronic"
-                type: playlist
-                id: "jazz-70s-electronic"
-              - name: "Jazz - Acid"
-                type: playlist
-                id: "jazz-acid"
-              - name: "Jazz - Acid Small"
-                type: playlist
-                id: "jazz-acid-small"
-              - name: "Jazz - Big Band"
-                type: playlist
-                id: "jazz-big-band"
-              - name: "Jazz - Classic"
-                type: playlist
-                id: "jazz-classic"
-              - name: "Jazz - Classic Small"
-                type: playlist
-                id: "jazz-classic-small"
-              - name: "Jazz - Jaco"
-                type: playlist
-                id: "jazz-jaco"
-              - name: "Jazz - Latin"
-                type: playlist
-                id: "jazz-latin"
-              - name: "Jazz - Modern"
-                type: playlist
-                id: "jazz-modern"
-              - name: "Jazz - Unrated"
-                type: playlist
-                id: "jazz-unrated"
-              - name: "Kids - English"
-                type: playlist
-                id: "kids-english"
-              - name: "Kids - Russian"
-                type: playlist
-                id: "kids-russian"
-              - name: "Kids Music Videos"
-                type: playlist
-                id: "kids-music-videos"
-              - name: "Music Videos"
-                type: playlist
-                id: "music-videos"
-              - name: "Pop - 80s"
-                type: playlist
-                id: "pop-80s"
-              - name: "Pop - Crowd Pleasers"
-                type: playlist
-                id: "pop-crowd-pleasers"
-              - name: "Pop - Modern"
-                type: playlist
-                id: "pop-modern"
-              - name: "Pop - Unrated"
-                type: playlist
-                id: "pop-unrated"
-              - name: "Recent Stuff - Highly Rated"
-                type: playlist
-                id: "recent-stuff-highly-rated"
-              - name: "Rock - 90s"
-                type: playlist
-                id: "rock-90s"
-              - name: "Rock - 00s"
-                type: playlist
-                id: "rock-00s"
-              - name: "Rock - 4+5 Star + Unrated"
-                type: playlist
-                id: "rock-45-star-unrated"
-              - name: "Rock - Alternative"
-                type: playlist
-                id: "rock-alternative"
-              - name: "Rock - AltRock"
-                type: playlist
-                id: "rock-altrock"
-              - name: "Rock - Classic"
-                type: playlist
-                id: "rock-classic"
-              - name: "Rock - College"
-                type: playlist
-                id: "rock-college"
-              - name: "Rock - Mellow"
-                type: playlist
-                id: "rock-mellow"
-              - name: "Rock - Metal"
-                type: playlist
-                id: "rock-metal"
-              - name: "Rock - Modern"
-                type: playlist
-                id: "rock-modern"
-              - name: "Rock - Nu Metal"
-                type: playlist
-                id: "rock-nu-metal"
-              - name: "Rock - Progressive"
-                type: playlist
-                id: "rock-progressive"
-              - name: "Rock - Unrated"
-                type: playlist
-                id: "rock-unrated"
-              - name: "Rock + Pop"
-                type: playlist
-                id: "rock-pop"
-              - name: "Ambient Sleeping Pill"
-                type: playlist
-                id: "ambient-sleeping-pill"
-              - name: "Europa2"
-                type: playlist
-                id: "europa2"
-              - name: "Jazz24"
-                type: playlist
-                id: "jazz24"
-              - name: "Radio Kultura RU"
-                type: playlist
-                id: "radio-kultura-ru"
-              - name: "Radio Swiss Classic"
-                type: playlist
-                id: "radio-swiss-classic"
-              - name: "Acid Jazz + Chill Out"
-                type: playlist
-                id: "z-acid-jazz-chill-out"
-              - name: "AlteyRock"
-                type: playlist
-                id: "z-alteyrock"
-              - name: "Jazz+Funk"
-                type: playlist
-                id: "z-jazzfunk"
-              - name: "Jazz+Latin"
-                type: playlist
-                id: "z-jazzlatin"
-              - name: "Mine"
-                type: playlist
-                id: "z-mine"
-              - name: "Proletariat Rock"
-                type: playlist
-                id: "z-proletariat-rock"
-              - name: "Rocker's Rock"
-                type: playlist
-                id: "z-rockers-rock"
-              - name: "Alena's"
-                type: playlist
-                id: "zz-alenas"
-              - name: "Beach Music"
-                type: playlist
-                id: "z-beach-music"
-              - name: "DJ Cuts"
-                type: playlist
-                id: "z-dj-cuts"
-              - name: "Driving Music"
-                type: playlist
-                id: "z-driving-music"
-              - name: "Lounge"
-                type: playlist
-                id: "z-lounge"
-              - name: "Mellow Music"
-                type: playlist
-                id: "z-mellow-music"
-              - name: "Palettable Rock"
-                type: playlist
-                id: "z-palettable-rock"
-              - name: "San Tropez"
-                type: playlist
-                id: "san-tropez"
-              - name: "Wacky Cheerful Music"
-                type: playlist
-                id: "z-wacky-cheerful-music"
-              - name: "Waver Friendly"
-                type: playlist
-                id: "z-waver-friendly"
-              - name: "Wedding music"
-                type: playlist
-                id: "z-wedding-music"
+          hide:
+            shuffle: false
+            icon: true
+            power: true
+#          shortcuts:
+#            label: "Other Playlists"
+#            list:
+#              - name: "3+ star"
+#                type: playlist
+#                id: "a-3-star"
+#              - name: "3+ Star / Unrated"
+#                type: playlist
+#                id: "a-3-star-unrated"
+#              - name: "4+5 Star"
+#                type: playlist
+#                id: "a-45-star"
+#              - name: "4+5 Star / Unrated"
+#                type: playlist
+#                id: "a-45-star-unrated"
+#              - name: "4+5 Star+All Rock+Jazz"
+#                type: playlist
+#                id: "a-45-starall-rockjazz"
+#              - name: "5 Star"
+#                type: playlist
+#                id: "a-5-star"
+#              - name: "New Stuff"
+#                type: playlist
+#                id: "a-new-stuff"
+#              - name: "New Stuff - Highly Rated"
+#                type: playlist
+#                id: "a-new-stuff-highly-rated"
+#              - name: "New Stuff - Unrated"
+#                type: playlist
+#                id: "a-new-stuff-unrated"
+#              - name: "Unrated Songs"
+#                type: playlist
+#                id: "a-unrated-songs"
+#              - name: "All Black"
+#                type: playlist
+#                id: "all-black"
+#              - name: "All Electronica"
+#                type: playlist
+#                id: "all-electronica"
+#              - name: "All Jazz"
+#                type: playlist
+#                id: "all-jazz"
+#              - name: "All Pop"
+#                type: playlist
+#                id: "all-pop"
+#              - name: "All Rock"
+#                type: playlist
+#                id: "all-rock"
+#              - name: "Black - Funk"
+#                type: playlist
+#                id: "black-funk"
+#              - name: "Black - Hip Hop"
+#                type: playlist
+#                id: "black-hip-hop"
+#              - name: "Black - R&B"
+#                type: playlist
+#                id: "black-rb"
+#              - name: "Black - Rap"
+#                type: playlist
+#                id: "black-rap"
+#              - name: "Black - Reggae/Ska/African"
+#                type: playlist
+#                id: "black-reggaeskaafrican"
+#              - name: "Black - Soul"
+#                type: playlist
+#                id: "black-soul"
+#              - name: "Black - Unrated"
+#                type: playlist
+#                id: "black-unrated"
+#              - name: "Christmas"
+#                type: playlist
+#                id: "christmas"
+#              - name: "Classical"
+#                type: playlist
+#                id: "classical"
+#              - name: "Comedy"
+#                type: playlist
+#                id: "comedy"
+#              - name: "Electronica - Ambient"
+#                type: playlist
+#                id: "electronica-ambient"
+#              - name: "Electronica - Chill Out"
+#                type: playlist
+#                id: "electronica-chill-out"
+#              - name: "Electronica - Dance"
+#                type: playlist
+#                id: "electronica-dance"
+#              - name: "Electronica - Drum N Bass"
+#                type: playlist
+#                id: "electronica-drum-n-bass"
+#              - name: "Good Black"
+#                type: playlist
+#                id: "good-black"
+#              - name: "Good Electronica"
+#                type: playlist
+#                id: "good-electronica"
+#              - name: "Good Jazz"
+#                type: playlist
+#                id: "good-jazz"
+#              - name: "Good Pop"
+#                type: playlist
+#                id: "good-pop"
+#              - name: "Good Rock"
+#                type: playlist
+#                id: "good-rock"
+#              - name: "Jazz - 4+5 Star + Unrated"
+#                type: playlist
+#                id: "jazz-45-star-unrated"
+#              - name: "Jazz - 70s Electronic"
+#                type: playlist
+#                id: "jazz-70s-electronic"
+#              - name: "Jazz - Acid"
+#                type: playlist
+#                id: "jazz-acid"
+#              - name: "Jazz - Acid Small"
+#                type: playlist
+#                id: "jazz-acid-small"
+#              - name: "Jazz - Big Band"
+#                type: playlist
+#                id: "jazz-big-band"
+#              - name: "Jazz - Classic"
+#                type: playlist
+#                id: "jazz-classic"
+#              - name: "Jazz - Classic Small"
+#                type: playlist
+#                id: "jazz-classic-small"
+#              - name: "Jazz - Jaco"
+#                type: playlist
+#                id: "jazz-jaco"
+#              - name: "Jazz - Latin"
+#                type: playlist
+#                id: "jazz-latin"
+#              - name: "Jazz - Modern"
+#                type: playlist
+#                id: "jazz-modern"
+#              - name: "Jazz - Unrated"
+#                type: playlist
+#                id: "jazz-unrated"
+#              - name: "Kids - English"
+#                type: playlist
+#                id: "kids-english"
+#              - name: "Kids - Russian"
+#                type: playlist
+#                id: "kids-russian"
+#              - name: "Kids Music Videos"
+#                type: playlist
+#                id: "kids-music-videos"
+#              - name: "Music Videos"
+#                type: playlist
+#                id: "music-videos"
+#              - name: "Pop - 80s"
+#                type: playlist
+#                id: "pop-80s"
+#              - name: "Pop - Crowd Pleasers"
+#                type: playlist
+#                id: "pop-crowd-pleasers"
+#              - name: "Pop - Modern"
+#                type: playlist
+#                id: "pop-modern"
+#              - name: "Pop - Unrated"
+#                type: playlist
+#                id: "pop-unrated"
+#              - name: "Recent Stuff - Highly Rated"
+#                type: playlist
+#                id: "recent-stuff-highly-rated"
+#              - name: "Rock - 90s"
+#                type: playlist
+#                id: "rock-90s"
+#              - name: "Rock - 00s"
+#                type: playlist
+#                id: "rock-00s"
+#              - name: "Rock - 4+5 Star + Unrated"
+#                type: playlist
+#                id: "rock-45-star-unrated"
+#              - name: "Rock - Alternative"
+#                type: playlist
+#                id: "rock-alternative"
+#              - name: "Rock - AltRock"
+#                type: playlist
+#                id: "rock-altrock"
+#              - name: "Rock - Classic"
+#                type: playlist
+#                id: "rock-classic"
+#              - name: "Rock - College"
+#                type: playlist
+#                id: "rock-college"
+#              - name: "Rock - Mellow"
+#                type: playlist
+#                id: "rock-mellow"
+#              - name: "Rock - Metal"
+#                type: playlist
+#                id: "rock-metal"
+#              - name: "Rock - Modern"
+#                type: playlist
+#                id: "rock-modern"
+#              - name: "Rock - Nu Metal"
+#                type: playlist
+#                id: "rock-nu-metal"
+#              - name: "Rock - Progressive"
+#                type: playlist
+#                id: "rock-progressive"
+#              - name: "Rock - Unrated"
+#                type: playlist
+#                id: "rock-unrated"
+#              - name: "Rock + Pop"
+#                type: playlist
+#                id: "rock-pop"
+#              - name: "Ambient Sleeping Pill"
+#                type: playlist
+#                id: "ambient-sleeping-pill"
+#              - name: "Europa2"
+#                type: playlist
+#                id: "europa2"
+#              - name: "Jazz24"
+#                type: playlist
+#                id: "jazz24"
+#              - name: "Radio Kultura RU"
+#                type: playlist
+#                id: "radio-kultura-ru"
+#              - name: "Radio Swiss Classic"
+#                type: playlist
+#                id: "radio-swiss-classic"
+#              - name: "Acid Jazz + Chill Out"
+#                type: playlist
+#                id: "z-acid-jazz-chill-out"
+#              - name: "AlteyRock"
+#                type: playlist
+#                id: "z-alteyrock"
+#              - name: "Jazz+Funk"
+#                type: playlist
+#                id: "z-jazzfunk"
+#              - name: "Jazz+Latin"
+#                type: playlist
+#                id: "z-jazzlatin"
+#              - name: "Mine"
+#                type: playlist
+#                id: "z-mine"
+#              - name: "Proletariat Rock"
+#                type: playlist
+#                id: "z-proletariat-rock"
+#              - name: "Rocker's Rock"
+#                type: playlist
+#                id: "z-rockers-rock"
+#              - name: "Alena's"
+#                type: playlist
+#                id: "zz-alenas"
+#              - name: "Beach Music"
+#                type: playlist
+#                id: "z-beach-music"
+#              - name: "DJ Cuts"
+#                type: playlist
+#                id: "z-dj-cuts"
+#              - name: "Driving Music"
+#                type: playlist
+#                id: "z-driving-music"
+#              - name: "Lounge"
+#                type: playlist
+#                id: "z-lounge"
+#              - name: "Mellow Music"
+#                type: playlist
+#                id: "z-mellow-music"
+#              - name: "Palettable Rock"
+#                type: playlist
+#                id: "z-palettable-rock"
+#              - name: "San Tropez"
+#                type: playlist
+#                id: "san-tropez"
+#              - name: "Wacky Cheerful Music"
+#                type: playlist
+#                id: "z-wacky-cheerful-music"
+#              - name: "Waver Friendly"
+#                type: playlist
+#                id: "z-waver-friendly"
+#              - name: "Wedding music"
+#                type: playlist
+#                id: "z-wedding-music"
 
-        - type: entities
-          show_header_toggle: false
-          entities:
-            - entity: input_boolean.itunes_shuffle
+#        - type: entities
+#          show_header_toggle: false
+#          entities:
+#            - entity: input_boolean.itunes_shuffle
 
   #    - type: "custom:button-card"
   #      name: SHUFFLE
@@ -1698,28 +1706,32 @@ cards:
     title: First Floor
     show_header_toggle: false
     entities:
-    - entity: media_player.living_room_airtunes_speaker
+#    - entity: media_player.living_room_airtunes_speaker
+    - entity: media_player.forked_daapd_output_living_room
       type: custom:mini-media-player
       name: Living Rm
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.kitchen_airtunes_speaker
+#    - entity: media_player.kitchen_airtunes_speaker
+    - entity: media_player.forked_daapd_output_kitchen
       type: custom:mini-media-player
       name: Kitchen Speakers
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.bathroom_1st_floor_airtunes_speaker
+#    - entity: media_player.bathroom_1st_floor_airtunes_speaker
+    - entity: media_player.forked_daapd_output_bathroom_1st_floor
       type: custom:mini-media-player
       name: Bathroom Speakers
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.apple_tv_airtunes_speaker
+#    - entity: media_player.apple_tv_airtunes_speaker
+    - entity: media_player.forked_daapd_output_apple_tv
       type: custom:mini-media-player
       name: Apple TV
       hide:
@@ -1777,21 +1789,24 @@ cards:
         controls: true
         mute: true
       group: true
-    - entity: media_player.master_bath_airtunes_speaker
+    - entity: media_player.forked_daapd_output_master_bath
+#    - entity: media_player.master_bath_airtunes_speaker
       type: custom:mini-media-player
       name: "Master Bath Speakers"
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.office_airtunes_speaker
+    - entity: media_player.forked_daapd_output_office
+#    - entity: media_player.office_airtunes_speaker
       type: custom:mini-media-player
       name: Office Speakers
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.media_player.library_airtunes_speaker
+    - entity: media_player.forked_daapd_output_library
+#    - entity: media_player.library_airtunes_speaker
       type: custom:mini-media-player
       name: Library Speakers
       hide:
@@ -1826,21 +1841,24 @@ cards:
       name: "Seb's Room Air Purifier"
       type: "custom:secondaryinfo-entity-row"
       secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi_description.state ]]"
-    - entity: media_player.sophie_s_room_airtunes_speaker
+#    - entity: media_player.sophie_s_room_airtunes_speaker
+    - entity: media_player.forked_daapd_output_sophie_s_room
       type: custom:mini-media-player
       name: "Sophie's Room Speakers"
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.sebastian_s_room_airtunes_speaker
+    - entity: media_player.forked_daapd_output_sebastian_s_room
+#    - entity: media_player.sebastian_s_room_airtunes_speaker
       type: custom:mini-media-player
       name: "Seb's Room Speakers"
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.gym_airtunes_speaker
+    - entity: media_player.forked_daapd_output_gym
+#    - entity: media_player.gym_airtunes_speaker
       type: custom:mini-media-player
       name: Gym Speakers
       hide:
@@ -1929,8 +1947,8 @@ cards:
   #          icon: mdi:gauge
   #        - sensor.us_air_quality_index
   #        - sensor.us_main_pollutant
-
-    - entity: media_player.back_yard_airtunes_speaker
+    - entity: media_player.forked_daapd_output_back_yard
+#    - entity: media_player.back_yard_airtunes_speaker
       type: custom:mini-media-player
       name: Back Yard Speakers
       hide:

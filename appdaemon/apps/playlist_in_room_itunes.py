@@ -28,22 +28,19 @@ class PlaylistInRoom(hass.Hass):
 #########################################################################################################
 
   ITUNES_VOLUME = 0.5
-  ITUNES_ENTITY = "media_player.forked_daapd_server"
-  AIRPLAY_ENTITIES = ["media_player.forked_daapd_output_apple_tv", "media_player.forked_daapd_output_back_yard", "media_player.forked_daapd_output_bathroom_1st_floor", "media_player.forked_daapd_output_gym", "media_player.forked_daapd_output_kitchen", "media_player.forked_daapd_output_laundry_room", "media_player.forked_daapd_output_library", "media_player.forked_daapd_output_living_room", "media_player.forked_daapd_output_master_bath", "media_player.forked_daapd_output_office",
-  "media_player.forked_daapd_output_sebastian_s_room", "media_player.forked_daapd_output_sophie_s_room"]
+  ITUNES_ENTITY = "media_player.itunes"
 
-  AIRPLAY_ENTITY_VOLUMES = {"media_player.forked_daapd_output_apple_tv": 0.5, "media_player.forked_daapd_output_back_yard": 0.5, "media_player.forked_daapd_output_bathroom_1st_floor": 0.5, "media_player.forked_daapd_output_gym": 0.5, "media_player.forked_daapd_output_kitchen": 0.35, "media_player.forked_daapd_output_laundry_room": 0.5, "media_player.forked_daapd_output_library": 0.5, "media_player.forked_daapd_output_living_room": 0.25, "media_player.forked_daapd_output_master_bath": 0.7, "media_player.forked_daapd_output_office": 0.5,
-  "media_player.forked_daapd_output_sebastian_s_room": 0.5, "media_player.forked_daapd_output_sophie_s_room": 0.5}
-
+  AIRPLAY_ENTITIES = ["media_player.apple_tv_airtunes_speaker", "media_player.back_yard_airtunes_speaker", "media_player.bathroom_1st_floor_airtunes_speaker", "media_player.computer_airtunes_speaker", "media_player.gym_airtunes_speaker", "media_player.kitchen_airtunes_speaker", "media_player.laundry_room_airtunes_speaker", "media_player.library_airtunes_speaker", "media_player.living_room_airtunes_speaker", "media_player.master_bath_airtunes_speaker", "media_player.office_airtunes_speaker", "media_player.sebastian_s_room_airtunes_speaker", "media_player.sophie_s_room_airtunes_speaker"]
+  AIRPLAY_ENTITY_VOLUMES = {"media_player.apple_tv_airtunes_speaker": 0.5, "media_player.back_yard_airtunes_speaker": 0.5, "media_player.bathroom_1st_floor_airtunes_speaker": 0.5, "media_player.computer_airtunes_speaker": 0.5, "media_player.gym_airtunes_speaker": 0.5, "media_player.kitchen_airtunes_speaker": 0.35, "media_player.laundry_room_airtunes_speaker": 0.5, "media_player.library_airtunes_speaker": 0.5, "media_player.living_room_airtunes_speaker": 0.25, "media_player.master_bath_airtunes_speaker": 0.7, "media_player.office_airtunes_speaker": 0.5, "media_player.sebastian_s_room_airtunes_speaker": 0.5, "media_player.sophie_s_room_airtunes_speaker": 0.5}
 # Element 0 in each column is the alexa or service call, next elements are the speakers that it needs to activate to play music
-  ALEXA_TO_AIRPLAY_MAPPING =[["media_player.alexa_kitchen","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"],
-  ["media_player.alexa_living_room","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"],
-  ["media_player.alexa_master_bath","media_player.forked_daapd_output_master_bath"],
-  ["media_player.kichen_bar_kindle_fire","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"],
-  ["media_player.office_alexa","media_player.forked_daapd_output_office"],  
-  ["media_player.sophies_room_echo_dot","media_player.forked_daapd_output_sophie_s_room"],
-  ["media_player.master_closet_kindle","media_player.forked_daapd_output_office"],
-  ["christmas","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen","media_player.forked_daapd_output_bathroom_1st_floor"]]
+  ALEXA_TO_AIRPLAY_MAPPING =[["media_player.alexa_kitchen","media_player.living_room_airtunes_speaker","media_player.kitchen_airtunes_speaker"],
+  ["media_player.alexa_living_room","media_player.living_room_airtunes_speaker","media_player.kitchen_airtunes_speaker"],
+  ["media_player.alexa_master_bath","media_player.master_bath_airtunes_speaker"],
+  ["media_player.kichen_bar_kindle_fire","media_player.living_room_airtunes_speaker","media_player.kitchen_airtunes_speaker"],
+  ["media_player.office_alexa","media_player.office_airtunes_speaker"],  
+  ["media_player.sophies_room_echo_dot","media_player.sophie_s_room_airtunes_speaker"],
+  ["media_player.master_closet_kindle","media_player.office_airtunes_speaker"],
+  ["christmas","media_player.living_room_airtunes_speaker","media_player.kitchen_airtunes_speaker","media_player.bathroom_1st_floor_airtunes_speaker"]]
 
 #########################################################################################################
 #                            THESE ARE THE INITIALIZE AND LAUNCH FUNCTIONS                              #
@@ -55,20 +52,17 @@ class PlaylistInRoom(hass.Hass):
     self.listen_event(self.alexa_launch_itunes_playlist, "ALEXA_LAUNCH_ITUNES_PLAYLIST")
     self.listen_state(self.speaker_on, "media_player", new = "on")
     self.listen_state(self.speaker_off, "media_player", new = "off")
-    self.listen_state(self.itunes_volume_change, self.ITUNES_ENTITY, attribute = "volume_level")
-    self.listen_state(self.itunes_started_playing, self.ITUNES_ENTITY, new = "playing")
-    self.listen_state(self.itunes_stopped_playing, self.ITUNES_ENTITY, new = "paused")    
+    self.listen_state(self.itunes_volume_change, "media_player.itunes", attribute = "volume_level")
+    self.listen_state(self.itunes_started_playing, "media_player.itunes", new = "playing")
+    self.listen_state(self.itunes_stopped_playing, "media_player.itunes", new = "paused")    
 
 # start the playlist launch sequence when we get the event ALEXA_LAUNCH_ITUNES_PLAYLIST
   def alexa_launch_itunes_playlist(self, event, data, kwargs):
     self.ALEXA_ENTITY=data["alexa_entity"] 
-    self.PLAYLIST=data["playlist"]
-    self.PLAYLIST+=" (playlist)"
+    self.PLAYLIST=data["playlist"] 
     self.log("********************************************************************")
-    self.log("Selecting Source %s for %s",self.PLAYLIST,self.ALEXA_ENTITY)
+    self.log("Launching playlist %s for %s",self.PLAYLIST,self.ALEXA_ENTITY)
     self.log("********************************************************************")
-    self.call_service("media_player/select_source", entity_id = self.ITUNES_ENTITY, source=self.PLAYLIST)
-    self.call_service("media_player/shuffle_set", entity_id = self.ITUNES_ENTITY, shuffle = "true")
     self.SPEAKER_REQUEST_COUNT = 0
     self.SPEAKER_RESPONSE_COUNT = 0
     self.TIME_TO_PLAY_PLAYLIST = 0
@@ -76,7 +70,7 @@ class PlaylistInRoom(hass.Hass):
 
     #Setting iTunes volume
     self.log("Setting iTunes volume to 50%")
-    self.call_service("media_player/volume_set", entity_id=self.ITUNES_ENTITY, volume_level=self.ITUNES_VOLUME) 
+    self.call_service("media_player/volume_set", entity_id = "media_player.itunes", volume_level=self.ITUNES_VOLUME) 
     #Turning on speakers
     for count in range(len(self.ALEXA_TO_AIRPLAY_MAPPING)):
       if self.ALEXA_TO_AIRPLAY_MAPPING[count][0]==self.ALEXA_ENTITY: # we found the right row for alexa
@@ -110,12 +104,10 @@ class PlaylistInRoom(hass.Hass):
       self.log("All speakers already in correct state. Let's set volumes and launch playlist.")
       self.set_speaker_volumes()      
       # Playing playlist
-#      self.TIME_TO_PLAY_PLAYLIST = 1
+      self.TIME_TO_PLAY_PLAYLIST = 1
       self.log("Now we play the playlist.")
-      self.play_playlist()
-
       # Backup in case we don't get a volume changed event.
-#      self.run_in(self.no_volume_change_fallback, self.NO_VOLUME_CHANGE_FALLBACK_CHECK_SECS)             
+      self.run_in(self.no_volume_change_fallback, self.NO_VOLUME_CHANGE_FALLBACK_CHECK_SECS)             
 
 
 #########################################################################################################
@@ -128,55 +120,55 @@ class PlaylistInRoom(hass.Hass):
 
   def speaker_off(self, entity, attribute, old, new, kwargs):
     self.log("%s turned off", entity)
-#    self.set_speaker_volumes_and_prepare_play(entity)
+    self.set_speaker_volumes_and_prepare_play(entity)
 
   def itunes_volume_change(self, entity, attribute, old, new, kwargs):
     self.log("iTunes volume changed.")
-#    if self.TIME_TO_PLAY_PLAYLIST==1:
-#      self.play_playlist()
-#      self.ITUNES_VOLUME_CHANGE_HAPPENED = 1
+    if self.TIME_TO_PLAY_PLAYLIST==1:
+      self.play_playlist()
+      self.ITUNES_VOLUME_CHANGE_HAPPENED = 1
 
   def itunes_started_playing(self, entity, attribute, old, new, kwargs):
     self.log("iTunes started playing.")
-#    if self.REQUESTED_PLAY == 1:
-#      self.ITUNES_BEING_ASSHOLE_PROTECTION = 0
-#      self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT = 0
-#      self.log("itunes being asshole callback count: %s",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
-#      self.run_in(self.disable_itunes_being_asshole_protection, self.ITUNES_BEING_ASSHOLE_CHECK_SECS)
+    if self.REQUESTED_PLAY == 1:
+      self.ITUNES_BEING_ASSHOLE_PROTECTION = 1
+      self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT += 1
+      self.log("itunes being asshole callback count: %s",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
+      self.run_in(self.disable_itunes_being_asshole_protection, self.ITUNES_BEING_ASSHOLE_CHECK_SECS)
     
   def itunes_stopped_playing(self, entity, attribute, old, new, kwargs):
     self.log("iTunes stopped playing.")
-#    if self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT > 0:
-#      self.log("****** ITUNES BEING ASSHOLE PROTECTION(TM) ENGAGED!!! ******")
-#      self.log("Setting iTunes to play %s playlist again, goddamnit", self.PLAYLIST)
-#      self.call_service("media_player/media_play", entity_id = self.ITUNES_ENTITY)
-#      self.ITUNES_BEING_ASSHOLE_ENGAGED += 1
-#      self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT +=1
-#      self.log("itunes being asshole callback count: %s",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
-#      self.run_in(self.disable_itunes_being_asshole_protection, self.ITUNES_BEING_ASSHOLE_CHECK_SECS)
+    if self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT > 0:
+      self.log("****** ITUNES BEING ASSHOLE PROTECTION(TM) ENGAGED!!! ******")
+      self.log("Setting iTunes to play %s playlist again, goddamnit", self.PLAYLIST)
+      self.call_service("media_player/media_play", entity_id = self.ITUNES_ENTITY)
+      self.ITUNES_BEING_ASSHOLE_ENGAGED += 1
+      self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT +=1
+      self.log("itunes being asshole callback count: %s",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
+      self.run_in(self.disable_itunes_being_asshole_protection, self.ITUNES_BEING_ASSHOLE_CHECK_SECS)
 
-#  def disable_itunes_being_asshole_protection(self, kwargs):
-#    self.log("itunes being asshole callback count: %s",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
-#    if (self.ITUNES_BEING_ASSHOLE_ENGAGED >= 0):
-#      #not time to turn off the asshole protection yet.
-#      self.ITUNES_BEING_ASSHOLE_ENGAGED -= 1
-#      self.log("Callback for ITUNES BEING ASSHOLE PROTECTION(TM) Disable Made, but there's still more assholling possible, so holding off.")
-#    else:
-#      self.ITUNES_BEING_ASSHOLE_PROTECTION = 0
-#      self.log("Looks like iTunes won't be an asshole this time. Enjoy your music!")
-#    self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT -= 1
-#    self.log("itunes being asshole callback count reduced, now: %s",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
+  def disable_itunes_being_asshole_protection(self, kwargs):
+    self.log("itunes being asshole callback count: %s",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
+    if (self.ITUNES_BEING_ASSHOLE_ENGAGED >= 0):
+      #not time to turn off the asshole protection yet.
+      self.ITUNES_BEING_ASSHOLE_ENGAGED -= 1
+      self.log("Callback for ITUNES BEING ASSHOLE PROTECTION(TM) Disable Made, but there's still more assholling possible, so holding off.")
+    else:
+      self.ITUNES_BEING_ASSHOLE_PROTECTION = 0
+      self.log("Looks like iTunes won't be an asshole this time. Enjoy your music!")
+    self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT -= 1
+    self.log("itunes being asshole callback count reduced, now: %s",self.ITUNES_BEING_ASSHOLE_CALLBACK_COUNT)
 
-#  def no_volume_change_fallback(self, kwargs):
-#    self.log("Double checking that the iTunes volume change event happened in case we need to launch playlist without it.")
-#    if self.ITUNES_VOLUME_CHANGE_HAPPENED == 0:
-#      self.log ("Whoops, no volume change event. Will attempt to launch playlist now anyway.")
-#      if self.TIME_TO_PLAY_PLAYLIST==1:
-#        self.play_playlist()
-#      else: 
-#        self.log ("For some reason, it's not time to play the playlist after all. Skipping.")
-#    else:
-#      self.log ("Volume change happened, no fallback needed.")
+  def no_volume_change_fallback(self, kwargs):
+    self.log("Double checking that the iTunes volume change event happened in case we need to launch playlist without it.")
+    if self.ITUNES_VOLUME_CHANGE_HAPPENED == 0:
+      self.log ("Whoops, no volume change event. Will attempt to launch playlist now anyway.")
+      if self.TIME_TO_PLAY_PLAYLIST==1:
+        self.play_playlist()
+      else: 
+        self.log ("For some reason, it's not time to play the playlist after all. Skipping.")
+    else:
+      self.log ("Volume change happened, no fallback needed.")
 
 #########################################################################################################
 #                                THESE ARE THE NON-CALLBACK FUNCTIONS                                   #
@@ -208,10 +200,8 @@ class PlaylistInRoom(hass.Hass):
           self.log("Setting #%s/%s (%s) to Volume: %s",count2,len(self.ALEXA_TO_AIRPLAY_MAPPING[count])-1, self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], self.AIRPLAY_ENTITY_VOLUMES.get(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2]))
           self.call_service("media_player/volume_set", entity_id = self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], volume_level=self.AIRPLAY_ENTITY_VOLUMES.get(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2]))
 
-
-
   def play_playlist(self):
     self.log("Setting iTunes to play %s playlist now", self.PLAYLIST)
-    self.call_service("media_player/media_play", entity_id = self.ITUNES_ENTITY)
+    self.call_service("media_player/play_media", entity_id = self.ITUNES_ENTITY, media_content_id=self.PLAYLIST, media_content_type="playlist")
     self.TIME_TO_PLAY_PLAYLIST = 0
     self.REQUESTED_PLAY = 1

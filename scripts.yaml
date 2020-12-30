@@ -383,37 +383,37 @@
     sequence:
       - service: media_player.media_pause
         data: 
-          entity_id: media_player.itunes
+          entity_id: media_player.forked_daapd_server
     
   start_music:
     sequence:
       - service: media_player.media_play
         data: 
-          entity_id: media_player.itunes
+          entity_id: media_player.forked_daapd_server
           
   turn_up_music_volume:
     sequence:
       - service: media_player.volume_up
         data: 
-          entity_id: media_player.itunes       
+          entity_id: media_player.forked_daapd_server       
 
   turn_down_music_volume:
     sequence:
       - service: media_player.volume_down
         data: 
-          entity_id: media_player.itunes       
+          entity_id: media_player.forked_daapd_server      
 
   skip_this_song:
     sequence:
       - service: media_player.media_next_track
         data: 
-          entity_id: media_player.itunes
+          entity_id: media_player.forked_daapd_server
 
   play_last_song:
     sequence:
       - service: media_player.media_previous_track
         data: 
-          entity_id: media_player.itunes
+          entity_id: media_player.forked_daapd_server
 
   where_is_sean:
     sequence:
@@ -523,6 +523,25 @@
             - OK
           device: Xbox-SystemOS
 
+  plex_pause:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony
+          command: 
+            - Pause
+          device: "Xbox-SystemOS"
+
+  plex_play:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony
+          command: 
+            - Play
+          device: "Xbox-SystemOS"
+
+
 #  xbox_pause_play:
 #    sequence:
 #      - choose:
@@ -542,55 +561,54 @@
 
 ## New playlist scripts which use app daemon
 
-
   play_good_music:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "a-45-star"
+          playlist: "A: 4+5 Star"
 
   play_jazz_music:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "best-jazz"
+          playlist: "Best Jazz"
           
   play_rock_music:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "best-rock"
+          playlist: "Best Rock"
 
   play_pop_music:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "best-pop"
+          playlist: "Best Pop"
 
   play_classical_music:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "classical"
+          playlist: "Classical"
 
   play_black_music:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "best-black"
+          playlist: "Best Black"
 
   play_electronic_music:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "best-electronica"
+          playlist: "Best Electronica"
 
   play_kids_music:
     sequence:
@@ -601,45 +619,152 @@
 
   play_christmas_music:
     sequence:
+      - service: media_player.shuffle_set
+        data:
+          entity_id: media_player.forked_daapd_server
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
-          alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "christmas"
-
+          alexa_entity: "christmas"
+          playlist: "Christmas"
+#      - service: input_boolean.turn_on
+#        data:
+#          entity_id: input_boolean.itunes_shuffle
   play_kultoora_radio:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "radio-kultura-ru"
+          playlist: "Radio Kultura RU"
 
   play_classical_radio:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "radio-swiss-classic"
+          playlist: "Radio Swiss Classic"
 
   play_jazz_radio:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "jazz24"
+          playlist: "Jazz24"
 
   play_ambient_radio:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "ambient-sleeping-pill"
+          playlist: "Ambient Sleeping Pill"
 
   play_europa2_radio:
     sequence:
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "europa2"
+          playlist: "Europa2"
+
+#
+#  play_good_music:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "a-45-star"
+#
+#  play_jazz_music:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "best-jazz"
+#          
+#  play_rock_music:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "best-rock"
+#
+#  play_pop_music:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "best-pop"
+#
+#  play_classical_music:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "classical"
+#
+#  play_black_music:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "best-black"
+#
+#  play_electronic_music:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "best-electronica"
+#
+#  play_kids_music:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "kids-english"
+#
+#  play_christmas_music:
+#    sequence:
+#      - service: input_boolean.turn_on
+#        data:
+#          entity_id: input_boolean.itunes_shuffle
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "christmas"
+#          playlist: "christmas"
+#
+#  play_kultoora_radio:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "radio-kultura-ru"
+#
+#  play_classical_radio:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "radio-swiss-classic"
+#
+#  play_jazz_radio:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "jazz24"
+#
+#  play_ambient_radio:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "ambient-sleeping-pill"
+#
+#  play_europa2_radio:
+#    sequence:
+#      - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+#        event_data_template: 
+#          alexa_entity: "{{ states.sensor.last_alexa.state }}"
+#          playlist: "europa2"
 
   turn_on_christmas:
     sequence:
@@ -766,3 +891,6 @@
       - service: switch.turn_off
         data:
           entity_id: switch.miele_dishwasher_switch
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.christmas_mode

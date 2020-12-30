@@ -63,31 +63,31 @@ sensor.basement_nest_protect_smoke_status:
 media_player.apple_tv_airtunes_speaker:
   friendly_name: Music on AppleTV
 media_player.back_yard_airtunes_speaker:
-  friendly_name: Music in Back Yard
+  friendly_name: Back Yard Speakers
 media_player.bathroom_1st_floor_airtunes_speaker:
-  friendly_name: Music in 1st Floor Bathroom
+  friendly_name: First Floor Bathroom Speakers
 media_player.computer_airtunes_speaker:
-  friendly_name: Music on Computer Speakers
+  friendly_name: Computer Speakers
 media_player.gym_airtunes_speaker:
-  friendly_name: Music in Gym
+  friendly_name: Gym Speakers
 media_player.kitchen_airtunes_speaker:
-  friendly_name: Music in Kitchen
+  friendly_name: Kitchen Speakers
 media_player.laundry_room_airtunes_speaker:
-  friendly_name: Music in Laundry Room
+  friendly_name: Laundry Room Speakers
 media_player.library_airtunes_speaker:
-  friendly_name: Music in Library
+  friendly_name: Library Speakers
 media_player.living_room_airtunes_speaker:
-  friendly_name: Music in Living Room
+  friendly_name: Living Room Speakers
 media_player.master_bath_airtunes_speaker:
-  friendly_name: Music in Master Bath
+  friendly_name: Master Bath Speakers
 media_player.master_bedroom_airtunes_speaker:
-  friendly_name: Music in Master Bedroom
+  friendly_name: Master Bedroom Speakers
 media_player.office_airtunes_speaker:
-  friendly_name: Music in Office
+  friendly_name: Office Speakers
 media_player.sebastians_room_airtunes_speaker:
-  friendly_name: Music in Seb’s Room
+  friendly_name: Sebastian's Room Speakers
 media_player.sophies_room_airtunes_speaker:
-  friendly_name: Music in Sophie’s Room
+  friendly_name: Sophie's Room Speakers
 climate.straus_house:
   friendly_name: Home Temperature Avg.
 climate.basement:

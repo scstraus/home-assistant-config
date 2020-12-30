@@ -1740,7 +1740,7 @@ cards:
           controls: true
           mute: true
         group: true
-      - entity: media_player.media_player.library_airtunes_speaker
+      - entity: media_player.library_airtunes_speaker
         type: custom:mini-media-player
         name: Library Speakers
         hide:
