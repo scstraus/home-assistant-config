@@ -27,15 +27,15 @@
       alenas_phone_battery:
         friendly_name: "Alena's Phone Battery"
         value_template: >-
-          {% if is_state('sensor.alena_battery_state', 'Charging') %}
+          {% if is_state('sensor.alena_s_iphone_battery_state', 'Charging') %}
             Charging
-          {% elif states('sensor.alena_battery_level')|float < 15 %}
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 15 %}
             Very Low
-          {% elif states('sensor.alena_battery_level')|float < 25 %}
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 25 %}
             Low
-          {% elif states('sensor.alena_battery_level')|float < 40 %}
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 40 %}
             Needs Charging
-          {% elif states('sensor.alena_battery_level')|float < 70 %}
+          {% elif states('sensor.alena_s_iphone_battery_level')|float < 70 %}
             Good
           {% else %}
             Charged

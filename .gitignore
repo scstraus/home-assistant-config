@@ -22,6 +22,8 @@
 !www/community/
 !www/community/lovelace-weather-card-chart/
 !www/community/lovelace-weather-card-chart/**
+!www/community/mini-media-player/
+!www/community/mini-media-player/**
 # Ignore folders.
 .storage
 .cloud

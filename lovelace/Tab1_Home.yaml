@@ -1190,22 +1190,76 @@ cards:
     #          yellow: 250
     #          red: 350 
     #        
+#
+#      - type: vertical-stack
+#        in_card: true
+#        cards:
 
-      - type: vertical-stack
-        in_card: true
-        cards:
+#
+#          .mmp-shortcuts__button {
+#            display:flow-root;
+#            width:initial;
+#          }
 
-        - entity: media_player.forked_daapd_server
-          type: custom:mini-media-player
-          name: Music
-          source: icon
-          artwork: cover
+#        style: |
+#          .slot-container {
+#            margin: 0px !important;
+#          }
+#
+#        style: |
+#          mmp-button {
+#            font-size: 6px !important;
+#          }
+#        style: |
+#          ha-card {
+#            background: #00c40a;
+#          }
+
+      - entity: media_player.forked_daapd_server
+        styles: |
+          .mmp-shortcuts__button {
+            display:  !important;
+            width:  !important;
+          }
+        type: custom:mini-media-player
+        name: Music
+        source: icon
+        artwork: cover
 #          icon: mdi:disc-player
-          group: true
-          hide:
-            shuffle: false
-            icon: true
-            power: true
+        group: true
+        hide:
+          shuffle: false
+          icon: true
+          power: true
+        shortcuts:
+          columns: 4
+          buttons:
+            - name: "MIX"
+              type: source
+              id: "A: 4+5 Star (playlist)"
+            - name: "JAZZ"
+              type: source
+              id: "Good Jazz (playlist)"
+            - name: "ROCK"
+              type: source
+              id: "Good Rock (playlist)"
+            - name: "POP"
+              type: source
+              id: "Good Pop (playlist)"
+            - name: "CLASSIC"
+              type: source
+              id: "Classical (playlist)"
+            - name: "BLACK"
+              type: source
+              id: "Good Black (playlist)"
+            - name: "ELECTRO"
+              type: source
+              id: "Good Electronica (playlist)"
+            - name: "KIDS"
+              type: source
+              id: "Kids - English (playlist)"
+
+
 #          shortcuts:
 #            label: "Other Playlists"
 #            list:
@@ -1499,187 +1553,187 @@ cards:
   #        service: switch.toggle
   #        service_data:
   #          entity_id: "switch.shuffle"
-
-
-      - type: horizontal-stack
-        cards:
-
-
-        - type: "custom:button-card"
-          name: MIX
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "a-45-star"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: JAZZ
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-jazz"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: ROCK
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-rock"
-              media_content_type: "playlist"           
-
-        - type: "custom:button-card"
-          name: POP
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-pop"
-              media_content_type: "playlist"
-
-
-      - type: horizontal-stack
-        cards:
-
-
-        - type: "custom:button-card"
-          name: CLASSICAL
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "classical"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: BLACK
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-black"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: ELECTRO
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "best-electronica"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: KIDS
-          styles:
-            card:
-              - padding: 12px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "kids-english"
-              media_content_type: "playlist"
-
-      - type: horizontal-stack
-        cards:
-
-        - type: "custom:button-card"
-          name: KULTURA <br> RADIO
-          styles:
-            card:
-              - padding: 4px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "radio-kultura-ru"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: CLASSICAL <br> RADIO
-          styles:
-            card:
-              - padding: 4px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "radio-swiss-classic"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: JAZZ24 <br> RADIO
-          styles:
-            card:
-              - padding: 4px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "jazz24"
-              media_content_type: "playlist"
-
-        - type: "custom:button-card"
-          name: EUROPA2 <br> RADIO
-          styles:
-            card:
-              - padding: 4px 0px
-              - font-size: 14px
-          tap_action: 
-            action: call-service
-            service: media_player.play_media 
-            service_data:
-              entity_id: "media_player.itunes"
-              media_content_id: "europa2"
-              media_content_type: "playlist"
+#
+#
+#      - type: horizontal-stack
+#        cards:
+#
+#
+#        - type: "custom:button-card"
+#          name: MIX
+#          styles:
+#            card:
+#              - padding: 12px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "a-45-star"
+#              media_content_type: "playlist"
+#
+#        - type: "custom:button-card"
+#          name: JAZZ
+#          styles:
+#            card:
+#              - padding: 12px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "best-jazz"
+#              media_content_type: "playlist"
+#
+#        - type: "custom:button-card"
+#          name: ROCK
+#          styles:
+#            card:
+#              - padding: 12px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "best-rock"
+#              media_content_type: "playlist"           
+#
+#        - type: "custom:button-card"
+#          name: POP
+#          styles:
+#            card:
+#              - padding: 12px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "best-pop"
+#              media_content_type: "playlist"
+#
+#
+#      - type: horizontal-stack
+#        cards:
+#
+#
+#        - type: "custom:button-card"
+#          name: CLASSICAL
+#          styles:
+#            card:
+#              - padding: 12px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "classical"
+#              media_content_type: "playlist"
+#
+#        - type: "custom:button-card"
+#          name: BLACK
+#          styles:
+#            card:
+#              - padding: 12px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "best-black"
+#              media_content_type: "playlist"
+#
+#        - type: "custom:button-card"
+#          name: ELECTRO
+#          styles:
+#            card:
+#              - padding: 12px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "best-electronica"
+#              media_content_type: "playlist"
+#
+#        - type: "custom:button-card"
+#          name: KIDS
+#          styles:
+#            card:
+#              - padding: 12px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "kids-english"
+#              media_content_type: "playlist"
+#
+#      - type: horizontal-stack
+#        cards:
+#
+#        - type: "custom:button-card"
+#          name: KULTURA <br> RADIO
+#          styles:
+#            card:
+#              - padding: 4px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "radio-kultura-ru"
+#              media_content_type: "playlist"
+#
+#        - type: "custom:button-card"
+#          name: CLASSICAL <br> RADIO
+#          styles:
+#            card:
+#              - padding: 4px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "radio-swiss-classic"
+#              media_content_type: "playlist"
+#
+#        - type: "custom:button-card"
+#          name: JAZZ24 <br> RADIO
+#          styles:
+#            card:
+#              - padding: 4px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "jazz24"
+#              media_content_type: "playlist"
+#
+#        - type: "custom:button-card"
+#          name: EUROPA2 <br> RADIO
+#          styles:
+#            card:
+#              - padding: 4px 0px
+#              - font-size: 14px
+#          tap_action: 
+#            action: call-service
+#            service: media_player.play_media 
+#            service_data:
+#              entity_id: "media_player.itunes"
+#              media_content_id: "europa2"
+#              media_content_type: "playlist"
 
   #    - type: entities
   #      title: Whole House
@@ -1782,7 +1836,8 @@ cards:
       name: "Master Bedroom Air Purifier"
       type: "custom:secondaryinfo-entity-row"
       secondary_info: "Air Quality: [[  sensor.master_bedroom_aqi_description.state ]]"
-    - entity: media_player.master_bedroom_airtunes_speaker
+#    - entity: media_player.master_bedroom_airtunes_speaker
+    - entity: media_player.forked_daapd_output_master_bedroom
       type: custom:mini-media-player
       name: "Master Bedroom Speakers"
       hide:
@@ -1813,13 +1868,13 @@ cards:
         controls: true
         mute: true
       group: true
-    - entity: media_player.computer_airtunes_speaker
-      type: custom:mini-media-player
-      name: Computer Speakers
-      hide:
-        controls: true
-        mute: true
-      group: true
+#    - entity: media_player.computer_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Computer Speakers
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
     - entity: climate.master_bedroom
       name: Bedroom
     - entity: climate.master_bath

@@ -110,7 +110,7 @@ class PlaylistInRoom(hass.Hass):
       self.log("All speakers already in correct state. Let's set volumes and launch playlist.")
       self.set_speaker_volumes()      
       # Playing playlist
-#      self.TIME_TO_PLAY_PLAYLIST = 1
+      self.TIME_TO_PLAY_PLAYLIST = 1
       self.log("Now we play the playlist.")
       self.play_playlist()
 
@@ -128,7 +128,7 @@ class PlaylistInRoom(hass.Hass):
 
   def speaker_off(self, entity, attribute, old, new, kwargs):
     self.log("%s turned off", entity)
-#    self.set_speaker_volumes_and_prepare_play(entity)
+    self.set_speaker_volumes_and_prepare_play(entity)
 
   def itunes_volume_change(self, entity, attribute, old, new, kwargs):
     self.log("iTunes volume changed.")
@@ -192,10 +192,11 @@ class PlaylistInRoom(hass.Hass):
           self.log("All %s/%s speakers have now changed state. Setting volumes and starting playlist.",(self.SPEAKER_RESPONSE_COUNT+1),self.SPEAKER_REQUEST_COUNT)
           self.set_speaker_volumes()
           # Telling the next callback to play the playlist
-          self.TIME_TO_PLAY_PLAYLIST = 1
+#          self.TIME_TO_PLAY_PLAYLIST = 1
           self.log("Now we play the playlist.")
           self.SPEAKER_REQUEST_COUNT = 0
           self.SPEAKER_RESPONSE_COUNT = 0
+          self.play_playlist()
         elif self.SPEAKER_REQUEST_COUNT != 0: 
           self.SPEAKER_RESPONSE_COUNT +=1
           self.log("Speaker response count now %s out of %s requests", self.SPEAKER_RESPONSE_COUNT,self.SPEAKER_REQUEST_COUNT )
