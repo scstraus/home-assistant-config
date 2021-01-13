@@ -353,26 +353,26 @@ cards:
           color: "#f4b300"
         - value: 90
           color: "#e04c23"
-
-    - type: custom:mini-graph-card
-      name: Coral Inference
-      entities:
-        - entity: sensor.frigate_coral_inference
-          name: ms
-#      lower_bound: 0
-      hours_to_show: 24
-      points_per_hour: 2
-      show_points: false
-      height: 300
-      color_thresholds:
-        - value: 10
-          color: "#0da035"
-        - value: 13
-          color: "#daa002"
-        - value: 16
-          color: "#f4b300"
-        - value: 20
-          color: "#e04c23"
+#
+#    - type: custom:mini-graph-card
+#      name: Coral Inference
+#      entities:
+#        - entity: sensor.frigate_coral_inference
+#          name: ms
+##      lower_bound: 0
+#      hours_to_show: 24
+#      points_per_hour: 2
+#      show_points: false
+#      height: 300
+#      color_thresholds:
+#        - value: 10
+#          color: "#0da035"
+#        - value: 13
+#          color: "#daa002"
+#        - value: 16
+#          color: "#f4b300"
+#        - value: 20
+#          color: "#e04c23"
 
 #
 #    - type: custom:mini-graph-card
@@ -466,35 +466,81 @@ cards:
 
 #  - type: vertical-stack
 #    cards:
+#
+#  - type: vertical-stack
+#    in_card: true
+#    title: Battery Levels
+#    cards:
+#
+#    - type: gauge
+#      entity: sensor.alena_s_iphone_battery_level
+#      name: "     Alena"
+#      severity:
+#        green: 50
+#        yellow: 25
+#        red: 12
+#
+#    - type: gauge
+#      entity: sensor.sean_battery_level   
+#      name: "     Sean"
+#      severity:
+#        green: 50
+#        yellow: 25
+#        red: 12
+#
+#    - type: gauge
+#      entity: sensor.sophies_iphone_se_battery_level  
+#      name: "     Sophie"
+#      severity:
+#        green: 50
+#        yellow: 25
+#        red: 12
 
   - type: vertical-stack
     in_card: true
     title: Battery Levels
     cards:
+      - type: custom:auto-entities
+        filter:
+          include:
+          - attributes:
+              battery_level: "<=100"
+            domain: zwave
+          - attributes:
+              battery_level: "<=100"
+            domain: device_tracker
+            name: "*iPhone*"
+        sort:
+          method: attribute
+          attribute: battery_level
+          numeric: true
+        card:
+          type: custom:bar-card
+          attribute: battery_level
+          unit_of_measurement: "%"
+          severity:
+          - from: 0
+            to: 40
+            color: "#e04c23"
+          - from: 41
+            to: 75
+            color: "#f4b300"
+          - from: 76
+            to: 100
+            color: "#0da035"
 
-    - type: gauge
-      entity: sensor.alena_battery_level
-      name: "     Alena"
-      severity:
-        green: 50
-        yellow: 25
-        red: 12
-
-    - type: gauge
-      entity: sensor.sean_battery_level   
-      name: "     Sean"
-      severity:
-        green: 50
-        yellow: 25
-        red: 12
-
-    - type: gauge
-      entity: sensor.sophies_iphone_6_battery_level   
-      name: "     Sophie"
-      severity:
-        green: 50
-        yellow: 25
-        red: 12
+##          title_position: left
+#          padding: 0px 15px 3px 15px
+#          saturation: 50%
+#          columns: 1
+#          height: 15px
+#          width: 60%
+#          card_style:
+#            box-shadow: 0 0
+#          bar_style:
+#            border-radius: 20px
+#          indicator_style:
+#            border-radius: 20px
 
 
 

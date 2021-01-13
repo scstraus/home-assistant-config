@@ -44,6 +44,8 @@
     entity_id: device_tracker.sean_s_iphone_12
     from: 'home'
     to: 'not_home'
+    for:
+      seconds: 15
   action:
     service: input_select.select_option
     data:

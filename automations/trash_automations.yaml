@@ -1,0 +1,338 @@
+        
+- id: bio_odpad_day_tomorrow_sean
+  alias: 'Bio Odpad Day'
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '21:00:00'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: 'sensor.bio_odpad_day'
+          state: 'Tomorrow'
+        - condition: template
+          value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
+  action:
+    service: notify.mobile_app_sean_s_iphone_12
+    data:
+      title: "Bio Odpad Tomorrow"
+      message: "Bio odpad should be taken out tonight or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
+      data:
+        push:
+          thread-id: "info"
+
+- id: bio_odpad_day_tomorrow_alena
+  alias: 'Bio Odpad Day'
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '15:00:00'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: 'sensor.bio_odpad_day'
+          state: 'Tomorrow'
+  action:
+    service: notify.mobile_app_alena_s_iphone
+    data:
+      title: "Bio Odpad Tomorrow"
+      message: "Bio odpad should be taken out today or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
+      data:
+        push:
+          thread-id: "info"
+
+- id: trash_day_tomorrow_sean
+  alias: 'Trash Day'
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '21:00:00'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: 'sensor.trash_day'
+          state: 'Tomorrow'
+        - condition: template
+          value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
+  action:
+    service: notify.mobile_app_sean_s_iphone_12
+    data:
+      title: "Trash Tomorrow"
+      message: "Trash should be taken out tonight or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
+      data:
+        push:
+          thread-id: "info"
+
+- id: trash_day_tomorrow_alena
+  alias: 'Trash Day'
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '15:00:00'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: 'sensor.trash_day'
+          state: 'Tomorrow'
+  action:
+    service: notify.mobile_app_alena_s_iphone
+    data:
+      title: "Trash Tomorrow"
+      message: "Trash should be taken out today or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
+      data:
+        push:
+          thread-id: "info"
+
+- id: bio_odpad_day_today_sean
+  alias: 'Bio Odpad Day'
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '21:00:00'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: 'sensor.bio_odpad_day'
+          state: 'Today'
+        - condition: template
+          value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
+  action:
+    service: notify.mobile_app_sean_s_iphone_12
+    data:
+      title: "Bio Odpad Today"
+      message: "Bio odpad should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
+      data:
+        push:
+          thread-id: "info"
+        
+- id: bio_odpad_day_today_alena
+  alias: 'Bio Odpad Day'
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '15:00:00'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: 'sensor.bio_odpad_day'
+          state: 'Today'
+  action:
+    service: notify.mobile_app_alena_s_iphone
+    data:
+      title: "Bio Odpad Today"
+      message: "Bio odpad should be taken out today for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
+      data:
+        push:
+          thread-id: "info"
+        
+
+#- id: trash_day_today_sean
+#  alias: 'Trash Day'
+#  initial_state: 'true'
+#  trigger:
+#    - platform: time
+#      at: '21:00:00'
+#    - platform: time
+#      at: '22:00:00'
+#    - platform: time
+#      at: '23:00:00'
+#  condition:
+#    - condition: and
+#      conditions:
+#        - condition: state
+#          entity_id: 'sensor.trash_day'
+#          state: 'Today'
+#        - condition: template
+#          value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
+#  action:
+#    service: notify.mobile_app_sean_s_iphone_12
+#    data:
+#      title: "Trash Day Today"
+#      message: "Trash should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
+#      data:
+#        push:
+#          thread-id: "info"
+        
+- id: trash_day_today_alena
+  alias: 'Trash Day'
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '15:00:00'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: 'sensor.trash_day'
+          state: 'Today'
+  action:
+    service: notify.mobile_app_alena_s_iphone
+    data:
+      title: "Trash Day Today"
+      message: "Trash should be taken out today for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
+      data:
+        push:
+          thread-id: "info"
+
+- alias: 'update_bio_odpad_sensor'
+  trigger:
+    platform: time
+    at: '00:00:01'
+  action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.bio_odpad_day
+
+- alias: 'update_trash_sensor'
+  trigger:
+    platform: time
+    at: '00:00:01'
+  action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.trash_day
+
+
+- id: turn_on_trash_input_boolean
+  alias: "Turn On Trash Input Boolean"
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.trash_day
+    to: 'Tomorrow'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.trash_needs_taking_out
+
+- id: turn_off_trash_input_boolean
+  alias: "Turn Off Trash Input Boolean"
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.trash_day
+    to: 'false'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.trash_needs_taking_out
+
+- id: notification_turn_off_trash_input_boolean
+  alias: notification_turn_off_trash_input_boolean
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: TOOK_TRASH_OUT
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.trash_needs_taking_out
+
+
+- id: update_trash_display
+  alias: update_trash_display
+  trigger:
+    platform: time_pattern
+    minutes: 15
+  action:
+    service: homeassistant.update_entity
+    entity_id: binary_sensor.trash_display
+
+
+- id: update_trash_emergency_sensor
+  alias: update_trash_emergency_sensor
+  trigger:
+    platform: time_pattern
+    minutes: 5
+  action:
+    service: homeassistant.update_entity
+    entity_id: binary_sensor.trash_emergency
+
+
+
+- id: coming_home_trash_day_alena
+  alias: coming_home_trash_day_alena
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.alena_s_iphone
+    to: 'home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: 'sensor.trash_day'
+      state: 'Today'
+    - condition: state
+      entity_id: 'input_boolean.trash_needs_taking_out'
+      state: 'on'
+  action:
+    service: notify.mobile_app_alena_s_iphone
+    data:
+      title: "Take out that trash!"
+      message: "Hello there, today is trash day and now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
+
+- id: coming_home_trash_day_sean
+  alias: coming_home_trash_day_sean
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.sean_s_iphone_12
+    to: 'home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: 'sensor.trash_day'
+      state: 'Today'
+    - condition: state
+      entity_id: 'input_boolean.trash_needs_taking_out'
+      state: 'on'
+  action:
+    service: notify.mobile_app_sean_s_iphone_12
+    data:
+      title: "Take out that trash!"
+      message: "Hello there, now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
+
+
+
+
+- id: coming_home_bio_odpad_day_alena
+  alias: coming_home_bio_odpad_day_alena
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.alena_s_iphone
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: 'sensor.bio_odpad_day'
+    state: 'Today'
+  action:
+    service: notify.mobile_app_alena_s_iphone
+    data:
+      title: "Take out that bio odpad!"
+      message: "Hello there, today is bio odpad day and now would be a really great time to take out it out, what do you think? Let's do it, what do you say?!?"
+
+- id: coming_home_bio_odpad_day_sean
+  alias: coming_home_bio_odpad_day_sean
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.sean_s_iphone_12
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: 'sensor.bio_odpad_day'
+    state: 'Today'
+  action:
+    service: notify.mobile_app_sean_s_iphone_12
+    data:
+      title: "Take out that bio odpas!"
+      message: "Hello there, now would be a really great time to take out the bio odpad, what do you think? Let's do it, what do you say?!?"
+

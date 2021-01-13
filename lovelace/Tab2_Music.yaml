@@ -14,364 +14,162 @@ visible:
 #background: var(--background-image)
 cards:
 
-
-
-#  - type: media-control
-#    entity: media_player.itunes 
-
-  - type: vertical-stack
-    in_card: true
-    cards: 
-
-    - type: media-control
-      entity: media_player.forked_daapd_server
-#      entity: media_player.itunes 
-
-#    - entity: media_player.itunes
-#      type: custom:mini-media-player
-#      group: true
-
-
-    - type: entities
-      entities:
-
-
-#        - type: section
-#          label: Master Volume
-      - type: custom:slider-entity-row
-        entity: media_player.itunes
-        full_row: true
-      - input_boolean.itunes_shuffle
-
-
-  - type: vertical-stack
-    cards:
-
-
-  #      - entity: media_player.itunes
-  #        type: custom:mini-media-player
-  ##        name: Living Rm
-  #        hide:
-  #          controls: true
-  #          mute: true
-  #        hide_info: true
-  #        hide_power: true
-
-
-#
-#    - type: horizontal-stack
-#      cards:
-#
-#      - type: entities
-#        show_header_toggle: false
-#        entities:
-#          - entity: input_boolean.itunes_shuffle
-#
-#      - type: "custom:button-card"
-#        name: SHUFFLE
-#        styles:
-#          card:
-#            - padding: 12px 0px
-#            - font-size: 14px
-#        tap_action: 
-#          action: call-service
-#          service: switch.toggle
-#          service_data:
-#            entity_id: "switch.shuffle"
-
-
-    - type: horizontal-stack
-      cards:
-
-
-      - type: "custom:button-card"
-        name: MIX
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "a-45-star"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        name: JAZZ
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-jazz"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        name: ROCK
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-rock"
-            media_content_type: "playlist"           
-
-      - type: "custom:button-card"
-        name: POP
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-pop"
-            media_content_type: "playlist"
-
-
-    - type: horizontal-stack
-      cards:
-
-
-      - type: "custom:button-card"
-        name: CLASSICAL
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "classical"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        name: BLACK
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-black"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        name: ELECTRO
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "best-electronica"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        name: KIDS
-        styles:
-          card:
-            - padding: 12px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "kids-english"
-            media_content_type: "playlist"
-
-    - type: horizontal-stack
-      cards:
-
-      - type: "custom:button-card"
-        name: KULTURA <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "radio-kultura-ru"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        name: CLASSICAL <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "radio-swiss-classic"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        name: JAZZ24 <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "jazz24"
-            media_content_type: "playlist"
-
-      - type: "custom:button-card"
-        name: EUROPA2 <br> RADIO
-        styles:
-          card:
-            - padding: 4px 0px
-            - font-size: 14px
-        tap_action: 
-          action: call-service
-          service: media_player.play_media 
-          service_data:
-            entity_id: "media_player.itunes"
-            media_content_id: "europa2"
-            media_content_type: "playlist"
+  - entity: media_player.forked_daapd_server
+    type: custom:mini-media-player
+    name: Music
+    source: icon
+    artwork: full-cover
+#          icon: mdi:disc-player
+    group: true
+    hide:
+      shuffle: false
+      icon: true
+      power: true
+    shortcuts:
+      columns: 4
+      buttons:
+        - name: "MIX"
+          type: source
+          id: "A: 4+5 Star (playlist)"
+        - name: "JAZZ"
+          type: source
+          id: "Good Jazz (playlist)"
+        - name: "ROCK"
+          type: source
+          id: "Good Rock (playlist)"
+        - name: "POP"
+          type: source
+          id: "Good Pop (playlist)"
+        - name: "CLASSIC"
+          type: source
+          id: "Classical (playlist)"
+        - name: "BLACK"
+          type: source
+          id: "Good Black (playlist)"
+        - name: "ELECTRO"
+          type: source
+          id: "Good Electronica (playlist)"
+        - name: "KIDS"
+          type: source
+          id: "Kids - English (playlist)"
+        - name: "KULTURA"
+          type: source
+          id: "radio kultura (playlist)"
+        - name: "CLASSIC"
+          type: source
+          id: "Classical Radio (playlist)"
+        - name: "JAZZ24"
+          type: source
+          id: "Jazz24 Radio (playlist)"
+        - name: "EUROPA2"
+          type: source
+          id: "radio2 (playlist)"
 
   - type: entities
     title: First Floor
     show_header_toggle: false
     entities:
-    - entity: media_player.chromecast
-      type: custom:mini-media-player
-      name: Chromecast
-      hide:
-        controls: true
-        mute: true
-      group: true
-#    - entity: media_player.chromecast
-#      name: Chromecast
-#      hide:
-#        controls: false
-#        mute: true
-#      group: true
-    - entity: media_player.apple_tv_airtunes_speaker
-      type: custom:mini-media-player
-      name: Apple TV
-      hide:
-        controls: true
-        mute: true
-      group: true
-    - entity: media_player.living_room_airtunes_speaker
+#    - entity: media_player.living_room_airtunes_speaker
+    - entity: media_player.forked_daapd_output_living_room
       type: custom:mini-media-player
       name: Living Rm
       hide:
         controls: true
         mute: true
       group: true
-
-#      - entity: media_player.chromecast
-#        type: custom:mini-media-player
-#        name: Chromecast
-#        hide_controls: false
-#        hide_mute: false
-#        group: true
-    - entity: media_player.kitchen_airtunes_speaker
+#    - entity: media_player.kitchen_airtunes_speaker
+    - entity: media_player.forked_daapd_output_kitchen
       type: custom:mini-media-player
       name: Kitchen Speakers
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.bathroom_1st_floor_airtunes_speaker
+#    - entity: media_player.bathroom_1st_floor_airtunes_speaker
+    - entity: media_player.forked_daapd_output_bathroom_1st_floor
       type: custom:mini-media-player
       name: Bathroom Speakers
       hide:
         controls: true
         mute: true
       group: true
+#    - entity: media_player.apple_tv_airtunes_speaker
+    - entity: media_player.forked_daapd_output_apple_tv
+      type: custom:mini-media-player
+      name: Apple TV
+      hide:
+        controls: true
+        mute: true
+      group: true
+
 
   - type: entities
     title: Second Floor
     show_header_toggle: false
-    entities:
-    - entity: media_player.master_bedroom_airtunes_speaker
+    entities: 
+#    - entity: media_player.master_bedroom_airtunes_speaker
+    - entity: media_player.forked_daapd_output_master_bedroom
       type: custom:mini-media-player
       name: "Master Bedroom Speakers"
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.master_bath_airtunes_speaker
+    - entity: media_player.forked_daapd_output_master_bath
+#    - entity: media_player.master_bath_airtunes_speaker
       type: custom:mini-media-player
       name: "Master Bath Speakers"
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.office_airtunes_speaker
+    - entity: media_player.forked_daapd_output_office
+#    - entity: media_player.office_airtunes_speaker
       type: custom:mini-media-player
       name: Office Speakers
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.media_player.library_airtunes_speaker
+    - entity: media_player.forked_daapd_output_library
+#    - entity: media_player.library_airtunes_speaker
       type: custom:mini-media-player
       name: Library Speakers
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.computer_airtunes_speaker
-      type: custom:mini-media-player
-      name: Computer Speakers
-      hide:
-        controls: true
-        mute: true
-      group: true
+#    - entity: media_player.computer_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Computer Speakers
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+
 
   - type: entities
     title: Third Floor
     show_header_toggle: false
     entities:
-    - entity: media_player.sophie_s_room_airtunes_speaker
+#    - entity: media_player.sophie_s_room_airtunes_speaker
+    - entity: media_player.forked_daapd_output_sophie_s_room
       type: custom:mini-media-player
       name: "Sophie's Room Speakers"
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.sebastian_s_room_airtunes_speaker
+    - entity: media_player.forked_daapd_output_sebastian_s_room
+#    - entity: media_player.sebastian_s_room_airtunes_speaker
       type: custom:mini-media-player
       name: "Seb's Room Speakers"
       hide:
         controls: true
         mute: true
       group: true
-    - entity: media_player.gym_airtunes_speaker
+    - entity: media_player.forked_daapd_output_gym
+#    - entity: media_player.gym_airtunes_speaker
       type: custom:mini-media-player
       name: Gym Speakers
       hide:
@@ -379,20 +177,400 @@ cards:
         mute: true
       group: true
 
+
   - type: entities
     title: Outside
     show_header_toggle: false
     entities:
-    - entity: media_player.back_yard_airtunes_speaker
+
+    - entity: media_player.forked_daapd_output_back_yard
       type: custom:mini-media-player
       name: Back Yard Speakers
       hide:
         controls: true
         mute: true
-      group: true     
+      group: true
 
-  - type: entities
-    title: All Speakers
-    show_header_toggle: true
-    entities:
-    - entity: group.all_speakers
+
+
+
+#  - type: media-control
+#    entity: media_player.itunes 
+#
+#  - type: vertical-stack
+#    in_card: true
+#    cards: 
+#
+#    - type: media-control
+#      entity: media_player.forked_daapd_server
+##      entity: media_player.itunes 
+#
+##    - entity: media_player.itunes
+##      type: custom:mini-media-player
+##      group: true
+#
+#
+#    - type: entities
+#      entities:
+#
+#
+##        - type: section
+##          label: Master Volume
+#      - type: custom:slider-entity-row
+#        entity: media_player.itunes
+#        full_row: true
+#      - input_boolean.itunes_shuffle
+#
+#
+#  - type: vertical-stack
+#    cards:
+#
+#
+#  #      - entity: media_player.itunes
+#  #        type: custom:mini-media-player
+#  ##        name: Living Rm
+#  #        hide:
+#  #          controls: true
+#  #          mute: true
+#  #        hide_info: true
+#  #        hide_power: true
+#
+#
+##
+##    - type: horizontal-stack
+##      cards:
+##
+##      - type: entities
+##        show_header_toggle: false
+##        entities:
+##          - entity: input_boolean.itunes_shuffle
+##
+##      - type: "custom:button-card"
+##        name: SHUFFLE
+##        styles:
+##          card:
+##            - padding: 12px 0px
+##            - font-size: 14px
+##        tap_action: 
+##          action: call-service
+##          service: switch.toggle
+##          service_data:
+##            entity_id: "switch.shuffle"
+#
+#
+#    - type: horizontal-stack
+#      cards:
+#
+#
+#      - type: "custom:button-card"
+#        name: MIX
+#        styles:
+#          card:
+#            - padding: 12px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "a-45-star"
+#            media_content_type: "playlist"
+#
+#      - type: "custom:button-card"
+#        name: JAZZ
+#        styles:
+#          card:
+#            - padding: 12px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "best-jazz"
+#            media_content_type: "playlist"
+#
+#      - type: "custom:button-card"
+#        name: ROCK
+#        styles:
+#          card:
+#            - padding: 12px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "best-rock"
+#            media_content_type: "playlist"           
+#
+#      - type: "custom:button-card"
+#        name: POP
+#        styles:
+#          card:
+#            - padding: 12px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "best-pop"
+#            media_content_type: "playlist"
+#
+#
+#    - type: horizontal-stack
+#      cards:
+#
+#
+#      - type: "custom:button-card"
+#        name: CLASSICAL
+#        styles:
+#          card:
+#            - padding: 12px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "classical"
+#            media_content_type: "playlist"
+#
+#      - type: "custom:button-card"
+#        name: BLACK
+#        styles:
+#          card:
+#            - padding: 12px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "best-black"
+#            media_content_type: "playlist"
+#
+#      - type: "custom:button-card"
+#        name: ELECTRO
+#        styles:
+#          card:
+#            - padding: 12px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "best-electronica"
+#            media_content_type: "playlist"
+#
+#      - type: "custom:button-card"
+#        name: KIDS
+#        styles:
+#          card:
+#            - padding: 12px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "kids-english"
+#            media_content_type: "playlist"
+#
+#    - type: horizontal-stack
+#      cards:
+#
+#      - type: "custom:button-card"
+#        name: KULTURA <br> RADIO
+#        styles:
+#          card:
+#            - padding: 4px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "radio-kultura-ru"
+#            media_content_type: "playlist"
+#
+#      - type: "custom:button-card"
+#        name: CLASSICAL <br> RADIO
+#        styles:
+#          card:
+#            - padding: 4px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "radio-swiss-classic"
+#            media_content_type: "playlist"
+#
+#      - type: "custom:button-card"
+#        name: JAZZ24 <br> RADIO
+#        styles:
+#          card:
+#            - padding: 4px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "jazz24"
+#            media_content_type: "playlist"
+#
+#      - type: "custom:button-card"
+#        name: EUROPA2 <br> RADIO
+#        styles:
+#          card:
+#            - padding: 4px 0px
+#            - font-size: 14px
+#        tap_action: 
+#          action: call-service
+#          service: media_player.play_media 
+#          service_data:
+#            entity_id: "media_player.itunes"
+#            media_content_id: "europa2"
+#            media_content_type: "playlist"
+#
+#  - type: entities
+#    title: First Floor
+#    show_header_toggle: false
+#    entities:
+#    - entity: media_player.chromecast
+#      type: custom:mini-media-player
+#      name: Chromecast
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+##    - entity: media_player.chromecast
+##      name: Chromecast
+##      hide:
+##        controls: false
+##        mute: true
+##      group: true
+#    - entity: media_player.apple_tv_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Apple TV
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#    - entity: media_player.living_room_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Living Rm
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#
+##      - entity: media_player.chromecast
+##        type: custom:mini-media-player
+##        name: Chromecast
+##        hide_controls: false
+##        hide_mute: false
+##        group: true
+#    - entity: media_player.kitchen_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Kitchen Speakers
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#    - entity: media_player.bathroom_1st_floor_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Bathroom Speakers
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#
+#  - type: entities
+#    title: Second Floor
+#    show_header_toggle: false
+#    entities:
+#    - entity: media_player.master_bedroom_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: "Master Bedroom Speakers"
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#    - entity: media_player.master_bath_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: "Master Bath Speakers"
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#    - entity: media_player.office_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Office Speakers
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#    - entity: media_player.media_player.library_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Library Speakers
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#    - entity: media_player.computer_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Computer Speakers
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#
+#  - type: entities
+#    title: Third Floor
+#    show_header_toggle: false
+#    entities:
+#    - entity: media_player.sophie_s_room_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: "Sophie's Room Speakers"
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#    - entity: media_player.sebastian_s_room_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: "Seb's Room Speakers"
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#    - entity: media_player.gym_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Gym Speakers
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
+#
+#  - type: entities
+#    title: Outside
+#    show_header_toggle: false
+#    entities:
+#    - entity: media_player.back_yard_airtunes_speaker
+#      type: custom:mini-media-player
+#      name: Back Yard Speakers
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true     
+#
+#  - type: entities
+#    title: All Speakers
+#    show_header_toggle: true
+#    entities:
+#    - entity: group.all_speakers

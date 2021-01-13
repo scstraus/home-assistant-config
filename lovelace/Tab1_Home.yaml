@@ -1165,13 +1165,13 @@ cards:
 
 
 ### START COMMENT BLOCK 7: Music
-
-  - type: custom:mod-card
-    report_size: 8
-    card:
-
-      type: vertical-stack
-      cards:
+#
+#  - type: custom:mod-card
+#    report_size: 8
+#    card:
+#
+#      type: vertical-stack
+#      cards:
 
   #      - type: entities
   #        title: Whole House
@@ -1200,7 +1200,11 @@ cards:
 #            display:flow-root;
 #            width:initial;
 #          }
-
+#      styles: |
+#        .mmp-shortcuts__button {
+#          display:  !important;
+#          width:  !important;
+#        }
 #        style: |
 #          .slot-container {
 #            margin: 0px !important;
@@ -1215,50 +1219,57 @@ cards:
 #            background: #00c40a;
 #          }
 
-      - entity: media_player.forked_daapd_server
-        styles: |
-          .mmp-shortcuts__button {
-            display:  !important;
-            width:  !important;
-          }
-        type: custom:mini-media-player
-        name: Music
-        source: icon
-        artwork: cover
-#          icon: mdi:disc-player
-        group: true
-        hide:
-          shuffle: false
-          icon: true
-          power: true
-        shortcuts:
-          columns: 4
-          buttons:
-            - name: "MIX"
-              type: source
-              id: "A: 4+5 Star (playlist)"
-            - name: "JAZZ"
-              type: source
-              id: "Good Jazz (playlist)"
-            - name: "ROCK"
-              type: source
-              id: "Good Rock (playlist)"
-            - name: "POP"
-              type: source
-              id: "Good Pop (playlist)"
-            - name: "CLASSIC"
-              type: source
-              id: "Classical (playlist)"
-            - name: "BLACK"
-              type: source
-              id: "Good Black (playlist)"
-            - name: "ELECTRO"
-              type: source
-              id: "Good Electronica (playlist)"
-            - name: "KIDS"
-              type: source
-              id: "Kids - English (playlist)"
+  - entity: media_player.forked_daapd_server
 
+    type: custom:mini-media-player
+    name: Music
+    source: icon
+    artwork: material
+#          icon: mdi:disc-player
+    group: true
+    hide:
+      shuffle: false
+      icon: true
+      power: true
+    shortcuts:
+      columns: 4
+      buttons:
+        - name: "MIX"
+          type: source
+          id: "A: 4+5 Star (playlist)"
+        - name: "JAZZ"
+          type: source
+          id: "Good Jazz (playlist)"
+        - name: "ROCK"
+          type: source
+          id: "Good Rock (playlist)"
+        - name: "POP"
+          type: source
+          id: "Good Pop (playlist)"
+        - name: "CLASSIC"
+          type: source
+          id: "Classical (playlist)"
+        - name: "BLACK"
+          type: source
+          id: "Good Black (playlist)"
+        - name: "ELECTRO"
+          type: source
+          id: "Good Electronica (playlist)"
+        - name: "KIDS"
+          type: source
+          id: "Kids - English (playlist)"
+        - name: "KULTURA"
+          type: source
+          id: "radio kultura (playlist)"
+        - name: "CLASSIC"
+          type: source
+          id: "Classical Radio (playlist)"
+        - name: "JAZZ24"
+          type: source
+          id: "Jazz24 Radio (playlist)"
+        - name: "EUROPA2"
+          type: source
+          id: "radio2 (playlist)"
 
 #          shortcuts:
 #            label: "Other Playlists"

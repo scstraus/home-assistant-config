@@ -1084,7 +1084,7 @@ cards:
       type: custom:mini-media-player
       name: Music
       source: icon
-      artwork: cover
+      artwork: material
 #          icon: mdi:disc-player
       group: true
       hide:
@@ -1118,6 +1118,18 @@ cards:
           - name: "KIDS"
             type: source
             id: "Kids - English (playlist)"
+          - name: "KULTURA"
+            type: source
+            id: "radio kultura (playlist)"
+          - name: "CLASSIC"
+            type: source
+            id: "Classical Radio (playlist)"
+          - name: "JAZZ24"
+            type: source
+            id: "Jazz24 Radio (playlist)"
+          - name: "EUROPA2"
+            type: source
+            id: "radio2 (playlist)"
 
 #
 #        - entity: media_player.itunes

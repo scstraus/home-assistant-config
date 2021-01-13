@@ -240,6 +240,8 @@
     platform: state
     entity_id: binary_sensor.ecolink_garage_door
     to: 'on'
+    for: 
+      minutes: 1
   action:
     service: evohome.set_zone_override
     data:

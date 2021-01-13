@@ -58,6 +58,8 @@ sun:
 
 python_script:
 
+#media_source:
+
 #stream:
 
 #ffmpeg:
@@ -131,6 +133,12 @@ lovelace:
       type: module
     - url: /hacsfiles/compass-card/compass-card.js
       type: module
+    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+      type: module
+    - url: /hacsfiles/bar-card/bar-card.js
+      type: module
+                
+                
                 
                 
                 
@@ -430,6 +438,9 @@ input_boolean:
   christmas_mode:
     name: "Christmas"
     icon: mdi:pine-tree
+  warn_door_open_dishwasher_running:
+    name: "Warn door open dishwasher running"
+    icon: mdi:dishwasher-alert
   
 
 #  mix_playlist:
