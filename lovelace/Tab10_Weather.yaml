@@ -13,34 +13,140 @@ visible:
   - user: 5d20dcdf0c8f4905b0d3ee79fb195c99
 cards:
 
-  - type: 'custom:weather-card-chart'
+  - type: vertical-stack
     title: Weather Today
-    weather: weather.smartweather_home
-    sun: sun.sun
-    mode: hourly
+    cards: 
+
+    - type: vertical-stack
+      in_card: true
+      cards: 
+
+      - type: 'custom:weather-card-chart'
+        style: |
+          .card-header {
+            padding: 0px 0px 0px;
+            font-size: var(--ha-card-header-font-size, 0px);
+            line-height: 16px;
+          }
+        title: Weather Today
+        weather: weather.smartweather_home
+        sun: sun.sun
+        mode: hourly
+
+      - type: entities
+  #      title: Current Conditions
+        show_header_toggle: false
+        entities:
+        - sensor.dark_sky_summary
+        - sensor.dark_sky_hourly_summary
+        - sensor.dark_sky_precip_probability
+        - sensor.dark_sky_precip
+        - sensor.dark_sky_overnight_low_temperature_0d
+        - sensor.dark_sky_daytime_high_temperature_0d
 
 
-  - type: 'custom:weather-card-chart'
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.smartweather_temperature
+            name: Temperature
+        hours_to_show: 24
+        points_per_hour: 2
+        height: 150
+        color_thresholds:
+          - value: 0
+            color: "#ccccff"
+          - value: 15
+            color: "#6666ff"
+          - value: 20
+            color: "#f3f300"
+          - value: 23
+            color: "#f39c12"
+          - value: 25
+            color: "#d35400"
+          - value: 28
+            color: "#c0392b"
+
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.smartweather_humidity
+            name: Humidity
+        hours_to_show: 24
+        points_per_hour: 2
+        height: 150
+        lower_bound: 0
+        upper_bound: 100
+        color_thresholds:
+          - value: 15
+            color: "#daa002"
+          - value: 35
+            color: "#0da035"
+          - value: 85
+            color: "#daa002"
+
+
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.smartweather_dewpoint
+            name: 'Dew Point'
+        hours_to_show: 24
+        points_per_hour: 2
+        height: 150
+        color_thresholds:
+          - value: 0
+            color: "#ccccff"
+          - value: 15
+            color: "#6666ff"
+          - value: 20
+            color: "#f3f300"
+          - value: 23
+            color: "#f39c12"
+          - value: 25
+            color: "#d35400"
+          - value: 28
+            color: "#c0392b"
+
+
+  - type: vertical-stack
     title: Weather This Week
-    weather: weather.openweathermap
-    sun: sun.sun
+    cards: 
+
+    - type: vertical-stack
+      in_card: true
+      cards: 
+
+      - type: 'custom:weather-card-chart'
+        style: |
+          .card-header {
+            padding: 0px 0px 0px;
+            font-size: var(--ha-card-header-font-size, 0px);
+            line-height: 16px;
+          }
+        title: Weather This Week
+        weather: weather.weather_forecast
+        sun: sun.sun
+
+      - type: entities
+  #      title: Current Conditions
+        show_header_toggle: false
+        entities:
+        - sensor.dark_sky_daily_summary
 
 #    - type: vertical-stack
 #      cards:
 
-  - type: entities
-    title: Current Conditions
-    show_header_toggle: false
-    entities:
-    - sensor.dark_sky_summary
+
 
 
   - type: custom:mod-card
     report_size: 14
     card:
-
       type: vertical-stack
+      title: Air Quality
       cards:
+
+      - type: vertical-stack
+        in_card: true
+        cards:
 
 
 
@@ -64,151 +170,153 @@ cards:
 #      - type: horizontal-stack
 #        cards:
 
-      - type: custom:mini-graph-card
-        name: AQI Outside 
-        icon: mdi:air-filter
-#          style: |
-#            ha-card {
-#              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
-#              #00c40a
-#              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
-#              #c1c400 
-#              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
-#              #c48600
-#              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
-#              #c41700
-#              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
-#              #b000c4
-#              {% else %}
-#              #c4007c
-#              {% endif %}
-        entities:
-          - entity: sensor.hlubocepy_air_quality
-            name: 
-        color_thresholds:
-          - value: 25
-            color: "#9cffa1"
-          - value: 75
-            color: "#fdff9c"
-          - value: 125
-            color: "#ffe09c"
-          - value: 175
-            color: "#ffa79c"
-          - value: 250
-            color: "#f59cff"
-          - value: 350
-            color: "#ff9cdb"
-        hours_to_show: 24
-        points_per_hour: 2
-        show_points: false
-        height: 150
+        - type: custom:mini-graph-card
+          name: AQI Outside 
+          icon: mdi:air-filter
+  #          style: |
+  #            ha-card {
+  #              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
+  #              #00c40a
+  #              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
+  #              #c1c400 
+  #              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
+  #              #c48600
+  #              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
+  #              #c41700
+  #              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
+  #              #b000c4
+  #              {% else %}
+  #              #c4007c
+  #              {% endif %}
+          entities:
+            - entity: sensor.hlubocepy_air_quality
+              name: 
+          color_thresholds:
+            - value: 25
+              color: "#9cffa1"
+            - value: 75
+              color: "#fdff9c"
+            - value: 125
+              color: "#ffe09c"
+            - value: 175
+              color: "#ffa79c"
+            - value: 250
+              color: "#f59cff"
+            - value: 350
+              color: "#ff9cdb"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 150
 
-      - type: custom:mini-graph-card
-        name: AQI Inside
-        icon: mdi:air-filter
-#          style: |
-#            ha-card {
-#              background: {% if states('sensor.home_air_quality')|int <= 50 %}
-#              #00c40a
-#              {% elif states('sensor.home_air_quality')|int <= 100 %} 
-#              #c1c400 
-#              {% elif states('sensor.home_air_quality')|int <= 150 %}
-#              #c48600
-#              {% elif states('sensor.home_air_quality')|int <= 200 %}
-#              #c41700
-#              {% elif states('sensor.home_air_quality')|int <= 300 %}
-#              #b000c4
-#              {% else %}
-#              #c4007c
-#              {% endif %}
-        entities:
-          - entity: sensor.home_air_quality
-            name: 
-        color_thresholds:
-          - value: 25
-            color: "#9cffa1"
-          - value: 75
-            color: "#fdff9c"
-          - value: 125
-            color: "#ffe09c"
-          - value: 175
-            color: "#ffa79c"
-          - value: 250
-            color: "#f59cff"
-          - value: 350
-            color: "#ff9cdb"
-        hours_to_show: 24
-        points_per_hour: 2
-        show_points: false
-        height: 150
+        - type: custom:mini-graph-card
+          name: AQI Inside
+          icon: mdi:air-filter
+  #          style: |
+  #            ha-card {
+  #              background: {% if states('sensor.home_air_quality')|int <= 50 %}
+  #              #00c40a
+  #              {% elif states('sensor.home_air_quality')|int <= 100 %} 
+  #              #c1c400 
+  #              {% elif states('sensor.home_air_quality')|int <= 150 %}
+  #              #c48600
+  #              {% elif states('sensor.home_air_quality')|int <= 200 %}
+  #              #c41700
+  #              {% elif states('sensor.home_air_quality')|int <= 300 %}
+  #              #b000c4
+  #              {% else %}
+  #              #c4007c
+  #              {% endif %}
+          entities:
+            - entity: sensor.home_air_quality
+              name: 
+          color_thresholds:
+            - value: 25
+              color: "#9cffa1"
+            - value: 75
+              color: "#fdff9c"
+            - value: 125
+              color: "#ffe09c"
+            - value: 175
+              color: "#ffa79c"
+            - value: 250
+              color: "#f59cff"
+            - value: 350
+              color: "#ff9cdb"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 150
 
-#
-#      - type: horizontal-stack
-#        cards:
+  #
+  #      - type: horizontal-stack
+  #        cards:
 
-      - type: custom:mini-graph-card
-        name: Radon Upstairs
-#          style: |
-#            ha-card {
-#              background: {% if states('sensor.radon_upstairs')|int <= 100 %}
-#              #00c40a
-#              {% elif states('sensor.radon_upstairs')|int <= 150 %} 
-#              #c1c400 
-#              {% else %}
-#              #c41700
-#              {% endif %} 
-        entities:
-          - entity: sensor.radon_upstairs
-            name: 
-        color_thresholds:
-          - value: 0
-            color: "#9cffa1"
-          - value: 90
-            color: "#9cffa1"
-          - value: 110
-            color: "#fdff9c"
-          - value: 140
-            color: "#fdff9c"
-          - value: 160
-            color: "#ffe09c"
-          - value: 200
-            color: "#ffe09c"
-        hours_to_show: 24
-        points_per_hour: 2
-        show_points: false
-        height: 150
+        - type: custom:mini-graph-card
+          name: Radon Upstairs
+  #          style: |
+  #            ha-card {
+  #              background: {% if states('sensor.radon_upstairs')|int <= 100 %}
+  #              #00c40a
+  #              {% elif states('sensor.radon_upstairs')|int <= 150 %} 
+  #              #c1c400 
+  #              {% else %}
+  #              #c41700
+  #              {% endif %} 
+          entities:
+            - entity: sensor.radon_upstairs
+              name: 
+          color_thresholds:
+            - value: 0
+              color: "#9cffa1"
+            - value: 90
+              color: "#9cffa1"
+            - value: 110
+              color: "#fdff9c"
+            - value: 140
+              color: "#fdff9c"
+            - value: 160
+              color: "#ffe09c"
+            - value: 200
+              color: "#ffe09c"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 150
 
-      - type: custom:mini-graph-card
-        name: VOC Upstairs
-#          style: |
-#            ha-card {
-#              background: {% if states('sensor.tvocs_upstairs')|int <= 250 %}
-#              #00c40a
-#              {% elif states('sensor.tvocs_upstairs')|int <= 2000 %} 
-#              #c1c400 
-#              {% else %}
-#              #c41700
-#              {% endif %}
-        entities:
-          - entity: sensor.tvocs_upstairs
-            name: 
-        color_thresholds:
-          - value: 0
-            color: "#9cffa1"
-          - value: 240
-            color: "#9cffa1"
-          - value: 260
-            color: "#fdff9c"
-          - value: 1990
-            color: "#fdff9c"
-          - value: 2010
-            color: "#ffe09c"
-          - value: 3000
-            color: "#ffe09c"
-        hours_to_show: 24
-        points_per_hour: 2
-        show_points: false
-        height: 150
+        - type: custom:mini-graph-card
+          name: VOC Upstairs
+  #          style: |
+  #            ha-card {
+  #              background: {% if states('sensor.tvocs_upstairs')|int <= 250 %}
+  #              #00c40a
+  #              {% elif states('sensor.tvocs_upstairs')|int <= 2000 %} 
+  #              #c1c400 
+  #              {% else %}
+  #              #c41700
+  #              {% endif %}
+          entities:
+            - entity: sensor.tvocs_upstairs
+              name: 
+          color_thresholds:
+            - value: 0
+              color: "#9cffa1"
+            - value: 240
+              color: "#9cffa1"
+            - value: 260
+              color: "#fdff9c"
+            - value: 1990
+              color: "#fdff9c"
+            - value: 2010
+              color: "#ffe09c"
+            - value: 3000
+              color: "#ffe09c"
+          hours_to_show: 24
+          points_per_hour: 2
+          show_points: false
+          height: 150
+
+
 
 
 #    - sensor.u_s_air_pollution_level 
@@ -262,16 +370,16 @@ cards:
 #      city: 'Prague'
 
 
-  - type: entities
-    title: Weather Forecast
-    show_header_toggle: false
-    entities:
-    - sensor.dark_sky_hourly_summary
-    - sensor.dark_sky_daily_summary
-    - sensor.dark_sky_overnight_low_temperature_0d
-    - sensor.dark_sky_daytime_high_temperature_0d
-    - sensor.dark_sky_precip_probability
-    - sensor.dark_sky_precip
+#  - type: entities
+#    title: Weather Forecast
+#    show_header_toggle: false
+#    entities:
+#    - sensor.dark_sky_hourly_summary
+#    - sensor.dark_sky_daily_summary
+#    - sensor.dark_sky_overnight_low_temperature_0d
+#    - sensor.dark_sky_daytime_high_temperature_0d
+#    - sensor.dark_sky_precip_probability
+#    - sensor.dark_sky_precip
 #    - sensor.dark_sky_apparent_temperature
 #    - sensor.dark_sky_overnight_low_apparent_temperature_0d
 #    - sensor.dark_sky_daytime_high_apparent_temperature_0d
@@ -302,27 +410,7 @@ cards:
 #    entities:
 #    - sensor.dark_sky_temperature
 
-  - type: custom:mini-graph-card
-#      name: Internet
-    entities:
-      - entity: sensor.smartweather_temperature
-        name: Temperature
-    hours_to_show: 24
-    points_per_hour: 2
-    height: 150
-    color_thresholds:
-      - value: 0
-        color: "#ccccff"
-      - value: 15
-        color: "#6666ff"
-      - value: 20
-        color: "#f3f300"
-      - value: 23
-        color: "#f39c12"
-      - value: 25
-        color: "#d35400"
-      - value: 28
-        color: "#c0392b"
+
     
 #  - type: history-graph
 #    title: 'Feels Like Temp'
@@ -333,109 +421,150 @@ cards:
 #    title: 'Wind Speed'
 #    entities:
 #    - sensor.dark_sky_wind_speed
+
+
   - type: vertical-stack
-    in_card: true
+    title: Precipitation
     cards: 
+
+    - type: iframe
+      url: https://embed.windy.com/embed2.html?lat=49.682&lon=15.535&detailLat=49.500&detailLon=15.700&width=650&height=450&zoom=6&level=surface&overlay=rain&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
+      aspect_ratio: 80%
+
+    - type: vertical-stack
+      in_card: true
+      cards: 
+
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.dark_sky_precip_probability
+            name: '% Chance Precip.'
+        hours_to_show: 24
+        points_per_hour: 2
+        height: 150
+        lower_bound: 0
+        upper_bound: 100
+        show:
+
+          points: false
+
+      #  - type: history-graph
+      #    title: '% Chance Precip.'
+      #    entities:
+      #    - sensor.dark_sky_precip_probability
+
+
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.smartweather_rain_rate
+            name: 'Rain Rate (mm)'
+        hours_to_show: 24
+        points_per_hour: 2
+        height: 150
+        lower_bound: 0
+
+#  - type: history-graph
+#    title: 'Precip. Intensity'
+#    entities:
+#    - sensor.dark_sky_precip_intensity
+
+
+
+  - type: vertical-stack
+    title: Wind
+    cards: 
+
+    - type: iframe
+      url: https://embed.windy.com/embed2.html?lat=49.682&lon=15.535&detailLat=49.500&detailLon=15.700&width=650&height=450&zoom=6&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
+      aspect_ratio: 80%
     
 #    - type: custom:compass-card
 #      entity:  sensor.smartweather_wind_bearing
 #      secondary_entity:  sensor.smartweather_wind_speed
 #      compass:
 #        indicator: arrow_inward
-
-    - type: custom:compass-card
-      indicator_sensors:
-        - sensor:  sensor.smartweather_wind_bearing
-          indicator:
-            type: arrow_inward
-      value_sensors:
-        - sensor: sensor.smartweather_wind_speed
-      compass:
-        north:
-          show: true
-          offset: 15
-
-    - type: custom:mini-graph-card
-  #      name: Internet
-      entities:
-        - entity: sensor.smartweather_wind_speed
-          name: Wind Speed
-      hours_to_show: 24
-      points_per_hour: 2
-      height: 150
-      lower_bound: 0
-      color_thresholds:
-        - value: 0
-          color: "#ccccff"
-        - value: 6
-          color: "#6666ff"
-        - value: 30
-          color: "#0da035"
-        - value: 45
-          color: "#daa002"
-        - value: 60
-          color: "#d35400"
-        - value: 75
-          color: "#e04c23"
+    - type: vertical-stack
+      in_card: true
+      cards: 
 
 
-    - type: custom:mini-graph-card
-      entities:
-        - entity: sensor.smartweather_wind_gust
-          name: Wind Gust
-      hours_to_show: 24
-      points_per_hour: 2
-      height: 150
-      lower_bound: 0
-      color_thresholds:
-        - value: 0
-          color: "#ccccff"
-        - value: 6
-          color: "#6666ff"
-        - value: 30
-          color: "#0da035"
-        - value: 45
-          color: "#daa002"
-        - value: 60
-          color: "#d35400"
-        - value: 75
-          color: "#e04c23"
-#    
-#  - type: history-graph
-#    title: 'Wind Gust'
-#    entities:
-#    - sensor.dark_sky_wind_gust
+
+      - type: custom:compass-card
+        indicator_sensors:
+          - sensor:  sensor.smartweather_wind_bearing
+            indicator:
+              type: arrow_inward
+        value_sensors:
+          - sensor: sensor.smartweather_wind_speed
+        compass:
+          north:
+            show: true
+            offset: 15
+
+      - type: custom:mini-graph-card
+    #      name: Internet
+        entities:
+          - entity: sensor.smartweather_wind_speed
+            name: Wind Speed
+        hours_to_show: 24
+        points_per_hour: 2
+        height: 150
+        lower_bound: 0
+        color_thresholds:
+          - value: 0
+            color: "#ccccff"
+          - value: 6
+            color: "#6666ff"
+          - value: 30
+            color: "#0da035"
+          - value: 45
+            color: "#daa002"
+          - value: 60
+            color: "#d35400"
+          - value: 75
+            color: "#e04c23"
 
 
-    - type: custom:mini-graph-card
-      entities:
-        - entity: sensor.smartweather_wind_bearing
-          name: Wind Bearing
-      hours_to_show: 24
-      points_per_hour: 4
-      height: 150
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.smartweather_wind_gust
+            name: Wind Gust
+        hours_to_show: 24
+        points_per_hour: 2
+        height: 150
+        lower_bound: 0
+        color_thresholds:
+          - value: 0
+            color: "#ccccff"
+          - value: 6
+            color: "#6666ff"
+          - value: 30
+            color: "#0da035"
+          - value: 45
+            color: "#daa002"
+          - value: 60
+            color: "#d35400"
+          - value: 75
+            color: "#e04c23"
+  #    
+  #  - type: history-graph
+  #    title: 'Wind Gust'
+  #    entities:
+  #    - sensor.dark_sky_wind_gust
 
-#  - type: history-graph
-#    title: 'Wind Bearing'
-#    entities:
-#    - sensor.dark_sky_wind_bearing  
 
-  - type: custom:mini-graph-card
-    entities:
-      - entity: sensor.smartweather_humidity
-        name: Humidity
-    hours_to_show: 24
-    points_per_hour: 2
-    height: 150
-    lower_bound: 0
-    upper_bound: 100
-    color_thresholds:
-      - value: 15
-        color: "#daa002"
-      - value: 35
-        color: "#0da035"
-      - value: 85
-        color: "#daa002"
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.smartweather_wind_bearing
+            name: Wind Bearing
+        hours_to_show: 24
+        points_per_hour: 4
+        height: 150
+
+  #  - type: history-graph
+  #    title: 'Wind Bearing'
+  #    entities:
+  #    - sensor.dark_sky_wind_bearing  
 
 #  - type: history-graph
 #    title: 'Humidity'
@@ -443,82 +572,56 @@ cards:
 #    - sensor.dark_sky_humidity
 
   - type: vertical-stack
-    in_card: true
+    title: Cloud Coverage
     cards: 
 
-    - type: custom:mini-graph-card
-      entities:
-        - entity: sensor.dark_sky_precip_probability
-          name: '% Chance Precip.'
-      hours_to_show: 24
-      points_per_hour: 2
-      height: 150
-      lower_bound: 0
-      upper_bound: 100
-      show:
+    - type: iframe
+      url: https://embed.windy.com/embed2.html?lat=49.682&lon=15.535&detailLat=49.500&detailLon=15.700&width=650&height=450&zoom=6&level=surface&overlay=clouds&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
+      aspect_ratio: 80%
 
-        points: false
+    - type: vertical-stack
+      in_card: true
+      cards: 
 
-    #  - type: history-graph
-    #    title: '% Chance Precip.'
-    #    entities:
-    #    - sensor.dark_sky_precip_probability
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.smartweather_brightness
+            name: 'Sunlight'
+        hours_to_show: 24
+        points_per_hour: 2
+        height: 150
+        lower_bound: 0
+        upper_bound: 120000
+        color_thresholds:
+            - value: 80000
+              color: "#f3f300"
+            - value: 2000
+              color: "#777777"
+            - value: 100
+              color: "#777777"
+            - value: 50
+              color: "#222222"
+            - value: 5
+              color: "#000000"
+            - value: 0
+              color: "#000000"
 
+      - type: custom:mini-graph-card
+    #      name: Internet
+        entities:
+          - entity: sensor.dark_sky_visibility
+            name: 'Visibility'
+        hours_to_show: 24
+        points_per_hour: 1
+        height: 150
+        lower_bound: 0
+        upper_bound: 16.09
+        color_thresholds:
+            - value: 1
+              color: "#ffffff"
+            - value: 15
+              color: "#6666ff"
 
-    - type: custom:mini-graph-card
-      entities:
-        - entity: sensor.smartweather_rain_rate
-          name: 'Rain Rate (mm)'
-      hours_to_show: 24
-      points_per_hour: 2
-      height: 150
-      lower_bound: 0
-
-#  - type: history-graph
-#    title: 'Precip. Intensity'
-#    entities:
-#    - sensor.dark_sky_precip_intensity
-
-  - type: custom:mini-graph-card
-#      name: Internet
-    entities:
-      - entity: sensor.smartweather_brightness
-        name: 'Sunlight'
-    hours_to_show: 24
-    points_per_hour: 2
-    height: 150
-    lower_bound: 0
-    upper_bound: 120000
-    color_thresholds:
-        - value: 80000
-          color: "#f3f300"
-        - value: 2000
-          color: "#777777"
-        - value: 100
-          color: "#777777"
-        - value: 50
-          color: "#222222"
-        - value: 5
-          color: "#000000"
-        - value: 0
-          color: "#000000"
-
-
-  - type: custom:mini-graph-card
-#      name: Internet
-    entities:
-      - entity: sensor.dark_sky_visibility
-        name: 'Visibility'
-    hours_to_show: 24
-    points_per_hour: 1
-    height: 150
-    lower_bound: 0
-    upper_bound: 16.09
-    color_thresholds:
-        - value: 1
-          color: "#ffffff"
-        - value: 15
-          color: "#6666ff"
 
 #
 #  - type: history-graph
@@ -533,46 +636,33 @@ cards:
 #    entities:
 #    - sensor.dark_sky_ozone
 
-  - type: custom:mini-graph-card
-    entities:
-      - entity: sensor.smartweather_pressure
-        name: 'Air Pressure'
-    hours_to_show: 24
-    points_per_hour: 2
-    height: 150
-    lower_bound: 1000
-    upper_bound: 1030
-    color_thresholds:
-        - value: 1022.689
-          color: "#6666ff"
-        - value: 1009.144
-          color: "#ffffff"
+  - type: vertical-stack
+    title: Air Pressure
+    cards: 
+
+    - type: iframe
+      url: https://embed.windy.com/embed2.html?lat=49.682&lon=15.535&detailLat=49.500&detailLon=15.700&width=650&height=450&zoom=6&level=surface&overlay=pressure&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
+      aspect_ratio: 80%
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.smartweather_pressure
+          name: 'Air Pressure'
+      hours_to_show: 24
+      points_per_hour: 2
+      height: 150
+      lower_bound: 1000
+      upper_bound: 1030
+      color_thresholds:
+          - value: 1022.689
+            color: "#6666ff"
+          - value: 1009.144
+            color: "#ffffff"
 
 #  - type: history-graph
 #    title: 'Pressure'
 #    entities:
 #    - sensor.dark_sky_pressure
-
-  - type: custom:mini-graph-card
-    entities:
-      - entity: sensor.smartweather_dewpoint
-        name: 'Dew Point'
-    hours_to_show: 24
-    points_per_hour: 2
-    height: 150
-    color_thresholds:
-      - value: 0
-        color: "#ccccff"
-      - value: 15
-        color: "#6666ff"
-      - value: 20
-        color: "#f3f300"
-      - value: 23
-        color: "#f39c12"
-      - value: 25
-        color: "#d35400"
-      - value: 28
-        color: "#c0392b"
 
 #  - type: history-graph
 #    title: 'Dew Point'

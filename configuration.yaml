@@ -373,7 +373,7 @@ weather:
   - platform: darksky
     api_key: !secret darksky_key
     name: Weather Forecast
-    mode: hourly
+    mode: daily
     scan_interval: 720
     
 #  - platform: openweathermap
@@ -385,7 +385,7 @@ weather:
 
   - platform: openweathermap
     api_key: !secret openweathermap_key
-    mode: daily
+    mode: hourly
 
 #panel_iframe:
 #cloud9:

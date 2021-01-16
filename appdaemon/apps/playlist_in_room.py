@@ -1,7 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 
-# This appdaemon script plays music in a selection of rooms on iTunes and AirPlay devices based on an Amazon Alexa instruction (or service call)
-# It was created primarily to handle shitty things that iTunes does like not turning on the speaker or playlist properly, so this retries till it works.
+# This appdaemon script plays music in a selection of rooms on ForkedDaapD and AirPlay devices based on an Amazon Alexa instruction (or service call)
+# It was created primarily to handle shitty things that iTunes does like not turning on the speaker or playlist properly. There are less problems like this with ForkedDaapD, so this version is mostly just setting speaker volumes correctly before playing the playlists
 
 class PlaylistInRoom(hass.Hass):
 
@@ -43,8 +43,8 @@ class PlaylistInRoom(hass.Hass):
   ["media_player.office_alexa","media_player.forked_daapd_output_office"],  
   ["media_player.sophies_room_echo_dot","media_player.forked_daapd_output_sophie_s_room"],
   ["media_player.master_closet_kindle","media_player.forked_daapd_output_office"],
-  ["christmas","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen","media_player.forked_daapd_output_bathroom_1st_floor"]]
-
+  ["christmas","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen","media_player.forked_daapd_output_bathroom_1st_floor"],
+  ["media_player.seans_echo_dot","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"]]
 #########################################################################################################
 #                            THESE ARE THE INITIALIZE AND LAUNCH FUNCTIONS                              #
 #########################################################################################################

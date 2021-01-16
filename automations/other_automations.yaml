@@ -888,25 +888,25 @@
       service: notify.alexa_media_alexa_master_bath
     - delay:
         seconds: 2
-    - data:
-        data:
-          type: tts
-        message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_alexa_living_room
-    - delay:
-        seconds: 2
+    # - data:
+    #     data:
+    #       type: tts
+    #     message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
+    #   service: notify.alexa_media_alexa_living_room
+    # - delay:
+    #     seconds: 2
     - data:
         data:
           type: tts
         message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
       service: notify.alexa_media_alexa_master_closet
-    - delay:
-        seconds: 2
-    - data:
-        data:
-          type: tts
-        message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_alexa_kitchen
+    # - delay:
+    #     seconds: 2
+    # - data:
+    #     data:
+    #       type: tts
+    #     message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
+    #   service: notify.alexa_media_alexa_kitchen
 
 
 - id: announce_someone_at_the_gate
