@@ -314,6 +314,7 @@ class WeatherCardChart extends Polymer.Element {
     //var data = this.weatherObj.attributes.forecast.slice(0,9);
     var mode = this.mode;
     var data = null;
+    console.log ("mode=",mode);
     if (mode == 'hourly') {
       data = this.weatherObj.attributes.forecast.slice(0,27);
     } else {
@@ -332,65 +333,67 @@ class WeatherCardChart extends Polymer.Element {
     var tempHigh = [];
     var tempLow = [];
     var precip = [];
-    /*
-    for (i = 0; i < data.length; i++) {
-      var d = data[i];
-      dateTime.push(new Date(d.datetime));
-      tempHigh.push(d.temperature);
-      tempLow.push(d.templow);
-      precip.push(d.precipitation);
-    }
-    */
-    var averagecount = 1;
-    var dateTimeAvg = null;
-    var tempHighAvg = null;
-    var tempLowAvg = null;
-    var precipAvg = null;
-    for (i = 0; i < data.length; i++) {
-      var d = data[i];
-      if (mode == 'daily') {
+    if (mode == 'hourly') {
+      var averagecount = 1;
+      var dateTimeAvg = null;
+      var tempHighAvg = null;
+      var tempLowAvg = null;
+      var precipAvg = null;
+      for (i = 0; i < data.length; i++) {
+        var d = data[i];
+        if (mode == 'daily') {
+          dateTime.push(new Date(d.datetime));
+          tempHigh.push(d.temperature);
+          tempLow.push(d.templow);
+          precip.push(d.precipitation);
+          } 
+        else {
+          tempHighAvg += d.temperature;
+          tempLowAvg += d.templow;
+          precipAvg += d.precipitation;
+          if (averagecount == 2) {
+            dateTime.push(new Date(d.datetime));
+            }
+          if (averagecount == 3) {
+            if (precipAvg<=0) {
+              precipAvg=null;
+              }
+            tempHighAvg/=3;
+            tempHigh.push(tempHighAvg);
+            precip.push(precipAvg);
+  //          console.log ("i=",i);
+  //          console.log ("averagecount=",averagecount);
+  //          console.log ("d=",d);
+  //          console.log ("tempHighAvg=",tempHighAvg);
+  //          console.log ("precipAvg=",precipAvg);
+  //          console.log ("tempLowAvg=",tempLowAvg);
+  //          console.log ("dateTimeAvg=",dateTimeAvg);
+            averagecount = 0;
+            dateTimeAvg = null;
+            tempLowAvg = null;
+            tempHighAvg = null;
+            precipAvg = null;
+            }
+  //        console.log ("i=",i);
+  //        console.log ("averagecount=",averagecount);
+  //        console.log ("d=",d);
+  //        console.log ("tempHighAvg=",tempHighAvg);
+  //        console.log ("precipAvg=",precipAvg);
+  //        console.log ("tempLowAvg=",tempLowAvg);
+  //        console.log ("dateTimeAvg=",dateTimeAvg);
+          averagecount += 1;        
+          }
+        }
+    } else {
+      for (i = 0; i < data.length; i++) {
+        var d = data[i];
         dateTime.push(new Date(d.datetime));
         tempHigh.push(d.temperature);
         tempLow.push(d.templow);
         precip.push(d.precipitation);
-        } 
-      else {
-        tempHighAvg += d.temperature;
-        tempLowAvg += d.templow;
-        precipAvg += d.precipitation;
-        if (averagecount == 2) {
-          dateTime.push(new Date(d.datetime));
-          }
-        if (averagecount == 3) {
-          if (precipAvg<=0) {
-            precipAvg=null;
-            }
-          tempHighAvg/=3;
-          tempHigh.push(tempHighAvg);
-          precip.push(precipAvg);
-//          console.log ("i=",i);
-//          console.log ("averagecount=",averagecount);
-//          console.log ("d=",d);
-//          console.log ("tempHighAvg=",tempHighAvg);
-//          console.log ("precipAvg=",precipAvg);
-//          console.log ("tempLowAvg=",tempLowAvg);
-//          console.log ("dateTimeAvg=",dateTimeAvg);
-          averagecount = 0;
-          dateTimeAvg = null;
-          tempLowAvg = null;
-          tempHighAvg = null;
-          precipAvg = null;
-          }
-//        console.log ("i=",i);
-//        console.log ("averagecount=",averagecount);
-//        console.log ("d=",d);
-//        console.log ("tempHighAvg=",tempHighAvg);
-//        console.log ("precipAvg=",precipAvg);
-//        console.log ("tempLowAvg=",tempLowAvg);
-//        console.log ("dateTimeAvg=",dateTimeAvg);
-        averagecount += 1;        
-        }
       }
+    }
+
     var style = getComputedStyle(document.body);
     var textColor = style.getPropertyValue('--primary-text-color');
     var dividerColor = style.getPropertyValue('--divider-color');

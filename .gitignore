@@ -11,7 +11,9 @@
 !python_scripts/
 !python_scripts/**
 !appdaemon/
-!appdaemon/**
+!appdaemon/*
+!appdaemon/apps/
+!appdaemon/apps/**
 !themes/
 !themes/**
 !sensors/

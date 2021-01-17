@@ -76,7 +76,10 @@ midnight:
   table-row-background-color: "#353840"
   text-primary-color: "var(--primary-text-color)"
   toggle-button-color: "var(--primary-color)"
+
+
 # Sean's additions
+
   ha-card-border-radius: "10px"
 #  ha-card-box-shadow: "4px 4px 4px #2E333A"
   ha-card-box-shadow: "4px 4px 4px #1B1E1F"

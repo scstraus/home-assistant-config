@@ -580,6 +580,12 @@ cards:
 
 
       - type: 'custom:weather-card-chart'
+        style: |
+          .card-header {
+            padding: 0px 0px 0px;
+            font-size: var(--ha-card-header-font-size, 0px);
+            line-height: 24px;
+          }
         title: Weather
         weather: weather.smartweather_home
         sun: sun.sun
