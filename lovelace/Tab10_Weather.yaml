@@ -651,7 +651,7 @@ cards:
       hours_to_show: 24
       points_per_hour: 2
       height: 150
-      lower_bound: 1000
+      lower_bound: 990
       upper_bound: 1030
       color_thresholds:
           - value: 1022.689

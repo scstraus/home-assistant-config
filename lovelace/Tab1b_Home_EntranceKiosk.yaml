@@ -512,7 +512,7 @@ cards:
               - padding-left: 16px
             card:
               - padding-top: 22px
-              - padding-bottom: 4px
+              - padding-bottom: 10px
               - font-size: 24px
         - type: "custom:calendar-card"
           entities:
