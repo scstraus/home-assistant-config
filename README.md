@@ -297,11 +297,11 @@ So, I'm using some of the same cards you've seen already with a couple new ones.
   (to show the history of open doors and windows and when motion was detected)
   
 
-## [Tab 7: Weather](lovelace/Tab7_Weather.yaml)
+## [Tab 10: Weather](lovelace/Tab10_weather.yaml)
 
 This one is just a collection of graphs and current weather data. I mostly use it for getting the idea of recent conditions for when I'm making automations, but sometimes I'm curious about the trend of one of these weather items and I take a peek over at this tab. 
 
-![](readme_images/Tab7_weather.png)
+![](readme_images/Tab10_Weather.png)
 
 These cards you've already seen elsewhere in my config.
 
@@ -309,14 +309,6 @@ These cards you've already seen elsewhere in my config.
 
   (love having the chart in my weather forecast)
 
-- [custom:air-visual-card](https://github.com/dnguyen800/Air-Visual-Card)
-
-  (air quality)
-
-- [custom:button-card](https://github.com/custom-cards/button-card)
-
-  (labels for the air quality card and reminders card because the ones on the card didn't match my theme)
-  
 - [entities card](https://www.home-assistant.io/lovelace/entities/) 
 
   (current weather data)
@@ -325,7 +317,12 @@ These cards you've already seen elsewhere in my config.
 
   (historical weather data)
 
-## [Tab 8: System](lovelace/Tab8_Tech.yaml)
+- [webpage card](https://www.home-assistant.io/lovelace/iframe/)
+
+  (for imbedding the windy maps)
+  
+
+## [Tab 12: System](lovelace/Tab12_Tech.yaml)
 
 Here is the system status of my Synology NAS that runs my Plex and Frigate instances as well as general backups and file serving and Home Assistant server (2011 Mac Mini + Ubuntu with RAID SSD's), as well as random other things I wanted shown somewhere for monitoring and tweaking.
 
