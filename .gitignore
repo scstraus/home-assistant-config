@@ -8,6 +8,8 @@
 !*.md
 !automations
 !lovelace
+!readme_images/
+!readme_images/**
 !python_scripts/
 !python_scripts/**
 !appdaemon/
