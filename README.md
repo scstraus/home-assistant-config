@@ -339,10 +339,17 @@ Here is the system status of my Synology NAS that runs my Plex and Frigate insta
 
 - [gauge card](https://www.home-assistant.io/lovelace/gauge/)
 
-  (current battery levels and disk use)
+  (disk use)
 
 - [entities card](https://www.home-assistant.io/lovelace/entities/) 
 
+- [cutom:lovelace-auto-entities](https://github.com/thomasloven/lovelace-auto-entities)
+
+  (the auto entities card automatically fills in the bar card below with any phone or zwave entity that exposes a battery attribute. That way I don't have to manually add them)
+
+- [custom:bar_card](https://github.com/custom-cards/bar-card)
+
+  (current battery levels of all battery powered devices that expose a battery level)
 
 # Automations
 
