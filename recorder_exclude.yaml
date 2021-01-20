@@ -4,7 +4,6 @@
     domains:
     - calendar
     - history_graph
-    - media_player
     - camera
     - alert
     entities:

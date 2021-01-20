@@ -646,7 +646,7 @@ cards:
 
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.smartweather_pressure
+        - entity: sensor.smartweather_sea_level_pressure
           name: 'Air Pressure'
       hours_to_show: 24
       points_per_hour: 2

@@ -594,7 +594,7 @@
   initial_state: 'true'
   trigger:
     platform: time
-    at: '12:30:00'
+    at: '12:05:00'
   action:
     service: variable.set_variable
     data:

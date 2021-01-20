@@ -2,7 +2,6 @@
     domains:
     - calendar
     - history_graph
-    - media_player
     - automation
     - script
     - camera

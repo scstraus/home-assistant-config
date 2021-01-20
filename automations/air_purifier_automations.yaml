@@ -593,4 +593,30 @@
     data:
       entity_id: fan.master_bedroom_air_purifier
 
-          
+
+- id: turn_on_master_bedroom_air_purifier_if_air_is_bad_after_unavailable
+  alias: "Turn on Master Bedroom Air Purifier if the air is bad after unavailable"
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: fan.master_bedroom_air_purifier
+    from: 'unavailable'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.hlubocepy_air_quality
+        above: 70
+      - condition: time
+        after: '21:00:00'
+        before: '11:00:00'
+  action:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+    - delay:
+        seconds: 15
+    - service: fan.set_speed
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+        speed: Silent

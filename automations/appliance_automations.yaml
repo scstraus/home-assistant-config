@@ -260,6 +260,53 @@
         entity_id: input_boolean.warn_door_open_dishwasher_running
 
 
+- id: dishwasher_dirty_and_hasnt_been_run
+  alias: dishwasher_dirty_and_hasnt_been_run
+  initial_state: 'true'
+  mode: single
+  trigger:
+    platform: state
+    entity_id: binary_sensor.living_room_zone_4
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.sean_s_iphone_12
+        state: 'home'
+      - condition: state
+        entity_id: input_select.bosch_dishwasher_status
+        state: 'Dirty'
+# why the hell doesn't this work with for:?
+#        for:
+#          minutes: 180
+      - condition: state
+        entity_id: sensor.bosch_dishwasher_program
+        state: 'None'
+# why the hell doesn't this work with for:?
+#        for:
+#          minutes: 180
+      - condition: time
+        after: '00:00:01'
+        before: '05:00:00'
+      - condition: state
+        entity_id: media_player.xbox_systemos_2
+        state: 'off'
+        for:
+          minutes: 10
+  action:
+    - data:
+        data:
+          type: tts
+        message: "Hi, it looks like you might have forgotten to run the dishes. If thats the case, dont forget to run them."
+        target: 
+          - media_player.alexa_living_room
+      service: notify.alexa_media
+    - delay:
+        minutes: 2
+
+
+
 ################### MIELE WASHING MACHINE ####################
 
 #      - Empty
@@ -567,32 +614,6 @@
         push:
           thread-id: "appliances"
 
-- id: turn_on_master_bedroom_air_purifier_if_air_is_bad_after_unavailable
-  alias: "Turn on Master Bedroom Air Purifier if the air is bad after unavailable"
-  initial_state: 'true'
-  trigger:
-    platform: state
-    entity_id: fan.master_bedroom_air_purifier
-    from: 'unavailable'
-  condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: sensor.hlubocepy_air_quality
-        above: 70
-      - condition: time
-        after: '21:00:00'
-        before: '11:00:00'
-  action:
-    - service: fan.turn_on
-      data:
-        entity_id: fan.master_bedroom_air_purifier
-    - delay:
-        seconds: 15
-    - service: fan.set_speed
-      data:
-        entity_id: fan.master_bedroom_air_purifier
-        speed: Silent
 
 - id: towel_warmer_turn_off_timer
   alias: towel_warmer_turn_off_timer
