@@ -27,11 +27,11 @@ How to navigate this readme:
   * [Tab 1: Main Dashboard](#tab-1-main-dashboard)
   * [Tab 2: Music](#tab-2-music)
   * [Tab 3: Heat](#tab-3-heat)
-  * [Tab 4: Cameras](#tab-4-cameras)
-  * [Tab 5: Appliances](#tab-5-appliances)
-  * [Tab 6: Alarm](#tab-6-alarm)
-  * [Tab 10: Weather](#tab-10-weather)
-  * [Tab 11: System](#tab-11-system)
+  * [Tab 6: Cameras](#tab-6-cameras)
+  * [Tab 7: Alarm](#tab-7-alarm)
+  * [Tab 8: Appliances](#tab-8-appliances)
+  * [Tab 9: Weather](#tab-9-weather)
+  * [Tab 10: System](#tab-10-system)
 - [Automations](#automations)
   * [Appliance Automations](#appliance-automations)
     + [Guessing whether the dishes in the dishwasher are clean or dirty based on the Bosch integration](#guessing-whether-the-dishes-in-the-dishwasher-are-clean-or-dirty-based-on-the-bosch-integration)
@@ -250,25 +250,17 @@ What I'm using for most of the view is mostly just a bunch of [custom:lovelace-c
 
 Way down at the bottom, you will see an entities card with some input-selects for special heating cases like when I'm working from home or when there's a fire in the fireplace. Others happen automatically through automation like when my daughter is home from school for the day. The input selects are the output from my [python script](https://github.com/scstraus/home-assistant-config/blob/master/python_scripts/set_heat_weather_override.py) which takes the heating off of the schedule and turns it down depending on the weather.
 
-## [Tab 4: Cameras](lovelace/Tab4_Cameras.yaml)
+## [Tab 7: Cameras](lovelace/Tab7_Cameras.yaml)
 
 This tab shows the feeds of my security cameras on top with graphs of motion detection followed by the snapshots of the last 10 people who have been found by the human detection powered by [frigate](https://github.com/blakeblackshear/frigate) and a [Google coral USB stick](https://coral.ai/products/accelerator/) and [history graphs](https://www.home-assistant.io/lovelace/history-graph/)  of when humans were spotted.
 
-![](readme_images/Tab4_cameras.png)
+![](readme_images/Tab7_cameras.png)
 
 So basically the camera views are just the [picture glance card](https://www.home-assistant.io/lovelace/picture-glance/) for showing the cameras and some [horizontal](https://www.home-assistant.io/lovelace/horizontal-stack/) and [vertical stacks](https://www.home-assistant.io/lovelace/vertical-stack/) to arrange them and [history graphs](https://www.home-assistant.io/lovelace/history-graph/) to show the history of motion.
 
 Below that is the same structure except I am monitoring the snapshots from the human detection and the history graphs of when humans are detected. I have added the [custom:swipe-card](https://github.com/bramkragten/custom-ui/tree/master/swipe-card) so that I can swipe between the latest snapshot of people detected and the previous 10 snapshots that were captured before that using [these automations](#history-of-last-door-or-window-which-was-activated)
 
-## [Tab 5: Appliances](lovelace/Tab5_Appliances.yaml)
-
-This is my newest tab and is still a work in progress. The goal is to have the full controls and info from all my appliances like my dishwashers, washers and dryers, and also my car in some pretty [picture elements cards](https://www.home-assistant.io/lovelace/picture-elements/). Time will tell if I ever get around to creating all those pretty picture elements cards as they are quite a bit of work. The air purifiers already had some nice ones that some [other folks had made](https://community.home-assistant.io/t/lovelace-xiaomi-air-purifier-card/72924/4) and I just had to update them a bit for the most recent versions of hass. 
-
-![](readme_images/Tab5_Appliances.png)
-
-So, these are some [picture elements cards](https://www.home-assistant.io/lovelace/picture-elements/) that I got from [here](https://community.home-assistant.io/t/lovelace-xiaomi-air-purifier-card/72924/4). Nothing else happening here.
-
-## [Tab 6: Alarm](lovelace/Tab6_Alarm.yaml)
+## [Tab 8: Alarm](lovelace/Tab8_Alarm.yaml)
 
 So, this tab is messy and ugly and I don't like it much, but it gets the job done. The main problem is that my alarm system publishes 3 alarm panels due to the way it's partitioned for home and away modes and they all show up here. 
 
@@ -276,7 +268,7 @@ At some point I will merge these all together into an [MQTT alarm panel](https:/
 
 Anyhow, the view shows the alarm panels and some history on doors and windows being opened and motion sensors tripped along with the times of the most recent activities spotted in the house. It also has some cards that pop up in real time when motion is detected around the house in case you wanted to see that in real time.
 
-![](readme_images/Tab6_Alarm.png)
+![](readme_images/Tab8_Alarm.png)
 
 So, I'm using some of the same cards you've seen already with a couple new ones.
 
@@ -295,6 +287,15 @@ So, I'm using some of the same cards you've seen already with a couple new ones.
 * [history graphs](https://www.home-assistant.io/lovelace/history-graph/) 
 
   (to show the history of open doors and windows and when motion was detected)
+
+
+## [Tab 9: Appliances](lovelace/Tab9_Appliances.yaml)
+
+This tab is still a work in progress. The goal is to have the full controls and info from all my appliances like my dishwashers, washers and dryers, and also my car in some pretty [picture elements cards](https://www.home-assistant.io/lovelace/picture-elements/). Time will tell if I ever get around to creating all those pretty picture elements cards as they are quite a bit of work. The air purifiers already had some nice ones that some [other folks had made](https://community.home-assistant.io/t/lovelace-xiaomi-air-purifier-card/72924/4) and I just had to update them a bit for the most recent versions of hass. 
+
+![](readme_images/Tab9_Appliances.png)
+
+So, these are some [picture elements cards](https://www.home-assistant.io/lovelace/picture-elements/) that I got from [here](https://community.home-assistant.io/t/lovelace-xiaomi-air-purifier-card/72924/4). Nothing else happening here.
   
 
 ## [Tab 10: Weather](lovelace/Tab10_weather.yaml)
