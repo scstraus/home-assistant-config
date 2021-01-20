@@ -30,8 +30,8 @@ How to navigate this readme:
   * [Tab 4: Cameras](#tab-4-cameras)
   * [Tab 5: Appliances](#tab-5-appliances)
   * [Tab 6: Alarm](#tab-6-alarm)
-  * [Tab 7: Weather](#tab-7-weather)
-  * [Tab 8: System](#tab-8-system)
+  * [Tab 10: Weather](#tab-10-weather)
+  * [Tab 11: System](#tab-11-system)
 - [Automations](#automations)
   * [Appliance Automations](#appliance-automations)
     + [Guessing whether the dishes in the dishwasher are clean or dirty based on the Bosch integration](#guessing-whether-the-dishes-in-the-dishwasher-are-clean-or-dirty-based-on-the-bosch-integration)
@@ -322,11 +322,11 @@ These cards you've already seen elsewhere in my config.
   (for imbedding the windy maps)
   
 
-## [Tab 12: System](lovelace/Tab12_Tech.yaml)
+## [Tab 11: System](lovelace/Tab11_Tech.yaml)
 
 Here is the system status of my Synology NAS that runs my Plex and Frigate instances as well as general backups and file serving and Home Assistant server (2011 Mac Mini + Ubuntu with RAID SSD's), as well as random other things I wanted shown somewhere for monitoring and tweaking.
 
-![](readme_images/Tab8_System.png)
+![](readme_images/Tab11_System.png)
 
 - [custom:lovelace-canary](https://github.com/jcwillox/lovelace-canary)
 
