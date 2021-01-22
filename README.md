@@ -27,6 +27,8 @@ How to navigate this readme:
   * [Tab 1: Main Dashboard](#tab-1-main-dashboard)
   * [Tab 2: Music](#tab-2-music)
   * [Tab 3: Heat](#tab-3-heat)
+  * [Tab 5: Media](#tab-5-media)
+  * [Tab 6: Health](#tab-6-health)
   * [Tab 7: Cameras](#tab-7-cameras)
   * [Tab 8: Alarm](#tab-8-alarm)
   * [Tab 9: Appliances](#tab-9-appliances)
@@ -256,7 +258,7 @@ Way down at the bottom, you will see an entities card with some input-selects fo
 
 ## [Tab 6: Health](lovelace/Tab6_Health.yaml)
 
-![](readme_images/Tab6_Healt.jpg)
+![](readme_images/Tab6_Health.jpg)
 
 ## [Tab 7: Cameras](lovelace/Tab7_Cameras.yaml)
 
