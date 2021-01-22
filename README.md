@@ -250,6 +250,14 @@ What I'm using for most of the view is mostly just a bunch of [custom:lovelace-c
 
 Way down at the bottom, you will see an entities card with some input-selects for special heating cases like when I'm working from home or when there's a fire in the fireplace. Others happen automatically through automation like when my daughter is home from school for the day. The input selects are the output from my [python script](https://github.com/scstraus/home-assistant-config/blob/master/python_scripts/set_heat_weather_override.py) which takes the heating off of the schedule and turns it down depending on the weather.
 
+## [Tab 5: Media](lovelace/Tab5_Media.yaml)
+
+![](readme_images/Tab5_Media.jpg)
+
+## [Tab 6: Health](lovelace/Tab6_Health.yaml)
+
+![](readme_images/Tab6_Healt.jpg)
+
 ## [Tab 7: Cameras](lovelace/Tab7_Cameras.yaml)
 
 This tab shows the feeds of my security cameras on top with graphs of motion detection followed by the snapshots of the last 10 people who have been found by the human detection powered by [frigate](https://github.com/blakeblackshear/frigate) and a [Google coral USB stick](https://coral.ai/products/accelerator/) and [history graphs](https://www.home-assistant.io/lovelace/history-graph/)  of when humans were spotted.
