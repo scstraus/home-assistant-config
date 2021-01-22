@@ -258,7 +258,7 @@ Way down at the bottom, you will see an entities card with some input-selects fo
 
 ## [Tab 6: Health](lovelace/Tab6_Health.yaml)
 
-![](readme_images/Tab6_Health.jpg)
+![](readme_images/Tab6_Health.png)
 
 ## [Tab 7: Cameras](lovelace/Tab7_Cameras.yaml)
 
