@@ -254,6 +254,8 @@ Way down at the bottom, you will see an entities card with some input-selects fo
 
 ## [Tab 5: Media](lovelace/Tab5_Media.yaml)
 
+The media tab takes information from the [Plex recently added custom component](https://github.com/custom-components/sensor.plex_recently_added) and the [Sonarr upcoming media custom component](https://github.com/custom-components/sensor.sonarr_upcoming_media) and display what tv shows I have new and what is coming soon in my media library using the [Upcoming Media Card](https://github.com/custom-cards/upcoming-media-card). Pretty simple, but handy.
+
 ![](readme_images/Tab5_Media.jpg)
 
 ## [Tab 6: Health](lovelace/Tab6_Health.yaml)
