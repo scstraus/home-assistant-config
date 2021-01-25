@@ -106,6 +106,7 @@ How to navigate this readme:
     + [Turn all the attributes of air purifiers into their own sensors](#turn-all-the-attributes-of-air-purifiers-into-their-own-sensors)
     + [Get air quality data from my Airthings Wave air quality sensor](#get-air-quality-data-from-my-airthings-wave-air-quality-sensor)
     + [Break out attributes of AirVisual Node into individual sensors](#break-out-attributes-of-airvisual-node-into-individual-sensors)
+    
     (Documenting template sensors is still work in progress, so that's not all of them. For now you will have to check in the other YAML files in the sensors folder).
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
