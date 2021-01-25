@@ -106,6 +106,7 @@ How to navigate this readme:
     + [Turn all the attributes of air purifiers into their own sensors](#turn-all-the-attributes-of-air-purifiers-into-their-own-sensors)
     + [Get air quality data from my Airthings Wave air quality sensor](#get-air-quality-data-from-my-airthings-wave-air-quality-sensor)
     + [Break out attributes of AirVisual Node into individual sensors](#break-out-attributes-of-airvisual-node-into-individual-sensors)
+    (Documenting template sensors is still work in progress, so that's not all of them. For now you will have to check in the other YAML files in the sensors folder).
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
@@ -720,4 +721,4 @@ These just improve a little bit on the existing zone names to describe where som
 
 This sensor will make a human readable sentence describing when someone will be home if they are coming home or, if not, how far away they are and which direction they are traveling in. Alexa can read that out when asked, or you can read from the more info popup of the location in the lovelace dashboard. It takes in information from the [Google Maps Travel Time Sensor](https://www.home-assistant.io/integrations/google_travel_time/) and the [proximity component](https://www.home-assistant.io/integrations/proximity/) primarily to do this. The proximity component updates a bit slowly, so that's the weakest link here. Since the question about when someone will be home is mostly asked about me to determing when I am coming home from work, I have a different way of handling this for me which looks at which zones I've passed through most recently in order to determine my direction instead of the proximity component, so it's quite instant in vectoring where I'm headed as long as I'm heading through the zones as expected and the location sensors are working alright. Generally my commute is the same almost every day, this works quite well for me.
 
-
+**(Documenting template sensors is still work in progress, so that's not all of them. For now you will have to check in the other YAML files in the sensors folder).**
