@@ -260,8 +260,8 @@
         entity_id: input_boolean.warn_door_open_dishwasher_running
 
 
-- id: dishwasher_dirty_and_hasnt_been_run
-  alias: dishwasher_dirty_and_hasnt_been_run
+- id: dishwasher_dirty_and_hasnt_been_run_living_room
+  alias: dishwasher_dirty_and_hasnt_been_run_living_room
   initial_state: 'true'
   mode: single
   trigger:
@@ -279,13 +279,13 @@
         state: 'Dirty'
 # why the hell doesn't this work with for:?
 #        for:
-#          minutes: 180
-      - condition: state
-        entity_id: sensor.bosch_dishwasher_program
-        state: 'None'
-# why the hell doesn't this work with for:?
+#          hours: 3
+#      - condition: state
+#        entity_id: sensor.bosch_dishwasher_program
+#        state: 'None'
+## why the hell doesn't this work with for:?
 #        for:
-#          minutes: 180
+#          hours: 3
       - condition: time
         after: '00:00:01'
         before: '05:00:00'
@@ -293,7 +293,7 @@
         entity_id: media_player.xbox_systemos_2
         state: 'off'
         for:
-          minutes: 10
+          minutes: 5
   action:
     - data:
         data:
@@ -305,6 +305,97 @@
     - delay:
         minutes: 2
 
+
+- id: dishwasher_dirty_and_hasnt_been_run_master_closet
+  alias: dishwasher_dirty_and_hasnt_been_run_master_closet
+  initial_state: 'true'
+  mode: single
+  trigger:
+    platform: state
+    entity_id: binary_sensor.master_closet_zone_8
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.sean_s_iphone_12
+        state: 'home'
+      - condition: state
+        entity_id: input_select.bosch_dishwasher_status
+        state: 'Dirty'
+# why the hell doesn't this work with for:?
+#        for:
+#          hours: 3
+#      - condition: state
+#        entity_id: sensor.bosch_dishwasher_program
+#        state: 'None'
+## why the hell doesn't this work with for:?
+#        for:
+#          hours: 3
+      - condition: time
+        after: '00:00:01'
+        before: '05:00:00'
+      - condition: state
+        entity_id: media_player.xbox_systemos_2
+        state: 'off'
+        for:
+          minutes: 5
+  action:
+    - data:
+        data:
+          type: tts
+        message: "Hi, it looks like you might have forgotten to run the dishes. If thats the case, dont forget to run them."
+        target: 
+          - media_player.master_closet_kindle
+      service: notify.alexa_media
+    - delay:
+        minutes: 2
+
+
+- id: dishwasher_dirty_and_hasnt_been_run_master_bath
+  alias: dishwasher_dirty_and_hasnt_been_run_master_bath
+  initial_state: 'true'
+  mode: single
+  trigger:
+    platform: state
+    entity_id: binary_sensor.master_bedroom_zone_5
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.sean_s_iphone_12
+        state: 'home'
+      - condition: state
+        entity_id: input_select.bosch_dishwasher_status
+        state: 'Dirty'
+# why the hell doesn't this work with for:?
+#        for:
+#          hours: 3
+#      - condition: state
+#        entity_id: sensor.bosch_dishwasher_program
+#        state: 'None'
+## why the hell doesn't this work with for:?
+#        for:
+#          hours: 3
+      - condition: time
+        after: '00:00:01'
+        before: '05:00:00'
+      - condition: state
+        entity_id: media_player.xbox_systemos_2
+        state: 'off'
+        for:
+          minutes: 5
+  action:
+    - data:
+        data:
+          type: tts
+        message: "Hi, it looks like you might have forgotten to run the dishes. If thats the case, dont forget to run them."
+        target: 
+          - media_player.alexa_master_bath
+      service: notify.alexa_media
+    - delay:
+        minutes: 2
 
 
 ################### MIELE WASHING MACHINE ####################

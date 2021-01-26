@@ -44,8 +44,8 @@
     entity_id: device_tracker.sean_s_iphone_12
     from: 'home'
     to: 'not_home'
-    for:
-      seconds: 15
+#    for:
+#      seconds: 15
   action:
     service: input_select.select_option
     data:
@@ -873,3 +873,22 @@
                 push:
                   thread-id: "appliances"
 
+- id: notify_udoli_getting_dark_sean
+  alias: notify_udoli_getting_dark_sean
+  initial_state: 'true'
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:10:00"
+  condition:    
+    condition: template
+    value_template: >
+      {{ "Udoli" in states('device_tracker.sean_s_iphone_12') }} 
+  action:
+    service: notify.mobile_app_sean_s_iphone_12
+    data:
+      title: "Getting Dark in Udoli"
+      message: "The sun is setting. It will be dark soon. It's time to leave the udoli"
+      data:
+        push:
+          thread-id: "location"
