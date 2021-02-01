@@ -3,7 +3,7 @@
 
 Hello there. This is an incomplete and probably out of date description of what I'm doing with home assistant, but hopefully it will be of some use for ideas and samples to someone.
 
-If you like anything here, Be sure to :star2: my repo!
+If you like anything here, be sure to :star2: my repo!
 
 Some things that may be interesting to you from my config which are not so common or are unique from how much I've obsessed over them are the:
 
