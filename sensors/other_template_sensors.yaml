@@ -832,4 +832,45 @@
       bathroom_humidity_max_value:
         friendly_name: "Bathroom Humidity Max Value"
         unit_of_measurement: '%'
-        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.max_value }}"               
+        value_template: "{{ states.sensor.bathroom_humidity_stats.attributes.max_value }}"
+ 
+  - platform: template
+    sensors:
+      rain_sensor:
+        friendly_name: "It's Raining"
+        value_template: >-
+          {% if (as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 1800 and (states('binary_sensor.smartweather_raining')=='off') %}
+            no
+          {% else %}
+            {% if (states('sensor.smartweather_rain_rate'))|float < 0.2 %}
+              Drizzle
+            {% elif (states('sensor.smartweather_rain_rate'))|float < 0.5 %}           
+              Slight
+            {% elif (states('sensor.smartweather_rain_rate'))|float < 4.0 %}           
+              Moderate
+            {% elif (states('sensor.smartweather_rain_rate'))|float < 8.0 %}           
+              Heavy
+            {% elif (states('sensor.smartweather_rain_rate'))|float < 50.0 %}           
+              Very Heavy
+            {% else %}           
+              Violent Shower
+            {% endif %}
+          {% endif %} 
+        icon_template: >-
+          {% if (as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 1800 and (states('binary_sensor.smartweather_raining')=='off') %}
+            mdi:weather-sunny
+          {% else %}
+            {% if (states('sensor.smartweather_rain_rate'))|float < 0.2 %}
+              mdi:weather-partly-rainy
+            {% elif (states('sensor.smartweather_rain_rate'))|float < 0.5 %}           
+              mdi:weather-partly-rainy
+            {% elif (states('sensor.smartweather_rain_rate'))|float < 4.0 %}           
+              mdi:weather-rainy
+            {% elif (states('sensor.smartweather_rain_rate'))|float < 8.0 %}           
+              mdi:weather-pouring
+            {% elif (states('sensor.smartweather_rain_rate'))|float < 50.0 %}           
+              mdi:weather-pouring
+            {% else %}           
+              mdi:weather-pouring
+            {% endif %}
+          {% endif %} 

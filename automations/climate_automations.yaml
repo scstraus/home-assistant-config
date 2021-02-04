@@ -886,63 +886,125 @@
         entity_id: input_select.last_outside_aqi_notification
         option: 'Good'
 
-#              - condition: template
-#                value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
+- id: notify_its_raining
+  alias: notify_its_raining
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.smartweather_raining
+    to: 'on'
+  condition:  
+    condition: template
+    value_template: >
+      {{ (as_timestamp(now())-as_timestamp(states.binary_sensor.smartweather_raining.last_changed))|int > 299 }}
+  action:
+    - choose:
+        - conditions: 
+            - condition: template
+              value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
+          sequence:
+            - service: notify.mobile_app_sean_s_iphone_12
+              data:
+                title: "It's Raining"
+                message: "It's raining outside at home"
+                data:
+                  push:
+                    thread-id: "weather"
+    - service: notify.mobile_app_alena_s_iphone
+      data:
+        title: "It's Raining"
+        message: "It's raining outside at home"
+        data:
+          push:
+            thread-id: "weather"
+    - service: notify.mobile_app_sophies_iphone_se
+      data:
+        title: "It's Raining"
+        message: "It's raining outside at home"
+        data:
+          push:
+            thread-id: "weather"
 
-#
-#              - condition: template
-#                value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
-#
-##
-#- id: notify_hlubocepy_aqi_low_nochoice
-#  alias: notify_hlubocepy_aqi_low_nochoice
-#  initial_state: 'true'
-#  trigger:
-#    platform: numeric_state
-#    entity_id: sensor.hlubocepy_air_quality
-#    below: 50
-#    for: 
-#      minutes: 5
-#  condition:
-#    condition: and
-#    conditions:
-#      - condition: state
-#        entity_id: device_tracker.sean_s_iphone_12
-#        state: 'home'
-#      - condition: template
-#        value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int < 0)}}'
-#  action:
-#    service: notify.mobile_app_sean_s_iphone_12
-#    data:
-#      title: "Home outdoor air quality is good again"
-#      message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}."             
-#      data:
-#        push:
-#          thread-id: "weather"
-#
-#
-#- id: notify_hlubocepy_aqi_high_nochoice
-#  alias: notify_hlubocepy_aqi_high_nochoice
-#  initial_state: 'true'
-#  trigger:
-#    platform: numeric_state
-#    entity_id: sensor.hlubocepy_air_quality
-#    above: 70
-#    for: 
-#      minutes: 5
-#  condition:    
-#    condition: and
-#    conditions:
-#      - condition: state
-#        entity_id: device_tracker.sean_s_iphone_12
-#        state: 'home'
-#      - condition: template
-#        value_template: '{{((as_timestamp(states.automation.notify_hlubocepy_aqi_low.attributes.last_triggered) - as_timestamp(states.automation.notify_hlubocepy_aqi_high.attributes.last_triggered)  | default(-1)) | int > 0)}}'
-#  action:
-#    service: notify.mobile_app_sean_s_iphone_12
-#    data:
-#      title: "Home outdoor air quality is poor"
-#      message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}. Turn on an air purifier."
-#      data:
-#        push:
-#          thread-id: "weather"
+
+- id: notify_stopped_raining
+  alias: notify_stopped_raining
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.smartweather_raining
+    to: 'off'
+    for: "00:05:00"
+  action:
+    - choose:
+        - conditions: 
+            - condition: template
+              value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
+          sequence:
+            - service: notify.mobile_app_sean_s_iphone_12
+              data:
+                title: "Stopped Raining"
+                message: "It stopped raining outside at home. Total rain today: {{states('sensor.smartweather_rain_today')}} millimeters over {{states('sensor.smartweather_rain_minutes_today')}} minutes of rain"
+                data:
+                  push:
+                    thread-id: "weather"
+    - service: notify.mobile_app_alena_s_iphone
+      data:
+        title: "It Stopped Raining"
+        message: "It stopped raining outside at home. Total rain today: {{states('sensor.smartweather_rain_today')}} millimeters over {{states('sensor.smartweather_rain_minutes_today')}} minutes of rain"
+        data:
+          push:
+            thread-id: "weather"
+    - service: notify.mobile_app_sophies_iphone_se
+      data:
+        title: "It Stopped Raining"
+        message: "It stopped raining outside at home. Total rain today: {{states('sensor.smartweather_rain_today')}} millimeters over {{states('sensor.smartweather_rain_minutes_today')}} minutes of rain."
+        data:
+          push:
+            thread-id: "weather"
+
+- id: notify_its_raining_with_roof_window_open
+  alias: notify_its_raining_with_roof_window_open
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.smartweather_raining
+    to: 'on'
+  action:
+    - choose:
+        - conditions: 
+            - condition: state
+              entity_id: binary_sensor.sophies_room_ceiling_window
+              state: 'on'
+          sequence:
+            - service: notify.whole_family
+              data:
+                title: "!!Open Window and Rain!!"
+                message: "Sophie's window is open and it's raining! Close it!"
+                data:
+                  push:
+                    sound:
+                      name: "Update.caf"
+                      critical: 1
+                      volume: 1.0
+            - service: notify.alexa_media_everywhere
+              data:
+                message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
+    - choose:
+        - conditions: 
+            - condition: state
+              entity_id: binary_sensor.sebastians_room_left_window
+              state: 'on'
+          sequence:
+            - service: notify.whole_family
+              data:
+                title: "!!Open Window and Rain!!"
+                message: "Sebastian's window is open and it's raining! Close it!"
+                data:
+                  push:
+                    sound:
+                      name: "Update.caf"
+                      critical: 1
+                      volume: 1.0
+            - service: notify.alexa_media_everywhere
+              data:
+                message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"

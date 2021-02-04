@@ -30,6 +30,7 @@
     platform: state
     entity_id: device_tracker.sean_s_iphone_12
     to: 'home'
+#    for: "00:00:05"
   action:
     service: input_select.select_option
     data:
@@ -44,8 +45,7 @@
     entity_id: device_tracker.sean_s_iphone_12
     from: 'home'
     to: 'not_home'
-#    for:
-#      seconds: 15
+    for: "00:00:05"
   action:
     service: input_select.select_option
     data:
@@ -92,6 +92,86 @@
     data:
       entity_id: input_select.sean_location_dropdown
       option: At Work
+
+- id: at_cerny_kohout
+  alias: at_cerny_kohout
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.sean_s_iphone_12
+    to: 'CernyKohout'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Černy Kohout
+
+- id: at_cerny_kohout
+  alias: at_cerny_kohout
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.sean_s_iphone_12
+    to: 'HlubocepyCenter'
+    for:
+      minutes: 5
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: In Old Hlubočepy
+
+- id: in_udoli
+  alias: in_udoli
+  initial_state: 'true'
+  trigger:
+    platform: template
+    value_template: >
+      {{ "Udoli" in states('device_tracker.sean_s_iphone_12') }} 
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: In Udoli
+
+- id: to_udoli
+  alias: to_udoli
+  initial_state: 'true'
+  trigger:
+    platform: template
+    value_template: >
+      {{ "ToUdoli" in states('device_tracker.sean_s_iphone_12') and is_state('sensor.sean_direction_of_travel', 'away_from') }} 
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: To Udoli
+
+- id: to_from_udoli
+  alias: to_from_udoli
+  initial_state: 'true'
+  trigger:
+    platform: template
+    value_template: >
+      {{ "ToUdoli" in states('device_tracker.sean_s_iphone_12') and is_state('sensor.sean_direction_of_travel', 'stationary') }} 
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: To/from Udoli
+
+- id: to_from_udoli
+  alias: to_from_udoli
+  initial_state: 'true'
+  trigger:
+    platform: template
+    value_template: >
+      {{ "Udoli" in states('device_tracker.sean_s_iphone_12') and is_state('sensor.sean_direction_of_travel', 'towards') }} 
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: From Udoli
 
 - id: left_work_1
   alias: 'Left Work 1'
@@ -891,4 +971,56 @@
       message: "The sun is setting. It will be dark soon. It's time to leave the udoli"
       data:
         push:
+          sound:
+            name: "News_Flash.caf"
+            critical: 1
+            volume: 1.0
+          thread-id: "location"
+
+- id: notify_udoli_getting_dark_alena
+  alias: notify_udoli_getting_dark_alena
+  initial_state: 'true'
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:10:00"
+  condition:    
+    condition: template
+    value_template: >
+      {{ "Udoli" in states('device_tracker.alena_s_iphone') }} 
+  action:
+    service: notify.mobile_app_sean_s_iphone_12
+    data:
+      title: "Getting Dark in Udoli"
+      message: "The sun is setting. It will be dark soon. It's time to leave the udoli"
+      data:
+        push:
+          sound:
+            name: "News_Flash.caf"
+            critical: 1
+            volume: 1.0
+          thread-id: "location"
+
+- id: notify_udoli_getting_dark_sophie
+  alias: notify_udoli_getting_dark_sophie
+  initial_state: 'true'
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:10:00"
+  condition:    
+    condition: template
+    value_template: >
+      {{ "Udoli" in states('device_tracker.sophie') }} 
+  action:
+    service: notify.mobile_app_alena_s_iphone
+    data:
+      title: "Getting Dark in Udoli"
+      message: "The sun is setting. It will be dark soon. It's time to leave the udoli"
+      data:
+        push:
+          sound:
+            name: "News_Flash.caf"
+            critical: 1
+            volume: 1.0
           thread-id: "location"

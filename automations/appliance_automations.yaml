@@ -277,6 +277,7 @@
       - condition: state
         entity_id: input_select.bosch_dishwasher_status
         state: 'Dirty'
+        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:
 #          hours: 3
@@ -323,6 +324,7 @@
       - condition: state
         entity_id: input_select.bosch_dishwasher_status
         state: 'Dirty'
+        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:
 #          hours: 3
@@ -369,6 +371,7 @@
       - condition: state
         entity_id: input_select.bosch_dishwasher_status
         state: 'Dirty'
+        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:
 #          hours: 3

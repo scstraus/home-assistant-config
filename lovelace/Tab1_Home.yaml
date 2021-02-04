@@ -157,15 +157,13 @@ popup_cards:
         service_data:
           entity_id: input_boolean.trash_needs_taking_out
       entity: sensor.trash_display
-#    card:
-#      type: markdown
-#      content: |
-#
-#
-#        ## [[ sensor.alena_eta ]] 
-#
-#
-#        [[ sensor.alena_eta_description ]]
+
+  sensor.rain_sensor:
+    title: Rain Rate Graph
+    card:
+      type: history-graph
+      entities:
+        - sensor.smartweather_rain_rate
 
 ### END COMMENT BLOCK 1: POPUP CARDS
 
@@ -611,6 +609,7 @@ cards:
     - sensor.trash_display
     - binary_sensor.basement_sliding_door
     - sensor.kite_day
+    - sensor.rain_sensor
     state_filter:
     - "on"
     - "Delivery"
@@ -628,6 +627,12 @@ cards:
     - "!Now!"
     - operator: ">"
       value: -1
+    - "Drizzle"
+    - "Slight"
+    - "Moderate"
+    - "Heavy"
+    - "Very Heavy"
+    - "Violent Shower"
     card: 
       type: glance
       title: "What's Happening Today"
