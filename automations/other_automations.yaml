@@ -925,3 +925,38 @@
           type: tts
         message: "Excuse me Sophie. Someone is at the door, please let them in. Mama and Papa are not available to open it right now."
       service: notify.alexa_media_alexa_sophie_s_room
+
+- id: coming_home_mail_sean
+  alias: coming_home_mail_sean
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.sean_s_iphone_12
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: 'sensor.bio_odpad_day'
+    state: 'Today'
+  action:
+    service: notify.mobile_app_sean_s_iphone_12
+    data:
+      title: "Take in the mail"
+      message: "Hey as long as you are coming home, you might as well check the mailbox."
+
+
+- id: coming_home_mail_alena
+  alias: coming_home_mail_alena
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.alena_s_iphone
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: 'sensor.bio_odpad_day'
+    state: 'Today'
+  action:
+    service: notify.mobile_app_alena_s_iphone
+    data:
+      title: "Take in the mail"
+      message: "Hey as long as you are coming home, you might as well check the mailbox."

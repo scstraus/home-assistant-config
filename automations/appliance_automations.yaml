@@ -717,7 +717,7 @@
       entity_id: switch.master_bath_towel_warmer
       to: 'on'
       for: 
-        minutes: 240
+        hours: 3
   action:
     service: switch.turn_off
     data:

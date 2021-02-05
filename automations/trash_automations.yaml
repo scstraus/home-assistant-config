@@ -253,8 +253,6 @@
     service: homeassistant.update_entity
     entity_id: binary_sensor.trash_emergency
 
-
-
 - id: coming_home_trash_day_alena
   alias: coming_home_trash_day_alena
   initial_state: 'true'
@@ -276,6 +274,13 @@
     data:
       title: "Take out that trash!"
       message: "Hello there, today is trash day and now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
+      data:
+        push:
+          sound:
+            name: "News_Flash.caf"
+            critical: 1
+            volume: 1.0
+          thread-id: "location"
 
 - id: coming_home_trash_day_sean
   alias: coming_home_trash_day_sean
@@ -298,9 +303,13 @@
     data:
       title: "Take out that trash!"
       message: "Hello there, now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
-
-
-
+      data:
+        push:
+          sound:
+            name: "News_Flash.caf"
+            critical: 1
+            volume: 1.0
+          thread-id: "location"
 
 - id: coming_home_bio_odpad_day_alena
   alias: coming_home_bio_odpad_day_alena
@@ -333,6 +342,36 @@
   action:
     service: notify.mobile_app_sean_s_iphone_12
     data:
-      title: "Take out that bio odpas!"
+      title: "Take out that bio odpad!"
       message: "Hello there, now would be a really great time to take out the bio odpad, what do you think? Let's do it, what do you say?!?"
+      data:
+        push:
+          sound:
+            name: "News_Flash.caf"
+            critical: 1
+            volume: 1.0
+          thread-id: "location"
 
+- id: coming_home_bio_odpad_day_alena
+  alias: coming_home_bio_odpad_day_alena
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.alena_s_iphone
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: 'sensor.bio_odpad_day'
+    state: 'Today'
+  action:
+    service: notify.mobile_app_alena_s_iphone
+    data:
+      title: "Take out that bio odpad!"
+      message: "Hello there, now would be a really great time to take out the bio odpad, what do you think? Let's do it, what do you say?!?"
+      data:
+        push:
+          sound:
+            name: "News_Flash.caf"
+            critical: 1
+            volume: 1.0
+          thread-id: "location"

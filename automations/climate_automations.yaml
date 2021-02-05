@@ -17,7 +17,7 @@
     data:
       entity_id: climate.living_room
       setpoint: 12
-      duration: {"minutes":240}
+      duration: {"hours":4}
   condition:
     condition: state
     entity_id: input_select.active_heating_profile_living_room
@@ -56,7 +56,7 @@
     data:
       entity_id: climate.sophie_s_room
       setpoint: 12
-      duration: {"minutes":240}
+      duration: {"hours":4}
   condition:
     condition: state
     entity_id: input_select.active_heating_profile
@@ -97,7 +97,7 @@
     data:
       entity_id: climate.sebastian_s_room
       setpoint: 12
-      duration: {"minutes":240}
+      duration: {"hours":4}
   condition:
     condition: state
     entity_id: input_select.active_heating_profile
@@ -134,7 +134,7 @@
     data:
       entity_id: climate.master_closet
       setpoint: 12
-      duration: {"minutes":240}
+      duration: {"hours":4}
   condition:
     condition: state
     entity_id: input_select.active_heating_profile
@@ -154,7 +154,7 @@
     data:
       entity_id: climate.master_bedroom
       setpoint: 12
-      duration: {"minutes":480}
+      duration: {"hours":8}
   condition:
     condition: state
     entity_id: input_select.active_heating_profile
@@ -195,7 +195,7 @@
     data:
       entity_id: climate.laundry_room
       setpoint: 12
-      duration: {"minutes":240}
+      duration: {"hours":4}
   condition:
     condition: or
     conditions:
@@ -247,7 +247,7 @@
     data:
       entity_id: climate.garage
       setpoint: 5
-      duration: {"minutes":240}
+      duration: {"hours":4}
   condition:
     condition: state
     entity_id: input_select.active_heating_profile
@@ -336,7 +336,7 @@
       data:
         entity_id: climate.sophie_s_room
         setpoint: 23
-        duration: {"minutes":500}
+        duration: {"hours":4, "minutes":20 }
 
 - id: fire_in_fireplace_tomorrow
   alias: "Fire in Fireplace Tomorrow"
@@ -366,17 +366,17 @@
       data:
         entity_id: climate.dining_room
         setpoint: 21
-        duration: {"minutes":840}
+        duration: {"hours":14}
     - service: evohome.set_zone_override
       data:
         entity_id: climate.entrance
         setpoint: 21
-        duration: {"minutes":840}
+        duration: {"hours":14}
     - service: evohome.set_zone_override
       data:
         entity_id: climate.living_room
         setpoint: 21
-        duration: {"minutes":840}
+        duration: {"hours":14}
 
 - id: fire_in_fireplace_now_turned_off
   alias: "Fire in Fireplace Now Off"
@@ -407,7 +407,7 @@
       data:
         entity_id: climate.office_library
         setpoint: 23
-        duration: {"minutes":480}
+        duration: {"hours":8}
     - service: switch.turn_on
       data:
         entity_id: switch.office_alexa_do_not_disturb_switch
@@ -434,7 +434,7 @@
       data:
         entity_id: climate.office_library
         setpoint: 23
-        duration: {"minutes":700}
+        duration: {"hours":11,"minutes":40}
     - service: switch.turn_on
       data:
         entity_id: switch.office_alexa_do_not_disturb_switch
@@ -463,12 +463,14 @@
 # Non heating related climate cases #
 #####################################
 
+# the /361 minute trigger below is pissing off the parser
+
 - id: notify_windy_weather
   alias: 'Notify About Windy Weather'
   initial_state: 'true'
   mode: single
   trigger:
-    minutes: '/361'
+    hours: '/6'
     platform: time_pattern
   condition:
     condition: template 
@@ -506,7 +508,8 @@
           {% endif %}
 
     - delay:
-        hours: 6
+        hours: 5
+        minutes: 59
 
 #- id: update_open_window_sensor_and_message
 #  alias: update_open_window_sensor_and_message

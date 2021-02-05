@@ -106,8 +106,8 @@
       entity_id: input_select.sean_location_dropdown
       option: At Černy Kohout
 
-- id: at_cerny_kohout
-  alias: at_cerny_kohout
+- id: at_hlubocepy_center
+  alias: at_hlubocepy_center
   initial_state: 'true'
   trigger:
     platform: state
