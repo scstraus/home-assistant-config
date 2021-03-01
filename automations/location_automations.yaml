@@ -125,14 +125,38 @@
   alias: in_udoli
   initial_state: 'true'
   trigger:
-    platform: template
-    value_template: >
-      {{ "Udoli" in states('device_tracker.sean_s_iphone_12') }} 
+    - platform: state
+      entity_id: device_tracker.sean_s_iphone_12
+      to: 'Udoli Turnaround'
+    - platform: state
+      entity_id: device_tracker.sean_s_iphone_12
+      to: 'UdoliBetweenBridges'
+    - platform: state
+      entity_id: device_tracker.sean_s_iphone_12
+      to: 'UdoliBoat'
+    - platform: state
+      entity_id: device_tracker.sean_s_iphone_12
+      to: 'UdoliGoats'
+    - platform: state
+      entity_id: device_tracker.sean_s_iphone_12
+      to: 'UdoliLake'
+    - platform: state
+      entity_id: device_tracker.sean_s_iphone_12
+      to: 'UdoliMilitary'
+    - platform: state
+      entity_id: device_tracker.sean_s_iphone_12
+      to: 'UdoliStart'
+    - platform: state
+      entity_id: device_tracker.sean_s_iphone_12
+      to: 'UdoliTrain+Cave'
   action:
     service: input_select.select_option
     data:
       entity_id: input_select.sean_location_dropdown
       option: In Udoli
+#    platform: template
+#    value_template: >
+#      {{ "Udoli" in states('device_tracker.sean_s_iphone_12') }} 
 
 - id: to_udoli
   alias: to_udoli
@@ -160,13 +184,13 @@
       entity_id: input_select.sean_location_dropdown
       option: To/from Udoli
 
-- id: to_from_udoli
-  alias: to_from_udoli
+- id: from_udoli
+  alias: from_udoli
   initial_state: 'true'
   trigger:
     platform: template
     value_template: >
-      {{ "Udoli" in states('device_tracker.sean_s_iphone_12') and is_state('sensor.sean_direction_of_travel', 'towards') }} 
+      {{ "ToUdoli" in states('device_tracker.sean_s_iphone_12') and is_state('sensor.sean_direction_of_travel', 'towards') }} 
   action:
     service: input_select.select_option
     data:

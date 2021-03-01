@@ -195,7 +195,7 @@
     data:
       entity_id: climate.laundry_room
       setpoint: 12
-      duration: {"hours":4}
+      duration: {"hours":8}
   condition:
     condition: or
     conditions:
@@ -889,6 +889,18 @@
         entity_id: input_select.last_outside_aqi_notification
         option: 'Good'
 
+- id: raining_state_change_timer
+  alias: raining_state_change_timer
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.smartweather_raining  
+      to: 'off'
+  action:
+    service: timer.start
+    data:
+      entity_id: timer.raining_state_change_timer
+
 - id: notify_its_raining
   alias: notify_its_raining
   initial_state: 'true'
@@ -896,37 +908,51 @@
     platform: state
     entity_id: binary_sensor.smartweather_raining
     to: 'on'
-  condition:  
-    condition: template
-    value_template: >
-      {{ (as_timestamp(now())-as_timestamp(states.binary_sensor.smartweather_raining.last_changed))|int > 299 }}
+  condition: 
+    condition: state
+    entity_id: timer.raining_state_change_timer
+    state: 'idle'
   action:
-    - choose:
-        - conditions: 
-            - condition: template
-              value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
-          sequence:
-            - service: notify.mobile_app_sean_s_iphone_12
-              data:
-                title: "It's Raining"
-                message: "It's raining outside at home"
-                data:
-                  push:
-                    thread-id: "weather"
-    - service: notify.mobile_app_alena_s_iphone
+    - service: notify.mobile_app_sean_s_iphone_12
       data:
         title: "It's Raining"
         message: "It's raining outside at home"
         data:
           push:
             thread-id: "weather"
-    - service: notify.mobile_app_sophies_iphone_se
-      data:
-        title: "It's Raining"
-        message: "It's raining outside at home"
-        data:
-          push:
-            thread-id: "weather"
+            
+#    condition: template
+#    value_template: '{{ (((as_timestamp(now())-as_timestamp(states.binary_sensor.smartweather_raining.last_changed)|int) > 299) }}'
+
+
+
+#  action:
+#    - choose:
+#        - conditions: 
+#            - condition: template
+#              value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
+#          sequence:
+#            - service: notify.mobile_app_sean_s_iphone_12
+#              data:
+#                title: "It's Raining"
+#                message: "It's raining outside at home"
+#                data:
+#                  push:
+#                    thread-id: "weather"
+#    - service: notify.mobile_app_alena_s_iphone
+#      data:
+#        title: "It's Raining"
+#        message: "It's raining outside at home"
+#        data:
+#          push:
+#            thread-id: "weather"
+#    - service: notify.mobile_app_sophies_iphone_se
+#      data:
+#        title: "It's Raining"
+#        message: "It's raining outside at home"
+#        data:
+#          push:
+#            thread-id: "weather"
 
 
 - id: notify_stopped_raining

@@ -289,28 +289,28 @@
     unit_system: metric
     scan_interval: 60
 
-  - platform: ical
-    name: "Czech Holidays"
-    url: "https://www.officeholidays.com/ics-clean/czech-republic"
-
-  - platform: ical
-    name: "Parklane Calendar"
-    url: !secret parklane_calendar
+#  - platform: ical
+#    name: "Czech Holidays"
+#    url: "https://www.officeholidays.com/ics-clean/czech-republic"
+#
+#  - platform: ical
+#    name: "Parklane Calendar"
+#    url: !secret parklane_calendar
 
   - platform: home_connect
     refresh_token: !secret homeconnect_refresh_token
-
-  - platform: rest
-    name: Frigate Debug
-    resource: !secret frigate_url
-    scan_interval: 5
-    json_attributes:
-      - back
-      - front
-      - left
-      - right
-      - coral
-    value_template: 'OK'
+#
+#  - platform: rest
+#    name: Frigate Debug
+#    resource: !secret frigate_url
+#    scan_interval: 5
+#    json_attributes:
+#      - back
+#      - front
+#      - left
+#      - right
+#      - coral
+#    value_template: 'OK'
 
   - platform: command_line
     name: narnia_ssd_mdstat

@@ -58,7 +58,7 @@ sun:
 
 python_script:
 
-#media_source:
+media_source:
 
 #stream:
 
@@ -756,6 +756,9 @@ shell_command:
   reload_ui_kindle_fire_kitchen: !secret kitchen_kindle_reload_ui
 
 browser_mod:
+  disable: 
+    - light
+    - media_player
 
 #display:
 #  - platform: fully_kiosk
@@ -813,14 +816,6 @@ evohome_cc:
   schema:
     controller: !secret evohome_controller_id
     
-    
-    
-#  ignore_list:
-#    - 13:237335
-#    - 01:032820
-#    - 12:207082
-#    - 12:227486
-#
 #evohome_rf: 
 #  serial_port: /dev/ttyUSB0
 #  packet_log: /share/packets.log
@@ -836,6 +831,8 @@ timer:
     duration: '00:00:30'
   tablet_close_camera_popup_timer:
     duration: '00:01:00'
+  raining_state_change_timer:
+    duration: '00:05:00'
 
 
 dreamscreen:

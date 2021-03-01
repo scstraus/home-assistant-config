@@ -467,28 +467,28 @@
     sensors:
       parklane_holiday_friendly_0:
         friendly_name_template: >-
-          Parklane {{state_attr('sensor.parklane_calendar_event_0', 'name')}}
+          Parklane {{state_attr('sensor.ical_parklane_calendar_event_0', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days > 0 %}
-            {{(state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days}} days more
-          {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days == 0 %}
+          {% if state_attr('sensor.ical_parklane_calendar_event_0', 'eta') < 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_0', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.ical_parklane_calendar_event_0', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.ical_parklane_calendar_event_0', 'eta')< 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_0', 'end')-now()).days == 0 %}
             Last Day
-          {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 0 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_0', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_0', 'eta') == 1 %}
             Tomorrow
-          {% elif state_attr('sensor.parklane_calendar_event_0', 'eta') > 1 %}
-            in {{state_attr('sensor.parklane_calendar_event_0', 'eta')}} days
+          {% elif state_attr('sensor.ical_parklane_calendar_event_0', 'eta') > 1 %}
+            in {{state_attr('sensor.ical_parklane_calendar_event_0', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
           eta: >-
-            {% if 'holiday' in states('sensor.parklane_calendar_event_0') or 'term' in states('sensor.parklane_calendar_event_0') or 'Term' in states('sensor.parklane_calendar_event_0') or 'Holiday' in states('sensor.parklane_calendar_event_0')  %}
-              {% if state_attr('sensor.parklane_calendar_event_0', 'eta') >=0 %}
-              {{state_attr('sensor.parklane_calendar_event_0', 'eta')}}
-              {% elif (state_attr('sensor.parklane_calendar_event_0', 'end')-now()).days>=0 %}
+            {% if 'holiday' in states('sensor.ical_parklane_calendar_event_0') or 'term' in states('sensor.ical_parklane_calendar_event_0') or 'Term' in states('sensor.ical_parklane_calendar_event_0') or 'Holiday' in states('sensor.ical_parklane_calendar_event_0')  %}
+              {% if state_attr('sensor.ical_parklane_calendar_event_0', 'eta') >=0 %}
+              {{state_attr('sensor.ical_parklane_calendar_event_0', 'eta')}}
+              {% elif (state_attr('sensor.ical_parklane_calendar_event_0', 'end')-now()).days>=0 %}
               0
               {% else %}
               -1
@@ -497,7 +497,7 @@
             -1
             {% endif %}
           date: >-
-            {{state_attr('sensor.parklane_calendar_event_0', 'start').strftime('%a, %b %d')}}
+            {{state_attr('sensor.ical_parklane_calendar_event_0', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -505,28 +505,28 @@
     sensors:
       parklane_holiday_friendly_1:
         friendly_name_template: >-
-          Parklane {{state_attr('sensor.parklane_calendar_event_1', 'name')}}
+          Parklane {{state_attr('sensor.ical_parklane_calendar_event_1', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days > 0 %}
-            {{(state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days}} days more
-          {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days == 0 %}
+          {% if state_attr('sensor.ical_parklane_calendar_event_1', 'eta') < 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_1', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.ical_parklane_calendar_event_1', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.ical_parklane_calendar_event_1', 'eta') < 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_1', 'end')-now()).days == 0 %}
             Last Day
-          {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 0 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_1', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_1', 'eta') == 1 %}
             Tomorrow
-          {% elif state_attr('sensor.parklane_calendar_event_1', 'eta') > 1 %}
-            in {{state_attr('sensor.parklane_calendar_event_1', 'eta')}} days
+          {% elif state_attr('sensor.ical_parklane_calendar_event_1', 'eta') > 1 %}
+            in {{state_attr('sensor.ical_parklane_calendar_event_1', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
           eta: >-
-            {% if 'holiday' in states('sensor.parklane_calendar_event_1') or 'term' in states('sensor.parklane_calendar_event_1') or 'Term' in states('sensor.parklane_calendar_event_1') or 'Holiday' in states('sensor.parklane_calendar_event_1')  %}
-              {% if state_attr('sensor.parklane_calendar_event_1', 'eta') >=0 %}
-              {{state_attr('sensor.parklane_calendar_event_1', 'eta')}}
-              {% elif (state_attr('sensor.parklane_calendar_event_1', 'end')-now()).days>=0 %}
+            {% if 'holiday' in states('sensor.ical_parklane_calendar_event_1') or 'term' in states('sensor.ical_parklane_calendar_event_1') or 'Term' in states('sensor.ical_parklane_calendar_event_1') or 'Holiday' in states('sensor.ical_parklane_calendar_event_1')  %}
+              {% if state_attr('sensor.ical_parklane_calendar_event_1', 'eta') >=0 %}
+              {{state_attr('sensor.ical_parklane_calendar_event_1', 'eta')}}
+              {% elif (state_attr('sensor.ical_parklane_calendar_event_1', 'end')-now()).days>=0 %}
               0
               {% else %}
               -1
@@ -535,7 +535,7 @@
             -1
             {% endif %}
           date: >-
-            {{state_attr('sensor.parklane_calendar_event_1', 'start').strftime('%a, %b %d')}}
+            {{state_attr('sensor.ical_parklane_calendar_event_1', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -543,28 +543,28 @@
     sensors:
       parklane_holiday_friendly_2:
         friendly_name_template: >-
-          Parklane {{state_attr('sensor.parklane_calendar_event_2', 'name')}}
+          Parklane {{state_attr('sensor.ical_parklane_calendar_event_2', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days > 0 %}
-            {{(state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days}} days more
-          {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days == 0 %}
+          {% if state_attr('sensor.ical_parklane_calendar_event_2', 'eta') < 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_2', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.ical_parklane_calendar_event_2', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.ical_parklane_calendar_event_2', 'eta') < 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_2', 'end')-now()).days == 0 %}
             Last Day
-          {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 0 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_2', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_2', 'eta') == 1 %}
             Tomorrow
-          {% elif state_attr('sensor.parklane_calendar_event_2', 'eta') > 1 %}
-            in {{state_attr('sensor.parklane_calendar_event_2', 'eta')}} days
+          {% elif state_attr('sensor.ical_parklane_calendar_event_2', 'eta') > 1 %}
+            in {{state_attr('sensor.ical_parklane_calendar_event_2', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
           eta: >-
-            {% if 'holiday' in states('sensor.parklane_calendar_event_2') or 'term' in states('sensor.parklane_calendar_event_2') or 'Term' in states('sensor.parklane_calendar_event_2') or 'Holiday' in states('sensor.parklane_calendar_event_2')  %}
-              {% if state_attr('sensor.parklane_calendar_event_2', 'eta') >=0 %}
-              {{state_attr('sensor.parklane_calendar_event_2', 'eta')}}
-              {% elif (state_attr('sensor.parklane_calendar_event_2', 'end')-now()).days>=0 %}
+            {% if 'holiday' in states('sensor.ical_parklane_calendar_event_2') or 'term' in states('sensor.ical_parklane_calendar_event_2') or 'Term' in states('sensor.ical_parklane_calendar_event_2') or 'Holiday' in states('sensor.ical_parklane_calendar_event_2')  %}
+              {% if state_attr('sensor.ical_parklane_calendar_event_2', 'eta') >=0 %}
+              {{state_attr('sensor.ical_parklane_calendar_event_2', 'eta')}}
+              {% elif (state_attr('sensor.ical_parklane_calendar_event_2', 'end')-now()).days>=0 %}
               0
               {% else %}
               -1
@@ -573,7 +573,7 @@
             -1
             {% endif %}
           date: >-
-            {{state_attr('sensor.parklane_calendar_event_2', 'start').strftime('%a, %b %d')}}
+            {{state_attr('sensor.ical_parklane_calendar_event_2', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -581,28 +581,28 @@
     sensors:
       parklane_holiday_friendly_3:
         friendly_name_template: >-
-          Parklane {{state_attr('sensor.parklane_calendar_event_3', 'name')}}
+          Parklane {{state_attr('sensor.ical_parklane_calendar_event_3', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days > 0 %}
-            {{(state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days}} days more
-          {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days == 0 %}
+          {% if state_attr('sensor.ical_parklane_calendar_event_3', 'eta') < 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_3', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.ical_parklane_calendar_event_3', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.ical_parklane_calendar_event_3', 'eta') < 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_3', 'end')-now()).days == 0 %}
             Last Day
-          {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 0 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_3', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_3', 'eta') == 1 %}
             Tomorrow
-          {% elif state_attr('sensor.parklane_calendar_event_3', 'eta') > 1 %}
-            in {{state_attr('sensor.parklane_calendar_event_3', 'eta')}} days
+          {% elif state_attr('sensor.ical_parklane_calendar_event_3', 'eta') > 1 %}
+            in {{state_attr('sensor.ical_parklane_calendar_event_3', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
           eta: >-
-            {% if 'holiday' in states('sensor.parklane_calendar_event_3') or 'term' in states('sensor.parklane_calendar_event_3') or 'Term' in states('sensor.parklane_calendar_event_3') or 'Holiday' in states('sensor.parklane_calendar_event_3')  %}
-              {% if state_attr('sensor.parklane_calendar_event_3', 'eta') >=0 %}
-              {{state_attr('sensor.parklane_calendar_event_3', 'eta')}}
-              {% elif (state_attr('sensor.parklane_calendar_event_3', 'end')-now()).days>=0 %}
+            {% if 'holiday' in states('sensor.ical_parklane_calendar_event_3') or 'term' in states('sensor.ical_parklane_calendar_event_3') or 'Term' in states('sensor.ical_parklane_calendar_event_3') or 'Holiday' in states('sensor.ical_parklane_calendar_event_3')  %}
+              {% if state_attr('sensor.ical_parklane_calendar_event_3', 'eta') >=0 %}
+              {{state_attr('sensor.ical_parklane_calendar_event_3', 'eta')}}
+              {% elif (state_attr('sensor.ical_parklane_calendar_event_3', 'end')-now()).days>=0 %}
               0
               {% else %}
               -1
@@ -611,7 +611,7 @@
             -1
             {% endif %}
           friendly_eta: >-
-            {{state_attr('sensor.parklane_calendar_event_3', 'start').strftime('%a, %b %d')}}
+            {{state_attr('sensor.ical_parklane_calendar_event_3', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -619,28 +619,28 @@
     sensors:
       parklane_holiday_friendly_4:
         friendly_name_template: >-
-          Parklane {{state_attr('sensor.parklane_calendar_event_4', 'name')}}
+          Parklane {{state_attr('sensor.ical_parklane_calendar_event_4', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days > 0 %}
-            {{(state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days}} days more
-          {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') < 0 
-          and (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days == 0 %}
+          {% if state_attr('sensor.ical_parklane_calendar_event_4', 'eta') < 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_4', 'end')-now()).days > 0 %}
+            {{(state_attr('sensor.ical_parklane_calendar_event_4', 'end')-now()).days}} days more
+          {% elif state_attr('sensor.ical_parklane_calendar_event_4', 'eta') < 0 
+          and (state_attr('sensor.ical_parklane_calendar_event_4', 'end')-now()).days == 0 %}
             Last Day
-          {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 0 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_4', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_parklane_calendar_event_4', 'eta') == 1 %}
             Tomorrow
-          {% elif state_attr('sensor.parklane_calendar_event_4', 'eta') > 1 %}
-            in {{state_attr('sensor.parklane_calendar_event_4', 'eta')}} days
+          {% elif state_attr('sensor.ical_parklane_calendar_event_4', 'eta') > 1 %}
+            in {{state_attr('sensor.ical_parklane_calendar_event_4', 'eta')}} days
           {% else %}
           {% endif %}
         attribute_templates:
           eta: >-
-            {% if 'holiday' in states('sensor.parklane_calendar_event_4') or 'term' in states('sensor.parklane_calendar_event_4') or 'Term' in states('sensor.parklane_calendar_event_4') or 'Holiday' in states('sensor.parklane_calendar_event_4')  %}
-              {% if state_attr('sensor.parklane_calendar_event_4', 'eta') >=0 %}
-              {{state_attr('sensor.parklane_calendar_event_4', 'eta')}}
-              {% elif (state_attr('sensor.parklane_calendar_event_4', 'end')-now()).days>=0 %}
+            {% if 'holiday' in states('sensor.ical_parklane_calendar_event_4') or 'term' in states('sensor.ical_parklane_calendar_event_4') or 'Term' in states('sensor.ical_parklane_calendar_event_4') or 'Holiday' in states('sensor.ical_parklane_calendar_event_4')  %}
+              {% if state_attr('sensor.ical_parklane_calendar_event_4', 'eta') >=0 %}
+              {{state_attr('sensor.ical_parklane_calendar_event_4', 'eta')}}
+              {% elif (state_attr('sensor.ical_parklane_calendar_event_4', 'end')-now()).days>=0 %}
               0
               {% else %}
               -1
@@ -649,55 +649,55 @@
             -1
             {% endif %}
           date: >-
-            {{state_attr('sensor.parklane_calendar_event_4', 'start').strftime('%a, %b %d')}}
+            {{state_attr('sensor.ical_parklane_calendar_event_4', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
-
-
-  - platform: template
-    sensors:
-      back_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["fps"] }}'
-        unit_of_measurement: 'FPS'
-      back_skipped_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["skipped_fps"] }}'
-        unit_of_measurement: 'FPS'
-      back_detection_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["detection_fps"] }}'
-        unit_of_measurement: 'FPS'
-      front_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["fps"] }}'
-        unit_of_measurement: 'FPS'
-      front_skipped_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["skipped_fps"] }}'
-        unit_of_measurement: 'FPS'
-      front_detection_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["detection_fps"] }}'
-        unit_of_measurement: 'FPS'
-      left_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["fps"] }}'
-        unit_of_measurement: 'FPS'
-      left_skipped_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["skipped_fps"] }}'
-        unit_of_measurement: 'FPS'
-      left_detection_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["detection_fps"] }}'
-        unit_of_measurement: 'FPS'
-      right_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["fps"] }}'
-        unit_of_measurement: 'FPS'
-      right_skipped_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["skipped_fps"] }}'
-        unit_of_measurement: 'FPS'
-      right_detection_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["detection_fps"] }}'
-        unit_of_measurement: 'FPS'
-      frigate_detection_fps: 
-        value_template: '{{ states.sensor.frigate_debug.attributes["detection_fps"] }}'
-        unit_of_measurement: 'FPS'
-      frigate_coral_inference:
-        value_template: '{{ states.sensor.frigate_debug.attributes["detectors"]["coral"]["inference_speed"] }}' 
-        unit_of_measurement: 'ms'
+#
+#
+#  - platform: template
+#    sensors:
+#      back_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      back_skipped_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["skipped_fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      back_detection_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["back"]["detection_fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      front_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      front_skipped_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["skipped_fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      front_detection_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["front"]["detection_fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      left_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      left_skipped_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["skipped_fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      left_detection_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["left"]["detection_fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      right_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      right_skipped_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["skipped_fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      right_detection_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["right"]["detection_fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      frigate_detection_fps: 
+#        value_template: '{{ states.sensor.frigate_debug.attributes["detection_fps"] }}'
+#        unit_of_measurement: 'FPS'
+#      frigate_coral_inference:
+#        value_template: '{{ states.sensor.frigate_debug.attributes["detectors"]["coral"]["inference_speed"] }}' 
+#        unit_of_measurement: 'ms'
 
   - platform: template
     sensors:
@@ -839,7 +839,7 @@
       rain_sensor:
         friendly_name: "It's Raining"
         value_template: >-
-          {% if (as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 1800 and (states('binary_sensor.smartweather_raining')=='off') %}
+          {% if (as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 300 and (states('binary_sensor.smartweather_raining')=='off') %}
             no
           {% else %}
             {% if (states('sensor.smartweather_rain_rate'))|float < 0.2 %}
@@ -857,7 +857,7 @@
             {% endif %}
           {% endif %} 
         icon_template: >-
-          {% if (as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 1800 and (states('binary_sensor.smartweather_raining')=='off') %}
+          {% if (as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 300 and (states('binary_sensor.smartweather_raining')=='off') %}
             mdi:weather-sunny
           {% else %}
             {% if (states('sensor.smartweather_rain_rate'))|float < 0.2 %}

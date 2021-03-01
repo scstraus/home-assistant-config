@@ -3,12 +3,12 @@
   alias: Person In Front
   initial_state: 'true'
   trigger:
-#    platform: numeric_state
-#    entity_id: sensor.front_human_detection
-#    above: 18
-    platform: state
-    entity_id: binary_sensor.human_front
-    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.front_person
+    above: 0
+#    platform: state
+#    entity_id: binary_sensor.human_front
+#    to: 'on'
   condition:
     condition: and
     conditions:
@@ -40,8 +40,8 @@
             volume: 1.0
           category: camera
           thread-id: "security"
-        entity_id: camera.front_last_person
-        clickAction: /lovelace/6
+        entity_id: camera.front_person
+        clickAction: 8
 
 #      - condition: template
 #        value_template: "{{ states.sensor.alarm_state_3_motion_sensors.state in ['armed_away', 'triggered'] }}"
@@ -51,12 +51,12 @@
   alias: Person In Back
   initial_state: 'true'
   trigger:
-#    platform: numeric_state
-#    entity_id: sensor.back_human_detection
-#    above: 18
-    platform: state
-    entity_id: binary_sensor.human_back
-    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.back_person
+    above: 0
+#    platform: state
+#    entity_id: binary_sensor.human_back
+#    to: 'on'
   condition:
     condition: and
     conditions:
@@ -88,19 +88,19 @@
             volume: 1.0
           category: camera
           thread-id: "security"
-        entity_id: camera.back_last_person
-        clickAction: /lovelace/6
+        entity_id: camera.back_person
+        clickAction: 8
 
 - id: person_on_left
   alias: Person On Left
   initial_state: 'true'
   trigger:
-#    platform: numeric_state
-#    entity_id: sensor.left_human_detection
-#    above: 18
-    platform: state
-    entity_id: binary_sensor.human_left
-    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.left_person
+    above: 0
+#    platform: state
+#    entity_id: binary_sensor.human_left
+#    to: 'on'
   condition:
     condition: and
     conditions:
@@ -132,19 +132,19 @@
             volume: 1.0
           category: camera
           thread-id: "security"
-        entity_id: camera.left_last_person
-        clickAction: /lovelace/6
+        entity_id: camera.left_person
+        clickAction: 8
 
 - id: person_on_right
   alias: Person On Right
   initial_state: 'true'
   trigger:
-#    platform: numeric_state
-#    entity_id: sensor.right_human_detection
-#    above: 18
-    platform: state
-    entity_id: binary_sensor.human_right
-    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.right_person
+    above: 0
+#    platform: state
+#    entity_id: binary_sensor.human_right
+#    to: 'on'
   condition:
     condition: and
     conditions:
@@ -176,8 +176,8 @@
             volume: 1.0
           category: camera
           thread-id: "security"
-        entity_id: camera.right_last_person
-        clickAction: /lovelace/6
+        entity_id: camera.right_person
+        clickAction: 8
 
 #- id: person_in_front_hassbian
 #  alias: Person In Front
@@ -342,18 +342,18 @@
   alias: 'Front+Right Security Lights on if Human'
   initial_state: 'true'
   trigger:
-#    - platform: numeric_state
-#      entity_id: sensor.front_human_detection
-#      above: 18
-#    - platform: numeric_state
-#      entity_id: sensor.right_human_detection
-#      above: 18
-    - platform: state
-      entity_id: binary_sensor.human_front
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.human_right
-      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.front_person
+      above: 0
+    - platform: numeric_state
+      entity_id: sensor.right_person
+      above: 0
+#    - platform: state
+#      entity_id: binary_sensor.human_front
+#      to: 'on'
+#    - platform: state
+#      entity_id: binary_sensor.human_right
+#      to: 'on'
   condition:
     condition: time
     after: '21:00:00'
@@ -367,18 +367,18 @@
   alias: 'Back+Left Security Lights on if Human'
   initial_state: 'true'
   trigger:
-#    - platform: numeric_state
-#      entity_id: sensor.back_human_detection
-#      above: 18
-#    - platform: numeric_state
-#      entity_id: sensor.left_human_detection
-#      above: 18
-    - platform: state
-      entity_id: binary_sensor.human_back
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.human_left
-      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.back_person
+      above: 0
+    - platform: numeric_state
+      entity_id: sensor.left_person
+      above: 0
+#    - platform: state
+#      entity_id: binary_sensor.human_back
+#      to: 'on'
+#    - platform: state
+#      entity_id: binary_sensor.human_left
+#      to: 'on'
   condition:
     condition: time
     after: '21:00:00'
@@ -554,8 +554,8 @@
             volume: 1.0
           category: camera
           thread-id: "security"
-        entity_id: camera.front_stream
-        clickAction: /lovelace/7
+        entity_id: camera.front_person
+        clickAction: 8
 
 - id: sensor_notification
   alias: 'Sensor Notification'
@@ -596,9 +596,12 @@
   alias: 'Popup on Kiosk Back'
   initial_state: 'true'
   trigger:
-    - platform: state
-      entity_id: binary_sensor.human_back
-      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.back_person
+      above: 0
+#    - platform: state
+#      entity_id: binary_sensor.human_back
+#      to: 'on'
     - platform: state
       entity_id: binary_sensor.camera_back_motion_alarm  
       to: 'on'
@@ -646,9 +649,12 @@
   alias: 'Popup on Kiosk Front'  
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: binary_sensor.human_front
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.human_front
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.front_person
+    above: 0
   action:
     - service: browser_mod.more_info
       data:
@@ -693,9 +699,12 @@
   alias: 'Popup on Kiosk Left'  
   initial_state: 'true'
   trigger:
-    - platform: state
-      entity_id: binary_sensor.human_left
-      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.left_person
+      above: 0
+#    - platform: state
+#      entity_id: binary_sensor.human_left
+#      to: 'on'
     - platform: state
       entity_id: binary_sensor.camera_left_motion_alarm  
       to: 'on'
@@ -745,9 +754,12 @@
   alias: Popup on Kiosk Right
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: binary_sensor.human_right
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.human_right
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.right_person
+    above: 0
   action:
     - service: browser_mod.more_info
       data:
@@ -1029,36 +1041,48 @@
 - alias: 'Record Human In Front'
   initial_state: 'on'
   trigger:
-    platform: state
-    entity_id: binary_sensor.human_front
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.human_front
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.front_person
+    above: 0
   action:
     - service: rest_command.record_human_front
 
 - alias: 'Record Human In Back'
   initial_state: 'on'
   trigger:
-    platform: state
-    entity_id: binary_sensor.human_back
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.human_back
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.back_person
+    above: 0
   action:
     - service: rest_command.record_human_back
 
 - alias: 'Record Human In Left'
   initial_state: 'on'
   trigger:
-    platform: state
-    entity_id: binary_sensor.human_left
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.human_left
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.left_person
+    above: 0
   action:
     - service: rest_command.record_human_left
 
 - alias: 'Record Human In Right'
   initial_state: 'on'
   trigger:
-    platform: state
-    entity_id: binary_sensor.human_right
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.human_right
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.right_person
+    above: 0
   action:
     - service: rest_command.record_human_right
 #
@@ -1126,9 +1150,13 @@
   alias: truck_outside
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: binary_sensor.truck_on_road
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.truck_on_road
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.truck_front
+    above: 0
+
   action:
     - choose:
         - conditions:
@@ -1148,8 +1176,8 @@
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                entity_id: camera.front_person
+                clickAction: 8
     - choose:
         - conditions:
             - condition: and
@@ -1168,17 +1196,20 @@
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                entity_id: camera.front_person
+                clickAction: 8
 
 
 - id: someone_at_gate
   alias: someone_at_gate
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: binary_sensor.person_outside_gate
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.person_outside_gate
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.at_gate_person
+    above: 0
   action:
     - choose:
         - conditions:
@@ -1198,8 +1229,8 @@
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                entity_id: camera.front_person
+                clickAction: 8
     - choose:
         - conditions:
             - condition: and
@@ -1218,8 +1249,8 @@
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                entity_id: camera.front_person
+                clickAction: 8
     - choose:
         - conditions:
             - condition: and
@@ -1238,10 +1269,19 @@
 - id: someone_through_gate
   alias: someone_through_gate
   initial_state: 'true'
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.person_inside_gate
+#    to: 'on'
+#    platform: numeric_state
+#    entity_id: sensor.inside_gate_person
+#    above: 0
   trigger:
-    platform: state
-    entity_id: binary_sensor.person_inside_gate
-    to: 'on'
+    platform: mqtt
+    topic: frigate/events
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+    - "{{ 'inside_gate' in trigger.payload_json['after']['entered_zones'] }}"
   action:
     - choose:
         - conditions:
@@ -1258,11 +1298,12 @@
               title: "Person Coming Through Gate"
               message: "Looks like someone is going to or coming from the front gate to the front door"
               data:
+                image: !secret frigate_image_url
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                clickAction: 8
+#                entity_id: camera.front_person
     - choose:
         - conditions:
             - condition: and
@@ -1278,11 +1319,12 @@
               title: "Person Coming Through Gate"
               message: "Looks like someone is going to or coming from the front gate to the front door"
               data:
+                image: !secret frigate_image_url
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                clickAction: 8
+#                entity_id: camera.front_person
     - choose:
         - conditions:
             - condition: and
@@ -1305,9 +1347,12 @@
   alias: car_arrived
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: binary_sensor.car_pulling_up
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.car_pulling_up
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.car_pulling_in_car
+    above: 0
   action:
     - choose:
         - conditions:
@@ -1327,17 +1372,13 @@
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                entity_id: camera.front_car
+                clickAction: 8
     - choose:
         - conditions:
-            - condition: and
-              conditions:
-              - condition: template
-                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_arrived.attributes.last_triggered | default(0)) | int > 600)}}'
-              - condition: state
-                entity_id: device_tracker.alena_s_iphone
-                state: 'home'
+            - condition: state
+              entity_id: device_tracker.alena_s_iphone
+              state: 'home'
           sequence:
             service: notify.mobile_app_alena_s_iphone
             data:
@@ -1347,21 +1388,23 @@
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                entity_id: camera.front_car
+                clickAction: 8
 
 - id: person_on_sidewalk
   alias: person_on_sidewalk
   initial_state: 'true'
+  mode: single
   trigger:
-    platform: state
-    entity_id: binary_sensor.person_on_sidewalk 
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.person_on_sidewalk 
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.on_sidewalk_person
+    above: 0
   condition:
     condition: and
     conditions:
-    - condition: template
-      value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_on_sidewalk.attributes.last_triggered | default(0)) | int > 600)}}'
     - condition: time
       after: '23:00:00'
       before: '7:00:00' 
@@ -1369,36 +1412,38 @@
       entity_id: device_tracker.sean_s_iphone_12
       state: 'home'
   action:
-    service: notify.mobile_app_sean_s_iphone_12
-    data:
-      title: "House Watch"
-      message: "There's a Person on The Sidewalk"
+    - service: notify.mobile_app_sean_s_iphone_12
       data:
-        push:
-          category: camera
-          thread-id: "security"
-        entity_id: camera.front_last_person
-        clickAction: /lovelace/6
+        title: "House Watch"
+        message: "There's a Person on The Sidewalk"
+        data:
+          push:
+            category: camera
+            thread-id: "security"
+          entity_id: camera.front_person
+          clickAction: 8
+    - delay:
+        minutes: 10
 
 - id: car_on_sidewalk
   alias: car_on_sidewalk
   initial_state: 'true'
+  mode: single
   trigger:
-    platform: state
-    entity_id: binary_sensor.car_on_sidewalk 
-    to: 'on'
+#    platform: state
+#    entity_id: binary_sensor.car_on_sidewalk 
+#    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.on_sidewalk_car
+    above: 0
     for:
       seconds: 7
   action:
     - choose:
         - conditions:
-            - condition: and
-              conditions:
-              - condition: template
-                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_on_sidewalk.attributes.last_triggered  | default(0)) | int > 600)}}'
-              - condition: state
-                entity_id: device_tracker.sean_s_iphone_12
-                state: 'home'
+            - condition: state
+              entity_id: device_tracker.sean_s_iphone_12
+              state: 'home'
           sequence:
             service: notify.mobile_app_sean_s_iphone_12
             data:
@@ -1408,17 +1453,13 @@
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                entity_id: camera.front_car
+                clickAction: 8
     - choose:
         - conditions:
-            - condition: and
-              conditions:
-              - condition: template
-                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_on_sidewalk.attributes.last_triggered  | default(0)) | int > 600)}}'
-              - condition: state
-                entity_id: device_tracker.alena_s_iphone
-                state: 'home'
+            - condition: state
+              entity_id: device_tracker.alena_s_iphone
+              state: 'home'
           sequence:
             service: notify.mobile_app_alena_s_iphone
             data:
@@ -1428,5 +1469,7 @@
                 push:
                   category: camera
                   thread-id: "security"
-                entity_id: camera.front_stream
-                clickAction: /lovelace/6
+                entity_id: camera.front_car
+                clickAction: 8
+    - delay:
+        minutes: 10

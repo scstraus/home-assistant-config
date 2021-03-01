@@ -877,14 +877,14 @@
     - data:
         data:
           type: tts
-        message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_alexa_kitchen_bar
+        message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
+      service: notify.alexa_media_seans_echo_dot
     - delay:
         seconds: 2  
     - data:
         data:
           type: tts
-        message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
+        message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
       service: notify.alexa_media_alexa_master_bath
     - delay:
         seconds: 2
@@ -898,8 +898,8 @@
     - data:
         data:
           type: tts
-        message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_alexa_master_closet
+        message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
+      service: notify.alexa_media_master_closet_kindle
     # - delay:
     #     seconds: 2
     # - data:
@@ -907,6 +907,14 @@
     #       type: tts
     #     message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
     #   service: notify.alexa_media_alexa_kitchen
+    - delay:
+        seconds: 2  
+    - data:
+        data:
+          type: tts
+        message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
+      service: notify.alexa_media_echo_flex_first_floor_bathroom
+
 
 
 - id: announce_someone_at_the_gate
@@ -923,7 +931,7 @@
     - data:
         data:
           type: tts
-        message: "Excuse me Sophie. Someone is at the door, please let them in. Mama and Papa are not available to open it right now."
+        message: "Excuse me Sophie. Someone is at the front gate, please let them in. Mama and Papa are not available to open it right now."
       service: notify.alexa_media_alexa_sophie_s_room
 
 - id: coming_home_mail_sean

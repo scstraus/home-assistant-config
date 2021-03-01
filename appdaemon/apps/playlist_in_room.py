@@ -44,7 +44,8 @@ class PlaylistInRoom(hass.Hass):
   ["media_player.sophies_room_echo_dot","media_player.forked_daapd_output_sophie_s_room"],
   ["media_player.master_closet_kindle","media_player.forked_daapd_output_office"],
   ["christmas","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen","media_player.forked_daapd_output_bathroom_1st_floor"],
-  ["media_player.seans_echo_dot","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"]]
+  ["media_player.seans_echo_dot","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"],
+  ["media_player.echo_flex_first_floor_bathroom","media_player.forked_daapd_output_bathroom_1st_floor"]]
 #########################################################################################################
 #                            THESE ARE THE INITIALIZE AND LAUNCH FUNCTIONS                              #
 #########################################################################################################

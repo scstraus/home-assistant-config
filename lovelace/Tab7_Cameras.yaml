@@ -116,14 +116,17 @@ cards:
         title: Back Last Person Detected
         entities:
       #        - sensor.object_detection_back
-          - binary_sensor.human_back
-        camera_image: camera.cam1
+#          - binary_sensor.human_back
+          - sensor.back_person
+#        camera_image: camera.cam1
+        camera_image: camera.back_person
 
       - type: history-graph
         title: 'Back Human Detection'
         entities:
   #        - sensor.back_human_detection
-        - binary_sensor.human_back
+#        - binary_sensor.human_back
+          - sensor.back_person
 
 
 #
@@ -195,17 +198,19 @@ cards:
   #           camera_image: camera.left_last_person
 
         - type: picture-glance
-          title: Back Last Person Detected
+          title: Left Last Person Detected
           entities:
         #        - sensor.object_detection_back
-            - binary_sensor.human_left
-          camera_image: camera.cam4
+#            - binary_sensor.human_left
+            - sensor.left_person
+#          camera_image: camera.cam4
+          camera_image: camera.left_person
 
         - type: history-graph
           title: 'Human Left'
           entities:
   #          - sensor.left_human_detection
-          - binary_sensor.human_left
+          - sensor.left_person
 
 
 #        - type: entities
@@ -271,15 +276,20 @@ cards:
           title: Right Last Person Detected
           entities:
         #          - sensor.object_detection_right
-            - binary_sensor.human_right
-          camera_image: camera.cam2
+#            - binary_sensor.human_right
+            - sensor.right_person
+#          camera_image: camera.cam2
+          camera_image: camera.right_person
 
 
         - type: history-graph
           title: 'Human Right'
           entities:
-          -  binary_sensor.human_right
+            - sensor.right_person
+#          -  binary_sensor.human_right
   #          - sensor.right_human_detection
+
+
 
 
 #
@@ -350,13 +360,16 @@ cards:
         title: Front Last Person Detected
         entities:
       #          - sensor.object_detection_right
-          - binary_sensor.human_front
-        camera_image: camera.cam3
+#          - binary_sensor.human_front
+          - sensor.front_person
+#        camera_image: camera.cam3
+        camera_image: camera.front_person
 
       - type: history-graph
         title: 'Front Human Detection'
         entities:
-        - binary_sensor.human_front
+#        - binary_sensor.human_front
+          - sensor.front_person
 
 
 #      - entity: camera.cam3_history10
