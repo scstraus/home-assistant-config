@@ -1266,6 +1266,110 @@
                 topic: !secret genesys_5490_notify_topic
                 payload: !secret genesys_5490_someone_at_gate_notification
 
+#
+#- id: someone_through_gate_test
+#  alias: someone_through_gate_test
+#  initial_state: 'true'
+#  trigger:
+#    platform: mqtt
+#    topic: frigate/events
+#  condition:
+#    - condition: and
+#      conditions:
+#      - condition: template
+#        value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 600)}}'
+#      - condition: state
+#        entity_id: device_tracker.sean_s_iphone_12
+#        state: 'home'
+#      - condition: or
+#        conditions:
+#        - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+#        - "{{ 'inside_gate' in trigger.payload_json['after']['entered_zones'] }}"
+#
+#  action:
+#    - service: notify.mobile_app_sean_s_iphone_12
+#      data_template:
+#        title: "Person Coming Through Gate"
+#        message: "Looks like someone is going to or coming from the front gate to the front door"
+#        data:
+#          attachment:
+#            url: !secret frigate_image_url
+#            content-type: jpg
+#            hide-thumbnail: false
+#          push:
+#            category: camera
+#            thread-id: "security"
+#          clickAction: 8
+#          entity_id: camera.front_person
+ 
+ 
+#
+#- id: someone_through_gate
+#  alias: someone_through_gate
+#  initial_state: 'true'
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.inside_gate_person
+#    above: 0
+#  action:
+#    - choose:
+#        - conditions:
+#            - condition: and
+#              conditions:
+#              - condition: template
+#                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 600)}}'
+#              - condition: state
+#                entity_id: device_tracker.sean_s_iphone_12
+#                state: 'home'
+#          sequence:
+#            service: notify.mobile_app_sean_s_iphone_12
+#            data:
+#              title: "Person Coming Through Gate"
+#              message: "Looks like someone is going to or coming from the front gate to the front door"
+#              data:
+#                push:
+#                  category: camera
+#                  thread-id: "security"
+#                clickAction: 8
+#                entity_id: camera.front_person
+#    - choose:
+#        - conditions:
+#            - condition: and
+#              conditions:
+#              - condition: template
+#                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 600)}}'
+#              - condition: state
+#                entity_id: device_tracker.alena_s_iphone
+#                state: 'home'
+#          sequence:
+#            service: notify.mobile_app_alena_s_iphone
+#            data:
+#              title: "Person Coming Through Gate"
+#              message: "Looks like someone is going to or coming from the front gate to the front door"
+#              data:
+#                push:
+#                  category: camera
+#                  thread-id: "security"
+#                clickAction: 8
+#                entity_id: camera.front_person
+#
+#    - choose:
+#        - conditions:
+#            - condition: and
+#              conditions:
+#              - condition: template
+#                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 600)}}'
+#              - condition: state
+#                entity_id: device_tracker.sean_s_iphone_12
+#                state: 'home'
+#          sequence:
+#            - service: mqtt.publish
+#              data:
+#                topic: !secret genesys_5490_notify_topic
+#                payload: !secret genesys_5490_someone_through_gate_notification
+
+#iotlink/workgroup/desktop-d0cna5o/     
+#
 - id: someone_through_gate
   alias: someone_through_gate
   initial_state: 'true'
@@ -1280,6 +1384,8 @@
     platform: mqtt
     topic: frigate/events
   condition:
+    condition: and
+    conditions:
     - "{{ trigger.payload_json['after']['label'] == 'person' }}"
     - "{{ 'inside_gate' in trigger.payload_json['after']['entered_zones'] }}"
   action:
@@ -1294,16 +1400,19 @@
                 state: 'home'
           sequence:
             service: notify.mobile_app_sean_s_iphone_12
-            data:
+            data_template:
               title: "Person Coming Through Gate"
               message: "Looks like someone is going to or coming from the front gate to the front door"
               data:
-                image: !secret frigate_image_url
+                attachment:
+                  url: !secret frigate_image_url
+                  content-type: jpg
+                  hide-thumbnail: false
                 push:
                   category: camera
                   thread-id: "security"
                 clickAction: 8
-#                entity_id: camera.front_person
+                entity_id: camera.front_person
     - choose:
         - conditions:
             - condition: and
@@ -1315,16 +1424,20 @@
                 state: 'home'
           sequence:
             service: notify.mobile_app_alena_s_iphone
-            data:
+            data_template:
               title: "Person Coming Through Gate"
               message: "Looks like someone is going to or coming from the front gate to the front door"
               data:
-                image: !secret frigate_image_url
+                attachment:
+                  url: !secret frigate_image_url
+                  content-type: jpg
+                  hide-thumbnail: false
                 push:
                   category: camera
                   thread-id: "security"
                 clickAction: 8
 #                entity_id: camera.front_person
+
     - choose:
         - conditions:
             - condition: and
@@ -1338,9 +1451,7 @@
             - service: mqtt.publish
               data:
                 topic: !secret genesys_5490_notify_topic
-                payload: !secret genesys_5490_someone_through_gate_notification
-
-#iotlink/workgroup/desktop-d0cna5o/              
+                payload: !secret genesys_5490_someone_through_gate_notification            
 
 
 - id: car_arrived
@@ -1434,7 +1545,7 @@
 #    entity_id: binary_sensor.car_on_sidewalk 
 #    to: 'on'
     platform: numeric_state
-    entity_id: sensor.on_sidewalk_car
+    entity_id: sensor.car_sidewalk_car
     above: 0
     for:
       seconds: 7

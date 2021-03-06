@@ -22,6 +22,8 @@ class PlaylistInRoom(hass.Hass):
   REQUESTED_PLAY = 0
   ITUNES_BEING_ASSHOLE_CHECK_SECS = 12
   NO_VOLUME_CHANGE_FALLBACK_CHECK_SECS = 16
+  ONLY_DOING_SPEAKERS = 0
+  
 
 #########################################################################################################
 #              THINGS WHICH CAN BE USER DEFINED THAT I SHOULD MOVE TO THE CONFIG FILE                   #
@@ -54,6 +56,8 @@ class PlaylistInRoom(hass.Hass):
   def initialize(self):
     self.log("Playlist In Room AppDaemon App Initialized")
     self.listen_event(self.alexa_launch_itunes_playlist, "ALEXA_LAUNCH_ITUNES_PLAYLIST")
+    self.listen_event(self.alexa_turn_on_speakers,"ALEXA_TURN_ON_SPEAKERS")
+    self.listen_event(self.alexa_turn_off_speakers,"ALEXA_TURN_OFF_SPEAKERS")
     self.listen_state(self.speaker_on, "media_player", new = "on")
     self.listen_state(self.speaker_off, "media_player", new = "off")
     self.listen_state(self.itunes_volume_change, self.ITUNES_ENTITY, attribute = "volume_level")
@@ -117,6 +121,58 @@ class PlaylistInRoom(hass.Hass):
 
       # Backup in case we don't get a volume changed event.
 #      self.run_in(self.no_volume_change_fallback, self.NO_VOLUME_CHANGE_FALLBACK_CHECK_SECS)             
+
+  def alexa_turn_on_speakers(self, event, data, kwargs):
+    self.ALEXA_ENTITY=data["alexa_entity"] 
+    self.SPEAKER_REQUEST_COUNT = 0
+    self.SPEAKER_RESPONSE_COUNT = 0
+    self.ONLY_DOING_SPEAKERS = 1
+    self.log("********************************************************************")
+    self.log("Turning on speakers for %s",self.ALEXA_ENTITY)
+    self.log("********************************************************************")
+
+
+    #Turning on speakers
+    for count in range(len(self.ALEXA_TO_AIRPLAY_MAPPING)):
+      if self.ALEXA_TO_AIRPLAY_MAPPING[count][0]==self.ALEXA_ENTITY: # we found the right row for alexa
+        self.log("Checking speakers to turn on, #%s: %s", count , self.ALEXA_TO_AIRPLAY_MAPPING[count][0])
+        for count2 in range(1,len(self.ALEXA_TO_AIRPLAY_MAPPING[count])):
+          state=self.get_state(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2])
+          if (state=="off"):
+            self.call_service("media_player/turn_on", entity_id = self.ALEXA_TO_AIRPLAY_MAPPING[count][count2])
+            self.SPEAKER_REQUEST_COUNT+=1
+            self.log("Turning on speaker #%s: %s", count2, self.ALEXA_TO_AIRPLAY_MAPPING[count][count2])
+          else: 
+            self.log("Speaker #%s: %s is already on, leaving it alone", count2, self.ALEXA_TO_AIRPLAY_MAPPING[count][count2])
+
+    if self.SPEAKER_REQUEST_COUNT==0:
+    # All our speakers already turned off or on, so let's launch the playlist
+    # Setting volumes
+      self.log("All speakers already in correct state")
+      self.set_speaker_volumes()      
+
+  def alexa_turn_off_speakers(self, event, data, kwargs):
+    self.ALEXA_ENTITY=data["alexa_entity"] 
+    self.SPEAKER_REQUEST_COUNT = 0
+    self.SPEAKER_RESPONSE_COUNT = 0
+    self.ONLY_DOING_SPEAKERS = 1
+    self.log("********************************************************************")
+    self.log("Turning off speakers for %s",self.ALEXA_ENTITY)
+    self.log("********************************************************************")
+
+
+    #Turning off speakers
+    for count in range(len(self.ALEXA_TO_AIRPLAY_MAPPING)):
+      if self.ALEXA_TO_AIRPLAY_MAPPING[count][0]==self.ALEXA_ENTITY: # we found the right row for alexa
+        self.log("Checking speakers to turn on, #%s: %s", count , self.ALEXA_TO_AIRPLAY_MAPPING[count][0])
+        for count2 in range(1,len(self.ALEXA_TO_AIRPLAY_MAPPING[count])):
+          state=self.get_state(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2])
+          if (state=="on"):
+            self.call_service("media_player/turn_off", entity_id = self.ALEXA_TO_AIRPLAY_MAPPING[count][count2])
+            self.SPEAKER_REQUEST_COUNT+=1
+            self.log("Turning off speaker #%s: %s", count2, self.ALEXA_TO_AIRPLAY_MAPPING[count][count2])
+          else: 
+            self.log("Speaker #%s: %s is already off, leaving it alone", count2, self.ALEXA_TO_AIRPLAY_MAPPING[count][count2])
 
 
 #########################################################################################################
@@ -184,20 +240,24 @@ class PlaylistInRoom(hass.Hass):
 #########################################################################################################
 
   def set_speaker_volumes_and_prepare_play(self, entity):
-    # This is watching to see if we have all our speakers in the correct states before turning on the variables which tell the callbacks to play the playlist
+    # This is watching to see if we have all our speakers in the correct states and then calling the function to play the playlist
     if entity in self.AIRPLAY_ENTITIES:
       if self.SPEAKER_REQUEST_COUNT>self.SPEAKER_RESPONSE_COUNT: 
         if self.SPEAKER_REQUEST_COUNT==(self.SPEAKER_RESPONSE_COUNT+1):
           # All our speakers turned off or on, so let's launch the playlist
           # Setting volumes
-          self.log("All %s/%s speakers have now changed state. Setting volumes and starting playlist.",(self.SPEAKER_RESPONSE_COUNT+1),self.SPEAKER_REQUEST_COUNT)
+          self.log("All %s/%s speakers have now changed state. Setting volumes and starting playlist if needed.",(self.SPEAKER_RESPONSE_COUNT+1),self.SPEAKER_REQUEST_COUNT)
           self.set_speaker_volumes()
           # Telling the next callback to play the playlist
 #          self.TIME_TO_PLAY_PLAYLIST = 1
-          self.log("Now we play the playlist.")
+
           self.SPEAKER_REQUEST_COUNT = 0
           self.SPEAKER_RESPONSE_COUNT = 0
-          self.play_playlist()
+          if self.ONLY_DOING_SPEAKERS == 0:
+            self.log("Now we play the playlist.")
+            self.play_playlist()
+          else:
+            self.log("Just Doing Speakers. Skip playing the playlist.")
         elif self.SPEAKER_REQUEST_COUNT != 0: 
           self.SPEAKER_RESPONSE_COUNT +=1
           self.log("Speaker response count now %s out of %s requests", self.SPEAKER_RESPONSE_COUNT,self.SPEAKER_REQUEST_COUNT )
@@ -209,8 +269,6 @@ class PlaylistInRoom(hass.Hass):
         for count2 in range(1,len(self.ALEXA_TO_AIRPLAY_MAPPING[count])):
           self.log("Setting #%s/%s (%s) to Volume: %s",count2,len(self.ALEXA_TO_AIRPLAY_MAPPING[count])-1, self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], self.AIRPLAY_ENTITY_VOLUMES.get(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2]))
           self.call_service("media_player/volume_set", entity_id = self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], volume_level=self.AIRPLAY_ENTITY_VOLUMES.get(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2]))
-
-
 
   def play_playlist(self):
     self.log("Setting iTunes to play %s playlist now", self.PLAYLIST)
