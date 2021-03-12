@@ -136,6 +136,9 @@ This view also comes in a [kiosk flavor which I use on my 8" Amazon Kindle Fire 
   
 But one interesting thing I have on the tablets is that they will use [popup cards](https://github.com/thomasloven/hass-browser_mod#popup) from the [Browser Mod](https://github.com/thomasloven/hass-browser_mod) custom component to popup the camera feeds on the tablets if it sees someone outside while we are home. Mostly we use this for keeping an eye on the kids while they are outside. If we are not at home with the alarm on or asleep, we will get emergency notifications on our phone instead. You can see these in the automations.
 
+I have one other flavor of my tablet view for my portrait orientation wall mount tablet in my entrance way. This one replaces some of the stuff on the others with bringing the car tab to the top and imbedding the todoist app into an iframe to display our shopping list that is synced from the alexa shopping list so that we can see what items we added with alexa before going shopping. Here's a picture of that one, and the [code is here](lovelace/Tab1b_Home_EntranceKiosk.yaml)
+
+![](readme_images/Tablet2.jpg)
 
 I will describe the cards I have here in the order I use them in my config so you can find them in the config file linked above. It's almost all custom cards, so there were a lot of great devs that made it happen. At least half of what I do here is probably somehow enabled by [custom cards from Thomas Loven](https://github.com/thomasloven) so a special shout out and million thanks for all his many contributions. My lovelace view would simply not be possible without these custom card devs.
 
