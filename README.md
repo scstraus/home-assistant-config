@@ -245,9 +245,9 @@ These are how I get important statuses on lots of things without creating a lot 
 
   (for playing music from my itunes library to one of ~10 airplay zones around the house, each of which also uses a mini media player card to give an on/off button and volume control for the zone)
 
-- [custom:button-card](https://github.com/custom-cards/button-card)
+- [custom:fold-entity-row](https://github.com/thomasloven/lovelace-fold-entity-row)
 
-  (for playlist selection of music and shuffle control)
+  (to hide properties of the dreamscreen like the light element to turn it on/off and change color, the mode and scene selectors behind the brightness control which is the one I use regularly. Just reduces clutter a bit.
 
 - [entity filter card](https://www.home-assistant.io/lovelace/entity-filter/)
 
