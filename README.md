@@ -172,6 +172,12 @@ The ones about people are not shown on the kiosks because they just pop up the c
 
 The one about water is shown on all of them. When this has happened in the past it was usually due to very slow leaks, so we don't treat it as seriously as the other flooding which is in the basement and next to water mains taps where it can be quite serious and fast. There are also some about low phone batteries and smoke detectors and low gas in the car.
 
+- **[Description of which windows are open and making the house hot/cold/polluted](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L716-L720)
+There are a couple more that show up closer to the weather on the mobile or web views which show a long phrase describing all of the windows that are open and making the house hot, cold, or polluted. This phrase is generated from a python script that runs when a new window is opened or closed and it generates the phrase describing what's happening with the windows. On the kiosk tablets, this is generated with a marqee that scrolls (you can see it on the little gif of the kiosk below). On mobile and web, marquee doesn't work, so it's just an card with ~5 lines that can contain all the text.
+
+**[Picture Elements Card for Coronavirus](https://www.google.com/search?channel=trow2&client=firefox-b-d&q=picture+elements+card)
+
+This is a little card I created just to show the daily coronavirus numbers and a running total. It's based
 
 **[Entity Filter Cards](https://www.home-assistant.io/lovelace/entity-filter/):**
 These are how I get important statuses on lots of things without creating a lot of clutter, as they pop up only when they have something to tell me. I fudged the states on some stuff for the screenshot so you could see more of them. The real view usually looks more like what I show on the tablet.
@@ -194,6 +200,10 @@ These are how I get important statuses on lots of things without creating a lot 
 - [custom:weather-card-chart](https://github.com/Yevgenium/lovelace-weather-card-chart)
 
   (love having the chart in my weather forecast)
+
+- [cutsom:mini-graph-card](https://github.com/kalkih/mini-graph-card)
+
+  (these show the air quality from our AQI, Radon, and VOC sensors. They also use [custom:lovelace-mod-card](https://github.com/thomasloven/lovelace-card-mod) to modify the background color)
 
 - [custom:lovelace-canary](https://github.com/jcwillox/lovelace-canary)
 
