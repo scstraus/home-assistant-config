@@ -147,11 +147,37 @@ Some popups that happen when you tap specific things
 - **[For air purifiers shows their availability and status as well as room AQI.](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/lovelace/Tab1_Home.yaml#L57-L115)** I had to customize this because they were going unavailable quite frequently, so I made input selects and automations that would cache the desired state until they became available and then change the real ones. I also changed AQI to standard AQI measurement rather than than direct particle measurement.
 - **[Car popup when you click on the car lock button](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/lovelace/Tab1_Home.yaml#L117-L135)**, it will let you lock (but not unlock) the car.
 
+
+**[Decluttering Cards based on Custom Button Card](https://github.com/custom-cards/decluttering-card):**
+
+These cards create very thin notifications for things (like the yellow battery notification in the screenshot) that don't happen so often to be worth grouping together into a fullsized card like the ones below, but still important enough that I want them at the top of my dashboard when they do. Many of them also use marquee scrolling to display long messages which cannot be fit into a normal style of card. Decluttering card allows me to reuse a number of rather long definitions to get very specific styles without cluttering up my dashboard with all the gory details (this particular tab's yaml file is getting longer than I'd like). You can find the card definitions for the actual button cards [here in my ui-lovelace.yaml](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/ui-lovelace.yaml#L196-L637).
+
+- **[Emergency cards: Flooding](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L180-L192)**
+
+These cards are flashing red cards which really catch the eye in case there is flooding. They are accompanied by some automations that make announcements on the Amazon Echoes and emergency notifications on the phone, so pretty unlikely we don't hear about this one way or the other.
+
+- **[Alert card: Almost too late to take out the trash](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L180-L192)
+
+This is a red not flashing one that warns us when it's getting to be night time the night before trash day and we still haven't taken out the trash. It's accompanied by notifications on the phone from an autoamation as well.
+
+- **[2 Line Warning card: Roof windows are open and rain is forecast](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L201-L213)
+
+These ones are yellow and high enough for 2 lines of text to show a message that the roof windows are open and rain is in the daily forecast. They are also accompanied by notifications on the phones from an alert definition.
+
+- **[1 Line Warning card: People spotted on property, water under sink, low batteries, or low gas in car](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L250-L339)
+
+These are more yellow ones. 
+
+The ones about people are not shown on the kiosks because they just pop up the cameras, so they are only shown on our phones and computers when we are looking at the main dashbaord. Those are accompanied by emergency notifications if we are away or asleep. 
+
+The one about water is shown on all of them. When this has happened in the past it was usually due to very slow leaks, so we don't treat it as seriously as the other flooding which is in the basement and next to water mains taps where it can be quite serious and fast. There are also some about low phone batteries and smoke detectors and low gas in the car.
+
+
 **[Entity Filter Cards](https://www.home-assistant.io/lovelace/entity-filter/):**
 These are how I get important statuses on lots of things without creating a lot of clutter, as they pop up only when they have something to tell me. I fudged the states on some stuff for the screenshot so you could see more of them. The real view usually looks more like what I show on the tablet.
 
-- **[Emergency Alert](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/lovelace/Tab1_Home.yaml#L149-L233)** Pops up when there's something seriously wrong like the smoke alarms are going off, electricity is out, there's flooding, or (usually not actually very urgent) there's a human being shown on one of the cameras.
-- **[Low Battery](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/lovelace/Tab1_Home.yaml#L235-L261)** Does what you'd expect. Tells you when the battery is low on one of about currently 15 devices like phones or zwave devices. I have more to add like my TRV's on the radiators which will come with a future HGI-80 release.
+- **[Emergency Alert](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/lovelace/Tab1_Home.yaml#L149-L233)** Pops up when there's something seriously wrong like the smoke alarms are going off, electricity is out, or (usually not actually very urgent) there's a human being shown on one of the cameras.
+- **[Low Battery](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/lovelace/Tab1_Home.yaml#L235-L261)** Does what you'd expect. Tells you when the battery is low on one of about currently 15 zwave devices. I have more to add like my TRV's on the radiators which will come with a future HGI-80 release. This card doesn't pop up often at all, so I haven't bothered to make the small decluttering button cards for these ones.
 - **[What's Happening Today](https://github.com/scstraus/home-assistant-config/blob/9e638272e121710738e05d08d2c5b1a145a0ae42/lovelace/Tab1_Home.yaml#L263-L324)** This is the main heads up display that will show most of the status you need at a glance. It's the only one of these cards that's usually open. it shows the following things:
   - If we have a package coming from one of 4 carriers (DHL, Czech post, DPD, or GLS) based on emails we recieve
   - If it's the day to take out the trash or composting based on the schedules for those
