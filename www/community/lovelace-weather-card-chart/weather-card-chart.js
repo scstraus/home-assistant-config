@@ -285,7 +285,10 @@ class WeatherCardChart extends Polymer.Element {
   }
 
   computeWind(speed) {
-    var calcSpeed = Math.round(speed * 1000 / 3600);
+//Unneeded as my wind is already in m/s so I'm commenting out
+//    var calcSpeed = Math.round(speed * 1000 / 3600);
+    var calcSpeed = speed;
+
     return calcSpeed;
   }
 

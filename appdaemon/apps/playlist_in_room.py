@@ -78,6 +78,7 @@ class PlaylistInRoom(hass.Hass):
     self.SPEAKER_RESPONSE_COUNT = 0
     self.TIME_TO_PLAY_PLAYLIST = 0
     self.ITUNES_VOLUME_CHANGE_HAPPENED = 0
+    self.ONLY_DOING_SPEAKERS = 0
 
     #Setting iTunes volume
     self.log("Setting iTunes volume to 50%")

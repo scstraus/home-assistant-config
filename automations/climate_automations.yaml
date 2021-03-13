@@ -962,7 +962,7 @@
     platform: state
     entity_id: binary_sensor.smartweather_raining
     to: 'off'
-    for: "00:05:00"
+    for: "00:04:59"
   action:
     - choose:
         - conditions: 
@@ -1037,3 +1037,14 @@
             - service: notify.alexa_media_everywhere
               data:
                 message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
+
+- alias: update_rain_sensor
+  id: update_rain_sensor
+  initial_state: 'true'
+  trigger:
+    platform: time_pattern
+    minutes: "/1"
+  action:
+    service: homeassistant.update_entity
+    target:
+      entity_id: sensor.rain_sensor

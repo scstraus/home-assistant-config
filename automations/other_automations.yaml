@@ -341,6 +341,7 @@
 - id: sophie_up_late
   alias: 'Sophie up late'
   initial_state: 'true'
+  mode: single
   trigger:
     - platform: state
       entity_id: binary_sensor.sophies_room_zone_10
@@ -367,13 +368,15 @@
           - condition: template
             value_template: "{{ now().strftime('%m')|int > 8 or now().strftime('%m')|int < 7 }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_12
-    data:
-      title: "Sophie is Up Late"
-      message: "Sophie is Up Late"
+    - service: notify.mobile_app_sean_s_iphone_12
       data:
-        push:
-          thread-id: "info"
+        title: "Sophie is Up Late"
+        message: "Sophie is Up Late"
+        data:
+          push:
+            thread-id: "info"
+    - delay:
+        seconds: 30
 
 #          - condition: time
 #            after: '21:30:00'
@@ -968,3 +971,56 @@
     data:
       title: "Take in the mail"
       message: "Hey as long as you are coming home, you might as well check the mailbox."
+
+- id: basement_sliding_door_open_alexa
+  alias: basement_sliding_door_open_alexa
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_sliding_door
+      to: 'on'
+      for:
+        seconds: 5
+    - platform: state
+      entity_id: binary_sensor.basement_sliding_door
+      to: 'on'
+      for:
+        minutes: 1
+  action:
+    service: notify.alexa_media_alexa_garage
+    data:
+      message: "Excuse me, you've left me sliding door open. Please don't forget to close it"
+      data:
+        type: tts
+
+
+- id: tell_sebastian_to_leave_tablet_alone
+  alias: tell_sebastian_to_leave_tablet_alone
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: !secret kindle_master_closet_sensor
+    attribute: charging
+    to: false
+  action:
+    service: notify.alexa_media_master_closet_kindle
+    data:
+      message: "Sebastian, you know you aren't supposed to play with this tablet. Please put it back where you found it so you don't get in trouble."
+      data:
+        type: tts
+
+
+- id: thank_sebastian_for_putting_tablet_back
+  alias: thank_sebastian_for_putting_tablet_back
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: !secret kindle_master_closet_sensor
+    attribute: charging
+    to: true
+  action:
+    service: notify.alexa_media_master_closet_kindle
+    data:
+      message: "Thank you for putting the tablet back Sebastian."
+      data:
+        type: tts

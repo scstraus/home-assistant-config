@@ -711,7 +711,7 @@ cards:
         sun: sun.sun
         mode: hourly
         temp: sensor.smartweather_temperature
-        wind: sensor.smartweather_wind_speed
+        wind: sensor.smartweather_wind_gust
 
       - type: custom:decluttering-card
         template: open_windows_cold_nomarquee

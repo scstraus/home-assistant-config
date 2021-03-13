@@ -169,10 +169,7 @@
     entity_id: binary_sensor.basement_door_open_sean
     state: 'on'
     repeat: 
-      - 1
-      - 4
       - 5
-      - 10
       - 10
       - 15
     can_acknowledge: true
@@ -191,9 +188,9 @@
     entity_id: binary_sensor.basement_sliding_door
     state: 'on'
     repeat: 
-      - 1
       - 5
       - 10
+      - 15
     can_acknowledge: true
     skip_first: true
     notifiers:
