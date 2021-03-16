@@ -159,15 +159,15 @@ These cards create very thin notifications for things (like the yellow battery n
 
 These cards are flashing red cards which really catch the eye in case there is flooding. They are accompanied by some automations that make announcements on the Amazon Echoes and emergency notifications on the phone, so pretty unlikely we don't hear about this one way or the other.
 
-- **[Alert card: Almost too late to take out the trash](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L180-L192)
+- **[Alert card: Almost too late to take out the trash](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L180-L192)**
 
 This is a red not flashing one that warns us when it's getting to be night time the night before trash day and we still haven't taken out the trash. It's accompanied by notifications on the phone from an autoamation as well.
 
-- **[2 Line Warning card: Roof windows are open and rain is forecast](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L201-L213)
+- **[2 Line Warning card: Roof windows are open and rain is forecast](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L201-L213)**
 
 These ones are yellow and high enough for 2 lines of text to show a message that the roof windows are open and rain is in the daily forecast. They are also accompanied by notifications on the phones from an alert definition.
 
-- **[1 Line Warning card: People spotted on property, water under sink, low batteries, or low gas in car](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L250-L339)
+- **[1 Line Warning card: People spotted on property, water under sink, low batteries, or low gas in car](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L250-L339)**
 
 These are more yellow ones. 
 
@@ -175,10 +175,10 @@ The ones about people are not shown on the kiosks because they just pop up the c
 
 The one about water is shown on all of them. When this has happened in the past it was usually due to very slow leaks, so we don't treat it as seriously as the other flooding which is in the basement and next to water mains taps where it can be quite serious and fast. There are also some about low phone batteries and smoke detectors and low gas in the car.
 
-- **[Description of which windows are open and making the house hot/cold/polluted](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L716-L720)
+- **[Description of which windows are open and making the house hot/cold/polluted](https://github.com/scstraus/home-assistant-config/blob/7de2e9271337943f13573561016dfee3cefb33b8/lovelace/Tab1_Home.yaml#L716-L720)**
 There are a couple more that show up closer to the weather on the mobile or web views which show a long phrase describing all of the windows that are open and making the house hot, cold, or polluted. This phrase is generated from a python script that runs when a new window is opened or closed and it generates the phrase describing what's happening with the windows. On the kiosk tablets, this is generated with a marqee that scrolls (you can see it on the little gif of the kiosk below). On mobile and web, marquee doesn't work, so it's just an card with ~5 lines that can contain all the text.
 
-**[Picture Elements Card for Coronavirus](https://www.google.com/search?channel=trow2&client=firefox-b-d&q=picture+elements+card)
+**[Picture Elements Card for Coronavirus](https://www.google.com/search?channel=trow2&client=firefox-b-d&q=picture+elements+card)**
 
 This is a little card I created just to show the daily coronavirus numbers and a running total. It's based
 
