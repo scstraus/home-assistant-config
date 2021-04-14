@@ -493,3 +493,85 @@
     payload_off: "OFF"
     device_class: "connectivity"
     qos: 1
+
+  - platform: template
+    sensors:
+      announce_dishes_are_clean:
+        device_class: motion
+        value_template: "{{ states.script.announce_dishes_are_clean.state == 'on' }}"
+
+#      announce_left_dishwasher_door_open:
+#        device_class: motion
+#        value_template: "{{ states.script.announce_left_dishwasher_door_open.state == 'on' }}"
+#
+      announce_dishes_are_not_done_yet:
+        device_class: motion
+        value_template: "{{ states.script.announce_dishes_are_not_done_yet.state == 'on' }}"
+
+      announce_forgot_to_run_the_dishes_master_closet:
+        device_class: motion
+        value_template: "{{ states.script.announce_forgot_to_run_the_dishes_master_closet.state == 'on' }}"
+
+      announce_forgot_to_run_the_dishes_living_room:
+        device_class: motion
+        value_template: "{{ states.script.announce_forgot_to_run_the_dishes_living_room.state == 'on' }}"
+        
+      announce_forgot_to_run_the_dishes_master_bath:
+        device_class: motion
+        value_template: "{{ states.script.announce_forgot_to_run_the_dishes_master_bath.state == 'on' }}"
+
+      announce_trash_day_trash_not_out:
+        device_class: motion
+        value_template: "{{ states.script.announce_trash_day_trash_not_out.state == 'on' }}"
+
+#      announce_its_raining_with_sebastian_roof_window_open_everywhere:
+#        device_class: motion
+#        value_template: "{{ states.script.announce_its_raining_with_sebastian_roof_window_open_everywhere.state == 'on' }}"
+
+      announce_its_raining_with_sebastian_roof_window_open_office:
+        device_class: motion
+        value_template: "{{ states.script.announce_its_raining_with_sebastian_roof_window_open_office.state == 'on' }}"
+
+#      announce_its_raining_with_sophie_roof_window_open_everywhere:
+#        device_class: motion
+#        value_template: "{{ states.script.announce_its_raining_with_sophie_roof_window_open_everywhere.state == 'on' }}"
+#    
+      announce_its_raining_with_sophie_roof_window_open_office:
+        device_class: motion
+        value_template: "{{ states.script.announce_its_raining_with_sophie_roof_window_open_office.state == 'on' }}"
+
+#      announce_water_under_the_sink_everywhere:
+#        device_class: motion
+#        value_template: "{{ states.script.announce_water_under_the_sink_everywhere.state == 'on' }}"
+
+      announce_water_under_the_sink_office:
+        device_class: motion
+        value_template: "{{ states.script.announce_water_under_the_sink_office.state == 'on' }}"
+#
+#      announce_someone_at_the_gate_kitchen:
+#        device_class: motion
+#        value_template: "{{ states.script.announce_someone_at_the_gate_kitchen.state == 'on' }}"
+#
+#      announce_someone_at_the_gate_master_bath:
+#        device_class: motion
+#        value_template: "{{ states.script.announce_someone_at_the_gate_master_bath.state == 'on' }}"
+#
+#      announce_someone_at_the_gate_master_closet:
+#        device_class: motion
+#        value_template: "{{ states.script.announce_someone_at_the_gate_master_closet.state == 'on' }}"
+#
+#      announce_someone_at_the_gate_master_1st_floor_bathroom:
+#        device_class: motion
+#        value_template: "{{ states.script.announce_someone_at_the_gate_master_1st_floor_bathroom.state == 'on' }}"
+
+      announce_you_left_the_sliding_door_open:
+        device_class: motion
+        value_template: "{{ states.script.announce_you_left_the_sliding_door_open.state == 'on' }}"
+
+      announce_sebastian_dont_play_with_tablet:
+        device_class: motion
+        value_template: "{{ states.script.announce_sebastian_dont_play_with_tablet.state == 'on' }}"
+
+      announce_thank_sebastian_for_putting_back_tablet:
+        device_class: motion
+        value_template: "{{ states.script.announce_thank_sebastian_for_putting_back_tablet.state == 'on' }}"

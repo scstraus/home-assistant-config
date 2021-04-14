@@ -557,4 +557,43 @@ cards:
     - binary_sensor.basement_nest_protect_online
 
 
+  - type: vertical-stack
+    in_card: true
+    title: Printer Ink Levels
+    cards:
+    
+    - type: custom:bar-card
+      entity: sensor.epson_l3160_series_black_ink
+      unit_of_measurement: "%"
+      name: Black Ink
+      severity:
+      - from: 0
+        to: 100
+        color: "#000000"
 
+    - type: custom:bar-card
+      entity: sensor.epson_l3160_series_cyan_ink
+      unit_of_measurement: "%"
+      name: Cyan Ink
+      severity:
+      - from: 0
+        to: 100
+        color: "#3498DB"
+
+    - type: custom:bar-card
+      entity: sensor.epson_l3160_series_magenta_ink
+      unit_of_measurement: "%"
+      name: Magenta Ink
+      severity:
+      - from: 0
+        to: 100
+        color: "#e04c23"
+
+    - type: custom:bar-card
+      entity: sensor.epson_l3160_series_yellow_ink
+      unit_of_measurement: "%"
+      name: Yellow Ink
+      severity:
+      - from: 0
+        to: 100
+        color: "#f4b300"

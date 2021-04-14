@@ -17,8 +17,8 @@ popup_cards:
       type: 'custom:weather-card-chart'
       weather: weather.weather_forecast
       sun: sun.sun
-      temp: sensor.smartweather_temperature
-      wind: sensor.smartweather_wind_speed
+      temp: sensor.smartweatherudp_temperature
+      wind: sensor.smartweather_wind_gust
 
   sensor.sean_location:
     title: Sean Location History and Time to Home
@@ -364,6 +364,7 @@ cards:
       - binary_sensor.basement_sliding_door
       - sensor.kite_day
       - sensor.rain_sensor
+      - sensor.high_wind_warning
       state_filter:
       - "on"
       - "Delivery"
@@ -386,6 +387,9 @@ cards:
       - "Moderate"
       - "Heavy"
       - "Very Heavy"
+      - "High"
+      - "Very High"
+      - "Dangerous"
       - "Violent Shower"
       card: 
         type: glance
@@ -740,7 +744,7 @@ cards:
         weather: weather.smartweather_home
         sun: sun.sun
         mode: hourly
-        temp: sensor.smartweather_temperature
+        temp: sensor.smartweatherudp_temperature
         wind: sensor.smartweather_wind_gust
 
       - type: entities

@@ -104,8 +104,8 @@
         push:
           thread-id: "appliances"
 
-- id: fire_notify_clean_dishes
-  alias: "TTS Notify Clean Dishes to Bar Kindle"
+- id: kitchen_bar_alexa_notify_clean_dishes
+  alias: "TTS Notify Clean Dishes to Kitchen Bar Alexa"
   initial_state: 'true'
   trigger:
     platform: state
@@ -125,14 +125,15 @@
             entity_id: input_select.bosch_dishwasher_status
             state: 'Emptying'
   action:
-  - data:
-      data:
-        type: tts
-      message: "The dishes are clean."
-      target: 
-#        - media_player.kichen_bar_kindle_fire
-        - media_player.alexa_kitchen
-    service: notify.alexa_media
+    - service: script.announce_dishes_are_clean
+#  - data:
+#      data:
+#        type: tts
+#      message: "The dishes are clean."
+#      target: 
+##        - media_player.kichen_bar_kindle_fire
+#        - media_player.alexa_kitchen
+#    service: notify.alexa_media
 
       
 - id: fire_notify_running_dishes
@@ -150,17 +151,20 @@
         state: 'run'
       - condition: numeric_state
         entity_id: 'sensor.bosch_dishwasher_time_remaining'
-        below: 1900
+        below: 1900   
   action:
-  - data:
-      data:
-        type: tts
-      message: "The dishes are not done yet."
-      target: 
-#        - media_player.kichen_bar_kindle_fire
-        - media_player.alexa_kitchen
-#        - notify.alexa_media_alexa_master_closet
-    service: notify.alexa_media    
+    - service: script.announce_dishes_are_not_done_yet
+
+#  action:
+#  - data:
+#      data:
+#        type: tts
+#      message: "The dishes are not done yet."
+#      target: 
+##        - media_player.kichen_bar_kindle_fire
+#        - media_player.alexa_kitchen
+##        - notify.alexa_media_alexa_master_closet
+#    service: notify.alexa_media 
 
 - id: dishwasher_running_door_open_timer
   alias: dishwasher_running_door_open_timer
@@ -227,6 +231,7 @@
         - media_player.alexa_master_bath
         - media_player.master_closet_kindle
         - media_player.office_alexa
+        - media_player.alexa_garage
     service: notify.alexa_media 
   - data:
       title: "Dishwasher Update"
@@ -295,17 +300,24 @@
         state: 'off'
         for:
           minutes: 5
+      - condition: state
+        entity_id: remote.harmony
+        state: 'off'
+        for:
+          minutes: 5
   action:
-    - data:
-        data:
-          type: tts
-        message: "Hi, it looks like you might have forgotten to run the dishes. If thats the case, dont forget to run them."
-        target: 
-          - media_player.alexa_living_room
-      service: notify.alexa_media
+    - service: script.announce_forgot_to_run_the_dishes_living_room
     - delay:
         minutes: 2
 
+#  action:
+#    - data:
+#        data:
+#          type: tts
+#        message: "Hi, it looks like you might have forgotten to run the dishes. If thats the case, dont forget to run them."
+#        target: 
+#          - media_player.alexa_living_room
+#      service: notify.alexa_media
 
 - id: dishwasher_dirty_and_hasnt_been_run_master_closet
   alias: dishwasher_dirty_and_hasnt_been_run_master_closet
@@ -342,17 +354,22 @@
         state: 'off'
         for:
           minutes: 5
+      - condition: state
+        entity_id: remote.harmony
+        state: 'off'
+        for:
+          minutes: 5
   action:
-    - data:
-        data:
-          type: tts
-        message: "Hi, it looks like you might have forgotten to run the dishes. If thats the case, dont forget to run them."
-        target: 
-          - media_player.master_closet_kindle
-      service: notify.alexa_media
+    - service: script.announce_forgot_to_run_the_dishes_master_closet
     - delay:
         minutes: 2
-
+#    - data:
+#        data:
+#          type: tts
+#        message: "Hi, it looks like you might have forgotten to run the dishes. If thats the case, dont forget to run them."
+#        target: 
+#          - media_player.master_closet_kindle
+#      service: notify.alexa_media
 
 - id: dishwasher_dirty_and_hasnt_been_run_master_bath
   alias: dishwasher_dirty_and_hasnt_been_run_master_bath
@@ -389,17 +406,22 @@
         state: 'off'
         for:
           minutes: 5
+      - condition: state
+        entity_id: remote.harmony
+        state: 'off'
+        for:
+          minutes: 5
   action:
-    - data:
-        data:
-          type: tts
-        message: "Hi, it looks like you might have forgotten to run the dishes. If thats the case, dont forget to run them."
-        target: 
-          - media_player.alexa_master_bath
-      service: notify.alexa_media
+    - service: script.announce_forgot_to_run_the_dishes_master_bath
     - delay:
         minutes: 2
-
+#    - data:
+#        data:
+#          type: tts
+#        message: "Hi, it looks like you might have forgotten to run the dishes. If thats the case, dont forget to run them."
+#        target: 
+#          - media_player.alexa_master_bath
+#      service: notify.alexa_media
 
 ################### MIELE WASHING MACHINE ####################
 

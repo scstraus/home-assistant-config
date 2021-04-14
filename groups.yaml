@@ -48,8 +48,10 @@
       - media_player.sophies_room_echo_dot
       - media_player.seans_5_echo_flex
       - media_player.seans_6_echo_flex
-      - media_player.seans_echo_dot
+      - media_player.alexa_echo_dot_kitchen_bar
       - media_player.echo_flex_first_floor_bathroom
+      - media_player.alexa_garage
+      - media_player.alexa_library
 
 #  default_view:
 #    view: yes

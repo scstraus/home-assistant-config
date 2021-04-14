@@ -200,6 +200,8 @@ logger:
     homeassistant.helpers.ratelimit: warn
     iphonedetect: warn
     homeassistant.components.influxdb: warn
+    custom_components.smartweatherudp: warn
+    smartweatherudp: warn
 #    hass_nabucasa: debug
 #    homeassistant.components.cloud: debug
 #    homeassistant.components.nest: debug
@@ -825,14 +827,40 @@ timer:
     duration: '00:03:00'
   bosch_dishwasher_running_door_open:
     duration: '00:01:00'
-  tablet_wake_screen_timer_1:
-    duration: '00:00:15'
-  tablet_wake_screen_timer_2:
-    duration: '00:00:30'
-  tablet_close_camera_popup_timer:
-    duration: '00:01:00'
+#  tablet_wake_screen_timer_1:
+#    duration: '00:00:15'
+#  tablet_wake_screen_timer_2:
+#    duration: '00:00:30'
+#  tablet_close_camera_popup_timer:
+#    duration: '00:01:00'
   raining_state_change_timer:
     duration: '00:05:00'
+  medium_wind_timer:
+    duration: '00:10:00'
+  high_wind_timer:
+    duration: '00:10:00'
+  very_high_wind_timer:
+    duration: '00:10:00'
+  dangerous_wind_timer:
+    duration: '00:10:00'
+  left_human_on:
+    duration: '00:00:03'
+  left_human_off:
+    duration: '00:00:03'
+  right_human_on:
+    duration: '00:00:03'
+  right_human_off:
+    duration: '00:00:03'
+  front_human_on:
+    duration: '00:00:03'
+  front_human_off:
+    duration: '00:00:03'
+  back_human_on:
+    duration: '00:00:03'
+  back_human_off:
+    duration: '00:00:03'
+  human_popup_close:
+    duration: '00:00:10'
 
 
 dreamscreen:
@@ -937,3 +965,4 @@ light:
               h: "{{ h }}"
               s: "{{ s }}"
               v: "{{ state_attr('dreamscreen.living_room_tv', 'brightness')|int }}"
+

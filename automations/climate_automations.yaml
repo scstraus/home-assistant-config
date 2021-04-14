@@ -160,6 +160,26 @@
     entity_id: input_select.active_heating_profile
     state: 'PROFILE_AUTO'
 
+- id: heat_down_open_playroom_auto
+  alias: heat_down_open_playroom_auto
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.play_room_terrace_door
+    to: 'on'
+    for: 
+      minutes: 2
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.dining_room
+      setpoint: 12
+      duration: {"hours":4}
+  condition:
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
+
 #  condition:
 #    condition: template 
 #    value_template: > 
@@ -290,6 +310,21 @@
     entity_id: input_select.active_heating_profile
     state: 'PROFILE_AUTO'
 
+- id: heat_up_closed_play_room_auto
+  alias: heat_up_closed_play_room_auto
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.play_room_terrace_door
+    to: 'off'
+  action:   
+    - service: evohome.clear_zone_override
+      data:
+        entity_id: climate.dining_room
+  condition:
+    condition: state
+    entity_id: input_select.active_heating_profile
+    state: 'PROFILE_AUTO'
 
 ######################################################
 # AUTOMATIONS TO ADJUST HEAT BASED ON WEATHER REPORT #
@@ -1018,6 +1053,8 @@
             - service: notify.alexa_media_everywhere
               data:
                 message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
+            - service: script.announce_its_raining_with_sophie_roof_window_open_office
+
     - choose:
         - conditions: 
             - condition: state
@@ -1037,9 +1074,10 @@
             - service: notify.alexa_media_everywhere
               data:
                 message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
+            - service: script.announce_its_raining_with_sebastian_roof_window_open_office
 
-- alias: update_rain_sensor
-  id: update_rain_sensor
+- id: update_rain_sensor
+  alias: update_rain_sensor
   initial_state: 'true'
   trigger:
     platform: time_pattern
@@ -1048,3 +1086,47 @@
     service: homeassistant.update_entity
     target:
       entity_id: sensor.rain_sensor
+
+- id: update_wind_timers
+  alias: update_wind_timers
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.smartweather_wind_gust
+  action:
+    - choose:
+        - conditions: 
+            - condition: numeric_state
+              entity_id: "sensor.smartweather_wind_gust"
+              above: 5
+          sequence:
+            - service: timer.start
+              target:
+                entity_id: timer.medium_wind_timer
+    - choose:
+        - conditions: 
+            - condition: numeric_state
+              entity_id: "sensor.smartweather_wind_gust"
+              above: 10
+          sequence:
+            - service: timer.start
+              target:
+                entity_id: timer.high_wind_timer
+    - choose:
+        - conditions: 
+            - condition: numeric_state
+              entity_id: "sensor.smartweather_wind_gust"
+              above: 15
+          sequence:
+            - service: timer.start
+              target:
+                entity_id: timer.very_high_wind_timer
+    - choose:
+        - conditions: 
+            - condition: numeric_state
+              entity_id: "sensor.smartweather_wind_gust"
+              above: 20
+          sequence:
+            - service: timer.start
+              target:
+                entity_id: timer.dangerous_wind_timer

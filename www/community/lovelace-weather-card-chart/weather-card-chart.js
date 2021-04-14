@@ -136,7 +136,7 @@ class WeatherCardChart extends Polymer.Element {
           margin: 10px 0px 10px 0px;
         }
         .attributes div {
-          text-align: center;
+          text-align: left;
         }
         .conditions {
           display: flex;
@@ -316,6 +316,9 @@ class WeatherCardChart extends Polymer.Element {
 
   drawChart() {
     //var data = this.weatherObj.attributes.forecast.slice(0,9);
+    if (!this.weatherObj.attributes || !this.weatherObj.attributes.forecast) {
+      return [];
+    }
     var mode = this.mode;
     var data = null;
     console.log ("mode=",mode);
@@ -330,9 +333,9 @@ class WeatherCardChart extends Polymer.Element {
     var precipUnit = lengthUnit === 'km' ? this.ll('uPrecip') : 'in';
 //    var mode = this.mode;
     var i;
-    if (!this.weatherObj.attributes.forecast) {
-      return [];
-    }
+//    if (!this.weatherObj.attributes.forecast) {
+//      return [];
+//    }
     var dateTime = [];
     var tempHigh = [];
     var tempLow = [];

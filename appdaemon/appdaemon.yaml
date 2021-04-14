@@ -13,3 +13,15 @@ http:
 admin:
 api:
 hadashboard:
+logs:
+  main_log:
+    filename: /share/appdaemonlogs/appdaemon.log
+  access_log:
+    filename: /share/appdaemonlogs/access.log
+  error_log:
+    filename: /share/appdaemonlogs/error.log
+  diag_log:
+    filename: /share/appdaemonlogs/diag.log
+    log_generations: 5
+    log_size: 1024
+    format: "{asctime} {levelname:<8} {appname:<10}: {message}"

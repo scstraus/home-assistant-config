@@ -396,12 +396,31 @@
       - service: media_player.volume_up
         data: 
           entity_id: media_player.forked_daapd_server       
+      - service: media_player.volume_up
+        data: 
+          entity_id: media_player.forked_daapd_server  
+      - service: media_player.volume_up
+        data: 
+          entity_id: media_player.forked_daapd_server  
+      - service: media_player.volume_up
+        data: 
+          entity_id: media_player.forked_daapd_server  
+
 
   turn_down_music_volume:
     sequence:
       - service: media_player.volume_down
         data: 
           entity_id: media_player.forked_daapd_server      
+      - service: media_player.volume_down
+        data: 
+          entity_id: media_player.forked_daapd_server 
+      - service: media_player.volume_down
+        data: 
+          entity_id: media_player.forked_daapd_server 
+      - service: media_player.volume_down
+        data: 
+          entity_id: media_player.forked_daapd_server 
 
   skip_this_song:
     sequence:
@@ -938,3 +957,63 @@
       - event: ALEXA_TURN_OFF_SPEAKERS
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
+        
+  announce_dishes_are_clean:
+    sequence:
+#
+#  announce_left_dishwasher_door_open:
+#    sequence:
+
+  announce_dishes_are_not_done_yet:
+    sequence:
+
+  announce_forgot_to_run_the_dishes_master_closet:
+    sequence:
+
+  announce_forgot_to_run_the_dishes_living_room:
+    sequence:
+
+  announce_forgot_to_run_the_dishes_master_bath:
+    sequence:
+
+  announce_trash_day_trash_not_out:
+    sequence:
+
+#  announce_its_raining_with_sebastian_roof_window_open_everywhere:
+#    sequence:
+
+  announce_its_raining_with_sebastian_roof_window_open_office:
+    sequence:
+
+#  announce_its_raining_with_sophie_roof_window_open_everywhere:
+#    sequence:
+
+  announce_its_raining_with_sophie_roof_window_open_office:
+    sequence:
+#
+#  announce_water_under_the_sink_everywhere:
+#    sequence:
+
+  announce_water_under_the_sink_office:
+    sequence:
+
+#  announce_someone_at_the_gate_kitchen:
+#    sequence:
+#
+#  announce_someone_at_the_gate_master_bath:
+#    sequence:
+#
+#  announce_someone_at_the_gate_master_closet:
+#    sequence:
+#
+#  announce_someone_at_the_gate_master_1st_floor_bathroom:
+#    sequence: 
+    
+  announce_you_left_the_sliding_door_open:
+    sequence:
+
+  announce_sebastian_dont_play_with_tablet:
+    sequence:
+
+  announce_thank_sebastian_for_putting_back_tablet:
+    sequence:

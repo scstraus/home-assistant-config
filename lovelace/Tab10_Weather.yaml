@@ -30,6 +30,8 @@ cards:
           }
         title: Weather Today
         weather: weather.smartweather_home
+        temp: sensor.smartweatherudp_temperature
+        wind: sensor.smartweatherudp_wind_speed_realtime
         sun: sun.sun
         mode: hourly
 
@@ -47,7 +49,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweather_temperature
+          - entity: sensor.smartweatherudp_temperature
             name: Temperature
         hours_to_show: 24
         points_per_hour: 2
@@ -68,7 +70,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweather_humidity
+          - entity: sensor.smartweatherudp_humidity
             name: Humidity
         hours_to_show: 24
         points_per_hour: 2
@@ -86,7 +88,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweather_dewpoint
+          - entity: sensor.smartweatherudp_dewpoint
             name: 'Dew Point'
         hours_to_show: 24
         points_per_hour: 2
@@ -123,6 +125,8 @@ cards:
           }
         title: Weather This Week
         weather: weather.weather_forecast
+        temp: sensor.smartweatherudp_temperature
+        wind: sensor.smartweatherudp_wind_speed_realtime
         sun: sun.sun
 
       - type: entities
@@ -487,25 +491,73 @@ cards:
       in_card: true
       cards: 
 
+      - type: horizontal-stack
+        in_card: true
+        cards: 
 
+        - type: custom:compass-card
+          header:
+            title:
+              value: Average
+          indicator_sensors:
+            - sensor: sensor.smartweatherudp_wind_bearing
+              indicator:
+                type: arrow_inward
+          value_sensors:
+            - sensor: sensor.smartweatherudp_wind_speed
+              decimals: 1
+          compass:
+            north:
+              show: true
+              offset: 15
 
-      - type: custom:compass-card
-        indicator_sensors:
-          - sensor:  sensor.smartweather_wind_bearing
-            indicator:
-              type: arrow_inward
-        value_sensors:
-          - sensor: sensor.smartweather_wind_speed
-        compass:
-          north:
-            show: true
-            offset: 15
+        - type: custom:compass-card
+          header:
+            title:
+              value: Realtime
+          indicator_sensors:
+            - sensor: sensor.smartweatherudp_wind_bearing_realtime
+              indicator:
+                type: arrow_inward
+          value_sensors:
+            - sensor: sensor.smartweatherudp_wind_speed_realtime
+              decimals: 1
+          compass:
+            north:
+              show: true
+              offset: 15
+
 
       - type: custom:mini-graph-card
     #      name: Internet
         entities:
-          - entity: sensor.smartweather_wind_speed
+          - entity: sensor.smartweatherudp_wind_speed
             name: Wind Speed
+        hours_to_show: 24
+        points_per_hour: 2
+        height: 150
+        lower_bound: 0
+        color_thresholds:
+          - value: 0
+            color: "#ccccff"
+          - value: 6
+            color: "#6666ff"
+          - value: 30
+            color: "#0da035"
+          - value: 45
+            color: "#daa002"
+          - value: 60
+            color: "#d35400"
+          - value: 75
+            color: "#e04c23"
+
+
+
+      - type: custom:mini-graph-card
+    #      name: Internet
+        entities:
+          - entity: sensor.smartweather_wind_gust
+            name: Wind Gust
         hours_to_show: 24
         points_per_hour: 2
         height: 150
@@ -555,7 +607,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweather_wind_bearing
+          - entity: sensor.smartweatherudp_wind_bearing
             name: Wind Bearing
         hours_to_show: 24
         points_per_hour: 4

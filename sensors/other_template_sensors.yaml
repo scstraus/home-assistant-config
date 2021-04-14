@@ -362,20 +362,20 @@
     sensors:
       czech_holiday_friendly_0:
         friendly_name_template: >-
-          {{state_attr('sensor.czech_holidays_event_0', 'name')}}
+          {{state_attr('sensor.ical_czech_holidays_event_0', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.czech_holidays_event_0', 'eta') == 0 %}
+          {% if state_attr('sensor.ical_czech_holidays_event_0', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.czech_holidays_event_0', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_czech_holidays_event_0', 'eta') == 1 %}
             Tomorrow
           {% else %}
-            in {{state_attr('sensor.czech_holidays_event_0', 'eta')}} days 
+            in {{state_attr('sensor.ical_czech_holidays_event_0', 'eta')}} days 
           {% endif %}
         attribute_templates:
           eta: >-
-            {{state_attr('sensor.czech_holidays_event_0', 'eta')}}
+            {{state_attr('sensor.ical_czech_holidays_event_0', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_0', 'start').strftime('%a, %b %d')}}
+            {{state_attr('sensor.ical_czech_holidays_event_0', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -383,20 +383,20 @@
     sensors:
       czech_holiday_friendly_1:
         friendly_name_template: >-
-          {{state_attr('sensor.czech_holidays_event_1', 'name')}}
+          {{state_attr('sensor.ical_czech_holidays_event_1', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.czech_holidays_event_1', 'eta') == 0 %}
+          {% if state_attr('sensor.ical_czech_holidays_event_1', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.czech_holidays_event_1', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_czech_holidays_event_1', 'eta') == 1 %}
             Tomorrow
           {% else %}
-            in {{state_attr('sensor.czech_holidays_event_1', 'eta')}} days 
+            in {{state_attr('sensor.ical_czech_holidays_event_1', 'eta')}} days 
           {% endif %}
         attribute_templates:
           eta: >-
-            {{state_attr('sensor.czech_holidays_event_1', 'eta')}}
+            {{state_attr('sensor.ical_czech_holidays_event_1', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_1', 'start').strftime('%a, %b %d')}} 
+            {{state_attr('sensor.ical_czech_holidays_event_1', 'start').strftime('%a, %b %d')}} 
         icon_template: >-
             mdi:calendar
 
@@ -404,20 +404,20 @@
     sensors:
       czech_holiday_friendly_2:
         friendly_name_template: >-
-          {{state_attr('sensor.czech_holidays_event_2', 'name')}}
+          {{state_attr('sensor.ical_czech_holidays_event_2', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.czech_holidays_event_2', 'eta') == 0 %}
+          {% if state_attr('sensor.ical_czech_holidays_event_2', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.czech_holidays_event_2', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_czech_holidays_event_2', 'eta') == 1 %}
             Tomorrow
           {% else %}
-            in {{state_attr('sensor.czech_holidays_event_2', 'eta')}} days 
+            in {{state_attr('sensor.ical_czech_holidays_event_2', 'eta')}} days 
           {% endif %}
         attribute_templates:
           eta: >-
-            {{state_attr('sensor.czech_holidays_event_2', 'eta')}}
+            {{state_attr('sensor.ical_czech_holidays_event_2', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_2', 'start').strftime('%a, %b %d')}}       
+            {{state_attr('sensor.ical_czech_holidays_event_2', 'start').strftime('%a, %b %d')}}       
         icon_template: >-
             mdi:calendar
 
@@ -425,20 +425,20 @@
     sensors:
       czech_holiday_friendly_3:
         friendly_name_template: >-
-          {{state_attr('sensor.czech_holidays_event_3', 'name')}}
+          {{state_attr('sensor.ical_czech_holidays_event_3', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.czech_holidays_event_3', 'eta') == 0 %}
+          {% if state_attr('sensor.ical_czech_holidays_event_3', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.czech_holidays_event_3', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_czech_holidays_event_3', 'eta') == 1 %}
             Tomorrow
           {% else %}
-            in {{state_attr('sensor.czech_holidays_event_3', 'eta')}} days 
+            in {{state_attr('sensor.ical_czech_holidays_event_3', 'eta')}} days 
           {% endif %}
         attribute_templates:
           eta: >-
-            {{state_attr('sensor.czech_holidays_event_3', 'eta')}}
+            {{state_attr('sensor.ical_czech_holidays_event_3', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_3', 'start').strftime('%a, %b %d')}}
+            {{state_attr('sensor.ical_czech_holidays_event_3', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
 
@@ -446,20 +446,20 @@
     sensors:
       czech_holiday_friendly_4:
         friendly_name_template: >-
-          {{state_attr('sensor.czech_holidays_event_4', 'name')}}
+          {{state_attr('sensor.ical_czech_holidays_event_4', 'friendly_name')}}
         value_template: >-
-          {% if state_attr('sensor.czech_holidays_event_4', 'eta') == 0 %}
+          {% if state_attr('sensor.ical_czech_holidays_event_4', 'eta') == 0 %}
             Today
-          {% elif state_attr('sensor.czech_holidays_event_4', 'eta') == 1 %}
+          {% elif state_attr('sensor.ical_czech_holidays_event_4', 'eta') == 1 %}
             Tomorrow
           {% else %}
-            in {{state_attr('sensor.czech_holidays_event_4', 'eta')}} days 
+            in {{state_attr('sensor.ical_czech_holidays_event_4', 'eta')}} days 
           {% endif %}
         attribute_templates:
           eta: >-
-            {{state_attr('sensor.czech_holidays_event_4', 'eta')}}
+            {{state_attr('sensor.ical_czech_holidays_event_4', 'eta')}}
           date: >-
-            {{state_attr('sensor.czech_holidays_event_4', 'start').strftime('%a, %b %d')}} 
+            {{state_attr('sensor.ical_czech_holidays_event_4', 'start').strftime('%a, %b %d')}} 
         icon_template: >-
             mdi:calendar
 
@@ -610,7 +610,7 @@
             {% else %}
             -1
             {% endif %}
-          friendly_eta: >-
+          date: >-
             {{state_attr('sensor.ical_parklane_calendar_event_3', 'start').strftime('%a, %b %d')}}
         icon_template: >-
             mdi:calendar
@@ -783,8 +783,8 @@
         value_template: >-
           {% if states('sensor.smartweather_temperature')|float < 27
               and states('sensor.smartweather_temperature')|float > 10 
-              and states('sensor.smartweather_wind_speed')|float < 15
-              and states('sensor.smartweather_wind_speed')|float > 7
+              and states('sensor.smartweather_wind_speed')|float < 8.5
+              and states('sensor.smartweather_wind_speed')|float > 2
               and (states('sensor.dark_sky_precip_probability_0d')|float < 30
               or ((states('sensor.dark_sky_precip_intensity_1h')|float < 0.05)
               and (states('sensor.dark_sky_precip_intensity_2h')|float < 0.05)
@@ -874,3 +874,24 @@
               mdi:weather-pouring
             {% endif %}
           {% endif %} 
+
+
+  - platform: template
+    sensors:
+      high_wind_warning:
+        friendly_name: "It's Windy"
+        icon_template: >-
+          mdi:weather-windy
+        value_template: >-
+          {% if (states('timer.dangerous_wind_timer')=='active')%}
+            Dangerous
+          {% elif (states('timer.very_high_wind_timer')=='active')%}
+            Very High
+          {% elif (states('timer.high_wind_timer')=='active')%}
+            High
+          {% elif (states('timer.medium_wind_timer')=='active')%}
+            Moderate
+          {% else %}
+            no          
+          {% endif %}
+

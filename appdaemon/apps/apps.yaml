@@ -8,3 +8,8 @@ hello_world:
 playlist_in_room:
   module: playlist_in_room
   class: PlaylistInRoom
+manage_kiosk_camera_popups:
+  module: manage_kiosk_camera_popups
+  class: ManageKioskCameraPopups
+  kindle_kitchen_deviceid: !secret kindle_kitchen_deviceid
+  kindle_master_closet_deviceid: !secret kindle_master_closet_deviceid

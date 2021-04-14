@@ -208,3 +208,21 @@ sensor.fibaro_system_fgpb101_button_general_2:
 sensor.fibaro_system_fgpb101_button_sourcenodeid_2:
   ignored: true
   polling_intensity: 0
+sensor.vision_security_zd2102_eu_door_window_sensor_burglar:
+  ignored: true
+  polling_intensity: 0
+sensor.vision_security_zd2102_eu_door_window_sensor_clock:
+  ignored: true
+  polling_intensity: 0
+sensor.vision_security_zd2102_eu_door_window_sensor_emergency:
+  ignored: true
+  polling_intensity: 0
+sensor.vision_security_zd2102_eu_door_window_sensor_homehealth:
+  ignored: true
+  polling_intensity: 0
+sensor.vision_security_zd2102_eu_door_window_sensor_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.vision_security_zd2102_eu_door_window_sensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0

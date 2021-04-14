@@ -5,21 +5,24 @@
     platform: mqtt
     topic: frigate/events
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'front' }}"
-    - condition: or
-      conditions:
-      - condition: time
-        after: '23:00:00'
-        before: '7:00:00'
-      - condition: state
-        entity_id: sensor.alarm_state_3_motion_sensors
-        state: 'armed_away'
-        for:
-          minutes: 1
-      - condition: state
-        entity_id: sensor.alarm_state_3_motion_sensors
-        state: 'triggered'  
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ 'on_property' in trigger.payload_json['after']['entered_zones'] }}"
+      - "{{ trigger.payload_json['type'] == 'new' }}"
+      - condition: or
+        conditions:
+        - condition: time
+          after: '23:00:00'
+          before: '7:00:00'
+        - condition: state
+          entity_id: sensor.alarm_state_3_motion_sensors
+          state: 'armed_away'
+          for:
+            minutes: 1
+        - condition: state
+          entity_id: sensor.alarm_state_3_motion_sensors
+          state: 'triggered'  
   action:
     - service: notify.mobile_app_sean_s_iphone_12
       data_template:
@@ -49,21 +52,24 @@
     platform: mqtt
     topic: frigate/events
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
-    - condition: or
-      conditions:
-      - condition: time
-        after: '23:00:00'
-        before: '7:00:00'
-      - condition: state
-        entity_id: sensor.alarm_state_3_motion_sensors
-        state: 'armed_away'
-        for:
-          minutes: 1
-      - condition: state
-        entity_id: sensor.alarm_state_3_motion_sensors
-        state: 'triggered'  
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
+      - "{{ trigger.payload_json['type'] == 'new' }}"
+      - condition: or
+        conditions:
+        - condition: time
+          after: '23:00:00'
+          before: '7:00:00'
+        - condition: state
+          entity_id: sensor.alarm_state_3_motion_sensors
+          state: 'armed_away'
+          for:
+            minutes: 1
+        - condition: state
+          entity_id: sensor.alarm_state_3_motion_sensors
+          state: 'triggered'  
   action:
     - service: notify.mobile_app_sean_s_iphone_12
       data_template:
@@ -92,21 +98,24 @@
     platform: mqtt
     topic: frigate/events
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'left' }}"
-    - condition: or
-      conditions:
-      - condition: time
-        after: '23:00:00'
-        before: '7:00:00'
-      - condition: state
-        entity_id: sensor.alarm_state_3_motion_sensors
-        state: 'armed_away'
-        for:
-          minutes: 1
-      - condition: state
-        entity_id: sensor.alarm_state_3_motion_sensors
-        state: 'triggered'  
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'left' }}"
+      - "{{ trigger.payload_json['type'] == 'new' }}"
+      - condition: or
+        conditions:
+        - condition: time
+          after: '23:00:00'
+          before: '7:00:00'
+        - condition: state
+          entity_id: sensor.alarm_state_3_motion_sensors
+          state: 'armed_away'
+          for:
+            minutes: 1
+        - condition: state
+          entity_id: sensor.alarm_state_3_motion_sensors
+          state: 'triggered'  
   action:
     - service: notify.mobile_app_sean_s_iphone_12
       data_template:
@@ -134,21 +143,24 @@
     platform: mqtt
     topic: frigate/events
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'right' }}"
-    - condition: or
-      conditions:
-      - condition: time
-        after: '23:00:00'
-        before: '7:00:00'
-      - condition: state
-        entity_id: sensor.alarm_state_3_motion_sensors
-        state: 'armed_away'
-        for:
-          minutes: 1
-      - condition: state
-        entity_id: sensor.alarm_state_3_motion_sensors
-        state: 'triggered'  
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'right' }}"
+      - "{{ trigger.payload_json['type'] == 'new' }}"
+      - condition: or
+        conditions:
+        - condition: time
+          after: '23:00:00'
+          before: '7:00:00'
+        - condition: state
+          entity_id: sensor.alarm_state_3_motion_sensors
+          state: 'armed_away'
+          for:
+            minutes: 1
+        - condition: state
+          entity_id: sensor.alarm_state_3_motion_sensors
+          state: 'triggered'  
   action:
     - service: notify.mobile_app_sean_s_iphone_12
       data_template:
@@ -169,172 +181,13 @@
     - delay:
         minutes: 10
 
-#
-#- id: person_in_front
-#  alias: person_in_front
-#  initial_state: 'true'
-#  trigger:
-#    platform: numeric_state
-#    entity_id: sensor.front_person
-#    above: 0
-#  condition:
-#    condition: or
-#    conditions:
-#    - condition: time
-#      after: '23:00:00'
-#      before: '7:00:00'
-#    - condition: state
-#      entity_id: sensor.alarm_state_3_motion_sensors
-#      state: 'armed_away'
-#      for:
-#        minutes: 1
-#    - condition: state
-#      entity_id: sensor.alarm_state_3_motion_sensors
-#      state: 'triggered'  
-#  action:
-#    - service: notify.mobile_app_sean_s_iphone_12
-#      data:
-#        title: "House Watch"
-#        message: "There's a Person in Front of the House"
-#        data:
-#          push:
-#            sound:
-#              name: "Update.caf"
-#              critical: 1
-#              volume: 1.0
-#            category: camera
-#            thread-id: "security"
-#          entity_id: camera.front_person
-#          clickAction: 8
-#    - delay:
-#        minutes: 10
-#
-#
-#
-#- id: person_in_back
-#  alias: Person In Back
-#  initial_state: 'true'
-#  trigger:
-#    platform: numeric_state
-#    entity_id: sensor.back_person
-#    above: 0
-#  condition:
-#    condition: or
-#    conditions:
-#      - condition: time
-#        after: '23:00:00'
-#        before: '7:00:00'
-#      - condition: state
-#        entity_id: sensor.alarm_state_3_motion_sensors
-#        state: 'armed_away'
-#        for:
-#          minutes: 1
-#      - condition: state
-#        entity_id: sensor.alarm_state_3_motion_sensors
-#        state: 'triggered'  
-#  action:
-#    - service: notify.mobile_app_sean_s_iphone_12
-#      data:
-#        title: "House Watch"
-#        message: "There's a Person in Back of the House"
-#        data:
-#          push:
-#            sound:
-#              name: "Update.caf"
-#              critical: 1
-#              volume: 1.0
-#            category: camera
-#            thread-id: "security"
-#          entity_id: camera.back_person
-#          clickAction: 8
-#    - delay: 
-#        minutes: 10
-#
-#- id: person_on_left
-#  alias: Person On Left
-#  initial_state: 'true'
-#  trigger:
-#    platform: numeric_state
-#    entity_id: sensor.left_person
-#    above: 0
-#  condition:
-#    condition: or
-#    conditions:
-#      - condition: time
-#        after: '23:00:00'
-#        before: '7:00:00'
-#      - condition: state
-#        entity_id: sensor.alarm_state_3_motion_sensors
-#        state: 'armed_away'
-#        for:
-#          minutes: 1
-#      - condition: state
-#        entity_id: sensor.alarm_state_3_motion_sensors
-#        state: 'triggered'  
-#  action:
-#    - service: notify.mobile_app_sean_s_iphone_12
-#      data:
-#        title: "House Watch"
-#        message: "There's a Person on the Left Side of the House"
-#        data:
-#          push:
-#            sound:
-#              name: "Update.caf"
-#              critical: 1
-#              volume: 1.0
-#            category: camera
-#            thread-id: "security"
-#          entity_id: camera.left_person
-#          clickAction: 8
-#    - delay: 
-#        minutes: 10
-#
-#- id: person_on_right
-#  alias: Person On Right
-#  initial_state: 'true'
-#  trigger:
-#    platform: numeric_state
-#    entity_id: sensor.right_person
-#    above: 0
-#  condition:
-#    condition: or
-#    conditions:
-#      - condition: time
-#        after: '23:00:00'
-#        before: '7:00:00'
-#      - condition: state
-#        entity_id: sensor.alarm_state_3_motion_sensors
-#        state: 'armed_away'
-#        for:
-#          minutes: 1
-#      - condition: state
-#        entity_id: sensor.alarm_state_3_motion_sensors
-#        state: 'triggered'  
-#  action:
-#    - service: notify.mobile_app_sean_s_iphone_12
-#      data:
-#        title: "House Watch"
-#        message: "There's a Person on the Right Side of the House"
-#        data:
-#          push:
-#            sound:
-#              name: "Update.caf"
-#              critical: 1
-#              volume: 1.0
-#            category: camera
-#            thread-id: "security"
-#          entity_id: camera.right_person
-#          clickAction: 8
-#    - delay: 
-#        minutes: 10
-
 - id: turn_off_front_security_light_if_it_gets_windy
   alias: 'Turn Off Front Security Light If It Gets Windy'
   initial_state: 'true'
   trigger:
     platform: numeric_state
     entity_id: sensor.smartweather_wind_gust
-    above: 10
+    above: 2.5
   condition:
     condition: time
     after: '21:00:00'
@@ -354,7 +207,7 @@
   condition:
     condition: numeric_state
     entity_id: sensor.smartweather_wind_gust
-    above: 10
+    above: 2.5
   action:
     service: switch.turn_off
     data:
@@ -420,23 +273,6 @@
     service: switch.turn_on
     data:
       entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
-
-#- id: garage_open
-#  alias: 'Garage Door Open'
-#  
-#  initial_state: 'true'
-#  trigger:
-#    platform: state
-#    entity_id: sensor.zone_14_garage_door
-#    to: 'on'
-#    for:
-#      minutes: 10
-#  action:
-#    service: notify.sean_alena
-#    data:
-#      title: "Garage is Open"
-#      message: "The garage door has been open for 10 minutes."
-
 
 - id: alarm_is_on_alena_home
   alias: 'Alarm is on - Alena is home'
@@ -625,378 +461,172 @@
             volume: 1.0
           thread-id: "security"
 
-- id: popup_on_kiosk_back
-  alias: 'Popup on Kiosk Back'
-  initial_state: 'true'
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.back_person
-      above: 0
+########### The below have all been replaced by an app daemon script called manage_kiosk_camera_popups  ##################
+
+
+#
+#- id: popup_on_kiosk_back
+#  alias: 'Popup on Kiosk Back'
+#  initial_state: 'true'
+#  trigger:
+#    - platform: numeric_state
+#      entity_id: sensor.back_person
+#      above: 0
 #    - platform: state
-#      entity_id: binary_sensor.human_back
+#      entity_id: binary_sensor.camera_back_motion_alarm  
 #      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.camera_back_motion_alarm  
-      to: 'on'
-  action:
-    - service: browser_mod.more_info
-      data:
-        entity_id: camera.back_substream
-        deviceID:
-          - !secret kindle_kitchen_deviceid
-    - service: browser_mod.more_info
-      data:
-        entity_id: camera.back_substream
-        deviceID:
-          - !secret kindle_master_closet_deviceid
-    - service: shell_command.screensaver_stop_kindle_fire_kitchen
-    - service: shell_command.screensaver_stop_kindle_fire_closet
-    - service: shell_command.screen_on_kindle_fire_kitchen
-    - service: shell_command.screen_on_kindle_fire_closet 
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_wake_screen_timer_1
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_wake_screen_timer_2
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_close_camera_popup_timer
-#    - service: browser_mod.command
+#  action:
+#    - service: browser_mod.more_info
 #      data:
-#        command: more-info
-#        entity_id: camera.back
+#        entity_id: camera.back_substream
 #        deviceID:
 #          - !secret kindle_kitchen_deviceid
-#    - service: browser_mod.command
+#    - service: browser_mod.more_info
 #      data:
-#        command: more-info
-#        entity_id: camera.back
+#        entity_id: camera.back_substream
 #        deviceID:
 #          - !secret kindle_master_closet_deviceid
-    # - service: fully_kiosk.screensaver_stop
-    #   data:
-    #     entity_id: display.kindle_fire_kitchen
-
-- id: popup_on_kiosk_front
-  alias: 'Popup on Kiosk Front'  
-  initial_state: 'true'
-  trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_front
-#    to: 'on'
-    platform: numeric_state
-    entity_id: sensor.front_person
-    above: 0
-  action:
-    - service: browser_mod.more_info
-      data:
-        entity_id: camera.front_substream
-        deviceID:
-          - !secret kindle_kitchen_deviceid
-    - service: browser_mod.more_info
-      data:
-        entity_id: camera.front_substream
-        deviceID:
-          - !secret kindle_master_closet_deviceid
-    - service: shell_command.screensaver_stop_kindle_fire_kitchen
-    - service: shell_command.screensaver_stop_kindle_fire_closet
-    - service: shell_command.screen_on_kindle_fire_kitchen
-    - service: shell_command.screen_on_kindle_fire_closet 
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_wake_screen_timer_1
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_wake_screen_timer_2
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_close_camera_popup_timer
-#    - service: browser_mod.command
+#    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+#    - service: shell_command.screensaver_stop_kindle_fire_closet
+#    - service: shell_command.screen_on_kindle_fire_kitchen
+#    - service: shell_command.screen_on_kindle_fire_closet 
+#    - service: timer.start
 #      data:
-#        command: more-info
-#        entity_id: camera.front
+#        entity_id: timer.tablet_wake_screen_timer_1
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_wake_screen_timer_2
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_close_camera_popup_timer
+#
+#- id: popup_on_kiosk_front
+#  alias: 'Popup on Kiosk Front'  
+#  initial_state: 'true'
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.front_person
+#    above: 0
+#  action:
+#    - service: browser_mod.more_info
+#      data:
+#        entity_id: camera.front_substream
 #        deviceID:
 #          - !secret kindle_kitchen_deviceid
-#    - service: browser_mod.command
+#    - service: browser_mod.more_info
 #      data:
-#        command: more-info
-#        entity_id: camera.front
+#        entity_id: camera.front_substream
 #        deviceID:
 #          - !secret kindle_master_closet_deviceid
-    # - service: fully_kiosk.screensaver_stop
-    #   data:
-    #     entity_id: display.kindle_fire_kitchen
-
-- id: popup_on_kiosk_left
-  alias: 'Popup on Kiosk Left'  
-  initial_state: 'true'
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.left_person
-      above: 0
+#    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+#    - service: shell_command.screensaver_stop_kindle_fire_closet
+#    - service: shell_command.screen_on_kindle_fire_kitchen
+#    - service: shell_command.screen_on_kindle_fire_closet 
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_wake_screen_timer_1
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_wake_screen_timer_2
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_close_camera_popup_timer
+#
+#- id: popup_on_kiosk_left
+#  alias: 'Popup on Kiosk Left'  
+#  initial_state: 'true'
+#  trigger:
+#    - platform: numeric_state
+#      entity_id: sensor.left_person
+#      above: 0
 #    - platform: state
-#      entity_id: binary_sensor.human_left
+#      entity_id: binary_sensor.camera_left_motion_alarm  
 #      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.camera_left_motion_alarm  
-      to: 'on'
-  action:
-    - service: browser_mod.more_info
-      data:
-        entity_id: camera.left_substream
-        deviceID:
-          - !secret kindle_kitchen_deviceid
-    - service: browser_mod.more_info
-      data:
-        entity_id: camera.left_substream
-        deviceID:
-          - !secret kindle_master_closet_deviceid
-    - service: shell_command.screensaver_stop_kindle_fire_kitchen
-    - service: shell_command.screensaver_stop_kindle_fire_closet
-    - service: shell_command.screen_on_kindle_fire_kitchen
-    - service: shell_command.screen_on_kindle_fire_closet 
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_wake_screen_timer_1
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_wake_screen_timer_2
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_close_camera_popup_timer
-        
-        
-#    - service: browser_mod.command
+#  action:
+#    - service: browser_mod.more_info
 #      data:
-#        command: more-info
-#        entity_id: camera.left
+#        entity_id: camera.left_substream
 #        deviceID:
 #          - !secret kindle_kitchen_deviceid
-#    - service: browser_mod.command
+#    - service: browser_mod.more_info
 #      data:
-#        command: more-info
-#        entity_id: camera.left
+#        entity_id: camera.left_substream
 #        deviceID:
 #          - !secret kindle_master_closet_deviceid
-    # - service: fully_kiosk.screensaver_stop
-    #   data:
-    #     entity_id: display.kindle_fire_kitchen
-
-- id: popup_on_kiosk_right
-  alias: Popup on Kiosk Right
-  initial_state: 'true'
-  trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_right
-#    to: 'on'
-    platform: numeric_state
-    entity_id: sensor.right_person
-    above: 0
-  action:
-    - service: browser_mod.more_info
-      data:
-        entity_id: camera.right_substream
-        deviceID:
-          - !secret kindle_kitchen_deviceid
-    - service: browser_mod.more_info
-      data:
-        entity_id: camera.right_substream
-        deviceID:
-          - !secret kindle_master_closet_deviceid
-    - service: shell_command.screensaver_stop_kindle_fire_kitchen
-    - service: shell_command.screensaver_stop_kindle_fire_closet
-    - service: shell_command.screen_on_kindle_fire_kitchen
-    - service: shell_command.screen_on_kindle_fire_closet 
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_wake_screen_timer_1
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_wake_screen_timer_2
-    - service: timer.start
-      data:
-        entity_id: timer.tablet_close_camera_popup_timer
-        
-        
-#    - service: browser_mod.command
+#    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+#    - service: shell_command.screensaver_stop_kindle_fire_closet
+#    - service: shell_command.screen_on_kindle_fire_kitchen
+#    - service: shell_command.screen_on_kindle_fire_closet 
+#    - service: timer.start
 #      data:
-#        command: more-info
-#        entity_id: camera.right
+#        entity_id: timer.tablet_wake_screen_timer_1
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_wake_screen_timer_2
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_close_camera_popup_timer
+#        
+#- id: popup_on_kiosk_right
+#  alias: Popup on Kiosk Right
+#  initial_state: 'true'
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.right_person
+#    above: 0
+#  action:
+#    - service: browser_mod.more_info
+#      data:
+#        entity_id: camera.right_substream
 #        deviceID:
 #          - !secret kindle_kitchen_deviceid
-#    - service: browser_mod.command
+#    - service: browser_mod.more_info
 #      data:
-#        command: more-info
-#        entity_id: camera.right
+#        entity_id: camera.right_substream
 #        deviceID:
 #          - !secret kindle_master_closet_deviceid
-    # - service: fully_kiosk.screensaver_stop
-    #   data:
-    #     entity_id: display.kindle_fire_kitchen
-
-- id: keep_fully_kiosk_screen_on_human
-  alias: Keep Fully Kiosk Screen On
-  initial_state: 'true'
-  trigger:
-  - platform: event
-    event_type: timer.finished
-    event_data:
-      entity_id: timer.tablet_wake_screen_timer_1
-  - platform: event
-    event_type: timer.finished
-    event_data:
-      entity_id: timer.tablet_wake_screen_timer_2
-  action:
-    - service: shell_command.screensaver_stop_kindle_fire_kitchen
-    - service: shell_command.screensaver_stop_kindle_fire_closet
-    - service: shell_command.screen_on_kindle_fire_kitchen
-    - service: shell_command.screen_on_kindle_fire_closet 
-
-
-#  - platform: state
-#    entity_id: binary_sensor.human_back
-#    to: 'off'
-#    for:
-#      seconds: 15
-#  - platform: state
-#    entity_id: binary_sensor.human_front
-#    to: 'off'
-#    for:
-#      seconds: 15
-#  - platform: state
-#    entity_id: binary_sensor.human_left
-#    to: 'off'
-#    for:
-#      seconds: 15
-#  - platform: state
-#    entity_id: binary_sensor.human_right
-#    to: 'off'
-#    for:
-#      seconds: 15
-#  - platform: state
-#    entity_id: binary_sensor.camera_left_motion_alarm  
-#    to: 'off'
-#    for:
-#      seconds: 15
-#  - platform: state
-#    entity_id: binary_sensor.camera_back_motion_alarm  
-#    to: 'off'
-#    for:
-#      seconds: 15
- 
- 
+#    - service: shell_command.screensaver_stop_kindle_fire_kitchen
+#    - service: shell_command.screensaver_stop_kindle_fire_closet
+#    - service: shell_command.screen_on_kindle_fire_kitchen
+#    - service: shell_command.screen_on_kindle_fire_closet 
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_wake_screen_timer_1
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_wake_screen_timer_2
+#    - service: timer.start
+#      data:
+#        entity_id: timer.tablet_close_camera_popup_timer
 #
 #- id: keep_fully_kiosk_screen_on_human
 #  alias: Keep Fully Kiosk Screen On
 #  initial_state: 'true'
 #  trigger:
-#  - platform: state
-#    entity_id: binary_sensor.human_back
-#    to: 'off'
-#    for:
-#      seconds: 30
-#  - platform: state
-#    entity_id: binary_sensor.human_front
-#    to: 'off'
-#    for:
-#      seconds: 30
-#  - platform: state
-#    entity_id: binary_sensor.human_left
-#    to: 'off'
-#    for:
-#      seconds: 30
-#  - platform: state
-#    entity_id: binary_sensor.human_right
-#    to: 'off'
-#    for:
-#      seconds: 30
-#  - platform: state
-#    entity_id: binary_sensor.camera_left_motion_alarm  
-#    to: 'off'
-#    for:
-#      seconds: 30
-#  - platform: state
-#    entity_id: binary_sensor.camera_back_motion_alarm  
-#    to: 'off'
-#    for:
-#      seconds: 30
+#  - platform: event
+#    event_type: timer.finished
+#    event_data:
+#      entity_id: timer.tablet_wake_screen_timer_1
+#  - platform: event
+#    event_type: timer.finished
+#    event_data:
+#      entity_id: timer.tablet_wake_screen_timer_2
 #  action:
 #    - service: shell_command.screensaver_stop_kindle_fire_kitchen
 #    - service: shell_command.screensaver_stop_kindle_fire_closet
 #    - service: shell_command.screen_on_kindle_fire_kitchen
-#    - service: shell_command.screen_on_kindle_fire_closet  
-
-- id: close_popup_on_kiosk
-  alias: close_popup_on_kiosk
-  initial_state: 'true'
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.tablet_close_camera_popup_timer
-  action:
-    - service: browser_mod.close_popup
-
-#  - platform: state
-#    entity_id: binary_sensor.human_back
-#    to: 'off'
-#    for:
-#      minutes: 1
-#  - platform: state
-#    entity_id: binary_sensor.human_front
-#    to: 'off'
-#    for:
-#      minutes: 1
-#  - platform: state
-#    entity_id: binary_sensor.human_left
-#    to: 'off'
-#    for:
-#      minutes: 1
-#  - platform: state
-#    entity_id: binary_sensor.human_right
-#    to: 'off'
-#    for:
-#      minutes: 1
-#  condition:
-#    condition: and
-#    conditions:
-#    - condition: state
-#      entity_id: binary_sensor.human_right
-#      state: 'off'
-#      for:
-#        minutes: 1
-#    - condition: state
-#      entity_id: binary_sensor.human_left
-#      state: 'off'
-#      for:
-#        minutes: 1
-#    - condition: state
-#      entity_id: binary_sensor.human_front
-#      state: 'off'
-#      for:
-#        minutes: 1
-#    - condition: state
-#      entity_id: binary_sensor.human_back
-#      state: 'off'
-#      for:
-#        minutes: 1
-
-#    - service: browser_mod.command
-#      data:
-#        command: close-popup
-
-# The below ends up making the "lovelace configuration has been updated, reload?" message.. Not sure why I did it..
-#    - delay: '00:00:15'
-#    - service: browser_mod.lovelace_reload
-#      data:
-#        deviceID:
-#          - !secret kindle_kitchen_deviceid
-#    - service: browser_mod.lovelace_reload
-#      data:
-#        deviceID:
-#          - !secret kindle_master_closet_deviceid
-
+#    - service: shell_command.screen_on_kindle_fire_closet 
+#
+#- id: close_popup_on_kiosk
+#  alias: close_popup_on_kiosk
+#  initial_state: 'true'
+#  trigger:
+#    - platform: event
+#      event_type: timer.finished
+#      event_data:
+#        entity_id: timer.tablet_close_camera_popup_timer
+#  action:
+#    - service: browser_mod.close_popup
 
 - alias: 'Update Last Motion'
   initial_state: 'on'
@@ -1110,82 +740,16 @@
 - alias: 'Record Human In Right'
   initial_state: 'on'
   trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_right
-#    to: 'on'
     platform: numeric_state
     entity_id: sensor.right_person
     above: 0
   action:
     - service: rest_command.record_human_right
-#
-#- alias: cam1_history 
-#  trigger:
-#  - platform: mqtt
-#    topic: !secret frigate_cam1_topic
-#    encoding: ''
-#  action:
-#  - service: camera.snapshot
-#    data:
-#      entity_id: camera.cam1
-#      filename: /config/www/cam1/latest.jpg
-#  - service: shell_command.roll_frigate_history
-#    data_template:
-#      url: /config/www/cam1 
-#      history_size: 10
-#
-#- alias: cam2_history 
-#  trigger:
-#  - platform: mqtt
-#    topic: !secret frigate_cam2_topic
-#    encoding: ''
-#  action:
-#  - service: camera.snapshot
-#    data:
-#      entity_id: camera.cam2
-#      filename: /config/www/cam2/latest.jpg
-#  - service: shell_command.roll_frigate_history
-#    data_template:
-#      url: /config/www/cam2
-#      history_size: 10
-#
-#- alias: cam3_history 
-#  trigger:
-#  - platform: mqtt
-#    topic: !secret frigate_cam3_topic
-#    encoding: ''
-#  action:
-#  - service: camera.snapshot
-#    data:
-#      entity_id: camera.cam3
-#      filename: /config/www/cam3/latest.jpg
-#  - service: shell_command.roll_frigate_history
-#    data_template:
-#      url: /config/www/cam3
-#      history_size: 10
-#
-#- alias: cam4_history 
-#  trigger:
-#  - platform: mqtt
-#    topic: !secret frigate_cam4_topic
-#    encoding: ''
-#  action:
-#  - service: camera.snapshot
-#    data:
-#      entity_id: camera.cam4
-#      filename: /config/www/cam4/latest.jpg
-#  - service: shell_command.roll_frigate_history
-#    data_template:
-#      url: /config/www/cam4
-#      history_size: 10
 
 - id: truck_outside
   alias: truck_outside
   initial_state: 'true'
   trigger:
-#    platform: state
-#    entity_id: binary_sensor.truck_on_road
-#    to: 'on'
     platform: numeric_state
     entity_id: sensor.truck_front
     above: 0
@@ -1309,8 +873,11 @@
     platform: mqtt
     topic: frigate/events
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-    - "{{ 'inside_gate' in trigger.payload_json['after']['entered_zones'] }}"
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ 'inside_gate' in trigger.payload_json['after']['entered_zones'] }}"
+      - "{{ trigger.payload_json['type'] == 'new' }}"
   action:
     - choose:
         - conditions:
@@ -1357,8 +924,6 @@
     - delay:
         seconds: 11
 
-
-
 - id: car_arrived
   alias: car_arrived
   initial_state: 'true'
@@ -1367,18 +932,17 @@
     platform: mqtt
     topic: frigate/events
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'car' }}"
-    - "{{ 'car_pulling_in' in trigger.payload_json['after']['entered_zones'] }}"
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'car' }}"
+      - "{{ 'car_pulling_in' in trigger.payload_json['after']['entered_zones'] }}"
+      - "{{ trigger.payload_json['type'] == 'new' }}"
   action:
     - choose:
         - conditions:
-            - condition: and
-              conditions:
-              - condition: template
-                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_arrived.attributes.last_triggered | default(0)) | int > 600)}}'
-              - condition: state
-                entity_id: device_tracker.sean_s_iphone_12
-                state: 'home'
+            - condition: state
+              entity_id: device_tracker.sean_s_iphone_12
+              state: 'home'
           sequence:
             service: notify.mobile_app_sean_s_iphone_12
             data_template:
@@ -1417,16 +981,17 @@
     platform: mqtt
     topic: frigate/events
   condition:
+    condition: and
+    conditions:
     - "{{ trigger.payload_json['after']['label'] == 'person' }}"
     - "{{ 'on_sidewalk' in trigger.payload_json['after']['entered_zones'] }}"
-    - condition: and
-      conditions:
-      - condition: time
-        after: '23:00:00'
-        before: '7:00:00' 
-      - condition: state
-        entity_id: device_tracker.sean_s_iphone_12
-        state: 'home'
+    - "{{ trigger.payload_json['type'] == 'new' }}"
+    - condition: time
+      after: '23:00:00'
+      before: '7:00:00' 
+    - condition: state
+      entity_id: device_tracker.sean_s_iphone_12
+      state: 'home'
   action:
     - service: notify.mobile_app_sean_s_iphone_12
       data_template:
@@ -1449,8 +1014,11 @@
     platform: mqtt
     topic: frigate/events
   condition:
+    condition: and
+    conditions:
     - "{{ trigger.payload_json['after']['label'] == 'car' }}"
     - "{{ 'car_sidewalk' in trigger.payload_json['after']['entered_zones'] }}"
+    - "{{ trigger.payload_json['type'] == 'new' }}"
   action:
     - choose:
         - conditions:
@@ -1468,24 +1036,25 @@
                   content-type: jpg
                   hide-thumbnail: false
                 clickAction: "/lovelace/8"
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: device_tracker.alena_s_iphone
-              state: 'home'
-          sequence:
-            service: notify.mobile_app_alena_s_iphone
-            data_template:
-              title: "New Car In Front of Gate"
-              message: "A new car has arrived and is parked in front of the house"
-              data:
-                attachment:
-                  url: !secret frigate_image_url
-                  content-type: jpg
-                  hide-thumbnail: false
-                clickAction: "/lovelace/8"
     - delay:
         minutes: 10
+    # - choose:
+    #     - conditions:
+    #         - condition: state
+    #           entity_id: device_tracker.alena_s_iphone
+    #           state: 'home'
+    #       sequence:
+    #         service: notify.mobile_app_alena_s_iphone
+    #         data_template:
+    #           title: "New Car In Front of Gate"
+    #           message: "A new car has arrived and is parked in front of the house"
+    #           data:
+    #             attachment:
+    #               url: !secret frigate_image_url
+    #               content-type: jpg
+    #               hide-thumbnail: false
+    #             clickAction: "/lovelace/8"
+
 
 #
 #- id: car_arrived

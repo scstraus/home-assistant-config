@@ -46,6 +46,8 @@
             mdi:duck
           {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliMilitary') %}
             mdi:tank
+          {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliMeadow') %}
+            mdi:grass
           {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliStart') %}
             mdi:ray-start-arrow
           {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliTrain+Cave') %}
@@ -175,6 +177,8 @@
             mdi:duck
           {% elif is_state('device_tracker.alena_s_iphone', 'UdoliMilitary') %}
             mdi:tank
+          {% elif is_state('device_tracker.alena_s_iphone', 'UdoliMeadow') %}
+            mdi:grass
           {% elif is_state('device_tracker.alena_s_iphone', 'UdoliStart') %}
             mdi:ray-start-arrow
           {% elif is_state('device_tracker.alena_s_iphone', 'UdoliTrain+Cave') %}
@@ -325,6 +329,8 @@
             mdi:ray-start-arrow
           {% elif is_state('device_tracker.sophie', 'UdoliTrain+Cave') %}
             mdi:seesaw
+          {% elif is_state('device_tracker.sophie', 'UdoliMeadow') %}
+            mdi:grass
           {% elif is_state('device_tracker.sophie', 'CernyKohout') %}
             mdi:food-turkey
           {% elif is_state('device_tracker.sophie', 'HlubocepyCenter') %}

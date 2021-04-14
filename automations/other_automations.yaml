@@ -858,13 +858,14 @@
     - data:
         data:
           type: tts
-        message: "Attention! There is water under the sink! Attention! There's water under the sink!"
+        message: "Attention! There is water under the kitchen sink! Attention! There's water under the kitchen sink!"
       service: notify.alexa_media_everywhere
-    - data:
-        data:
-          type: tts
-        message: "Attention! There is water under the sink! Attention! There's water under the sink!"
-      service: notify.alexa_media_office_alexa
+    - service: script.announce_water_under_the_sink_office
+#    - data:
+#        data:
+#          type: tts
+#        message: "Attention! There is water under the kitchen sink! Attention! There's water under the kitchen sink!"
+#      service: notify.alexa_media_office_alexa
 
 - id: announce_someone_at_the_gate
   alias: announce_someone_at_the_gate
@@ -873,15 +874,15 @@
   - platform: event
     event_type: zwave.scene_activated
     event_data:
-      entity_id: zwave.fibaro_button_white
-      scene_data: 7680
-      scene_id: 1
+      entity_id: zwave.hank_electronics_ltd_hkzw_scn04_scene_controller
+      scene_data: 0
+      scene_id: 3
   action:
     - data:
         data:
           type: tts
         message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_seans_echo_dot
+      service: notify.alexa_media_alexa_kitchen_bar
     - delay:
         seconds: 2  
     - data:
@@ -918,6 +919,12 @@
         message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
       service: notify.alexa_media_echo_flex_first_floor_bathroom
 
+#  - platform: event
+#    event_type: zwave.scene_activated
+#    event_data:
+#      entity_id: zwave.fibaro_button_white
+#      scene_data: 7680
+#      scene_id: 1
 
 
 - id: announce_someone_at_the_gate
@@ -927,15 +934,22 @@
   - platform: event
     event_type: zwave.scene_activated
     event_data:
-      entity_id: zwave.fibaro_button_white
-      scene_data: 7800
-      scene_id: 1
+      entity_id: zwave.hank_electronics_ltd_hkzw_scn04_scene_controller
+      scene_data: 2
+      scene_id: 3
   action:
     - data:
         data:
           type: tts
         message: "Excuse me Sophie. Someone is at the front gate, please let them in. Mama and Papa are not available to open it right now."
       service: notify.alexa_media_alexa_sophie_s_room
+
+#  - platform: event
+#    event_type: zwave.scene_activated
+#    event_data:
+#      entity_id: zwave.fibaro_button_white
+#      scene_data: 7800
+#      scene_id: 1
 
 - id: coming_home_mail_sean
   alias: coming_home_mail_sean
@@ -980,18 +994,19 @@
       entity_id: binary_sensor.basement_sliding_door
       to: 'on'
       for:
-        seconds: 5
+        seconds: 8
     - platform: state
       entity_id: binary_sensor.basement_sliding_door
       to: 'on'
       for:
         minutes: 1
   action:
-    service: notify.alexa_media_alexa_garage
-    data:
-      message: "Excuse me, you've left me sliding door open. Please don't forget to close it"
-      data:
-        type: tts
+    service: script.announce_you_left_the_sliding_door_open
+#    service: notify.alexa_media_alexa_garage
+#    data:
+#      message: "Excuse me, you've left the sliding door open. Please don't forget to close it"
+#      data:
+#        type: tts
 
 
 - id: tell_sebastian_to_leave_tablet_alone
@@ -1003,11 +1018,12 @@
     attribute: charging
     to: false
   action:
-    service: notify.alexa_media_master_closet_kindle
-    data:
-      message: "Sebastian, you know you aren't supposed to play with this tablet. Please put it back where you found it so you don't get in trouble."
-      data:
-        type: tts
+    service: script.announce_sebastian_dont_play_with_tablet
+#    service: notify.alexa_media_master_closet_kindle
+#    data:
+#      message: "Sebastian, you know you aren't supposed to play with this tablet. Please put it back where you found it so you don't get in trouble."
+#      data:
+#        type: tts
 
 
 - id: thank_sebastian_for_putting_tablet_back
@@ -1019,8 +1035,22 @@
     attribute: charging
     to: true
   action:
-    service: notify.alexa_media_master_closet_kindle
+    service: script.announce_thank_sebastian_for_putting_back_tablet
+
+#    service: notify.alexa_media_master_closet_kindle
+#    data:
+#      message: "Thank you for putting the tablet back Sebastian."
+#      data:
+#        type: tts
+
+- id: alexa_media_player_authentication_required
+  alias: Alexa Media Player Authentication Required
+  trigger:
+    platform: event
+    event_type: alexa_media_relogin_required
+  condition: []
+  action:
+  - service: notify.mobile_app_sean_s_iphone_12
     data:
-      message: "Thank you for putting the tablet back Sebastian."
-      data:
-        type: tts
+      title: "Alexa Needs Authentication"
+      message: "Alexa Media's authentication has expired, please renew it"
