@@ -136,7 +136,7 @@
 ##
   - platform: ffmpeg
     input: !secret front_substream_url
-    name: Front Subtream
+    name: Front Substream
 
   - platform: ffmpeg
     input: !secret back_substream_url

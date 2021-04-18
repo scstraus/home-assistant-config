@@ -26,7 +26,7 @@ class ManageKioskCameraPopups(hass.Hass):
     self.listen_state(self.handle_human_off_timer_end, "timer.front_human_off",new="idle")
     self.listen_state(self.handle_human_off_timer_end, "timer.left_human_off",new="idle")
     self.listen_state(self.handle_human_off_timer_end, "timer.right_human_off",new="idle")
-    self.listen_state(self.handle_human_off_timer_end, "timer.front_human_off",new="idle")
+    self.listen_state(self.handle_human_off_timer_end, "timer.back_human_off",new="idle")
     self.listen_state(self.close_popup,"timer.human_popup_close",new="idle")
     self.KINDLE_KITCHEN_DEVICEID=self.args["kindle_kitchen_deviceid"]
     self.KINDLE_MASTER_CLOSET_DEVICEID=self.args["kindle_master_closet_deviceid"]

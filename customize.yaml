@@ -488,3 +488,9 @@ sensor.frigate_coral_inference:
   icon: mdi:timer-outline
 sensor.low_gas_in_car:
   icon: mdi:gas-station
+binary_sensor.play_room_terrace_door:
+  device_class: door
+binary_sensor.office_door:
+  device_class: door
+binary_sensor.library_door:
+  device_class: door

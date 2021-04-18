@@ -202,6 +202,8 @@ logger:
     homeassistant.components.influxdb: warn
     custom_components.smartweatherudp: warn
     smartweatherudp: warn
+    homeassistant.components.alexa: warn
+    custom_components.smartthinq_sensors: warn
 #    hass_nabucasa: debug
 #    homeassistant.components.cloud: debug
 #    homeassistant.components.nest: debug
@@ -405,7 +407,7 @@ weather:
 mqtt:
   broker: !secret narnia_ip
   client_id: homeassistant-001
-  username: !secret mqqt_uname
+  username: !secret mqtt_uname
   password: !secret mqqt_pass
 #  discovery: true
 #  discovery_prefix: airthings_upstairs

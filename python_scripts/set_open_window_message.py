@@ -10,7 +10,7 @@ MESSAGE_TYPE = data.get("message_type")
 
 ###### Global Variables #######
 
-WINDOW_ENTITIES= ["binary_sensor.back_door", "binary_sensor.sebastians_room_left_window", "binary_sensor.sophies_room_ceiling_window", "binary_sensor.ecolink_closet_left_window", "binary_sensor.laundry_room_window_zone_13", "binary_sensor.ecolink_garage_door","binary_sensor.windows_1st_floor_zone_2","binary_sensor.master_bedroom_window"]
+WINDOW_ENTITIES= ["binary_sensor.back_door", "binary_sensor.sebastians_room_left_window", "binary_sensor.sophies_room_ceiling_window", "binary_sensor.ecolink_closet_left_window", "binary_sensor.laundry_room_window_zone_13", "binary_sensor.ecolink_garage_door","binary_sensor.windows_1st_floor_zone_2","binary_sensor.master_bedroom_window","binary_sensor.office_door","binary_sensor.library_door"]
 
 ###### Function definitions ######
 
@@ -33,12 +33,16 @@ def make_open_windows_message(num_open_windows):
   window_counter = 0
   first_floor_windows = 0
   message=""
+  logger.debug("Making Open Window Message")
+  logger.debug("Doing Laundry Room Counter. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if ((hass.states.get("binary_sensor.laundry_room_window_zone_13").state) == "on") and (MESSAGE_TYPE == "hot"):
     counter = counter - 1
+  logger.debug("Doing Back Door. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if (hass.states.get("binary_sensor.back_door").state) == "on":
     message = "The open Back Door"
     counter = counter - 1
     door_counter = door_counter + 1
+  logger.debug("Doing Garage Door. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if (hass.states.get("binary_sensor.ecolink_garage_door").state) == "on":
     if num_open_windows > counter:
       message = message + ", the open Garage Door"
@@ -46,6 +50,7 @@ def make_open_windows_message(num_open_windows):
       message = "The open Garage Door"
     counter = counter - 1
     door_counter = door_counter + 1
+  logger.debug("Doing First Floor Windows. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if (hass.states.get("binary_sensor.windows_1st_floor_zone_2").state) == "on":
     # Both the back door and garage door are open and windows on the first floor are the last thing left
     if (num_open_windows > (counter+1)) and (counter == 1):
@@ -70,7 +75,7 @@ def make_open_windows_message(num_open_windows):
 ## counter > 1 means there is this one plus one or more coming
 ## counter > 2 means there is this one plus 2 or more coming
 
-
+  logger.debug("Doing Connecting Words. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   # At least one open door and open first floor windows, any amount more windows open
   if (num_open_windows > (counter+1) ) and (first_floor_windows == 1) and (counter > 1):
     message = message + ", and open windows in"
@@ -83,10 +88,12 @@ def make_open_windows_message(num_open_windows):
   # no open door or open first floor windows but some open window
   elif (counter > 0):
     message = message + "Open windows in"
+  logger.debug("Doing Sebastian's Room. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if (hass.states.get("binary_sensor.sebastians_room_left_window").state) == "on":
     message = message + " Sebastian's Room"
     counter = counter - 1
     window_counter = window_counter + 1
+  logger.debug("Doing Master Bedroom. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if (hass.states.get("binary_sensor.master_bedroom_window").state) == "on":
     if counter == 1 and window_counter == 1:
       message = message + " and"
@@ -97,6 +104,29 @@ def make_open_windows_message(num_open_windows):
     message = message + " the Master Bedroom"
     counter = counter - 1
     window_counter = window_counter + 1
+  logger.debug("Doing Office. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
+  if (hass.states.get("binary_sensor.office_door").state) == "on":
+    if counter == 1 and window_counter == 1:
+      message = message + " and"
+    if counter == 1 and window_counter > 1:
+      message = message + ", and"
+    if counter > 1 and ((window_counter-counter)>1):
+      message = message + ","
+    message = message + " the Office"
+    counter = counter - 1
+    window_counter = window_counter + 1
+  logger.debug("Doing Library. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
+  if (hass.states.get("binary_sensor.library_door").state) == "on":
+    if counter == 1 and window_counter == 1:
+      message = message + " and"
+    if counter == 1 and window_counter > 1:
+      message = message + ", and"
+    if counter > 1 and ((window_counter-counter)>1):
+      message = message + ","
+    message = message + " the Library"
+    counter = counter - 1
+    window_counter = window_counter + 1
+  logger.debug("Doing Sophies Room. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if (hass.states.get("binary_sensor.sophies_room_ceiling_window").state) == "on":
     if counter == 1 and window_counter == 1:
       message = message + " and"
@@ -107,6 +137,7 @@ def make_open_windows_message(num_open_windows):
     message = message + " Sophie's Room"
     counter = counter - 1
     window_counter = window_counter + 1
+  logger.debug("Doing Closet. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if (hass.states.get("binary_sensor.ecolink_closet_left_window").state) == "on":
     if counter == 1 and window_counter == 1:
       message = message + " and"
@@ -117,6 +148,7 @@ def make_open_windows_message(num_open_windows):
     message = message + " the Master Closet"
     counter = counter - 1
     window_counter = window_counter + 1  
+  logger.debug("Doing Laundry Room. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if ((hass.states.get("binary_sensor.laundry_room_window_zone_13").state) == "on") and (MESSAGE_TYPE != "hot"):
     if counter == 1 and window_counter == 1:
       message = message + " and"

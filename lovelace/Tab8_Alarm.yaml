@@ -39,6 +39,9 @@ cards:
     - binary_sensor.ecolink_garage_door
     - binary_sensor.basement_sliding_door
     - binary_sensor.master_bedroom_window
+    - binary_sensor.office_door
+    - binary_sensor.library_door
+    - binary_sensor.play_room_terrace_door
     state_filter:
     - "on"
     show_empty: false
@@ -196,6 +199,21 @@ cards:
         remove_repeats: false
         exclude_states:
           - "off"
+      - entity: binary_sensor.play_room_terrace_door
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.office_door
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
+      - entity: binary_sensor.library_door
+        include_history: true
+        remove_repeats: false
+        exclude_states:
+          - "off"
 
   - type: custom:home-feed-card
     title: Last Motion
@@ -262,6 +280,9 @@ cards:
     - binary_sensor.ecolink_garage_door
     - binary_sensor.basement_sliding_door
     - binary_sensor.master_bedroom_window
+    - binary_sensor.play_room_terrace_door
+    - binary_sensor.office_door
+    - binary_sensor.library_door
 
   - type: history-graph
     title: 'Motion Detection History'

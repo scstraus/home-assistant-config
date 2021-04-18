@@ -326,6 +326,162 @@
     entity_id: input_select.active_heating_profile
     state: 'PROFILE_AUTO'
 
+
+- id: heat_down_open_office
+  alias: heat_down_open_office
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_door
+    to: 'on'
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.office_library
+      setpoint: 12
+      duration: {"hours":8}
+  condition:
+    condition: state
+    entity_id: climate.office_library
+    attribute: preset_mode
+    state: none
+
+#  condition:
+#    condition: template 
+#    value_template: > 
+#      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+
+
+- id: heat_up_closed_office
+  alias: heat_up_closed_office
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_door
+    to: 'off'
+  action:   
+    - service: evohome.clear_zone_override
+      data:
+        entity_id: climate.office_library
+  condition:
+    - condition: or
+      conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_select.active_heating_profile
+            state: 'PROFILE_AUTO'
+          - condition: state
+            entity_id: input_boolean.working_from_home
+            state: 'off'
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.working_from_home
+            state: 'on'
+          - condition:  time
+            before: "10:00:00"
+            after: "18:30:00"
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+          - condition: state
+            entity_id: input_select.active_heating_profile
+            state: 'PROFILE_AUTO'
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.working_from_home
+            state: 'on'
+          - condition:  time
+            weekday:
+              - sat
+              - sun
+          - condition: state
+            entity_id: input_select.active_heating_profile
+            state: 'PROFILE_AUTO'
+
+
+- id: heat_down_open_library
+  alias: heat_down_open_libary
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.library_door
+    to: 'on'
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.office_library
+      setpoint: 12
+      duration: {"hours":8}
+  condition:
+    condition: state
+    entity_id: climate.office_library
+    attribute: preset_mode
+    state: none
+
+#  condition:
+#    condition: template 
+#    value_template: > 
+#      {{ state_attr('climate.living_room', 'status').setpoint_status.setpoint_mode in 'FollowSchedule' }}
+
+
+- id: heat_up_closed_libary
+  alias: heat_up_closed_library
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.library_door
+    to: 'off'
+  action:   
+    - service: evohome.clear_zone_override
+      data:
+        entity_id: climate.office_library
+  condition:
+    - condition: or
+      conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_select.active_heating_profile
+            state: 'PROFILE_AUTO'
+          - condition: state
+            entity_id: input_boolean.working_from_home
+            state: 'off'
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.working_from_home
+            state: 'on'
+          - condition:  time
+            before: "10:00:00"
+            after: "18:30:00"
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+          - condition: state
+            entity_id: input_select.active_heating_profile
+            state: 'PROFILE_AUTO'
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.working_from_home
+            state: 'on'
+          - condition:  time
+            weekday:
+              - sat
+              - sun
+          - condition: state
+            entity_id: input_select.active_heating_profile
+            state: 'PROFILE_AUTO'
+
 ######################################################
 # AUTOMATIONS TO ADJUST HEAT BASED ON WEATHER REPORT #
 ######################################################
@@ -568,6 +724,8 @@
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
         - binary_sensor.master_bedroom_window
+        - binary_sensor.office_door
+        - binary_sensor.library_door
     - platform: homeassistant
       event: start
   action:
@@ -588,6 +746,8 @@
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
         - binary_sensor.master_bedroom_window
+        - binary_sensor.office_door
+        - binary_sensor.library_door
     - platform: homeassistant
       event: start
   action: 
@@ -608,6 +768,8 @@
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
         - binary_sensor.master_bedroom_window
+        - binary_sensor.office_door
+        - binary_sensor.library_door
     - platform: homeassistant
       event: start
   action:
@@ -628,6 +790,8 @@
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
         - binary_sensor.master_bedroom_window
+        - binary_sensor.office_door
+        - binary_sensor.library_door
     - platform: homeassistant
       event: start   
   action: 
@@ -648,6 +812,8 @@
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
         - binary_sensor.master_bedroom_window
+        - binary_sensor.office_door
+        - binary_sensor.library_door
     - platform: homeassistant
       event: start
   action:
@@ -668,6 +834,8 @@
         - binary_sensor.ecolink_garage_door
         - binary_sensor.windows_1st_floor_zone_2
         - binary_sensor.master_bedroom_window
+        - binary_sensor.office_door
+        - binary_sensor.library_door
     - platform: homeassistant
       event: start
   action: 

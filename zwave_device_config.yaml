@@ -226,3 +226,15 @@ sensor.vision_security_zd2102_eu_door_window_sensor_power_management:
 sensor.vision_security_zd2102_eu_door_window_sensor_sourcenodeid:
   ignored: true
   polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_level_9:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_type_9:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_level_10:
+  ignored: true
+  polling_intensity: 0
+sensor.ecolink_door_window_sensor_alarm_type_10:
+  ignored: true
+  polling_intensity: 0
