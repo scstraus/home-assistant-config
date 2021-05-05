@@ -158,11 +158,28 @@ popup_cards:
       entity: sensor.trash_display
 
   sensor.rain_sensor:
-    title: Rain Rate Graph
+    title: "Rain Summary"
     card:
-      type: history-graph
-      entities:
-        - sensor.smartweather_rain_rate
+      - type: history-graph
+        entities:
+          - sensor.rain_sensor
+      - type: history-graph
+        entities:
+          - sensor.smartweather_rain_rate
+
+
+  sensor.high_wind_warning:
+    title: "Wind Summary"
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - sensor.high_wind_warning
+      - type: history-graph
+        entities:
+          - sensor.smartweatherudp_wind_speed_realtime
 
 cards: 
 
@@ -319,60 +336,16 @@ cards:
 
 
     - type: entity-filter
-      entities:
-      - variable.posta_variable
-      - variable.dhl_variable
-      - variable.dpd_variable
-      - variable.gls_variable
-      - sensor.bio_odpad_day
-#      - sensor.trash_day
-    #      - sensor.gls_packages_coming_today
-    #      - sensor.cp_packages_coming_today
-    #      - sensor.dpd_packages_coming_today
-    #      - sensor.dhl_packages_coming_today
-      - sensor.bike_day
-#      - sensor.object_detection_front
-#      - sensor.object_detection_left
-#      - sensor.object_detection_right
-#      - sensor.object_detection_back
-      - binary_sensor.back_door
-    #      - binary_sensor.guest_bedroom_window_1
-      - binary_sensor.garage_door
-      - binary_sensor.front_door_zone_1
-#      - sensor.closet_window
-      - input_select.bosch_dishwasher_status
-      - binary_sensor.popp_unknown_type_0004_id_0014_sensor
-#      - binary_sensor.sebastians_room_left_window
-      - input_select.miele_washing_machine_status
-      - input_select.lg_washing_machine_status
-#      - binary_sensor.sophies_room_ceiling_window
-#      - binary_sensor.ecolink_closet_left_window
-      - binary_sensor.ecolink_garage_door
-      - alarm_control_panel.laundry_room_window
-      - alarm_control_panel.motion_sensors
-      - alarm_control_panel.windows_and_garage_door
-#      - sensor.czechia_coronavirus_current
-#      - variable.czechia_coronavirus_new_yesterday
-#      - variable.czechia_coronavirus_new_today
-      - sensor.trash_display
-      - binary_sensor.basement_sliding_door
-      - sensor.kite_day
-      - sensor.rain_sensor
-      - sensor.high_wind_warning
       state_filter:
       - "on"
       - "Delivery"
       - "delivery"
       - "yes"
-  #    - "Cat Detected"
-  #    - "Dog Detected"
       - "Open"
       - "Clean"
       - "Today"
       - "Tomorrow"
       - "armed_away"
-  #    - "Charge It"
-  #    - "Fill It"
       - "!Now!"
       - operator: ">"
         value: -1
@@ -385,6 +358,33 @@ cards:
       - "Very High"
       - "Dangerous"
       - "Violent Shower"
+      entities:
+      - variable.posta_variable
+      - variable.dhl_variable
+      - variable.dpd_variable
+      - variable.gls_variable
+      - sensor.bio_odpad_day
+      - sensor.bike_day
+      - binary_sensor.back_door
+      - binary_sensor.garage_door
+      - binary_sensor.front_door_zone_1
+      - input_select.bosch_dishwasher_status
+      - binary_sensor.popp_unknown_type_0004_id_0014_sensor
+      - input_select.miele_washing_machine_status
+      - input_select.lg_washing_machine_status
+      - binary_sensor.ecolink_garage_door
+      - alarm_control_panel.laundry_room_window
+      - alarm_control_panel.motion_sensors
+      - alarm_control_panel.windows_and_garage_door
+      - sensor.trash_display
+      - binary_sensor.basement_sliding_door
+      - sensor.kite_day
+      - sensor.rain_sensor
+      - sensor.high_wind_warning
+      - entity: sensor.last_lightning
+        state_filter:
+          - operator: "!="
+            value: "no"
       card: 
         type: glance
 #        title: "Happening Today"

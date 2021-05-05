@@ -1,15 +1,17 @@
 ---
-hello_world:
-  module: hello
-  class: HelloWorld
+#hello_world:
+#  module: hello
+#  class: HelloWorld
 #set_heat_weather_override:
 #  module: set_heat_weather_override
 #  class: SetHeatWeatherOverride
 playlist_in_room:
   module: playlist_in_room
   class: PlaylistInRoom
+  log: playlist_in_room_log
 manage_kiosk_camera_popups:
   module: manage_kiosk_camera_popups
   class: ManageKioskCameraPopups
   kindle_kitchen_deviceid: !secret kindle_kitchen_deviceid
   kindle_master_closet_deviceid: !secret kindle_master_closet_deviceid
+  log: manage_kiosk_camera_popups_log

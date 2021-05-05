@@ -20,6 +20,12 @@ logs:
     filename: /share/appdaemonlogs/access.log
   error_log:
     filename: /share/appdaemonlogs/error.log
+  manage_kiosk_camera_popups_log:
+    name: manage_kiosk_camera_popups_log
+    filename: /share/appdaemonlogs/manage_kiosk_camera_popups.log
+  playlist_in_room_log:
+    name: playlist_in_room_log
+    filename: /share/appdaemonlogs/playlist_in_room.log 
   diag_log:
     filename: /share/appdaemonlogs/diag.log
     log_generations: 5

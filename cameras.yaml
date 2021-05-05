@@ -89,7 +89,7 @@
   #   name: Right Stream
   #   input: !secret syno_right_main_stream_url
 
-# live 555 proxy streams with ffmpeg component test 
+# live 555 proxy streams with ffmpeg component
 
 
   - platform: ffmpeg
@@ -212,21 +212,21 @@
 
 # Frigate v.5 cameras 
 
-  - name: Right Last Person
-    platform: mqtt
-    topic: !secret frigate_cam2_topic
-
-  - name: Left Last Person
-    platform: mqtt
-    topic: !secret frigate_cam4_topic
-
-  - name: Front Last Person
-    platform: mqtt
-    topic:  !secret frigate_cam3_topic
-
-  - name: Back Last Person
-    platform: mqtt
-    topic: !secret frigate_cam1_topic
+#  - name: Right Last Person
+#    platform: mqtt
+#    topic: !secret frigate_cam2_topic
+#
+#  - name: Left Last Person
+#    platform: mqtt
+#    topic: !secret frigate_cam4_topic
+#
+#  - name: Front Last Person
+#    platform: mqtt
+#    topic:  !secret frigate_cam3_topic
+#
+#  - name: Back Last Person
+#    platform: mqtt
+#    topic: !secret frigate_cam1_topic
 
 #Frigate v.2 cameras
 
@@ -260,10 +260,10 @@
 #    verify_ssl: False
 
 # Cameras for history of person detection
-
-  - name: cam1
-    platform: mqtt
-    topic: !secret frigate_cam1_topic
+#
+#  - name: cam1
+#    platform: mqtt
+#    topic: !secret frigate_cam1_topic
 #  - platform: local_file
 #    name: cam1_history1
 #    file_path: /config/www/cam1/1.jpg       
@@ -294,10 +294,10 @@
 #  - platform: local_file
 #    name: cam1_history10
 #    file_path: /config/www/cam1/10.jpg           
-
-  - name: cam2
-    platform: mqtt
-    topic: !secret frigate_cam2_topic
+#
+#  - name: cam2
+#    platform: mqtt
+#    topic: !secret frigate_cam2_topic
 #  - platform: local_file
 #    name: cam2_history1
 #    file_path: /config/www/cam2/1.jpg       
@@ -329,9 +329,9 @@
 #    name: cam2_history10
 #    file_path: /config/www/cam2/10.jpg           
 
-  - name: cam3
-    platform: mqtt
-    topic: !secret frigate_cam3_topic
+#  - name: cam3
+#    platform: mqtt
+#    topic: !secret frigate_cam3_topic
 #  - platform: local_file
 #    name: cam3_history1
 #    file_path: /config/www/cam3/1.jpg       
@@ -363,10 +363,10 @@
 #    name: cam3_history10
 #    file_path: /config/www/cam3/10.jpg           
 
-
-  - name: cam4
-    platform: mqtt
-    topic: !secret frigate_cam4_topic
+#
+#  - name: cam4
+#    platform: mqtt
+#    topic: !secret frigate_cam4_topic
 #  - platform: local_file
 #    name: cam4_history1
 #    file_path: /config/www/cam4/1.jpg       

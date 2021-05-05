@@ -16,6 +16,11 @@ views:
   - !include /config/lovelace/Tab10_Weather.yaml
   - !include /config/lovelace/Tab11_Tech.yaml
 #  - !include /config/lovelace/Tab12_Test.yaml
+#  - !include /config/lovelace/Hidden13_Front_Camera.yaml
+#  - !include /config/lovelace/Hidden14_Back_Camera.yaml
+#  - !include /config/lovelace/Hidden15_Left_Camera.yaml
+#  - !include /config/lovelace/Hidden16_Right_Camera.yaml
+
 
 #custom_header:
 #  compact_mode: true

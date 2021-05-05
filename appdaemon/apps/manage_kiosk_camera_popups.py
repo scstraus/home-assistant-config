@@ -12,6 +12,10 @@ class ManageKioskCameraPopups(hass.Hass):
   POPUP_OPEN="False"
   KINDLE_KITCHEN_DEVICEID=""
   KINDLE_MASTER_CLOSET_DEVICEID=""
+  FRONT_CAMERA="camera.front_stream"
+  BACK_CAMERA="camera.back_stream"
+  LEFT_CAMERA="camera.left_stream"
+  RIGHT_CAMERA="camera.right_stream"
 #########################################################################################################
 #                            THESE ARE THE INITIALIZE AND LAUNCH FUNCTIONS                              #
 #########################################################################################################
@@ -66,8 +70,19 @@ class ManageKioskCameraPopups(hass.Hass):
           self.call_service("timer/start", entity_id = "timer.front_human_on")
       self.log("Popup camera = %s", popup_camera)
       if (popup_camera=="True" and (self.POPUP_OPEN=="False")):
-        self.log("No other humans detected in last 3 seconds on other cameras. Popping up camera %s", entity)
-        self.open_popup("camera.front_substream")
+        self.log("No other humans detected in last 3 seconds on other cameras. Popping up camera.")
+        if entity == "sensor.right_person":
+          self.open_popup("right")
+          self.log("  Popping up right camera")
+        elif entity == "sensor.left_person":
+          self.open_popup("left")
+          self.log("  Popping up left camera")
+        elif entity == "sensor.back_person":
+          self.open_popup("back")
+          self.log("  Popping up back camera")
+        elif entity == "sensor.on_property_person":
+          self.open_popup("front")
+          self.log("  Popping up front camera")
         self.log("  Restarting trigger timer for entity: %s", entity)
       elif self.POPUP_OPEN!="False":
         self.log("Popup already open. Not issuing another popup command")
@@ -138,28 +153,36 @@ class ManageKioskCameraPopups(hass.Hass):
     # look for humans on other cameras and if they are there, pop up that camera (shouldn't matter to check this camera too as we just showed that no one was there above)
     if (int(self.get_state("sensor.right_person"))>0):
       self.log("  Somone on Right Camera. Popping up popup.")
-      self.open_popup("camera.right_substream")
+#      self.open_popup("camera.right_substream")
+      self.open_popup("right")
     elif (int(self.get_state("sensor.left_person"))>0):
       self.log("  Somone on Left Camera. Popping up popup.")
-      self.open_popup("camera.left_substream")  
+#      self.open_popup("camera.left_substream") 
+      self.open_popup("left")  
     elif (int(self.get_state("sensor.back_person"))>0):
       self.log("  Somone on Back Camera. Popping up popup.")
-      self.open_popup("camera.back_substream")   
+#      self.open_popup("camera.back_substream")   
+      self.open_popup("back")  
     elif (int(self.get_state("sensor.on_property_person"))>0):
       self.log("  Somone on Front Camera. Popping up popup.")
-      self.open_popup("camera.front_substream")
+#      self.open_popup("camera.front_substream")
+      self.open_popup("front")  
     elif (self.get_state("timer.right_human_on")=="active"):
       self.log("  Right human_on timer still running. Popping up popup.")
-      self.open_popup("camera.right_substream")
+#      self.open_popup("camera.right_substream")
+      self.open_popup("right") 
     elif (self.get_state("timer.left_human_on")=="active"):
       self.log("  Left human_on timer still running. Popping up popup.")
-      self.open_popup("camera.left_substream")
+#      self.open_popup("camera.left_substream")
+      self.open_popup("left") 
     elif (self.get_state("timer.front_human_on")=="active"):
       self.log("  Front human_on timer still running. Popping up popup.")
-      self.open_popup("camera.front_substream")   
+#      self.open_popup("camera.front_substream")   
+      self.open_popup("front") 
     elif (self.get_state("timer.back_human_on")=="active"):
       self.log("  Back human_on timer still running. Popping up popup.")
-      self.open_popup("camera.back_substream")
+#      self.open_popup("camera.back_substream")
+      self.open_popup("back") 
     else:
       self.log("  There are no humans on or recently on any of the cameras. Now seeing if any more human_off timers are still running. If not, we will start the close_popup timer" )
       if (self.get_state("timer.right_human_off")=="active"):
@@ -178,31 +201,55 @@ class ManageKioskCameraPopups(hass.Hass):
         self.log("  All timers are done and there's no people anywhere, so starting the close_popup timer")
         self.call_service("timer/start", entity_id = "timer.human_popup_close")
 
-  def open_popup(self, entity):
-    self.log("Popping up entity %s now",entity)
-    self.call_service("browser_mod/more_info", entity_id = entity, deviceID = self.KINDLE_KITCHEN_DEVICEID )
-    self.log("Popping up entity %s now",entity)
-    self.call_service("browser_mod/more_info", entity_id = entity, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
-    self.ACTIVE_CAMERA=entity
+  def open_popup(self, camera):
+    self.log("Popping up %s camera now",camera)
+    if camera == "front":
+      self.call_service("browser_mod/more_info", entity_id = self.FRONT_CAMERA, deviceID = self.KINDLE_KITCHEN_DEVICEID )
+      self.call_service("browser_mod/more_info", entity_id = self.FRONT_CAMERA, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/13", deviceID = self.KINDLE_KITCHEN_DEVICEID )
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/13", deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+    elif camera == "back":
+      self.call_service("browser_mod/more_info", entity_id = self.BACK_CAMERA, deviceID = self.KINDLE_KITCHEN_DEVICEID )
+      self.call_service("browser_mod/more_info", entity_id = self.BACK_CAMERA, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/14", deviceID = self.KINDLE_KITCHEN_DEVICEID )
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/14", deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+    if camera == "left":
+      self.call_service("browser_mod/more_info", entity_id = self.LEFT_CAMERA, deviceID = self.KINDLE_KITCHEN_DEVICEID )
+      self.call_service("browser_mod/more_info", entity_id = self.LEFT_CAMERA, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/15", deviceID = self.KINDLE_KITCHEN_DEVICEID )
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/15", deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+    elif camera == "right":
+      self.call_service("browser_mod/more_info", entity_id = self.RIGHT_CAMERA, deviceID = self.KINDLE_KITCHEN_DEVICEID )
+      self.call_service("browser_mod/more_info", entity_id = self.RIGHT_CAMERA, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/16", deviceID = self.KINDLE_KITCHEN_DEVICEID )
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/16", deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+
+    # self.call_service("browser_mod/more_info", entity_id = entity, deviceID = self.KINDLE_KITCHEN_DEVICEID )
+    # self.call_service("browser_mod/more_info", entity_id = entity, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+    self.ACTIVE_CAMERA=camera
     self.POPUP_OPEN="True"
     self.run_in(self.keep_screen_on, 0)
 
   def close_popup(self, entity, attribute, old, new, kwargs):
-    if (self.POPUP_OPEN=="True"):
-      self.log("Close popup timer is finished. Closing the popup.")
+    if (self.POPUP_OPEN!="False"):
+      self.log("Close popup timer is finished. self.POPUP_OPEN = %s. Closing the popup.",self.POPUP_OPEN)
       self.call_service("browser_mod/close_popup")
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/1", deviceID = self.KINDLE_KITCHEN_DEVICEID )
+#      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/1", deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
       self.POPUP_OPEN="False"
     else: 
-      self.log("Close popup timer is finished. Popup already closed. Doing nothing.")
+      self
+      self.log("Close popup timer is finished. self.POPUP_OPEN = %s. Doing nothing.",self.POPUP_OPEN)
 
   def keep_screen_on(self, kwargs):
-    if self.POPUP_OPEN=="True":
-      self.log("POPUP_OPEN==True. Sending screen wakeup commands")
+    if self.POPUP_OPEN!="False":
+      self.log("self.POPUP_OPEN = %s. Sending screen wakeup commands",self.POPUP_OPEN)
       self.call_service("shell_command/screensaver_stop_kindle_fire_kitchen")
       self.call_service("shell_command/screensaver_stop_kindle_fire_closet")
       self.call_service("shell_command/screen_on_kindle_fire_kitchen")
       self.call_service("shell_command/screen_on_kindle_fire_closet")
       self.run_in(self.keep_screen_on, 5)
     else:
-      self.log("POPUP_OPEN==False. Not sending screen wakeup commands")
+      self.log("self.POPUP_OPEN = %s. Not sending screen wakeup commands", self.POPUP_OPEN)
 

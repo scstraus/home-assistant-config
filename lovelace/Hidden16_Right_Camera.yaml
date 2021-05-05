@@ -1,0 +1,25 @@
+title: 
+panel: true
+icon: 
+visible: false
+cards:
+
+  - type: horizontal-stack
+    cards:
+
+    - type: markdown
+      content: " "
+
+    - type: picture-glance
+      # title: Outdoor - Front Gate
+      aspect_ratio: 9x16
+      entities: []
+      show_state: false
+      show_name: false
+  #      - binary_sensor.motion_front
+      camera_image: camera.right_stream
+#      camera_image: camera.right_preview
+      camera_view: live
+
+    - type: markdown
+      content: " "

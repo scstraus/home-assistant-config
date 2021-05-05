@@ -1265,8 +1265,8 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: "sensor.smartweather_wind_gust"
-              above: 5
+              entity_id: "sensor.smartweatherudp_wind_speed_realtime"
+              above: 4
           sequence:
             - service: timer.start
               target:
@@ -1274,8 +1274,8 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: "sensor.smartweather_wind_gust"
-              above: 10
+              entity_id: "sensor.smartweatherudp_wind_speed_realtime"
+              above: 9
           sequence:
             - service: timer.start
               target:
@@ -1283,8 +1283,8 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: "sensor.smartweather_wind_gust"
-              above: 15
+              entity_id: "sensor.smartweatherudp_wind_speed_realtime"
+              above: 14
           sequence:
             - service: timer.start
               target:
@@ -1292,8 +1292,8 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: "sensor.smartweather_wind_gust"
-              above: 20
+              entity_id: "sensor.smartweatherudp_wind_speed_realtime"
+              above: 19
           sequence:
             - service: timer.start
               target:

@@ -151,7 +151,7 @@
         state: 'run'
       - condition: numeric_state
         entity_id: 'sensor.bosch_dishwasher_time_remaining'
-        below: 1900   
+        below: 3500
   action:
     - service: script.announce_dishes_are_not_done_yet
 

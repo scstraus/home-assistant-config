@@ -27,7 +27,11 @@
       alenas_phone_battery:
         friendly_name: "Alena's Phone Battery"
         value_template: >-
-          {% if is_state('sensor.alena_s_iphone_battery_state', 'Charging') %}
+          {% if is_state('sensor.alena_s_iphone_battery_state', 'unknown') %}
+            Unknown
+          {% elif is_state('sensor.alena_s_iphone_battery_level', 'unknown') %}
+            Unknown
+          {% elif is_state('sensor.alena_s_iphone_battery_state', 'Charging') %}
             Charging
           {% elif states('sensor.alena_s_iphone_battery_level')|float < 15 %}
             Very Low
@@ -46,7 +50,11 @@
       sophies_phone_battery:
         friendly_name: "Sophie's Phone Battery"
         value_template: >-
-          {% if is_state('sensor.sophies_iphone_se_battery_state', 'Charging') %}
+          {% if is_state('sensor.sophies_iphone_se_battery_state', 'unknown') %}
+            Unknown
+          {% elif is_state('sensor.sophies_iphone_se_battery_level', 'unknown') %}
+            Unknown
+          {% elif is_state('sensor.sophies_iphone_se_battery_state', 'Charging') %}
             Charging
           {% elif states('sensor.sophies_iphone_se_battery_level')|float < 15 %}
             Very Low
@@ -123,7 +131,11 @@
       seans_phone_battery:
         friendly_name: "Sean's Phone Battery"
         value_template: >-
-          {% if is_state('sensor.sean_battery_state', 'Charging') %}
+          {% if is_state('sensor.sean_battery_state', 'unknown') %}
+            Unknown
+          {% elif is_state('sensor.sean_battery_level', 'unknown') %}
+            Unknown
+          {% elif is_state('sensor.sean_battery_state', 'Charging') %}
             Charging
           {% elif states('sensor.sean_battery_level')|float < 15 %}
             Very Low
@@ -136,6 +148,7 @@
           {% else %}
             Charged
           {% endif %}
+
 
 # 04/01/19-11/30/19: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
 # 12/01/19-03/30/20: Pickup is Odd Weeks Wednesday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
@@ -895,3 +908,15 @@
             no          
           {% endif %}
 
+
+  - platform: template
+    sensors:
+      last_lightning:
+        friendly_name: "Lightning"
+        value_template: >-
+          {% if (states('sensor.smartweather_lightning_last_1hrs')|float) > 0 %}
+            {{ states('sensor.smartweather_lightning_distance') }} km, {{((as_timestamp(now())-as_timestamp(states('sensor.smartweather_lightning_time')))/60)|int}} min ago
+          {% else %}
+            no
+          {% endif %}
+        icon_template: mdi:flash  
