@@ -1,5 +1,5 @@
 # Sean Straus' Home Assistant Configuration <img src="https://avatars1.githubusercontent.com/u/7644023?s=460&u=385a7ff0525e0838f1e302474d6c8931fc6db189&v=4" width="100" height="100" align="right"> 
-(Home Assistant Supervised, Debian 10, [Shuttle SZ270R8](http://global.shuttle.com/products/productsDetail?productId=2170), [Intel Core I5 7500T 35W](https://ark.intel.com/content/www/us/en/ark/products/97121/intel-core-i5-7500t-processor-6m-cache-up-to-3-30-ghz.html), 8GB DDR4 2400Mhz, 2x [Samsung 970 Evo Plus 256GB](https://www.samsung.com/semiconductor/minisite/ssd/product/consumer/970evoplus/) in RAID1, 3x [WD RED 2GB](https://shop.westerndigital.com/en-ie/products/internal-drives/wd-red-sata-hdd#WD20EFAX) in RAID5)
+(Home Assistant Supervised, Debian 10, [Shuttle SZ270R8](http://global.shuttle.com/products/productsDetail?productId=2170), [Intel Core I5 7500T 35W](https://ark.intel.com/content/www/us/en/ark/products/97121/intel-core-i5-7500t-processor-6m-cache-up-to-3-30-ghz.html), 8GB DDR4 2400Mhz, 2x [Samsung 970 Evo Plus 256GB](https://www.samsung.com/semiconductor/minisite/ssd/product/consumer/970evoplus/) in RAID1, 3x [WD RED 2TB](https://shop.westerndigital.com/en-ie/products/internal-drives/wd-red-sata-hdd#WD20EFAX) in RAID5)
 
 Hello there. This is an incomplete and probably out of date description of what I'm doing with home assistant, but hopefully it will be of some use for ideas and samples to someone.
 
@@ -102,14 +102,21 @@ How to navigate this readme:
     + [Siemens Home Connect for Dishwasher](#siemens-home-connect)
     + [Rest Sensors for Frigate Tensorflow Human Detection](#rest-sensors-for-frigate-tensorflow-human-detection)
     + [Command Line Sensor for Checking RAID Status of My Hass Server](#command-line-sensor-for-checking-raid-status-of-my-hass-server)
-  * [AQI and Air Purifier Sensors](#aqi-and-air-purifier-template-sensors)
+  * [AQI and Air Purifier Template Sensors](#aqi-and-air-purifier-template-sensors)
     + [Sensors to create human readable AQI sensors from the Xaiomi Air Purifier AQI Data](#sensors-to-create-human-readable-aqi-sensors-from-the-xaiomi-air-purifier-aqi-data)
     + [Sensors to create AQI descriptions for the AirVisual Nodes](#sensors-to-create-aqi-descriptions-for-the-airvisual-nodes)
     + [Turn all the attributes of air purifiers into their own sensors](#turn-all-the-attributes-of-air-purifiers-into-their-own-sensors)
     + [Get air quality data from my Airthings Wave air quality sensor](#get-air-quality-data-from-my-airthings-wave-air-quality-sensor)
     + [Break out attributes of AirVisual Node into individual sensors](#break-out-attributes-of-airvisual-node-into-individual-sensors)
-    
-    (Documenting template sensors is still work in progress, so that's not all of them. For now you will have to check in the other YAML files in the sensors folder).
+  * [Location Template Sensors](#location_template_sensors.yaml)
+    + [Simple sensor to show location status of family members with icon](#simple-sensor-to-show-location-status-of-family-members-with-icon)
+    + [Create a sentence describing if someone is heading home, and if so, when they will be home](#create-a-sentence-describing-if-someone-is-heading-home-and-if-so-when-they-will-be-home)
+    + [Sensor describing the ETA of when someone will be home](#sensor-describing-the-eta-of-when-someone-will-be-home)
+    + [Sensor describing the fastest route to work](#sensor-describing-the-fastest-route-to-work)
+    + [Describe the direction people are traveling](#describe-the-direction-people-are-traveling)
+
+
+**(Documenting template sensors is still work in progress, so that's not all of them. For now you will have to check in the other YAML files in the sensors folder).**
 
 # [Lovelace UI](https://github.com/scstraus/home-assistant-config/blob/master/ui-lovelace.yaml)
 
@@ -762,5 +769,19 @@ These just improve a little bit on the existing zone names to describe where som
 ### [Create a sentence describing if someone is heading home, and if so, when they will be home](https://github.com/scstraus/home-assistant-config/blob/ebcc13a8a67e7991cd55a4c2d7479443ee6590d7/sensors/location_template_sensors.yaml#L244-L294)
 
 This sensor will make a human readable sentence describing when someone will be home if they are coming home or, if not, how far away they are and which direction they are traveling in. Alexa can read that out when asked, or you can read from the more info popup of the location in the lovelace dashboard. It takes in information from the [Google Maps Travel Time Sensor](https://www.home-assistant.io/integrations/google_travel_time/) and the [proximity component](https://www.home-assistant.io/integrations/proximity/) primarily to do this. The proximity component updates a bit slowly, so that's the weakest link here. Since the question about when someone will be home is mostly asked about me to determing when I am coming home from work, I have a different way of handling this for me which looks at which zones I've passed through most recently in order to determine my direction instead of the proximity component, so it's quite instant in vectoring where I'm headed as long as I'm heading through the zones as expected and the location sensors are working alright. Generally my commute is the same almost every day, this works quite well for me.
+
+### [Sensor describing the ETA of when someone will be home](https://github.com/scstraus/home-assistant-config/blob/8b64a658ddce8afa6361f594a10669ba219ce515/sensors/location_template_sensors.yaml#L404-L446)
+
+This sensor describes when a member of the house will be home if they are heading home. It doesn't try to make as much of a human readable description as the above which was designed for readback by Alexa when asked, but rather just a quick status that can be shown for a quick scan when you tap on their location to get an idea of if they are heading home and when they will be be home. But generally it's just an abbreviated version of the sensors in the section above.
+
+### [Sensor describing the fastest route to work](https://github.com/scstraus/home-assistant-config/blob/8b64a658ddce8afa6361f594a10669ba219ce515/sensors/location_template_sensors.yaml#L404-L446)
+
+This sensor describes what trams I should best take to work. The idea is to display this on the dashboard during the hours I am usually heading to work, as well as to parse this and send me notifications if the route is not one of the usual ones, which would theoretially indicate that one of the usual trams I use isn't running that day. This can save me some time of finding out the hard way.
+
+
+### [Describe the direction people are traveling](https://github.com/scstraus/home-assistant-config/blob/8b64a658ddce8afa6361f594a10669ba219ce515/sensors/location_template_sensors.yaml#L459-L475)
+
+This sensor simply takes the state attribute about direction of travel from the proximity sensor and turns it into a standalone sensor which can then be used in the above sensors to produce the descriptions of when people will be home or that they are traveling away from home. Again, there is probably a 10 minute lag on this status, so not always the most reliable thing, but it tends to be better than nothing, and I still make good use of this sensor.
+
 
 **(Documenting template sensors is still work in progress, so that's not all of them. For now you will have to check in the other YAML files in the sensors folder).**
