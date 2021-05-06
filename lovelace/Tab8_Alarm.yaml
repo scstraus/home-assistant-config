@@ -8,8 +8,8 @@ visible:
   - user: b78739f1b439447a9036d38a8c152be8
   - user: a4425eb8f5064e0bb63712f390023ee2
   - user: cb904806764d46bfbfb049d6e6939586
-  - user: 2a6556f191a44915998a20ea2ac28057
-  - user: 5d20dcdf0c8f4905b0d3ee79fb195c99
+  # - user: 2a6556f191a44915998a20ea2ac28057
+  # - user: 5d20dcdf0c8f4905b0d3ee79fb195c99
 cards:
 
   - type: entity-filter

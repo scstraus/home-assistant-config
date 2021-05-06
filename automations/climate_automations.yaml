@@ -1260,12 +1260,12 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.smartweather_wind_gust
+    entity_id: sensor.smartweatherudp_wind_speed_realtime
   action:
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: "sensor.smartweatherudp_wind_speed_realtime"
+              entity_id: sensor.smartweatherudp_wind_speed_realtime
               above: 4
           sequence:
             - service: timer.start
@@ -1274,8 +1274,8 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: "sensor.smartweatherudp_wind_speed_realtime"
-              above: 9
+              entity_id: sensor.smartweatherudp_wind_speed_realtime
+              above: 7
           sequence:
             - service: timer.start
               target:
@@ -1283,7 +1283,7 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: "sensor.smartweatherudp_wind_speed_realtime"
+              entity_id: sensor.smartweatherudp_wind_speed_realtime
               above: 14
           sequence:
             - service: timer.start
@@ -1292,9 +1292,58 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: "sensor.smartweatherudp_wind_speed_realtime"
+              entity_id: sensor.smartweatherudp_wind_speed_realtime
               above: 19
           sequence:
             - service: timer.start
               target:
                 entity_id: timer.dangerous_wind_timer
+
+
+# - id: update_medium_wind_timer
+#   alias: update_medium_wind_timer
+#   initial_state: 'true'
+#   trigger:
+#     platform: numeric_state
+#     entity_id: sensor.smartweatherudp_wind_speed_realtime
+#     above: 4
+#   action:
+#     service: timer.start
+#     target:
+#       entity_id: timer.medium_wind_timer
+
+# - id: update_high_wind_timer
+#   alias: update_high_wind_timer
+#   initial_state: 'true'
+#   trigger:
+#     platform: numeric_state
+#     entity_id: sensor.smartweatherudp_wind_speed_realtime
+#     above: 9
+#   action:
+#     service: timer.start
+#     target:
+#       entity_id: timer.high_wind_timer
+
+# - id: update_very_high_wind_timer
+#   alias: update_very_high_wind_timer
+#   initial_state: 'true'
+#   trigger:
+#     platform: numeric_state
+#     entity_id: sensor.smartweatherudp_wind_speed_realtime
+#     above: 14
+#   action:
+#     service: timer.start
+#     target:
+#       entity_id: timer.very_high_wind_timer
+
+# - id: update_dangerous_wind_timer
+#   alias: update_dangerous_wind_timer
+#   initial_state: 'true'
+#   trigger:
+#     platform: numeric_state
+#     entity_id: sensor.smartweatherudp_wind_speed_realtime
+#     above: 19
+#   action:
+#     service: timer.start
+#     target:
+#       entity_id: timer.dangerous_wind_timer
