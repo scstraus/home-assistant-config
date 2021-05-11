@@ -14,8 +14,8 @@ class ManageKioskCameraPopups(hass.Hass):
   KINDLE_MASTER_CLOSET_DEVICEID=""
   FRONT_CAMERA="camera.front_stream"
   BACK_CAMERA="camera.back_stream"
-  LEFT_CAMERA="camera.left_stream"
-  RIGHT_CAMERA="camera.right_stream"
+  LEFT_CAMERA="camera.left_substream"
+  RIGHT_CAMERA="camera.right_substream"
 #########################################################################################################
 #                            THESE ARE THE INITIALIZE AND LAUNCH FUNCTIONS                              #
 #########################################################################################################

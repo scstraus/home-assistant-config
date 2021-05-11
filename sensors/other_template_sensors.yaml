@@ -852,7 +852,7 @@
       rain_sensor:
         friendly_name: "It's Raining"
         value_template: >-
-          {% if (as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 300 and (states('binary_sensor.smartweather_raining')=='off') %}
+          {% if ((((as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 300) or ((as_timestamp(now()) - as_timestamp(states('sensor.uptime')))<300)) and (states('binary_sensor.smartweather_raining')=='off')) %}
             no
           {% else %}
             {% if ((states('sensor.smartweather_rain_rate'))|float < 0.2) %}

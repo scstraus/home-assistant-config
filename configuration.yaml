@@ -764,6 +764,8 @@ shell_command:
   screen_on_kindle_fire_kitchen: !secret kitchen_kindle_screen_on
   reload_ui_kindle_fire_closet: !secret closet_kindle_reload_ui
   reload_ui_kindle_fire_kitchen: !secret kitchen_kindle_reload_ui
+  reload_ui_kindle_fire_entrance: !secret entrance_kindle_reload_ui
+
 
 browser_mod:
   disable: 
@@ -869,6 +871,11 @@ timer:
     duration: '00:00:03'
   human_popup_close:
     duration: '00:00:10'
+  kitchen_tablet_reload:
+    duration: '00:30:00'
+  closet_tablet_reload:
+    duration: '00:30:00'
+
 
 
 dreamscreen:

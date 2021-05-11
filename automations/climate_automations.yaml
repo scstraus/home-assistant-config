@@ -1275,7 +1275,7 @@
         - conditions: 
             - condition: numeric_state
               entity_id: sensor.smartweatherudp_wind_speed_realtime
-              above: 7
+              above: 6
           sequence:
             - service: timer.start
               target:
@@ -1284,7 +1284,7 @@
         - conditions: 
             - condition: numeric_state
               entity_id: sensor.smartweatherudp_wind_speed_realtime
-              above: 14
+              above: 13
           sequence:
             - service: timer.start
               target:
@@ -1293,7 +1293,7 @@
         - conditions: 
             - condition: numeric_state
               entity_id: sensor.smartweatherudp_wind_speed_realtime
-              above: 19
+              above: 18
           sequence:
             - service: timer.start
               target:

@@ -410,3 +410,5 @@
 #    state_topic: 'room_presence'
 #    timeout: 5
 #    away_timeout: 0
+
+  - platform: uptime

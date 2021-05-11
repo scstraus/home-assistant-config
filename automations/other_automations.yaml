@@ -1054,3 +1054,87 @@
     data:
       title: "Alexa Needs Authentication"
       message: "Alexa Media's authentication has expired, please renew it"
+
+- id: reload_kitchen_kiosk_ui_every_30_minutes
+  alias: reload_kitchen_kiosk_ui_every_30_minutes
+  trigger:
+    - platform: state
+      entity_id: !secret kindle_kitchen_motion_sensor
+      to: 'off'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: timer.kitchen_tablet_reload
+      to: 'idle'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: !secret kindle_kitchen_motion_sensor
+        state: 'off'
+        for:
+          minutes: 5
+      - condition: state
+        entity_id: timer.kitchen_tablet_reload
+        state: 'idle'
+  action:
+    - service: shell_command.reload_ui_kindle_fire_kitchen
+    - service: timer.start
+      data:
+        entity_id: timer.kitchen_tablet_reload
+
+- id: reload_closet_kiosk_ui_every_30_minutes
+  alias: reload_closet_kiosk_ui_every_30_minutes
+  trigger:
+    - platform: state
+      entity_id: !secret kindle_master_closet_motion_sensor
+      to: 'off'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: timer.closet_tablet_reload
+      to: 'idle'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: !secret kindle_master_closet_motion_sensor
+        state: 'off'
+        for:
+          minutes: 4
+          seconds: 59
+      - condition: state
+        entity_id: timer.closet_tablet_reload
+        state: 'idle'
+  action:
+    - service: shell_command.reload_ui_kindle_fire_closet
+    - service: timer.start
+      data:
+        entity_id: timer.closet_tablet_reload
+
+
+- id: start_tablet_reload_timers
+  alias: start_tablet_reload_timers
+  initial_state: 'on'
+  trigger:
+    - platform: homeassistant
+      event: start     
+  action:
+    - service: timer.start
+      data:
+        entity_id: timer.closet_tablet_reload  
+    - service: timer.start
+      data:
+        entity_id: timer.kitchen_tablet_reload 
+        
+- id: sync_shopping_list
+  alias: sync_shopping_list
+  initial_state: 'on'
+  trigger:
+    - platform: webhook
+      webhook_id: !secret shopping_sync_key
+  action:
+    - service: pyscript.sync_shopping_list
+    - delay: 2
+    - service: shell_command.reload_ui_kindle_fire_entrance 
+      

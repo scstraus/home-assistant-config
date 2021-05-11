@@ -627,9 +627,12 @@ cards:
         - sensor.sophie_location
         - sensor.alena_location
 
-    - type: iframe
-      url: https://todoist.com/app/project/2249307675#
-      aspect_ratio: 160%
+    - type: shopping-list
+      title: Shopping List
+
+#    - type: iframe
+#      url: https://todoist.com/app/project/2249307675#
+#      aspect_ratio: 160%
 
     - type: vertical-stack
       in_card: true

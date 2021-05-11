@@ -1,0 +1,84 @@
+title: 
+panel: true
+icon: 
+visible: false
+cards:
+
+  - type: vertical-stack
+    cards:
+
+    - type: button
+      name: Press to Announce Someone at the Door
+      icon: mdi:bullhorn-outline
+      icon_height: 70px
+      tap_action:
+        action: call-service
+        service: script.announce_someone_at_the_gate
+
+    - type: picture-glance
+      # title: Outdoor - Front Gate
+      aspect_ratio: 16x9
+      entities: []
+      show_state: false
+      show_name: false
+      camera_image: camera.front_stream
+      camera_view: live
+
+  
+    - type: entity-filter
+      state_filter:
+      - "on"
+      - "Delivery"
+      - "delivery"
+      - "yes"
+      - "Open"
+      - "Clean"
+      - "Today"
+      - "Tomorrow"
+      - "armed_away"
+      - "!Now!"
+      - operator: ">"
+        value: -1
+      - "Drizzle"
+      - "Slight"
+      - "Moderate"
+      - "Heavy"
+      - "Very Heavy"
+      - "High"
+      - "Very High"
+      - "Dangerous"
+      - "Violent Shower"
+      entities:
+      - variable.posta_variable
+      - variable.dhl_variable
+      - variable.dpd_variable
+      - variable.gls_variable
+      - sensor.bio_odpad_day
+      - sensor.bike_day
+      - binary_sensor.back_door
+      - binary_sensor.garage_door
+      - binary_sensor.front_door_zone_1
+      - input_select.bosch_dishwasher_status
+      - binary_sensor.popp_unknown_type_0004_id_0014_sensor
+      - input_select.miele_washing_machine_status
+      - input_select.lg_washing_machine_status
+      - binary_sensor.ecolink_garage_door
+      - sensor.czech_holidays_event_0
+      - sensor.alarm_state_3_motion_sensors
+      - sensor.alarm_state_2_1st_floor
+      - sensor.alarm_state_1_laundry
+      - sensor.trash_display
+      - binary_sensor.basement_sliding_door
+      - sensor.kite_day
+      - sensor.rain_sensor
+      - sensor.high_wind_warning
+      - entity: sensor.last_lightning
+        state_filter:
+          - operator: "!="
+            value: "no"
+      card: 
+        type: glance
+      show_empty: false  
+
+
+

@@ -160,12 +160,15 @@ popup_cards:
   sensor.rain_sensor:
     title: "Rain Summary"
     card:
-      type: history-graph
-      entities:
-        - sensor.rain_sensor
-      type: history-graph
-      entities:
-        - sensor.smartweather_rain_rate
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - sensor.rain_sensor
+      - type: history-graph
+        entities:
+          - sensor.smartweather_rain_rate
 
   sensor.high_wind_warning:
     title: "Wind Summary"
