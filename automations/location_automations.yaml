@@ -942,41 +942,6 @@
       entity_id: input_select.sean_location_dropdown
       option: Traveling
 
-- id: remind_to_plug_car_in
-  alias: remind_to_plug_car_in
-  initial_state: 'true'
-  trigger:
-    platform: state
-    entity_id: device_tracker.cooper_s_e_all4
-    to: 'home'
-  action:
-    - choose:
-      - conditions:
-        - condition: template
-          value_template: >
-            {{ is_state('device_tracker.sean_s_iphone_12', 'home') and ((now() - states.device_tracker.sean_s_iphone_12.total_seconds()) < 6*60) and is_state('binary_sensor.car_needs_charging', 'Charge It') }}
-        sequence:
-          - service: notify.mobile_app_sean_s_iphone_12
-            data:
-              title: "Plug Car In"
-              message: "The car needs to be charged, please plug it in."
-              data:
-                push:
-                  thread-id: "appliances"
-    - choose:
-      - conditions:
-        - condition: template
-          value_template: > 
-            {{ is_state('device_tracker.alena_s_iphone', 'home') and ((now() - device_tracker.alena_s_iphone.total_seconds()) < 6*60) and is_state('binary_sensor.car_needs_charging', 'Charge It') }}
-        sequence:
-          - service: notify.mobile_app_alena_s_iphone
-            data:
-              title: "Plug Car In"
-              message: "The car needs to be charged, please plug it in."
-              data:
-                push:
-                  thread-id: "appliances"
-
 - id: notify_udoli_getting_dark_sean
   alias: notify_udoli_getting_dark_sean
   initial_state: 'true'

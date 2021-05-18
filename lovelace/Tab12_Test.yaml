@@ -9,5 +9,15 @@ visible:
   - user: 5d20dcdf0c8f4905b0d3ee79fb195c99
 cards:
 
+  - type: "custom:calendar-card"
+    entities:
+      - calendar.alena_and_seans_calendar
+  #    title: "Reminders"
+    title: Reminders
+    showProgressBar: false
+    numberOfDays: 3
+    hidePastEvents: true
+    hideHeader: false
+    timeFormat: 'hh:mm a'
 
 

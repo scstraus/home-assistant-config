@@ -883,11 +883,11 @@ dreamscreen:
     - living_room_tv:
         address: !secret dreamscreen_ip
 
-bmw_connected_drive:
-  name: 
-    username: !secret mini_uname
-    password: !secret mini_pw
-    region: rest_of_world
+#bmw_connected_drive:
+#  name: 
+#    username: !secret mini_uname
+#    password: !secret mini_pw
+#    region: rest_of_world
 
 
 withings:

@@ -594,14 +594,20 @@
     entity_id: input_boolean.working_from_home
     to: 'on'
   action:
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.office_library
-        setpoint: 23
-        duration: {"hours":8}
+    - choose:
+        - conditions: 
+            - condition: state
+              entity_id: input_select.active_heating_profile
+              state: 'PROFILE_AUTO'
+          sequence:
+            - service: evohome.set_zone_override
+              data:
+                entity_id: climate.office_library
+                setpoint: 23
+                duration: {"hours":8}
     - service: switch.turn_on
       data:
-        entity_id: switch.office_alexa_do_not_disturb_switch
+        entity_id: switch.alexa_office_do_not_disturb_switch
 
 
 - id: working_from_home_today
@@ -621,14 +627,20 @@
         - thu
         - fri    
   action:
-    - service: evohome.set_zone_override
-      data:
-        entity_id: climate.office_library
-        setpoint: 23
-        duration: {"hours":11,"minutes":40}
+    - choose:
+        - conditions: 
+            - condition: state
+              entity_id: input_select.active_heating_profile
+              state: 'PROFILE_AUTO'
+          sequence:
+            - service: evohome.set_zone_override
+              data:
+                entity_id: climate.office_library
+                setpoint: 23
+                duration: {"hours":11,"minutes":40}
     - service: switch.turn_on
       data:
-        entity_id: switch.office_alexa_do_not_disturb_switch
+        entity_id: switch.alexa_office_do_not_disturb_switch
 
 
 - id: end_working_from_home_today
@@ -1347,3 +1359,43 @@
 #     service: timer.start
 #     target:
 #       entity_id: timer.dangerous_wind_timer
+
+
+
+- id: notify_lightning
+  alias: notify_lightning
+  initial_state: 'true'
+  mode: single
+  trigger:
+    platform: state
+    entity_id: binary_sensor.smartweather_lightning
+    to: 'on'
+  action:
+    - choose:
+        - conditions: 
+            - condition: template
+              value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
+          sequence:
+            - service: notify.mobile_app_sean_s_iphone_12
+              data:
+                title: "Lightning Warning"
+                message: "Lightning has been detected outside. Most recent strike was {{states('sensor.smartweather_lightning_distance')}} km away. There have been {{states('sensor.smartweather_lightning_last_1hrs')}} lightning strikes in the last hour within a 50km radius of home."
+                data:
+                  push:
+                    thread-id: "weather"
+    - service: notify.mobile_app_alena_s_iphone
+      data:
+        title: "Lightning Warning"
+        message: "Lightning has been detected outside. Most recent strike was {{states('sensor.smartweather_lightning_distance')}} km away. There have been {{states('sensor.smartweather_lightning_last_1hrs')}} lightning strikes in the last hour within a 50km radius of home."
+        data:
+          push:
+            thread-id: "weather"
+    - service: notify.mobile_app_sophies_iphone_se
+      data:
+        title: "Lightning Warning"
+        message: "Lightning has been detected outside. Most recent strike was {{states('sensor.smartweather_lightning_distance')}} km away. There have been {{states('sensor.smartweather_lightning_last_1hrs')}} lightning strikes in the last hour within a 50km radius of home."
+        data:
+          push:
+            thread-id: "weather"
+    - delay:
+      minutes: 5

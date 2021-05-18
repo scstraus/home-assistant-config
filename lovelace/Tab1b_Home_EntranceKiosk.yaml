@@ -160,6 +160,9 @@ popup_cards:
   sensor.rain_sensor:
     title: "Rain Summary"
     card:
+      type: vertical-stack
+      in_card: true
+      cards:
       - type: history-graph
         entities:
           - sensor.rain_sensor

@@ -1138,3 +1138,67 @@
     - delay: 2
     - service: shell_command.reload_ui_kindle_fire_entrance 
       
+
+- id: remind_to_plug_car_in
+  alias: remind_to_plug_car_in
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.cooper_s_e_all4
+    to: 'home'
+  action:
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: >
+            {{ is_state('device_tracker.sean_s_iphone_12', 'home') and ((now() - states.device_tracker.sean_s_iphone_12.total_seconds()) < 6*60) and is_state('binary_sensor.car_needs_charging', 'Charge It') }}
+        sequence:
+          - service: notify.mobile_app_sean_s_iphone_12
+            data:
+              title: "Plug Car In"
+              message: "The car needs to be charged, please plug it in."
+              data:
+                push:
+                  thread-id: "appliances"
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: > 
+            {{ is_state('device_tracker.alena_s_iphone', 'home') and ((now() - device_tracker.alena_s_iphone.total_seconds()) < 6*60) and is_state('binary_sensor.car_needs_charging', 'Charge It') }}
+        sequence:
+          - service: notify.mobile_app_alena_s_iphone
+            data:
+              title: "Plug Car In"
+              message: "The car needs to be charged, please plug it in."
+              data:
+                push:
+                  thread-id: "appliances"
+
+- id: welcome_car_and_remind_to_charge_it
+  alias: welcome_car_and_remind_to_charge_it
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_zone_12
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: not
+        conditions:
+        - condition: state
+          entity_id: device_tracker.cooper_s_e_all4
+          state: 'home'
+      #garage door opened or closed in last 3 minutes
+      - condition: template
+        value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.watch_garage_door_to_have_time_of_change.attributes.last_triggered | default(0)) | int < 300)}}'
+  action:
+    - service: shell_command.reload_ui_kindle_fire_closet
+    - service: timer.start
+      data:
+        entity_id: timer.closet_tablet_reload
+
+- id: watch_garage_door_to_have_time_of_change
+  alias: watch_garage_door_to_have_time_of_change
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_door
