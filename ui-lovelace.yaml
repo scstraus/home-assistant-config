@@ -22,7 +22,7 @@ views:
 #  - !include /config/lovelace/Hidden16_Right_Camera.yaml
   - !include /config/lovelace/Hidden17_Browser_Addon.yaml
 
-#  - !include /config/lovelace/Tab12_Test.yaml
+  # - !include /config/lovelace/Tab12_Test.yaml
 
 #custom_header:
 #  compact_mode: true

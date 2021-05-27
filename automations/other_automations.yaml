@@ -882,9 +882,14 @@
         data:
           type: tts
         message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_alexa_kitchen_bar
+      service: notify.alexa_media_alexa_echo_dot_kitchen_bar
     - delay:
-        seconds: 2  
+        seconds: 2
+    - data:
+        data:
+          type: tts
+        message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
+      service: notify.alexa_media_alexa_garage
     - data:
         data:
           type: tts
@@ -1192,13 +1197,17 @@
       - condition: template
         value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.watch_garage_door_to_have_time_of_change.attributes.last_triggered | default(0)) | int < 300)}}'
   action:
-    - service: shell_command.reload_ui_kindle_fire_closet
-    - service: timer.start
-      data:
-        entity_id: timer.closet_tablet_reload
+    - delay: 0:30
+    - data:
+        data:
+          type: tts
+        message: "Welcome home. Please remember to plug the car in to charge. Thank you"
+      service: notify.alexa_media_alexa_garage
 
 - id: watch_garage_door_to_have_time_of_change
   alias: watch_garage_door_to_have_time_of_change
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_door
+  action:
+    

@@ -1370,6 +1370,10 @@
     platform: state
     entity_id: binary_sensor.smartweather_lightning
     to: 'on'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.smartweather_lightning_distance
+    below: 20
   action:
     - choose:
         - conditions: 
@@ -1397,5 +1401,4 @@
         data:
           push:
             thread-id: "weather"
-    - delay:
-      minutes: 5
+    - delay: 0:05

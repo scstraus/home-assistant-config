@@ -224,15 +224,7 @@ logger:
 
 #switch:
 #
-#  - platform: switchbot
-#    name: Switchbot Hub Wifi
-#    mac: '48:3F:DA:5A:31:4E'
-#  - platform: switchbot
-#    name: Switchbot Hub BLE
-#    mac: 'C2:A4:5B:3A:02:06'
-#  - platform: switchbot
-#    name: Switchbot Curtian Right BLE
-#    mac: 'EE:C3:79:9B:1A:07'
+
 
 #  - platform: command_line
 #    switches:
@@ -981,3 +973,6 @@ light:
               s: "{{ s }}"
               v: "{{ state_attr('dreamscreen.living_room_tv', 'brightness')|int }}"
 
+#cover:
+#  - platform: switchbot-curtain
+#    mac: !secret switchbot_curtain_right_ble

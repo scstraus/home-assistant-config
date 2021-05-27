@@ -8,16 +8,49 @@ visible:
   - user: 2a6556f191a44915998a20ea2ac28057
   - user: 5d20dcdf0c8f4905b0d3ee79fb195c99
 cards:
-
-  - type: "custom:calendar-card"
-    entities:
-      - calendar.alena_and_seans_calendar
-  #    title: "Reminders"
-    title: Reminders
-    showProgressBar: false
-    numberOfDays: 3
-    hidePastEvents: true
-    hideHeader: false
-    timeFormat: 'hh:mm a'
+#    'Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah' 
+  - type: markdown
+    content: |
+      <ha-icon icon="mdi:snowflake"></ha-icon>{{states('input_text.windows_making_house_cold')}}
+      
+#  - type: custom:button-card
+#    name: >
+#      Hello Hello Hello 
+#      <ha-icon icon="mdi:desktop-classic"></ha-icon> Hello <ha-icon icon="mdi:desktop-classic"></ha-icon> Hello <ha-icon icon="mdi:desktop-classic"></ha-icon>Hello<ha-icon icon="mdi:desktop-classic"></ha-icon><ha-icon icon="mdi:desktop-classic"></ha-icon><ha-icon icon="mdi:desktop-classic"></ha-icon><ha-icon icon="mdi:desktop-classic"></ha-icon><ha-icon icon="mdi:desktop-classic"></ha-icon> 
+#    deep_press: true
+#    icon: 'mdi:alert-circle' 
+#    size: 28px
+#    aspect_ratio: 28/5
+#    show_name: true
+#    show_icon: false
+#    show_state: false
+#    show_label: false
+#    show_last_changed: false
+#    styles:
+#      card:
+#        - --ha-card-background: '#f9c536'
+#      name:
+#        - word-wrap: break-word
+#        - text-overflow: unset
+#        - white-space: unset
+#        - word-break: break-word
+#        - font-size: 15px
+#        - font-family: Helvetica
+#        - color: black
+#        - justify-self: start
+#        - padding-left: 18px
+#        - padding-top: 4px
+#      img_cell:
+#        - align-self: start
+#        - text-align: start
+#        - margin-left: 21px
+#      grid: 
+#        - grid-template-areas: '"i n"'
+#        - grid-template-columns: 8% 1fr
+#        - grid-template-rows: 1fr
+#      icon:
+#        - color: black
+#    state:
+#      - value: "off"
 
 

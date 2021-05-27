@@ -310,8 +310,18 @@ cards:
         - state: Low
         - name: "Alena's Phone Battery is Low"
 
-    - type: custom:decluttering-card
-      template: open_windows_cold
+#    - type: custom:decluttering-card
+#      template: open_windows_cold
+
+    - type: conditional
+      conditions:
+        - entity: 'binary_sensor.open_window_making_house_cold'
+          state: 'on'
+      card:
+        type: markdown
+        content: |
+          <ha-icon icon="mdi:snowflake"></ha-icon> {{states('input_text.windows_making_house_cold')}}
+
 
     - type: custom:decluttering-card
       template: open_windows_hot
@@ -360,6 +370,10 @@ cards:
       - "High"
       - "Very High"
       - "Dangerous"
+      - "Moderate Rain"
+      - "Heavy Rain"
+      - "Heavy Shower"
+      - "Very Heavy Shower"
       - "Violent Shower"
       entities:
       - variable.posta_variable
@@ -1190,22 +1204,22 @@ cards:
             id: "A: 4+5 Star (playlist)"
           - name: "JAZZ"
             type: source
-            id: "Good Jazz (playlist)"
+            id: "Best Jazz (playlist)"
           - name: "ROCK"
             type: source
-            id: "Good Rock (playlist)"
+            id: "Best Rock (playlist)"
           - name: "POP"
             type: source
-            id: "Good Pop (playlist)"
+            id: "Best Pop (playlist)"
           - name: "CLASSIC"
             type: source
             id: "Classical (playlist)"
           - name: "BLACK"
             type: source
-            id: "Good Black (playlist)"
+            id: "Best Black (playlist)"
           - name: "ELECTRO"
             type: source
-            id: "Good Electronica (playlist)"
+            id: "Best Electronica (playlist)"
           - name: "KIDS"
             type: source
             id: "Kids - English (playlist)"

@@ -315,9 +315,18 @@ cards:
         - state: Low
         - name: "Alena's Phone Battery is Low"
 
-    - type: custom:decluttering-card
-      template: open_windows_cold
+#    - type: custom:decluttering-card
+#      template: open_windows_cold
 
+    - type: conditional
+      conditions:
+        - entity: 'binary_sensor.open_window_making_house_cold'
+          state: 'on'
+      card:
+        type: markdown
+        content: |
+          <ha-icon icon="mdi:snowflake"></ha-icon> {{states('input_text.windows_making_house_cold')}}
+ 
     - type: custom:decluttering-card
       template: open_windows_hot
       
@@ -366,6 +375,10 @@ cards:
       - "High"
       - "Very High"
       - "Dangerous"
+      - "Moderate Rain"
+      - "Heavy Rain"
+      - "Heavy Shower"
+      - "Very Heavy Shower"
       - "Violent Shower"
       entities:
       - variable.posta_variable
@@ -496,6 +509,19 @@ cards:
           text: Today
           type: 'custom:text-element'
 
+
+#    - type: picture-glance
+##          title: Outdoor - Front Gate
+#      aspect_ratio: 16x9
+#      entities: []
+#      camera_image: camera.front_stream
+#      camera_view: live
+#      show_state: false
+#      show_name: false
+
+
+## Uncomment BEGIN
+
     - type: vertical-stack
       cards:
 
@@ -514,9 +540,6 @@ cards:
 #          title: Outdoor - Front Gate
         aspect_ratio: 16x9
         entities: []
-  #        - binary_sensor.motion_front_of_house_motion
-#          - binary_sensor.motion_front
-  #        camera_image: camera.front_outdoor
         camera_image: camera.front_stream
         camera_view: live
         show_state: false
@@ -532,7 +555,7 @@ cards:
           aspect_ratio: 9x16
           entities: []
 #            - binary_sensor.motion_left
-          camera_image: camera.left_stream
+          camera_image: camera.left_proxy
           camera_view: live
           show_state: false
           show_name: false
@@ -542,7 +565,7 @@ cards:
           aspect_ratio: 9x16
           entities: []
 #            - binary_sensor.motion_right
-          camera_image: camera.right_stream
+          camera_image: camera.right_proxy
           camera_view: live
           show_state: false
           show_name: false
@@ -551,10 +574,7 @@ cards:
 #          title: Outdoor - Back Yard
         aspect_ratio: 16x9
         entities: []
-  #        - binary_sensor.motion_back_of_house_motion
-#          - binary_sensor.motion_back
-  #        camera_image: camera.back_outdoor
-        camera_image: camera.back_stream
+        camera_image: camera.back_proxy
         camera_view: live
         show_state: false
         show_name: false
@@ -562,6 +582,10 @@ cards:
   #  - type: markdown
   #    content: |
   #      ## [[ sensor.sean_commute ]]
+
+###Uncomment END
+
+
     - break
 
 
@@ -1068,22 +1092,22 @@ cards:
             id: "A: 4+5 Star (playlist)"
           - name: "JAZZ"
             type: source
-            id: "Good Jazz (playlist)"
+            id: "Best Jazz (playlist)"
           - name: "ROCK"
             type: source
-            id: "Good Rock (playlist)"
+            id: "Best Rock (playlist)"
           - name: "POP"
             type: source
-            id: "Good Pop (playlist)"
+            id: "Best Pop (playlist)"
           - name: "CLASSIC"
             type: source
             id: "Classical (playlist)"
           - name: "BLACK"
             type: source
-            id: "Good Black (playlist)"
+            id: "Best Black (playlist)"
           - name: "ELECTRO"
             type: source
-            id: "Good Electronica (playlist)"
+            id: "Best Electronica (playlist)"
           - name: "KIDS"
             type: source
             id: "Kids - English (playlist)"
@@ -1099,7 +1123,6 @@ cards:
           - name: "EUROPA2"
             type: source
             id: "radio2 (playlist)"
-
 #
 #        - entity: media_player.itunes
 #          type: custom:mini-media-player

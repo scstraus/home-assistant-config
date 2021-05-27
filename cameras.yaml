@@ -421,7 +421,7 @@
   #   cache_images: true
 
   # - platform: proxy
-  #   name: back_preview
+  #   name: back_proxy
   #   entity_id: camera.back_stream
   #   max_stream_width: 320
   #   max_image_width: 320
@@ -443,3 +443,28 @@
   #   max_image_width: 180
   #   image_refresh_rate: 1.0
   #   cache_images: true
+
+
+  - platform: proxy
+    name: back_proxy
+    entity_id: camera.back_stream
+    max_stream_width: 860
+    max_image_width: 860
+    image_refresh_rate: 5.0
+    cache_images: true
+
+  - platform: proxy
+    name: left_proxy
+    entity_id: camera.left_stream
+    max_stream_width: 540
+    max_image_width: 540
+    image_refresh_rate: 5.0
+    cache_images: true
+
+  - platform: proxy
+    name: right_proxy
+    entity_id: camera.right_stream
+    max_stream_width: 540
+    max_image_width: 540
+    image_refresh_rate: 5.0
+    cache_images: true
