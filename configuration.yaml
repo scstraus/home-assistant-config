@@ -137,14 +137,16 @@ lovelace:
       type: module
     - url: /hacsfiles/bar-card/bar-card.js
       type: module
+    - url: /hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js
+      type: module
 
-  dashboards:
-  
-    lovelace-kiosk:
-      mode: yaml
-      title: kiosk
-      show_in_sidebar: false
-      filename: ui-kiosk.yaml                
+#  dashboards:
+#  
+#    lovelace-kiosk:
+#      mode: yaml
+#      title: kiosk
+#      show_in_sidebar: false
+#      filename: ui-kiosk.yaml                
                 
                 
                 
@@ -443,6 +445,10 @@ input_boolean:
   warn_door_open_dishwasher_running:
     name: "Warn door open dishwasher running"
     icon: mdi:dishwasher-alert
+  auto_curtain_open_state:
+    #on=open, off=closed
+    name: "Automatic curtain opener state"
+
   
 
 #  mix_playlist:
@@ -686,12 +692,12 @@ notify:
       - service: mobile_app_alena_s_iphone
       - service: mobile_app_sophies_iphone_6
 
-speedtestdotnet:
-  monitored_conditions:
-    - ping
-    - download
-    - upload
-  manual: true
+#speedtestdotnet:
+#  monitored_conditions:
+#    - ping
+#    - download
+#    - upload
+#  manual: true
 
 alarm_control_panel:
   - platform: mqtt
@@ -906,10 +912,10 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
-synology_dsm:
-  - host: !secret synology_ip
-    username: !secret syn_uname
-    password: !secret hass_pass
+#synology_dsm:
+#  - host: !secret synology_ip
+#    username: !secret syn_uname
+#    password: !secret hass_pass
 
 home_connect:
   client_id: homeconnect_client_id

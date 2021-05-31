@@ -1,3 +1,5 @@
+#### MEDIA TAB ####
+
 title: Media
 icon: mdi:television-clean
 visible:
@@ -7,7 +9,7 @@ visible:
   - user: cb904806764d46bfbfb049d6e6939586
 #panel: true
 #visible:
-#  - user: 2a6556f191a44915998a20ea2ac28057
+  - user: 2a6556f191a44915998a20ea2ac28057
 cards:
   - type: custom:upcoming-media-card
     entity: sensor.plex_recently_added

@@ -1,3 +1,5 @@
+#### DASHBOARD FOR KIOSKS IN CLOSET AND KITCHEN ####
+#### DASHBOARD FOR KIOSKS IN CLOSET AND KITCHEN ####
 
 #### These are the cards that only popup sometimes under certain conditions (and cameras too)
 
@@ -315,8 +317,23 @@ cards:
         - state: Low
         - name: "Alena's Phone Battery is Low"
 
-#    - type: custom:decluttering-card
-#      template: open_windows_cold
+
+    - type: custom:decluttering-card
+      template: warning_marquee
+      variables:
+        - entity: binary_sensor.sebastians_room_rain_window
+        - state: 'on'
+        - name: "Sebastian's window is open and there is a forecast for rain"
+
+    - type: custom:decluttering-card
+      template: warning_marquee
+      variables:
+        - entity: binary_sensor.sophies_room_rain_window
+        - state: 'on'
+        - name: "Sophie's window is open and there is a forecast for rain"
+
+    # - type: custom:decluttering-card
+    #   template: open_windows_cold
 
     - type: conditional
       conditions:
@@ -336,21 +353,6 @@ cards:
         - entity: binary_sensor.open_window_letting_pollution_in
         - state: 'on'
         - name: ${states['input_text.windows_letting_pollution_in'].state}
-
-    - type: custom:decluttering-card
-      template: warning_marquee
-      variables:
-        - entity: binary_sensor.sebastians_room_rain_window
-        - state: 'on'
-        - name: "Sebastian's window is open and there is a forecast for rain"
-
-    - type: custom:decluttering-card
-      template: warning_marquee
-      variables:
-        - entity: binary_sensor.sophies_room_rain_window
-        - state: 'on'
-        - name: "Sophie's window is open and there is a forecast for rain"
-
 
 
     - type: entity-filter
@@ -748,7 +750,7 @@ cards:
         - entity: binary_sensor.reminders_label
           state: "on"
       card:
-        type: vertical-stack
+      - type: vertical-stack
         in_card: true
         cards:
         - type: "custom:button-card"
@@ -765,7 +767,7 @@ cards:
         - type: "custom:calendar-card"
           entities:
             - calendar.alena_and_seans_calendar
-      #    title: "Reminders"
+          title: "Reminders"
           showProgressBar: false
           numberOfDays: 3
           hidePastEvents: true

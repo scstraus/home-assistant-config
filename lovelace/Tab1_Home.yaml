@@ -1,3 +1,5 @@
+### MAIN DASHBOARD FOR MOBILE AND BROWSER ###
+
 title: Home
 icon: mdi:home
 visible:
@@ -1002,7 +1004,13 @@ cards:
         hidePastEvents: true
         hideHeader: false
         timeFormat: 'hh:mm a'
-
+#
+#  - type: "custom:atomic-calendar-revive"
+#    entities:
+#    - entity: calendar.alena_and_seans_calendar
+#    name: Reminders
+#    maxDaysToShow: 3
+#    showWeekDay: true
 #### END COMMENT BLOCK 5: Location and Reminders
 #
 ##      type: conditional

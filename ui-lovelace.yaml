@@ -127,8 +127,8 @@ decluttering_templates:
         name: '[[name]]'
         deep_press: true
         icon: 'mdi:alert' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false
@@ -170,8 +170,8 @@ decluttering_templates:
         name: '[[name]]'
         deep_press: true
         icon: 'mdi:alert' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false
@@ -211,8 +211,8 @@ decluttering_templates:
         name: '[[name]]'
         deep_press: true
         icon: 'mdi:alert-circle' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false
@@ -253,8 +253,8 @@ decluttering_templates:
           [[[return `<marquee>[[name]]<\marquee>`]]]
         deep_press: true
         icon: 'mdi:alert-circle' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false
@@ -341,8 +341,8 @@ decluttering_templates:
           [[[return `<marquee>[[name]]<\marquee>`]]]
         deep_press: true
         icon: 'mdi:information' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false
@@ -377,8 +377,8 @@ decluttering_templates:
         name: '[[name]]'
         deep_press: true
         icon: 'mdi:battery-30' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false
@@ -413,8 +413,8 @@ decluttering_templates:
         name: '[[name]]'
         deep_press: true
         icon: 'mdi:battery-10' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false
@@ -455,8 +455,8 @@ decluttering_templates:
           [[[return `<marquee>[[name]]<\marquee>`]]]
         deep_press: true
         icon: 'mdi:battery-10' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false
@@ -497,8 +497,8 @@ decluttering_templates:
           [[[return `<marquee> ${states['input_text.windows_making_house_hot'].state} <\marquee>`]]]
         deep_press: true
         icon: 'mdi:fire' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false
@@ -534,8 +534,8 @@ decluttering_templates:
           [[[return `<marquee> ${states['input_text.windows_making_house_cold'].state} <\marquee>`]]]
         deep_press: true
         icon: 'mdi:snowflake' 
-        size: 28px
-        aspect_ratio: 7/1
+        size: 26px
+        aspect_ratio: 13/2
         show_name: true
         show_icon: true
         show_state: false

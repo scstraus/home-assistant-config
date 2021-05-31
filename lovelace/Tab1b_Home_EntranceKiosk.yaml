@@ -1,3 +1,4 @@
+#### DASHBOARD FOR ENTRANCE KIOSK ####
 
 #### These are the cards that only popup sometimes under certain conditions (and cameras too)
 
@@ -310,29 +311,6 @@ cards:
         - state: Low
         - name: "Alena's Phone Battery is Low"
 
-#    - type: custom:decluttering-card
-#      template: open_windows_cold
-
-    - type: conditional
-      conditions:
-        - entity: 'binary_sensor.open_window_making_house_cold'
-          state: 'on'
-      card:
-        type: markdown
-        content: |
-          <ha-icon icon="mdi:snowflake"></ha-icon> {{states('input_text.windows_making_house_cold')}}
-
-
-    - type: custom:decluttering-card
-      template: open_windows_hot
-      
-    - type: custom:decluttering-card
-      template: notice_marquee
-      variables:
-        - entity: binary_sensor.open_window_letting_pollution_in
-        - state: 'on'
-        - name: ${states['input_text.windows_letting_pollution_in'].state}
-
     - type: custom:decluttering-card
       template: warning_marquee
       variables:
@@ -346,6 +324,30 @@ cards:
         - entity: binary_sensor.sophies_room_rain_window
         - state: 'on'
         - name: "Sophie's window is open and there is a forecast for rain"
+
+
+    - type: custom:decluttering-card
+      template: open_windows_cold
+#
+#    - type: conditional
+#      conditions:
+#        - entity: 'binary_sensor.open_window_making_house_cold'
+#          state: 'on'
+#      card:
+#        type: markdown
+#        content: |
+#          <ha-icon icon="mdi:snowflake"></ha-icon> {{states('input_text.windows_making_house_cold')}}
+
+
+    - type: custom:decluttering-card
+      template: open_windows_hot
+      
+    - type: custom:decluttering-card
+      template: notice_marquee
+      variables:
+        - entity: binary_sensor.open_window_letting_pollution_in
+        - state: 'on'
+        - name: ${states['input_text.windows_letting_pollution_in'].state}
 
 
     - type: entity-filter
