@@ -646,9 +646,6 @@ cards:
         - sensor.sophie_location
         - sensor.alena_location
 
-    - type: shopping-list
-      title: Shopping List
-
 #    - type: iframe
 #      url: https://todoist.com/app/project/2249307675#
 #      aspect_ratio: 160%
@@ -675,7 +672,7 @@ cards:
         - entity: sensor.cooper_s_e_all4_remaining_range_total
           name: Total Range
           icon: mdi:gas-station
-        - entity: input_boolean.mini_countryman_clima
+#        - entity: input_boolean.mini_countryman_clima
         show_empty: false
 
       - type: entity-filter
@@ -705,6 +702,8 @@ cards:
           type: glance
         show_empty: false  
 
+    - type: shopping-list
+      title: Shopping List
 
 
     - break

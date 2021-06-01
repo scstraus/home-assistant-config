@@ -1024,7 +1024,7 @@
           data:
             type: tts
           message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
-        service: notify.alexa_media_alexa_kitchen_bar
+        service: notify.alexa_media_alexa_echo_dot_kitchen_bar
       - delay:
           seconds: 2  
       - data:
@@ -1060,3 +1060,8 @@
             type: tts
           message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
         service: notify.alexa_media_echo_flex_first_floor_bathroom
+      - data:
+          data:
+            type: tts
+          message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
+        service: notify.alexa_media_alexa_garage
