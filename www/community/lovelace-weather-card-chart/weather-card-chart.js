@@ -280,7 +280,7 @@ class WeatherCardChart extends Polymer.Element {
   computeTime(time) {
     const date = new Date(time);
     return date.toLocaleTimeString(this.lang,
-      { hour:'2-digit', minute:'2-digit' }
+      { hour12:false, hour:'numeric', minute:'2-digit' }
     );
   }
 

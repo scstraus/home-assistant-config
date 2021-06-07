@@ -7,6 +7,7 @@ views:
   - !include /config/lovelace/Tab1b_Home_EntranceKiosk.yaml
   - !include /config/lovelace/Tab2_Music.yaml
   - !include /config/lovelace/Tab3_Heat.yaml
+  - !include /config/lovelace/Tab3a_Heat_Sophie.yaml
   - !include /config/lovelace/Tab4_ShoppingList.yaml 
   - !include /config/lovelace/Tab5_Media.yaml
   - !include /config/lovelace/Tab6_Health.yaml

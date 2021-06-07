@@ -932,8 +932,8 @@
 #      scene_id: 1
 
 
-- id: announce_someone_at_the_gate
-  alias: announce_someone_at_the_gate
+- id: announce_someone_at_the_gate_sophie
+  alias: announce_someone_at_the_gate_sophie
   initial_state: 'true'
   trigger:
   - platform: event
@@ -1210,51 +1210,51 @@
     - platform: state
       entity_id: binary_sensor.garage_door
   action:
-
-- id: open_curtains_in_morning
-  alias: open_curtains_in_morning
-  initial_state: 'true'
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.play_room_zone_3
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.living_room_zone_4
-      to: 'on'    
-  condition:
-    condition: and
-    conditions:
-    - condition: state  # 'day' condition: from sunrise until sunset
-      entity_id: sun.sun
-      state: "above_horizon"
-    - condition: state  # 'day' condition: from sunrise until sunset
-      entity_id: input_boolean.auto_curtain_open_state
-      state: "off"
-    - condition: time
-      before: "21:00:00"
-  action:
-    - service: notify.mobile_app_sean_s_iphone_12
-      data:
-        title: "Curains Opening"
-        message: "Curtains would be opening now"
-    - service: input_boolean.turn_on
-      data:
-        entity_id: input_boolean.auto_curtain_open_state
-    
-- id: close_curtains_in_evening
-  alias: close_curtains_in_evening
-  initial_state: 'true'
-  trigger:
-    - platform: state
-      entity_id: sun.sun
-      to: "below_horizon"
-    - platform: time
-      at: "21:00:00"
-  action:
-    - service: notify.mobile_app_sean_s_iphone_12
-      data:
-        title: "Curains Closing"
-        message: "Curtains would be closing now"  
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.auto_curtain_open_state    
+#
+#- id: open_curtains_in_morning
+#  alias: open_curtains_in_morning
+#  initial_state: 'true'
+#  trigger:
+#    - platform: state
+#      entity_id: binary_sensor.play_room_zone_3
+#      to: 'on'
+#    - platform: state
+#      entity_id: binary_sensor.living_room_zone_4
+#      to: 'on'    
+#  condition:
+#    condition: and
+#    conditions:
+#    - condition: state  # 'day' condition: from sunrise until sunset
+#      entity_id: sun.sun
+#      state: "above_horizon"
+#    - condition: state  # 'day' condition: from sunrise until sunset
+#      entity_id: input_boolean.auto_curtain_open_state
+#      state: "off"
+#    - condition: time
+#      before: "21:00:00"
+#  action:
+#    - service: notify.mobile_app_sean_s_iphone_12
+#      data:
+#        title: "Curains Opening"
+#        message: "Curtains would be opening now"
+#    - service: input_boolean.turn_on
+#      data:
+#        entity_id: input_boolean.auto_curtain_open_state
+#    
+#- id: close_curtains_in_evening
+#  alias: close_curtains_in_evening
+#  initial_state: 'true'
+#  trigger:
+#    - platform: state
+#      entity_id: sun.sun
+#      to: "below_horizon"
+#    - platform: time
+#      at: "21:00:00"
+#  action:
+#    - service: notify.mobile_app_sean_s_iphone_12
+#      data:
+#        title: "Curains Closing"
+#        message: "Curtains would be closing now"  
+#    - service: input_boolean.turn_off
+#      data:
+#        entity_id: input_boolean.auto_curtain_open_state    

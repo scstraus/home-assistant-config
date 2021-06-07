@@ -72,6 +72,8 @@ frontend:
 #  themes: !include themes.yaml
 #  extra_module_url:
 #    - /hacsfiles/custom-sidebar/custom-sidebar.js
+  extra_module_url:
+    - /local/kiosk-zoom-enable.js
 
 lovelace:
 
@@ -140,13 +142,13 @@ lovelace:
     - url: /hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js
       type: module
 
-#  dashboards:
-#  
-#    lovelace-kiosk:
-#      mode: yaml
-#      title: kiosk
-#      show_in_sidebar: false
-#      filename: ui-kiosk.yaml                
+  dashboards:
+  
+    lovelace-kiosk:
+      mode: yaml
+      title: kiosk
+      show_in_sidebar: false
+      filename: ui-kiosk.yaml                
                 
                 
                 
@@ -387,9 +389,9 @@ weather:
   - platform: buienradar
     name: buienradar
 
-  - platform: openweathermap
-    api_key: !secret openweathermap_key
-    mode: hourly
+#  - platform: openweathermap
+#    api_key: !secret openweathermap_key
+#    mode: hourly
 
 #panel_iframe:
 #cloud9:
@@ -445,9 +447,9 @@ input_boolean:
   warn_door_open_dishwasher_running:
     name: "Warn door open dishwasher running"
     icon: mdi:dishwasher-alert
-  auto_curtain_open_state:
+#  auto_curtain_open_state:
+#    name: "Automatic curtain opener state"
     #on=open, off=closed
-    name: "Automatic curtain opener state"
 
   
 
@@ -780,10 +782,10 @@ browser_mod:
 #    host: !secret kindle_master_closet_ip
 #    password: !secret kindle_master_closet_pass
 
-remote:
-  - platform: harmony
-    name: harmony
-    host: !secret harmony_ip
+#remote:
+#  - platform: harmony
+#    name: harmony
+#    host: !secret harmony_ip
 
 rest_command:
   record_human_front: 
@@ -804,20 +806,20 @@ rest_command:
     method: put
     content_type: "application/x-www-form-urlencoded"
     payload: "mode=off"
-fan:
-  - platform: xiaomi_miio
-    name: sebastians_room_air_purifier
-    host: !secret xiaomi_air_purifier_sebastians_room_ip
-    token: !secret xiaomi_air_purifier_sebastians_room_token
-  - platform: xiaomi_miio
-    name: sophies_room_air_purifier
-    host: !secret xiaomi_air_purifier_sophies_room_ip
-    token: !secret xiaomi_air_purifier_sophies_room_token
-  - platform: xiaomi_miio
-    name: master_bedroom_air_purifier
-    host: !secret xiaomi_air_purifier_master_bedroom_ip
-    token: !secret xiaomi_air_purifier_master_bedroom_token
-
+#fan:
+#  - platform: xiaomi_miio
+#    name: sebastians_room_air_purifier
+#    host: !secret xiaomi_air_purifier_sebastians_room_ip
+#    token: !secret xiaomi_air_purifier_sebastians_room_token
+#  - platform: xiaomi_miio
+#    name: sophies_room_air_purifier
+#    host: !secret xiaomi_air_purifier_sophies_room_ip
+#    token: !secret xiaomi_air_purifier_sophies_room_token
+#  - platform: xiaomi_miio
+#    name: master_bedroom_air_purifier
+#    host: !secret xiaomi_air_purifier_master_bedroom_ip
+#    token: !secret xiaomi_air_purifier_master_bedroom_token
+#
 
 evohome_cc:
   scan_interval: 60
@@ -979,6 +981,19 @@ light:
               s: "{{ s }}"
               v: "{{ state_attr('dreamscreen.living_room_tv', 'brightness')|int }}"
 
+#switchbot is on the Pi you fool!
 #cover:
 #  - platform: switchbot-curtain
 #    mac: !secret switchbot_curtain_right_ble
+#  - platform: switchbot-curtain
+#    mac: !secret switchbot_curtain_left_ble
+
+climate:
+  - platform: sensibo
+    api_key: !secret sensibo_api_key
+#  - platform: climate_group
+#    name: sophie_room
+#    temperature_unit: C  # default to celsius, 'C' or 'F'
+#    entities:
+#    - climate.sophie_s_room
+#    - climate.sophie_s_room_ac

@@ -188,9 +188,8 @@ popup_cards:
 cards: 
 
   - type: custom:layout-card
-    layout: vertical
+    layout_type: custom:vertical-layout
     cards:
-
 
     - type: custom:decluttering-card
       template: emergency
@@ -269,12 +268,12 @@ cards:
         - state: Replace
         - name: "Replace Battery: Living Room Smoke Alarm"
 
-    - type: custom:decluttering-card
-      template: very_low_battery_marquee
-      variables:
-        - entity: sensor.master_bedroom_nest_protect_battery_health
-        - state: Replace
-        - name: "Replace Battery: Master Bedoom Smoke Alarm"
+#    - type: custom:decluttering-card
+#      template: very_low_battery_marquee
+#      variables:
+#        - entity: sensor.master_bedroom_nest_protect_battery_health
+#        - state: Replace
+#        - name: "Replace Battery: Master Bedoom Smoke Alarm"
 
     - type: custom:decluttering-card
       template: very_low_battery_marquee
@@ -425,7 +424,7 @@ cards:
       - sensor.basement_nest_protect_co_status
       - sensor.basement_nest_protect_smoke_status
       - sensor.living_room_nest_protect_color_status
-      - sensor.master_bedroom_nest_protect_color_status
+#      - sensor.master_bedroom_nest_protect_color_status
       - sensor.kids_room_nest_protect_color_status
       - sensor.basement_nest_protect_color_status
       - sensor.house_electricity
@@ -462,7 +461,7 @@ cards:
       - binary_sensor.living_room_nest_protect_online
       - sensor.living_room_nest_protect_color_status
       - binary_sensor.master_bedroom_nest_protect_online
-      - sensor.master_bedroom_nest_protect_color_status
+#      - sensor.master_bedroom_nest_protect_color_status
       - binary_sensor.kids_room_nest_protect_online
       - sensor.kids_room_nest_protect_color_status
       - binary_sensor.basement_nest_protect_online
@@ -634,7 +633,8 @@ cards:
 
 
 
-    - break
+    - type: custom:layout-break
+
 
 ### These are the cards you see all the time in the first tab on the kiosks
 
@@ -672,7 +672,7 @@ cards:
         - entity: sensor.cooper_s_e_all4_remaining_range_total
           name: Total Range
           icon: mdi:gas-station
-#        - entity: input_boolean.mini_countryman_clima
+        - entity: input_boolean.mini_countryman_clima
         show_empty: false
 
       - type: entity-filter
@@ -706,7 +706,7 @@ cards:
       title: Shopping List
 
 
-    - break
+    - type: custom:layout-break
 
 
 #These are the colors to use for the environment graph cards
@@ -795,8 +795,7 @@ cards:
   #      ## [[ sensor.sean_commute ]]
 
 
-    - break
-
+    - type: custom:layout-break
 
 
     - type: vertical-stack
@@ -1176,7 +1175,7 @@ cards:
     #          red: 350 
     #        
 
-    - break
+    - type: custom:layout-break
 
 #    - type: vertical-stack
 #      cards:
@@ -1732,7 +1731,7 @@ cards:
     #      - switch.electronica 
     #      - switch.kids
 
-    - break
+    - type: custom:layout-break
 
     - type: entities
       title: First Floor
@@ -1805,7 +1804,7 @@ cards:
   #    effects_list: input_select.dreamscreen_scene
   #    shorten_cards: true
 
-    - break
+    - type: custom:layout-break
 
     - type: entities
       title: Second Floor
@@ -1863,7 +1862,8 @@ cards:
       - entity: climate.office_library
         name: Office
 
-    - break
+    - type: custom:layout-break
+
 
     - type: entities
       title: Third Floor
@@ -1908,7 +1908,7 @@ cards:
         font-size: 20px
 
     
-    - break
+    - type: custom:layout-break
 
     - type: entities
       title: Basement
@@ -1920,7 +1920,7 @@ cards:
     - type: custom:search-card
       max_results: 10
 
-    - break
+    - type: custom:layout-break
 
     - type: entities
       title: Outside

@@ -1,11 +1,10 @@
-#### DASHBOARD FOR KIOSKS IN CLOSET AND KITCHEN ####
 
 #### These are the cards that only popup sometimes under certain conditions (and cameras too)
 
 
 title: Home
-#type: custom:vertical-layout
 icon: mdi:home
+#type: custom:vertical-layout
 panel: true
 #background-image: center / cover no-repeat url("/local/day.jpg") fixed
 visible:
@@ -160,38 +159,23 @@ popup_cards:
       entity: sensor.trash_display
 
   sensor.rain_sensor:
-    title: "Rain Summary"
+    title: Rain Rate Graph
     card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - sensor.rain_sensor
-      - type: history-graph
-        entities:
-          - sensor.smartweather_rain_rate
-
-  sensor.high_wind_warning:
-    title: "Wind Summary"
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - sensor.high_wind_warning
-      - type: history-graph
-        entities:
-          - sensor.smartweatherudp_wind_speed_realtime
+      type: history-graph
+      entities:
+        - sensor.smartweather_rain_rate
 
 cards: 
-
 
 
   - type: custom:layout-card
     layout_type: custom:vertical-layout
     cards:
+
+#
+#  - type: custom:layout-card
+#    layout: vertical
+#    cards:
 
 
 
@@ -275,12 +259,12 @@ cards:
         - state: Replace
         - name: "Replace Battery: Living Room Smoke Alarm"
 
-#    - type: custom:decluttering-card
-#      template: very_low_battery_marquee
-#      variables:
-#        - entity: sensor.master_bedroom_nest_protect_battery_health
-#        - state: Replace
-#        - name: "Replace Battery: Master Bedoom Smoke Alarm"
+    - type: custom:decluttering-card
+      template: very_low_battery_marquee
+      variables:
+        - entity: sensor.master_bedroom_nest_protect_battery_health
+        - state: Replace
+        - name: "Replace Battery: Master Bedoom Smoke Alarm"
 
     - type: custom:decluttering-card
       template: very_low_battery_marquee
@@ -317,6 +301,18 @@ cards:
         - state: Low
         - name: "Alena's Phone Battery is Low"
 
+    - type: custom:decluttering-card
+      template: open_windows_cold
+
+    - type: custom:decluttering-card
+      template: open_windows_hot
+      
+    - type: custom:decluttering-card
+      template: notice_marquee
+      variables:
+        - entity: binary_sensor.open_window_letting_pollution_in
+        - state: 'on'
+        - name: ${states['input_text.windows_letting_pollution_in'].state}
 
     - type: custom:decluttering-card
       template: warning_marquee
@@ -332,27 +328,7 @@ cards:
         - state: 'on'
         - name: "Sophie's window is open and there is a forecast for rain"
 
-    # - type: custom:decluttering-card
-    #   template: open_windows_cold
 
-    - type: conditional
-      conditions:
-        - entity: 'binary_sensor.open_window_making_house_cold'
-          state: 'on'
-      card:
-        type: markdown
-        content: |
-          <ha-icon icon="mdi:snowflake"></ha-icon> {{states('input_text.windows_making_house_cold')}}
- 
-    - type: custom:decluttering-card
-      template: open_windows_hot
-      
-    - type: custom:decluttering-card
-      template: notice_marquee
-      variables:
-        - entity: binary_sensor.open_window_letting_pollution_in
-        - state: 'on'
-        - name: ${states['input_text.windows_letting_pollution_in'].state}
 
 
     - type: entity-filter
@@ -377,10 +353,6 @@ cards:
       - "High"
       - "Very High"
       - "Dangerous"
-      - "Moderate Rain"
-      - "Heavy Rain"
-      - "Heavy Shower"
-      - "Very Heavy Shower"
       - "Violent Shower"
       entities:
       - variable.posta_variable
@@ -413,7 +385,7 @@ cards:
         type: glance
 #        title: "Happening Today"
         columns: 3
-      show_empty: false   
+      show_empty: false      
 
     #coronavirus card
     - type: picture-elements
@@ -511,19 +483,6 @@ cards:
           text: Today
           type: 'custom:text-element'
 
-
-#    - type: picture-glance
-##          title: Outdoor - Front Gate
-#      aspect_ratio: 16x9
-#      entities: []
-#      camera_image: camera.front_stream
-#      camera_view: live
-#      show_state: false
-#      show_name: false
-
-
-## Uncomment BEGIN
-
     - type: vertical-stack
       cards:
 
@@ -538,26 +497,49 @@ cards:
       #     camera_view: live
       #     entities: []
 
+
+
+#      - type: 'custom:webrtc-camera'
+#        entity: camera.front_stream
+#
+#      - type: horizontal-stack
+#        cards:
+#
+#
+#        - type: 'custom:webrtc-camera'
+#          entity: camera.left_stream
+#
+#        - type: 'custom:webrtc-camera'
+#          entity: camera.right_stream
+#
+#      - type: 'custom:webrtc-camera'
+#        entity: camera.back_stream
+
+
+
       - type: picture-glance
 #          title: Outdoor - Front Gate
         aspect_ratio: 16x9
         entities: []
-        camera_image: camera.front_stream
+  #        - binary_sensor.motion_front_of_house_motion
+#          - binary_sensor.motion_front
+  #        camera_image: camera.front_outdoor
+#        camera_image: camera.front_stream
+        camera_image: camera.front_preview
         camera_view: live
         show_state: false
         show_name: false
 
-
       - type: horizontal-stack
         cards:
-
 
         - type: picture-glance
 #           title: Outdoor - Left
           aspect_ratio: 9x16
           entities: []
 #            - binary_sensor.motion_left
-          camera_image: camera.left_proxy
+#          camera_image: camera.left_stream
+          camera_image: camera.left_preview
           camera_view: live
           show_state: false
           show_name: false
@@ -567,7 +549,8 @@ cards:
           aspect_ratio: 9x16
           entities: []
 #            - binary_sensor.motion_right
-          camera_image: camera.right_proxy
+#          camera_image: camera.right_stream
+          camera_image: camera.right_preview
           camera_view: live
           show_state: false
           show_name: false
@@ -576,18 +559,20 @@ cards:
 #          title: Outdoor - Back Yard
         aspect_ratio: 16x9
         entities: []
-        camera_image: camera.back_proxy
+  #        - binary_sensor.motion_back_of_house_motion
+#          - binary_sensor.motion_back
+  #        camera_image: camera.back_outdoor
+#        camera_image: camera.back_stream
+        camera_image: camera.back_preview
         camera_view: live
         show_state: false
         show_name: false
 
+
+
   #  - type: markdown
   #    content: |
   #      ## [[ sensor.sean_commute ]]
-
-###Uncomment END
-
-
     - type: custom:layout-break
 
 
@@ -606,7 +591,7 @@ cards:
       - sensor.basement_nest_protect_co_status
       - sensor.basement_nest_protect_smoke_status
       - sensor.living_room_nest_protect_color_status
-#      - sensor.master_bedroom_nest_protect_color_status
+      - sensor.master_bedroom_nest_protect_color_status
       - sensor.kids_room_nest_protect_color_status
       - sensor.basement_nest_protect_color_status
       - sensor.house_electricity
@@ -627,6 +612,57 @@ cards:
       - "yes"
       show_empty: false
 
+    - type: entity-filter
+      card: 
+        title: Devices Reporting Problems
+        show_header_toggle: false
+      entities:
+      - sensor.living_room_nest_protect_co_status
+      - sensor.living_room_nest_protect_smoke_status       
+      - sensor.master_bedroom_nest_protect_co_status
+      - sensor.master_bedroom_nest_protect_smoke_status
+      - sensor.kids_room_nest_protect_co_status
+      - sensor.kids_room_nest_protect_smoke_status
+      - sensor.basement_nest_protect_co_status
+      - sensor.basement_nest_protect_smoke_status
+      - binary_sensor.living_room_nest_protect_online
+      - sensor.living_room_nest_protect_color_status
+      - binary_sensor.master_bedroom_nest_protect_online
+      - sensor.master_bedroom_nest_protect_color_status
+      - binary_sensor.kids_room_nest_protect_online
+      - sensor.kids_room_nest_protect_color_status
+      - binary_sensor.basement_nest_protect_online
+      - sensor.basement_nest_protect_color_status
+      - zwave.aeotec_zw090_z_stick_gen5_eu
+      - zwave.aeotec_zw096_smart_switch_6
+      - zwave.neo_coolcam_door_window_detector
+      - zwave.neo_coolcam_door_window_detector_2
+      - zwave.neo_coolcam_unknown_type_0200_id_1027
+      - zwave.popp_unknown_type_0004_id_0014
+      - binary_sensor.alarm_connection
+      - sensor.discworld_status_smart_sda
+      - sensor.discworld_status_smart_sdb
+      - sensor.discworld_status_smart_sdc
+      - sensor.discworld_status_smart_sdd
+      - zwave.sebastian_room_left_window
+      - zwave.basement_flood_sensor
+      - zwave.ecolink_sophies_room_ceiling_window
+      - zwave.ecolink_closet_left_window
+      - zwave.ecolink_garage_door_sensor
+      - zwave.ecolink_basement_sliding_door
+      - zwave.ecolink_master_bedroom_window_sensor
+      state_filter:
+      - "Warning"
+      - "grey"
+      - "yellow"
+      - "off"
+      - "dead"
+      - "disconnected"
+      - "warning"
+      - "critical"
+      - "failing"
+      - "access error"
+      show_empty: false
 
     - type: entity-filter
       card:
@@ -737,7 +773,6 @@ cards:
 
     - type: custom:layout-break
 
-
     - type: glance
       entities:
         - sensor.sean_location
@@ -768,7 +803,7 @@ cards:
         - type: "custom:calendar-card"
           entities:
             - calendar.alena_and_seans_calendar
-#          title: "Reminders"
+      #    title: "Reminders"
           showProgressBar: false
           numberOfDays: 3
           hidePastEvents: true
@@ -1095,22 +1130,22 @@ cards:
             id: "A: 4+5 Star (playlist)"
           - name: "JAZZ"
             type: source
-            id: "Best Jazz (playlist)"
+            id: "Good Jazz (playlist)"
           - name: "ROCK"
             type: source
-            id: "Best Rock (playlist)"
+            id: "Good Rock (playlist)"
           - name: "POP"
             type: source
-            id: "Best Pop (playlist)"
+            id: "Good Pop (playlist)"
           - name: "CLASSIC"
             type: source
             id: "Classical (playlist)"
           - name: "BLACK"
             type: source
-            id: "Best Black (playlist)"
+            id: "Good Black (playlist)"
           - name: "ELECTRO"
             type: source
-            id: "Best Electronica (playlist)"
+            id: "Good Electronica (playlist)"
           - name: "KIDS"
             type: source
             id: "Kids - English (playlist)"
@@ -1126,6 +1161,7 @@ cards:
           - name: "EUROPA2"
             type: source
             id: "radio2 (playlist)"
+
 #
 #        - entity: media_player.itunes
 #          type: custom:mini-media-player
@@ -1624,7 +1660,6 @@ cards:
     - type: custom:layout-break
     - type: custom:layout-break
 
-
     - type: entities
       title: First Floor
       show_header_toggle: false
@@ -1698,7 +1733,6 @@ cards:
     - type: custom:layout-break
 
 
-
     - type: entities
       title: Second Floor
       show_header_toggle: false
@@ -1757,7 +1791,6 @@ cards:
 
     - type: custom:layout-break
 
-
     - type: entities
       title: Third Floor
       show_header_toggle: false
@@ -1802,7 +1835,6 @@ cards:
 
     - type: custom:layout-break
 
-
     - type: vertical-stack
       in_card: true
       cards: 
@@ -1825,7 +1857,7 @@ cards:
         - entity: sensor.cooper_s_e_all4_remaining_range_total
           name: Total Range
           icon: mdi:gas-station
-#        - entity: input_boolean.mini_countryman_clima
+        - entity: input_boolean.mini_countryman_clima
         show_empty: false
 
       - type: entity-filter

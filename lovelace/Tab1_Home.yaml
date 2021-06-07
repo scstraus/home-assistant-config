@@ -297,12 +297,12 @@ cards:
       - state: Replace
       - name: "Replace Battery: Living Room Smoke Alarm"
 
-  - type: custom:decluttering-card
-    template: very_low_battery_marquee
-    variables:
-      - entity: sensor.master_bedroom_nest_protect_battery_health
-      - state: Replace
-      - name: "Replace Battery: Master Bedoom Smoke Alarm"
+#  - type: custom:decluttering-card
+#    template: very_low_battery_marquee
+#    variables:
+#      - entity: sensor.master_bedroom_nest_protect_battery_health
+#      - state: Replace
+#      - name: "Replace Battery: Master Bedoom Smoke Alarm"
 
   - type: custom:decluttering-card
     template: very_low_battery_marquee
@@ -379,7 +379,7 @@ cards:
     - sensor.basement_nest_protect_co_status
     - sensor.basement_nest_protect_smoke_status
     - sensor.living_room_nest_protect_color_status
-    - sensor.master_bedroom_nest_protect_color_status
+#    - sensor.master_bedroom_nest_protect_color_status
     - sensor.kids_room_nest_protect_color_status
     - sensor.basement_nest_protect_color_status
     - sensor.house_electricity
@@ -407,16 +407,16 @@ cards:
     entities:
     - sensor.living_room_nest_protect_co_status
     - sensor.living_room_nest_protect_smoke_status       
-    - sensor.master_bedroom_nest_protect_co_status
-    - sensor.master_bedroom_nest_protect_smoke_status
+#    - sensor.master_bedroom_nest_protect_co_status
+#    - sensor.master_bedroom_nest_protect_smoke_status
     - sensor.kids_room_nest_protect_co_status
     - sensor.kids_room_nest_protect_smoke_status
     - sensor.basement_nest_protect_co_status
     - sensor.basement_nest_protect_smoke_status
     - binary_sensor.living_room_nest_protect_online
     - sensor.living_room_nest_protect_color_status
-    - binary_sensor.master_bedroom_nest_protect_online
-    - sensor.master_bedroom_nest_protect_color_status
+#    - binary_sensor.master_bedroom_nest_protect_online
+#    - sensor.master_bedroom_nest_protect_color_status
     - binary_sensor.kids_room_nest_protect_online
     - sensor.kids_room_nest_protect_color_status
     - binary_sensor.basement_nest_protect_online
@@ -464,7 +464,7 @@ cards:
       value: 10
     entities:
     - sensor.living_room_nest_protect_battery_health
-    - sensor.master_bedroom_nest_protect_battery_health
+#    - sensor.master_bedroom_nest_protect_battery_health
     - sensor.kids_room_nest_protect_battery_health
     - sensor.basement_nest_protect_battery_health
 #    - sensor.seans_phone_battery

@@ -1,0 +1,142 @@
+#### SOPHIE'S HEATING TAB ####
+
+title: Climate
+icon: mdi:radiator
+visible:
+  - user: cb904806764d46bfbfb049d6e6939586
+
+popup_cards:
+  sensor.sophie_s_room_temperature:
+    title: "Sophie's Room Climate History"
+    card:
+      type: history-graph
+      entities:
+        - climate.sophie_s_room
+      
+        
+cards:
+
+  - type: vertical-stack
+    in_card: true
+    cards: 
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.sophie_s_room_temperature
+          name: "SOPHIE'S ROOM"
+      hours_to_show: 24
+      points_per_hour: 1
+      height: 150
+      font_size_header: 16
+      decimals: 1
+      show:
+        extrema: true
+      color_thresholds:
+        - value: 18
+          color: "#6666ff"
+        - value: 20
+          color: "#ccccff"
+        - value: 22
+          color: "#f3f300"
+        - value: 24
+          color: "#f39c12"
+        - value: 25
+          color: "#d35400"
+        - value: 26
+          color: "#c0392b"
+    - type: custom:simple-thermostat
+      entity: climate.sophie_s_room_ac
+      style: |
+        ha-card {
+          --st-font-size-title: 1.2em;
+        }
+      step_size: 1
+      header: 
+        name: Air Conditioning
+        icon: mdi:snowflake
+      layout:
+        mode:
+          headings: false
+      control:
+#        - fan
+#        - hvac
+#        - swing
+        hvac:
+          "off":
+            name: "Off"
+          cool:
+            name: Cool
+          heat:
+            name: Heat
+          fan_only:
+            name: Fan
+          dry:
+            name: Dry
+          heat_cool:
+            name: Auto
+        fan:
+          _hide_when_off: true
+          auto:
+            name: Auto
+            icon: fan-auto
+          low: 
+            name: Low
+            icon: mdi:fan-speed-1
+          medium_low:
+            name: Med. Low
+            icon: mdi:fan-speed-1
+          medium:
+            name: Medium
+            icon: mdi:fan-speed-2
+          medium_high:
+            name: Med. High
+            icon: mdi:fan-speed-2
+          high:
+            name: High
+            icon: mdi:fan-speed-3
+          strong:
+            name: Turbo
+            icon: mdi:fan-speed-3
+        swing:
+          _hide_when_off: true
+          stopped:
+            name: "Off"
+            icon: mdi:power
+          rangeFull:
+            name: Full
+            icon: mdi:arrow-expand-vertical
+          fixedBottom:
+            name: Bottom
+            icon: mdi:format-vertical-align-bottom
+          fixedMiddleBottom:
+            name: Mid Bottom
+            icon: mdi:arrow-split-horizontal
+          fixedMiddle:
+            name: Middle
+            icon: mdi:format-align-middle
+          fixedMiddleTop:
+            name: Mid Top
+            icon: mdi:arrow-split-horizontal
+          fixedTop:
+            name: Top
+            icon: mdi:format-vertical-align-top
+        
+
+
+    - type: custom:simple-thermostat
+      entity: climate.sophie_s_room
+      style: |
+        ha-card {
+          --st-font-size-title: 1.2em;
+        }
+      step_size: 0.5
+      header: 
+        name: Heat
+      layout:
+        mode:
+          headings: false
+      sensors:
+        - attribute: preset_mode
+          name: Mode
+
+

@@ -894,13 +894,6 @@ cards:
           service_data:
             entity_id: fan.sophies_room_air_purifier
 
-  - type: custom:decluttering-card
-    template: alert
-    variables:
-      - entity: sensor.seans_phone_battery
-      - state: Low
-      - name: "Sean's iPhone battery is low"
-      
 
 #
 #  - type: custom:button-card

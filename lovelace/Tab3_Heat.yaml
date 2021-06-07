@@ -22,7 +22,8 @@ visible:
   - user: 81d8e5c60d3a49708ab5ff7f956ac284
   - user: b78739f1b439447a9036d38a8c152be8
   - user: a4425eb8f5064e0bb63712f390023ee2
-  - user: cb904806764d46bfbfb049d6e6939586
+#Sophie:
+#  - user: cb904806764d46bfbfb049d6e6939586
   - user: 2a6556f191a44915998a20ea2ac28057
   - user: 5d20dcdf0c8f4905b0d3ee79fb195c99
 #background: var(--background-image)
@@ -162,7 +163,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.entrance
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -207,7 +208,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.dining_room
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -253,7 +254,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.living_room
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -295,7 +296,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.master_bedroom
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -337,7 +338,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.master_bath
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -379,7 +380,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.master_closet
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -421,7 +422,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.office_library
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -463,7 +464,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.sebastian_s_room
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -472,10 +473,41 @@ cards:
     in_card: true
     cards: 
 
-#    - type: history-graph
-#      title: "Sophie's Room"
+#    - type: custom:mini-graph-card
 #      entities:
-#      - climate.sophie_s_room
+#        - entity: sensor.sophie_s_room_temperature
+#          name: "SOPHIE'S ROOM"
+#      hours_to_show: 24
+#      points_per_hour: 1
+#      height: 150
+#      font_size_header: 16
+#      decimals: 1
+#      show:
+#        extrema: true
+#      color_thresholds:
+#        - value: 18
+#          color: "#6666ff"
+#        - value: 20
+#          color: "#ccccff"
+#        - value: 22
+#          color: "#f3f300"
+#        - value: 24
+#          color: "#f39c12"
+#        - value: 25
+#          color: "#d35400"
+#        - value: 26
+#          color: "#c0392b"
+#
+#    - type: custom:simple-thermostat
+#      entity: climate.sophie_room
+#      step_size: 0.5
+#      header: false
+#      layout:
+#        mode:
+#          headings: false
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
 
     - type: custom:mini-graph-card
       entities:
@@ -501,14 +533,100 @@ cards:
           color: "#d35400"
         - value: 26
           color: "#c0392b"
-
     - type: custom:simple-thermostat
       entity: climate.sophie_s_room
+      style: |
+        ha-card {
+          --st-font-size-title: 1.2em;
+        }
       step_size: 0.5
-      name: false
+      header: 
+        name: Heat
+      layout:
+        mode:
+          headings: false
       sensors:
         - attribute: preset_mode
           name: Mode
+    - type: custom:simple-thermostat
+      entity: climate.sophie_s_room_ac
+      style: |
+        ha-card {
+          --st-font-size-title: 1.2em;
+        }
+      step_size: 1
+      header: 
+        name: Air Conditioning
+        icon: mdi:snowflake
+      layout:
+        mode:
+          headings: false
+      control:
+#        - fan
+#        - hvac
+#        - swing
+        hvac:
+          "off":
+            name: "Off"
+          cool:
+            name: Cool
+          heat:
+            name: Heat
+          fan_only:
+            name: Fan
+          dry:
+            name: Dry
+          heat_cool:
+            name: Auto
+        fan:
+          _hide_when_off: true
+          auto:
+            name: Auto
+            icon: fan-auto
+          low: 
+            name: Low
+            icon: mdi:fan-speed-1
+          medium_low:
+            name: Med. Low
+            icon: mdi:fan-speed-1
+          medium:
+            name: Medium
+            icon: mdi:fan-speed-2
+          medium_high:
+            name: Med. High
+            icon: mdi:fan-speed-2
+          high:
+            name: High
+            icon: mdi:fan-speed-3
+          strong:
+            name: Turbo
+            icon: mdi:fan-speed-3
+        swing:
+          _hide_when_off: true
+          stopped:
+            name: "Off"
+            icon: mdi:power
+          rangeFull:
+            name: Full
+            icon: mdi:arrow-expand-vertical
+          fixedBottom:
+            name: Bottom
+            icon: mdi:format-vertical-align-bottom
+          fixedMiddleBottom:
+            name: Mid Bottom
+            icon: mdi:arrow-split-horizontal
+          fixedMiddle:
+            name: Middle
+            icon: mdi:format-align-middle
+          fixedMiddleTop:
+            name: Mid Top
+            icon: mdi:arrow-split-horizontal
+          fixedTop:
+            name: Top
+            icon: mdi:format-vertical-align-top
+        
+
+
 
   - type: vertical-stack
     in_card: true
@@ -548,7 +666,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.guest_bedroom
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -590,7 +708,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.garage
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
@@ -632,7 +750,7 @@ cards:
     - type: custom:simple-thermostat
       entity: climate.laundry_room
       step_size: 0.5
-      name: false
+      header: false
       sensors:
         - attribute: preset_mode
           name: Mode
