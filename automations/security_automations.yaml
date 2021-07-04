@@ -8,7 +8,7 @@
     condition: and
     conditions:
       - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-      - "{{ 'on_property' in trigger.payload_json['after']['entered_zones'] }}"
+      - "{{ 'front_on_property' in trigger.payload_json['after']['entered_zones'] }}"
       - "{{ trigger.payload_json['type'] == 'new' }}"
       - condition: or
         conditions:
@@ -55,7 +55,7 @@
     condition: and
     conditions:
       - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-      - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
+      - "{{ 'back_on_property' in trigger.payload_json['after']['entered_zones'] }}"
       - "{{ trigger.payload_json['type'] == 'new' }}"
       - condition: or
         conditions:
@@ -101,7 +101,7 @@
     condition: and
     conditions:
       - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-      - "{{ trigger.payload_json['after']['camera'] == 'left' }}"
+      - "{{ 'left_on_property' in trigger.payload_json['after']['entered_zones'] }}"
       - "{{ trigger.payload_json['type'] == 'new' }}"
       - condition: or
         conditions:
@@ -146,7 +146,7 @@
     condition: and
     conditions:
       - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-      - "{{ trigger.payload_json['after']['camera'] == 'right' }}"
+      - "{{ 'right_on_property' in trigger.payload_json['after']['entered_zones'] }}"
       - "{{ trigger.payload_json['type'] == 'new' }}"
       - condition: or
         conditions:
@@ -997,6 +997,105 @@
       data_template:
         title: "House Watch"
         message: "There's a Person on The Sidewalk"
+        data:
+          attachment:
+            url: !secret frigate_image_url
+            content-type: jpg
+            hide-thumbnail: false
+          clickAction: "/lovelace/8"
+    - delay:
+        minutes: 10
+
+- id: person_on_back_neighbor_strip
+  alias: person_on_back_neighbor_strip
+  initial_state: 'true'
+  mode: single
+  trigger:
+    platform: mqtt
+    topic: frigate/events
+  condition:
+    condition: and
+    conditions:
+    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+    - "{{ 'back_on_strip' in trigger.payload_json['after']['entered_zones'] }}"
+    - "{{ trigger.payload_json['type'] == 'new' }}"
+    - condition: time
+      after: '23:00:00'
+      before: '7:00:00' 
+    - condition: state
+      entity_id: device_tracker.sean_s_iphone_12
+      state: 'home'
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "House Watch"
+        message: "There's a Person on the Neighbor's Strip Next to the Back Yard"
+        data:
+          attachment:
+            url: !secret frigate_image_url
+            content-type: jpg
+            hide-thumbnail: false
+          clickAction: "/lovelace/8"
+    - delay:
+        minutes: 10
+
+- id: person_on_left_neighbor_strip
+  alias: person_on_left_neighbor_strip
+  initial_state: 'true'
+  mode: single
+  trigger:
+    platform: mqtt
+    topic: frigate/events
+  condition:
+    condition: and
+    conditions:
+    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+    - "{{ 'left_strip' in trigger.payload_json['after']['entered_zones'] }}"
+    - "{{ trigger.payload_json['type'] == 'new' }}"
+    - condition: time
+      after: '23:00:00'
+      before: '7:00:00' 
+    - condition: state
+      entity_id: device_tracker.sean_s_iphone_12
+      state: 'home'
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "House Watch"
+        message: "There's a Person on the Neighbor's Strip Next to the Left Side of the House by the Swing"
+        data:
+          attachment:
+            url: !secret frigate_image_url
+            content-type: jpg
+            hide-thumbnail: false
+          clickAction: "/lovelace/8"
+    - delay:
+        minutes: 10
+
+- id: person_on_right_neighbors_yard
+  alias: person_on_right_neighbors_yard
+  initial_state: 'true'
+  mode: single
+  trigger:
+    platform: mqtt
+    topic: frigate/events
+  condition:
+    condition: and
+    conditions:
+    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+    - "{{ 'right_neighbor' in trigger.payload_json['after']['entered_zones'] }}"
+    - "{{ trigger.payload_json['type'] == 'new' }}"
+    - condition: time
+      after: '23:00:00'
+      before: '7:00:00' 
+    - condition: state
+      entity_id: device_tracker.sean_s_iphone_12
+      state: 'home'
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "House Watch"
+        message: "There's a Person on the Neighbor's Yard by the Right Side of the House Near the Air Conditioner"
         data:
           attachment:
             url: !secret frigate_image_url

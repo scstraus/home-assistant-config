@@ -244,3 +244,9 @@ sensor.ecolink_door_window_sensor_alarm_level_11:
 sensor.ecolink_door_window_sensor_alarm_type_11:
   ignored: true
   polling_intensity: 0
+sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_battery_level:
+  ignored: false
+  polling_intensity: 0
+sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_sourcenodeid:
+  ignored: true
+  polling_intensity: 0

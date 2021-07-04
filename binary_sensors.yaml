@@ -209,16 +209,16 @@
     payload_not_available: "Disconnected"
     device_class: garage_door
 
-  - platform: mqtt
-    state_topic: "paradox/zone/state/14"
-    name: "Garage Door"
-    qos: 1
-    payload_on: "on"
-    payload_off: "off"
-    availability_topic: "paradox/ctrl/state"
-    payload_available: "Connected"
-    payload_not_available: "Disconnected"
-    device_class: garage_door
+#  - platform: mqtt
+#    state_topic: "paradox/zone/state/14"
+#    name: "Garage Door"
+#    qos: 1
+#    payload_on: "on"
+#    payload_off: "off"
+#    availability_topic: "paradox/ctrl/state"
+#    payload_available: "Connected"
+#    payload_not_available: "Disconnected"
+#    device_class: garage_door
 
   - platform: mqtt
     state_topic: "paradox/ctrl/state"
@@ -333,7 +333,7 @@
         friendly_name: "Basement Is Flooding"
         device_class: moisture
         value_template: >-
-          {{ is_state('sensor.flood_sensor', '2') }}
+          {{ is_state('sensor.basement_flood_sensor', '2') }}
 
   - platform: template
     sensors:
@@ -357,15 +357,15 @@
   - platform: template
     sensors:
       garage_open_sean:
-        friendly_name: "Garage is Open and Sean isn't Traveling"
+        friendly_name: "Garage is Open and Sean is Home"
         device_class: garage_door
         value_template: >-
-          {{ is_state('binary_sensor.ecolink_garage_door', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
+          {{ is_state('binary_sensor.ecolink_garage_door', 'on') and (is_state('sensor.sean_location', 'Home'))}}
 
   - platform: template
     sensors:
       front_door_open_sean:
-        friendly_name: "Front Door is Open and Sean isn't Traveling"
+        friendly_name: "Front Door is Open and Sean is Home"
         device_class: door
         value_template: >-
           {{ is_state('binary_sensor.front_door_zone_1', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
@@ -374,18 +374,18 @@
   - platform: template
     sensors:
       sebastians_window_open_sean:
-        friendly_name: "Sebastians Window Open and Sean isn't Traveling"
+        friendly_name: "Sebastians Window Open and Sean is Home"
         device_class: window
         value_template: >-
-          {{ is_state('binary_sensor.sebastians_room_rain_window', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
+          {{ is_state('binary_sensor.sebastians_room_rain_window', 'on') and (is_state('sensor.sean_location', 'Home'))}}
 
   - platform: template
     sensors:
       sophies_window_open_sean:
-        friendly_name: "Sophies Window Open and Sean isn't Traveling"
+        friendly_name: "Sophies Window Open and Sean is Home"
         device_class: window
         value_template: >-
-          {{ is_state('binary_sensor.sophies_room_ceiling_window', 'on') and (not is_state('sensor.sean_location', 'Traveling')) }}
+          {{ is_state('binary_sensor.sophies_room_ceiling_window', 'on') and (is_state('sensor.sean_location', 'Home')) }}
 
   - platform: template
     sensors:
@@ -436,10 +436,10 @@
   - platform: template
     sensors:
       basement_door_open_sean:
-        friendly_name: "Front Door is Open and Sean isn't Traveling"
+        friendly_name: "Basement Sliding Door is Open and Sean isn't Traveling"
         device_class: door
         value_template: >-
-          {{ is_state('binary_sensor.basement_sliding_door', 'on') and (not is_state('sensor.sean_location', 'Traveling'))}}
+          {{ is_state('binary_sensor.basement_sliding_door', 'on') and (is_state('sensor.sean_location', 'Home'))}}
 
   - platform: template
     sensors:
@@ -460,6 +460,7 @@
               and ((is_state('input_select.active_heating_profile','PROFILE_AUTO')) or (is_state('input_select.active_heating_profile','PROFILE_A')) or (is_state('input_select.active_heating_profile','PROFILE_B')) or (is_state('input_select.active_heating_profile','PROFILE_C')))
               and (states('sensor.dark_sky_temperature')|float < 18)
               ) }}
+
 
   - platform: template 
     sensors:
@@ -484,6 +485,28 @@
               ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2','on')) or (is_state('binary_sensor.ecolink_garage_door','on')) or (is_state('binary_sensor.ecolink_garage_door','on')) or (is_state('binary_sensor.office_door','on')) or (is_state('binary_sensor.library_door','on'))) 
               and (states('sensor.hlubocepy_air_quality')|float > 50)
               ) }}
+
+
+  - platform: template 
+    sensors:
+      open_window_making_air_problem:
+        friendly_name: "Open Window Making Air Problem"
+        device_class: problem
+        value_template: >- 
+          {{ (
+              ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2','on')) or  (is_state('binary_sensor.ecolink_garage_door','on')) or (is_state('binary_sensor.office_door','on')) or (is_state('binary_sensor.library_door','on'))) 
+              and (((is_state('input_select.active_heating_profile','PROFILE_AUTO')) or (is_state('input_select.active_heating_profile','PROFILE_A')) or (is_state('input_select.active_heating_profile','PROFILE_B')) or (is_state('input_select.active_heating_profile','PROFILE_C')))
+              and (states('sensor.dark_sky_temperature')|float < 18)
+              )
+              or ((is_state('input_select.active_heating_profile','PROFILE_E'))
+              and (states('sensor.dark_sky_temperature')|float > 26)
+              and (states('sensor.dark_sky_daytime_high_temperature_0d')|float > 30))
+              or
+              (states('sensor.hlubocepy_air_quality')|float > 50)
+              )
+              }}
+
+
 
   - platform: mqtt
     name: "Genesys 5490 Availability"
@@ -575,3 +598,28 @@
       announce_thank_sebastian_for_putting_back_tablet:
         device_class: motion
         value_template: "{{ states.script.announce_thank_sebastian_for_putting_back_tablet.state == 'on' }}"
+
+# these run the conditional cards from template in lovelace
+  - platform: template
+    sensors:
+      human_front:
+        friendly_name: "Human in Front Yard"
+        device_class: motion
+        value_template: >-
+          {{ ((states('sensor.front_on_property_person')|float) > 0) }}
+
+      human_back:
+        friendly_name: "Human in Back Yard"
+        device_class: motion
+        value_template: >-
+          {{ ((states('sensor.back_on_property_person')|float) > 0) }}
+      human_front:
+        friendly_name: "Human on Right of House"
+        device_class: motion
+        value_template: >-
+          {{ ((states('sensor.right_on_property_person')|float) > 0) }}
+      human_front:
+        friendly_name: "Human on Left of House"
+        device_class: motion
+        value_template: >-
+          {{ ((states('sensor.left_on_property_person')|float) > 0) }}

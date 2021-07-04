@@ -922,3 +922,5 @@
             no
           {% endif %}
         icon_template: mdi:flash  
+
+

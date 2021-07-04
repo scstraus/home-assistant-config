@@ -319,40 +319,76 @@ cards:
 
 
     - type: custom:decluttering-card
-      template: warning_marquee
+      template: warning_2line
       variables:
         - entity: binary_sensor.sebastians_room_rain_window
         - state: 'on'
         - name: "Sebastian's window is open and there is a forecast for rain"
 
     - type: custom:decluttering-card
-      template: warning_marquee
+      template: warning_2line
       variables:
         - entity: binary_sensor.sophies_room_rain_window
         - state: 'on'
         - name: "Sophie's window is open and there is a forecast for rain"
 
-    # - type: custom:decluttering-card
-    #   template: open_windows_cold
+
+#    - type: custom:decluttering-card
+#      template: warning_marquee
+#      variables:
+#        - entity: binary_sensor.sebastians_room_rain_window
+#        - state: 'on'
+#        - name: "Sebastian's window is open and there is a forecast for rain"
+#
+#    - type: custom:decluttering-card
+#      template: warning_marquee
+#      variables:
+#        - entity: binary_sensor.sophies_room_rain_window
+#        - state: 'on'
+#        - name: "Sophie's window is open and there is a forecast for rain"
+#
+
 
     - type: conditional
       conditions:
-        - entity: 'binary_sensor.open_window_making_house_cold'
+        - entity: 'binary_sensor.open_window_making_air_problem'
           state: 'on'
       card:
         type: markdown
         content: |
-          <ha-icon icon="mdi:snowflake"></ha-icon> {{states('input_text.windows_making_house_cold')}}
+          <ha-icon icon="mdi:fire"></ha-icon> {{states('input_text.windows_making_problem')}}
  
-    - type: custom:decluttering-card
-      template: open_windows_hot
+    # - type: custom:decluttering-card
+    #   template: open_windows_cold
+#
+#    - type: conditional
+#      conditions:
+#        - entity: 'binary_sensor.open_window_making_house_cold'
+#          state: 'on'
+#      card:
+#        type: markdown
+#        content: |
+#          <ha-icon icon="mdi:snowflake"></ha-icon> {{states('input_text.windows_making_house_cold')}}
+#
+#    - type: conditional
+#      conditions:
+#        - entity: 'binary_sensor.open_window_making_house_hot'
+#          state: 'on'
+#      card:
+#        type: markdown
+#        content: |
+#          <ha-icon icon="mdi:fire"></ha-icon> {{states('input_text.windows_making_house_hot')}}
+
+ 
+#    - type: custom:decluttering-card
+#      template: open_windows_hot
       
-    - type: custom:decluttering-card
-      template: notice_marquee
-      variables:
-        - entity: binary_sensor.open_window_letting_pollution_in
-        - state: 'on'
-        - name: ${states['input_text.windows_letting_pollution_in'].state}
+#    - type: custom:decluttering-card
+#      template: notice_marquee
+#      variables:
+#        - entity: binary_sensor.open_window_letting_pollution_in
+#        - state: 'on'
+#        - name: ${states['input_text.windows_letting_pollution_in'].state}
 
 
     - type: entity-filter
@@ -635,7 +671,7 @@ cards:
       state_filter:
       - "Low"
       - operator: "<"
-        value: 10
+        value: 30
       entities:
 #      - sensor.seans_phone_battery
 #      - sensor.alenas_phone_battery
@@ -650,6 +686,7 @@ cards:
       - sensor.ecolink_garage_door_battery_level
       - sensor.ecolink_basement_sliding_door_battery_level
       - sensor.master_bedroom_window_sensor_battery_level
+      - sensor.2nd_floor_smoke_alarm_battery_level
       show_empty: false
 
 
@@ -1795,7 +1832,11 @@ cards:
           mute: true
         group: true
       - climate.sebastian_s_room
-      - climate.sophie_s_room
+      - entity: climate.sophie_s_room
+        name: Sophie Heat
+      - entity: climate.sophie_s_room_ac
+        name: Sophie AC
+        icon: mdi:air-conditioner
       - climate.guest_bedroom
       style: 
         font-size: 20px 

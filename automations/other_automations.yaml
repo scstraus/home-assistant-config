@@ -1179,6 +1179,7 @@
                 push:
                   thread-id: "appliances"
 
+#garage door opened or closed in last 3 minutes
 - id: welcome_car_and_remind_to_charge_it
   alias: welcome_car_and_remind_to_charge_it
   trigger:
@@ -1188,16 +1189,18 @@
   condition:
     condition: and
     conditions:
-      - condition: not
-        conditions:
-        - condition: state
-          entity_id: device_tracker.cooper_s_e_all4
-          state: 'home'
-      #garage door opened or closed in last 3 minutes
+      - condition: template
+        value_template: "{{ states('device_tracker.cooper_s_e_all4')!='home'}}"
+
+#      - condition: not
+#        conditions:
+#        - condition: state
+#          entity_id: device_tracker.cooper_s_e_all4
+#          state: 'home'
       - condition: template
         value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.watch_garage_door_to_have_time_of_change.attributes.last_triggered | default(0)) | int < 300)}}'
   action:
-    - delay: 0:30
+    - delay: "00:00:30"
     - data:
         data:
           type: tts
@@ -1208,7 +1211,7 @@
   alias: watch_garage_door_to_have_time_of_change
   trigger:
     - platform: state
-      entity_id: binary_sensor.garage_door
+      entity_id: binary_sensor.ecolink_garage_door
   action:
 #
 #- id: open_curtains_in_morning
@@ -1257,4 +1260,44 @@
 #        message: "Curtains would be closing now"  
 #    - service: input_boolean.turn_off
 #      data:
-#        entity_id: input_boolean.auto_curtain_open_state    
+#        entity_id: input_boolean.auto_curtain_open_state 
+
+- id: smoke_2nd_floor
+  alias: smoke_2nd_floor
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.2nd_floor_smoke
+    to: 2
+  action:
+    - service: notify.whole_family
+      data:
+        title: "Alert! Smoke Detected!"
+        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
+        data:
+          push:
+            sound:
+              name: "Update.caf"
+              critical: 1
+              volume: 1.0
+            thread-id: "error"
+
+- id: smoke_laundry_room
+  alias: smoke_laundry_room
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.laundry_room_smoke
+    to: 2
+  action:
+    - service: notify.whole_family
+      data:
+        title: "Alert! Smoke Detected!"
+        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
+        data:
+          push:
+            sound:
+              name: "Update.caf"
+              critical: 1
+              volume: 1.0
+            thread-id: "error"

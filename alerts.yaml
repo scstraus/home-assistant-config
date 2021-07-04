@@ -198,3 +198,15 @@
     data:
       push:
         thread-id: "info"
+
+  smoke_2nd_floor_hallway:
+    name: Attention! Smoke detected in the second floor hallway! Investigate and evacuate immediately! Attention! Smoke detected in the second floor hallway! Investigate and evacuate immediately!
+    done_message: Smoke no longer detected in the 2nd floor hallway
+    entity_id: notify.alexa_media_everywhere
+    state: '2'
+    repeat: 3
+    notifiers:
+      - notify.alexa_media_everywhere
+    data:
+      push:
+        thread-id: "info"

@@ -875,6 +875,8 @@ timer:
     duration: '00:30:00'
   closet_tablet_reload:
     duration: '00:30:00'
+  lightning_warning_wait:
+    duration: '00:00:05'
 
 
 
@@ -951,6 +953,9 @@ input_text:
   windows_letting_pollution_in:
     name: Windows Making House Cold
     max: 250
+  windows_making_problem:
+    name: Open Windows Making Problem
+    max: 250    
 
 light:
   - platform: template

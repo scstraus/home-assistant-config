@@ -32,7 +32,6 @@ def make_open_windows_message(num_open_windows):
   door_counter = 0 
   window_counter = 0
   first_floor_windows = 0
-  problem_conditions = 0
   message=""
   logger.debug("Making Open Window Message")
   logger.debug("Doing Laundry Room Counter. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
@@ -160,38 +159,20 @@ def make_open_windows_message(num_open_windows):
     message = message + " the Laundry Room"
     counter = counter - 1
     window_counter = window_counter + 1
-  if ((door_counter == 1) and (window_counter == 0) and (first_floor_windows == 0))w:
+  if door_counter == 1 and window_counter == 0 and first_floor_windows == 0:
     message = message + " is"
   else:
     message = message + " are"
-  if (hass.states.get("binary_sensor.open_window_making_house_hot").state) == "on":
-#  if hass.states.is_state("binary_sensor.open_window_making_house_hot","on"):
-    message = message + " making the house hot"
-    problem_conditions = 1
-  if (hass.states.get("binary_sensor.open_window_making_house_cold").state) == "on":
-#  if hass.states.is_state("binary_sensor.open_window_making_house_cold","on"):
-    message = message + " making the house cold"
-    problem_conditions = 1
-  if (hass.states.get("binary_sensor.open_window_letting_pollution_in").state) == "on":
-#  if hass.states.is_state("binary_sensor.open_window_letting_pollution_in","on"):
-    if problem_conditions > 0:
-      message = message + " and letting polluted air in"
-    else:
-      message = message + " letting polluted air into the house" 
-  message = message + "."
-  logger.debug("Calling input text set value with message: %s",message)
-  hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_problem", "value" : message}, False)
+  if MESSAGE_TYPE == "hot":
+    message = message + " making the house hot."
+    hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_house_hot", "value" : message}, False)
+  elif MESSAGE_TYPE == "cold":
+    message = message + " making the house cold."
+    hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_house_cold", "value" : message}, False)
+  elif MESSAGE_TYPE == "aqi":
+    message = message + " letting polluted air into the house."
+    hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_letting_pollution_in", "value" : message}, False)
   return message
-#  if MESSAGE_TYPE == "hot":
-#    message = message + " making the house hot."
-#    hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_house_hot", "value" : message}, False)
-#  elif MESSAGE_TYPE == "cold":
-#    message = message + " making the house cold."
-#    hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_house_cold", "value" : message}, False)
-#  elif MESSAGE_TYPE == "aqi":
-#    message = message + " letting polluted air into the house."
-#    hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_letting_pollution_in", "value" : message}, False)
-
 
 ###### Run the Functions ######
 num_open_windows = count_open_windows()

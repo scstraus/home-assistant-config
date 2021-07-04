@@ -22,6 +22,29 @@
         entity_id: dreamscreen.living_room_tv
         brightness: 42
 
+
+- id: switch_dreamscreen_to_ps5_input_1
+  alias: switch_dreamscreen_to_PS5_input_1
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: remote.harmony
+    attribute: current_activity
+    to: "Play PS5"
+  action:
+    - service: dreamscreen.set_mode
+      data:
+        entity_id: dreamscreen.living_room_tv
+        mode: 1
+    - service: dreamscreen.set_hdmi_source
+      data:
+        entity_id: dreamscreen.living_room_tv
+        source: 0
+    - service: dreamscreen.set_brightness
+      data:
+        entity_id: dreamscreen.living_room_tv
+        brightness: 42
+
 - id: switch_dreamscreen_to_hdmi_switch_input_1
   alias: switch_dreamscreen_to_hdmi_switch_input_1
   initial_state: 'true'
@@ -46,11 +69,28 @@
     entity_id: remote.harmony
     attribute: current_activity
     to: "Play Nintendo"
+  - platform: state
+    entity_id: remote.harmony
+    attribute: current_activity
+    to: "Play Playstation"
   action:
-    service: dreamscreen.set_mode
-    data:
-      entity_id: dreamscreen.living_room_tv
-      mode: 0
+    - service: dreamscreen.set_mode
+      data:
+        entity_id: dreamscreen.living_room_tv
+        mode: 1
+    - service: dreamscreen.set_hdmi_source
+      data:
+        entity_id: dreamscreen.living_room_tv
+        source: 0
+    - service: dreamscreen.set_brightness
+      data:
+        entity_id: dreamscreen.living_room_tv
+        brightness: 42
+#  action:
+#    service: dreamscreen.set_mode
+#    data:
+#      entity_id: dreamscreen.living_room_tv
+#      mode: 0
 #  action:
 #    service: dreamscreen.set_hdmi_source
 #    data:

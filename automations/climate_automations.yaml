@@ -855,6 +855,51 @@
       data:
         message_type: aqi
 
+
+    
+- id: update_open_window_message
+  alias: update_open_window_message
+  trigger:
+    - platform: state
+      entity_id: 
+        - binary_sensor.back_door
+        - binary_sensor.sebastians_room_left_window
+        - binary_sensor.sophies_room_ceiling_window
+        - binary_sensor.ecolink_closet_left_window
+        - binary_sensor.laundry_room_window_zone_13
+        - binary_sensor.ecolink_garage_door
+        - binary_sensor.windows_1st_floor_zone_2
+        - binary_sensor.master_bedroom_window
+        - binary_sensor.office_door
+        - binary_sensor.library_door
+    - platform: homeassistant
+      event: start
+  action: 
+    - service: python_script.set_open_window_message
+
+- id: update_open_window_sensor
+  alias: update_open_window_sensor
+  trigger:
+    - platform: state
+      entity_id: 
+        - binary_sensor.back_door
+        - binary_sensor.sebastians_room_left_window
+        - binary_sensor.sophies_room_ceiling_window
+        - binary_sensor.ecolink_closet_left_window
+        - binary_sensor.laundry_room_window_zone_13
+        - binary_sensor.ecolink_garage_door
+        - binary_sensor.windows_1st_floor_zone_2
+        - binary_sensor.master_bedroom_window
+        - binary_sensor.office_door
+        - binary_sensor.library_door
+    - platform: homeassistant
+      event: start
+  action:
+    - delay: '00:00:01'
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.open_window_making_air_problem
+    
+
 - id: notify_home_aqi_high
   alias: notify_home_aqi_high
   initial_state: 'true'
@@ -1296,7 +1341,7 @@
         - conditions: 
             - condition: numeric_state
               entity_id: sensor.smartweatherudp_wind_speed_realtime
-              above: 13
+              above: 8
           sequence:
             - service: timer.start
               target:
@@ -1305,7 +1350,7 @@
         - conditions: 
             - condition: numeric_state
               entity_id: sensor.smartweatherudp_wind_speed_realtime
-              above: 18
+              above: 13
           sequence:
             - service: timer.start
               target:
@@ -1371,9 +1416,14 @@
     entity_id: binary_sensor.smartweather_lightning
     to: 'on'
   condition:
-    condition: numeric_state
-    entity_id: sensor.smartweather_lightning_distance
-    below: 20
+    condition: and
+    conditions: 
+      - condition: state
+        entity_id: timer.raining_state_change_timer
+        state: 'idle'
+      - condition: numeric_state
+        entity_id: sensor.smartweather_lightning_distance
+        below: 11
   action:
     - choose:
         - conditions: 
@@ -1401,4 +1451,3 @@
         data:
           push:
             thread-id: "weather"
-    - delay: 0:05

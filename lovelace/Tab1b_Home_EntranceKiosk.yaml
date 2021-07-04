@@ -310,24 +310,51 @@ cards:
         - state: Low
         - name: "Alena's Phone Battery is Low"
 
+
     - type: custom:decluttering-card
-      template: warning_marquee
+      template: warning_2line
       variables:
         - entity: binary_sensor.sebastians_room_rain_window
         - state: 'on'
         - name: "Sebastian's window is open and there is a forecast for rain"
 
     - type: custom:decluttering-card
-      template: warning_marquee
+      template: warning_2line
       variables:
         - entity: binary_sensor.sophies_room_rain_window
         - state: 'on'
         - name: "Sophie's window is open and there is a forecast for rain"
 
 
-    - type: custom:decluttering-card
-      template: open_windows_cold
 #
+#    - type: custom:decluttering-card
+#      template: warning_marquee
+#      variables:
+#        - entity: binary_sensor.sebastians_room_rain_window
+#        - state: 'on'
+#        - name: "Sebastian's window is open and there is a forecast for rain"
+#
+#    - type: custom:decluttering-card
+#      template: warning_marquee
+#      variables:
+#        - entity: binary_sensor.sophies_room_rain_window
+#        - state: 'on'
+#        - name: "Sophie's window is open and there is a forecast for rain"
+
+
+    - type: conditional
+      conditions:
+        - entity: 'binary_sensor.open_window_making_air_problem'
+          state: 'on'
+      card:
+        type: markdown
+        content: |
+          <ha-icon icon="mdi:fire"></ha-icon> {{states('input_text.windows_making_problem')}}
+
+
+#    - type: custom:decluttering-card
+#      template: open_windows_cold
+
 #    - type: conditional
 #      conditions:
 #        - entity: 'binary_sensor.open_window_making_house_cold'
@@ -338,15 +365,25 @@ cards:
 #          <ha-icon icon="mdi:snowflake"></ha-icon> {{states('input_text.windows_making_house_cold')}}
 
 
-    - type: custom:decluttering-card
-      template: open_windows_hot
-      
-    - type: custom:decluttering-card
-      template: notice_marquee
-      variables:
-        - entity: binary_sensor.open_window_letting_pollution_in
-        - state: 'on'
-        - name: ${states['input_text.windows_letting_pollution_in'].state}
+#    - type: custom:decluttering-card
+#      template: open_windows_hot
+
+#    - type: conditional
+#      conditions:
+#        - entity: 'binary_sensor.open_window_making_house_hot'
+#          state: 'on'
+#      card:
+#        type: markdown
+#        content: |
+#          <ha-icon icon="mdi:fire"></ha-icon> {{states('input_text.windows_making_house_hot')}}
+
+#      
+#    - type: custom:decluttering-card
+#      template: notice_marquee
+#      variables:
+#        - entity: binary_sensor.open_window_letting_pollution_in
+#        - state: 'on'
+#        - name: ${states['input_text.windows_letting_pollution_in'].state}
 
 
     - type: entity-filter
@@ -417,8 +454,8 @@ cards:
       entities:
       - sensor.living_room_nest_protect_co_status
       - sensor.living_room_nest_protect_smoke_status
-      - sensor.master_bedroom_nest_protect_co_status
-      - sensor.master_bedroom_nest_protect_smoke_status
+#      - sensor.master_bedroom_nest_protect_co_status
+#      - sensor.master_bedroom_nest_protect_smoke_status
       - sensor.kids_room_nest_protect_co_status
       - sensor.kids_room_nest_protect_smoke_status
       - sensor.basement_nest_protect_co_status
@@ -445,57 +482,94 @@ cards:
       - "yes"
       show_empty: false
 
-    - type: entity-filter
-      card: 
+    
+    - type: custom:auto-entities
+      show_empty: false
+      card:
+        type: entities
         title: Devices Reporting Problems
         show_header_toggle: false
-      entities:
-      - sensor.living_room_nest_protect_co_status
-      - sensor.living_room_nest_protect_smoke_status       
-      - sensor.master_bedroom_nest_protect_co_status
-      - sensor.master_bedroom_nest_protect_smoke_status
-      - sensor.kids_room_nest_protect_co_status
-      - sensor.kids_room_nest_protect_smoke_status
-      - sensor.basement_nest_protect_co_status
-      - sensor.basement_nest_protect_smoke_status
-      - binary_sensor.living_room_nest_protect_online
-      - sensor.living_room_nest_protect_color_status
-      - binary_sensor.master_bedroom_nest_protect_online
-#      - sensor.master_bedroom_nest_protect_color_status
-      - binary_sensor.kids_room_nest_protect_online
-      - sensor.kids_room_nest_protect_color_status
-      - binary_sensor.basement_nest_protect_online
-      - sensor.basement_nest_protect_color_status
-      - zwave.aeotec_zw090_z_stick_gen5_eu
-      - zwave.aeotec_zw096_smart_switch_6
-      - zwave.neo_coolcam_door_window_detector
-      - zwave.neo_coolcam_door_window_detector_2
-      - zwave.neo_coolcam_unknown_type_0200_id_1027
-      - zwave.popp_unknown_type_0004_id_0014
-      - binary_sensor.alarm_connection
-      - sensor.discworld_status_smart_sda
-      - sensor.discworld_status_smart_sdb
-      - sensor.discworld_status_smart_sdc
-      - sensor.discworld_status_smart_sdd
-      - zwave.sebastian_room_left_window
-      - zwave.basement_flood_sensor
-      - zwave.ecolink_sophies_room_ceiling_window
-      - zwave.ecolink_closet_left_window
-      - zwave.ecolink_garage_door_sensor
-      - zwave.ecolink_basement_sliding_door
-      - zwave.ecolink_master_bedroom_window_sensor
-      state_filter:
-      - "Warning"
-      - "grey"
-      - "yellow"
-      - "off"
-      - "dead"
-      - "disconnected"
-      - "warning"
-      - "critical"
-      - "failing"
-      - "access error"
+      filter: 
+        include: 
+          - entity_id: "*nest*"
+            or: 
+              - state: "unavailable"
+              - state: "Warning"
+              - state: "grey"
+              - state: "yellow"
+              - state: "off"
+              - state: "disconnected"
+          - entity_id: "zwave.*"
+            or: 
+              - state: "dead"          
+              - state: "unavailable"
+          - entity_id: "*status_smart*"
+            or:
+              - state: "warning"
+              - state: "critical"
+              - state: "failing"
+              - state: "access error"
+              - state: "Replace"
+          - entity_id: "binary_sensor.alarm_connection"
+            or:
+              - state: "warning"
+              - state: "access error"
+              - state: "unavailable"
+              - state: "disconnected"
       show_empty: false
+#
+#    - type: entity-filter
+#      card: 
+#        title: Devices Reporting Problems
+#        show_header_toggle: false
+#      entities:
+#      - sensor.living_room_nest_protect_co_status
+#      - sensor.living_room_nest_protect_smoke_status       
+##      - sensor.master_bedroom_nest_protect_co_status
+##      - sensor.master_bedroom_nest_protect_smoke_status
+#      - sensor.kids_room_nest_protect_co_status
+#      - sensor.kids_room_nest_protect_smoke_status
+#      - sensor.basement_nest_protect_co_status
+#      - sensor.basement_nest_protect_smoke_status
+#      - binary_sensor.living_room_nest_protect_online
+#      - sensor.living_room_nest_protect_color_status
+##      - binary_sensor.master_bedroom_nest_protect_online
+##      - sensor.master_bedroom_nest_protect_color_status
+#      - binary_sensor.kids_room_nest_protect_online
+#      - sensor.kids_room_nest_protect_color_status
+#      - binary_sensor.basement_nest_protect_online
+#      - sensor.basement_nest_protect_color_status
+#      - zwave.aeotec_zw090_z_stick_gen5_eu
+#      - zwave.aeotec_zw096_smart_switch_6
+#      - zwave.neo_coolcam_door_window_detector
+#      - zwave.neo_coolcam_door_window_detector_2
+#      - zwave.neo_coolcam_unknown_type_0200_id_1027
+#      - zwave.popp_unknown_type_0004_id_0014
+#      - binary_sensor.alarm_connection
+#      - sensor.discworld_status_smart_sda
+#      - sensor.discworld_status_smart_sdb
+#      - sensor.discworld_status_smart_sdc
+#      - sensor.discworld_status_smart_sdd
+#      - zwave.sebastian_room_left_window
+#      - zwave.basement_flood_sensor
+#      - zwave.ecolink_sophies_room_ceiling_window
+#      - zwave.ecolink_closet_left_window
+#      - zwave.ecolink_garage_door_sensor
+#      - zwave.ecolink_basement_sliding_door
+#      - zwave.ecolink_master_bedroom_window_sensor
+#      - zwave.2nd_floor_smoke_detector
+#      state_filter:
+#      - "Warning"
+#      - "grey"
+#      - "yellow"
+#      - "off"
+#      - "dead"
+#      - "disconnected"
+#      - "warning"
+#      - "critical"
+#      - "failing"
+#      - "access error"
+#      show_empty: false
 
     - type: entity-filter
       card:
@@ -504,7 +578,7 @@ cards:
       state_filter:
       - "Low"
       - operator: "<"
-        value: 10
+        value: 30
       entities:
 #      - sensor.seans_phone_battery
 #      - sensor.alenas_phone_battery
@@ -519,6 +593,7 @@ cards:
       - sensor.ecolink_garage_door_battery_level
       - sensor.ecolink_basement_sliding_door_battery_level
       - sensor.master_bedroom_window_sensor_battery_level
+      - sensor.2nd_floor_smoke_alarm_battery_level
       show_empty: false
 
 
@@ -763,7 +838,8 @@ cards:
           aspect_ratio: 9x16
           entities: []
 #            - binary_sensor.motion_left
-          camera_image: camera.left_stream
+#          camera_image: camera.left_stream
+          camera_image: camera.left_proxy
           camera_view: live
           show_state: false
           show_name: false
@@ -773,7 +849,8 @@ cards:
           aspect_ratio: 9x16
           entities: []
 #            - binary_sensor.motion_right
-          camera_image: camera.right_stream
+#          camera_image: camera.right_stream
+          camera_image: camera.right_proxy
           camera_view: live
           show_state: false
           show_name: false
@@ -785,7 +862,8 @@ cards:
   #        - binary_sensor.motion_back_of_house_motion
 #          - binary_sensor.motion_back
   #        camera_image: camera.back_outdoor
-        camera_image: camera.back_stream
+#        camera_image: camera.back_stream
+        camera_image: camera.back_proxy
         camera_view: live
         show_state: false
         show_name: false
@@ -1902,7 +1980,11 @@ cards:
           mute: true
         group: true
       - climate.sebastian_s_room
-      - climate.sophie_s_room
+      - entity: climate.sophie_s_room
+        name: Sophie Heat
+      - entity: climate.sophie_s_room_ac
+        name: Sophie AC
+        icon: mdi:air-conditioner
       - climate.guest_bedroom
       style: 
         font-size: 20px
