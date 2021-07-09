@@ -250,3 +250,6 @@ sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_battery_level:
 sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_sourcenodeid:
   ignored: true
   polling_intensity: 0
+sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_sourcenodeid_2:
+  ignored: true
+  polling_intensity: 0

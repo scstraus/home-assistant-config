@@ -35,13 +35,25 @@ def make_open_windows_message(num_open_windows):
   problem_conditions = 0
   first_open_window = 0
   message=""
+  logger.debug("binary_sensor.open_window_making_house_hot: %s",(hass.states.get("binary_sensor.open_window_making_house_hot").state))
+  if (hass.states.get("binary_sensor.open_window_making_house_hot").state) == "on":
+    logger.debug("Adding fire icon")
+    message = message + "<ha-icon icon='mdi:fire'></ha-icon>" 
+  logger.debug("binary_sensor.open_window_making_house_cold: %s",(hass.states.get("binary_sensor.open_window_making_house_cold").state))
+  if (hass.states.get("binary_sensor.open_window_making_house_cold").state) == "on":
+    logger.debug("Adding snowflake")
+    message = message + "<ha-icon icon='mdi:snowflake'></ha-icon> "
+  logger.debug("binary_sensor.open_window_letting_pollution_in: %s",(hass.states.get("binary_sensor.open_window_letting_pollution_in").state))
+  if (hass.states.get("binary_sensor.open_window_letting_pollution_in").state) == "on":
+    logger.debug("Adding pollution message")
+    message = message + "<ha-icon icon='mdi:air-filter'></ha-icon> "
   logger.debug("Making Open Window Message")
   logger.debug("Doing Laundry Room Counter. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if ((hass.states.get("binary_sensor.laundry_room_window_zone_13").state) == "on") and (MESSAGE_TYPE == "hot"):
     counter = counter - 1
   logger.debug("Doing Back Door. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if (hass.states.get("binary_sensor.back_door").state) == "on":
-    message = "The open Back Door"
+    message = message + "The open Back Door"
     counter = counter - 1
     door_counter = door_counter + 1
   logger.debug("Doing Garage Door. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
@@ -49,7 +61,7 @@ def make_open_windows_message(num_open_windows):
     if num_open_windows > counter:
       message = message + ", the open Garage Door"
     else:
-      message = "The open Garage Door"
+      message = message +"The open Garage Door"
     counter = counter - 1
     door_counter = door_counter + 1
   logger.debug("Doing First Floor Windows. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
@@ -63,7 +75,7 @@ def make_open_windows_message(num_open_windows):
     elif (num_open_windows > counter) and (counter > 1):
       message = message + ", open windows on the First Floor"
     else:
-      message = "Open windows on the First Floor"
+      message = message +"Open windows on the First Floor"
     counter = counter - 1
     first_floor_windows = 1
 
@@ -177,24 +189,23 @@ def make_open_windows_message(num_open_windows):
   if (hass.states.get("binary_sensor.open_window_making_house_hot").state) == "on":
 #  if hass.states.is_state("binary_sensor.open_window_making_house_hot","on"):
     logger.debug("Adding house hot message")
-    message = message + " making the house hot"
+    message = message + " making the house hot. <ha-icon icon='mdi:fire'></ha-icon>"
     problem_conditions = 1
     
   logger.debug("binary_sensor.open_window_making_house_cold: %s",(hass.states.get("binary_sensor.open_window_making_house_cold").state))
   if (hass.states.get("binary_sensor.open_window_making_house_cold").state) == "on":
 #  if hass.states.is_state("binary_sensor.open_window_making_house_cold","on"):
     logger.debug("Adding house cold message")
-    message = message + " making the house cold"
+    message = message + " making the house cold. <ha-icon icon='mdi:snowflake'></ha-icon>"
     problem_conditions = 1
   logger.debug("binary_sensor.open_window_letting_pollution_in: %s",(hass.states.get("binary_sensor.open_window_letting_pollution_in").state))
   if (hass.states.get("binary_sensor.open_window_letting_pollution_in").state) == "on":
     logger.debug("Adding pollution message")
 #  if hass.states.is_state("binary_sensor.open_window_letting_pollution_in","on"):
     if problem_conditions > 0:
-      message = message + " and letting polluted air in"
+      message = message + " and letting polluted air in. <ha-icon icon='mdi:air-filter'></ha-icon>"
     else:
-      message = message + " letting polluted air into the house" 
-  message = message + "."
+      message = message + " letting polluted air into the house.  <ha-icon icon='mdi:air-filter'></ha-icon>" 
   logger.debug("Calling input text set value with message: %s",message)
   hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_problem", "value" : message}, False)
   return message

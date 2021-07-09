@@ -349,7 +349,7 @@ cards:
       card:
         type: markdown
         content: |
-          <ha-icon icon="mdi:fire"></ha-icon> {{states('input_text.windows_making_problem')}}
+          {{states('input_text.windows_making_problem')}}
 
 
 #    - type: custom:decluttering-card
