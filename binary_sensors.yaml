@@ -447,7 +447,7 @@
         friendly_name: "Car Charging Problem"
         device_class: problem
         value_template: >-
-          {{  state_attr('binary_sensor.cooper_s_e_all4_check_control_messages', 'check_control_messages')=='Unable to charge'}}
+          {{ state_attr('binary_sensor.cooper_s_e_all4_check_control_messages', 'check_control_messages')=='Unable to charge'}}
 
   - platform: template 
     sensors:

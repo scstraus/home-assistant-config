@@ -24,9 +24,15 @@
   alias: Set Dishwasher Clean
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: sensor.bosch_dishwasher_state
-    to: 'finished'
+    - platform: state
+      entity_id: sensor.bosch_dishwasher_state
+      to: 'finished'
+    - platform: state
+      entity_id: sensor.bosch_dishwasher_state
+      to: 'inactive'
+    - platform: numeric_state
+      entity_id: sensor.bosch_dishwasher_time_remaining
+      below: 1
   action:
     - service: input_select.select_option
       data:
@@ -146,12 +152,20 @@
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: sensor.bosch_dishwasher_state
-        state: 'run'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.bosch_dishwasher_state
+            state: 'run'
+          - condition: state
+            entity_id: sensor.bosch_dishwasher_state
+            state: 'ready'
       - condition: numeric_state
         entity_id: 'sensor.bosch_dishwasher_time_remaining'
         below: 3500
+      - condition: template
+        value_template: "{{ not is_state('sensor.bosch_dishwasher_state', 'inactive') }}"
+
   action:
     - service: script.announce_dishes_are_not_done_yet
 
@@ -174,9 +188,14 @@
     entity_id: sensor.bosch_dishwasher_door
     to: 'open'
   condition:
-    condition: state
-    entity_id: sensor.bosch_dishwasher_state
-    state: 'run'
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.bosch_dishwasher_state
+        state: 'run'
+      - condition: state
+        entity_id: sensor.bosch_dishwasher_state
+        state: 'ready'
   action:
     - service: timer.start
       data:
@@ -190,9 +209,14 @@
     entity_id: sensor.bosch_dishwasher_door
     to: 'closed'
   condition:
-    condition: state
-    entity_id: sensor.bosch_dishwasher_state
-    state: 'run'
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.bosch_dishwasher_state
+        state: 'run'
+      - condition: state
+        entity_id: sensor.bosch_dishwasher_state
+        state: 'ready'
   action:
     - service: timer.cancel
       data:
@@ -207,12 +231,17 @@
   condition:
     condition: and
     conditions:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.bosch_dishwasher_state
+            state: 'run'
+          - condition: state
+            entity_id: sensor.bosch_dishwasher_state
+            state: 'ready'    
       - condition: state
         entity_id: input_boolean.warn_door_open_dishwasher_running
         state: 'on'
-      - condition: state
-        entity_id: sensor.bosch_dishwasher_state
-        state: 'run'
       - condition: state
         entity_id: sensor.bosch_dishwasher_door
         state: 'open'
@@ -279,9 +308,12 @@
       - condition: state
         entity_id: device_tracker.sean_s_iphone_12
         state: 'home'
-      - condition: state
-        entity_id: input_select.bosch_dishwasher_status
-        state: 'Dirty'
+      - condition: numeric_state
+        entity_id: 'sensor.bosch_dishwasher_time_remaining'
+        below: 61
+#      - condition: state
+#        entity_id: input_select.bosch_dishwasher_status
+#        state: 'Dirty'
 #        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:
@@ -333,9 +365,12 @@
       - condition: state
         entity_id: device_tracker.sean_s_iphone_12
         state: 'home'
-      - condition: state
-        entity_id: input_select.bosch_dishwasher_status
-        state: 'Dirty'
+#      - condition: state
+#        entity_id: input_select.bosch_dishwasher_status
+#        state: 'Dirty'
+      - condition: numeric_state
+        entity_id: 'sensor.bosch_dishwasher_time_remaining'
+        below: 61
 #        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:
@@ -385,9 +420,12 @@
       - condition: state
         entity_id: device_tracker.sean_s_iphone_12
         state: 'home'
-      - condition: state
-        entity_id: input_select.bosch_dishwasher_status
-        state: 'Dirty'
+#      - condition: state
+#        entity_id: input_select.bosch_dishwasher_status
+#        state: 'Dirty'
+      - condition: numeric_state
+        entity_id: 'sensor.bosch_dishwasher_time_remaining'
+        below: 61
 #        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:

@@ -916,8 +916,10 @@
       last_lightning:
         friendly_name: "Lightning"
         value_template: >-
-          {% if ((states('sensor.smartweather_lightning_last_1hrs')|float) > 0) and ((states('sensor.smartweather_lightning_distance')|float)<20) %}
+          {% if (states('timer.lightning_keepalive')=='active') and ((states('sensor.smartweather_lightning_last_1hrs')|float) > 0) and ((states('sensor.smartweather_lightning_distance')|float)<20) %}
             {{ states('sensor.smartweather_lightning_distance') }}km,{{((as_timestamp(now())-as_timestamp(states('sensor.smartweather_lightning_time')))/60)|int}}m
+          {% elif (states('timer.lightning_keepalive')=='active') and ((states('sensor.smartweather_lightning_last_1hrs')|float) > 0) %}
+            {{ states('input_text.last_close_lightning_distance') }}km,{{((as_timestamp(now())-as_timestamp(states('input_text.last_close_lightning_time')))/60)|int}}m
           {% else %}
             no
           {% endif %}

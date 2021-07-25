@@ -447,9 +447,12 @@
   alias: 'Basement Flooding'
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: binary_sensor.basement_is_flooding
-    to: 'on'
+    - platform: state
+      entity_id: binary_sensor.basement_is_flooding
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.basement_flood_sensor
+      to: 'on'
   action:
     - service: notify.sean_alena
       data:
@@ -472,6 +475,16 @@
           type: tts
         message: "Attention! The basement is flooding! Attention! The basement is flooding!"
       service: notify.alexa_media_alexa_master_closet
+    - data:
+        data:
+          type: tts
+        message: "Attention! The basement is flooding! Attention! The basement is flooding!"
+      service: notify.alexa_media_alexa_garage
+    - data:
+        data:
+          type: tts
+        message: "Attention! The basement is flooding! Attention! The basement is flooding!"
+      service: notify.alexa_media_alexa_master_bath
 
 - id: automatic_theme_change
   alias: Automatic Theme Change
@@ -1022,6 +1035,9 @@
     entity_id: !secret kindle_master_closet_sensor
     attribute: charging
     to: false
+  condition:
+    condition: template
+    value_template: "{{ (((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) | default(0)) | int < 300)}}"
   action:
     service: script.announce_sebastian_dont_play_with_tablet
 #    service: notify.alexa_media_master_closet_kindle
@@ -1039,6 +1055,9 @@
     entity_id: !secret kindle_master_closet_sensor
     attribute: charging
     to: true
+  condition:
+    condition: template
+    value_template: "{{ (((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) | default(0)) | int < 300)}}"
   action:
     service: script.announce_thank_sebastian_for_putting_back_tablet
 
@@ -1200,12 +1219,13 @@
       - condition: template
         value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.watch_garage_door_to_have_time_of_change.attributes.last_triggered | default(0)) | int < 300)}}'
   action:
-    - delay: "00:00:30"
+    - delay: "00:00:26"
     - data:
         data:
           type: tts
         message: "Welcome home. Please remember to plug the car in to charge. Thank you"
       service: notify.alexa_media_alexa_garage
+    - delay: "00:05:00"
 
 - id: watch_garage_door_to_have_time_of_change
   alias: watch_garage_door_to_have_time_of_change
@@ -1301,3 +1321,24 @@
               critical: 1
               volume: 1.0
             thread-id: "error"
+
+- id: smoke_kitchen
+  alias: smoke_kitchen
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.kitchen_smoke_detector_smoke
+    to: 2
+  action:
+    - service: notify.whole_family
+      data:
+        title: "Alert! Smoke Detected!"
+        message: "Smoke was detected in the kitchen! Investigate immediately and evactuate!"
+        data:
+          push:
+            sound:
+              name: "Update.caf"
+              critical: 1
+              volume: 1.0
+            thread-id: "error"
+

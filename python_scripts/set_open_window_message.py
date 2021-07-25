@@ -115,7 +115,7 @@ def make_open_windows_message(num_open_windows):
       message = message + " and"
     if counter == 1 and window_counter > 1:
       message = message + ", and"
-    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1):
+    if counter > 1 and ((window_counter-counter)<1) and (first_open_window==1):
       message = message + ","
     first_open_window=0
     message = message + " the Master Bedroom"
@@ -205,7 +205,7 @@ def make_open_windows_message(num_open_windows):
     if problem_conditions > 0:
       message = message + " and letting polluted air in. <ha-icon icon='mdi:air-filter'></ha-icon>"
     else:
-      message = message + " letting polluted air into the house.  <ha-icon icon='mdi:air-filter'></ha-icon>" 
+      message = message + " letting polluted air into the house.  <ha-icon icon='mdi:air-filter'></ha-icon>"     
   logger.debug("Calling input text set value with message: %s",message)
   hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_problem", "value" : message}, False)
   return message

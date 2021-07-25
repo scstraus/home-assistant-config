@@ -16,6 +16,7 @@ class ManageKioskCameraPopups(hass.Hass):
   BACK_CAMERA="camera.back_stream"
   LEFT_CAMERA="camera.left_substream"
   RIGHT_CAMERA="camera.right_substream"
+  KEEPALIVE_STEP=0
 #########################################################################################################
 #                            THESE ARE THE INITIALIZE AND LAUNCH FUNCTIONS                              #
 #########################################################################################################
@@ -155,18 +156,26 @@ class ManageKioskCameraPopups(hass.Hass):
       self.log("  Somone on Right Camera. Popping up popup.")
 #      self.open_popup("camera.right_substream")
       self.open_popup("right")
+      self.call_service("timer/start", entity_id = "timer.right_human_on")
+      self.POPUP_OPEN="True"
     elif (int(self.get_state("sensor.left_on_property_person"))>0):
       self.log("  Somone on Left Camera. Popping up popup.")
 #      self.open_popup("camera.left_substream") 
       self.open_popup("left")  
+      self.call_service("timer/start", entity_id = "timer.left_human_on")
+      self.POPUP_OPEN="True"
     elif (int(self.get_state("sensor.back_on_property_person"))>0):
       self.log("  Somone on Back Camera. Popping up popup.")
 #      self.open_popup("camera.back_substream")   
-      self.open_popup("back")  
+      self.open_popup("back")
+      self.call_service("timer/start", entity_id = "timer.back_human_on")
+      self.POPUP_OPEN="True"
     elif (int(self.get_state("sensor.front_on_property_person"))>0):
       self.log("  Somone on Front Camera. Popping up popup.")
 #      self.open_popup("camera.front_substream")
-      self.open_popup("front")  
+      self.open_popup("front")
+      self.call_service("timer/start", entity_id = "timer.front_human_on") 
+      self.POPUP_OPEN="True"
     elif (self.get_state("timer.right_human_on")=="active"):
       self.log("  Right human_on timer still running. Popping up popup.")
 #      self.open_popup("camera.right_substream")
@@ -206,21 +215,25 @@ class ManageKioskCameraPopups(hass.Hass):
     if camera == "front":
       self.call_service("browser_mod/more_info", entity_id = self.FRONT_CAMERA, deviceID = self.KINDLE_KITCHEN_DEVICEID )
       self.call_service("browser_mod/more_info", entity_id = self.FRONT_CAMERA, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+      self.call_service("timer/start", entity_id = "timer.front_human_on")
 #      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/13", deviceID = self.KINDLE_KITCHEN_DEVICEID )
 #      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/13", deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
     elif camera == "back":
       self.call_service("browser_mod/more_info", entity_id = self.BACK_CAMERA, deviceID = self.KINDLE_KITCHEN_DEVICEID )
       self.call_service("browser_mod/more_info", entity_id = self.BACK_CAMERA, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+      self.call_service("timer/start", entity_id = "timer.back_human_on")
 #      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/14", deviceID = self.KINDLE_KITCHEN_DEVICEID )
 #      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/14", deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
     if camera == "left":
       self.call_service("browser_mod/more_info", entity_id = self.LEFT_CAMERA, deviceID = self.KINDLE_KITCHEN_DEVICEID )
       self.call_service("browser_mod/more_info", entity_id = self.LEFT_CAMERA, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+      self.call_service("timer/start", entity_id = "timer.left_human_on")
 #      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/15", deviceID = self.KINDLE_KITCHEN_DEVICEID )
 #      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/15", deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
     elif camera == "right":
       self.call_service("browser_mod/more_info", entity_id = self.RIGHT_CAMERA, deviceID = self.KINDLE_KITCHEN_DEVICEID )
       self.call_service("browser_mod/more_info", entity_id = self.RIGHT_CAMERA, deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
+      self.call_service("timer/start", entity_id = "timer.right_human_on")
 
 #      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/16", deviceID = self.KINDLE_KITCHEN_DEVICEID )
 #      self.call_service("browser_mod/navigate", navigation_path = "/lovelace/16", deviceID = self.KINDLE_MASTER_CLOSET_DEVICEID )
@@ -245,11 +258,22 @@ class ManageKioskCameraPopups(hass.Hass):
   def keep_screen_on(self, kwargs):
     if self.POPUP_OPEN!="False":
       self.log("self.POPUP_OPEN = %s. Sending screen wakeup commands",self.POPUP_OPEN)
-      self.call_service("shell_command/screensaver_stop_kindle_fire_kitchen")
-      self.call_service("shell_command/screensaver_stop_kindle_fire_closet")
-      self.call_service("shell_command/screen_on_kindle_fire_kitchen")
-      self.call_service("shell_command/screen_on_kindle_fire_closet")
-      self.run_in(self.keep_screen_on, 5)
+      self.KEEPALIVE_STEP=self.KEEPALIVE_STEP+1
+      self.log("Keepalive step = %s",self.KEEPALIVE_STEP)
+      if self.KEEPALIVE_STEP==1:
+        self.call_service("shell_command/screensaver_stop_kindle_fire_kitchen")
+        self.run_in(self.keep_screen_on, 1)
+      if self.KEEPALIVE_STEP==2:
+        self.call_service("shell_command/screensaver_stop_kindle_fire_closet")
+        self.run_in(self.keep_screen_on, 1)
+      if self.KEEPALIVE_STEP==3:
+        self.call_service("shell_command/screen_on_kindle_fire_kitchen")
+        self.run_in(self.keep_screen_on, 1)
+      if self.KEEPALIVE_STEP==4:        
+        self.call_service("shell_command/screen_on_kindle_fire_closet")
+        self.KEEPALIVE_STEP=0
+        self.run_in(self.keep_screen_on, 2)
     else:
       self.log("self.POPUP_OPEN = %s. Not sending screen wakeup commands", self.POPUP_OPEN)
+      self.KEEPALIVE_STEP=0
 

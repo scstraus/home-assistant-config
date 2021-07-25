@@ -876,7 +876,9 @@ timer:
   closet_tablet_reload:
     duration: '00:30:00'
   lightning_warning_wait:
-    duration: '00:00:05'
+    duration: '00:10:00'
+  lightning_keepalive:
+    duration: '00:60:00'
 
 
 
@@ -955,7 +957,14 @@ input_text:
     max: 250
   windows_making_problem:
     name: Open Windows Making Problem
-    max: 250    
+    max: 250
+  last_close_lightning_distance:
+    name: Last Close Lightning Distance
+    max: 10
+  last_close_lightning_time:
+    name: Last Close Lightning Time
+    max: 20
+
 
 light:
   - platform: template

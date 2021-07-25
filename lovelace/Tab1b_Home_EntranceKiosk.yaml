@@ -185,6 +185,18 @@ popup_cards:
         entities:
           - sensor.smartweatherudp_wind_speed_realtime
 
+
+  sensor.last_lightning:
+    title: "Lightning strikes and distance in last hour"
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        hours_to_show: 1
+        entities:
+          - sensor.smartweather_lightning_distance
+
 cards: 
 
   - type: custom:layout-card
@@ -195,6 +207,13 @@ cards:
       template: emergency
       variables:
         - entity: binary_sensor.basement_is_flooding
+        - state: 'on'
+        - name: "!!The Basement is Flooding!!"
+        
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.basement_flood_sensor
         - state: 'on'
         - name: "!!The Basement is Flooding!!"
 
@@ -261,12 +280,12 @@ cards:
         - state: Very Low
         - name: "Alena's Phone Battery is Very Low"
 
-    - type: custom:decluttering-card
-      template: very_low_battery_marquee
-      variables:
-        - entity: sensor.living_room_nest_protect_battery_health
-        - state: Replace
-        - name: "Replace Battery: Living Room Smoke Alarm"
+#    - type: custom:decluttering-card
+#      template: very_low_battery_marquee
+#      variables:
+#        - entity: sensor.living_room_nest_protect_battery_health
+#        - state: Replace
+#        - name: "Replace Battery: Living Room Smoke Alarm"
 
 #    - type: custom:decluttering-card
 #      template: very_low_battery_marquee
@@ -452,15 +471,15 @@ cards:
         title: "!!! EMERGENCY ALERT !!!"
         show_header_toggle: false
       entities:
-      - sensor.living_room_nest_protect_co_status
-      - sensor.living_room_nest_protect_smoke_status
+#      - sensor.living_room_nest_protect_co_status
+#      - sensor.living_room_nest_protect_smoke_status
 #      - sensor.master_bedroom_nest_protect_co_status
 #      - sensor.master_bedroom_nest_protect_smoke_status
       - sensor.kids_room_nest_protect_co_status
       - sensor.kids_room_nest_protect_smoke_status
       - sensor.basement_nest_protect_co_status
       - sensor.basement_nest_protect_smoke_status
-      - sensor.living_room_nest_protect_color_status
+#      - sensor.living_room_nest_protect_color_status
 #      - sensor.master_bedroom_nest_protect_color_status
       - sensor.kids_room_nest_protect_color_status
       - sensor.basement_nest_protect_color_status
@@ -474,6 +493,7 @@ cards:
 #      - binary_sensor.human_left
 #      - binary_sensor.human_right
       - binary_sensor.basement_is_flooding
+      - binary_sensor.basement_flood_sensor
       state_filter:
       - "red"
       - "Emergency"
