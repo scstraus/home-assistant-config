@@ -282,12 +282,18 @@
     name: transport_time_to_work
     mode: publicTransportTimeTable
     traffic_mode: true
-    app_id: !secret here_app_id
-    app_code: !secret here_app_code
-    origin: !secret home_lat_long
-    destination: !secret work_lat_long
+    api_key: !secret here_api_key
+    origin_latitude: !secret home_lat
+    origin_longitude: !secret home_long
+    destination_latitude: !secret work_lat
+    destination_longitude: !secret work_long
     unit_system: metric
     scan_interval: 60
+#    app_id: !secret here_app_id
+#    app_code: !secret here_app_code
+#    origin: !secret home_lat_long
+#    destination: !secret work_lat_long
+
 
 #  - platform: ical
 #    name: "Czech Holidays"
@@ -402,6 +408,8 @@
       - lightning_count
       - airbattery
       - skybattery
+
+
 #    host: !secret smartweather_ip
 #
 #  - platform: mqtt_room

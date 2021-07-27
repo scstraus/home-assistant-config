@@ -273,6 +273,8 @@ class ManageKioskCameraPopups(hass.Hass):
         self.call_service("shell_command/screen_on_kindle_fire_closet")
         self.KEEPALIVE_STEP=0
         self.run_in(self.keep_screen_on, 2)
+      if self.KEEPALIVE_STEP>4:
+        self.KEEPALIVE_STEP=0
     else:
       self.log("self.POPUP_OPEN = %s. Not sending screen wakeup commands", self.POPUP_OPEN)
       self.KEEPALIVE_STEP=0

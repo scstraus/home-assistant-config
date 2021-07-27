@@ -872,38 +872,15 @@
       - binary_sensor.master_bedroom_window
       - binary_sensor.office_door
       - binary_sensor.library_door
-  - platform: numeric_state
-    entity_id: sensor.home_air_quality
-    above: 50
-  - platform: numeric_state
-    entity_id: sensor.home_air_quality
-    below: 50
-  - platform: numeric_state
-    entity_id: sensor.home_air_quality
-    above: 50
-  - platform: numeric_state
-    entity_id: sensor.home_air_quality
-    below: 50
-  - platform: homeassistant
-    event: start
-  - platform: numeric_state
-    entity_id: sensor.dark_sky_temperature
-    above: 18
-  - platform: numeric_state
-    entity_id: sensor.dark_sky_temperature
-    below: 18
-  - platform: numeric_state
-    entity_id: sensor.dark_sky_temperature
-    above: 26
-  - platform: numeric_state
-    entity_id: sensor.dark_sky_temperature
-    below: 26
-  - platform: numeric_state
-    entity_id: sensor.dark_sky_daytime_high_temperature_0d
-    above: 30
-  - platform: numeric_state
-    entity_id: sensor.dark_sky_daytime_high_temperature_0d
-    below: 30
+  - platform: state
+    entity_id: binary_sensor.open_window_letting_pollution_in
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.open_window_making_house_cold
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.open_window_making_house_hot
+    to: 'on'
   action: 
   - service: python_script.set_open_window_message
 
@@ -922,6 +899,12 @@
         - binary_sensor.master_bedroom_window
         - binary_sensor.office_door
         - binary_sensor.library_door
+    - platform: state
+      entity_id: binary_sensor.open_window_letting_pollution_in
+    - platform: state
+      entity_id: binary_sensor.open_window_making_house_cold
+    - platform: state
+      entity_id: binary_sensor.open_window_making_house_hot
     - platform: numeric_state
       entity_id: sensor.home_air_quality
       above: 50

@@ -203,7 +203,7 @@ logger:
     zwave: warn
     zeroconf: warn
     homeassistant.components.proxy.camera: warn
-    homeassistant.components.evohome_cc: debug
+#    homeassistant.components.evohome_cc: debug
     evohome: debug
     pydreamscreen: warn
     homeassistant.helpers.event: warn
@@ -821,12 +821,12 @@ rest_command:
 #    token: !secret xiaomi_air_purifier_master_bedroom_token
 #
 
-evohome_cc:
-  scan_interval: 60
-  serial_port: /dev/ttyUSB0
-  packet_log: /share/packet.log
-  schema:
-    controller: !secret evohome_controller_id
+#evohome_cc:
+#  scan_interval: 60
+#  serial_port: /dev/ttyUSB0
+#  packet_log: /share/packet.log
+#  schema:
+#    controller: !secret evohome_controller_id
     
 #evohome_rf: 
 #  serial_port: /dev/ttyUSB0
