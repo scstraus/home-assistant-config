@@ -1746,6 +1746,9 @@ cards:
         name: Dreamscreen
       - climate.entrance
       - climate.living_room
+      - entity: climate.living_room_ac
+        name: Living Room AC
+        icon: mdi:air-conditioner
       - climate.dining_room
   #  - type: custom:light-entity-card
   #    entity: light.dreamscreen

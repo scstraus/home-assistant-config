@@ -34,6 +34,7 @@ def make_open_windows_message(num_open_windows):
   first_floor_windows = 0
   problem_conditions = 0
   first_open_window = 0
+  did_in = 0
   message=""
   logger.debug("binary_sensor.open_window_making_house_hot: %s",(hass.states.get("binary_sensor.open_window_making_house_hot").state))
   if (hass.states.get("binary_sensor.open_window_making_house_hot").state) == "on":
@@ -94,16 +95,20 @@ def make_open_windows_message(num_open_windows):
   if (num_open_windows > (counter+1) ) and (first_floor_windows == 1) and (counter > 1):
     message = message + ", and open windows in"
     first_open_window = 1
+    did_in = 1
   # First floor windows are open and 2 or more more windows are open
   elif (first_floor_windows == 1) and (counter >= 2):
     message = message + ", in"
     first_open_window = 1
+    did_in = 1
   # No door open, only open first floor windows, and other window(s) open
   elif (num_open_windows <= (counter+1)) and (first_floor_windows == 1) and (counter >= 1):
     message = message + " and in"
+    did_in = 1
   # no open door or open first floor windows but some open window
   elif (counter > 0):
     message = message + "Open windows in"
+    did_in = 1
   logger.debug("Doing Sebastian's Room. counter==%s, num_open_windows==%s, door_counter==%s, window_counter==%s,first_floor_windows==%s",  counter, num_open_windows, door_counter, window_counter, first_floor_windows)
   if (hass.states.get("binary_sensor.sebastians_room_left_window").state) == "on":
     message = message + " Sebastian's Room"
@@ -115,8 +120,10 @@ def make_open_windows_message(num_open_windows):
       message = message + " and"
     if counter == 1 and window_counter > 1:
       message = message + ", and"
-    if counter > 1 and ((window_counter-counter)<1) and (first_open_window==1):
+    if counter > 1 and ((window_counter-counter)<1) and (first_open_window==1) and (did_in==0):
       message = message + ","
+    elif did_in == 1:
+      did_in=0
     first_open_window=0
     message = message + " the Master Bedroom"
     counter = counter - 1
@@ -127,8 +134,10 @@ def make_open_windows_message(num_open_windows):
       message = message + " and"
     if counter == 1 and window_counter > 1:
       message = message + ", and"
-    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1):
+    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1) and (did_in==0):
       message = message + ","
+    elif did_in == 1:
+      did_in=0
     first_open_window=0
     message = message + " the Office"
     counter = counter - 1
@@ -139,8 +148,10 @@ def make_open_windows_message(num_open_windows):
       message = message + " and"
     if counter == 1 and window_counter > 1:
       message = message + ", and"
-    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1):
+    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1) and (did_in==0):
       message = message + ","
+    elif did_in == 1:
+      did_in=0
     first_open_window=0
     message = message + " the Library"
     counter = counter - 1
@@ -151,8 +162,10 @@ def make_open_windows_message(num_open_windows):
       message = message + " and"
     if counter == 1 and window_counter > 1:
       message = message + ", and"
-    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1):
+    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1) and (did_in==0):
       message = message + ","
+    elif did_in == 1:
+      did_in=0
     first_open_window=0
     message = message + " Sophie's Room"
     counter = counter - 1
@@ -163,8 +176,10 @@ def make_open_windows_message(num_open_windows):
       message = message + " and"
     if counter == 1 and window_counter > 1:
       message = message + ", and"
-    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1):
+    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1) and (did_in==0):
       message = message + ","
+    elif did_in == 1:
+      did_in = 0
     first_open_window=0
     message = message + " the Master Closet"
     counter = counter - 1
@@ -175,8 +190,10 @@ def make_open_windows_message(num_open_windows):
       message = message + " and"
     if counter == 1 and window_counter > 1:
       message = message + ", and"
-    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1):
+    if counter > 1 and ((window_counter-counter)<1) and (first_open_window<1) and (did_in==0):
       message = message + ","
+    elif did_in == 1:
+      did_in=0
     first_open_window=0
     message = message + " the Laundry Room"
     counter = counter - 1
@@ -220,7 +237,7 @@ def make_open_windows_message(num_open_windows):
 #    hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_letting_pollution_in", "value" : message}, False)
 
 
-###### Run the Functions ######
+###### Run the Functions #####
 num_open_windows = count_open_windows()
 if num_open_windows > 0:
   message=make_open_windows_message(num_open_windows)

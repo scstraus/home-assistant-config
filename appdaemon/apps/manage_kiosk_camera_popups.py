@@ -1,3 +1,14 @@
+# for some reason, there's no human_off timer running when this happens
+# 2021-07-31 17:19:08.972791 INFO manage_kiosk_camera_popups: sensor.left_on_property_person changed state from 1 to 2
+# 2021-07-31 17:19:08.974650 INFO manage_kiosk_camera_popups: Checking if other trigger timers are running and restarting timers if humans detected on them
+# 2021-07-31 17:19:09.112504 INFO manage_kiosk_camera_popups: Popup camera = False
+# 2021-07-31 17:19:09.113066 INFO manage_kiosk_camera_popups: Popup already open. Not issuing another popup command
+# 2021-07-31 17:19:09.139565 INFO manage_kiosk_camera_popups: self.POPUP_OPEN = True. Sending screen wakeup commands
+# 2021-07-31 17:19:09.140090 INFO manage_kiosk_camera_popups: Keepalive step = 1
+# so the popup never closes. Must be fixed.
+
+
+
 import appdaemon.plugins.hass.hassapi as hass
 
 # This appdaemon script pops up camera windows on the kiosk tablets in the house when humans are spotted outside. It tries not to open and close camera windows too often as it causes them to not stream correctly.

@@ -1494,6 +1494,7 @@
 
 - id: restart_lightning_timer
   alias: restart_lightning_timer
+  initial_state: 'true'
   trigger:
     - platform: numeric_state
       entity_id: sensor.smartweather_lightning_distance
@@ -1515,4 +1516,41 @@
         value: >
           {{states('sensor.smartweather_lightning_time')}}
 
+- id: set_sophie_ac_to_23
+  alias: set_sophie_ac_to_23
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: climate.sophie_s_room_ac
+    to: 'on'
+  action:
+    service: climate.set_temperature
+    target:
+      entity_id: climate.living_room_ac
+    data:
+      temperature: 24
 
+- id: turn_off_sophie_ac_after_40_minutes
+  alias: turn_off_sophie_ac_after_40_minutes
+  initial_state: 'true'
+  mode: single
+  trigger:
+    entity_id: binary_sensor.sophies_room_zone_10
+    to: 'off'
+    for: 
+      minutes: 40
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: climate.sophie_s_room_ac
+        state: 'on'
+      - condition:  time
+        after: "8:00:00"
+        before: "20:00:00"
+  action:
+    service: climate.turn_off
+    target:
+      entity_id: climate.sophie_s_room_ac
+
+  

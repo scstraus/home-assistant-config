@@ -607,18 +607,17 @@
         device_class: motion
         value_template: >-
           {{ ((states('sensor.front_on_property_person')|float) > 0) }}
-
       human_back:
         friendly_name: "Human in Back Yard"
         device_class: motion
         value_template: >-
           {{ ((states('sensor.back_on_property_person')|float) > 0) }}
-      human_front:
+      human_right:
         friendly_name: "Human on Right of House"
         device_class: motion
         value_template: >-
           {{ ((states('sensor.right_on_property_person')|float) > 0) }}
-      human_front:
+      human_left:
         friendly_name: "Human on Left of House"
         device_class: motion
         value_template: >-
