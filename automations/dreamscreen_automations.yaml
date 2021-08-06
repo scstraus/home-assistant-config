@@ -23,8 +23,8 @@
         brightness: 42
 
 
-- id: switch_dreamscreen_to_ps5_input_1
-  alias: switch_dreamscreen_to_PS5_input_1
+- id: switch_dreamscreen_to_ps5_input_3
+  alias: switch_dreamscreen_to_PS5_input_3
   initial_state: 'true'
   trigger:
     platform: state
@@ -39,7 +39,7 @@
     - service: dreamscreen.set_hdmi_source
       data:
         entity_id: dreamscreen.living_room_tv
-        source: 0
+        source: 2
     - service: dreamscreen.set_brightness
       data:
         entity_id: dreamscreen.living_room_tv
@@ -81,7 +81,7 @@
     - service: dreamscreen.set_hdmi_source
       data:
         entity_id: dreamscreen.living_room_tv
-        source: 0
+        source: 2
     - service: dreamscreen.set_brightness
       data:
         entity_id: dreamscreen.living_room_tv

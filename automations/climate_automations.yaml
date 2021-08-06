@@ -659,7 +659,7 @@
   action:
     service: switch.turn_off
     data:
-      entity_id: switch.office_alexa_do_not_disturb_switch  
+      entity_id: switch.alexa_office_do_not_disturb_switch
 
 
 #####################################
@@ -1312,11 +1312,15 @@
                       name: "Update.caf"
                       critical: 1
                       volume: 1.0
+            - data:
+                data:
+                  type: tts
+                message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
+              service: notify.alexa_media_everywhere 
             - service: notify.alexa_media_everywhere
               data:
                 message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
             - service: script.announce_its_raining_with_sophie_roof_window_open_office
-
     - choose:
         - conditions: 
             - condition: state
@@ -1333,6 +1337,11 @@
                       name: "Update.caf"
                       critical: 1
                       volume: 1.0
+            - data:
+                data:
+                  type: tts
+                message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
+              service: notify.alexa_media_everywhere 
             - service: notify.alexa_media_everywhere
               data:
                 message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"

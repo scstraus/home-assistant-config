@@ -622,3 +622,18 @@
         device_class: motion
         value_template: >-
           {{ ((states('sensor.left_on_property_person')|float) > 0) }}
+
+
+
+  - platform: template 
+    sensors:
+      sebastians_window_is_open_and_its_raining:
+        friendly_name: "Sebastian's Window is Open and it's Raining"
+        device_class: problem
+        value_template: >- 
+          {{ (states.sensor.smartweatherudp_rain_rate|float>0) and (is_state('binary_sensor.sebastians_room_left_window','on')) }}
+      sophies_window_is_open_and_its_raining:
+        friendly_name: "Sophie's Window is Open and it's Raining"
+        device_class: problem
+        value_template: >- 
+          {{ (states.sensor.smartweatherudp_rain_rate|float>0) and (is_state('binary_sensor.sophies_room_ceiling_window','on')) }}

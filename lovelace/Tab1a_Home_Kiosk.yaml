@@ -204,9 +204,19 @@ cards:
     layout_type: custom:vertical-layout
     cards:
 
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.sophies_window_is_open_and_its_raining
+        - state: 'on'
+        - name: "Raining & Sophie's Window Open!!"
 
-
-
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.sebastians_window_is_open_and_its_raining
+        - state: 'on'
+        - name: "Raining & Sebastians's Window Open!!"
 
     - type: custom:decluttering-card
       template: emergency

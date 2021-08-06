@@ -206,6 +206,20 @@ cards:
     - type: custom:decluttering-card
       template: emergency
       variables:
+        - entity: binary_sensor.sophies_window_is_open_and_its_raining
+        - state: 'on'
+        - name: "Raining & Sophie's Window Open!!"
+
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.sebastians_window_is_open_and_its_raining
+        - state: 'on'
+        - name: "Raining & Sebastians's Window Open!!"
+
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
         - entity: binary_sensor.basement_is_flooding
         - state: 'on'
         - name: "!!The Basement is Flooding!!"

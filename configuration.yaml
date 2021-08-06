@@ -331,6 +331,12 @@ media_player:
   - platform: itunes
     host: !secret itunes_ip
 
+#  - platform: group
+#    entities:
+#      - media_player.alexa_echo_dot_kitchen_bar
+#      - media_player.alexa_kitchen
+#      - media_player.alexa_living_room
+
 ios:
   push:
     categories:

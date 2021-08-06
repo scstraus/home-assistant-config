@@ -1342,3 +1342,22 @@
               volume: 1.0
             thread-id: "error"
 
+- id: smoke_play_room
+  alias: smoke_play_room
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.play_room_smoke
+    to: 2
+  action:
+    - service: notify.whole_family
+      data:
+        title: "Alert! Smoke Detected!"
+        message: "Smoke was detected in the kitchen! Investigate immediately and evactuate!"
+        data:
+          push:
+            sound:
+              name: "Update.caf"
+              critical: 1
+              volume: 1.0
+            thread-id: "error"
