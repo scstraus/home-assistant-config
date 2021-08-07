@@ -1201,6 +1201,7 @@
 #garage door opened or closed in last 3 minutes
 - id: welcome_car_and_remind_to_charge_it
   alias: welcome_car_and_remind_to_charge_it
+  initial_state: 'false'
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_zone_12
@@ -1229,6 +1230,7 @@
 
 - id: watch_garage_door_to_have_time_of_change
   alias: watch_garage_door_to_have_time_of_change
+  initial_state: 'true'
   trigger:
     - platform: state
       entity_id: binary_sensor.ecolink_garage_door
