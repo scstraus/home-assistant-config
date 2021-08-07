@@ -79,7 +79,7 @@ class ManageKioskCameraPopups(hass.Hass):
       if ((self.get_state("timer.back_human_on")=="active") and entity != "sensor.back_on_property_person"):
         popup_camera="False"
         if (int(self.get_state("sensor.back_on_property_person"))>0):
-          self.call_service("timer/start", entity_id = "timer.front_human_on")
+          self.call_service("timer/start", entity_id = "timer.back_human_on")
       self.log("Popup camera = %s", popup_camera)
       if (popup_camera=="True" and (self.POPUP_OPEN=="False")):
         self.log("No other humans detected in last 3 seconds on other cameras. Popping up camera.")
