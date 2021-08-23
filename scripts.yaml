@@ -1065,3 +1065,62 @@
             type: tts
           message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
         service: notify.alexa_media_alexa_garage
+
+  house_announcement:
+    description: "Read alexa TTS message all over the house"
+    fields:
+      message:
+        description: "The text to send"
+        example: "AAAHHH"
+    sequence:
+      - service: notify.alexa_media_alexa_echo_dot_kitchen_bar
+        data:
+          message: "{{ message }}"
+          data:
+            type: tts
+      - delay:
+          seconds: 2
+      - service: notify.alexa_media_alexa_garage
+        data:
+          message: "{{ message }}"
+          data:
+            type: tts
+      - service: notify.alexa_media_alexa_master_bath
+        data:
+          message: "{{ message }}"
+          data:
+            type: tts      
+      - delay:
+          seconds: 2
+      # - data:
+      #     data:
+      #       type: tts
+      #     message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
+      #   service: notify.alexa_media_alexa_living_room
+      # - delay:
+      #     seconds: 2
+      - service: notify.alexa_media_master_closet_kindle
+        data:
+          message: "{{ message }}"
+          data:
+            type: tts 
+      # - delay:
+      #     seconds: 2
+      # - data:
+      #     data:
+      #       type: tts
+      #     message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
+      #   service: notify.alexa_media_alexa_kitchen
+      - delay:
+          seconds: 2
+      - service: notify.alexa_media_echo_flex_first_floor_bathroom
+        data:
+          message: "{{ message }}"
+          data:
+            type: tts   
+#
+#            - data:
+#                data:
+#                  type: tts
+#                message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
+#              service: notify.alexa_media_echo_flex_first_floor_bathroom

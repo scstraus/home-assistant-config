@@ -930,8 +930,8 @@ influxdb:
 #    password: !secret hass_pass
 
 home_connect:
-  client_id: homeconnect_client_id
-  client_secret: homeconnect_client_secret
+  client_id: !secret homeconnect_client_id
+  client_secret: !secret homeconnect_client_secret
 
 device_tracker:
   - platform: nmap_tracker
@@ -1017,3 +1017,35 @@ climate:
 #    entities:
 #    - climate.sophie_s_room
 #    - climate.sophie_s_room_ac
+
+rest:
+  - scan_interval: 3600
+    resource: https://covid-19-apis.herokuapp.com/update/country/23
+    timeout: 60
+    sensor:
+      - name: "Coronavirus Active Cases CZ"
+        value_template: '{{ value_json.Active_Cases|replace(",","")| int }}'
+#        unit_of_measurement: "people"
+      - name: "Coronavirus New Cases CZ"
+        value_template: '{{ value_json.New_Cases|replace(",","")|int }}'
+#        unit_of_measurement: "people"
+
+        # json_attributes:
+        #   - "Active_Cases/1M_pop"
+        #   - "#"
+        #   - "Total_Deaths"
+        #   - "Total_Tests"
+        #   - "New_Cases/1M_pop"
+        #   - "Tot_Cases/_1M_pop"
+        #   - "1_Death_every_X_ppl"
+        #   - "Deaths/_1M_pop"
+        #   - "New_Deaths/1M_pop"
+        #   - "1_Case_every_X_ppl"
+        #   - "New_Cases"
+        #   - "Active_Cases"
+        #   - "Serious,_Critical"
+        #   - "Total_Cases"
+        #   - "Tests/_1M_pop"
+        #   - "New_Deaths"
+        #   - "1_Test_every_X_ppl"
+        #   - "Total_Recovered"

@@ -501,12 +501,12 @@
   action:
     - service_template: frontend.set_theme
       data_template:
-       name: >
-         {% if states.sun.sun.state == "above_horizon" %}
-           Google Light Theme
-         {% else %}
-           midnight
-         {% endif %}
+        name: >
+          {% if states.sun.sun.state == "above_horizon" %}
+            Google Light Theme
+          {% else %}
+            midnight
+          {% endif %}
 
         # name: >
         #   {% if states.sun.sun.state == "above_horizon" %}
@@ -604,6 +604,38 @@
     service: input_boolean.turn_off
     data:
       entity_id: input_boolean.mini_countryman_clima 
+
+- id: backup_new_coronavirus_cases
+  alias: backup_new_coronavirus_cases
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '12:05:00'
+  action:
+    service: variable.set_variable
+    data:
+      variable: czechia_coronavirus_new_backup
+    data_template:
+      value: >
+          {{ states('sensor.coronavirus_new_cases_cz')}}
+
+- id: new_coronavirus_cases_swap_data
+  alias: new_coronavirus_cases_swap_data
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.coronavirus_new_cases_cz
+  condition:
+    condition: numeric_state
+    entity_id: sensor.coronavirus_new_cases_cz
+    above: 0
+  action:
+    service: variable.set_variable
+    data:
+      variable: czechia_coronavirus_new_day_befoere
+    data_template:
+      value: >
+          {{ states('czechia_coronavirus_new_backup')}}
 
 - id: preserve_yesterdays_coronavirus_cases
   alias: "Preserve Yesterday's Coronavirus Cases"
@@ -716,16 +748,9 @@
               critical: 1
               volume: 1.0
             thread-id: "error"
-    - data:
-        data:
-          type: tts
+    - service: script.house_announcement
+      data:
         message: "Attention! The server room is flooding! Attention! The server room is flooding!"
-      service: notify.alexa_media_alexa_kitchen_bar
-    - data:
-        data:
-          type: tts
-        message: "Attention! The server room is flooding! Attention! The server room is flooding!"
-      service: notify.alexa_media_alexa_master_closet
 
 - id: update_sebs_naptime
   alias: update_sebs_naptime
@@ -868,17 +893,9 @@
         data:
           push:
             thread-id: "error"
-    - data:
-        data:
-          type: tts
+    - service: script.house_announcement
+      data:
         message: "Attention! There is water under the kitchen sink! Attention! There's water under the kitchen sink!"
-      service: notify.alexa_media_everywhere
-    - service: script.announce_water_under_the_sink_office
-#    - data:
-#        data:
-#          type: tts
-#        message: "Attention! There is water under the kitchen sink! Attention! There's water under the kitchen sink!"
-#      service: notify.alexa_media_office_alexa
 
 - id: announce_someone_at_the_gate
   alias: announce_someone_at_the_gate
@@ -891,52 +908,10 @@
       scene_data: 0
       scene_id: 3
   action:
-    - data:
-        data:
-          type: tts
+    - service: script.house_announcement
+      data:
         message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_alexa_echo_dot_kitchen_bar
-    - delay:
-        seconds: 2
-    - data:
-        data:
-          type: tts
-        message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_alexa_garage
-    - data:
-        data:
-          type: tts
-        message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_alexa_master_bath
-    - delay:
-        seconds: 2
-    # - data:
-    #     data:
-    #       type: tts
-    #     message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
-    #   service: notify.alexa_media_alexa_living_room
-    # - delay:
-    #     seconds: 2
-    - data:
-        data:
-          type: tts
-        message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_master_closet_kindle
-    # - delay:
-    #     seconds: 2
-    # - data:
-    #     data:
-    #       type: tts
-    #     message: "Excuse me. Someone is at the door, please let them in. Sean is not available to open it right now."
-    #   service: notify.alexa_media_alexa_kitchen
-    - delay:
-        seconds: 2  
-    - data:
-        data:
-          type: tts
-        message: "Excuse me. Someone is at the front gate, please let them in. Sean is not available to open it right now."
-      service: notify.alexa_media_echo_flex_first_floor_bathroom
-
+ 
 #  - platform: event
 #    event_type: zwave.scene_activated
 #    event_data:
@@ -1201,7 +1176,7 @@
 #garage door opened or closed in last 3 minutes
 - id: welcome_car_and_remind_to_charge_it
   alias: welcome_car_and_remind_to_charge_it
-  initial_state: 'false'
+  initial_state: 'true'
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_zone_12
@@ -1234,7 +1209,9 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.ecolink_garage_door
-  action:
+  action: []
+
+
 #
 #- id: open_curtains_in_morning
 #  alias: open_curtains_in_morning
@@ -1284,25 +1261,6 @@
 #      data:
 #        entity_id: input_boolean.auto_curtain_open_state 
 
-- id: smoke_2nd_floor
-  alias: smoke_2nd_floor
-  initial_state: 'true'
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.2nd_floor_smoke
-    to: 2
-  action:
-    - service: notify.whole_family
-      data:
-        title: "Alert! Smoke Detected!"
-        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
-        data:
-          push:
-            sound:
-              name: "Update.caf"
-              critical: 1
-              volume: 1.0
-            thread-id: "error"
 
 - id: smoke_laundry_room
   alias: smoke_laundry_room
@@ -1310,7 +1268,8 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.laundry_room_smoke
-    to: 2
+    above: 1
+    below: 3
   action:
     - service: notify.whole_family
       data:
@@ -1323,6 +1282,9 @@
               critical: 1
               volume: 1.0
             thread-id: "error"
+    - service: script.house_announcement
+      data:
+        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
 
 - id: smoke_kitchen
   alias: smoke_kitchen
@@ -1330,7 +1292,8 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.kitchen_smoke_detector_smoke
-    to: 2
+    above: 1
+    below: 3
   action:
     - service: notify.whole_family
       data:
@@ -1343,6 +1306,9 @@
               critical: 1
               volume: 1.0
             thread-id: "error"
+    - service: script.house_announcement
+      data:
+        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
 
 - id: smoke_play_room
   alias: smoke_play_room
@@ -1350,7 +1316,8 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.play_room_smoke
-    to: 2
+    above: 1
+    below: 3
   action:
     - service: notify.whole_family
       data:
@@ -1363,3 +1330,47 @@
               critical: 1
               volume: 1.0
             thread-id: "error"
+    - service: script.house_announcement
+      data:
+        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
+
+
+- id: smoke_2nd_floor
+  alias: smoke_2nd_floor
+  initial_state: 'true'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.2nd_floor_smoke
+    above: 1
+    below: 3
+  action:
+    - service: notify.whole_family
+      data:
+        title: "Alert! Smoke Detected!"
+        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
+        data:
+          push:
+            sound:
+              name: "Update.caf"
+              critical: 1
+              volume: 1.0
+            thread-id: "error"
+    - service: script.house_announcement
+      data:
+        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
+
+
+#- id: house_announcement_test
+#  alias: house_announcement_test
+#  initial_state: 'true'
+#  mode: single
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.play_room_smoke
+#    above: 1
+#    below: 3
+#  action:
+#    service: script.house_announcement
+#    data:
+#      message: "This is a test"
+    

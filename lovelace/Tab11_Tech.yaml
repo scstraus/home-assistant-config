@@ -551,8 +551,7 @@ cards:
     - automation.sensor_notification
     - switch.fibaro_system_fgs223_double_relay_switch
     - switch.fibaro_system_fgs223_double_relay_switch_2
-    - binary_sensor.kids_room_nest_protect_online
-    - binary_sensor.basement_nest_protect_online
+
 
 
   - type: vertical-stack

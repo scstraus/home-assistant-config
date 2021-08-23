@@ -1,8 +1,3 @@
-#  - platform: airvisual
-#    api_key: !secret airvisual_key
-#    monitored_conditions:
-#      - us
-
   - platform: darksky
     api_key: !secret darksky_key
     scan_interval:
@@ -303,8 +298,8 @@
 #    name: "Parklane Calendar"
 #    url: !secret parklane_calendar
 
-  - platform: home_connect
-    refresh_token: !secret homeconnect_refresh_token
+  # - platform: home_connect
+  #   refresh_token: !secret homeconnect_refresh_token
 #
 #  - platform: rest
 #    name: Frigate Debug
@@ -346,28 +341,28 @@
     days: 14
     ssl: false
     max: 15
-
-  - platform: wunderground
-    api_key: !secret wunderground_api_key
-    monitored_conditions:
-      - weather_1d_metric
-      - weather_1n_metric
-      - weather_2d_metric
-      - weather_2n_metric
-      - weather_3d_metric
-      - weather_3n_metric
-      - weather_4d_metric
-      - weather_4n_metric
-      - temp_high_record_c
-      - temp_high_1d_c
-      - temp_c
-      - temp_low_1d_c
-      - temp_low_record_c
-      - precip_1d
-      - precip_1d_mm
-      - wind_kph
-      - wind_1d_kph
-      - alerts
+#
+#  - platform: wunderground
+#    api_key: !secret wunderground_api_key
+#    monitored_conditions:
+#      - weather_1d_metric
+#      - weather_1n_metric
+#      - weather_2d_metric
+#      - weather_2n_metric
+#      - weather_3d_metric
+#      - weather_3n_metric
+#      - weather_4d_metric
+#      - weather_4n_metric
+#      - temp_high_record_c
+#      - temp_high_1d_c
+#      - temp_c
+#      - temp_low_1d_c
+#      - temp_low_record_c
+#      - precip_1d
+#      - precip_1d_mm
+#      - wind_kph
+#      - wind_1d_kph
+#      - alerts
 
   - platform: mqtt
     name: "Genesys 5490 Idle Time"

@@ -1,9 +1,9 @@
-sensor.us_air_pollution_level:
-  friendly_name: Air Pollution
-sensor.us_air_quality_index:
-  friendly_name: Air Quality Index
-sensor.us_main_pollutant:
-  friendly_name: Main Pollutant
+#sensor.us_air_pollution_level:
+#  friendly_name: Air Pollution
+#sensor.us_air_quality_index:
+#  friendly_name: Air Quality Index
+#sensor.us_main_pollutant:
+#  friendly_name: Main Pollutant
 sun.sun:
   friendly_name: Sun
   hidden: true
@@ -436,10 +436,10 @@ sensor.trash_display:
   icon: mdi:trash-can-outline
 binary_sensor.basement_sliding_door:
   device_class: door
-sensor.hlubocepy_air_quality:
-  icon: mdi:air-filter
-sensor.home_air_quality:
-  icon: mdi:air-filter
+#sensor.hlubocepy_air_quality:
+#  icon: mdi:air-filter
+#sensor.home_air_quality:
+#  icon: mdi:air-filter
 sensor.memory_use_percent:
   icon: mdi:chip
 sensor.discworld_disk_1_status:

@@ -371,36 +371,36 @@
     name: "Temperature Upstairs Airthings"
     state_topic: "airthings_upstairs/sensor/airthings_temperature/state"
     device_class: temperature
-
-  - platform: template
-    sensors:
-      home_air_quality:
-        friendly_name: "Home Air Quality"
-        unit_of_measurement: 'aqi'
-        value_template: "{{ states.air_quality.home.attributes.air_quality_index }}"
-      home_co2:
-        friendly_name: "Home CO2"
-        unit_of_measurement: 'µg/m³'
-        value_template: "{{ states.air_quality.home.attributes.carbon_dioxide }}"
-      home_pm0_1_particulate_level:
-        friendly_name: "Home PM 0.1 Particulate Level"
-        unit_of_measurement: 'µg/m³'
-        value_template: "{{ states.air_quality.home.attributes.particulate_matter_0_1 }}"
-      home_pm10_particulate_level:
-        friendly_name: "Home PM 10 Particulate Level"
-        unit_of_measurement: 'µg/m³'
-        value_template: "{{ states.air_quality.home.attributes.particulate_matter_10 }}"
-      home_pm2_5_particulate_level:
-        friendly_name: "Home PM 2.5 Particulate Level"
-        unit_of_measurement: 'µg/m³'
-        value_template: "{{ states.air_quality.home.attributes.particulate_matter_2_5 }}"
-      home_pm2_5_sensor_life:
-        friendly_name: "Home AirVisual Sensor Life"
-        value_template: "{{ states.air_quality.home.attributes.pm2_5_sensor_life }}"
-      hlubocepy_air_quality:
-        friendly_name: "Outside Air Quality"
-        unit_of_measurement: 'aqi'
-        value_template: "{{ states.air_quality.hlubocepy_node_pro_air_quality.attributes.air_quality_index }}"
+#
+#  - platform: template
+#    sensors:
+#      home_air_quality:
+#        friendly_name: "Home Air Quality"
+#        unit_of_measurement: 'aqi'
+#        value_template: "{{ states.air_quality.home.attributes.air_quality_index }}"
+#      home_co2:
+#        friendly_name: "Home CO2"
+#        unit_of_measurement: 'µg/m³'
+#        value_template: "{{ states.air_quality.home.attributes.carbon_dioxide }}"
+#      home_pm0_1_particulate_level:
+#        friendly_name: "Home PM 0.1 Particulate Level"
+#        unit_of_measurement: 'µg/m³'
+#        value_template: "{{ states.air_quality.home.attributes.particulate_matter_0_1 }}"
+#      home_pm10_particulate_level:
+#        friendly_name: "Home PM 10 Particulate Level"
+#        unit_of_measurement: 'µg/m³'
+#        value_template: "{{ states.air_quality.home.attributes.particulate_matter_10 }}"
+#      home_pm2_5_particulate_level:
+#        friendly_name: "Home PM 2.5 Particulate Level"
+#        unit_of_measurement: 'µg/m³'
+#        value_template: "{{ states.air_quality.home.attributes.particulate_matter_2_5 }}"
+#      home_pm2_5_sensor_life:
+#        friendly_name: "Home AirVisual Sensor Life"
+#        value_template: "{{ states.air_quality.home.attributes.pm2_5_sensor_life }}"
+#      hlubocepy_air_quality:
+#        friendly_name: "Outside Air Quality"
+#        unit_of_measurement: 'aqi'
+#        value_template: "{{ states.air_quality.hlubocepy_node_pro_air_quality.attributes.air_quality_index }}"
 
 
         # - platform: template

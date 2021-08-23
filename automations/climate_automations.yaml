@@ -1312,37 +1312,9 @@
                       name: "Update.caf"
                       critical: 1
                       volume: 1.0
-            - data:
-                data:
-                  type: tts
+            - service: script.house_announcement
+              data:
                 message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_alexa_echo_dot_kitchen_bar
-            - delay:
-                seconds: 2
-            - data:
-                data:
-                  type: tts
-                message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_alexa_garage
-            - data:
-                data:
-                  type: tts
-                message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_alexa_master_bath
-            - delay:
-                seconds: 2
-            - data:
-                data:
-                  type: tts
-                message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_master_closet_kindle
-            - delay:
-                seconds: 2  
-            - data:
-                data:
-                  type: tts
-                message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_echo_flex_first_floor_bathroom
             - service: script.announce_its_raining_with_sophie_roof_window_open_office
     - choose:
         - conditions: 
@@ -1360,46 +1332,10 @@
                       name: "Update.caf"
                       critical: 1
                       volume: 1.0
-            - data:
-                data:
-                  type: tts
+            - service: script.house_announcement
+              data:
                 message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_alexa_echo_dot_kitchen_bar
-            - delay:
-                seconds: 2
-            - data:
-                data:
-                  type: tts
-                message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_alexa_garage
-            - data:
-                data:
-                  type: tts
-                message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_alexa_master_bath
-            - delay:
-                seconds: 2
-            - data:
-                data:
-                  type: tts
-                message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_master_closet_kindle
-            - delay:
-                seconds: 2  
-            - data:
-                data:
-                  type: tts
-                message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
-              service: notify.alexa_media_echo_flex_first_floor_bathroom
             - service: script.announce_its_raining_with_sebastian_roof_window_open_office
-#            - data:
-#                data:
-#                  type: tts
-#                message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
-#              service: notify.alexa_media_everywhere 
-#            - service: notify.alexa_media_everywhere
-#              data:
-#                message: "Attention! Sebastian's window is open and it is raining outside! Please close it now!"
 
 
 - id: update_rain_sensor
@@ -1586,13 +1522,13 @@
   trigger:
     platform: state
     entity_id: climate.sophie_s_room_ac
-    to: 'on'
+    to: 'cool'
   action:
     service: climate.set_temperature
     target:
-      entity_id: climate.living_room_ac
+      entity_id: climate.sophie_s_room_ac
     data:
-      temperature: 24
+      temperature: 23
 
 - id: turn_off_sophie_ac_after_40_minutes
   alias: turn_off_sophie_ac_after_40_minutes
@@ -1608,7 +1544,7 @@
     conditions:
       - condition: state
         entity_id: climate.sophie_s_room_ac
-        state: 'on'
+        state: 'cool'
       - condition:  time
         after: "8:00:00"
         before: "20:00:00"

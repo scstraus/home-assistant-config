@@ -141,3 +141,21 @@
     attributes:
       friendly_name: 'Basement Absolute Humidity'
       icon: mdi:water-percent
+
+  czechia_coronavirus_new_backup:
+    value: 'Unknown'
+    attributes:
+      friendly_name: 'New Cases'
+#      unit_of_measurement: today
+      unit_of_measurement:
+      icon: mdi:chart-bubble
+    restore: true
+
+  czechia_coronavirus_new_day_befoere:
+    value: 'Unknown'
+    attributes:
+      friendly_name: 'New Cases'
+#      unit_of_measurement: today
+      unit_of_measurement:
+      icon: mdi:chart-bubble
+    restore: true

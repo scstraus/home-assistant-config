@@ -30,10 +30,10 @@ class ManageKioskCameraPopups(hass.Hass):
   KEEPALIVE_STEP=0
 
 
-  CAMERA_SENSOR_OFF_ON_TIMER =[["camera.right_substream","sensor.right_on_property_person","timer.right_human_off","timer.right_human_on"],
-                               ["camera.left_substream","sensor.left_on_property_person","timer.left_human_off","timer.left_human_on"],
-                               ["camera.front_stream","sensor.front_on_property_person","timer.front_human_off","timer.front_human_on"],
-                               ["camera.back_stream","sensor.back_on_property_person","timer.back_human_off","timer.back_human_on"]]
+  CAMERA_SENSOR_OFF_ON_TIMER =[["right","camera.right_substream","sensor.right_on_property_person","timer.right_human_off","timer.right_human_on"],
+                               ["left","camera.left_substream","sensor.left_on_property_person","timer.left_human_off","timer.left_human_on"],
+                               ["front","camera.front_stream","sensor.front_on_property_person","timer.front_human_off","timer.front_human_on"],
+                               ["back","camera.back_stream","sensor.back_on_property_person","timer.back_human_off","timer.back_human_on"]]
 #########################################################################################################
 #                            THESE ARE THE INITIALIZE AND LAUNCH FUNCTIONS                              #
 #########################################################################################################
@@ -69,23 +69,28 @@ class ManageKioskCameraPopups(hass.Hass):
     if (int(new) > 0): #changed from no human to human
       self.log("Checking if other trigger timers are running and restarting timers if humans detected on them")
       # Check if someone was detected recently on the other cameras, if so, decide not to switch to the new camera(entity)
-      if ((self.get_state("timer.left_human_on")=="active") and entity != "sensor.left_on_property_person"):
-        popup_camera="False"
-        # restart timers for the other sides showing active humans other than the one that triggered this callback (entity)
-        if (int(self.get_state("sensor.left_on_property_person"))>0):
-          self.call_service("timer/start", entity_id = "timer.left_human_on")
-      if ((self.get_state("timer.right_human_on")=="active") and entity != "sensor.right_on_property_person"):
-        popup_camera="False"
-        if (int(self.get_state("sensor.right_on_property_person"))>0):
-          self.call_service("timer/start", entity_id = "timer.right_human_on")
-      if ((self.get_state("timer.front_human_on")=="active") and entity != "sensor.front_on_property_person"):
-        popup_camera="False"
-        if (int(self.get_state("sensor.front_on_property_person"))>0):
-          self.call_service("timer/start", entity_id = "timer.front_human_on")
-      if ((self.get_state("timer.back_human_on")=="active") and entity != "sensor.back_on_property_person"):
-        popup_camera="False"
-        if (int(self.get_state("sensor.back_on_property_person"))>0):
-          self.call_service("timer/start", entity_id = "timer.back_human_on")
+      for count in range(len(self.CAMERA_SENSOR_OFF_ON_TIMER)):
+        if ((self.get_state(self.CAMERA_SENSOR_OFF_ON_TIMER[count][4])=="active") and entity != self.CAMERA_SENSOR_OFF_ON_TIMER[count][2]): 
+          popup_camera="False"
+          if (int(self.get_state(self.CAMERA_SENSOR_OFF_ON_TIMER[count][2]))>0):
+            self.call_service("timer/start", entity_id = self.CAMERA_SENSOR_OFF_ON_TIMER[count][4])
+#      if ((self.get_state("timer.left_human_on")=="active") and entity != "sensor.left_on_property_person"):
+#        popup_camera="False"
+#        # restart timers for the other sides showing active humans other than the one that triggered this callback (entity)
+#        if (int(self.get_state("sensor.left_on_property_person"))>0):
+#          self.call_service("timer/start", entity_id = "timer.left_human_on")
+#      if ((self.get_state("timer.right_human_on")=="active") and entity != "sensor.right_on_property_person"):
+#        popup_camera="False"
+#        if (int(self.get_state("sensor.right_on_property_person"))>0):
+#          self.call_service("timer/start", entity_id = "timer.right_human_on")
+#      if ((self.get_state("timer.front_human_on")=="active") and entity != "sensor.front_on_property_person"):
+#        popup_camera="False"
+#        if (int(self.get_state("sensor.front_on_property_person"))>0):
+#          self.call_service("timer/start", entity_id = "timer.front_human_on")
+#      if ((self.get_state("timer.back_human_on")=="active") and entity != "sensor.back_on_property_person"):
+#        popup_camera="False"
+#        if (int(self.get_state("sensor.back_on_property_person"))>0):
+#          self.call_service("timer/start", entity_id = "timer.back_human_on")
       self.log("Popup camera = %s", popup_camera)
       if (popup_camera=="True" and (self.POPUP_OPEN=="False")):
         self.log("No other humans detected in last 3 seconds on other cameras. Popping up camera.")

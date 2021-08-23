@@ -249,23 +249,13 @@
         entity_id: device_tracker.sean_s_iphone_12
         state: 'home'
   action:
-  - data:
+    - service: script.house_announcement
       data:
-        type: tts
-      message: "Sorry, it looks like you wanted to run the dishes but you left the door open on the dishwasher. Please close the dishwasher door."
-      target: 
-#        - media_player.kichen_bar_kindle_fire
-        - media_player.alexa_kitchen
-        - media_player.alexa_living_room
-        - media_player.alexa_master_bath
-        - media_player.master_closet_kindle
-        - media_player.office_alexa
-        - media_player.alexa_garage
-    service: notify.alexa_media 
-  - data:
-      title: "Dishwasher Update"
-      message: "Looks like you left the dishwasher door open"
-    service: notify.mobile_app_sean_s_iphone_12
+        message: "Sorry, it looks like you wanted to run the dishes but you left the door open on the dishwasher. Please close the dishwasher door."
+    - data:
+        title: "Dishwasher Update"
+        message: "Looks like you left the dishwasher door open"
+      service: notify.mobile_app_sean_s_iphone_12
 
 
 - id: dishwasher_running_door_open_input_boolean_on
