@@ -1153,13 +1153,13 @@ cards:
             left: 20%
             top: 44%
         - type: state-label  
-          entity: variable.czechia_coronavirus_new_yesterday
+          entity: variable.czechia_coronavirus_new_day_before
           style:
             font-size: large
             left: 51%
             top: 44%
         - type: state-label  
-          entity:  variable.czechia_coronavirus_new_today
+          entity: variable.czechia_coronavirus_new_backup
           style:
             font-size: large
             left: 82%

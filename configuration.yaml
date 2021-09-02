@@ -1020,7 +1020,7 @@ climate:
 
 rest:
   - scan_interval: 3600
-    resource: https://covid-19-apis.herokuapp.com/update/country/23
+    resource: https://covid-19-apis.herokuapp.com/update/country/24
     timeout: 60
     sensor:
       - name: "Coronavirus Active Cases CZ"

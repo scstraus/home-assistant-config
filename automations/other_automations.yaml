@@ -609,8 +609,8 @@
   alias: backup_new_coronavirus_cases
   initial_state: 'true'
   trigger:
-    platform: time
-    at: '12:05:00'
+    platform: state
+    entity_id: variable.czechia_coronavirus_new_day_before
   action:
     service: variable.set_variable
     data:
@@ -632,10 +632,10 @@
   action:
     service: variable.set_variable
     data:
-      variable: czechia_coronavirus_new_day_befoere
+      variable: czechia_coronavirus_new_day_before
     data_template:
       value: >
-          {{ states('czechia_coronavirus_new_backup')}}
+          {{ states('variable.czechia_coronavirus_new_backup')}}
 
 - id: preserve_yesterdays_coronavirus_cases
   alias: "Preserve Yesterday's Coronavirus Cases"

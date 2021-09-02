@@ -151,10 +151,10 @@
       icon: mdi:chart-bubble
     restore: true
 
-  czechia_coronavirus_new_day_befoere:
+  czechia_coronavirus_new_day_before:
     value: 'Unknown'
     attributes:
-      friendly_name: 'New Cases'
+      friendly_name: 'New Cases Yesterday'
 #      unit_of_measurement: today
       unit_of_measurement:
       icon: mdi:chart-bubble

@@ -143,39 +143,44 @@
 #    region: 'EU'
 #    name: Driving Time to Work
  
-  - platform: waze_travel_time
-    origin: device_tracker.sean_s_iphone_12
-    destination: zone.home
-    region: 'EU'
-    name: Sean Driving Time to Home
-
-  - platform: waze_travel_time
-    origin: device_tracker.alena_s_iphone
-    destination: zone.home
-    region: 'EU'
-    name: Alena Driving Time to Home
  
-  - platform: waze_travel_time
-    origin: device_tracker.sophie
-    destination: zone.home
-    region: 'EU'
-    name: Sophie Driving Time to Home
+#### Commented after move to ui start 
  
-  - platform: google_travel_time
-    api_key: !secret google_travel_key
-    origin: device_tracker.sean_s_iphone_12
-    destination: zone.home
-    name: Sean Tram Time to Home
-    options:
-      mode: transit
+#  - platform: waze_travel_time
+#    origin: device_tracker.sean_s_iphone_12
+#    destination: zone.home
+#    region: 'EU'
+#    name: Sean Driving Time to Home
+#
+#  - platform: waze_travel_time
+#    origin: device_tracker.alena_s_iphone
+#    destination: zone.home
+#    region: 'EU'
+#    name: Alena Driving Time to Home
+# 
+#  - platform: waze_travel_time
+#    origin: device_tracker.sophie
+#    destination: zone.home
+#    region: 'EU'
+#    name: Sophie Driving Time to Home
+# 
+#  - platform: google_travel_time
+#    api_key: !secret google_travel_key
+#    origin: device_tracker.sean_s_iphone_12
+#    destination: zone.home
+#    name: Sean Tram Time to Home
+#    options:
+#      mode: transit
+#
+#  - platform: google_travel_time
+#    api_key: !secret google_travel_key
+#    origin: device_tracker.sophie
+#    destination: zone.home
+#    name: Sophie Tram Time to Home
+#    options:
+#      mode: transit
 
-  - platform: google_travel_time
-    api_key: !secret google_travel_key
-    origin: device_tracker.sophie
-    destination: zone.home
-    name: Sophie Tram Time to Home
-    options:
-      mode: transit
+### Commented after move to UI end
 
 #  - platform: google_travel_time
 #    api_key: !secret google_travel_key
