@@ -449,6 +449,39 @@
         value_template: >-
           {{ state_attr('binary_sensor.cooper_s_e_all4_check_control_messages', 'check_control_messages')=='Unable to charge'}}
 
+  - platform: template
+    sensors:
+      brake_fluid:
+        friendly_name: "Brake Fluid"
+        device_class: problem
+        value_template: >-
+          {{ state_attr('binary_sensor.cooper_s_e_all4_condition_based_services', 'brake fluid status')=='PENDING'}}
+
+  - platform: template
+    sensors:
+      oil_change:
+        friendly_name: "Oil Change"
+        device_class: problem
+        value_template: >-
+          {{ state_attr('binary_sensor.cooper_s_e_all4_condition_based_services', 'Oil status')=='PENDING'}}
+
+  - platform: template
+    sensors:
+      inspection_needed:
+        friendly_name: "Inspection Needed"
+        device_class: problem
+        value_template: >-
+          {{ state_attr('binary_sensor.cooper_s_e_all4_condition_based_services', 'Vehicle tuv status')=='PENDING'}}
+
+  - platform: template
+    sensors:
+      check_engine:
+        friendly_name: "Check Engine"
+        device_class: problem
+        value_template: >-
+          {{ state_attr('binary_sensor.cooper_s_e_all4_condition_based_services', 'Vehicle check status')=='PENDING'}}
+
+
   - platform: template 
     sensors:
       open_window_making_house_cold:

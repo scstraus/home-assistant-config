@@ -791,7 +791,10 @@ cards:
         - entity: binary_sensor.cooper_s_e_all4_charging_status
           name: Charging
         - entity: binary_sensor.cooper_s_e_all4_check_control_messages
-          name: Control Problem
+        - entity: binary_sensor.brake_fluid
+        - entity: binary_sensor.oil_change
+        - entity: binary_sensor.inspection_needed
+        - entity: binary_sensor.check_engine
         - entity: binary_sensor.cooper_s_e_all4_condition_based_services
           name: Condition Problem
         - entity: binary_sensor.cooper_s_e_all4_door_lock_state

@@ -978,7 +978,7 @@
     value_template: >
       {{ "Udoli" in states('device_tracker.alena_s_iphone') }} 
   action:
-    service: notify.mobile_app_sean_s_iphone_12
+    service: notify.mobile_app_alena_s_iphone
     data:
       title: "Getting Dark in Udoli"
       message: "The sun is setting. It will be dark soon. It's time to leave the udoli"
@@ -1002,7 +1002,7 @@
     value_template: >
       {{ "Udoli" in states('device_tracker.sophie') }} 
   action:
-    service: notify.mobile_app_alena_s_iphone
+    service: notify.mobile_app_sophies_iphone_se
     data:
       title: "Getting Dark in Udoli"
       message: "The sun is setting. It will be dark soon. It's time to leave the udoli"

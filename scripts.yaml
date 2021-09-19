@@ -1124,3 +1124,22 @@
 #                  type: tts
 #                message: "Attention! Sophie's window is open and it is raining outside! Please close it now!"
 #              service: notify.alexa_media_echo_flex_first_floor_bathroom
+
+  turn_up_the_volume_on_the_tv:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony
+          command: VolumeUp
+          device: "Sony TV"
+          num_repeats: 6
+
+
+  turn_down_the_volume_on_the_tv:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony
+          command: VolumeDown
+          device: "Sony TV"
+          num_repeats: 6

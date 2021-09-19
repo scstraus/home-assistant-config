@@ -253,3 +253,12 @@ sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_sourcenodeid:
 sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_sourcenodeid_2:
   ignored: true
   polling_intensity: 0
+sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_alarm_level:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.heiman_technology_co_ltd_smart_smoke_sensor_hs1sa_z_sensor:
+  ignored: true
+  polling_intensity: 0

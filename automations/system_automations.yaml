@@ -1,0 +1,451 @@
+- id: discworld_disk_1_problem
+  alias: discworld_disk_1_problem
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: template
+    value_template: "{{states('sensor.discworld_disk_1_status')!='normal'}}"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 1 appears to have a problem. It is reporting a status of {{states('sensor.discworld_disk_1_status')}} "
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_2_problem
+  alias: discworld_disk_2_problem
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: template
+    value_template: "{{states('sensor.discworld_disk_2_status')!='normal'}}"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 2 appears to have a problem. It is reporting a status of {{states('sensor.discworld_disk_2_status')}} "
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_3_problem
+  alias: discworld_disk_3_problem
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: template
+    value_template: "{{states('sensor.discworld_disk_3_status')!='normal'}}"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 3 appears to have a problem. It is reporting a status of {{states('sensor.discworld_disk_3_status')}} "
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_4_problem
+  alias: discworld_disk_4_problem
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: template
+    value_template: "{{states('sensor.discworld_disk_4_status')!='normal'}}"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 4 appears to have a problem. It is reporting a status of {{states('sensor.discworld_disk_4_status')}} "
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_4_problem
+  alias: discworld_disk_4_problem
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: template
+    value_template: "{{states('sensor.discworld_disk_4_status')!='normal'}}"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 4 appears to have a problem. It is reporting a status of {{states('sensor.discworld_disk_4_status')}} "
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_volume_1_problem
+  alias: discworld_volume_1_problem
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: template
+    value_template: "{{states('sensor.discworld_volume_1_status')!='normal'}}"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld Volume 1 appears to have a problem. It is reporting a status of {{states('sensor.discworld_volume_1_status')}} "
+        data:
+          push:
+            thread-id: "system"
+
+- id: narnia_ssd_raid_problem
+  alias: narnia_ssd_raid_problem
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: template
+    value_template: "{{states('sensor.narnia_ssd_raid_status')!='Healthy'}}"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Narnia SSD RAID appears to have a problem. It is reporting a status of {{states('sensor.narnia_ssd_raid_status')}} "
+        data:
+          push:
+            thread-id: "system"
+
+- id: narnia_hdd_raid_problem
+  alias: narnia_hdd_raid_problem
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: template
+    value_template: "{{states('sensor.narnia_hdd_raid_status')!='Healthy'}}"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Narnia HDD RAID appears to have a problem. It is reporting a status of {{states('sensor.narnia_hdd_raid_status')}} "
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_1_below_remaining_life
+  alias: discworld_disk_1_below_remaining_life
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: binary_sensor.discworld_disk_1_below_min_remaining_life
+    state: "on"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 1 appears to have a problem. It s below it's minimum remaining life"
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_2_below_remaining_life
+  alias: discworld_disk_2_below_remaining_life
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: binary_sensor.discworld_disk_2_below_min_remaining_life
+    state: "on"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 2 appears to have a problem. It s below it's minimum remaining life"
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_3_below_remaining_life
+  alias: discworld_disk_3_below_remaining_life
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: binary_sensor.discworld_disk_3_below_min_remaining_life
+    state: "on"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 3 appears to have a problem. It s below it's minimum remaining life"
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_4_below_remaining_life
+  alias: discworld_disk_4_below_remaining_life
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: binary_sensor.discworld_disk_4_below_min_remaining_life
+    state: "on"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 4 appears to have a problem. It s below it's minimum remaining life"
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_1_exceeded_max_bad_sectors
+  alias: discworld_disk_1_exceeded_max_bad_sectors
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: binary_sensor.discworld_disk_1_exceeded_max_bad_sectors
+    state: "on"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 1 appears to have a problem. It has exceeded it's maximum bad sectors"
+        data:
+          push:
+            thread-id: "system"
+
+
+- id: discworld_disk_2_exceeded_max_bad_sectors
+  alias: discworld_disk_2_exceeded_max_bad_sectors
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: binary_sensor.discworld_disk_2_exceeded_max_bad_sectors
+    state: "on"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 2 appears to have a problem. It has exceeded it's maximum bad sectors"
+        data:
+          push:
+            thread-id: "system"
+
+
+- id: discworld_disk_3_exceeded_max_bad_sectors
+  alias: discworld_disk_3_exceeded_max_bad_sectors
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: binary_sensor.discworld_disk_3_exceeded_max_bad_sectors
+    state: "on"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 3 appears to have a problem. It has exceeded it's maximum bad sectors"
+        data:
+          push:
+            thread-id: "system"
+
+
+- id: discworld_disk_4_exceeded_max_bad_sectors
+  alias: discworld_disk_4_exceeded_max_bad_sectors
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: binary_sensor.discworld_disk_4_exceeded_max_bad_sectors
+    state: "on"
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld disk 4 appears to have a problem. It has exceeded it's maximum bad sectors"
+        data:
+          push:
+            thread-id: "system"
+
+
+- id: discworld_disk_full
+  alias: discworld_disk_full
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: numeric_state
+    entity_id: "sensor.discworld_volume_1_volume_used"
+    above: 95
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Problem"
+        message: "Discworld Volume 1 appears to have a problem. It is below 5% free space"
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_temperature
+  alias: discworld_temperature
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: numeric_state
+    entity_id: "sensor.discworld_temperature"
+    above: 45
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Cooling Problem"
+        message: "Discworld appears to have a cooling problem problem. The current temperature is {{states('sensor.discworld_temperature')}} degrees celcius"
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_disk_temperature
+  alias: discworld_disk_temperature
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: numeric_state
+    entity_id: "sensor.discworld_volume_1_average_disk_temp"
+    above: 43
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Disk Cooling Problem"
+        message: "Discworld volume 1 appears to have a cooling problem problem. The current temperature is {{states('sensor.discworld_volume_1_average_disk_temp')}} degrees celcius"
+        data:
+          push:
+            thread-id: "system"
+
+- id: narnia_disk_full
+  alias: narnia_disk_full
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: numeric_state
+    entity_id: "sensor.disk_use_percent"
+    above: 90
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Narnia Disk Problem"
+        message: "Narnia SSD RAID appears to have a problem. It is below 10% free space"
+        data:
+          push:
+            thread-id: "system"
+
+- id: narnia_memory_full
+  alias: narnia_memory_full
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: numeric_state
+    entity_id: "sensor.memory_use_percent"
+    above: 97
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Narnia Memory Problem"
+        message: "Narnia memory appears to have a problem. It is below 3% free space"
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_memory_full
+  alias: discworld_memory_full
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: numeric_state
+    entity_id: "sensor.discworld_memory_usage_real"
+    above: 97
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld Memory Problem"
+        message: "Discworld memory appears to have a problem. It is below 3% free space"
+        data:
+          push:
+            thread-id: "system"
+
+- id: discworld_cpu_overutilized
+  alias: discworld_cpu_overutilized
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: numeric_state
+    entity_id: "sensor.discworld_cpu_load_total"
+    above: 97
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Discworld CPU Problem"
+        message: "Discworld appears to have a CPU problem. It is below 3% free CPU"
+        data:
+          push:
+            thread-id: "system"
+
+- id: narnia_cpu_overutilized
+  alias: narnia_cpu_overutilized
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: numeric_state
+    entity_id: "sensor.processor_use"
+    above: 97
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Narnia CPU Problem"
+        message: "Narnia appears to have a CPU problem. It is below 3% free CPU"
+        data:
+          push:
+            thread-id: "system"
