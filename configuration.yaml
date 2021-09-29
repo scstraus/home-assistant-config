@@ -1019,15 +1019,46 @@ climate:
 #    - climate.sophie_s_room_ac
 
 rest:
-  - scan_interval: 3600
-    resource: https://covid-19-apis.herokuapp.com/update/country/24
+#  - scan_interval: 3600
+#    resource: https://covid-19-apis.herokuapp.com/update/country/25
+#    timeout: 60
+#    sensor:
+#      - name: "Coronavirus Active Cases CZ"
+#        value_template: '{{ value_json.Active_Cases|replace(",","")| int }}'
+##        unit_of_measurement: "people"
+#      - name: "Coronavirus New Cases CZ"
+#        value_template: '{{ value_json.New_Cases|replace(",","")|int }}'
+
+
+  - scan_interval: 10800
+    resource: https://covid-19-apis.herokuapp.com/allUpdate
     timeout: 60
     sensor:
+      - name: covid_world
+        json_attributes_path: '$.[?(@["Country,_Other"]=="Czechia")]'
+        json_attributes:
+          - Active_Cases
+          - New_Cases
+#          - Total_Cases
+#          - Total_Recovered
+#          - Total_Deaths
+        value_template: 'Covid World'
       - name: "Coronavirus Active Cases CZ"
-        value_template: '{{ value_json.Active_Cases|replace(",","")| int }}'
-#        unit_of_measurement: "people"
+        value_template: '{{ states.sensor.covid_world.attributes["Active_Cases"] | replace(",","")| int }}'
+#        unit_of_measurement: '#'
       - name: "Coronavirus New Cases CZ"
-        value_template: '{{ value_json.New_Cases|replace(",","")|int }}'
+        value_template: '{{ states.sensor.covid_world.attributes["New_Cases"] | replace(",","")| int }}'
+#        unit_of_measurement: '#'
+#      - name: covid_world_total_cases
+#        value_template: '{{ states.sensor.covid_world.attributes["Total_Cases"] | replace(",","")| int | round(0) }}'
+#        unit_of_measurement: '#'
+#      - name: covid_world_total_recovered
+#        value_template: '{{ states.sensor.covid_world.attributes["Total_Recovered"] | replace(",","")| int | round(0) }}'
+#        unit_of_measurement: '#'
+#      - name: covid_world_total_deaths
+#        value_template: '{{ states.sensor.covid_world.attributes["Total_Deaths"] | replace(",","")| int | round(0) }}'
+#        unit_of_measurement: '#'
+
 #        unit_of_measurement: "people"
 
         # json_attributes:

@@ -34,7 +34,7 @@ class PlaylistInRoom(hass.Hass):
   AIRPLAY_ENTITIES = ["media_player.forked_daapd_output_apple_tv", "media_player.forked_daapd_output_back_yard", "media_player.forked_daapd_output_bathroom_1st_floor", "media_player.forked_daapd_output_gym", "media_player.forked_daapd_output_kitchen", "media_player.forked_daapd_output_laundry_room", "media_player.forked_daapd_output_library", "media_player.forked_daapd_output_living_room", "media_player.forked_daapd_output_master_bath", "media_player.forked_daapd_output_office",
   "media_player.forked_daapd_output_sebastian_s_room", "media_player.forked_daapd_output_sophie_s_room"]
 
-  AIRPLAY_ENTITY_VOLUMES = {"media_player.forked_daapd_output_apple_tv": 0.5, "media_player.forked_daapd_output_back_yard": 0.5, "media_player.forked_daapd_output_bathroom_1st_floor": 0.5, "media_player.forked_daapd_output_gym": 0.5, "media_player.forked_daapd_output_kitchen": 0.35, "media_player.forked_daapd_output_laundry_room": 0.5, "media_player.forked_daapd_output_library": 0.5, "media_player.forked_daapd_output_living_room": 0.25, "media_player.forked_daapd_output_master_bath": 0.7, "media_player.forked_daapd_output_office": 0.5,
+  AIRPLAY_ENTITY_VOLUMES = {"media_player.forked_daapd_output_apple_tv": 0.5, "media_player.forked_daapd_output_back_yard": 0.5, "media_player.forked_daapd_output_bathroom_1st_floor": 0.5, "media_player.forked_daapd_output_gym": 0.5, "media_player.forked_daapd_output_kitchen": 0.37, "media_player.forked_daapd_output_laundry_room": 0.5, "media_player.forked_daapd_output_library": 0.5, "media_player.forked_daapd_output_living_room": 0.29, "media_player.forked_daapd_output_master_bath": 0.7, "media_player.forked_daapd_output_office": 0.5,
   "media_player.forked_daapd_output_sebastian_s_room": 0.5, "media_player.forked_daapd_output_sophie_s_room": 0.5}
 
 # Element 0 in each column is the alexa or service call, next elements are the speakers that it needs to activate to play music
@@ -49,6 +49,9 @@ class PlaylistInRoom(hass.Hass):
   ["media_player.alexa_echo_dot_kitchen_bar","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"],
   ["media_player.echo_flex_first_floor_bathroom","media_player.forked_daapd_output_bathroom_1st_floor"],
   ["media_player.alexa_library","media_player.forked_daapd_output_library"]]
+
+  PLAYLIST_EXCEPTION_VOLUMES = {"Best Jazz": 1.13, "Classical": 1.3, "Classical Radio": 1.3, "radio kultura": 1.3, "Jazz24 Radio": 1.22}
+
 #########################################################################################################
 #                            THESE ARE THE INITIALIZE AND LAUNCH FUNCTIONS                              #
 #########################################################################################################
@@ -68,6 +71,7 @@ class PlaylistInRoom(hass.Hass):
 # start the playlist launch sequence when we get the event ALEXA_LAUNCH_ITUNES_PLAYLIST
   def alexa_launch_itunes_playlist(self, event, data, kwargs):
     self.ALEXA_ENTITY=data["alexa_entity"] 
+    self.PLAYLIST_ORIG=data["playlist"]
     self.PLAYLIST=data["playlist"]
     self.PLAYLIST+=" (playlist)"
     self.log("********************************************************************")
@@ -80,11 +84,9 @@ class PlaylistInRoom(hass.Hass):
     self.TIME_TO_PLAY_PLAYLIST = 0
     self.ITUNES_VOLUME_CHANGE_HAPPENED = 0
     self.ONLY_DOING_SPEAKERS = 0
-
     #Setting iTunes volume
-    self.log("Setting iTunes volume to 50%")
-    self.call_service("media_player/volume_set", entity_id=self.ITUNES_ENTITY, volume_level=self.ITUNES_VOLUME) 
-    #Turning on speakers
+    self.log("Setting iTunes volume to %s", self.ITUNES_VOLUME)
+    self.call_service("media_player/volume_set", entity_id = self.ITUNES_ENTITY, volume_level = self.ITUNES_VOLUME)
     for count in range(len(self.ALEXA_TO_AIRPLAY_MAPPING)):
       if self.ALEXA_TO_AIRPLAY_MAPPING[count][0]==self.ALEXA_ENTITY: # we found the right row for alexa
         self.log("Checking speakers to turn on, #%s: %s", count , self.ALEXA_TO_AIRPLAY_MAPPING[count][0])
@@ -268,9 +270,17 @@ class PlaylistInRoom(hass.Hass):
     for count in range(len(self.ALEXA_TO_AIRPLAY_MAPPING)):
       if self.ALEXA_TO_AIRPLAY_MAPPING[count][0]==self.ALEXA_ENTITY:
         self.log("Working on speakers volumes #%s: %s", count , self.ALEXA_TO_AIRPLAY_MAPPING[count][0])
+        self.log("Volume multiplier for playlist %s is %s ",self.PLAYLIST_ORIG, self.PLAYLIST_EXCEPTION_VOLUMES.get(self.PLAYLIST_ORIG, 1))
+        volume_multiplier = self.PLAYLIST_EXCEPTION_VOLUMES.get(self.PLAYLIST_ORIG, 1)
         for count2 in range(1,len(self.ALEXA_TO_AIRPLAY_MAPPING[count])):
-          self.log("Setting #%s/%s (%s) to Volume: %s",count2,len(self.ALEXA_TO_AIRPLAY_MAPPING[count])-1, self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], self.AIRPLAY_ENTITY_VOLUMES.get(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2]))
-          self.call_service("media_player/volume_set", entity_id = self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], volume_level=self.AIRPLAY_ENTITY_VOLUMES.get(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2]))
+          calc_volume_level = (volume_multiplier * (self.AIRPLAY_ENTITY_VOLUMES.get(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2])))
+          if calc_volume_level > 1: 
+            calc_volume_level = 1
+          self.log("Setting #%s/%s (%s) to Volume: %s",count2,len(self.ALEXA_TO_AIRPLAY_MAPPING[count])-1, self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], calc_volume_level)
+          self.call_service("media_player/volume_set", entity_id = self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], volume_level = calc_volume_level)
+
+#          self.log("Setting #%s/%s (%s) to Volume: %s",count2,len(self.ALEXA_TO_AIRPLAY_MAPPING[count])-1, self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], self.AIRPLAY_ENTITY_VOLUMES.get(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2]))
+#          self.call_service("media_player/volume_set", entity_id = self.ALEXA_TO_AIRPLAY_MAPPING[count][count2], volume_level=self.AIRPLAY_ENTITY_VOLUMES.get(self.ALEXA_TO_AIRPLAY_MAPPING[count][count2]))
 
   def play_playlist(self):
     self.log("Setting iTunes to play %s playlist now", self.PLAYLIST)

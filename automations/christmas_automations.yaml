@@ -64,7 +64,7 @@
           - service: remote.turn_on
             entity_id: remote.harmony
             data:
-               activity: "Chrome Cast"
+              activity: "Chrome Cast"
           - service: remote.send_command
             data:
               entity_id: remote.harmony
@@ -196,7 +196,7 @@
           - service: remote.turn_on
             entity_id: remote.harmony
             data:
-               activity: "Chrome Cast"
+              activity: "Chrome Cast"
           - service: remote.send_command
             data:
               entity_id: remote.harmony

@@ -326,12 +326,12 @@
   condition:
     condition: numeric_state
     entity_id: "sensor.discworld_temperature"
-    above: 45
+    above: 60
   action:
     - service: notify.mobile_app_sean_s_iphone_12
       data_template:
         title: "Discworld Cooling Problem"
-        message: "Discworld appears to have a cooling problem problem. The current temperature is {{states('sensor.discworld_temperature')}} degrees celcius"
+        message: "Discworld appears to have a cooling problem. The current temperature is {{states('sensor.discworld_temperature')}} degrees celcius"
         data:
           push:
             thread-id: "system"
@@ -350,7 +350,7 @@
     - service: notify.mobile_app_sean_s_iphone_12
       data_template:
         title: "Discworld Disk Cooling Problem"
-        message: "Discworld volume 1 appears to have a cooling problem problem. The current temperature is {{states('sensor.discworld_volume_1_average_disk_temp')}} degrees celcius"
+        message: "Discworld volume 1 appears to have a cooling problem. The current temperature is {{states('sensor.discworld_volume_1_average_disk_temp')}} degrees celcius"
         data:
           push:
             thread-id: "system"
@@ -446,6 +446,25 @@
       data_template:
         title: "Narnia CPU Problem"
         message: "Narnia appears to have a CPU problem. It is below 3% free CPU"
+        data:
+          push:
+            thread-id: "system"
+
+- id: server_room_temperature
+  alias: server_room_temperature
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    condition: numeric_state
+    entity_id: sensor.server_room_temperature
+    above: 32
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "Server Room"
+        message: "The server room appears to have a cooling problem. The current temperature is {{states('sensor.server_room_temperature')}} degrees celcius"
         data:
           push:
             thread-id: "system"

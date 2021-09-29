@@ -424,15 +424,43 @@
 
   skip_this_song:
     sequence:
-      - service: media_player.media_next_track
-        data: 
-          entity_id: media_player.forked_daapd_server
+      - choose:
+          - conditions:
+            - condition: state
+              entity_id: media_player.forked_daapd_server
+              state: 'playing'
+            sequence:
+              service: media_player.media_next_track
+              data:
+                entity_id: media_player.forked_daapd_server
 
   play_last_song:
     sequence:
-      - service: media_player.media_previous_track
-        data: 
-          entity_id: media_player.forked_daapd_server
+      - choose:
+          - conditions:
+            - condition: state
+              entity_id: media_player.forked_daapd_server
+              state: 'playing'
+            sequence:
+              - service: media_player.media_previous_track
+                data:
+                  entity_id: media_player.forked_daapd_server
+              - service: media_player.media_previous_track
+                data:
+                  entity_id: media_player.forked_daapd_server
+
+
+  rewind_the_song:
+    sequence:
+      - choose:
+          - conditions:
+             - condition: state
+               entity_id: media_player.forked_daapd_server
+               state: 'playing'
+            sequence:
+              - service: media_player.media_previous_track
+                data:
+                  entity_id: media_player.forked_daapd_server
 
   where_is_sean:
     sequence:
@@ -673,7 +701,7 @@
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "Radio Kultura RU"
+          playlist: "radio kultura"
 
   play_classical_radio:
     sequence:
@@ -682,7 +710,7 @@
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "Radio Swiss Classic"
+          playlist: "Classical Radio"
 
   play_jazz_radio:
     sequence:
@@ -691,7 +719,7 @@
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "Jazz24"
+          playlist: "Jazz24 Radio"
 
   play_ambient_radio:
     sequence:
@@ -709,7 +737,28 @@
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "{{ states.sensor.last_alexa.state }}"
-          playlist: "Europa2"
+          playlist: "radio2"
+
+
+
+  test_speaker_volumes:
+    sequence:
+      - service: media_player.volume_set
+        data: 
+          entity_id: media_player.forked_daapd_server
+          volume_level: 0.5
+      - service: media_player.volume_set
+        data: 
+          entity_id: media_player.forked_daapd_output_living_room
+          volume_level: 0.25
+      - service: media_player.volume_set
+        data: 
+          entity_id: media_player.forked_daapd_output_kitchen
+          volume_level: 0.15
+      - service: media_player.volume_set
+        data: 
+          entity_id: media_player.forked_daapd_server
+          volume_level: 0.90
 
 #
 #  play_good_music:

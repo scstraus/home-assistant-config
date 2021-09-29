@@ -16,7 +16,7 @@ cards:
     title: Master Bedroom Air Purifier
     elements:
       - type: state-label
-        entity: sensor.master_bedroom_purifier_filter_hours_used
+        entity: sensor.master_bedroom_air_purifier_filter_hours_used
         prefix: 'Used: '
         style:
           background-color: 'rgba(0, 0, 0,.0)'
@@ -42,7 +42,7 @@ cards:
         tap_action: none
       - type: custom:circle-sensor-card
         units: '%'
-        entity: sensor.master_bedroom_purifier_humidity
+        entity: sensor.master_bedroom_air_purifier_humidity
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -68,7 +68,7 @@ cards:
         tap_action: none
       - type: custom:circle-sensor-card
         units: °C
-        entity: sensor.master_bedroom_purifier_temperature
+        entity: sensor.master_bedroom_air_purifier_temperature
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -93,7 +93,7 @@ cards:
         tap_action: none
       - type: custom:circle-sensor-card
         units: ''
-        entity: sensor.master_bedroom_purifier_filter_life_remaining
+        entity: sensor.master_bedroom_air_purifier_filter_life_remaining
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -109,7 +109,7 @@ cards:
           width: 17%
       - type: custom:circle-sensor-card
         units: p
-        entity: sensor.master_bedroom_purifier_aqi
+        entity: sensor.master_bedroom_air_purifier_aqi
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -134,7 +134,7 @@ cards:
           top: 76%
       - type: custom:circle-sensor-card
         units: ''
-        entity: sensor.master_bedroom_purifier_fan_speed
+        entity: sensor.master_bedroom_air_purifier_fan_speed
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -149,7 +149,7 @@ cards:
           top: 85%
           width: 17%  
       - type: state-label
-        entity: sensor.master_bedroom_purifier_fan_mode
+        entity: sensor.master_bedroom_air_purifier_fan_mode
         max: 2000
         min: 0
         prefix: 'Mode: '
@@ -310,7 +310,7 @@ cards:
     title: Sebastian's Air Purifier
     elements: 
       - type: state-label
-        entity: sensor.sebastians_room_purifier_filter_hours_used
+        entity: sensor.sebastians_room_air_purifier_filter_hours_used
         prefix: 'Used: '
         style:
           background-color: 'rgba(0, 0, 0,.0)'
@@ -336,7 +336,7 @@ cards:
         tap_action: none
       - type: custom:circle-sensor-card
         units: '%'
-        entity: sensor.sebastians_room_purifier_humidity
+        entity: sensor.sebastians_room_air_purifier_humidity
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -362,7 +362,7 @@ cards:
         tap_action: none
       - type: custom:circle-sensor-card
         units: °C
-        entity: sensor.sebastians_room_purifier_temperature
+        entity: sensor.sebastians_room_air_purifier_temperature
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -387,7 +387,7 @@ cards:
         tap_action: none
       - type: custom:circle-sensor-card
         units: ''
-        entity: sensor.sebastians_room_purifier_filter_life_remaining
+        entity: sensor.sebastians_room_air_purifier_filter_life_remaining
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -403,7 +403,7 @@ cards:
           width: 17%
       - type: custom:circle-sensor-card
         units: p
-        entity: sensor.sebastians_room_purifier_aqi
+        entity: sensor.sebastians_room_air_purifier_aqi
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -428,7 +428,7 @@ cards:
           top: 76%
       - type: custom:circle-sensor-card
         units: ''
-        entity: sensor.sebastians_room_purifier_fan_speed
+        entity: sensor.sebastians_room_air_purifier_fan_speed
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -443,7 +443,7 @@ cards:
           top: 85%
           width: 17%  
       - type: state-label
-        entity: sensor.sebastians_room_purifier_fan_mode
+        entity: sensor.sebastians_room_air_purifier_fan_mode
         max: 2000
         min: 0
         prefix: 'Mode: '
@@ -605,7 +605,7 @@ cards:
     title: Sophie's Air Purifier
     elements: 
       - type: state-label
-        entity: sensor.sophies_room_purifier_filter_hours_used
+        entity: sensor.sophies_room_air_purifier_filter_hours_used
         prefix: 'Used: '
         style:
           background-color: 'rgba(0, 0, 0,.0)'
@@ -631,7 +631,7 @@ cards:
         tap_action: none
       - type: custom:circle-sensor-card
         units: '%'
-        entity: sensor.sophies_room_purifier_humidity
+        entity: sensor.sophies_room_air_purifier_humidity
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -657,7 +657,7 @@ cards:
         tap_action: none
       - type: custom:circle-sensor-card
         units: °C
-        entity: sensor.sophies_room_purifier_temperature
+        entity: sensor.sophies_room_air_purifier_temperature
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -682,7 +682,7 @@ cards:
         tap_action: none
       - type: custom:circle-sensor-card
         units: ''
-        entity: sensor.sophies_room_purifier_filter_life_remaining
+        entity: sensor.sophies_room_air_purifier_filter_life_remaining
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -698,7 +698,7 @@ cards:
           width: 17%
       - type: custom:circle-sensor-card
         units: p
-        entity: sensor.sophies_room_purifier_aqi
+        entity: sensor.sophies_room_air_purifier_aqi
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -723,7 +723,7 @@ cards:
           top: 76%
       - type: custom:circle-sensor-card
         units: ''
-        entity: sensor.sophies_room_purifier_fan_speed
+        entity: sensor.sophies_room_air_purifier_fan_speed
         fill: 'rgba(0,0,0,0.3)'
         font_style:
           color: white
@@ -738,7 +738,7 @@ cards:
           top: 85%
           width: 17%  
       - type: state-label
-        entity: sensor.sophies_room_purifier_fan_mode
+        entity: sensor.sophies_room_air_purifier_fan_mode
         max: 2000
         min: 0
         prefix: 'Mode: '
