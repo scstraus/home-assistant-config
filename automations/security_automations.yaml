@@ -1286,3 +1286,100 @@
 #                clickAction: 8
 #    - delay:
 #        minutes: 10
+
+- id: window_or_door_opened_while_alarm_armed
+  alias: window_or_door_opened_while_alarm_armed
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_door_zone_14
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_door_zone_1
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.laundry_room_window_zone_13
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.windows_1st_floor_zone_2
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.back_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.guest_bedroom_window_1
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.sebastians_room_left_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.sophies_room_ceiling_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.ecolink_closet_left_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.ecolink_garage_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.basement_sliding_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.master_bedroom_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.play_room_terrace_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.office_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.library_door
+      to: 'on'
+#    - platform: state
+#      entity_id: binary_sensor.closet_window_1
+#      to: 'on'
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      state: 'armed_away'
+      for:
+        minutes: 1
+    - condition: state
+      entity_id: sensor.alarm_state_3_motion_sensors
+      state: 'triggered'  
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data_template:
+        title: "House Watch"
+        message: "A door or window was opened while the alarm was armed!"
+        data:
+          push:
+            sound:
+              name: "Update.caf"
+              critical: 1
+              volume: 1.0
+            thread-id: "security"
+          attachment:
+            url: !secret frigate_image_url
+            content-type: jpg
+            hide-thumbnail: false
+          clickAction: "/lovelace/8"
+    - service: notify.mobile_app_alena_s_iphone
+      data_template:
+        title: "House Watch"
+        message: "A door or window was opened while the alarm was armed!"
+        data:
+          push:
+            sound:
+              name: "Update.caf"
+              critical: 1
+              volume: 1.0
+            thread-id: "security"
+          attachment:
+            url: !secret frigate_image_url
+            content-type: jpg
+            hide-thumbnail: false
+          clickAction: "/lovelace/8"

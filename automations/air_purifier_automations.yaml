@@ -162,10 +162,10 @@
         entity_id: fan.sophies_room_air_purifier
     - delay:
         seconds: 15
-    - service: fan.set_speed
+    - service: fan.set_preset_mode
       data:
         entity_id: fan.sophies_room_air_purifier
-        speed: Silent
+        preset_mode: Silent
     
 
 - id: turn_on_sophies_air_purifier_from_input_select_after unavailable
@@ -190,10 +190,10 @@
         entity_id: fan.sophies_room_air_purifier
     - delay:
         seconds: 15
-    - service: fan.set_speed
+    - service: fan.set_preset_mode
       data:
         entity_id: fan.sophies_room_air_purifier
-        speed: Silent
+        preset_mode: Silent
 
 - id: turn_off_sophies_air_purifier_from_input_select
   alias: "Turn off Sophie's Air Purifier from Input Select"
@@ -423,10 +423,10 @@
         entity_id: fan.sebastians_room_air_purifier
     - delay:
         seconds: 15
-    - service: fan.set_speed
+    - service: fan.set_preset_mode
       data:
         entity_id: fan.sebastians_room_air_purifier
-        speed: Silent
+        preset_mode: Silent
     
 
 - id: turn_on_sebastians_air_purifier_from_input_select_after unavailable
@@ -451,10 +451,10 @@
         entity_id: fan.sebastians_room_air_purifier
     - delay:
         seconds: 15
-    - service: fan.set_speed
+    - service: fan.set_preset_mode
       data:
         entity_id: fan.sebastians_room_air_purifier
-        speed: Silent
+        preset_mode: Silent
 
 - id: turn_off_sebastians_air_purifier_from_input_select
   alias: "Turn off sebastian's Air Purifier from Input Select"
@@ -552,10 +552,10 @@
         entity_id: fan.master_bedroom_air_purifier
     - delay:
         seconds: 15
-    - service: fan.set_speed
+    - service: fan.set_preset_mode
       data:
         entity_id: fan.master_bedroom_air_purifier
-        speed: Silent
+        preset_mode: Silent
 
 
 - id: turn_on_master_bedroom_air_purifier_if_air_is_bad_at_night_2
@@ -574,10 +574,10 @@
         entity_id: fan.master_bedroom_air_purifier
     - delay:
         seconds: 15
-    - service: fan.set_speed
+    - service: fan.set_preset_mode
       data:
         entity_id: fan.master_bedroom_air_purifier
-        speed: Silent
+        preset_mode: Silent
 
 - id: turn_off_master_bedroom_air_purifier_in_the_morning_or_aqi
   alias: "Turn off Master Bedroom Air Purifier in the morning or from AQI"
@@ -616,7 +616,7 @@
         entity_id: fan.master_bedroom_air_purifier
     - delay:
         seconds: 15
-    - service: fan.set_speed
+    - service: fan.set_preset_mode
       data:
         entity_id: fan.master_bedroom_air_purifier
-        speed: Silent
+        preset_mode: Silent

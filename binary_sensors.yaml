@@ -670,3 +670,112 @@
         device_class: problem
         value_template: >- 
           {{ (states.sensor.smartweatherudp_rain_rate|float>0) and (is_state('binary_sensor.sophies_room_ceiling_window','on')) }}
+
+#
+#  - platform: template
+#    sensors:
+#      master_bedroom_air_purifier_mode_auto:
+#        friendly_name: "Purifier Auto mode"
+#        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Auto') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+#      master_bedroom_air_purifier_mode_silent:
+#        friendly_name: "Purifier Silent mode"
+#        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Silent') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+#      master_bedroom_air_purifier_mode_favorite:
+#        friendly_name: "Purifier Favorite mode"
+#        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Favorite') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+#      master_bedroom_air_purifier_mode_fan:
+#        friendly_name: "Purifier Fan mode"
+#        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Fan') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+#      master_bedroom_air_purifier_mode_fan_1:
+#        friendly_name: "Purifier Fan mode 1"
+#        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Fan') and is_state('number.master_bedroom_air_purifier_fan_level', '1') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+#      master_bedroom_air_purifier_mode_fan_2:
+#        friendly_name: "Purifier Fan mode 2"
+#        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Fan') and is_state('number.master_bedroom_air_purifier_fan_level', '2') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+#      master_bedroom_air_purifier_mode_fan_3:
+#        friendly_name: "Purifier Fan mode 3"
+#        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Fan') and is_state('number.master_bedroom_air_purifier_fan_level', '3') and is_state('fan.master_bedroom_air_purifier', 'on') }}
+
+  - platform: template
+    sensors:
+      master_bedroom_air_purifier_mode_off:
+        friendly_name: "Living Room Off"
+        value_template: "{{ is_state('fan.master_bedroom_air_purifier', 'off') }}"
+      master_bedroom_air_purifier_mode_auto:
+        friendly_name: "Living Room Auto"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Auto') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+      master_bedroom_air_purifier_mode_silent:
+        friendly_name: "Living Room Silent"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Silent') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+      master_bedroom_air_purifier_mode_favorite:
+        friendly_name: "Living Room Favorite"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Favorite') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+      master_bedroom_air_purifier_mode_fan:
+        friendly_name: "Living Room Fan mode"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Favorite') and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+      master_bedroom_air_purifier_mode_fan_1:
+        friendly_name: "Living Room Fan mode 1"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Favorite') and ((states('number.master_bedroom_air_purifier_favorite_level')|float) < 5) and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+      master_bedroom_air_purifier_mode_fan_2:
+        friendly_name: "Living Room Fan mode 2"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Favorite') and ((states('number.master_bedroom_air_purifier_favorite_level')|float > 4) and (states('number.master_bedroom_air_purifier_favorite_level')|float < 10)) and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+      master_bedroom_air_purifier_mode_fan_3:
+        friendly_name: "Living Room Fan mode 3"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'preset_mode', 'Favorite') and (states('number.master_bedroom_air_purifier_favorite_level')|float > 9) and is_state('fan.master_bedroom_air_purifier', 'on') }}"
+
+
+  - platform: template
+    sensors:
+      sebastians_room_air_purifier_mode_off:
+        friendly_name: "Living Room Off"
+        value_template: "{{ is_state('fan.sebastians_room_air_purifier', 'off') }}"
+      sebastians_room_air_purifier_mode_auto:
+        friendly_name: "Living Room Auto"
+        value_template: "{{ is_state_attr('fan.sebastians_room_air_purifier', 'preset_mode', 'Auto') and is_state('fan.sebastians_room_air_purifier', 'on') }}"
+      sebastians_room_air_purifier_mode_silent:
+        friendly_name: "Living Room Silent"
+        value_template: "{{ is_state_attr('fan.sebastians_room_air_purifier', 'preset_mode', 'Silent') and is_state('fan.sebastians_room_air_purifier', 'on') }}"
+      sebastians_room_air_purifier_mode_favorite:
+        friendly_name: "Living Room Favorite"
+        value_template: "{{ is_state_attr('fan.sebastians_room_air_purifier', 'preset_mode', 'Favorite') and is_state('fan.sebastians_room_air_purifier', 'on') }}"
+      sebastians_room_air_purifier_mode_fan:
+        friendly_name: "Living Room Fan mode"
+        value_template: "{{ is_state_attr('fan.sebastians_room_air_purifier', 'preset_mode', 'Favorite') and is_state('fan.sebastians_room_air_purifier', 'on') }}"
+      sebastians_room_air_purifier_mode_fan_1:
+        friendly_name: "Living Room Fan mode 1"
+        value_template: "{{ is_state_attr('fan.sebastians_room_air_purifier', 'preset_mode', 'Favorite') and ((states('number.sebastians_room_air_purifier_favorite_level')|float) < 5) and is_state('fan.sebastians_room_air_purifier', 'on') }}"
+      sebastians_room_air_purifier_mode_fan_2:
+        friendly_name: "Living Room Fan mode 2"
+        value_template: "{{ is_state_attr('fan.sebastians_room_air_purifier', 'preset_mode', 'Favorite') and ((states('number.sebastians_room_air_purifier_favorite_level')|float > 4) and (states('number.sebastians_room_air_purifier_favorite_level')|float < 10)) and is_state('fan.sebastians_room_air_purifier', 'on') }}"
+      sebastians_room_air_purifier_mode_fan_3:
+        friendly_name: "Living Room Fan mode 3"
+        value_template: "{{ is_state_attr('fan.sebastians_room_air_purifier', 'preset_mode', 'Favorite') and (states('number.sebastians_room_air_purifier_favorite_level')|float > 9) and is_state('fan.sebastians_room_air_purifier', 'on') }}"
+
+
+
+  - platform: template
+    sensors:
+      sophies_room_air_purifier_mode_off:
+        friendly_name: "Living Room Off"
+        value_template: "{{ is_state('fan.sophies_room_air_purifier', 'off') }}"
+      sophies_room_air_purifier_mode_auto:
+        friendly_name: "Living Room Auto"
+        value_template: "{{ is_state_attr('fan.sophies_room_air_purifier', 'preset_mode', 'Auto') and is_state('fan.sophies_room_air_purifier', 'on') }}"
+      sophies_room_air_purifier_mode_silent:
+        friendly_name: "Living Room Silent"
+        value_template: "{{ is_state_attr('fan.sophies_room_air_purifier', 'preset_mode', 'Silent') and is_state('fan.sophies_room_air_purifier', 'on') }}"
+      sophies_room_air_purifier_mode_favorite:
+        friendly_name: "Living Room Favorite"
+        value_template: "{{ is_state_attr('fan.sophies_room_air_purifier', 'preset_mode', 'Favorite') and is_state('fan.sophies_room_air_purifier', 'on') }}"
+      sophies_room_air_purifier_mode_fan:
+        friendly_name: "Living Room Fan mode"
+        value_template: "{{ is_state_attr('fan.sophies_room_air_purifier', 'preset_mode', 'Favorite') and is_state('fan.sophies_room_air_purifier', 'on') }}"
+      sophies_room_air_purifier_mode_fan_1:
+        friendly_name: "Living Room Fan mode 1"
+        value_template: "{{ is_state_attr('fan.sophies_room_air_purifier', 'preset_mode', 'Favorite') and ((states('number.sophies_room_air_purifier_favorite_level')|float) < 5) and is_state('fan.sophies_room_air_purifier', 'on') }}"
+      sophies_room_air_purifier_mode_fan_2:
+        friendly_name: "Living Room Fan mode 2"
+        value_template: "{{ is_state_attr('fan.sophies_room_air_purifier', 'preset_mode', 'Favorite') and ((states('number.sophies_room_air_purifier_favorite_level')|float > 4) and (states('number.sophies_room_air_purifier_favorite_level')|float < 10)) and is_state('fan.sophies_room_air_purifier', 'on') }}"
+      sophies_room_air_purifier_mode_fan_3:
+        friendly_name: "Living Room Fan mode 3"
+        value_template: "{{ is_state_attr('fan.sophies_room_air_purifier', 'preset_mode', 'Favorite') and (states('number.sophies_room_air_purifier_favorite_level')|float > 9) and is_state('fan.sophies_room_air_purifier', 'on') }}"

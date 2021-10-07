@@ -226,8 +226,46 @@ logger:
 
 
 
-#switch:
-#
+switch:
+
+  - platform: template
+    switches:
+      master_bedroom_air_purifier_led:
+        friendly_name: "Display"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'led', true) }}"
+        turn_on:
+          service: xiaomi_miio.fan_set_led_on
+          data:
+            entity_id: fan.master_bedroom_air_purifier
+        turn_off:
+          service: xiaomi_miio.fan_set_led_off
+          data:
+            entity_id: fan.master_bedroom_air_purifier
+        icon_template: mdi:lightbulb-outline
+      master_bedroom_air_purifier_child_lock:
+        friendly_name: "Child lock"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'child_lock', true) }}"
+        turn_on:
+          service: xiaomi_miio.fan_set_child_lock_on
+          data:
+            entity_id: fan.master_bedroom_air_purifier
+        turn_off:
+          service: xiaomi_miio.fan_set_child_lock_off
+          data:
+            entity_id: fan.master_bedroom_air_purifier
+        icon_template: "mdi:lock-outline"
+      master_bedroom_air_purifier_buzzer:
+        friendly_name: "Buzzer"
+        value_template: "{{ is_state_attr('fan.master_bedroom_air_purifier', 'buzzer', true) }}"
+        turn_on:
+          service: xiaomi_miio.fan_set_buzzer_on
+          data:
+            entity_id: fan.master_bedroom_air_purifier
+        turn_off:
+          service: xiaomi_miio.fan_set_buzzer_off
+          data:
+            entity_id: fan.master_bedroom_air_purifier
+        icon_template: "mdi:volume-high"
 
 
 #  - platform: command_line
@@ -453,6 +491,9 @@ input_boolean:
   warn_door_open_dishwasher_running:
     name: "Warn door open dishwasher running"
     icon: mdi:dishwasher-alert
+  master_bedroom_air_purifier_attributes:
+    name: Attributes
+    icon: mdi:pencil
 #  auto_curtain_open_state:
 #    name: "Automatic curtain opener state"
     #on=open, off=closed
@@ -646,6 +687,38 @@ input_select:
       - Good
       - Bad
 
+
+  master_bedroom_air_purifier_mode:
+    name: Mode
+    options:
+      - Auto
+      - Silent
+      - Favorite
+      - Fan
+    initial: Auto
+    icon: mdi:animation-outline
+  lmaster_bedroom_air_purifier_coverage:
+    name: Coverage
+    options:
+      - 2-4 m²
+      - 5-9 m²
+      - 7-12 m²
+      - 12-22 m²
+      - 14-24 m²
+      - 14-25 m²
+      - 16-27 m²
+      - 17-30 m²
+      - 18-32 m²
+      - 19-33 m²
+      - 20-34 m²
+      - 22-38 m²
+      - 23-40 m²
+      - 26-45 m²
+      - 28-49 m²
+    initial: 28-49 m²
+    icon: mdi:texture-box
+
+
 proximity:
   all_home: 
     devices:
@@ -670,8 +743,6 @@ proximity:
       - device_tracker.sophie
     tolerance: 50
     unit_of_measurement: km    
-    
-
 
 life360:
   accounts:
@@ -748,6 +819,7 @@ alarm_control_panel:
 #    code_disarm_required: true
 
 input_number:
+
   living_room_last_temp:
     name: Last Temp - Living Room
     min: 5.0
@@ -759,6 +831,22 @@ input_number:
     min: 0
     max: 100
     step: 1
+
+#  master_bedroom_air_purifier_favorite_level:
+#    name: "Favorite level"
+#    initial: 3
+#    min: 0
+#    max: 14
+#    step: 1
+#    icon: mdi:weather-windy
+#
+#  master_bedroom_air_purifier_fan_level:
+#    name: "Fan level"
+#    initial: 1
+#    min: 1
+#    max: 3
+#    step: 1
+#    icon: mdi:jquery
 
 shell_command:
 #  update_avnodehome_data: !secret avnodehome_update_cmd

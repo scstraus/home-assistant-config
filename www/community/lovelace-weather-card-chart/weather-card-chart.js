@@ -421,8 +421,8 @@ class WeatherCardChart extends Polymer.Element {
           lineTension: 0.4,
           pointRadius: 0.0,
           pointHitRadius: 5.0,
-          borderColor: "#ff0029",
-          backgroundColor: "#ff0029",
+          borderColor: "#E45E65",
+          backgroundColor: "#E45E65",
           fill: false,
           tooltip: {
             callbacks: {
@@ -443,8 +443,8 @@ class WeatherCardChart extends Polymer.Element {
           lineTension: 0.4,
           pointRadius: 0.0,
           pointHitRadius: 5.0,
-          borderColor: "#66a61e",
-          backgroundColor: "#66a61e",
+          borderColor: "#9cffa1",
+          backgroundColor: "#9cffa1",
           fill: false,
           tooltip: {
             callbacks: {
@@ -463,8 +463,8 @@ class WeatherCardChart extends Polymer.Element {
           data: precip,
           xAxisID: "xAxes",
           yAxisID: 'yPrecipAxis',
-          borderColor: "#262889",
-          backgroundColor: "#262889",
+          borderColor: "#4285f4",
+          backgroundColor: "#4285f4",
           tooltip: {
             callbacks: {
               label: function(context) {
