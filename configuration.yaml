@@ -430,8 +430,8 @@ weather:
 #    api_key: !secret openweathermap_key
 #    mode: hourly
 
-  - platform: buienradar
-    name: buienradar
+#  - platform: buienradar
+#    name: buienradar
 
 #  - platform: openweathermap
 #    api_key: !secret openweathermap_key
@@ -1020,10 +1020,10 @@ influxdb:
 home_connect:
   client_id: !secret homeconnect_client_id
   client_secret: !secret homeconnect_client_secret
-
-device_tracker:
-  - platform: nmap_tracker
-    hosts: 10.10.10.12
+#
+#device_tracker:
+#  - platform: nmap_tracker
+#    hosts: 10.10.10.12
 
 #  - platform: iphonedetect
 #    consider_home: 60

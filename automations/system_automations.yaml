@@ -70,23 +70,6 @@
           push:
             thread-id: "system"
 
-- id: discworld_disk_4_problem
-  alias: discworld_disk_4_problem
-  initial_state: 'true'
-  trigger:
-    - platform: time
-      at: "22:00:00"
-  condition:
-    condition: template
-    value_template: "{{states('sensor.discworld_disk_4_status')!='normal'}}"
-  action:
-    - service: notify.mobile_app_sean_s_iphone_12
-      data_template:
-        title: "Discworld Disk Problem"
-        message: "Discworld disk 4 appears to have a problem. It is reporting a status of {{states('sensor.discworld_disk_4_status')}} "
-        data:
-          push:
-            thread-id: "system"
 
 - id: discworld_volume_1_problem
   alias: discworld_volume_1_problem

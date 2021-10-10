@@ -224,8 +224,10 @@ def make_open_windows_message(num_open_windows):
     else:
       message = message + " letting polluted air into the house.  <ha-icon icon='mdi:air-filter'></ha-icon>"     
   logger.debug("Calling input text set value with message: %s",message)
-  hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_problem", "value" : message}, False)
+  hass.services.call("variable", "set_variable", {"variable" : "windows_making_problem", "value" : message}, False)
   return message
+#  hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_problem", "value" : message}, False)
+#  return message
 #  if MESSAGE_TYPE == "hot":
 #    message = message + " making the house hot."
 #    hass.services.call("input_text", "set_value", {"entity_id" : "input_text.windows_making_house_hot", "value" : message}, False)

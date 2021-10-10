@@ -159,3 +159,6 @@
       unit_of_measurement:
       icon: mdi:chart-bubble
     restore: true
+
+  windows_making_problem:
+    value: 'Invalid Message'

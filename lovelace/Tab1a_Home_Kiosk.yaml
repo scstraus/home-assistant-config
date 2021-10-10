@@ -384,7 +384,7 @@ cards:
       card:
         type: markdown
         content: |
-          {{states('input_text.windows_making_problem')}}
+          {{states('variable.windows_making_problem')}}
  
     # - type: custom:decluttering-card
     #   template: open_windows_cold
