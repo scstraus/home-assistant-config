@@ -1040,18 +1040,19 @@ home_connect:
 #    filename: life360.conf
 
 input_text:
-  windows_making_house_hot:
-    name: Windows Making House Hot
-    max: 250
-  windows_making_house_cold:
-    name: Windows Making House Cold
-    max: 250
-  windows_letting_pollution_in:
-    name: Windows Making House Cold
-    max: 250
-  windows_making_problem:
-    name: Open Windows Making Problem
-    max: 250
+# windows_making_problem now variable to get around 250 character limit
+#  windows_making_house_hot:
+#    name: Windows Making House Hot
+#    max: 250
+#  windows_making_house_cold:
+#    name: Windows Making House Cold
+#    max: 250
+#  windows_letting_pollution_in:
+#    name: Windows Making House Cold
+#    max: 250
+#  windows_making_problem:
+#    name: Open Windows Making Problem
+#    max: 250
   last_close_lightning_distance:
     name: Last Close Lightning Distance
     max: 10

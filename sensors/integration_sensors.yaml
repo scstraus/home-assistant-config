@@ -420,3 +420,38 @@
 #    away_timeout: 0
 
   - platform: uptime
+
+
+  - platform: rest
+    resource: https://worldometers.p.rapidapi.com/api/coronavirus/country/czechia
+    name: corona_rest
+    headers:
+      x-rapidapi-key: !secret rapidapi_key
+      x-rapidapi-host: "worldometers.p.rapidapi.com"
+    value_template: "[OK]"
+    scan_interval: 3600    
+    json_attributes:
+      - data
+
+  - platform: template
+    sensors:
+      czechia_coronavirus_confirmed:
+          friendly_name: Czechia Coronavirus confirmed
+          icon_template: mdi:emoticon-neutral-outline
+          value_template: "{{ state_attr('sensor.corona_rest','data')['Total Cases'] | replace(',','') | int }}"
+#          unit_of_measurement: people
+      czechia_coronavirus_current:
+          friendly_name: Czechia Coronavirus current
+          icon_template: mdi:emoticon-sad-outline        
+          value_template: "{{ state_attr('sensor.corona_rest','data')['Active Cases'] | replace(',','') | int }}"
+#          unit_of_measurement: people
+      czechia_coronavirus_deaths:
+          friendly_name: Czechia Coronavirus deaths
+          icon_template: mdi:emoticon-cry-outline
+          value_template: "{{ state_attr('sensor.corona_rest','data')['Total Deaths'] | replace(',','') | int }}"
+#          unit_of_measurement: people
+      czechia_coronavirus_recovered:
+          friendly_name: Czechia Coronavirus recovered
+          icon_template: mdi:emoticon-happy-outline
+          value_template: "{{ state_attr('sensor.corona_rest','data')['Total Recovered'] | replace(',','') | int }}"
+#          unit_of_measurement: people       ```
