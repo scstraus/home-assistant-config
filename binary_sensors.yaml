@@ -167,14 +167,14 @@
  
   - platform: mqtt
     state_topic: "paradox/zone/state/11"
-    name: "Glass Break Sensor (Zone 11)"
+    name: "3rd Floor Hallway (Zone 11)"
     qos: 1
     payload_on: "on"
     payload_off: "off"
     availability_topic: "paradox/ctrl/state"
     payload_available: "Connected"
     payload_not_available: "Disconnected"
-    device_class: vibration
+    device_class: motion
 
   - platform: mqtt
     state_topic: "paradox/zone/state/12"

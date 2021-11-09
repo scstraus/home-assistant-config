@@ -1192,3 +1192,10 @@
           command: VolumeDown
           device: "Sony TV"
           num_repeats: 6
+
+#
+#  turn_on_the_towel_warmer:
+#    sequence:
+#      - service: switch.turn_on
+#        data:
+#          entity_id: switch.master_bath_towel_warmer

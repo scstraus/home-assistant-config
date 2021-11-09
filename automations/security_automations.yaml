@@ -15,11 +15,15 @@
         - condition: time
           after: '23:00:00'
           before: '7:00:00'
-        - condition: state
-          entity_id: sensor.alarm_state_3_motion_sensors
-          state: 'armed_away'
-          for:
-            minutes: 1
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: sensor.alarm_state_3_motion_sensors
+            state: 'armed_away'
+            for:
+              minutes: 1
+          - condition: template
+            value_template: "{{states('group.everyone')!='home'}}"
         - condition: state
           entity_id: sensor.alarm_state_3_motion_sensors
           state: 'triggered'  

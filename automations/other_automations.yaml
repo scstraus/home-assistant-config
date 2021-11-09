@@ -51,9 +51,8 @@
           "date": "{{ state_attr('sensor.cp_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.cp_packages_coming_today', 'subject') }}"
         }
-    data_template:
       value: >
-          {{ states('sensor.cp_packages_coming_today')}}
+        {{ states('sensor.cp_packages_coming_today')}}
       # attributes_template: >
 
 #,
@@ -98,7 +97,7 @@
           "date": "{{ state_attr('sensor.dpd_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.dpd_packages_coming_today', 'subject') }}"
         } 
-      value_template: "{{ states('sensor.dpd_packages_coming_today')}}"
+      value: "{{ states('sensor.dpd_packages_coming_today')}}"
       # attributes_template: >
 
 
@@ -160,7 +159,7 @@
           "date": "{{ state_attr('sensor.dhl_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.dhl_packages_coming_today', 'subject') }}"
         } 
-      value_template: "{{ states('sensor.dhl_packages_coming_today')}}"
+      value: "{{ states('sensor.dhl_packages_coming_today')}}"
       # attributes_template: >
 
 
@@ -222,7 +221,7 @@
           "date": "{{ state_attr('sensor.gls_packages_coming_today', 'date') }}",
           "subject": "{{ state_attr('sensor.gls_packages_coming_today', 'subject') }}"
         } 
-      value_template: "{{ states('sensor.gls_packages_coming_today')}}"
+      value: "{{ states('sensor.gls_packages_coming_today')}}"
       # attributes_template: >
 
 
@@ -499,8 +498,8 @@
       event: sunset
       offset: "+00:30:00"
   action:
-    - service_template: frontend.set_theme
-      data_template:
+    - service: frontend.set_theme
+      data:
         name: >
           {% if states.sun.sun.state == "above_horizon" %}
             Google Light Theme
@@ -611,14 +610,16 @@
   trigger:
     platform: state
     entity_id: variable.czechia_coronavirus_new_day_before
+#    entity_id: variable.czechia_coronavirus_new_yesterday
   action:
     service: variable.set_variable
     data:
       variable: czechia_coronavirus_new_backup
-    data_template:
       value: >
-          {{ states('sensor.coronavirus_new_cases_cz')}}
-
+          {{ states('variable.czechia_coronavirus_new_yesterday')}}
+          
+          
+#          {{ states('sensor.coronavirus_new_cases_cz')}}
 - id: new_coronavirus_cases_swap_data
   alias: new_coronavirus_cases_swap_data
   initial_state: 'true'
@@ -633,7 +634,6 @@
     service: variable.set_variable
     data:
       variable: czechia_coronavirus_new_day_before
-    data_template:
       value: >
           {{ states('variable.czechia_coronavirus_new_backup')}}
 
@@ -647,7 +647,6 @@
     service: variable.set_variable
     data:
       variable: czechia_coronavirus_yesterday
-    data_template:
       value: >
           {{ states('sensor.czechia_coronavirus_confirmed')}}
           
@@ -662,13 +661,11 @@
     - service: variable.set_variable
       data:
         variable: czechia_coronavirus_new_yesterday
-      data_template:
         value: >
             {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
     - service: variable.set_variable
       data:
         variable: czechia_coronavirus_new_yesterday_units
-      data_template:
         value: >
             {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
 
@@ -682,13 +679,11 @@
     - service: variable.set_variable
       data:
         variable: czechia_coronavirus_new_today
-      data_template:
         value: >
             {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
     - service: variable.set_variable
       data:
         variable: czechia_coronavirus_new_today_units
-      data_template:
         value: >
             {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
 

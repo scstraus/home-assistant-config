@@ -51,7 +51,7 @@
     - ceskaposta@cpost.cz
     - !secret wife_email
     value_template: >-
-      {% if 'Informace o Vaší zásilce' in subject %}
+      {% if 'Vezeme Vám zásilku' in subject %}
         Delivery
       {% elif 'reset state of package sensor' in subject %}
         no_delivery

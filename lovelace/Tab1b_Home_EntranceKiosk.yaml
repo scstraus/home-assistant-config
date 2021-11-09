@@ -1149,20 +1149,21 @@ cards:
           type: 'custom:text-element'
         #Numbers
         - type: state-label  
-          # entity: sensor.czechia_coronavirus_current
-          entity: sensor.coronavirus_active_cases_cz
+          entity: sensor.czechia_coronavirus_current
+          #entity: sensor.coronavirus_active_cases_cz
           style:
             font-size: large
             left: 20%
             top: 44%
         - type: state-label  
-          entity: variable.czechia_coronavirus_new_day_before
+          entity: variable.czechia_coronavirus_new_backup
           style:
             font-size: large
             left: 51%
             top: 44%
         - type: state-label  
-          entity: variable.czechia_coronavirus_new_backup
+          entity: variable.czechia_coronavirus_new_yesterday
+#          entity: variable.czechia_coronavirus_new_day_before
           style:
             font-size: large
             left: 82%

@@ -20,6 +20,14 @@
       - device_tracker.sean_s_iphone_12
       - device_tracker.alena_s_iphone
 
+  Everyone:
+    name: Everyone
+    entities:
+      - device_tracker.sean_s_iphone_12
+      - device_tracker.alena_s_iphone
+      - device_tracker.sophie
+
+
   Internet_Notifications:
     name: Internet Notifications
     entities:
@@ -52,6 +60,14 @@
       - media_player.echo_flex_first_floor_bathroom
       - media_player.alexa_garage
       - media_player.alexa_library
+
+  alarm_windows:
+    name: Alarm Windows
+    entities:
+      - binary_sensor.garage_door_zone_14
+      - binary_sensor.front_door_zone_1
+      - binary_sensor.laundry_room_window_zone_13
+      - binary_sensor.windows_1st_floor_zone_2
 
 #  default_view:
 #    view: yes

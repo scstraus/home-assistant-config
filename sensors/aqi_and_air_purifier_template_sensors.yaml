@@ -138,156 +138,156 @@
       master_bedroom_purifier_fan_mode:
          friendly_name: "Mode"
          value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.speed }}"
-      master_bedroom_purifier_fan_speed:
-         friendly_name: "Motor speed"
-         unit_of_measurement: 'rpm'
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.motor_speed }}"
-      master_bedroom_purifier_temperature:
-         friendly_name: "Temperature"
-         unit_of_measurement: 'C°'
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.temperature }}"
-      master_bedroom_purifier_humidity:
-         friendly_name: "Humidity"
-         unit_of_measurement: '%'
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.humidity }}"
-      master_bedroom_purifier_aqi:
-         friendly_name: "Air Quality Index"
-         unit_of_measurement: 'aqi'
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.aqi }}"
-      master_bedroom_purifier_favspeed:
-         friendly_name: "Favourite Level"
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.favorite_level }}"
-      master_bedroom_purifier_filter_hours_used:
-         friendly_name: "Hours Used"
-         unit_of_measurement: 'h'
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.filter_hours_used }}"
-      master_bedroom_purifier_filter_life_remaining:
-         friendly_name: "Filter"
-         unit_of_measurement: '%'
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.filter_life_remaining }}"
-      master_bedroom_purifier_child_lock:
-         friendly_name: "Child Lock"
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.child_lock }}"
-      master_bedroom_purifier_display:
-         friendly_name: "Display"
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.led }}"
-      master_bedroom_purifier_button_pressed:
-         friendly_name: "Button Pressed"
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.button_pressed }}"
-      master_bedroom_purifier_buzzer:
-         friendly_name: "Buzzer"
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.buzzer }}"
-      master_bedroom_purifier_filter_type:
-         friendly_name: "Filter Type"
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.filter_type }}"
-      master_bedroom_purifier_ligt_sensor:
-         friendly_name: "Light Sensor"
-         unit_of_measurement: 'lux'
-         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.illuminance }}"
+#      master_bedroom_purifier_fan_speed:
+#         friendly_name: "Motor speed"
+#         unit_of_measurement: 'rpm'
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.motor_speed }}"
+#      master_bedroom_purifier_temperature:
+#         friendly_name: "Temperature"
+#         unit_of_measurement: 'C°'
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.temperature }}"
+#      master_bedroom_purifier_humidity:
+#         friendly_name: "Humidity"
+#         unit_of_measurement: '%'
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.humidity }}"
+#      master_bedroom_purifier_aqi:
+#         friendly_name: "Air Quality Index"
+#         unit_of_measurement: 'aqi'
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.aqi }}"
+#      master_bedroom_purifier_favspeed:
+#         friendly_name: "Favourite Level"
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.favorite_level }}"
+#      master_bedroom_purifier_filter_hours_used:
+#         friendly_name: "Hours Used"
+#         unit_of_measurement: 'h'
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.filter_hours_used }}"
+#      master_bedroom_purifier_filter_life_remaining:
+#         friendly_name: "Filter"
+#         unit_of_measurement: '%'
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.filter_life_remaining }}"
+#      master_bedroom_purifier_child_lock:
+#         friendly_name: "Child Lock"
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.child_lock }}"
+#      master_bedroom_purifier_display:
+#         friendly_name: "Display"
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.led }}"
+#      master_bedroom_purifier_button_pressed:
+#         friendly_name: "Button Pressed"
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.button_pressed }}"
+#      master_bedroom_purifier_buzzer:
+#         friendly_name: "Buzzer"
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.buzzer }}"
+#      master_bedroom_purifier_filter_type:
+#         friendly_name: "Filter Type"
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.filter_type }}"
+#      master_bedroom_purifier_ligt_sensor:
+#         friendly_name: "Light Sensor"
+#         unit_of_measurement: 'lux'
+#         value_template: "{{ states.fan.master_bedroom_air_purifier.attributes.illuminance }}"
 
   - platform: template
     sensors:
       sebastians_room_purifier_fan_mode:
          friendly_name: "Mode"
          value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.speed }}"
-      sebastians_room_purifier_fan_speed:
-         friendly_name: "Motor speed"
-         unit_of_measurement: 'rpm'
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.motor_speed }}"
-      sebastians_room_purifier_temperature:
-         friendly_name: "Temperature"
-         unit_of_measurement: 'C°'
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.temperature }}"
-      sebastians_room_purifier_humidity:
-         friendly_name: "Humidity"
-         unit_of_measurement: '%'
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.humidity }}"
-      sebastians_room_purifier_aqi:
-         friendly_name: "Air Quality Index"
-         unit_of_measurement: 'aqi'
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.aqi }}"
-      sebastians_room_purifier_favspeed:
-         friendly_name: "Favourite Level"
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.favorite_level }}"
-      sebastians_room_purifier_filter_hours_used:
-         friendly_name: "Hours Used"
-         unit_of_measurement: 'h'
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.filter_hours_used }}"
-      sebastians_room_purifier_filter_life_remaining:
-         friendly_name: "Filter"
-         unit_of_measurement: '%'
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.filter_life_remaining }}"
-      sebastians_room_purifier_child_lock:
-         friendly_name: "Child Lock"
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.child_lock }}"
-      sebastians_room_purifier_display:
-         friendly_name: "Display"
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.led }}"
-      sebastians_room_purifier_button_pressed:
-         friendly_name: "Button Pressed"
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.button_pressed }}"
-      sebastians_room_purifier_buzzer:
-         friendly_name: "Buzzer"
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.buzzer }}"
-      sebastians_room_purifier_filter_type:
-         friendly_name: "Filter Type"
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.filter_type }}"
-      sebastians_room_purifier_ligt_sensor:
-         friendly_name: "Light Sensor"
-         unit_of_measurement: 'lux'
-         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.illuminance }}"
+#      sebastians_room_purifier_fan_speed:
+#         friendly_name: "Motor speed"
+#         unit_of_measurement: 'rpm'
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.motor_speed }}"
+#      sebastians_room_purifier_temperature:
+#         friendly_name: "Temperature"
+#         unit_of_measurement: 'C°'
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.temperature }}"
+#      sebastians_room_purifier_humidity:
+#         friendly_name: "Humidity"
+#         unit_of_measurement: '%'
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.humidity }}"
+#      sebastians_room_purifier_aqi:
+#         friendly_name: "Air Quality Index"
+#         unit_of_measurement: 'aqi'
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.aqi }}"
+#      sebastians_room_purifier_favspeed:
+#         friendly_name: "Favourite Level"
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.favorite_level }}"
+#      sebastians_room_purifier_filter_hours_used:
+#         friendly_name: "Hours Used"
+#         unit_of_measurement: 'h'
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.filter_hours_used }}"
+#      sebastians_room_purifier_filter_life_remaining:
+#         friendly_name: "Filter"
+#         unit_of_measurement: '%'
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.filter_life_remaining }}"
+#      sebastians_room_purifier_child_lock:
+#         friendly_name: "Child Lock"
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.child_lock }}"
+#      sebastians_room_purifier_display:
+#         friendly_name: "Display"
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.led }}"
+#      sebastians_room_purifier_button_pressed:
+#         friendly_name: "Button Pressed"
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.button_pressed }}"
+#      sebastians_room_purifier_buzzer:
+#         friendly_name: "Buzzer"
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.buzzer }}"
+#      sebastians_room_purifier_filter_type:
+#         friendly_name: "Filter Type"
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.filter_type }}"
+#      sebastians_room_purifier_ligt_sensor:
+#         friendly_name: "Light Sensor"
+#         unit_of_measurement: 'lux'
+#         value_template: "{{ states.fan.sebastians_room_air_purifier.attributes.illuminance }}"
 
   - platform: template
     sensors:
       sophies_room_purifier_fan_mode:
          friendly_name: "Mode"
          value_template: "{{ states.fan.sophies_room_air_purifier.attributes.speed }}"
-      sophies_room_purifier_fan_speed:
-         friendly_name: "Motor speed"
-         unit_of_measurement: 'rpm'
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.motor_speed }}"
-      sophies_room_purifier_temperature:
-         friendly_name: "Temperature"
-         unit_of_measurement: 'C°'
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.temperature }}"
-      sophies_room_purifier_humidity:
-         friendly_name: "Humidity"
-         unit_of_measurement: '%'
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.humidity }}"
-      sophies_room_purifier_aqi:
-         friendly_name: "Air Quality Index"
-         unit_of_measurement: 'aqi'
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.aqi }}"
-      sophies_room_purifier_favspeed:
-         friendly_name: "Favourite Level"
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.favorite_level }}"
-      sophies_room_purifier_filter_hours_used:
-         friendly_name: "Hours Used"
-         unit_of_measurement: 'h'
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.filter_hours_used }}"
-      sophies_room_purifier_filter_life_remaining:
-         friendly_name: "Filter"
-         unit_of_measurement: '%'
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.filter_life_remaining }}"
-      sophies_room_purifier_child_lock:
-         friendly_name: "Child Lock"
-         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.child_lock }}"
-      sophies_room_purifier_display:
-         friendly_name: "Display"
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.led }}"
-      sophies_room_purifier_button_pressed:
-         friendly_name: "Button Pressed"
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.button_pressed }}"
-      sophies_room_purifier_buzzer:
-         friendly_name: "Buzzer"
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.buzzer }}"
-      sophies_room_purifier_filter_type:
-         friendly_name: "Filter Type"
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.filter_type }}"
-      sophies_room_purifier_ligt_sensor:
-         friendly_name: "Light Sensor"
-         unit_of_measurement: 'lux'
-         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.illuminance }}"
+#      sophies_room_purifier_fan_speed:
+#         friendly_name: "Motor speed"
+#         unit_of_measurement: 'rpm'
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.motor_speed }}"
+#      sophies_room_purifier_temperature:
+#         friendly_name: "Temperature"
+#         unit_of_measurement: 'C°'
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.temperature }}"
+#      sophies_room_purifier_humidity:
+#         friendly_name: "Humidity"
+#         unit_of_measurement: '%'
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.humidity }}"
+#      sophies_room_purifier_aqi:
+#         friendly_name: "Air Quality Index"
+#         unit_of_measurement: 'aqi'
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.aqi }}"
+#      sophies_room_purifier_favspeed:
+#         friendly_name: "Favourite Level"
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.favorite_level }}"
+#      sophies_room_purifier_filter_hours_used:
+#         friendly_name: "Hours Used"
+#         unit_of_measurement: 'h'
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.filter_hours_used }}"
+#      sophies_room_purifier_filter_life_remaining:
+#         friendly_name: "Filter"
+#         unit_of_measurement: '%'
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.filter_life_remaining }}"
+#      sophies_room_purifier_child_lock:
+#         friendly_name: "Child Lock"
+#         value_template: "{{ states. fan.sophies_room_air_purifier.attributes.child_lock }}"
+#      sophies_room_purifier_display:
+#         friendly_name: "Display"
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.led }}"
+#      sophies_room_purifier_button_pressed:
+#         friendly_name: "Button Pressed"
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.button_pressed }}"
+#      sophies_room_purifier_buzzer:
+#         friendly_name: "Buzzer"
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.buzzer }}"
+#      sophies_room_purifier_filter_type:
+#         friendly_name: "Filter Type"
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.filter_type }}"
+#      sophies_room_purifier_ligt_sensor:
+#         friendly_name: "Light Sensor"
+#         unit_of_measurement: 'lux'
+#         value_template: "{{ states.fan.sophies_room_air_purifier.attributes.illuminance }}"
 
   - platform: mqtt
     name: "Radon Upstairs"

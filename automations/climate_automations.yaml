@@ -1553,4 +1553,45 @@
     target:
       entity_id: climate.sophie_s_room_ac
 
-  
+- id: send_notification_for_rainy_or_snowy_day
+  alias: send_notification_for_rainy_or_snowy_day
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '11:45:00'
+  condition:
+    condition: template 
+    value_template: >
+      {{ (states('sensor.dark_sky_precip_intensity_1h')|float > 0.05)
+             and (states('sensor.dark_sky_precip_intensity_2h')|float > 0.05)
+             and (states('sensor.dark_sky_precip_intensity_3h')|float > 0.05)
+             and (states('sensor.dark_sky_precip_intensity_4h')|float > 0.05)
+             and (states('sensor.dark_sky_precip_intensity_5h')|float > 0.05)
+             and (states('sensor.dark_sky_precip_intensity_6h')|float > 0.05)
+             and (states('sensor.dark_sky_precip_intensity_7h')|float > 0.05)) }}
+  action:
+    - service: notify.mobile_app_sean_s_iphone_12
+      data:
+        title: "{{sensor.dark_sky_precip_0d}} warning"
+        data:
+          push:
+            thread-id: "weather"
+      data_template:
+        message: >
+          {% if states('sensor.dark_sky_precip_intensity_1h')|float > 17 %}
+          {{sensor.dark_sky_precip_0d}} expected in the next hour. Please dress appropriately.
+          {% elif states('sensor.dark_sky_precip_intensity_2h')|float > 17 %}
+          {{sensor.dark_sky_precip_0d}} expected in 2 hours. Please dress appropriately.
+          {% elif states('sensor.dark_sky_precip_intensity_3h')|float > 17 %}
+          {{sensor.dark_sky_precip_0d}} expected in 3 hours. Please dress appropriately.
+          {% elif states('sensor.dark_sky_precip_intensity_4h')|float > 17 %}
+          {{sensor.dark_sky_precip_0d}} expected in 4 hours. Please dress appropriately.
+          {% elif states('sensor.dark_sky_precip_intensity_5h')|float > 17 %}
+          {{sensor.dark_sky_precip_0d}} expected in 5 hours. Please dress appropriately.
+          {% elif states('sensor.dark_sky_precip_intensity_6h')|float > 17 %}
+          {{sensor.dark_sky_precip_0d}} expected in 6 hours. Please dress appropriately.
+          {% elif states('sensor.dark_sky_precip_intensity_7h')|float > 17 %}
+          {{sensor.dark_sky_precip_0d}} expected in 7 hours. Please dress appropriately.
+          {% else %}
+          Error
+          {% endif %}
