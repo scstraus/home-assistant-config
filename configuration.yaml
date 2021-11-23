@@ -365,9 +365,15 @@ evohome:
   scan_interval: 360 
 
 media_player:
+#
+#  - platform: itunes
+#    host: !secret itunes_ip
 
-  - platform: itunes
-    host: !secret itunes_ip
+media_player:
+  # Use the Python ADB implementation
+  - platform: androidtv
+    name: Philips936
+    host: !secret Philips936_IP
 
 #  - platform: group
 #    entities:
@@ -1169,3 +1175,4 @@ rest:
         #   - "New_Deaths"
         #   - "1_Test_every_X_ppl"
         #   - "Total_Recovered"
+

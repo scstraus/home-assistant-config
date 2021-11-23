@@ -47,13 +47,12 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.bosch_dishwasher_door
+    entity_id: binary_sensor.bosch_dishwasher_door
     to: 'on'
-#    to: 'open'
   condition:
     condition: state
     entity_id: input_select.bosch_dishwasher_status
-    state: Clean 
+    state: Clean
   action:
     - service: timer.start
       data:
@@ -68,9 +67,8 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.bosch_dishwasher_door
+    entity_id: binary_sensor.bosch_dishwasher_door
     to: 'off'
-#    to: 'closed'
   condition:
     condition: state
     entity_id: input_select.bosch_dishwasher_status
@@ -120,9 +118,8 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.bosch_dishwasher_door
+    entity_id: binary_sensor.bosch_dishwasher_door
     to: 'on'
-#    to: 'open'
   condition:
     condition: and
     conditions:
@@ -153,9 +150,8 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.bosch_dishwasher_door
+    entity_id: binary_sensor.bosch_dishwasher_door
     to: 'on'
-#    to: 'open'
   condition:
     condition: and
     conditions:
@@ -192,9 +188,8 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.bosch_dishwasher_door
+    entity_id: binary_sensor.bosch_dishwasher_door
     to: 'on'
-#    to: 'open'
   condition:
     condition: or
     conditions:
@@ -214,9 +209,8 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.bosch_dishwasher_door
+    entity_id: binary_sensor.bosch_dishwasher_door
     to: 'off'
-#    to: 'closed'
   condition:
     condition: or
     conditions:
@@ -254,9 +248,8 @@
         entity_id: input_boolean.warn_door_open_dishwasher_running
         state: 'on'
       - condition: state
-        entity_id: sensor.bosch_dishwasher_door
+        entity_id: binary_sensor.bosch_dishwasher_door
         state: 'on'
-#        state: 'open'
       - condition: state
         entity_id: device_tracker.sean_s_iphone_12
         state: 'home'
@@ -288,9 +281,8 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.bosch_dishwasher_door
+    entity_id: binary_sensor.bosch_dishwasher_door
     to: 'off'
-#    to: 'closed'
   action:
     - service: input_boolean.turn_off
       data:

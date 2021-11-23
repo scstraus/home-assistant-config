@@ -367,7 +367,7 @@
       low_gas_in_car:
         friendly_name: "Car Fuel"
         value_template: >-
-          {% if ((states('sensor.cooper_s_e_all4_remaining_fuel')|float < 5)and (states('sensor.cooper_s_e_all4_remaining_fuel')!='unavailable')) %} Fill It
+          {% if ((states('sensor.cooper_s_e_all4_remaining_fuel')|float < 5)and (states('sensor.cooper_s_e_all4_remaining_fuel')!='unavailable')and (states('sensor.cooper_s_e_all4_remaining_fuel')!='unknown')) %} Fill It
           {% else %} no
           {% endif %}
 

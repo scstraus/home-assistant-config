@@ -1,0 +1,304 @@
+######################################################
+#                Philips TV App Buttons              #
+######################################################
+
+# Emulated Roku to App Mapping:
+# Home = YouTube
+# Rev = Hulu
+# Fwd = PrimeVideo
+# Play = GooglePlay Movies
+# Select = Netflix
+# Left = TV Guide
+# Right = HDMI 4 (Xbox)
+# Down = Curiosity Stream
+# Up = HBO Max
+# Back = PBS 
+# InstantReplay = Plex
+# Info = PBS Kids
+# BackSpace = HDMI 1 (PlayStation)
+# Search = HDMI 3 (Nintendo)
+# Enter = HDMI 4 (Xbox)
+# PowerOff = Power Off
+
+
+
+- id: philips_launch_youtube
+  alias: philips_launch_youtube
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Home
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.google.android.apps.youtube.tv.activity.ShellActivity-com.google.android.youtube.tv
+      media_content_type: app
+
+
+- id: philips_launch_hulu
+  alias: philips_launch_hulu
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Rev
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.hulu.livingroomplus.WKFactivity-com.hulu.livingroomplus
+      media_content_type: app
+
+- id: philips_launch_prime_video
+  alias: philips_launch_prime_video
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Fwd
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.amazon.ignition.IgnitionActivity-com.amazon.amazonvideo.livingroom
+      media_content_type: app
+
+
+- id: philips_launch_google_play_movies
+  alias: philips_launch_google_play_movies
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Play
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.amazon.ignition.IgnitionActivity-com.amazon.amazonvideo.livingroom
+      media_content_type: app
+
+- id: philips_launch_netflix
+  alias: philips_launch_netflix
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Select
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.netflix.ninja.MainActivity-com.netflix.ninja
+      media_content_type: app
+
+- id: philips_launch_tv_guide
+  alias: philips_launch_tv_guide
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Left
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        org.droidtv.channels.ChannelsLauncherActivity-org.droidtv.channels
+      media_content_type: app
+
+#- id: philips_launch_other_media
+#  alias: philips_launch_other_media
+#  initial_state: 'true'
+#  trigger:
+#    platform: event
+#    event_type: roku_command
+#    event_data:
+#      source_name: Home Assistant
+#      type: keypress
+#      key: Right
+#  action:
+#    service: media_player.play_media
+#    target:
+#      entity_id: media_player.philips936_tv
+#    data:
+#      media_content_id: >-
+#        droidtv.contentexplorer.MainActivity-org.droidtv.contentexplorer
+#      media_content_type: app
+
+- id: philips_launch_curiosity_stream
+  alias: philips_launch_curiosity_stream
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Down
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.curiosity.activities.OnboardingActivity-com.curiosity.curiositystream.androidtv
+      media_content_type: app
+
+- id: philips_launch_hbo_max
+  alias: philips_launch_hbo_max
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Up
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.hbo.go.LaunchActivity-com.hbo.hbonow
+      media_content_type: app
+
+- id: philips_launch_pbs
+  alias: philips_launch_pbs
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Back
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.pbs.video.ui.main.activities.StartupActivity-com.pbs.video
+      media_content_type: app
+
+- id: philips_launch_plex
+  alias: philips_launch_plex
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: InstantReplay
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.plexapp.plex.activities.SplashActivity-com.plexapp.android
+      media_content_type: app
+
+- id: philips_launch_pbs_kids
+  alias: philips_launch_pbs_kids
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Info
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        org.pbskids.video.splash.ui.SplashScreenActivity-org.pbskids.video
+      media_content_type: app
+
+- id: philips_launch_hdmi_1_playstation
+  alias: philips_launch_hdmi_1_playstation
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: BackSpace
+  action:
+    service: media_player.select_source
+    data:
+      source: HDMI 1
+    target:
+      entity_id: media_player.philips936_tv
+
+- id: philips_launch_hdmi_3_nintendo
+  alias: philips_launch_hdmi_3_nintendo
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Search
+  action:
+    service: media_player.select_source
+    data:
+      source: HDMI 3
+    target:
+      entity_id: media_player.philips936_tv
+
+- id: philips_launch_hdmi_4_xbox
+  alias: philips_launch_hdmi_4_xbox
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Right
+  action:
+    service: media_player.select_source
+    data:
+      source: HDMI 4
+    target:
+      entity_id: media_player.philips936_tv
