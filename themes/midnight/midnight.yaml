@@ -113,6 +113,7 @@ midnight:
       /* This adds the time */
       {% if (user == 'entrancekiosk') %}
 
+      /*
       mwc-icon-button[slot="trigger"] > ha-svg-icon {
         display: none;
       }
@@ -128,6 +129,39 @@ midnight:
         top: 8px;
         right: 0px;
       }
+      */
+
+      ha-menu-button {
+        display: none !important;
+      }
+
+      ha-button-menu {
+        color: transparent;
+      }
+
+
+      /*
+      ha-button-menu::before {
+        font-size: 20px;
+        height: 20px; 
+        width: 100px;
+        margin-left: 0px;
+        margin-right: 0px;
+        content: "{{ states('sensor.time') }}";
+        position: absolute;
+        top: 8px;
+        right: 0px;
+      }
+      */
+
+      ha-button-menu::before {
+        content: "{{ states('sensor.time') }}";
+        visibility: visible;
+        position: relative;
+        top: 24px;
+        white-space: nowrap;
+      }
+
       {% endif %}
 
       {% if (user == 'kiosk') %}

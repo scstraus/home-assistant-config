@@ -1,14 +1,15 @@
-######################################################
-#                Philips TV App Buttons              #
-######################################################
+#####################################################################
+# Emulated Roku Philips TV App Buttons - Home Assistant 1 Port 8060 #
+#####################################################################
 
 # Emulated Roku to App Mapping:
-# Home = YouTube
+# Prime Video and Netflix have dedicated buttons so not needed here
+# Home = Home Activity
 # Rev = Hulu
-# Fwd = PrimeVideo
+# Fwd = YouTube
 # Play = GooglePlay Movies
-# Select = Netflix
-# Left = TV Guide
+# Select = TV1 RU
+# Left = Power Off
 # Right = HDMI 4 (Xbox)
 # Down = Curiosity Stream
 # Up = HBO Max
@@ -17,13 +18,12 @@
 # Info = PBS Kids
 # BackSpace = HDMI 1 (PlayStation)
 # Search = HDMI 3 (Nintendo)
-# Enter = HDMI 4 (Xbox)
-# PowerOff = Power Off
+
+# com.apple.atve.androidtv.appletv
 
 
-
-- id: philips_launch_youtube
-  alias: philips_launch_youtube
+- id: philips_launch_home_harmony_activity
+  alias: philips_launch_home_harmony_activity
   initial_state: 'true'
   trigger:
     platform: event
@@ -33,13 +33,17 @@
       type: keypress
       key: Home
   action:
-    service: media_player.play_media
+  - service: remote.turn_on
     target:
-      entity_id: media_player.philips936_tv
+      entity_id: remote.harmony
     data:
-      media_content_id: >-
-        com.google.android.apps.youtube.tv.activity.ShellActivity-com.google.android.youtube.tv
-      media_content_type: app
+      activity: "Home Screen"
+  - service: remote.send_command
+    data:
+      device: Philips TV
+      command: Home
+    target:
+      entity_id: remote.harmony
 
 
 - id: philips_launch_hulu
@@ -60,25 +64,25 @@
       media_content_id: >-
         com.hulu.livingroomplus.WKFactivity-com.hulu.livingroomplus
       media_content_type: app
-
-- id: philips_launch_prime_video
-  alias: philips_launch_prime_video
-  initial_state: 'true'
-  trigger:
-    platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Home Assistant
-      type: keypress
-      key: Fwd
-  action:
-    service: media_player.play_media
-    target:
-      entity_id: media_player.philips936_tv
-    data:
-      media_content_id: >-
-        com.amazon.ignition.IgnitionActivity-com.amazon.amazonvideo.livingroom
-      media_content_type: app
+#
+#- id: philips_launch_prime_video
+#  alias: philips_launch_prime_video
+#  initial_state: 'true'
+#  trigger:
+#    platform: event
+#    event_type: roku_command
+#    event_data:
+#      source_name: Home Assistant
+#      type: keypress
+#      key: Fwd
+#  action:
+#    service: media_player.play_media
+#    target:
+#      entity_id: media_player.philips936_tv
+#    data:
+#      media_content_id: >-
+#        com.amazon.ignition.IgnitionActivity-com.amazon.amazonvideo.livingroom
+#      media_content_type: app
 
 
 - id: philips_launch_google_play_movies
@@ -97,11 +101,11 @@
       entity_id: media_player.philips936_tv
     data:
       media_content_id: >-
-        com.amazon.ignition.IgnitionActivity-com.amazon.amazonvideo.livingroom
+        com.google.android.videos.tv.presenter.activity.TvLauncherActivity-com.google.android.videos
       media_content_type: app
 
-- id: philips_launch_netflix
-  alias: philips_launch_netflix
+- id: philips_launch_tv1_russia
+  alias: philips_launch_tv1_russia
   initial_state: 'true'
   trigger:
     platform: event
@@ -116,11 +120,14 @@
       entity_id: media_player.philips936_tv
     data:
       media_content_id: >-
-        com.netflix.ninja.MainActivity-com.netflix.ninja
+        ru.kino1tv.android.tv.ui.activity.MainActivity-ru.tv1.android.tv
       media_content_type: app
 
-- id: philips_launch_tv_guide
-  alias: philips_launch_tv_guide
+
+
+
+- id: philips_turn_off
+  alias: philips_turn_off
   initial_state: 'true'
   trigger:
     platform: event
@@ -130,32 +137,39 @@
       type: keypress
       key: Left
   action:
+    service: remote.send_command
+    target:
+      entity_id: remote.philips936_tv
+    data:
+      command: 
+        - Standby
+
+
+
+#  action:
+#    service: media_player.turn_off
+#    target:
+#      entity_id: media_player.philips936_tv
+
+
+- id: philips_launch_youtube
+  alias: philips_launch_youtube
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Fwd
+  action:
     service: media_player.play_media
     target:
       entity_id: media_player.philips936_tv
     data:
       media_content_id: >-
-        org.droidtv.channels.ChannelsLauncherActivity-org.droidtv.channels
+        com.google.android.apps.youtube.tv.activity.ShellActivity-com.google.android.youtube.tv
       media_content_type: app
-
-#- id: philips_launch_other_media
-#  alias: philips_launch_other_media
-#  initial_state: 'true'
-#  trigger:
-#    platform: event
-#    event_type: roku_command
-#    event_data:
-#      source_name: Home Assistant
-#      type: keypress
-#      key: Right
-#  action:
-#    service: media_player.play_media
-#    target:
-#      entity_id: media_player.philips936_tv
-#    data:
-#      media_content_id: >-
-#        droidtv.contentexplorer.MainActivity-org.droidtv.contentexplorer
-#      media_content_type: app
 
 - id: philips_launch_curiosity_stream
   alias: philips_launch_curiosity_stream
@@ -302,3 +316,137 @@
       source: HDMI 4
     target:
       entity_id: media_player.philips936_tv
+
+
+
+#####################################################################
+# Emulated Roku Philips TV App Buttons - Home Assistant 2 Port 8061 #
+#####################################################################
+
+# Emulated Roku to App Mapping:
+# Prime Video and Netflix have dedicated buttons so not needed here
+# Home = Home Activity (Harmony)
+# Rev = Power Off (Remote Command)
+# Fwd = Adjust (Remote Command)
+# Play = Other Media
+# Select = 
+# Left = TV Guide
+# Right = 
+# Down = 
+# Up = 
+# Back = 
+# InstantReplay = 
+# Info = 
+# BackSpace = 
+# Search = 
+
+
+
+- id: philips_launch_home_harmony_activity
+  alias: philips_launch_home_harmony_activity
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant 2
+      type: keypress
+      key: Home
+  action:
+  - service: remote.turn_on
+    target:
+      entity_id: remote.harmony
+    data:
+      activity: "Home Screen"
+  - service: remote.send_command
+    data:
+      device: Philips TV
+      command: Home
+    target:
+      entity_id: remote.harmony
+
+
+- id: philips_turn_off_2
+  alias: philips_turn_off_2
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant 2
+      type: keypress
+      key: Left
+  action:
+    service: remote.send_command
+    target:
+      entity_id: remote.philips936_tv
+    data:
+      command: Standby
+
+
+- id: philips_launch_other_media
+  alias: philips_launch_other_media
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant 2
+      type: keypress
+      key: Play
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        org.droidtv.contentexplorer.MainActivity-org.droidtv.contentexplorer
+      media_content_type: app
+
+- id: philips_launch_tv_guide
+  alias: philips_launch_tv_guide
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant 2
+      type: keypress
+      key: Left
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        org.droidtv.channels.ChannelsLauncherActivity-org.droidtv.channels
+      media_content_type: app
+      
+      
+#####################################################################      
+
+
+- id: philips_tv_turn_off_remote
+  alias: philips_tv_turn_off_remote
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: media_player.philips936_tv
+    to: 'off'
+    for:
+      minutes: 5
+  condition:
+    condition: state
+    entity_id: remote.harmony
+    state: 'on'
+  action:
+  - service: remote.send_command
+    target:
+      entity_id: remote.philips936_tv
+    data:
+      command: PowerOn
+  - delay: 1
+  - service: remote.turn_off
+    target:
+      entity_id: remote.harmony
+

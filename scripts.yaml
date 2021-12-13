@@ -1180,8 +1180,8 @@
         data:
           entity_id: remote.harmony
           command: VolumeUp
-          device: "Sony TV"
-          num_repeats: 6
+          device: "Philips TV"
+          num_repeats: 3
 
 
   turn_down_the_volume_on_the_tv:
@@ -1190,8 +1190,8 @@
         data:
           entity_id: remote.harmony
           command: VolumeDown
-          device: "Sony TV"
-          num_repeats: 6
+          device: "Philips TV"
+          num_repeats: 3
 
 #
 #  turn_on_the_towel_warmer:

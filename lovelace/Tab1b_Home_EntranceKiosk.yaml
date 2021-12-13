@@ -727,7 +727,7 @@ cards:
         sun: sun.sun
         mode: hourly
         temp: sensor.smartweatherudp_temperature
-        wind: sensor.smartweather_wind_gust
+        wind: sensor.smartweatherudp_wind_speed_realtime
 
       - type: entities
     #        title: Weather Forecast

@@ -108,9 +108,9 @@ def set_to_profile(profile,profile_name,automations_profile,automations_profile_
       elif automations_profile[count]==1:
         hass.services.call("automation", "turn_on", {"entity_id" : AUTOMATION_ENTITIES[count]}, False)
   elif automations_profile_name=="NULL":
-    logger.debug("Living Room Heating Procfile, not setting automations on/off")
+    logger.debug("Living Room Heating Profile, not setting automations on/off")
   else:
-    logger.debug("Bad value for automation profile name: %s",automations_profile)
+    logger.debug("Bad value for automation profile name: %s",automations_profile_name)
 
   ## set temperature ##
   
@@ -178,7 +178,7 @@ elif SUNNY_DAY and LOW_TEMP > 5 and LOW_TEMP <= 10 and HIGH_TEMP > 20:
 elif SUNNY_DAY and LOW_TEMP < 10 and HIGH_TEMP < 13:
   logger.info("Sunny Low < 10 High < 13 - Choose Profile Auto")
   set_to_profile(PROFILE_AUTO,"PROFILE_AUTO",AUTOMATIONS_PROFILE_AUTO,"AUTOMATIONS_PROFILE_AUTO")
-## Riles for cool cloudy weather ##
+## Rules for cool cloudy weather ##
 elif CLOUDY_DAY and LOW_TEMP >= 7 and LOW_TEMP <= 10 and HIGH_TEMP >= 15 and HIGH_TEMP <= 20:
   logger.info("Cloudy Low 7-10 High 15-20 - Choose Profile A")
   set_to_profile(PROFILE_A,"PROFILE_A",AUTOMATIONS_PROFILE_A,"AUTOMATIONS_PROFILE_A")
@@ -204,14 +204,14 @@ else:
 
 if LOW_TEMP >= 2 and LOW_TEMP <= 5 and HIGH_TEMP > 11:
   logger.info("Low 2-5 High > 11 - Choose Living Room 20")
-  set_to_profile(LIVING_ROOM_20,"LIVING_ROOM_20",NULL,"NULL")
+  set_to_profile(LIVING_ROOM_20,"LIVING_ROOM_20","null","NULL")
 elif LOW_TEMP > 5 and LOW_TEMP < 10 and HIGH_TEMP > 13:
   logger.info("Low 5-10 High > 13 - Choose Living Room 18")
-  set_to_profile(LIVING_ROOM_18,"LIVING_ROOM_18",NULL,"NULL")
+  set_to_profile(LIVING_ROOM_18,"LIVING_ROOM_18","null","NULL")
 elif LOW_TEMP < 2 and HIGH_TEMP > 11: 
   logger.info("Low < 2 High > 11 - Choose Living Room Auto")
-  set_to_profile(LIVING_ROOM_AUTO,"LIVING_ROOM_AUTO",NULL,"NULL")
+  set_to_profile(LIVING_ROOM_AUTO,"LIVING_ROOM_AUTO","null","NULL")
 elif LOW_TEMP < 5 and HIGH_TEMP < 11:
   logger.info("Low <= 5 High <= 11 - Choose Living Room Auto")
-  set_to_profile(LIVING_ROOM_AUTO,"LIVING_ROOM_AUTO",NULL,"NULL")
+  set_to_profile(LIVING_ROOM_AUTO,"LIVING_ROOM_AUTO","null","NULL")
 

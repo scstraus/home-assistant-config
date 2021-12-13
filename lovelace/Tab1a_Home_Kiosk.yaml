@@ -20,7 +20,7 @@ popup_cards:
       weather: weather.weather_forecast
       sun: sun.sun
       temp: sensor.smartweatherudp_temperature
-      wind: sensor.smartweather_wind_gust
+      wind: sensor.smartweatherudp_wind_speed_realtime
 
   sensor.sean_location:
     title: Sean Location History and Time to Home

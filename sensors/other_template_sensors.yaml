@@ -150,8 +150,9 @@
           {% endif %}
 
 
-# 04/01/19-11/30/19: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
-# 12/01/19-03/30/20: Pickup is Odd Weeks Wednesday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
+# 04/15/21-11/25/21: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
+# 12/08/21-03/30/22: Pickup is Odd Weeks Wednesday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
+# Check how closely next years dates compare to this year's and adjust as needed. There was no collection at the end of November. The sensor still goes all the way to the end of november and starts from beginning of December which isn't exactly accurate during the transition.
 
   - platform: template
     sensors:

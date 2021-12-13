@@ -74,6 +74,7 @@ frontend:
 #    - /hacsfiles/custom-sidebar/custom-sidebar.js
   extra_module_url:
     - /local/kiosk-zoom-enable.js
+    - /hacsfiles/lovelace-card-mod/card-mod.js
 
 lovelace:
 
@@ -659,27 +660,27 @@ input_select:
       - LIVING_ROOM_AUTO
       - LIVING_ROOM_20
       - LIVING_ROOM_18
-
-  dreamscreen_mode:
-    name: Dreamscreen Mode
-    options:
-      - Turn Off
-      - Video
-      - Music
-      - Ambient
-
-  dreamscreen_scene:
-    name: Dreamscreen Scene
-    options:
-      - Random
-      - Fire 
-      - Twinkle
-      - Ocean 
-      - Pride
-      - Fireworks
-      - Holiday
-      - Pop
-      - Forest
+#
+#  dreamscreen_mode:
+#    name: Dreamscreen Mode
+#    options:
+#      - Turn Off
+#      - Video
+#      - Music
+#      - Ambient
+#
+#  dreamscreen_scene:
+#    name: Dreamscreen Scene
+#    options:
+#      - Random
+#      - Fire 
+#      - Twinkle
+#      - Ocean 
+#      - Pride
+#      - Fireworks
+#      - Holiday
+#      - Pop
+#      - Forest
 
   last_inside_aqi_notification:
     name: Last Inside AQI notification
@@ -831,12 +832,12 @@ input_number:
     min: 5.0
     max: 25.0
     step: 0.5
-
-  dreamscreen_brightness:
-    name: Brightness
-    min: 0
-    max: 100
-    step: 1
+#
+#  dreamscreen_brightness:
+#    name: Brightness
+#    min: 0
+#    max: 100
+#    step: 1
 
 #  master_bedroom_air_purifier_favorite_level:
 #    name: "Favorite level"
@@ -981,11 +982,11 @@ timer:
     duration: '00:60:00'
 
 
-
-dreamscreen:
-  devices:
-    - living_room_tv:
-        address: !secret dreamscreen_ip
+#
+#dreamscreen:
+#  devices:
+#    - living_room_tv:
+#        address: !secret dreamscreen_ip
 
 #bmw_connected_drive:
 #  name: 
@@ -1067,34 +1068,34 @@ input_text:
     max: 20
 
 
-light:
-  - platform: template
-    lights:
-      dreamscreen:
-        friendly_name: "Dreamscreen"
-        level_template: "{{ (state_attr('dreamscreen.living_room_tv', 'brightness')|float*2.56)|int }}"
-        value_template: "{{ state_attr('dreamscreen.living_room_tv', 'device_mode')|int > 0 }}"
-        availability_template: "{{ states('dreamscreen.living_room_tv') != 'unknown' }}"
-        turn_on:
-          service: dreamscreen.set_mode
-          data:
-            entity_id: dreamscreen.living_room_tv
-            mode: 3
-        turn_off:
-          service: dreamscreen.set_mode
-          data:
-            entity_id: dreamscreen.living_room_tv
-            mode: 0
-        set_level:
-          service: python_script.set_dreamscreen_brightness
-          data:
-            brightness: "{{ brightness }}"
-        set_color:
-          - service: python_script.set_dreamscreen_color
-            data:
-              h: "{{ h }}"
-              s: "{{ s }}"
-              v: "{{ state_attr('dreamscreen.living_room_tv', 'brightness')|int }}"
+#light:
+#  - platform: template
+#    lights:
+#      dreamscreen:
+#        friendly_name: "Dreamscreen"
+#        level_template: "{{ (state_attr('dreamscreen.living_room_tv', 'brightness')|float*2.56)|int }}"
+#        value_template: "{{ state_attr('dreamscreen.living_room_tv', 'device_mode')|int > 0 }}"
+#        availability_template: "{{ states('dreamscreen.living_room_tv') != 'unknown' }}"
+#        turn_on:
+#          service: dreamscreen.set_mode
+#          data:
+#            entity_id: dreamscreen.living_room_tv
+#            mode: 3
+#        turn_off:
+#          service: dreamscreen.set_mode
+#          data:
+#            entity_id: dreamscreen.living_room_tv
+#            mode: 0
+#        set_level:
+#          service: python_script.set_dreamscreen_brightness
+#          data:
+#            brightness: "{{ brightness }}"
+#        set_color:
+#          - service: python_script.set_dreamscreen_color
+#            data:
+#              h: "{{ h }}"
+#              s: "{{ s }}"
+#              v: "{{ state_attr('dreamscreen.living_room_tv', 'brightness')|int }}"
 
 #switchbot is on the Pi you fool!
 #cover:
