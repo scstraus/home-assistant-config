@@ -791,7 +791,7 @@ cards:
         weather: weather.smartweather_home
         sun: sun.sun
         mode: hourly
-        temp: sensor.smartweatherudp_temperature
+        temp: sensor.smartweather_temperature
         wind: sensor.smartweather_wind_gust
 
       - type: entities
@@ -1737,26 +1737,8 @@ cards:
           controls: true
           mute: true
         group: true
-      - type: custom:fold-entity-row
-        head: 
-          entity: input_number.dreamscreen_brightness
-          icon: mdi:looks
-          name: Dreamscreen
-  #    - type: custom:fold-entity-row
-  #      head: 
-  #        entity: custom:slider-entity-row
-  #        entity: light.dreamscreen
-  #        icon: mdi:looks
-  #        name: Dreamscreen
-        entities:
-          - entity: light.dreamscreen
-            name: Color / Switch
-          - entity: input_select.dreamscreen_mode
-            name: Mode
-          - entity: input_select.dreamscreen_scene
-            name: Scene
 
-        name: Dreamscreen
+
       - climate.entrance
       - climate.living_room
       - entity: climate.living_room_ac
@@ -1893,6 +1875,11 @@ cards:
         entities:
         - entity: sensor.cooper_s_e_all4_charging_time_remaining
           name: Charging Time
+          state_filter:
+            - operator: ">"
+              value: 0
+#        - entity: sensor.cooper_s_e_all4_charging_time_remaining
+#          name: Charging Time
         - entity: sensor.cooper_s_e_all4_charging_level_hv
           name: Charge Level
         - entity: sensor.cooper_s_e_all4_remaining_range_electric

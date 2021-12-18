@@ -1,7 +1,7 @@
 #### MEDIA TAB ####
 
 title: Media
-icon: mdi:television-clean
+icon: mdi:television-shimmer
 visible:
   - user: 81d8e5c60d3a49708ab5ff7f956ac284
   - user: b78739f1b439447a9036d38a8c152be8

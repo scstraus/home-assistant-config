@@ -30,7 +30,7 @@ cards:
           }
         title: Weather Today
         weather: weather.smartweather_home
-        temp: sensor.smartweatherudp_temperature
+        temp: sensor.smartweather_temperature
         wind: sensor.smartweatherudp_wind_speed_realtime
         sun: sun.sun
         mode: hourly

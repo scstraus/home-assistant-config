@@ -217,8 +217,8 @@
     data:
       entity_id: switch.fibaro_system_fgs223_double_relay_switch
 
-- id: turn_off_front_security_light_if_its_cold
-  alias: turn_off_front_security_light_if_its_cold
+- id: turn_off_security_lights_if_its_cold_at_2100
+  alias: turn_off_security_lights_if_its_cold_at_2100
   initial_state: 'true'
   trigger:
     platform: time
@@ -236,44 +236,55 @@
         entity_id: sensor.smartweather_humidity
         above: 70
   action:
-    service: switch.turn_off
-    data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+    - service: switch.turn_off
+      data:
+        entity_id: switch.fibaro_system_fgs223_double_relay_switch
+    - service: switch.turn_off
+      data:
+        entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
 
-- id: turn_off_back_security_light_if_its_cold
-  alias: turn_off_back_security_light_if_its_cold
+
+- id: turn_off_security_lights_if_its_cold_at_night
+  alias: turn_off_security_lights_if_its_cold_at_night
   initial_state: 'true'
   trigger:
-    platform: time
-    at: '21:00:00'
+    platform: numeric_state
+    entity_id: sensor.smartweather_temperature
+    below: 5
   condition:
     - condition: and
       conditions:
-      - condition: numeric_state
-        entity_id: sensor.smartweather_temperature
-        below: 5
       - condition: numeric_state
         entity_id: sensor.smartweather_temperature
         above: 0
       - condition: numeric_state
         entity_id: sensor.smartweather_humidity
         above: 70
+      - condition: time
+        after: "19:00:00"
+        before: "08:00:00"
   action:
-    service: switch.turn_off
-    data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+    - service: switch.turn_off
+      data:
+        entity_id: switch.fibaro_system_fgs223_double_relay_switch
+    - service: switch.turn_off
+      data:
+        entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
 
 
-- id: turn_on_front_security_light_in_morning
-  alias: 'Turn On Front Security Light In Morning'
+- id: turn_on_security_lights_in_morning
+  alias: turn_on_security_lights_in_morning
   initial_state: 'true'
   trigger:
     platform: time
     at: '9:00:00'
   action:
-    service: switch.turn_on
-    data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+    - service: switch.turn_on
+      data:
+        entity_id: switch.fibaro_system_fgs223_double_relay_switch
+    - service: switch.turn_on
+      data:
+        entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
 
 - id: front_right_security_lights_on_if_human
   alias: 'Front+Right Security Lights on if Human'
