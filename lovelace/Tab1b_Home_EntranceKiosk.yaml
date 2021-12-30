@@ -18,7 +18,7 @@ popup_cards:
       type: 'custom:weather-card-chart'
       weather: weather.weather_forecast
       sun: sun.sun
-      temp: sensor.smartweatherudp_temperature
+      temp: sensor.tempest_st_00023475_temperature
       wind: sensor.smartweather_wind_gust
 
   sensor.sean_location:
@@ -183,7 +183,7 @@ popup_cards:
           - sensor.high_wind_warning
       - type: history-graph
         entities:
-          - sensor.smartweatherudp_wind_speed_realtime
+          - sensor.tempest_st_00023475_wind_speed_realtime
 
 
   sensor.last_lightning:
@@ -630,36 +630,80 @@ cards:
       - sensor.2nd_floor_smoke_alarm_battery_level
       show_empty: false
 
+#
+#    - type: conditional
+#      conditions:
+#        - entity: binary_sensor.reminders_label
+#          state: "on"
+#      card:
+#        type: vertical-stack
+#        in_card: true
+#        cards:
+#        - type: "custom:button-card"
+#          name: Reminders
+#          styles:
+#            name:
+#              - color: var(--ha-card-header-color)
+#              - justify-self: start
+#              - padding-left: 16px
+#            card:
+#              - padding-top: 22px
+#              - padding-bottom: 10px
+#              - font-size: 24px
+#        - type: "custom:calendar-card"
+#          entities:
+#            - calendar.alena_and_seans_calendar
+#      #    title: "Reminders"
+#          showProgressBar: false
+#          numberOfDays: 3
+#          hidePastEvents: true
+#          hideHeader: true
+#          timeFormat: 'hh:mm a'
 
-    - type: conditional
-      conditions:
-        - entity: binary_sensor.reminders_label
-          state: "on"
-      card:
-        type: vertical-stack
-        in_card: true
-        cards:
-        - type: "custom:button-card"
-          name: Reminders
-          styles:
-            name:
-              - color: var(--ha-card-header-color)
-              - justify-self: start
-              - padding-left: 16px
-            card:
-              - padding-top: 22px
-              - padding-bottom: 10px
-              - font-size: 24px
-        - type: "custom:calendar-card"
-          entities:
-            - calendar.alena_and_seans_calendar
-      #    title: "Reminders"
-          showProgressBar: false
-          numberOfDays: 3
-          hidePastEvents: true
-          hideHeader: true
-          timeFormat: 'hh:mm a'
+#    - type: 'custom:atomic-calendar-revive'
+#      entities:
+#        - entity: calendar.alena_and_seans_calendar
+#      name: Reminders
+#      showWeekDay: true
+#      showLocation: false
+#      maxDaysToShow: 3
+##      nameColor: var(--ha-card-header-color)
 
+
+    - type: vertical-stack
+      in_card: true
+      cards:
+
+      - type: "custom:button-card"
+        name: Reminders
+        styles:
+          name:
+            - color: var(--ha-card-header-color)
+            - justify-self: start
+            - padding-left: 16px
+          card:
+            - padding-top: 22px
+            - padding-bottom: 10px
+            - font-size: 24px
+
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.reminders_label
+            state: "on"
+        card:
+
+          type: custom:mod-card
+          report_size: 2
+          card:
+            type: 'custom:atomic-calendar-revive'
+            entities:
+              - entity: calendar.alena_and_seans_calendar
+            showWeekDay: true
+            maxDaysToShow: 3
+            showLoader: false
+            eventTitleSize: 100
+            timeSize: 100
+            dateSize: 100
 
 
     
@@ -727,7 +771,19 @@ cards:
         sun: sun.sun
         mode: hourly
         temp: sensor.smartweather_temperature
-        wind: sensor.smartweatherudp_wind_speed_realtime
+        wind: sensor.tempest_st_00023475_wind_speed_realtime
+#
+#      - type: 'custom:weather-card-chart'
+#        style: |
+#          .card-header {
+#            padding: 0px 0px 0px;
+#            font-size: var(--ha-card-header-font-size, 0px);
+#            line-height: 24px;
+#          }
+#        title: Weather 
+#        weather: weather.openweathermap
+#        sun: sun.sun
+#        mode: hourly
 
       - type: entities
     #        title: Weather Forecast

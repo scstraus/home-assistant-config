@@ -50,7 +50,7 @@ class PlaylistInRoom(hass.Hass):
   ["media_player.echo_flex_first_floor_bathroom","media_player.forked_daapd_output_bathroom_1st_floor"],
   ["media_player.alexa_library","media_player.forked_daapd_output_library"]]
 
-  PLAYLIST_EXCEPTION_VOLUMES = {"Best Jazz": 1.13, "Classical": 1.3, "Classical Radio": 1.3, "radio kultura": 1.3, "Jazz24 Radio": 1.22}
+  PLAYLIST_EXCEPTION_VOLUMES = {"Best Jazz": 1.13, "Classical": 1.3, "Classical Radio": 1.3, "radio kultura": 1.3, "Jazz24 Radio": 1.22, "Christmas": 1.2}
 
 #########################################################################################################
 #                            THESE ARE THE INITIALIZE AND LAUNCH FUNCTIONS                              #

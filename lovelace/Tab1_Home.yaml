@@ -9,7 +9,8 @@ visible:
   - user: cb904806764d46bfbfb049d6e6939586
 
 ### These are just the cards that you see only sometimes under certain conditions in the first tab (non kiosk flavor)
-###### START COMMENT BLOCK 1: POPUP CARDS
+###### START COMMENT BLOCK 1: 
+#POPUP CARDS
 
 popup_cards:
 
@@ -810,7 +811,14 @@ cards:
         sun: sun.sun
         mode: hourly
         temp: sensor.smartweather_temperature
-        wind: sensor.smartweatherudp_wind_speed_realtime
+        wind: sensor.tempest_st_00023475_wind_speed_realtime
+
+#      - type: 'custom:weather-card-chart'
+#        title: Weather / Air Quality
+#        weather: weather.openweathermap
+#        sun: sun.sun
+#        mode: hourly
+
 
       - type: conditional
         conditions:
@@ -1071,11 +1079,11 @@ cards:
 #
 #  - type: custom:card-modder
 #    report_size: 8
-#    card:
+#    card: 
 
 
 
-
+#
 ##    - type: custom:vertical-stack-in-card
 #  - type: vertical-stack
 ##      in_card: true
@@ -1092,26 +1100,64 @@ cards:
 #          - padding-top: 22px
 #          - padding-bottom: 4px
 #          - font-size: 24px
+#
+#    - type: conditional
+#      conditions:
+#        - entity: binary_sensor.reminders_label
+#          state: "on"
+#      card:
+#
+#        type: custom:mod-card
+#        report_size: 2
+#        card:
+#          type: "custom:calendar-card"
+#          entities:
+#            - calendar.alena_and_seans_calendar
+#        #    title: "Reminders"
+#          title: Reminders
+#          showProgressBar: false
+#          numberOfDays: 3
+#          hidePastEvents: true
+#          hideHeader: false
+#          timeFormat: 'hh:mm a'
 
-  - type: conditional
-    conditions:
-      - entity: binary_sensor.reminders_label
-        state: "on"
-    card:
 
-      type: custom:mod-card
-      report_size: 2
+
+  - type: vertical-stack
+    in_card: true
+    cards:
+
+    - type: "custom:button-card"
+      name: Reminders
+      styles:
+        name:
+          - color: var(--ha-card-header-color)
+          - justify-self: start
+          - padding-left: 16px
+        card:
+          - padding-top: 22px
+          - padding-bottom: 10px
+          - font-size: 24px
+
+    - type: conditional
+      conditions:
+        - entity: binary_sensor.reminders_label
+          state: "on"
       card:
-        type: "custom:calendar-card"
-        entities:
-          - calendar.alena_and_seans_calendar
-      #    title: "Reminders"
-        title: Reminders
-        showProgressBar: false
-        numberOfDays: 3
-        hidePastEvents: true
-        hideHeader: false
-        timeFormat: 'hh:mm a'
+
+        type: custom:mod-card
+        report_size: 2
+        card:
+          type: 'custom:atomic-calendar-revive'
+          entities:
+            - entity: calendar.alena_and_seans_calendar
+          showWeekDay: true
+          maxDaysToShow: 3
+          showLoader: false
+          eventTitleSize: 100
+          timeSize: 100
+          dateSize: 100
+    
 #
 #  - type: "custom:atomic-calendar-revive"
 #    entities:

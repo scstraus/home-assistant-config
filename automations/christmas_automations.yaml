@@ -1,18 +1,18 @@
 
-- id: christmas_tree_toggle
-  alias: christmas_tree_toggle
-  initial_state: 'false'
-  trigger:
-  - platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.fibaro_button_white
-      scene_data: 7680
-      scene_id: 1
-  action:
-    - service: switch.toggle
-      data:
-        entity_id: switch.miele_dishwasher_switch
+#- id: christmas_tree_toggle
+#  alias: christmas_tree_toggle
+#  initial_state: 'false'
+#  trigger:
+#  - platform: event
+#    event_type: zwave.scene_activated
+#    event_data:
+#      entity_id: zwave.fibaro_button_white
+#      scene_data: 7680
+#      scene_id: 1
+#  action:
+#    - service: switch.toggle
+#      data:
+#        entity_id: switch.garbage_disposal
 
 - id: christmas_mode_button
   alias: christmas_mode_button
@@ -39,7 +39,7 @@
               entity_id: input_boolean.itunes_shuffle
           - service: switch.turn_on
             data:
-              entity_id: switch.miele_dishwasher_switch
+              entity_id: switch.garbage_disposal
           - service: media_player.play_media
             data:
               entity_id: media_player.chromecast
@@ -53,14 +53,14 @@
             event_data_template: 
               alexa_entity: "christmas"
               playlist: "christmas"
-          - service: dreamscreen.set_ambient_scene
-            data:
-              entity_id: dreamscreen.living_room_tv
-              scene: 6
-          - service: dreamscreen.set_brightness
-            data:
-              entity_id: dreamscreen.living_room_tv
-              brightness: 90
+#          - service: dreamscreen.set_ambient_scene
+#            data:
+#              entity_id: dreamscreen.living_room_tv
+#              scene: 6
+#          - service: dreamscreen.set_brightness
+#            data:
+#              entity_id: dreamscreen.living_room_tv
+#              brightness: 90
           - service: remote.turn_on
             entity_id: remote.harmony
             data:
@@ -120,19 +120,19 @@
             entity_id: media_player.itunes
         - service: switch.turn_off
           data:
-            entity_id: switch.miele_dishwasher_switch
-        - service: dreamscreen.set_brightness
-          data:
-            entity_id: dreamscreen.living_room_tv
-            brightness: 42
-        - service: dreamscreen.set_mode
-          data:
-            entity_id: dreamscreen.living_room_tv
-            mode: 1
-        - service: dreamscreen.set_mode
-          data:
-            entity_id: dreamscreen.living_room_tv
-            mode: 0
+            entity_id: switch.garbage_disposal
+#        - service: dreamscreen.set_brightness
+#          data:
+#            entity_id: dreamscreen.living_room_tv
+#            brightness: 42
+#        - service: dreamscreen.set_mode
+#          data:
+#            entity_id: dreamscreen.living_room_tv
+#            mode: 1
+#        - service: dreamscreen.set_mode
+#          data:
+#            entity_id: dreamscreen.living_room_tv
+#            mode: 0
         - service: remote.turn_off
           data:
             entity_id: remote.harmony
@@ -145,7 +145,7 @@
 
 - id: christmas_day_automation
   alias: christmas_day_automation
-  initial_state: 'false'
+  initial_state: 'true'
   mode: single
   trigger:
     platform: state
@@ -171,76 +171,63 @@
               entity_id: input_boolean.itunes_shuffle
           - service: switch.turn_on
             data:
-              entity_id: switch.miele_dishwasher_switch
+              entity_id: switch.garbage_disposal
+          - service: remote.turn_on
+            entity_id: remote.harmony
+            data:
+              activity: "YouTube"
           - service: media_player.play_media
             data:
-              entity_id: media_player.chromecast
+              entity_id: media_player.philips936_tv_cast
               media_content_type: cast
               media_content_id: '
                 {
                   "app_name": "youtube",
                   "media_id": "8WBThkkpnaA"
                 }'
-          - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
-            event_data_template: 
-              alexa_entity: "christmas"
-              playlist: "christmas-sorted"
-          - service: dreamscreen.set_ambient_scene
-            data:
-              entity_id: dreamscreen.living_room_tv
-              scene: 6
-          - service: dreamscreen.set_brightness
-            data:
-              entity_id: dreamscreen.living_room_tv
-              brightness: 90
-          - service: remote.turn_on
-            entity_id: remote.harmony
-            data:
-              activity: "Chrome Cast"
+          - delay: "00:00:01"
           - service: remote.send_command
             data:
               entity_id: remote.harmony
               command:
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown   
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown 
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown          
-              device: "Sony TV"
+                - Mute
+              device: "Philips TV"
               delay_secs: 0.0
+          - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
+            event_data_template: 
+              alexa_entity: "christmas"
+              playlist: "christmas-sorted"
+#          - service: dreamscreen.set_ambient_scene
+#            data:
+#              entity_id: dreamscreen.living_room_tv
+#              scene: 6
+#          - service: dreamscreen.set_brightness
+#            data:
+#              entity_id: dreamscreen.living_room_tv
+#              brightness: 90
           - service: input_boolean.turn_on
             data:
               entity_id: input_boolean.christmas_mode
           - delay: 
               hours: 18
+
+
+- id: christmas_tree_power_cycle
+  alias: christmas_tree_power_cycle
+  initial_state: 'true'
+  trigger:
+    platform: time_pattern
+    minutes: "/10"
+  condition:
+    condition: state
+    entity_id: switch.garbage_disposal
+    state: 'on'  
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.garbage_disposal
+    - delay: 
+        seconds: 2
+    - service: switch.turn_on
+      data:
+        entity_id: switch.garbage_disposal
