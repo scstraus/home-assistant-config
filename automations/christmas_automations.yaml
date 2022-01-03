@@ -145,7 +145,7 @@
 
 - id: christmas_day_automation
   alias: christmas_day_automation
-  initial_state: 'true'
+  initial_state: 'false'
   mode: single
   trigger:
     platform: state
@@ -214,7 +214,7 @@
 
 - id: christmas_tree_power_cycle
   alias: christmas_tree_power_cycle
-  initial_state: 'true'
+  initial_state: 'false'
   trigger:
     platform: time_pattern
     minutes: "/10"

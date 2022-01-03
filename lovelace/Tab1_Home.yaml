@@ -1123,29 +1123,29 @@ cards:
 
 
 
-  - type: vertical-stack
-    in_card: true
-    cards:
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.reminders_label
+        state: "on"
+    card:
+    
+      type: vertical-stack
+      in_card: true
+      cards:
 
-    - type: "custom:button-card"
-      name: Reminders
-      styles:
-        name:
-          - color: var(--ha-card-header-color)
-          - justify-self: start
-          - padding-left: 16px
-        card:
-          - padding-top: 22px
-          - padding-bottom: 10px
-          - font-size: 24px
+      - type: "custom:button-card"
+        name: Reminders
+        styles:
+          name:
+            - color: var(--ha-card-header-color)
+            - justify-self: start
+            - padding-left: 16px
+          card:
+            - padding-top: 22px
+            - padding-bottom: 10px
+            - font-size: 24px
 
-    - type: conditional
-      conditions:
-        - entity: binary_sensor.reminders_label
-          state: "on"
-      card:
-
-        type: custom:mod-card
+      - type: custom:mod-card
         report_size: 2
         card:
           type: 'custom:atomic-calendar-revive'
