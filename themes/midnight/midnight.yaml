@@ -116,63 +116,20 @@ midnight:
 
       /* This adds the time */
       {% if (user == 'entrancekiosk') %}
-
-
-
-
-      ha-button-menu {
-        display: flex;
-      }
+      
       ha-button-menu::before {
-        content: "{{ '13:34:21' }}";
-        color: var(--text-primary-color);
-        align-self: self-start;
-        /* outline: 1px solid var(--text-primary-color); */
-        outline-offset: 5px;
-        border-radius: 0px;
+      
+      content: "{{states('sensor.time')}}";
+      /*content: "{{states('sensor.time')}} - {{states('sensor.date')}}";*/
+      color: var(--text-primary-color);
+      visibility: visible;
+      position: relative;
+      font-size: 22px;
+
+      top: 27px;
+
       }
 
-
-      /*
-      ha-button-menu ha-icon-button $ mwc-icon-button: |
-        ha-svg-icon {
-          display: none;
-        }
-      mwc-icon-button::after {
-        font-size: 22px;
-        height: 20px; 
-        width: 100px;
-        margin-left: 0px;
-        margin-right: 0px;
-        content: "{{ '13:34:21' }}";
-        position: absolute;
-        top: 0px;
-        right: 0px;
-      }
-      */
-
-
-
-      /*
-      mwc-icon-button[slot="trigger"] > ha-svg-icon {
-        display: none;
-      }
-
-
-
-      mwc-icon-button[slot="trigger"]::after {
-        font-size: 20px;
-        height: 20px; 
-        width: 100px;
-        margin-left: 0px;
-        margin-right: 0px;
-        content: "{{ states('sensor.time') }}";
-        position: absolute;
-        top: 8px;
-        right: 0px;
-      }
-
-      */
       ha-menu-button {
         display: none !important;
       }
@@ -181,28 +138,8 @@ midnight:
       ha-button-menu {
         color: transparent;
       }
+      
 
-      /*
-      ha-button-menu::before {
-        font-size: 20px;
-        height: 20px; 
-        width: 100px;
-        margin-left: 0px;
-        margin-right: 0px;
-        content: "{{ states('sensor.time') }}";
-        position: absolute;
-        top: 8px;
-        right: 0px;
-      }
-      */
-
-      ha-button-menu::before {
-        content: "{{ states('sensor.time') }}";
-        visibility: visible;
-        position: relative;
-        top: 24px;
-        white-space: nowrap;
-      }
 
       {% endif %}
 
@@ -212,15 +149,27 @@ midnight:
         display: none;
       }
 
-      mwc-icon-button[slot="trigger"]::after {
-        font-size: 22px;
-        height: 20px; 
-        width: 300px;
-        margin-left: 0px;
-        margin-right: 0px;
-        content: "{{ states('sensor.time_formatted') }}";
-        position: absolute;
-        top: 14px;
-        right: 0px;
+
+      ha-button-menu::before {
+      
+      content: "{{states('sensor.time_formatted')}}";
+      color: var(--text-primary-color);
+      visibility: visible;
+      position: absolute;
+      font-size: 20px;
+      width: 230px;
+      top: 13px;
+      right: 0px;
+
       }
+
+      ha-menu-button {
+        display: none !important;
+      }
+
+
+      ha-button-menu {
+        color: transparent;
+      }
+      
       {% endif %}

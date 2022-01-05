@@ -51,8 +51,8 @@ Google Light Theme:
   label-badge-gray: rgb(95, 98, 103)
   # Cards
   card-background-color: rgb(255, 255, 255)
-#  ha-card-border-radius: "10px"
-#  ha-card-box-shadow: 1px 1px 5px 0px rgb(230, 230, 230)
+  ha-card-border-radius: "10px"
+  ha-card-box-shadow: 1px 1px 5px 0px rgb(230, 230, 230)
   paper-dialog-background-color: var(--card-background-color)
   paper-listbox-background-color: var(--card-background-color)
   paper-card-background-color: var(--card-background-color)
@@ -73,9 +73,25 @@ Google Light Theme:
   # Dropdowns
   material-background-color: var(--card-background-color)
   material-secondary-background-color: var(--primary-background-color)
-  mdc-theme-surface: var(--paper-card-background-color)
+  mdc-theme-surface: var(--primary-background-color)
   # Pre/Code
   markdown-code-background-color: rgb(242, 242, 242)
+  # Checkboxes
+  mdc-select-fill-color: rgb(255, 255, 255)
+  mdc-select-ink-color: var(--primary-text-color)
+  mdc-select-label-ink-color: var(--secondary-text-color)
+  mdc-select-idle-line-color: var(--primary-text-color)
+  mdc-select-dropdown-icon-color: var(--secondary-text-color)
+  mdc-select-hover-line-color: var(--accent-color)
+  # Input
+  input-fill-color: var(--secondary-background-color)
+  input-dropdown-icon-color: var(--secondary-text-color)
+  input-ink-color: var(--primary-text-color)
+  input-label-ink-color: var(--secondary-text-color)
+  input-idle-line-color: var(--primary-text-color)
+  input-hover-line-color: var(--accent-color)
+
+
 
  # Added by Sean
   ha-card-border-radius: "10px"
@@ -117,22 +133,31 @@ Google Light Theme:
 
       /* This adds the time */
       {% if (user == 'entrancekiosk') %}
+      
+      ha-button-menu::before {
+      
+      content: "{{states('sensor.time')}}";
+      /*content: "{{states('sensor.time')}} - {{states('sensor.date')}}";*/
+      color: var(--primary-text-color);
+      visibility: visible;
+      position: relative;
+      font-size: 22px;
 
-      mwc-icon-button[slot="trigger"] > ha-svg-icon {
-        display: none;
+      top: 27px;
+
       }
 
-      mwc-icon-button[slot="trigger"]::after {
-        font-size: 20px;
-        height: 20px; 
-        width: 100px;
-        margin-left: 0px;
-        margin-right: 0px;
-        content: "{{ states('sensor.time') }}";
-        position: absolute;
-        top: 8px;
-        right: 0px;
+      ha-menu-button {
+        display: none !important;
       }
+
+
+      ha-button-menu {
+        color: transparent;
+      }
+      
+
+
       {% endif %}
 
       {% if (user == 'kiosk') %}
@@ -141,15 +166,28 @@ Google Light Theme:
         display: none;
       }
 
-      mwc-icon-button[slot="trigger"]::after {
-        font-size: 22px;
-        height: 20px; 
-        width: 300px;
-        margin-left: 0px;
-        margin-right: 0px;
-        content: "{{ states('sensor.time_formatted') }}";
-        position: absolute;
-        top: 14px;
-        right: 0px;
+      /* This displays the clock instead of the 3 dots menu */
+
+      ha-button-menu::before {
+      
+      content: "{{states('sensor.time_formatted')}}";
+      color: var(--primary-text-color);
+      visibility: visible;
+      position: absolute;
+      font-size: 20px;
+      width: 230px;
+      top: 13px;
+      right: 0px;
+
       }
+
+      ha-menu-button {
+        display: none !important;
+      }
+
+
+      ha-button-menu {
+        color: transparent;
+      }
+      
       {% endif %}

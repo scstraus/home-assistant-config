@@ -826,42 +826,6 @@ cards:
         - sensor.sophie_location
         - sensor.alena_location
 
-#    - type: conditional
-#      conditions:
-#        - entity: binary_sensor.reminders_label
-#          state: "on"
-#      card:
-#        type: vertical-stack
-#        in_card: true
-#        cards:
-#        - type: "custom:button-card"
-#          name: Reminders
-#          styles:
-#            name:
-#              - color: var(--ha-card-header-color)
-#              - justify-self: start
-#              - padding-left: 16px
-#            card:
-#              - padding-top: 22px
-#              - padding-bottom: 10px
-#              - font-size: 24px
-#        - type: "custom:calendar-card"
-#          entities:
-#            - calendar.alena_and_seans_calendar
-##          title: "Reminders"
-#          showProgressBar: false
-#          numberOfDays: 3
-#          hidePastEvents: true
-#          hideHeader: true
-#          timeFormat: 'hh:mm a'
-
-#    - type: 'custom:atomic-calendar-revive'
-#      entities:
-#        - entity: calendar.alena_and_seans_calendar
-#      name: Reminders
-#      showWeekDay: true
-#      showLocation: false
-#      maxDaysToShow: 3
 
     - type: conditional
       conditions:
@@ -892,7 +856,7 @@ cards:
           maxDaysToShow: 3
           showLoader: false
           eventTitleSize: 100
-          timeSize: 100
+          timeSize: 98
           dateSize: 100
     
 
