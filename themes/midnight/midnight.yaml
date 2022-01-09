@@ -149,6 +149,7 @@ midnight:
         display: none;
       }
 
+      /* This displays the clock instead of the 3 dots
 
       ha-button-menu::before {
       
