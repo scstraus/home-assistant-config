@@ -16,3 +16,4 @@ cards:
   - type: iframe
     url: !secret grafana_health_url
     aspect_ratio: 1020%
+

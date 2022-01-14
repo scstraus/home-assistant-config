@@ -175,7 +175,7 @@ Google Light Theme:
       visibility: visible;
       position: absolute;
       font-size: 20px;
-      width: 230px;
+      width: 250px;
       top: 13px;
       right: 0px;
 

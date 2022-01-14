@@ -139,11 +139,11 @@ cards:
     id_filter: ^nothing.*
     max_item_count: 10
     entities:
-      - entity: garage_door_zone_14
-        include_history: true
-        remove_repeats: false
-        exclude_states:
-          - "off"
+#      - entity: garage_door_zone_14
+#        include_history: true
+#        remove_repeats: false
+#        exclude_states:
+#          - "off"
       - entity: binary_sensor.front_door_zone_1
         include_history: true
         remove_repeats: false

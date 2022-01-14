@@ -501,6 +501,9 @@ input_boolean:
   master_bedroom_air_purifier_attributes:
     name: Attributes
     icon: mdi:pencil
+  sean_headache:
+    name: Sean Headache
+    icon: mdi:head-alert-outline  
 #  auto_curtain_open_state:
 #    name: "Automatic curtain opener state"
     #on=open, off=closed

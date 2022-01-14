@@ -1,11 +1,163 @@
-# I am currently using Onvif integration with UDP multicasting
+# I'm currently using ffmpeg cameras with a live555 proxy. This gives me near real time cameras (~2 sec lag) 
+# and pretty high reliability, though on the kindles, I had to switch to low res
+# proxy cameras for 3/4 of the cameras to reduce load on the tablet enough to make them reliable.
+
+# Previously I was using Onvif integration with UDP multicasting
 # It is basically realtime, and seems reliable when there is
 # enough CPU. Once there are about 3 devices streaming, I run out
 # of CPU without the stream component.
 # I have it configured without the stream component as it
-# still ads the 13 second delay.
+# still ads the 6-7 second delay.
 # Onvif is configured via the integrations pane in the UI.
 
+
+# live 555 proxy streams with ffmpeg component - best solution so far. Low latency, fairly reliable.
+
+
+  - platform: ffmpeg
+    name: Front Stream
+    input: !secret proxy_front_main_stream_url
+
+  - platform: ffmpeg
+    name: Back Stream
+    input: !secret proxy_back_main_stream_url
+
+  - platform: ffmpeg
+    name: Left Stream
+    input: !secret proxy_left_main_stream_url
+
+  - platform: ffmpeg
+    name: Right Stream
+    input: !secret proxy_right_main_stream_url
+
+
+
+
+# synology proxy streams with ffmpeg component test 
+# (only gets the substream, probably have to change camera settings in synology)
+
+  # - platform: ffmpeg
+  #   name: Front Stream
+  #   input: !secret syno_front_main_stream_url
+
+  # - platform: ffmpeg
+  #   name: Back Stream
+  #   input: !secret syno_back_main_stream_url
+
+  # - platform: ffmpeg
+  #   name: Left Stream
+  #   input: !secret syno_left_main_stream_url
+
+  # - platform: ffmpeg
+  #   name: Right Stream
+  #   input: !secret syno_right_main_stream_url
+
+
+#
+#  - platform: generic
+#    name: Right SubStream
+#    still_image_url: !secret right_sub_still_url
+#    stream_source: !secret right_substream_url
+#    framerate: 4
+#
+#  - platform: generic
+#    name: Left SubStream
+#    still_image_url: !secret right_sub_still_url
+#    stream_source: !secret right_substream_url
+#    framerate: 4
+#
+#  - platform: generic
+#    name: Front Substream
+#    still_image_url: !secret front_sub_still_url
+#    stream_source: !secret front_substream_url
+#    framerate: 4
+#
+#  - platform: generic
+#    name: Back Substream
+#    still_image_url: !secret back_sub_still_url
+#    stream_source: !secret back_substream_url
+#    framerate: 4
+##
+  - platform: ffmpeg
+    input: !secret front_substream_url
+    name: Front Substream
+
+  - platform: ffmpeg
+    input: !secret back_substream_url
+    name: Back Substream
+
+  - platform: ffmpeg
+    input: !secret left_substream_url
+    name: Left Substream
+
+  - platform: ffmpeg
+    input: !secret right_substream_url
+    name: Right Substream
+
+
+# Proxy cameras worked for a couple weeks to give me a low
+# res, low frame rate preview stream for my tablets, but 
+# weren't as reliable as the source stream. Using ONVIF 
+# seems more reliable but needs about 30% CPU per device to
+# display the feeds with stream turned on
+
+
+  # - platform: proxy
+  #   name: front_preview
+  #   entity_id: camera.front_stream
+  #   max_stream_width: 320
+  #   max_image_width: 320
+  #   image_refresh_rate: 1.0
+  #   cache_images: true
+
+  # - platform: proxy
+  #   name: back_proxy
+  #   entity_id: camera.back_stream
+  #   max_stream_width: 320
+  #   max_image_width: 320
+  #   image_refresh_rate: 1.0
+  #   cache_images: true
+
+  # - platform: proxy
+  #   name: left_preview
+  #   entity_id: camera.left_stream
+  #   max_stream_width: 180
+  #   max_image_width: 180
+  #   image_refresh_rate: 1.0
+  #   cache_images: true
+
+  # - platform: proxy
+  #   name: right_preview
+  #   entity_id: camera.right_stream
+  #   max_stream_width: 180
+  #   max_image_width: 180
+  #   image_refresh_rate: 1.0
+  #   cache_images: true
+
+
+  - platform: proxy
+    name: back_proxy
+    entity_id: camera.back_stream
+    max_stream_width: 860
+    max_image_width: 860
+    image_refresh_rate: 5.0
+    cache_images: true
+
+  - platform: proxy
+    name: left_proxy
+    entity_id: camera.left_stream
+    max_stream_width: 540
+    max_image_width: 540
+    image_refresh_rate: 5.0
+    cache_images: true
+
+  - platform: proxy
+    name: right_proxy
+    entity_id: camera.right_stream
+    max_stream_width: 540
+    max_image_width: 540
+    image_refresh_rate: 5.0
+    cache_images: true
 
 # I used to use synology streams when I couldn't get the camera streams working directly for frigate, but the camera streams seem better now. No point in streaming it through 2 devices.
 #
@@ -16,7 +168,7 @@
 #    framerate: 4
 #    
 
-# Generic cameras work the best with stream component and use very little CPU that way, but are unreliable with stream turned off. Unfortunately with stream they have a 10-20 second lag but the upside is they use very little CPU and show up properly in the UI.
+# Generic cameras work the best with stream component and use very little CPU that way, but are unreliable with stream turned off. Unfortunately with stream they have a 6-7 second lag but the upside is they use very little CPU and mostly show up properly in the UI, with the exceptions of some stalling when in preview and some buffering on the screen when in fullscreen.
     
 #
 #  - platform: generic
@@ -70,85 +222,6 @@
   #   still_image_url: !secret right_still_url
   #   framerate: 4
 
-# synology proxy streams with ffmpeg component test 
-# (only gets the substream, probably have to change camera settings in synology)
-
-  # - platform: ffmpeg
-  #   name: Front Stream
-  #   input: !secret syno_front_main_stream_url
-
-  # - platform: ffmpeg
-  #   name: Back Stream
-  #   input: !secret syno_back_main_stream_url
-
-  # - platform: ffmpeg
-  #   name: Left Stream
-  #   input: !secret syno_left_main_stream_url
-
-  # - platform: ffmpeg
-  #   name: Right Stream
-  #   input: !secret syno_right_main_stream_url
-
-# live 555 proxy streams with ffmpeg component
-
-
-  - platform: ffmpeg
-    name: Front Stream
-    input: !secret proxy_front_main_stream_url
-
-  - platform: ffmpeg
-    name: Back Stream
-    input: !secret proxy_back_main_stream_url
-
-  - platform: ffmpeg
-    name: Left Stream
-    input: !secret proxy_left_main_stream_url
-
-  - platform: ffmpeg
-    name: Right Stream
-    input: !secret proxy_right_main_stream_url
-
-
-#
-#  - platform: generic
-#    name: Right SubStream
-#    still_image_url: !secret right_sub_still_url
-#    stream_source: !secret right_substream_url
-#    framerate: 4
-#
-#  - platform: generic
-#    name: Left SubStream
-#    still_image_url: !secret right_sub_still_url
-#    stream_source: !secret right_substream_url
-#    framerate: 4
-#
-#  - platform: generic
-#    name: Front Substream
-#    still_image_url: !secret front_sub_still_url
-#    stream_source: !secret front_substream_url
-#    framerate: 4
-#
-#  - platform: generic
-#    name: Back Substream
-#    still_image_url: !secret back_sub_still_url
-#    stream_source: !secret back_substream_url
-#    framerate: 4
-##
-  - platform: ffmpeg
-    input: !secret front_substream_url
-    name: Front Substream
-
-  - platform: ffmpeg
-    input: !secret back_substream_url
-    name: Back Substream
-
-  - platform: ffmpeg
-    input: !secret left_substream_url
-    name: Left Substream
-
-  - platform: ffmpeg
-    input: !secret right_substream_url
-    name: Right Substream
 
 # MJPEG cameras are extremely close to realtime, 
 # even with streaming component turned on.
@@ -405,66 +478,3 @@
   #   name: Sebs Room
   #   scan_interval: 5
 
-# Proxy cameras worked for a couple weeks to give me a low
-# res, low frame rate preview stream for my tablets, but 
-# weren't as reliable as the source stream. Using ONVIF 
-# seems more reliable but needs about 30% CPU per device to
-# display the feeds with stream turned on
-
-
-  # - platform: proxy
-  #   name: front_preview
-  #   entity_id: camera.front_stream
-  #   max_stream_width: 320
-  #   max_image_width: 320
-  #   image_refresh_rate: 1.0
-  #   cache_images: true
-
-  # - platform: proxy
-  #   name: back_proxy
-  #   entity_id: camera.back_stream
-  #   max_stream_width: 320
-  #   max_image_width: 320
-  #   image_refresh_rate: 1.0
-  #   cache_images: true
-
-  # - platform: proxy
-  #   name: left_preview
-  #   entity_id: camera.left_stream
-  #   max_stream_width: 180
-  #   max_image_width: 180
-  #   image_refresh_rate: 1.0
-  #   cache_images: true
-
-  # - platform: proxy
-  #   name: right_preview
-  #   entity_id: camera.right_stream
-  #   max_stream_width: 180
-  #   max_image_width: 180
-  #   image_refresh_rate: 1.0
-  #   cache_images: true
-
-
-  - platform: proxy
-    name: back_proxy
-    entity_id: camera.back_stream
-    max_stream_width: 860
-    max_image_width: 860
-    image_refresh_rate: 5.0
-    cache_images: true
-
-  - platform: proxy
-    name: left_proxy
-    entity_id: camera.left_stream
-    max_stream_width: 540
-    max_image_width: 540
-    image_refresh_rate: 5.0
-    cache_images: true
-
-  - platform: proxy
-    name: right_proxy
-    entity_id: camera.right_stream
-    max_stream_width: 540
-    max_image_width: 540
-    image_refresh_rate: 5.0
-    cache_images: true

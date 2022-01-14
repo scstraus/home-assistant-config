@@ -604,13 +604,21 @@
     data:
       entity_id: input_boolean.mini_countryman_clima 
 
+#frontend currently uses following entities for display    
+#entity: variable.czechia_coronavirus_new_backup  
+#entity: variable.czechia_coronavirus_new_yesterday
+
+
+#data flows like this:
+# new_yesterday->new_backup->new_day_before
+
 - id: backup_new_coronavirus_cases
   alias: backup_new_coronavirus_cases
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: variable.czechia_coronavirus_new_day_before
-#    entity_id: variable.czechia_coronavirus_new_yesterday
+#    entity_id: variable.czechia_coronavirus_new_day_before
+    entity_id: variable.czechia_coronavirus_new_yesterday
   action:
     service: variable.set_variable
     data:
