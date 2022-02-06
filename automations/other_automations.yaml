@@ -1400,3 +1400,14 @@
 #    data:
 #      message: "This is a test"
     
+
+- id: turn_off_headache
+  alias: turn_off_headache
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '04:00:00'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.sean_headache

@@ -18,10 +18,10 @@ popup_cards:
     title: Weekly Weather Forecast
     card: 
       type: 'custom:weather-card-chart'
-      weather: weather.weather_forecast
+      weather: weather.weatherflow_day_based_forecast
       sun: sun.sun
-      temp: sensor.smartweatherudp_temperature
-      wind: sensor.smartweather_wind_gust
+      temp: sensor.weatherflow_air_temperature
+      wind: sensor.tempest_st_00023475_wind_speed
 
   sensor.sean_location:
     title: Sean Location History and Time to Home
@@ -158,7 +158,7 @@ popup_cards:
       - type: history-graph
         hours_to_show: 1
         entities:
-          - sensor.smartweather_lightning_distance
+          - sensor.weatherflow_last_lightning_strike_distance
 
   sensor.trash_display:
     title: "Trash Needs Taking Out"
@@ -183,7 +183,7 @@ popup_cards:
           - sensor.rain_sensor
       - type: history-graph
         entities:
-          - sensor.smartweather_rain_rate
+          - sensor.weatherflow_precipitation_rate
 
 
   sensor.high_wind_warning:
@@ -197,7 +197,7 @@ popup_cards:
           - sensor.high_wind_warning
       - type: history-graph
         entities:
-          - sensor.smartweatherudp_wind_speed_realtime
+          - sensor.tempest_st_00023475_wind_speed
 
 ### END COMMENT BLOCK 1: POPUP CARDS
 
@@ -807,11 +807,11 @@ cards:
 
       - type: 'custom:weather-card-chart'
         title: Weather / Air Quality
-        weather: weather.smartweather_home
+        weather: weather.weatherflow_hourly_based_forecast
         sun: sun.sun
         mode: hourly
-        temp: sensor.smartweather_temperature
-        wind: sensor.tempest_st_00023475_wind_speed_realtime
+        temp: sensor.weatherflow_air_temperature
+        wind: sensor.tempest_st_00023475_wind_speed
 
 #      - type: 'custom:weather-card-chart'
 #        title: Weather / Air Quality
@@ -2154,7 +2154,7 @@ cards:
       - entity: sensor.low_gas_in_car
       - entity: binary_sensor.cooper_s_e_all4_charging_status
         name: Charging
-      - entity: binary_sensor.cooper_s_e_all4_check_control_messages
+#      - entity: binary_sensor.cooper_s_e_all4_check_control_messages
       - entity: binary_sensor.brake_fluid
       - entity: binary_sensor.oil_change
       - entity: binary_sensor.inspection_needed
@@ -2173,6 +2173,11 @@ cards:
       - "DISCONNECTED"
       - "Charge It"
       - "Fill It"
+      state_filter:
+        - operator: "!="
+          value: "off"
+      entities:
+        - entity: sensor.mini_cooper_s_problem  
       card: 
         type: glance
       show_empty: false  

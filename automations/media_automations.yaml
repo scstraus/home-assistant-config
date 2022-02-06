@@ -190,6 +190,26 @@
         com.curiosity.activities.OnboardingActivity-com.curiosity.curiositystream.androidtv
       media_content_type: app
 
+#- id: philips_launch_hbo_max
+#  alias: philips_launch_hbo_max
+#  initial_state: 'true'
+#  trigger:
+#    platform: event
+#    event_type: roku_command
+#    event_data:
+#      source_name: Home Assistant
+#      type: keypress
+#      key: Up
+#  action:
+#    service: media_player.play_media
+#    target:
+#      entity_id: media_player.philips936_tv
+#    data:
+#      media_content_id: >-
+#        com.hbo.go.LaunchActivity-com.hbo.hbonow
+#      media_content_type: app
+
+
 - id: philips_launch_hbo_max
   alias: philips_launch_hbo_max
   initial_state: 'true'
@@ -201,13 +221,45 @@
       type: keypress
       key: Up
   action:
-    service: media_player.play_media
-    target:
-      entity_id: media_player.philips936_tv
-    data:
-      media_content_id: >-
-        com.hbo.go.LaunchActivity-com.hbo.hbonow
-      media_content_type: app
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: 'media_player.philips936_tv'
+          attribute: app_name
+          state: 'TV'      
+        sequence:
+          - service: remote.send_command
+            target:
+              entity_id: remote.harmony
+            data:
+              device: "Philips TV"
+              command: Home
+              num_repeats: 2
+              delay_secs: 1
+          - service: remote.send_command
+            target:
+              entity_id: remote.harmony
+            data:
+              device: "Philips TV"
+              command: DirectionRight
+              num_repeats: 6
+              delay_secs: 1
+          - service: remote.send_command
+            target:
+              entity_id: remote.harmony
+            data:
+              device: "Philips TV"
+              command: OK
+      default:
+        - service: media_player.play_media
+          target:
+            entity_id: media_player.philips936_tv
+          data:
+            media_content_id: >-
+              com.hbo.go.LaunchActivity-com.hbo.hbonow
+            media_content_type: app
+
+
 
 - id: philips_launch_pbs
   alias: philips_launch_pbs
@@ -239,13 +291,45 @@
       type: keypress
       key: InstantReplay
   action:
-    service: media_player.play_media
-    target:
-      entity_id: media_player.philips936_tv
-    data:
-      media_content_id: >-
-        com.plexapp.plex.activities.SplashActivity-com.plexapp.android
-      media_content_type: app
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: 'media_player.philips936_tv'
+          attribute: app_name
+          state: 'TV'      
+        sequence:
+          - service: remote.send_command
+            target:
+              entity_id: remote.harmony
+            data:
+              device: "Philips TV"
+              command: Home
+              num_repeats: 2
+              delay_secs: 1
+          - service: remote.send_command
+            target:
+              entity_id: remote.harmony
+            data:
+              device: "Philips TV"
+              command: DirectionRight
+              num_repeats: 3
+              delay_secs: 1
+          - service: remote.send_command
+            target:
+              entity_id: remote.harmony
+            data:
+              device: "Philips TV"
+              command: OK
+      default:
+        - service: media_player.play_media
+          target:
+            entity_id: media_player.philips936_tv
+          data:
+            media_content_id: >-
+              com.plexapp.plex.activities.SplashActivity-com.plexapp.android
+            media_content_type: app
+#media_player.philips936_tv
+#app_name: TV
 
 - id: philips_launch_pbs_kids
   alias: philips_launch_pbs_kids

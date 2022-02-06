@@ -491,3 +491,5 @@ binary_sensor.inspection_needed:
   icon: mdi:wrench
 binary_sensor.check_engine:
   icon: mdi:engine
+#sensor.tempest_st_00023475_wind_speed:
+#  unit_of_measurement: m/s

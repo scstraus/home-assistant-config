@@ -912,16 +912,16 @@
       entity_id: sensor.home_air_quality
       below: 50
     - platform: numeric_state
-      entity_id: sensor.smartweatherudp_temperature
+      entity_id: sensor.tempest_st_00023475_temperature
       above: 18
     - platform: numeric_state
-      entity_id: sensor.smartweatherudp_temperature
+      entity_id: sensor.tempest_st_00023475_temperature
       below: 18
     - platform: numeric_state
-      entity_id: sensor.smartweatherudp_temperature
+      entity_id: sensor.tempest_st_00023475_temperature
       above: 26
     - platform: numeric_state
-      entity_id: sensor.smartweatherudp_temperature
+      entity_id: sensor.tempest_st_00023475_temperature
       below: 26
     - platform: numeric_state
       entity_id: sensor.dark_sky_daytime_high_temperature_0d
@@ -1191,7 +1191,7 @@
   initial_state: 'true'
   trigger:
     - platform: state
-      entity_id: binary_sensor.smartweather_raining  
+      entity_id: binary_sensor.weatherflow_is_raining  
       to: 'off'
   action:
     service: timer.start
@@ -1203,7 +1203,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: binary_sensor.smartweather_raining
+    entity_id: binary_sensor.weatherflow_is_raining
     to: 'on'
   condition: 
     condition: state
@@ -1219,7 +1219,7 @@
             thread-id: "weather"
             
 #    condition: template
-#    value_template: '{{ (((as_timestamp(now())-as_timestamp(states.binary_sensor.smartweather_raining.last_changed)|int) > 299) }}'
+#    value_template: '{{ (((as_timestamp(now())-as_timestamp(states.binary_sensor._raining.last_changed)|int) > 299) }}'
 
 
 
@@ -1257,7 +1257,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: binary_sensor.smartweather_raining
+    entity_id: binary_sensor.weatherflow_is_raining
     to: 'off'
     for: "00:04:59"
   action:
@@ -1269,21 +1269,21 @@
             - service: notify.mobile_app_sean_s_iphone_12
               data:
                 title: "Stopped Raining"
-                message: "It stopped raining outside at home. Total rain today: {{states('sensor.smartweather_rain_today')}} millimeters over {{states('sensor.smartweather_rain_minutes_today')}} minutes of rain"
+                message: "It stopped raining outside at home. Total rain today: {{states('sensor.weatherflow_precipitation_today')}} millimeters over {{states('sensor.weatherflow_precipitation_duration_today')}} minutes of rain"
                 data:
                   push:
                     thread-id: "weather"
     - service: notify.mobile_app_alena_s_iphone
       data:
         title: "It Stopped Raining"
-        message: "It stopped raining outside at home. Total rain today: {{states('sensor.smartweather_rain_today')}} millimeters over {{states('sensor.smartweather_rain_minutes_today')}} minutes of rain"
+        message: "It stopped raining outside at home. Total rain today: {{states('sensor.weatherflow_precipitation_today')}} millimeters over {{states('sensor.weatherflow_precipitation_duration_today')}} minutes of rain"
         data:
           push:
             thread-id: "weather"
     - service: notify.mobile_app_sophies_iphone_se
       data:
         title: "It Stopped Raining"
-        message: "It stopped raining outside at home. Total rain today: {{states('sensor.smartweather_rain_today')}} millimeters over {{states('sensor.smartweather_rain_minutes_today')}} minutes of rain."
+        message: "It stopped raining outside at home. Total rain today: {{states('sensor.weatherflow_precipitation_today')}} millimeters over {{states('sensor.weatherflow_precipitation_duration_today')}} minutes of rain."
         data:
           push:
             thread-id: "weather"
@@ -1293,7 +1293,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: binary_sensor.smartweather_raining
+    entity_id: binary_sensor.weatherflow_is_raining
     to: 'on'
   action:
     - choose:
@@ -1354,13 +1354,13 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.smartweatherudp_wind_speed_realtime
+    entity_id: sensor.tempest_st_00023475_wind_speed
   action:
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: sensor.smartweatherudp_wind_speed_realtime
-              above: 4
+              entity_id: sensor.tempest_st_00023475_wind_speed
+              above: 8
           sequence:
             - service: timer.start
               target:
@@ -1368,8 +1368,8 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: sensor.smartweatherudp_wind_speed_realtime
-              above: 6
+              entity_id: sensor.tempest_st_00023475_wind_speed
+              above: 13
           sequence:
             - service: timer.start
               target:
@@ -1377,8 +1377,8 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: sensor.smartweatherudp_wind_speed_realtime
-              above: 8
+              entity_id: sensor.tempest_st_00023475_wind_speed
+              above: 17
           sequence:
             - service: timer.start
               target:
@@ -1386,8 +1386,8 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: sensor.smartweatherudp_wind_speed_realtime
-              above: 13
+              entity_id: sensor.tempest_st_00023475_wind_speed
+              above: 25
           sequence:
             - service: timer.start
               target:
@@ -1399,7 +1399,7 @@
 #   initial_state: 'true'
 #   trigger:
 #     platform: numeric_state
-#     entity_id: sensor.smartweatherudp_wind_speed_realtime
+#     entity_id: sensor._wind_speed_realtime
 #     above: 4
 #   action:
 #     service: timer.start
@@ -1411,7 +1411,7 @@
 #   initial_state: 'true'
 #   trigger:
 #     platform: numeric_state
-#     entity_id: sensor.smartweatherudp_wind_speed_realtime
+#     entity_id: sensor._wind_speed_realtime
 #     above: 9
 #   action:
 #     service: timer.start
@@ -1423,7 +1423,7 @@
 #   initial_state: 'true'
 #   trigger:
 #     platform: numeric_state
-#     entity_id: sensor.smartweatherudp_wind_speed_realtime
+#     entity_id: sensor._wind_speed_realtime
 #     above: 14
 #   action:
 #     service: timer.start
@@ -1435,7 +1435,7 @@
 #   initial_state: 'true'
 #   trigger:
 #     platform: numeric_state
-#     entity_id: sensor.smartweatherudp_wind_speed_realtime
+#     entity_id: sensor._wind_speed_realtime
 #     above: 19
 #   action:
 #     service: timer.start
@@ -1450,7 +1450,7 @@
   mode: single
   trigger:
     platform: state
-    entity_id: sensor.smartweather_lightning_time
+    entity_id: sensor.weatherflow_last_lightning_strike
   condition:
     condition: and
     conditions: 
@@ -1458,7 +1458,7 @@
         entity_id: timer.lightning_warning_wait
         state: 'idle'
       - condition: numeric_state
-        entity_id: sensor.smartweather_lightning_distance
+        entity_id: sensor.weatherflow_last_lightning_strike_distance
         below: 11
   action:
     - choose:
@@ -1469,21 +1469,21 @@
             - service: notify.mobile_app_sean_s_iphone_12
               data:
                 title: "Lightning Warning"
-                message: "Lightning has been detected outside. Most recent strike was {{states('sensor.smartweather_lightning_distance')}} km away. There have been {{states('sensor.smartweather_lightning_last_1hrs')}} lightning strikes in the last hour within a 50km radius of home."
+                message: "Lightning has been detected outside. Most recent strike was {{states('sensor.weatherflow_last_lightning_strike_distance')}} km away. There have been {{states('sensor.weatherflow_lightning_strike_count_last_hour')}} lightning strikes in the last hour within a 50km radius of home."
                 data:
                   push:
                     thread-id: "weather"
     - service: notify.mobile_app_alena_s_iphone
       data:
         title: "Lightning Warning"
-        message: "Lightning has been detected outside. Most recent strike was {{states('sensor.smartweather_lightning_distance')}} km away. There have been {{states('sensor.smartweather_lightning_last_1hrs')}} lightning strikes in the last hour within a 50km radius of home."
+        message: "Lightning has been detected outside. Most recent strike was {{states('sensor.weatherflow_last_lightning_strike_distance')}} km away. There have been {{states('sensor.weatherflow_lightning_strike_count_last_hour')}} lightning strikes in the last hour within a 50km radius of home."
         data:
           push:
             thread-id: "weather"
     - service: notify.mobile_app_sophies_iphone_se
       data:
         title: "Lightning Warning"
-        message: "Lightning has been detected outside. Most recent strike was {{states('sensor.smartweather_lightning_distance')}} km away. There have been {{states('sensor.smartweather_lightning_last_1hrs')}} lightning strikes in the last hour within a 50km radius of home."
+        message: "Lightning has been detected outside. Most recent strike was {{states('sensor.weatherflow_last_lightning_strike_distance')}} km away. There have been {{states('sensor.weatherflow_lightning_strike_count_last_hour')}} lightning strikes in the last hour within a 50km radius of home."
         data:
           push:
             thread-id: "weather"
@@ -1497,7 +1497,7 @@
   initial_state: 'true'
   trigger:
     - platform: numeric_state
-      entity_id: sensor.smartweather_lightning_distance
+      entity_id: sensor.weatherflow_last_lightning_strike_distance
       below: 20
   action:
     - service: timer.start
@@ -1508,13 +1508,13 @@
         entity_id: input_text.last_close_lightning_distance
       data_template:
         value: >
-          {{states('sensor.smartweather_lightning_distance')}}
+          {{states('sensor.weatherflow_last_lightning_strike_distance')}}
     - service: input_text.set_value
       target:
         entity_id: input_text.last_close_lightning_time
       data_template:
         value: >
-          {{states('sensor.smartweather_lightning_time')}}
+          {{states('sensor.weatherflow_last_lightning_strike')}}
 
 - id: set_sophie_ac_to_23
   alias: set_sophie_ac_to_23

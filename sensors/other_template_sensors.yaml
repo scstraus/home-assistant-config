@@ -795,10 +795,10 @@
       kite_day:
         friendly_name: "Kite Day"
         value_template: >-
-          {% if states('sensor.smartweather_temperature')|float < 27
-              and states('sensor.smartweather_temperature')|float > 10 
-              and states('sensor.smartweather_wind_speed')|float < 8.5
-              and states('sensor.smartweather_wind_speed')|float > 2
+          {% if states('sensor.weatherflow_air_temperature')|float < 27
+              and states('sensor.weatherflow_air_temperature')|float > 10 
+              and states('sensor.tempest_st_00023475_wind_speed')|float < 30
+              and states('sensor.tempest_st_00023475_wind_speed')|float > 7
               and (states('sensor.dark_sky_precip_probability_0d')|float < 30
               or ((states('sensor.dark_sky_precip_intensity_1h')|float < 0.05)
               and (states('sensor.dark_sky_precip_intensity_2h')|float < 0.05)
@@ -853,38 +853,38 @@
       rain_sensor:
         friendly_name: "It's Raining"
         value_template: >-
-          {% if ((((as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 300) or ((as_timestamp(now()) - as_timestamp(states('sensor.uptime')))<300)) and (states('binary_sensor.smartweather_raining')=='off')) %}
+          {% if ((((as_timestamp(now()) - as_timestamp(states.binary_sensor.weatherflow_is_raining.last_changed)) > 300) or ((as_timestamp(now()) - as_timestamp(states('sensor.uptime')))<300)) and (states('binary_sensor.weatherflow_is_raining')=='off')) %}
             no
           {% else %}
-            {% if ((states('sensor.smartweather_rain_rate'))|float < 0.2) %}
+            {% if ((states('sensor.tempest_st_00023475_rain_rate'))|float < 0.2) %}
               Drizzle
-            {% elif (states('sensor.smartweather_rain_rate'))|float < 0.5 %}           
+            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 0.5 %}           
               Slight Rain
-            {% elif (states('sensor.smartweather_rain_rate'))|float < 4.0 %}           
+            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 4.0 %}           
               Moderate Rain
-            {% elif (states('sensor.smartweather_rain_rate'))|float < 8.0 %}           
+            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 8.0 %}           
               Heavy Rain
-            {% elif (states('sensor.smartweather_rain_rate'))|float < 20.0 %}           
+            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 20.0 %}           
               Heavy Shower
-            {% elif (states('sensor.smartweather_rain_rate'))|float < 50.0 %}           
+            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 50.0 %}           
               Very Heavy Shower
             {% else %}           
               Violent Shower
             {% endif %}
           {% endif %} 
         icon_template: >-
-          {% if (as_timestamp(now()) - as_timestamp(states.binary_sensor.smartweather_raining.last_changed)) > 300 and (states('binary_sensor.smartweather_raining')=='off') %}
+          {% if (as_timestamp(now()) - as_timestamp(states.binary_sensor.weatherflow_is_raining)) > 300 and (states('binary_sensor.weatherflow_is_raining')=='off') %}
             mdi:weather-sunny
           {% else %}
-            {% if (states('sensor.smartweather_rain_rate'))|float < 0.2 %}
+            {% if (states('sensor.tempest_st_00023475_rain_rate'))|float < 0.2 %}
               mdi:weather-partly-rainy
-            {% elif (states('sensor.smartweather_rain_rate'))|float < 0.5 %}           
+            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 0.5 %}           
               mdi:weather-partly-rainy
-            {% elif (states('sensor.smartweather_rain_rate'))|float < 4.0 %}           
+            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 4.0 %}           
               mdi:weather-rainy
-            {% elif (states('sensor.smartweather_rain_rate'))|float < 8.0 %}           
+            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 8.0 %}           
               mdi:weather-pouring
-            {% elif (states('sensor.smartweather_rain_rate'))|float < 50.0 %}           
+            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 50.0 %}           
               mdi:weather-pouring
             {% else %}           
               mdi:weather-pouring
@@ -917,9 +917,9 @@
       last_lightning:
         friendly_name: "Lightning"
         value_template: >-
-          {% if (states('timer.lightning_keepalive')=='active') and ((states('sensor.smartweather_lightning_last_1hrs')|float) > 0) and ((states('sensor.smartweather_lightning_distance')|float)<20) %}
-            {{ states('sensor.smartweather_lightning_distance') }}km,{{((as_timestamp(now())-as_timestamp(states('sensor.smartweather_lightning_time')))/60)|int}}m
-          {% elif (states('timer.lightning_keepalive')=='active') and ((states('sensor.smartweather_lightning_last_1hrs')|float) > 0) %}
+          {% if (states('timer.lightning_keepalive')=='active') and ((states('sensor.weatherflow_lightning_strike_count_last_hour')|float) > 0) and ((states('sensor.weatherflow_last_lightning_strike_distance')|float)<20) %}
+            {{ states('sensor.weatherflow_last_lightning_strike_distance') }}km,{{((as_timestamp(now())-as_timestamp(states('sensor.weatherflow_last_lightning_strike')))/60)|int}}m
+          {% elif (states('timer.lightning_keepalive')=='active') and ((states('sensor.weatherflow_lightning_strike_count_last_hour')|float) > 0) %}
             {{ states('input_text.last_close_lightning_distance') }}km,{{((as_timestamp(now())-as_timestamp(states('input_text.last_close_lightning_time')))/60)|int}}m
           {% else %}
             no
@@ -927,3 +927,15 @@
         icon_template: mdi:flash  
 
 
+  - platform: template
+    sensors:
+      mini_cooper_s_problem:
+        friendly_name: "Problem"
+        icon_template: >-
+          mdi:alert
+        value_template: >-
+          {% if states('binary_sensor.cooper_s_e_all4_check_control_messages')=='off'%}
+            off
+          {% else %}
+            {{state_attr('binary_sensor.cooper_s_e_all4_check_control_messages', 'check_control_messages')}}
+          {% endif %}

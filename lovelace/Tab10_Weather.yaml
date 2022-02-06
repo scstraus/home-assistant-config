@@ -29,9 +29,9 @@ cards:
             line-height: 16px;
           }
         title: Weather Today
-        weather: weather.smartweather_home
-        temp: sensor.smartweather_temperature
-        wind: sensor.smartweatherudp_wind_speed_realtime
+        weather: weather.weatherflow_hourly_based_forecast
+        temp: sensor.weatherflow_air_temperature
+        wind: sensor.tempest_st_00023475_wind_speed
         sun: sun.sun
         mode: hourly
 
@@ -49,7 +49,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweatherudp_temperature
+          - entity: sensor.tempest_st_00023475_temperature
             name: Temperature
         hours_to_show: 24
         points_per_hour: 2
@@ -70,7 +70,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweatherudp_humidity
+          - entity: sensor.weatherflow_relative_humidity
             name: Humidity
         hours_to_show: 24
         points_per_hour: 2
@@ -88,7 +88,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweatherudp_dewpoint
+          - entity: sensor.weatherflow_dewpoint
             name: 'Dew Point'
         hours_to_show: 24
         points_per_hour: 2
@@ -124,9 +124,9 @@ cards:
             line-height: 16px;
           }
         title: Weather This Week
-        weather: weather.weather_forecast
-        temp: sensor.smartweatherudp_temperature
-        wind: sensor.smartweatherudp_wind_speed_realtime
+        weather: weather.weatherflow_day_based_forecast
+        temp: sensor.weatherflow_air_temperature
+        wind: sensor.tempest_st_00023475_wind_speed
         sun: sun.sun
 
       - type: entities
@@ -460,7 +460,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweather_rain_rate
+          - entity: sensor.tempest_st_00023475_rain_rate
             name: 'Rain Rate (mm)'
         hours_to_show: 24
         points_per_hour: 2
@@ -494,33 +494,33 @@ cards:
       - type: horizontal-stack
         in_card: true
         cards: 
-
-        - type: custom:compass-card
-          header:
-            title:
-              value: Average
-          indicator_sensors:
-            - sensor: sensor.smartweatherudp_wind_bearing
-              indicator:
-                type: arrow_inward
-          value_sensors:
-            - sensor: sensor.smartweatherudp_wind_speed
-              decimals: 1
-          compass:
-            north:
-              show: true
-              offset: 15
+#
+#        - type: custom:compass-card
+#          header:
+#            title:
+#              value: Average
+#          indicator_sensors:
+#            - sensor: sensor.openweathermap_wind_bearing
+#              indicator:
+#                type: arrow_inward
+#          value_sensors:
+#            - sensor: sensor.tempest_st_00023475_wind_speed
+#              decimals: 1
+#          compass:
+#            north:
+#              show: true
+#              offset: 15
 
         - type: custom:compass-card
           header:
             title:
               value: Realtime
           indicator_sensors:
-            - sensor: sensor.smartweatherudp_wind_bearing_realtime
+            - sensor: sensor.openweathermap_wind_bearing
               indicator:
                 type: arrow_inward
           value_sensors:
-            - sensor: sensor.smartweatherudp_wind_speed_realtime
+            - sensor: sensor.tempest_st_00023475_wind_speed
               decimals: 1
           compass:
             north:
@@ -531,7 +531,7 @@ cards:
       - type: custom:mini-graph-card
     #      name: Internet
         entities:
-          - entity: sensor.smartweatherudp_wind_speed
+          - entity: sensor.tempest_st_00023475_wind_speed
             name: Wind Speed
         hours_to_show: 24
         points_per_hour: 2
@@ -551,31 +551,31 @@ cards:
           - value: 75
             color: "#e04c23"
 
-
-
-      - type: custom:mini-graph-card
-    #      name: Internet
-        entities:
-          - entity: sensor.smartweather_wind_gust
-            name: Wind Gust
-        hours_to_show: 24
-        points_per_hour: 2
-        height: 150
-        lower_bound: 0
-        color_thresholds:
-          - value: 0
-            color: "#ccccff"
-          - value: 6
-            color: "#6666ff"
-          - value: 30
-            color: "#0da035"
-          - value: 45
-            color: "#daa002"
-          - value: 60
-            color: "#d35400"
-          - value: 75
-            color: "#e04c23"
 #
+#
+#      - type: custom:mini-graph-card
+#    #      name: Internet
+#        entities:
+#          - entity: sensor.smartweather_wind_gust
+#            name: Wind Gust
+#        hours_to_show: 24
+#        points_per_hour: 2
+#        height: 150
+#        lower_bound: 0
+#        color_thresholds:
+#          - value: 0
+#            color: "#ccccff"
+#          - value: 6
+#            color: "#6666ff"
+#          - value: 30
+#            color: "#0da035"
+#          - value: 45
+#            color: "#daa002"
+#          - value: 60
+#            color: "#d35400"
+#          - value: 75
+#            color: "#e04c23"
+##
 #
 #      - type: custom:mini-graph-card
 #        entities:
@@ -607,7 +607,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweatherudp_wind_bearing
+          - entity: sensor.openweathermap_wind_bearing
             name: Wind Bearing
         hours_to_show: 24
         points_per_hour: 4
@@ -637,7 +637,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.smartweather_brightness
+          - entity: sensor.weatherflow_brightness
             name: 'Sunlight'
         hours_to_show: 24
         points_per_hour: 2
@@ -698,7 +698,7 @@ cards:
 
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.smartweather_sea_level_pressure
+        - entity: sensor.weatherflow_sea_level_pressure
           name: 'Air Pressure'
       hours_to_show: 24
       points_per_hour: 2
