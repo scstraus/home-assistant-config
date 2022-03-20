@@ -145,11 +145,53 @@
   czechia_coronavirus_new_backup:
     value: 'Unknown'
     attributes:
+      history_1_day: ''
+      history_2_day: ''
+      history_3_day: ''
+      history_4_day: ''
+      history_5_day: ''
+      history_6_day: ''
+      history_7_day: ''
       friendly_name: 'New Cases'
 #      unit_of_measurement: today
       unit_of_measurement:
       icon: mdi:chart-bubble
     restore: true
+
+  czechia_coronavirus_new_deaths:
+    value: 'Unknown'
+    attributes:
+      history_1_day: ''
+      history_2_day: ''
+      history_3_day: ''
+      history_4_day: ''
+      history_5_day: ''
+      history_6_day: ''
+      history_7_day: ''
+      friendly_name: 'New Deaths'
+#      unit_of_measurement: today
+      unit_of_measurement:
+      icon: mdi:chart-bubble
+    restore: true
+
+  czechia_coronavirus_total_deaths:
+    value: 'Unknown'
+    attributes:
+      history_1_day: ''
+      history_2_day: ''
+      history_3_day: ''
+      history_4_day: ''
+      history_5_day: ''
+      history_6_day: ''
+      history_7_day: ''
+      history_8_day: ''
+      friendly_name: 'Total Deaths'
+#      unit_of_measurement: today
+      unit_of_measurement:
+      icon: mdi:chart-bubble
+    restore: true
+
+
 
   czechia_coronavirus_new_day_before:
     value: 'Unknown'

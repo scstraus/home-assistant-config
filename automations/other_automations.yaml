@@ -535,12 +535,12 @@
     at: '15:00:00'
   condition:
     condition: template
-    value_template: '{{ state_attr("sensor.czech_holidays_event_0", "eta") == 7 }}'
+    value_template: '{{ state_attr("sensor.ical_czech_holidays_event_0", "eta") == 7 }}'
   action:
     service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "State Holiday Coming Up"
-      message: "In one week, it is {{ states('sensor.czech_holidays_event_0')}}"
+      message: "In one week, it is {{ states('sensor.ical_czech_holidays_event_0')}}"
       data:
         push:
           thread-id: "info"
@@ -553,12 +553,12 @@
     at: '15:00:00'
   condition:
     condition: template
-    value_template: '{{ state_attr("sensor.czech_holidays_event_0", "eta") == 1 }}'
+    value_template: '{{ state_attr("sensor.ical_czech_holidays_event_0", "eta") == 1 }}'
   action:
     service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "State Holiday Coming Up"
-      message: "Tomorrow it is {{ states('sensor.czech_holidays_event_0')}}"
+      message: "Tomorrow it is {{ states('sensor.ical_czech_holidays_event_0')}}"
       data:
         push:
           thread-id: "info"
@@ -571,12 +571,12 @@
     at: '10:45:00'
   condition:
     condition: template
-    value_template: '{{ state_attr("sensor.czech_holidays_event_0", "eta") == 0 }}'
+    value_template: '{{ state_attr("sensor.ical_czech_holidays_event_0, "eta") == 0 }}'
   action:
     service: notify.mobile_app_sean_s_iphone_12
     data:
       title: "State Holiday Today"
-      message: "Today it is {{ states('sensor.czech_holidays_event_0')}}, you don't need to go to work!"
+      message: "Today it is {{ states('sensor.ical_czech_holidays_event_0')}}, you don't need to go to work!"
       data:
         push:
           thread-id: "info"
@@ -625,7 +625,44 @@
       variable: czechia_coronavirus_new_backup
       value: >
           {{ states('variable.czechia_coronavirus_new_yesterday')}}
-          
+      attributes:
+          history_1_day: "{{states('variable.czechia_coronavirus_new_yesterday')}}"
+          history_2_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_1_day')}}"
+          history_3_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_2_day')}}"
+          history_4_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_3_day')}}"
+          history_5_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_4_day')}}"
+          history_6_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_5_day')}}"
+          history_7_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_6_day')}}"
+          history_8_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_7_day')}}"
+          history_9_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_8_day')}}"
+          history_10_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_9_day')}}"
+          history_11_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_10_day')}}"
+          history_12_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_11_day')}}"
+          history_13_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_12_day')}}"
+          history_14_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_13_day')}}"
+
+- id: backup_coronavirus_deaths
+  alias: backup_coronavirus_deaths
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: sensor.czechia_coronavirus_deaths
+  action:
+    service: variable.set_variable
+    data:
+      variable: czechia_coronavirus_total_deaths
+      value: >
+          {{ states('sensor.czechia_coronavirus_deaths')}}
+      attributes:
+          history_1_day: "{{states('variable.czechia_coronavirus_total_deaths')}}"
+          history_2_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_1_day')}}"
+          history_3_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_2_day')}}"
+          history_4_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_3_day')}}"
+          history_5_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_4_day')}}"
+          history_6_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_5_day')}}"
+          history_7_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_6_day')}}"
+          history_8_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_7_day')}}"
+         
           
 #          {{ states('sensor.coronavirus_new_cases_cz')}}
 - id: new_coronavirus_cases_swap_data
@@ -650,7 +687,7 @@
   initial_state: 'true'
   trigger:
     platform: time
-    at: '12:05:00'
+    at: '12:35:00'
   action:
     service: variable.set_variable
     data:
@@ -664,7 +701,7 @@
   initial_state: 'true'
   trigger:
     platform: time
-    at: '12:00:00'
+    at: '12:30:00'
   action:
     - service: variable.set_variable
       data:

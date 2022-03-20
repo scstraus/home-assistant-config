@@ -2497,3 +2497,9 @@ cards:
 #          service_data:
 #            entity_id: fan.sophies_room_air_purifier
 #
+
+  - type: entities
+    entities:
+      - input_boolean.warn_door_open_dishwasher_running
+
+

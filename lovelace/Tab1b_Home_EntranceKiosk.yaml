@@ -1943,14 +1943,14 @@ cards:
           mute: true
         group: true
   #    - entity: media_player.apple_tv_airtunes_speaker
-      - entity: media_player.forked_daapd_output_apple_tv
-        type: custom:mini-media-player
-        name: Apple TV
-        hide:
-          controls: true
-          mute: true
-        group: true
-      - entity: media_player.chromecast
+#      - entity: media_player.forked_daapd_output_apple_tv
+#        type: custom:mini-media-player
+#        name: Apple TV
+#        hide:
+#          controls: true
+#          mute: true
+#        group: true
+      - entity: media_player.philips936_tv_cast
         type: custom:mini-media-player
         name: Chromecast
         hide:

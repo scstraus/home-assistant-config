@@ -159,15 +159,15 @@
         conditions:
           - condition: state
             entity_id: sensor.bosch_dishwasher_state
-            state: 'run'
+            state: 'Run'
           - condition: state
             entity_id: sensor.bosch_dishwasher_state
-            state: 'ready'
+            state: 'Finished'
       - condition: numeric_state
         entity_id: 'sensor.bosch_dishwasher_time_remaining'
         below: 3500
       - condition: template
-        value_template: "{{ not is_state('sensor.bosch_dishwasher_state', 'inactive') }}"
+        value_template: "{{ not is_state('sensor.bosch_dishwasher_state', 'Inactive') }}"
 
   action:
     - service: script.announce_dishes_are_not_done_yet
@@ -195,10 +195,10 @@
     conditions:
       - condition: state
         entity_id: sensor.bosch_dishwasher_state
-        state: 'run'
+        state: 'Run'
       - condition: state
         entity_id: sensor.bosch_dishwasher_state
-        state: 'ready'
+        state: 'Finished'
   action:
     - service: timer.start
       data:
@@ -220,7 +220,7 @@
 #        state: 'run'
       - condition: state
         entity_id: sensor.bosch_dishwasher_state
-        state: 'ready'
+        state: 'Finished'
   action:
     - service: timer.cancel
       data:
@@ -243,7 +243,7 @@
 #            state: 'run'
           - condition: state
             entity_id: sensor.bosch_dishwasher_state
-            state: 'ready'    
+            state: 'Finished'    
       - condition: state
         entity_id: input_boolean.warn_door_open_dishwasher_running
         state: 'on'
@@ -303,9 +303,13 @@
       - condition: state
         entity_id: device_tracker.sean_s_iphone_12
         state: 'home'
-      - condition: numeric_state
-        entity_id: 'sensor.bosch_dishwasher_time_remaining'
-        below: 61
+      - condition: state
+        entity_id: sensor.bosch_dishwasher_state
+        state: 'Inactive'
+
+#      - condition: numeric_state
+#        entity_id: 'sensor.bosch_dishwasher_time_remaining'
+#        below: 61
 #      - condition: state
 #        entity_id: input_select.bosch_dishwasher_status
 #        state: 'Dirty'
@@ -322,13 +326,13 @@
       - condition: time
         after: '00:00:01'
         before: '05:00:00'
+#      - condition: state
+#        entity_id: media_player.xbox_systemos_2
+#        state: 'off'
+#        for:
+#          minutes: 5
       - condition: state
-        entity_id: media_player.xbox_systemos_2
-        state: 'off'
-        for:
-          minutes: 5
-      - condition: state
-        entity_id: remote.harmony
+        entity_id: media_player.philips936_tv_cast
         state: 'off'
         for:
           minutes: 5
@@ -363,9 +367,9 @@
 #      - condition: state
 #        entity_id: input_select.bosch_dishwasher_status
 #        state: 'Dirty'
-      - condition: numeric_state
-        entity_id: 'sensor.bosch_dishwasher_time_remaining'
-        below: 61
+      - condition: state
+        entity_id: 'sensor.bosch_dishwasher_state'
+        state: 'Inactive'
 #        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:
@@ -379,11 +383,11 @@
       - condition: time
         after: '00:00:01'
         before: '05:00:00'
-      - condition: state
-        entity_id: media_player.xbox_systemos_2
-        state: 'off'
-        for:
-          minutes: 5
+#      - condition: state
+#        entity_id: media_player.xbox_systemos_2
+#        state: 'off'
+#        for:
+#          minutes: 5
       - condition: state
         entity_id: remote.harmony
         state: 'off'
@@ -418,9 +422,9 @@
 #      - condition: state
 #        entity_id: input_select.bosch_dishwasher_status
 #        state: 'Dirty'
-      - condition: numeric_state
-        entity_id: 'sensor.bosch_dishwasher_time_remaining'
-        below: 61
+      - condition: state
+        entity_id: 'sensor.bosch_dishwasher_state'
+        state: 'Inactive'
 #        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:

@@ -1360,7 +1360,8 @@
         - conditions: 
             - condition: numeric_state
               entity_id: sensor.tempest_st_00023475_wind_speed
-              above: 8
+#              above: 8
+              above: 14
           sequence:
             - service: timer.start
               target:
@@ -1369,7 +1370,8 @@
         - conditions: 
             - condition: numeric_state
               entity_id: sensor.tempest_st_00023475_wind_speed
-              above: 13
+              above: 21
+#              above: 13
           sequence:
             - service: timer.start
               target:
@@ -1378,7 +1380,8 @@
         - conditions: 
             - condition: numeric_state
               entity_id: sensor.tempest_st_00023475_wind_speed
-              above: 17
+              above: 28
+#              above: 17
           sequence:
             - service: timer.start
               target:
@@ -1387,7 +1390,8 @@
         - conditions: 
             - condition: numeric_state
               entity_id: sensor.tempest_st_00023475_wind_speed
-              above: 25
+              above: 46
+#              above: 25
           sequence:
             - service: timer.start
               target:

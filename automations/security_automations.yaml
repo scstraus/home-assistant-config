@@ -191,7 +191,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.tempest_st_00023475_wind_speed
-    above: 3
+    above: 5
   condition:
     condition: time
     after: '21:00:00'
@@ -215,10 +215,20 @@
   action:
     service: switch.turn_off
     data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+      entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
 
+- id: turn_off_back_security_light_at_9pm
+  alias: turn_off_back_security_light_at_9pm
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '21:00:00'
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
 
-- id: turn_off_front_security_light_if_its_windy
+- id: turn_off_security_lights_if_its_windy
   alias: "Turn Off Front Security Light If It's Windy"
   initial_state: 'true'
   trigger:
@@ -227,11 +237,14 @@
   condition:
     condition: numeric_state
     entity_id: sensor.tempest_st_00023475_wind_speed
-    above: 9
+    above: 6
   action:
-    service: switch.turn_off
-    data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+    - service: switch.turn_off
+      data:
+        entity_id: switch.fibaro_system_fgs223_double_relay_switch
+    - service: switch.turn_off
+      data:
+        entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
 
 - id: turn_off_security_lights_if_its_cold_at_2100
   alias: turn_off_security_lights_if_its_cold_at_2100
@@ -250,7 +263,7 @@
         above: -3
       - condition: numeric_state
         entity_id: sensor.tempest_st_00023475_humidity
-        above: 70
+        above: 65
   action:
     - service: switch.turn_off
       data:
@@ -275,7 +288,7 @@
         above: -3
       - condition: numeric_state
         entity_id: sensor.tempest_st_00023475_humidity
-        above: 70
+        above: 65
       - condition: time
         after: "19:00:00"
         before: "08:00:00"

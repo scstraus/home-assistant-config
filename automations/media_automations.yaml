@@ -230,33 +230,100 @@
         sequence:
           - service: remote.send_command
             target:
-              entity_id: remote.harmony
+              entity_id: remote.philips936_tv  
             data:
-              device: "Philips TV"
               command: Home
               num_repeats: 2
-              delay_secs: 1
+              delay_secs: 0.5
           - service: remote.send_command
             target:
-              entity_id: remote.harmony
+              entity_id: remote.philips936_tv  
             data:
-              device: "Philips TV"
-              command: DirectionRight
+              command: CursorRight
               num_repeats: 6
-              delay_secs: 1
+              delay_secs: 0.2
           - service: remote.send_command
             target:
-              entity_id: remote.harmony
+              entity_id: remote.philips936_tv 
             data:
-              device: "Philips TV"
-              command: OK
+              command: Confirm       
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: Home
+#          - delay:
+#              milliseconds: 500
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: Home
+#          - delay:
+#              milliseconds: 200
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: DirectionRight
+#          - delay:
+#              milliseconds: 200
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: DirectionRight
+#          - delay:
+#              milliseconds: 200
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: DirectionRight
+#          - delay:
+#              milliseconds: 200
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: DirectionRight
+#          - delay:
+#              milliseconds: 200
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: DirectionRight
+#          - delay:
+#              milliseconds: 200
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: DirectionRight
+#          - delay:
+#              milliseconds: 200
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: OK
       default:
         - service: media_player.play_media
           target:
             entity_id: media_player.philips936_tv
           data:
             media_content_id: >-
-              com.hbo.go.LaunchActivity-com.hbo.hbonow
+              com.hbo.max.HboMaxActivity-com.hbo.hbonow
             media_content_type: app
 
 
@@ -300,26 +367,45 @@
         sequence:
           - service: remote.send_command
             target:
-              entity_id: remote.harmony
+              entity_id: remote.philips936_tv  
             data:
-              device: "Philips TV"
               command: Home
               num_repeats: 2
-              delay_secs: 1
+              delay_secs: 0.5
           - service: remote.send_command
             target:
-              entity_id: remote.harmony
+              entity_id: remote.philips936_tv  
             data:
-              device: "Philips TV"
-              command: DirectionRight
+              command: CursorRight
               num_repeats: 3
-              delay_secs: 1
+              delay_secs: 0.2
           - service: remote.send_command
             target:
-              entity_id: remote.harmony
+              entity_id: remote.philips936_tv 
             data:
-              device: "Philips TV"
-              command: OK
+              command: Confirm   
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: Home
+#              num_repeats: 2
+#              delay_secs: 1
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: DirectionRight
+#              num_repeats: 3
+#              delay_secs: 1
+#          - service: remote.send_command
+#            target:
+#              entity_id: remote.harmony
+#            data:
+#              device: "Philips TV"
+#              command: OK
       default:
         - service: media_player.play_media
           target:
@@ -413,9 +499,9 @@
 # Rev = Power Off (Remote Command)
 # Fwd = Adjust (Remote Command)
 # Play = Other Media
-# Select = 
+# Select =  
 # Left = TV Guide
-# Right = 
+# Right = Apple TV
 # Down = 
 # Up = 
 # Back = 
@@ -505,6 +591,38 @@
       media_content_id: >-
         org.droidtv.channels.ChannelsLauncherActivity-org.droidtv.channels
       media_content_type: app
+
+
+- id: philips_launch_apple_tv
+  alias: philips_launch_apple_tv
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant 2
+      type: keypress
+      key: Right
+  action:
+  - service: remote.send_command
+    target:
+      entity_id: remote.philips936_tv  
+    data:
+      command: Home
+      num_repeats: 2
+      delay_secs: 0.8
+  - service: remote.send_command
+    target:
+      entity_id: remote.philips936_tv  
+    data:
+      command: CursorRight
+      num_repeats: 4
+      delay_secs: 0.2
+  - service: remote.send_command
+    target:
+      entity_id: remote.philips936_tv 
+    data:
+      command: Confirm  
       
       
 #####################################################################      
@@ -515,14 +633,23 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: media_player.philips936_tv
+    entity_id: media_player.philips936_tv_other
     to: 'off'
     for:
       minutes: 5
   condition:
-    condition: state
-    entity_id: remote.harmony
-    state: 'on'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: remote.harmony
+        state: 'on'
+      - condition: state
+        entity_id: media_player.philips936_tv
+        state: 'off'
+      - condition: state
+        entity_id: media_player.philips936_tv_cast 
+        state: 'off'
+
   action:
   - service: remote.send_command
     target:

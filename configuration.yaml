@@ -221,6 +221,7 @@ logger:
     smartweatherudp: warn
     homeassistant.components.alexa: warn
     custom_components.smartthinq_sensors: warn
+    evohomeclient2: debug
 #    hass_nabucasa: debug
 #    homeassistant.components.cloud: debug
 #    homeassistant.components.nest: debug
@@ -372,15 +373,13 @@ evohome:
   scan_interval: 360 
 
 media_player:
-#
-#  - platform: itunes
-#    host: !secret itunes_ip
-
-media_player:
   # Use the Python ADB implementation
   - platform: androidtv
     name: Philips936
     host: !secret Philips936_IP
+#
+#  - platform: itunes
+#    host: !secret itunes_ip
 
 #  - platform: group
 #    entities:
