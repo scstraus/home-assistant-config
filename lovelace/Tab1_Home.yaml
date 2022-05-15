@@ -1122,7 +1122,6 @@ cards:
 #          timeFormat: 'hh:mm a'
 
 
-
   - type: conditional
     conditions:
       - entity: binary_sensor.reminders_label
@@ -1144,18 +1143,15 @@ cards:
             - padding-bottom: 10px
             - font-size: 24px
 
-      - type: custom:mod-card
-        report_size: 2
-        card:
-          type: 'custom:atomic-calendar-revive'
-          entities:
-            - entity: calendar.alena_and_seans_calendar
-          showWeekDay: true
-          maxDaysToShow: 3
-          showLoader: false
-          eventTitleSize: 100
-          timeSize: 100
-          dateSize: 100
+      - type: 'custom:atomic-calendar-revive'
+        entities:
+          - entity: calendar.alena_and_seans_calendar
+        showWeekDay: true
+        maxDaysToShow: 3
+        showLoader: false
+        eventTitleSize: 100
+        timeSize: 100
+        dateSize: 100
     
 #
 #  - type: "custom:atomic-calendar-revive"

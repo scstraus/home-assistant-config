@@ -807,7 +807,7 @@
           {% else %}
             no
           {% endif %}
-        icon_template: mdi:windsock    
+        icon_template: mdi:kite 
 
   - platform: template
     sensors:
@@ -949,6 +949,7 @@
         friendly_name: "Czechia Annual Covid Death Rate Per 100k"
         icon_template: >-
           mdi:virus
+        unit_of_measurement: "Annual Death Rate/100k"
         value_template: >-
           {{ 
           ((((state_attr('variable.czechia_coronavirus_total_deaths', 'history_1_day')|int)-

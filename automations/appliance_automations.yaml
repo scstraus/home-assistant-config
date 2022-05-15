@@ -306,6 +306,9 @@
       - condition: state
         entity_id: sensor.bosch_dishwasher_state
         state: 'Inactive'
+      - condition: state
+        entity_id: input_select.bosch_dishwasher_status
+        state: 'Dirty'
 
 #      - condition: numeric_state
 #        entity_id: 'sensor.bosch_dishwasher_time_remaining'
@@ -333,6 +336,11 @@
 #          minutes: 5
       - condition: state
         entity_id: media_player.philips936_tv_cast
+        state: 'off'
+        for:
+          minutes: 5
+      - condition: state
+        entity_id: remote.harmony
         state: 'off'
         for:
           minutes: 5
@@ -370,6 +378,10 @@
       - condition: state
         entity_id: 'sensor.bosch_dishwasher_state'
         state: 'Inactive'
+      - condition: state
+        entity_id: input_select.bosch_dishwasher_status
+        state: 'Dirty'
+
 #        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:
@@ -390,6 +402,11 @@
 #          minutes: 5
       - condition: state
         entity_id: remote.harmony
+        state: 'off'
+        for:
+          minutes: 5
+      - condition: state
+        entity_id: media_player.philips936_tv_cast
         state: 'off'
         for:
           minutes: 5
@@ -425,6 +442,10 @@
       - condition: state
         entity_id: 'sensor.bosch_dishwasher_state'
         state: 'Inactive'
+      - condition: state
+        entity_id: input_select.bosch_dishwasher_status
+        state: 'Dirty'
+
 #        for: "03:00:00"
 # why the hell doesn't this work with for:?
 #        for:
@@ -438,13 +459,18 @@
       - condition: time
         after: '00:00:01'
         before: '05:00:00'
+#      - condition: state
+#        entity_id: media_player.xbox_systemos_2
+#        state: 'off'
+#        for:
+#          minutes: 5
       - condition: state
-        entity_id: media_player.xbox_systemos_2
+        entity_id: remote.harmony
         state: 'off'
         for:
           minutes: 5
       - condition: state
-        entity_id: remote.harmony
+        entity_id: media_player.philips936_tv_cast
         state: 'off'
         for:
           minutes: 5

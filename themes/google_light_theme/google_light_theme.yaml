@@ -93,6 +93,7 @@ Google Light Theme:
 
 
 
+
  # Added by Sean
   ha-card-border-radius: "10px"
   ha-card-header-color: "#757575"
@@ -175,7 +176,7 @@ Google Light Theme:
       visibility: visible;
       position: absolute;
       font-size: 20px;
-      width: 250px;
+      width: 255px;
       top: 13px;
       right: 0px;
 

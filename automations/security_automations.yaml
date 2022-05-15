@@ -14,7 +14,7 @@
         conditions:
         - condition: time
           after: '23:00:00'
-          before: '7:00:00'
+          before: '6:40:00'
         - condition: and
           conditions:
           - condition: state

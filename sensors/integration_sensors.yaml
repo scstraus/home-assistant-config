@@ -51,7 +51,7 @@
     - ceskaposta@cpost.cz
     - !secret wife_email
     value_template: >-
-      {% if 'Vezeme Vám zásilku' in subject %}
+      {% if 'Vezeme' in subject %}
         Delivery
       {% elif 'reset state of package sensor' in subject %}
         no_delivery
@@ -68,7 +68,7 @@
     - NOREPLY@dpd.cz
     - !secret wife_email
     value_template: >-
-      {% if 'Dnes Vám' in subject %}
+      {% if 'Dnes' in subject %}
         Delivery
       {% elif 'reset state of package sensor' in subject %}
         no_delivery
@@ -102,7 +102,7 @@
     - noreply@gls-czech.com
     - !secret wife_email
     value_template: >-
-      {% if 'Informace o času doručení balíku' in subject %}
+      {% if 'Informace o' in subject %}
         Delivery
       {% elif 'reset state of package sensor' in subject %}
         no_delivery

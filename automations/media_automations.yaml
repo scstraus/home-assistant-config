@@ -499,10 +499,10 @@
 # Rev = Power Off (Remote Command)
 # Fwd = Adjust (Remote Command)
 # Play = Other Media
-# Select =  
+# Select = 
 # Left = TV Guide
 # Right = Apple TV
-# Down = 
+# Down = Play/Pause (philips936_tv_cast)
 # Up = 
 # Back = 
 # InstantReplay = 
@@ -625,6 +625,20 @@
       command: Confirm  
       
       
+- id: philips_pause_play_cast
+  alias: philips_pause_play_cast
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant 2
+      type: keypress
+      key: Down
+  action:
+  - service: media_player.media_play_pause
+    target:
+      entity_id: media_player.philips936_tv_cast
 #####################################################################      
 
 
@@ -660,4 +674,5 @@
   - service: remote.turn_off
     target:
       entity_id: remote.harmony
+
 

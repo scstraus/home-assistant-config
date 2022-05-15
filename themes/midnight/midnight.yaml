@@ -76,6 +76,16 @@ midnight:
   text-primary-color: "var(--primary-text-color)"
   toggle-button-color: "var(--primary-color)"
 
+  input-fill-color: "var(--primary-background-color)"
+  input-ink-color: "var(--primary-text-color)"
+  input-idle-line-color: "var(--primary-background-color)"
+  input-hover-line-color: "var(--primary-color)"
+  input-outlined-idle-border-color: "var(--primary-text-color)"
+  input-outlined-hover-border-color: "var(--primary-text-color)"
+  input-label-ink-color: "var(--primary-text-color)"
+  input-dropdown-icon-color: "var(--primary-text-color)"
+
+
 #Seans Additions
 
   ha-card-border-radius: "10px"
@@ -158,7 +168,7 @@ midnight:
       visibility: visible;
       position: absolute;
       font-size: 20px;
-      width: 250px;
+      width: 255px;
       top: 13px;
       right: 0px;
 
