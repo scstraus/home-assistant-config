@@ -103,6 +103,10 @@
             At Zlichov
           {% elif is_state('device_tracker.alena_s_iphone', 'Malostranska') %}
             At Malostranska
+          {% elif is_state('device_tracker.alena_s_iphone', 'OB-GYN') %}
+            At OB-GYN
+          {% elif is_state('device_tracker.alena_s_iphone', 'Climbing') %}
+            At Climbing
           {% elif is_state('device_tracker.alena_s_iphone', 'CernyKohout') %}
             At Černy Kohout
           {% elif is_state('device_tracker.alena_s_iphone', 'HlubocepyCenter') %}
@@ -165,6 +169,10 @@
             mdi:tram
           {% elif is_state('device_tracker.alena_s_iphone', 'Malostranska') %}
             mdi:tram
+          {% elif is_state('device_tracker.alena_s_iphone', 'OB-GYN') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.alena_s_iphone', 'Climbing') %}
+            mdi:carabiner
           {% elif is_state('device_tracker.alena_s_iphone', 'Udoli Turnaround') %}
             mdi:redo-variant
           {% elif is_state('device_tracker.alena_s_iphone', 'UdoliBetweenBridges') %}
@@ -251,6 +259,10 @@
             At Zlichov
           {% elif is_state('device_tracker.sophie', 'Malostranska') %}
             At Malostranska
+          {% elif is_state('device_tracker.sophie', 'OB-GYN') %}
+            At OB-GYN
+          {% elif is_state('device_tracker.sophie', 'Climbing') %}
+            At Climbing
           {% elif is_state('device_tracker.sophie', 'CernyKohout') %}
             At Černy Kohout
           {% elif is_state('device_tracker.sophie', 'HlubocepyCenter') %}
@@ -313,6 +325,10 @@
             mdi:tram
           {% elif is_state('device_tracker.sophie', 'Malostranska') %}
             mdi:tram
+          {% elif is_state('device_tracker.sophie', 'OB-GYN') %}
+            mdi:stethoscope
+          {% elif is_state('device_tracker.sophie', 'Climbing') %}
+            mdi:carabiner
           {% elif is_state('device_tracker.sophie', 'Udoli Turnaround') %}
             mdi:redo-variant
           {% elif is_state('device_tracker.sophie', 'UdoliBetweenBridges') %}
