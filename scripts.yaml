@@ -1233,6 +1233,15 @@
           device: "Philips TV"
           num_repeats: 3
 
+  turn_off_the_tv:
+    sequence:
+      - service: remote.send_command
+        target:
+          entity_id: remote.philips936_tv
+        data:
+          command: 
+            - Standby
+
 #
 #  turn_on_the_towel_warmer:
 #    sequence:
