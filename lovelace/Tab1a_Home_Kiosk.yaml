@@ -1002,73 +1002,73 @@ cards:
           show_points: false
           height: 60
 
-
-      - type: horizontal-stack
-        cards:
-
-        - type: custom:mini-graph-card
-          name: Radon Upstairs
-          style: |
-            ha-card {
-              background: {% if states('sensor.radon_upstairs')|int <= 100 %}
-              #00c40a
-              {% elif states('sensor.radon_upstairs')|int <= 150 %} 
-              #c1c400 
-              {% else %}
-              #c41700
-              {% endif %} 
-          entities:
-            - entity: sensor.radon_upstairs
-              name: 
-          color_thresholds:
-            - value: 0
-              color: "#9cffa1"
-            - value: 90
-              color: "#9cffa1"
-            - value: 110
-              color: "#fdff9c"
-            - value: 140
-              color: "#fdff9c"
-            - value: 160
-              color: "#ffe09c"
-            - value: 200
-              color: "#ffe09c"
-          hours_to_show: 24
-          points_per_hour: 2
-          show_points: false
-          height: 60
-
-        - type: custom:mini-graph-card
-          name: VOC Upstairs
-          style: |
-            ha-card {
-              background: {% if states('sensor.tvocs_upstairs')|int <= 250 %}
-              #00c40a
-              {% elif states('sensor.tvocs_upstairs')|int <= 2000 %} 
-              #c1c400 
-              {% else %}
-              #c41700
-              {% endif %}
-          entities:
-            - entity: sensor.tvocs_upstairs
-              name: 
-          color_thresholds:
-            - value: 0
-              color: "#9cffa1"
-            - value: 240
-              color: "#9cffa1"
-            - value: 260
-              color: "#fdff9c"
-            - value: 1990
-              color: "#fdff9c"
-            - value: 2010
-              color: "#ffe09c"
-            - value: 3000
-              color: "#ffe09c"
-          hours_to_show: 24
-          points_per_hour: 2
-          show_points: false
-          height: 60
+#
+#      - type: horizontal-stack
+#        cards:
+#
+#        - type: custom:mini-graph-card
+#          name: Radon Upstairs
+#          style: |
+#            ha-card {
+#              background: {% if states('sensor.radon_upstairs')|int <= 100 %}
+#              #00c40a
+#              {% elif states('sensor.radon_upstairs')|int <= 150 %} 
+#              #c1c400 
+#              {% else %}
+#              #c41700
+#              {% endif %} 
+#          entities:
+#            - entity: sensor.radon_upstairs
+#              name: 
+#          color_thresholds:
+#            - value: 0
+#              color: "#9cffa1"
+#            - value: 90
+#              color: "#9cffa1"
+#            - value: 110
+#              color: "#fdff9c"
+#            - value: 140
+#              color: "#fdff9c"
+#            - value: 160
+#              color: "#ffe09c"
+#            - value: 200
+#              color: "#ffe09c"
+#          hours_to_show: 24
+#          points_per_hour: 2
+#          show_points: false
+#          height: 60
+#
+#        - type: custom:mini-graph-card
+#          name: VOC Upstairs
+#          style: |
+#            ha-card {
+#              background: {% if states('sensor.tvocs_upstairs')|int <= 250 %}
+#              #00c40a
+#              {% elif states('sensor.tvocs_upstairs')|int <= 2000 %} 
+#              #c1c400 
+#              {% else %}
+#              #c41700
+#              {% endif %}
+#          entities:
+#            - entity: sensor.tvocs_upstairs
+#              name: 
+#          color_thresholds:
+#            - value: 0
+#              color: "#9cffa1"
+#            - value: 240
+#              color: "#9cffa1"
+#            - value: 260
+#              color: "#fdff9c"
+#            - value: 1990
+#              color: "#fdff9c"
+#            - value: 2010
+#              color: "#ffe09c"
+#            - value: 3000
+#              color: "#ffe09c"
+#          hours_to_show: 24
+#          points_per_hour: 2
+#          show_points: false
+#          height: 60
 
 #    
 #    - type: custom:vertical-stack-in-card
