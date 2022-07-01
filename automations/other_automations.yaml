@@ -1314,7 +1314,7 @@
     - service: notify.whole_family
       data:
         title: "Alert! Smoke Detected!"
-        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
+        message: "Smoke was detected in the laundry room! Investigate immediately and evactuate!"
         data:
           push:
             sound:
@@ -1324,7 +1324,7 @@
             thread-id: "error"
     - service: script.house_announcement
       data:
-        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
+        message: "Smoke was detected in the laundry room! Investigate immediately and evactuate!"
 
 - id: smoke_kitchen
   alias: smoke_kitchen
@@ -1348,7 +1348,7 @@
             thread-id: "error"
     - service: script.house_announcement
       data:
-        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
+        message: "Smoke was detected in the kitchen! Investigate immediately and evactuate!"
 
 - id: smoke_play_room
   alias: smoke_play_room
@@ -1362,7 +1362,7 @@
     - service: notify.whole_family
       data:
         title: "Alert! Smoke Detected!"
-        message: "Smoke was detected in the kitchen! Investigate immediately and evactuate!"
+        message: "Smoke was detected in the play room! Investigate immediately and evactuate!"
         data:
           push:
             sound:
@@ -1372,7 +1372,7 @@
             thread-id: "error"
     - service: script.house_announcement
       data:
-        message: "Smoke was detected in the 2nd floor hallway! Investigate immediately and evactuate!"
+        message: "Smoke was detected in the play room! Investigate immediately and evactuate!"
 
 
 - id: smoke_2nd_floor

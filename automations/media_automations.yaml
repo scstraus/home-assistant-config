@@ -64,7 +64,7 @@
       media_content_id: >-
         com.hulu.livingroomplus.WKFactivity-com.hulu.livingroomplus
       media_content_type: app
-#
+
 #- id: philips_launch_prime_video
 #  alias: philips_launch_prime_video
 #  initial_state: 'true'
