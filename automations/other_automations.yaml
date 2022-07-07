@@ -1306,10 +1306,13 @@
   alias: smoke_laundry_room
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.laundry_room_smoke
-    above: 1
-    below: 3
+    platform: state
+    entity_id: binary_sensor.laundry_room_smoke
+    to: "on"
+#    platform: numeric_state
+#    entity_id: sensor.laundry_room_smoke
+#    above: 1
+#    below: 3
   action:
     - service: notify.whole_family
       data:
@@ -1330,10 +1333,13 @@
   alias: smoke_kitchen
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.kitchen_smoke_detector_smoke
-    above: 1
-    below: 3
+    platform: state
+    entity_id: binary_sensor.kitchen_smoke_detector_smoke
+    to: "on"
+#    platform: numeric_state
+#    entity_id: sensor.kitchen_smoke_detector_smoke
+#    above: 1
+#    below: 3
   action:
     - service: notify.whole_family
       data:
@@ -1354,10 +1360,13 @@
   alias: smoke_play_room
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.play_room_smoke
-    above: 1
-    below: 3
+    platform: state
+    entity_id: binary_sensor.play_room_smoke
+    to: "on"
+#    platform: numeric_state
+#    entity_id: sensor.play_room_smoke
+#    above: 1
+#    below: 3
   action:
     - service: notify.whole_family
       data:
@@ -1379,10 +1388,13 @@
   alias: smoke_2nd_floor
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.2nd_floor_smoke
-    above: 1
-    below: 3
+    platform: state
+    entity_id: binary_sensor.2nd_floor_smoke
+    to: "on"
+#    platform: numeric_state
+#    entity_id: sensor.2nd_floor_smoke
+#    above: 1
+#    below: 3
   action:
     - service: notify.whole_family
       data:
@@ -1403,10 +1415,13 @@
   alias: smoke_sebastians_room
   initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.sebastians_room_smoke
-    above: 1
-    below: 3
+    platform: state
+    entity_id: binary_sensor.sebastians_room_smoke
+    to: "on"
+#    platform: numeric_state
+#    entity_id: sensor.sebastians_room_smoke
+#    above: 1
+#    below: 3
   action:
     - service: notify.whole_family
       data:

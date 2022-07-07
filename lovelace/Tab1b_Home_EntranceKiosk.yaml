@@ -486,18 +486,10 @@ cards:
         title: "!!! EMERGENCY ALERT !!!"
         show_header_toggle: false
       entities:
-#      - sensor.living_room_nest_protect_co_status
-#      - sensor.living_room_nest_protect_smoke_status
-#      - sensor.master_bedroom_nest_protect_co_status
-#      - sensor.master_bedroom_nest_protect_smoke_status
-      - sensor.kids_room_nest_protect_co_status
-      - sensor.kids_room_nest_protect_smoke_status
-      - sensor.basement_nest_protect_co_status
-      - sensor.basement_nest_protect_smoke_status
-#      - sensor.living_room_nest_protect_color_status
-#      - sensor.master_bedroom_nest_protect_color_status
-      - sensor.kids_room_nest_protect_color_status
-      - sensor.basement_nest_protect_color_status
+      - binary_sensor.2nd_floor_smoke
+      - binary_sensor.laundry_room_smoke
+      - binary_sensor.kitchen_smoke
+      - binary_sensor.play_room_smoke
       - sensor.house_electricity
   #    - sensor.object_detection_front
   #    - sensor.object_detection_left
@@ -629,6 +621,9 @@ cards:
       - sensor.ecolink_basement_sliding_door_battery_level
       - sensor.master_bedroom_window_sensor_battery_level
       - sensor.2nd_floor_smoke_alarm_battery_level
+      - sensor.kitchen_smoke_sensor_battery_level
+      - sensor.laundry_room_smoke_detector_battery_level
+      - sensor.play_room_smoke_detector_battery
       show_empty: false
 
 #

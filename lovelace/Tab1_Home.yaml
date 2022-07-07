@@ -341,20 +341,20 @@ cards:
 #      - entity: sensor.2nd_floor_smoke_alarm_battery_level
 #      - state: Replace
 #      - name: "Replace Battery: Master Bedoom Smoke Alarm"
-
-  - type: custom:decluttering-card
-    template: very_low_battery_marquee
-    variables:
-      - entity: sensor.kids_room_nest_protect_battery_health
-      - state: Replace
-      - name: "Replace Battery: Sophie's Bedoom Smoke Alarm"
-
-  - type: custom:decluttering-card
-    template: very_low_battery_marquee
-    variables:
-      - entity: sensor.basement_nest_protect_battery_health
-      - state: Replace
-      - name: "Replace Battery: Basement Smoke Alarm"
+#
+#  - type: custom:decluttering-card
+#    template: very_low_battery_marquee
+#    variables:
+#      - entity: sensor.kids_room_nest_protect_battery_health
+#      - state: Replace
+#      - name: "Replace Battery: Sophie's Bedoom Smoke Alarm"
+#
+#  - type: custom:decluttering-card
+#    template: very_low_battery_marquee
+#    variables:
+#      - entity: sensor.basement_nest_protect_battery_health
+#      - state: Replace
+#      - name: "Replace Battery: Basement Smoke Alarm"
 
   - type: custom:decluttering-card
     template: very_low_battery
@@ -408,19 +408,11 @@ cards:
       title: "!!! EMERGENCY ALERT !!!"
       show_header_toggle: false
     entities:
-#    - sensor.living_room_nest_protect_co_status
-#    - sensor.living_room_nest_protect_smoke_status
-    - sensor.master_bedroom_nest_protect_co_status
-    - sensor.master_bedroom_nest_protect_smoke_status
-    - sensor.kids_room_nest_protect_co_status
-    - sensor.kids_room_nest_protect_smoke_status
-    - sensor.basement_nest_protect_co_status
-    - sensor.basement_nest_protect_smoke_status
-#    - sensor.living_room_nest_protect_color_status
-#    - sensor.master_bedroom_nest_protect_color_status
-    - sensor.kids_room_nest_protect_color_status
-    - sensor.basement_nest_protect_color_status
     - sensor.house_electricity
+    - binary_sensor.2nd_floor_smoke
+    - binary_sensor.laundry_room_smoke
+    - binary_sensor.kitchen_smoke
+    - binary_sensor.play_room_smoke
 #    - sensor.object_detection_front
 #    - sensor.object_detection_left
 #    - sensor.object_detection_right
@@ -493,22 +485,6 @@ cards:
 #      title: Devices Reporting Problems
 #      show_header_toggle: false
 #    entities:
-#    - sensor.living_room_nest_protect_co_status
-#    - sensor.living_room_nest_protect_smoke_status       
-##    - sensor.master_bedroom_nest_protect_co_status
-##    - sensor.master_bedroom_nest_protect_smoke_status
-#    - sensor.kids_room_nest_protect_co_status
-#    - sensor.kids_room_nest_protect_smoke_status
-#    - sensor.basement_nest_protect_co_status
-#    - sensor.basement_nest_protect_smoke_status
-#    - binary_sensor.living_room_nest_protect_online
-#    - sensor.living_room_nest_protect_color_status
-##    - binary_sensor.master_bedroom_nest_protect_online
-##    - sensor.master_bedroom_nest_protect_color_status
-#    - binary_sensor.kids_room_nest_protect_online
-#    - sensor.kids_room_nest_protect_color_status
-#    - binary_sensor.basement_nest_protect_online
-#    - sensor.basement_nest_protect_color_status
 #    - zwave.aeotec_zw090_z_stick_gen5_eu
 #    - zwave.aeotec_zw096_smart_switch_6
 #    - zwave.neo_coolcam_door_window_detector
@@ -527,7 +503,6 @@ cards:
 #    - zwave.ecolink_garage_door_sensor
 #    - zwave.ecolink_basement_sliding_door
 #    - zwave.ecolink_master_bedroom_window_sensor
-#    - zwave.2nd_floor_smoke_detector
 #    state_filter:
 #    - "unavailable"
 #    - "Warning"
@@ -571,6 +546,9 @@ cards:
     - sensor.ecolink_basement_sliding_door_battery_level
     - sensor.master_bedroom_window_sensor_battery_level
     - sensor.2nd_floor_smoke_alarm_battery_level
+    - sensor.kitchen_smoke_sensor_battery_level
+    - sensor.laundry_room_smoke_detector_battery_level
+    - sensor.play_room_smoke_detector_battery
     show_empty: false
 
 #  - type: custom:badge-card

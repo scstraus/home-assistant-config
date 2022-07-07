@@ -199,7 +199,7 @@
   action:
     service: switch.turn_off
     data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+      entity_id: switch.front_right_security_lights
 
 - id: turn_off_back_security_light_if_it_gets_windy
   alias: 'Turn Off Back Security Light If It Gets Windy'
@@ -215,7 +215,7 @@
   action:
     service: switch.turn_off
     data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+      entity_id: switch.back_left_security_lights
 
 - id: turn_off_back_security_light_at_9pm
   alias: turn_off_back_security_light_at_9pm
@@ -226,7 +226,7 @@
   action:
     service: switch.turn_off
     data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+      entity_id: switch.back_left_security_lights
 
 - id: turn_off_security_lights_if_its_windy
   alias: "Turn Off Front Security Light If It's Windy"
@@ -241,10 +241,10 @@
   action:
     - service: switch.turn_off
       data:
-        entity_id: switch.fibaro_system_fgs223_double_relay_switch
+        entity_id: switch.back_left_security_lights
     - service: switch.turn_off
       data:
-        entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+        entity_id: switch.front_right_security_lights
 
 - id: turn_off_security_lights_if_its_cold_at_2100
   alias: turn_off_security_lights_if_its_cold_at_2100
@@ -267,10 +267,10 @@
   action:
     - service: switch.turn_off
       data:
-        entity_id: switch.fibaro_system_fgs223_double_relay_switch
+        entity_id: switch.back_left_security_lights
     - service: switch.turn_off
       data:
-        entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+        entity_id: switch.front_right_security_lights
 
 
 - id: turn_off_security_lights_if_its_cold_at_night
@@ -295,10 +295,10 @@
   action:
     - service: switch.turn_off
       data:
-        entity_id: switch.fibaro_system_fgs223_double_relay_switch
+        entity_id: switch.back_left_security_lights
     - service: switch.turn_off
       data:
-        entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+        entity_id: switch.front_right_security_lights
 
 
 - id: turn_on_security_lights_in_morning
@@ -310,10 +310,10 @@
   action:
     - service: switch.turn_on
       data:
-        entity_id: switch.fibaro_system_fgs223_double_relay_switch
+        entity_id: switch.back_left_security_lights
     - service: switch.turn_on
       data:
-        entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+        entity_id: switch.front_right_security_lights
 
 - id: front_right_security_lights_on_if_human
   alias: 'Front+Right Security Lights on if Human'
@@ -338,7 +338,7 @@
   action:
     service: switch.turn_on
     data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch
+      entity_id: switch.front_right_security_lights
 
 - id: back_left_security_lights_on_if_human
   alias: 'Back+Left Security Lights on if Human'
@@ -363,7 +363,7 @@
   action:
     service: switch.turn_on
     data:
-      entity_id: switch.fibaro_system_fgs223_double_relay_switch_2
+      entity_id: switch.back_left_security_lights
 
 - id: alarm_is_on_alena_home
   alias: 'Alarm is on - Alena is home'
