@@ -549,8 +549,8 @@ cards:
     entities:
     - group.internet_notifications
     - automation.sensor_notification
-    - switch.fibaro_system_fgs223_double_relay_switch
-    - switch.fibaro_system_fgs223_double_relay_switch_2
+    - switch.front_right_security_lights
+    - switch.back_left_security_lights
     - input_boolean.sean_headache
 
 

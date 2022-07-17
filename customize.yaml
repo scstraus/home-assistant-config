@@ -300,10 +300,10 @@ sensor.aeotec_zw096_smart_switch_6_power:
 sensor.aeotec_zw096_smart_switch_6_voltage:
   friendly_name: Miele Washer Voltage
   icon: mdi:washing-machine
-switch.fibaro_system_fgs223_double_relay_switch:
+switch.back_left_security_lights:
   friendly_name: Front/Right Security Lights
   icon: mdi:light-switch
-switch.fibaro_system_fgs223_double_relay_switch_2:
+switch.front_right_security_lights:
   friendly_name: Back/Left Security Lights
   icon: mdi:light-switch
 binary_sensor.back_door:
