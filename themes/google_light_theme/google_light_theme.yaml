@@ -190,5 +190,9 @@ Google Light Theme:
       ha-button-menu {
         color: transparent;
       }
+
+      ha-icon-button {
+        color: transparent;
+      }
       
       {% endif %}

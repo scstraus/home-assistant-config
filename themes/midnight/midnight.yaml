@@ -183,4 +183,8 @@ midnight:
         color: transparent;
       }
       
+      ha-icon-button {
+        color: transparent;
+      }
+      
       {% endif %}
