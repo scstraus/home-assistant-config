@@ -19,7 +19,7 @@ popup_cards:
       weather: weather.weatherflow_day_based_forecast
       sun: sun.sun
       temp: sensor.weatherflow_air_temperature
-      wind: sensor.tempest_st_00023475_wind_speed
+      wind: sensor.weatherflow_wind_speed
 
 
   sensor.sean_location:

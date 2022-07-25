@@ -787,7 +787,7 @@ cards:
         sun: sun.sun
         mode: hourly
         temp: sensor.weatherflow_air_temperature
-        wind: sensor.tempest_st_00023475_wind_speed
+        wind: sensor.weatherflow_wind_speed
 
 
 #      - type: 'custom:weather-card-chart'
