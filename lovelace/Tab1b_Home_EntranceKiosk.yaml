@@ -665,6 +665,7 @@ cards:
 #      maxDaysToShow: 3
 ##      nameColor: var(--ha-card-header-color)
 
+
     - type: conditional
       conditions:
         - entity: binary_sensor.reminders_label

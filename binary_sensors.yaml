@@ -399,7 +399,8 @@
     sensors:
       reminders_label:
         value_template: >-
-          {{(((( as_timestamp(strptime(state_attr('calendar.alena_and_seans_calendar', 'start_time'),"%F %T")) - as_timestamp(now())) / 86400)|round(2)) < 2)  }}
+          {{ (state_attr('calendar.alena_and_seans_calendar', 'start_time') | as_datetime | as_local - now()).days < 2 }}
+#          {{(((( as_timestamp(strptime(state_attr('calendar.alena_and_seans_calendar', 'start_time'),"%F %T")) - as_timestamp(now())) / 86400)|round(2)) < 2)  }}
 
 #
 #

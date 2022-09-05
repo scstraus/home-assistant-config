@@ -333,26 +333,26 @@ cards:
     in_card: true
     title: Object Detection
     cards:
-
-    - type: custom:mini-graph-card
-      name: Coral FPS
-      entities:
-        - entity: sensor.frigate_coral_fps
-          name: FPS
-#      lower_bound: 0
-      hours_to_show: 24
-      points_per_hour: 2
-      show_points: false
-      height: 300
-      color_thresholds:
-        - value: 50
-          color: "#0da035"
-        - value: 65
-          color: "#daa002"
-        - value: 75
-          color: "#f4b300"
-        - value: 90
-          color: "#e04c23"
+#
+#    - type: custom:mini-graph-card
+#      name: Coral FPS
+#      entities:
+#        - entity: sensor.frigate_coral_fps
+#          name: FPS
+##      lower_bound: 0
+#      hours_to_show: 24
+#      points_per_hour: 2
+#      show_points: false
+#      height: 300
+#      color_thresholds:
+#        - value: 50
+#          color: "#0da035"
+#        - value: 65
+#          color: "#daa002"
+#        - value: 75
+#          color: "#f4b300"
+#        - value: 90
+#          color: "#e04c23"
 #
 #    - type: custom:mini-graph-card
 #      name: Coral Inference
@@ -496,6 +496,38 @@ cards:
 #        yellow: 25
 #        red: 12
 
+#  - type: vertical-stack
+#    in_card: true
+#    title: Battery Levels
+#    cards:
+#      - type: custom:auto-entities
+#        filter:
+#          include:
+#          - attributes:
+#              battery_level: "<=100"
+#            domain: zwave
+#          - attributes:
+#              battery_level: "<=100"
+#            domain: device_tracker
+#            name: "*iPhone*"
+#        sort:
+#          method: attribute
+#          attribute: battery_level
+#          numeric: true
+#        card:
+#          type: custom:bar-card
+#          attribute: battery_level
+#          unit_of_measurement: "%"
+#          severity:
+#          - from: 0
+#            to: 40
+#            color: "#e04c23"
+#          - from: 41
+#            to: 75
+#            color: "#f4b300"
+#          - from: 76
+#            to: 100
+#            color: "#0da035"
   - type: vertical-stack
     in_card: true
     title: Battery Levels
@@ -503,21 +535,14 @@ cards:
       - type: custom:auto-entities
         filter:
           include:
-          - attributes:
-              battery_level: "<=100"
-            domain: zwave
-          - attributes:
-              battery_level: "<=100"
-            domain: device_tracker
-            name: "*iPhone*"
+          - entity_id: "sensor.*_battery_level*"
         sort:
-          method: attribute
-          attribute: battery_level
+          method: state
           numeric: true
         card:
           type: custom:bar-card
-          attribute: battery_level
           unit_of_measurement: "%"
+          height: 60px
           severity:
           - from: 0
             to: 40

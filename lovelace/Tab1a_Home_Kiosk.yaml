@@ -823,6 +823,7 @@ cards:
         - sensor.alena_location
 
 
+
     - type: conditional
       conditions:
         - entity: binary_sensor.reminders_label

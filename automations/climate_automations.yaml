@@ -1205,10 +1205,14 @@
     platform: state
     entity_id: binary_sensor.weatherflow_is_raining
     to: 'on'
-  condition: 
-    condition: state
-    entity_id: timer.raining_state_change_timer
-    state: 'idle'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: timer.raining_state_change_timer
+          state: 'idle'
+        - condition: template
+          value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
     - service: notify.mobile_app_sean_s_iphone_12
       data:

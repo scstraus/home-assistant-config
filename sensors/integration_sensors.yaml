@@ -384,30 +384,30 @@
     name: bathroom_humidity_stats
     entity_id: sensor.boiler_flood_sensor_humidity_level
 
-  - platform: smartweatherudp
-    monitored_conditions:
-      - temperature
-      - dewpoint
-      - feels_like
-      - heat_index
-      - wind_chill
-      - wind_speed
-      - wind_bearing
-      - wind_speed_rapid
-      - wind_bearing_rapid
-      - wind_gust
-      - wind_lull
-      - wind_direction
-      - precipitation
-      - precipitation_rate
-      - humidity
-      - pressure
-      - uv
-      - solar_radiation
-      - illuminance
-      - lightning_count
-      - airbattery
-      - skybattery
+#  - platform: smartweatherudp
+#    monitored_conditions:
+#      - temperature
+#      - dewpoint
+#      - feels_like
+#      - heat_index
+#      - wind_chill
+#      - wind_speed
+#      - wind_bearing
+#      - wind_speed_rapid
+#      - wind_bearing_rapid
+#      - wind_gust
+#      - wind_lull
+#      - wind_direction
+#      - precipitation
+#      - precipitation_rate
+#      - humidity
+#      - pressure
+#      - uv
+#      - solar_radiation
+#      - illuminance
+#      - lightning_count
+#      - airbattery
+#      - skybattery
 
 
 #    host: !secret smartweather_ip

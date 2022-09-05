@@ -986,3 +986,10 @@ cards:
 #        color: "#d35400"
 #      - value: 26
 #        color: "#c0392b"
+
+
+
+  - type: custom:scheduler-card
+    title: "Circulation Schedule"
+    include:
+      - switch.hot_water_circulation_pump

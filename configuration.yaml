@@ -150,6 +150,9 @@ lovelace:
       type: module
     - url: /hacsfiles/frigate-hass-card/frigate-hass-card.js
       type: module
+    - url: /hacsfiles/scheduler-card/scheduler-card.js
+      type: module
+                
 
   dashboards:
   
@@ -180,7 +183,7 @@ http:
 #  ssl_key: !secret key_dir
 #  base_url: !secret my_host+port
 
-updater:
+#updater:
 
 # include_used_components: true
 # discovery:
@@ -765,16 +768,16 @@ proximity:
     tolerance: 50
     unit_of_measurement: km    
 
-life360:
-  accounts:
-    username: !secret life360_uname
-    password: !secret life360_pw   
-  interval_seconds: 12
-  show_as_state: [driving, moving]
-  prefix: ''
-  max_update_wait:
-    minutes: 30
-    
+#life360:
+#  accounts:
+#    username: !secret life360_uname
+#    password: !secret life360_pw   
+#  interval_seconds: 12
+#  show_as_state: [driving, moving]
+#  prefix: ''
+#  max_update_wait:
+#    minutes: 30
+#    
 #cast:
 #  media_player:
 #    - host: !secret chromecast_ip

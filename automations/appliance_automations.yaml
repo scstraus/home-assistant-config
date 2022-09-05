@@ -121,20 +121,23 @@
     entity_id: binary_sensor.bosch_dishwasher_door
     to: 'on'
   condition:
-    condition: and
+    condition: or
     conditions:
-      - condition: template
-        value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.fire_notify_clean_dishes.attributes.last_triggered | default(0)) | int > 150)}}'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: input_select.bosch_dishwasher_status
-            state: 'Clean'
-          - condition: state
-            entity_id: input_select.bosch_dishwasher_status
-            state: 'Emptying'
+      - condition: state
+        entity_id: input_select.bosch_dishwasher_status
+        state: 'Clean'
+      - condition: state
+        entity_id: input_select.bosch_dishwasher_status
+        state: 'Emptying'
+#    condition: and
+#    conditions:
+#      - condition: template
+#        value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.fire_notify_clean_dishes.attributes.last_triggered | default(0)) | int > 150)}}'
+
   action:
     - service: script.announce_dishes_are_clean
+    - delay: 
+        seconds: 150
 #  - data:
 #      data:
 #        type: tts

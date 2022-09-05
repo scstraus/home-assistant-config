@@ -398,12 +398,17 @@
     state: armed_away
   action:
     service: notify.mobile_app_sean_s_iphone_12
-    data:
-      title: "Warning: Alarm On"
-      message: "The alarm is turned on. Remember to turn it off before opening the door."
+    data_template:
+      title: "Alarm is armed"
+      message: "Alarm is armed. Please make sure to turn it off before opening the doors"
       data:
         push:
-          thread-id: "security"
+          sound:
+            name: "News_Flash.caf"
+            critical: 1
+            volume: 1.0
+          thread-id: "location"
+
       
 - id: alarm_turned_on_alena
   alias: 'Alarm turned on notification - Alena'
