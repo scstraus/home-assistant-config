@@ -720,7 +720,7 @@ class nt{constructor(t){this.classes=new Set,this.changed=!1,this.element=t;cons
       :host {
         position: relative;
         box-sizing: border-box;
-        margin: 4px;
+        margin: 0px;
         min-width: 0;
         overflow: hidden;
         transition: background 0.5s;
@@ -754,7 +754,7 @@ class nt{constructor(t){this.classes=new Set,this.changed=!1,this.element=t;cons
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 8px;
+        margin: 0 0px;
         width: auto;
       }
       paper-ripple {
