@@ -259,6 +259,8 @@
             At Zlichov
           {% elif is_state('device_tracker.sophie', 'Malostranska') %}
             At Malostranska
+          {% elif is_state('device_tracker.sophie', 'ParklaneKlarov') %}
+            At School
           {% elif is_state('device_tracker.sophie', 'OB-GYN') %}
             At OB-GYN
           {% elif is_state('device_tracker.sophie', 'Climbing') %}
@@ -310,6 +312,8 @@
           {% elif is_state('device_tracker.sophie', 'Airport') %}
             mdi:airplane
           {% elif is_state('device_tracker.sophie', 'ParklaneValdstejnska') %}
+            mdi:school
+          {% elif is_state('device_tracker.sophie', 'ParklaneKlarov') %}
             mdi:school
           {% elif is_state('device_tracker.sophie', 'CMCp6') %}
             mdi:stethoscope

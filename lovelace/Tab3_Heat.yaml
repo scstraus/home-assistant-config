@@ -899,10 +899,32 @@ cards:
 #      step_size: 0.5
 #      name: false
 
+
+
     - type: entities
       entities:
       - climate.straus_house
 #      show_header_toggle: false
+
+
+  - type: custom:mini-graph-card
+    entities:
+      - entity: sensor.master_bedroom_air_purifier_humidity
+        name: "MASTER BEDROOM HUMIDITY"
+    hours_to_show: 24
+    points_per_hour: 1
+    height: 150
+    font_size_header: 16
+    decimals: 1
+    show:
+      extrema: true
+    color_thresholds:
+      - value: 0
+        color: "#c0392b"
+      - value: 30
+        color: "#0da035"
+      - value: 50
+        color: "#c0392b"
 
   - type: entities
     show_header_toggle: false
@@ -993,3 +1015,7 @@ cards:
     title: "Circulation Schedule"
     include:
       - switch.hot_water_circulation_pump
+      - climate.living_room_ac
+      - climate.sophie_s_room_ac
+      - climate.sebastian_s_room_ac
+      - climate.master_bedroom_ac

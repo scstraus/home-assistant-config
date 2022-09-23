@@ -5,7 +5,7 @@
 ###### Service Call Parameters #######
 
 RELATIVE_HUMIDITY_SENSOR = data.get("relative_humidity_sensor")
-AIR_PRESSURE_SENSOR = data.get("relative_humidity_sensor")
+AIR_PRESSURE_SENSOR = data.get("air_pressure_sensor")
 TEMPERATURE_SENSOR = data.get("temperature_sensor")
 #INPUT_NUMBER_TO_SET = data.get("input_number_to_set")
 VARIABLE_TO_SET = data.get("variable_to_set")

@@ -468,7 +468,7 @@
         data:
           type: tts
         message: "Attention! The basement is flooding! Attention! The basement is flooding!"
-      service: notify.alexa_media_alexa_kitchen_bar
+      service: notify.alexa_media_alexa_echo_dot_kitchen_bar
     - data:
         data:
           type: tts
@@ -484,6 +484,16 @@
           type: tts
         message: "Attention! The basement is flooding! Attention! The basement is flooding!"
       service: notify.alexa_media_alexa_master_bath
+    - data:
+        data:
+          type: tts
+        message: "Attention! The basement is flooding! Attention! The basement is flooding!"
+      service: alexa_media_echo_flex_first_floor_bathroom
+    - data:
+        data:
+          type: tts
+        message: "Attention! The basement is flooding! Attention! The basement is flooding!"
+      service: alexa_media_echo_flex_first_floor_bathroom
 
 - id: automatic_theme_change
   alias: Automatic Theme Change
@@ -975,7 +985,7 @@
         data:
           type: tts
         message: "Excuse me Sophie. Someone is at the front gate, please let them in. Mama and Papa are not available to open it right now."
-      service: notify.alexa_media_alexa_sophie_s_room
+      service: notify.alexa_media_alexa_sophie_s_room_echo_dot
 
 #  - platform: event
 #    event_type: zwave.scene_activated
