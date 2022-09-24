@@ -519,14 +519,14 @@ input_boolean:
     name: Sean Headache
     icon: mdi:head-alert-outline
   heat_away_mode:
-    name: Sean Headache
-    icon: mdi:head-alert-outline
+    name: Heat Away Mode
+    icon: mdi:home-export-outline
   heat_eco_mode:
-    name: Sean Headache
-    icon: mdi:head-alert-outline
+    name: Heat Eco Mode
+    icon: mdi:currency-usd-off
   heat_electro_mode:
-    name: Sean Headache
-    icon: mdi:head-alert-outline
+    name: Heat Electro Mode
+    icon: mdi:power-plug
 
 #  auto_curtain_open_state:
 #    name: "Automatic curtain opener state"

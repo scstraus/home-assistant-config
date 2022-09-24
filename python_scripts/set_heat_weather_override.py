@@ -10,6 +10,9 @@ LOW_TEMP = float((hass.states.get("sensor.dark_sky_overnight_low_temperature_0d"
 HIGH_TEMP = float((hass.states.get("sensor.dark_sky_daytime_high_temperature_0d")).state)
 CLOUDY_DAY = ((hass.states.get("sensor.dark_sky_icon_0d")).state in ['partly-cloudy-day', 'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy'])
 SUNNY_DAY = ((hass.states.get("sensor.dark_sky_icon_0d")).state in ['clear-day'])
+ECO_MODE = (hass.states.get("input_boolean.heat_eco_mode").state)
+AWAY_MODE = (hass.states.get("input_boolean.heat_away_mode").state)
+ELECTRO_MODE = (hass.states.get("input_boolean.heat_electro_mode").state)
 
 ## Set the services we need ##
 TEMP_SET_SERVICE_DOMAIN = "evohome"
@@ -24,6 +27,8 @@ MAX_TEMP = 25
 # Profiles are temperatures of each room in this order (same as order defined in ROOM_ENTITIES:
 # dining [0], entrance [1], garage [2], guest bedroom [3], living [4], master bath [5],	master bedroom [6], master closet [7], office [8], sebs room [9], sophie's room [10], laundry [11]
 ROOM_ENTITIES= ["climate.dining_room", "climate.entrance", "climate.garage", "climate.guest_bedroom", "climate.living_room", "climate.master_bath", "climate.master_bedroom", "climate.master_closet", "climate.office_library", "climate.sebastian_s_room", "climate.sophie_s_room", "climate.laundry_room"]
+
+ELECTRIC_HEAT_ROOMS= ["climate.living_room", "climate.master_bedroom", "climate.sophie_s_room", "climate.sebastian_s_room"]
 
 # Temperature of 0 in profile means to skip that room ##
 # Temperature of 100 in profile means to revert to auto schedule programmed into thermostat for cold weather ##
@@ -156,6 +161,18 @@ startup_log_dump()
 ########################################################################
 
 ## Some general rules for in case we don't match others ##
+
+logger.info("Away Mode: %s",AWAY_MODE)
+logger.info("Eco Mode: %s",ECO_MODE)
+logger.info("Electro Mode: %s",ELECTRO_MODE)
+if ELECTRO_MODE == "on":
+  logger.info("Electro Mode On. Setting electro rooms radiators to 18 and turning on electro schedules")
+if ECO_MODE == "on":
+  logger.info("Eco Mode On. Setting all entities to 2 degrees lower")
+  hass.services.call("evohome", "set_system_mode", {"mode" : "AutoWithEco", "duration" : {"hours": 24}}, False)
+elif AWAY_MODE == "on":
+  logger.info("Away Mode On. Setting all entities to 15 degrees")
+  hass.services.call("evohome", "set_system_mode", {"mode" : "Away", "period" : {"days": 14}}, False)
 if LOW_TEMP > 14 and HIGH_TEMP > 25:
   logger.info("Low > 14 High > 25 - Choose Profile E")
   set_to_profile(PROFILE_E,"PROFILE_E",AUTOMATIONS_PROFILE_E,"AUTOMATIONS_PROFILE_E")

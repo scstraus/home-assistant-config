@@ -934,6 +934,9 @@ cards:
     - input_boolean.fire_in_fireplace_now
     - input_select.active_heating_profile
     - input_select.active_heating_profile_living_room
+    - input_boolean.heat_eco_mode
+    - input_boolean.heat_away_mode
+    - input_boolean.heat_electro_mode
 #    - binary_sensor.04_000722_window
 #    - binary_sensor.04_000730_window
 #    - binary_sensor.04_000736_window
