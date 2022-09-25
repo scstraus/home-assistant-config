@@ -23,6 +23,7 @@ SET_AUTO_SERVICE_CALL = "clear_zone_override"
 ## Set the bounds of temps that can be set for rooms ##
 MIN_TEMP = 5
 MAX_TEMP = 25
+ELECTRO_RADIATOR_TEMP = 18
 
 # Profiles are temperatures of each room in this order (same as order defined in ROOM_ENTITIES:
 # dining [0], entrance [1], garage [2], guest bedroom [3], living [4], master bath [5],	master bedroom [6], master closet [7], office [8], sebs room [9], sophie's room [10], laundry [11]
@@ -127,8 +128,11 @@ def set_to_profile(profile,profile_name,automations_profile,automations_profile_
     if profile_name in ["PROFILE_AUTO", "PROFILE_A", "PROFILE_B", "PROFILE_C", "PROFILE_D", "PROFILE_E"]: 
       hass.services.call("input_select", "select_option", {"entity_id" : "input_select.active_heating_profile", "option" : profile_name}, False)
     if profile_name in ["LIVING_ROOM_18", "LIVING_ROOM_20", "LIVING_ROOM_AUTO"]:  
-      hass.services.call("input_select", "select_option", {"entity_id" : "input_select.active_heating_profile_living_room", "option" : profile_name}, False)    
-    if profile[count]==SKIP_TOKEN:
+      hass.services.call("input_select", "select_option", {"entity_id" : "input_select.active_heating_profile_living_room", "option" : profile_name}, False)
+    if (ROOM_ENTITIES[count] in ELECTRIC_HEAT_ROOMS) and ELECTRO_MODE == "on":
+      logger.debug("Electro Mode on. Setting %s to %s degrees",ROOM_ENTITIES[count],ELECTRO_RADIATOR_TEMP)
+      hass.services.call(TEMP_SET_SERVICE_DOMAIN, TEMP_SET_SERVICE_CALL, {"entity_id" : ROOM_ENTITIES[count], "setpoint" : ELECTRO_RADIATOR_TEMP, "duration" : {"minutes":1439}}, False)      
+    elif profile[count]==SKIP_TOKEN:
       logger.debug("Not setting %s",ROOM_ENTITIES[count]) 
     elif profile[count]==AUTO_TOKEN:
       logger.debug("Setting %s to Auto", ROOM_ENTITIES[count])  
@@ -149,7 +153,10 @@ def startup_log_dump():
   (hass.states.get("sensor.dark_sky_icon_0d")).state))
   logger.info("Is cloudy: %s",CLOUDY_DAY)
   logger.info("Is sunny: %s",SUNNY_DAY)
-     
+  logger.info("Away Mode: %s",AWAY_MODE)
+  logger.info("Eco Mode: %s",ECO_MODE)
+  logger.info("Electro Mode: %s",ELECTRO_MODE)
+
 startup_log_dump()
 
 ########################################################################
@@ -162,9 +169,6 @@ startup_log_dump()
 
 ## Some general rules for in case we don't match others ##
 
-logger.info("Away Mode: %s",AWAY_MODE)
-logger.info("Eco Mode: %s",ECO_MODE)
-logger.info("Electro Mode: %s",ELECTRO_MODE)
 if ELECTRO_MODE == "on":
   logger.info("Electro Mode On. Setting electro rooms radiators to 18 and turning on electro schedules")
 if ECO_MODE == "on":
