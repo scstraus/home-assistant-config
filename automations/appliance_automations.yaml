@@ -166,12 +166,11 @@
           - condition: state
             entity_id: sensor.bosch_dishwasher_state
             state: 'Finished'
-      - condition: numeric_state
-        entity_id: 'sensor.bosch_dishwasher_time_remaining'
-        below: 3500
+#      - condition: numeric_state
+#        entity_id: 'sensor.bosch_dishwasher_time_remaining'
+#        below: 3500
       - condition: template
         value_template: "{{ not is_state('sensor.bosch_dishwasher_state', 'Inactive') }}"
-
   action:
     - service: script.announce_dishes_are_not_done_yet
 

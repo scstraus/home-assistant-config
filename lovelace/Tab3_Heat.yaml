@@ -398,6 +398,83 @@ cards:
         - attribute: preset_mode
           name: Mode
 
+    - type: custom:simple-thermostat
+      entity: climate.master_bedroom_ac
+      style: |
+        ha-card {
+          --st-font-size-title: 1.2em;
+        }
+      step_size: 1
+      header: 
+        name: Air Conditioning
+        icon: mdi:snowflake
+      layout:
+        mode:
+          headings: false
+      control:
+#        - fan
+#        - hvac
+#        - swing
+        hvac:
+          "off":
+            name: "Off"
+          cool:
+            name: Cool
+          heat:
+            name: Heat
+          fan_only:
+            name: Fan
+          dry:
+            name: Dry
+          heat_cool:
+            name: Auto
+        fan:
+          _hide_when_off: true
+          auto:
+            name: Auto
+            icon: mdi:fan-auto
+          low: 
+            name: Low
+            icon: mdi:fan-speed-1
+          medium_low:
+            name: Med. Low
+            icon: mdi:fan-speed-1
+          medium:
+            name: Medium
+            icon: mdi:fan-speed-2
+          medium_high:
+            name: Med. High
+            icon: mdi:fan-speed-2
+          high:
+            name: High
+            icon: mdi:fan-speed-3
+          strong:
+            name: Turbo
+            icon: mdi:fan-speed-3
+        swing:
+          _hide_when_off: true
+          stopped:
+            name: "Off"
+            icon: mdi:power
+          rangeFull:
+            name: Full
+            icon: mdi:arrow-expand-vertical
+          fixedBottom:
+            name: Bottom
+            icon: mdi:format-vertical-align-bottom
+          fixedMiddleBottom:
+            name: Mid Bottom
+            icon: mdi:arrow-split-horizontal
+          fixedMiddle:
+            name: Middle
+            icon: mdi:format-align-middle
+          fixedMiddleTop:
+            name: Mid Top
+            icon: mdi:arrow-split-horizontal
+          fixedTop:
+            name: Top
+            icon: mdi:format-vertical-align-top
+
   - type: vertical-stack
     in_card: true
     cards: 
@@ -565,6 +642,83 @@ cards:
       sensors:
         - attribute: preset_mode
           name: Mode
+    - type: custom:simple-thermostat
+      entity: climate.sebastian_s_room_ac
+      style: |
+        ha-card {
+          --st-font-size-title: 1.2em;
+        }
+      step_size: 1
+      header: 
+        name: Air Conditioning
+        icon: mdi:snowflake
+      layout:
+        mode:
+          headings: false
+      control:
+#        - fan
+#        - hvac
+#        - swing
+        hvac:
+          "off":
+            name: "Off"
+          cool:
+            name: Cool
+          heat:
+            name: Heat
+          fan_only:
+            name: Fan
+          dry:
+            name: Dry
+          heat_cool:
+            name: Auto
+        fan:
+          _hide_when_off: true
+          auto:
+            name: Auto
+            icon: mdi:fan-auto
+          low: 
+            name: Low
+            icon: mdi:fan-speed-1
+          medium_low:
+            name: Med. Low
+            icon: mdi:fan-speed-1
+          medium:
+            name: Medium
+            icon: mdi:fan-speed-2
+          medium_high:
+            name: Med. High
+            icon: mdi:fan-speed-2
+          high:
+            name: High
+            icon: mdi:fan-speed-3
+          strong:
+            name: Turbo
+            icon: mdi:fan-speed-3
+        swing:
+          _hide_when_off: true
+          stopped:
+            name: "Off"
+            icon: mdi:power
+          rangeFull:
+            name: Full
+            icon: mdi:arrow-expand-vertical
+          fixedBottom:
+            name: Bottom
+            icon: mdi:format-vertical-align-bottom
+          fixedMiddleBottom:
+            name: Mid Bottom
+            icon: mdi:arrow-split-horizontal
+          fixedMiddle:
+            name: Middle
+            icon: mdi:format-align-middle
+          fixedMiddleTop:
+            name: Mid Top
+            icon: mdi:arrow-split-horizontal
+          fixedTop:
+            name: Top
+            icon: mdi:format-vertical-align-top
+
 
   - type: vertical-stack
     in_card: true

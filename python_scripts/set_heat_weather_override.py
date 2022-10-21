@@ -94,6 +94,15 @@ AUTOMATIONS_PROFILE_D = [0,0,0]
 AUTOMATIONS_PROFILE_E = [0,0,0]
 
 
+AC_HEAT_SWITCH_ENTITIES = ["switch.schedule_living_room_ac_heat_weekdays", "switch.schedule_master_bedroom_ac_heat_weekdays", 
+"switch.schedule_master_bedroom_ac_heat_weekends", "switch.schedule_sebastians_room_ac_heat_weekdays", "switch.schedule_sophie_ac_heat_weekdays", "switch.schedule_sophies_room_ac_heat_weekends"]
+
+AC_HEAT_SWITCHES_PROFILE_AUTO = [1,1,1,1,1]
+AC_HEAT_SWITCHES_PROFILE_A = [1,0,1,1,1]
+AC_HEAT_SWITCHES_PROFILE_B = [0,0,0,0,0]
+AC_HEAT_SWITCHES_PROFILE_C = [0,0,0,0,0]
+AC_HEAT_SWITCHES_PROFILE_D = [0,0,0,0,0]
+AC_HEAT_SWITCHES_PROFILE_E = [0,0,0,0,0]
 
 ###### Function definitions and startup. Proably don't need to change these ######
 
@@ -117,6 +126,23 @@ def set_to_profile(profile,profile_name,automations_profile,automations_profile_
     logger.debug("Living Room Heating Profile, not setting automations on/off")
   else:
     logger.debug("Bad value for automation profile name: %s",automations_profile_name)
+
+
+  ## turn off switches that aren't needed for profile ##
+  if automations_profile_name in ["AC_HEAT_SWITCHES_PROFILE_AUTO", "AC_HEAT_SWITCHES_PROFILE_A", "AC_HEAT_SWITCHES_PROFILE_B", "AC_HEAT_SWITCHES_PROFILE_C", "AC_HEAT_SWITCHES_PROFILE_D", "AC_HEAT_SWITCHES_PROFILE_E"]: 
+    for count in range(len(automations_profile)):
+      logger.debug("Working on switch item %s",count)
+      logger.debug("Heat entity name: %s", AC_HEAT_SWITCH_ENTITIES[count])
+      logger.debug("Set to: %s", automations_profile[count])
+      if automations_profile[count]==0:
+        hass.services.call("switch", "turn_off", {"entity_id" : AC_HEAT_SWITCH_ENTITIES[count]}, False)
+      elif automations_profile[count]==1:
+        hass.services.call("switch", "turn_on", {"entity_id" : AC_HEAT_SWITCH_ENTITIES[count]}, False)
+  elif automations_profile_name=="NULL":
+    logger.debug("Living Room Heating Profile, not setting AC heat switches on/off (until I program that in)")
+  else:
+    logger.debug("Bad value for automation profile name: %s",automations_profile_name)
+
 
   ## set temperature ##
   
@@ -170,14 +196,14 @@ startup_log_dump()
 ## Some general rules for in case we don't match others ##
 
 if ELECTRO_MODE == "on":
-  logger.info("Electro Mode On. Setting electro rooms radiators to 18 and turning on electro schedules")
+  logger.info("Electro Mode On. If Eco or Away aren't on, will be setting electro rooms radiators to 18 and turning on electro schedules")
 if ECO_MODE == "on":
-  logger.info("Eco Mode On. Setting all entities to 2 degrees lower")
+  logger.info("Eco Mode On. Setting all entities to auto mode with 3 degrees lower setpoint")
   hass.services.call("evohome", "set_system_mode", {"mode" : "AutoWithEco", "duration" : {"hours": 24}}, False)
 elif AWAY_MODE == "on":
   logger.info("Away Mode On. Setting all entities to 15 degrees")
   hass.services.call("evohome", "set_system_mode", {"mode" : "Away", "period" : {"days": 14}}, False)
-if LOW_TEMP > 14 and HIGH_TEMP > 25:
+elif LOW_TEMP > 14 and HIGH_TEMP > 25:
   logger.info("Low > 14 High > 25 - Choose Profile E")
   set_to_profile(PROFILE_E,"PROFILE_E",AUTOMATIONS_PROFILE_E,"AUTOMATIONS_PROFILE_E")
 elif LOW_TEMP >= 12 and LOW_TEMP <= 14 and HIGH_TEMP > 23:

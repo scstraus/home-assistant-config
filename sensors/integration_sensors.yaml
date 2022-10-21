@@ -455,3 +455,5 @@
           icon_template: mdi:emoticon-happy-outline
           value_template: "{{ state_attr('sensor.corona_rest','data')['Total Recovered'] | replace(',','') | int }}"
 #          unit_of_measurement: people       ```
+
+  - platform: ote_rate
