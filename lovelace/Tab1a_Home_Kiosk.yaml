@@ -1862,6 +1862,9 @@ cards:
           mute: true
         group: true
       - climate.sebastian_s_room
+      - entity: climate.sebastian_s_room_ac
+        name: Sebastian AC
+        icon: mdi:air-conditioner
       - entity: climate.sophie_s_room
         name: Sophie Heat
       - entity: climate.sophie_s_room_ac
