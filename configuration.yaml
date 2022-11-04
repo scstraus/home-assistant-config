@@ -152,6 +152,8 @@ lovelace:
       type: module
     - url: /hacsfiles/scheduler-card/scheduler-card.js
       type: module
+    - url: /hacsfiles/mushroom.js
+      type: module
                 
 
   dashboards:
@@ -393,23 +395,24 @@ media_player:
 #      - media_player.alexa_living_room
 
 ios:
-  push:
-    categories:
-      - name: Trash
-        identifier: 'trash'
-        actions:
-          - identifier: 'TOOK_TRASH_OUT'
-            title: 'I took it out.'
-            activationMode: 'background'
-            authenticationRequired: false
-            destructive: false
-            behavior: 'default'
-          - identifier: 'SNOOZE_ALERT'
-            title: 'Remind me later'
-            activationMode: 'background'
-            authenticationRequired: false
-            destructive: false
-            behavior: 'default'
+# There's a new way to do this I have to learn now
+  # push:
+  #   categories:
+  #     - name: Trash
+  #       identifier: 'trash'
+  #       actions:
+  #         - identifier: 'TOOK_TRASH_OUT'
+  #           title: 'I took it out.'
+  #           activationMode: 'background'
+  #           authenticationRequired: false
+  #           destructive: false
+  #           behavior: 'default'
+  #         - identifier: 'SNOOZE_ALERT'
+  #           title: 'Remind me later'
+  #           activationMode: 'background'
+  #           authenticationRequired: false
+  #           destructive: false
+  #           behavior: 'default'
             
 nest:
 

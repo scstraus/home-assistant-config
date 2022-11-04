@@ -30,24 +30,33 @@ cards:
     - type: custom:frigate-card
       cameras:
         - camera_entity: camera.front_stream
-          camera_name: front
-          frigate_url: http://10.10.10.200:4000/
-          label: person
+          frigate:
+            url: http://10.10.10.200:4000/
+            label: person
+            camera_name: front
       view:
         default: live
         camera_select: live
       event_gallery:
-        min_columns: 4
+        controls:
+          thumbnails:
+            show_details: false
+#      event_gallery:
+#        min_columns: 4
       menu:
-        mode: hidden-top
+        style: hidden
+        alignment: top
+#        mode: hidden-top
         buttons:
-          image: false
-      event_viewer:
+          image: 
+            enabled: false
+      media_viewer:
         controls:
           next_previous:
             style: none
           thumbnails:
             mode: below
+            show_details: false
       image:
         mode: camera
       live:
@@ -55,10 +64,11 @@ cards:
           thumbnails:
             mode: below
             media: snapshots
+            show_details: false
           next_previous:
             style: icons
         preload: true
-        auto_unmute: true
+        auto_unmute: selected
 
 # most recent
 #    - type: picture-glance
@@ -97,24 +107,33 @@ cards:
       - type: custom:frigate-card
         cameras:
           - camera_entity: camera.left_stream
-            camera_name: left
-            frigate_url: http://10.10.10.200:4000/
-            label: person
+            frigate:
+              url: http://10.10.10.200:4000/
+              label: person
+              camera_name: left
         view:
           default: live
           camera_select: live
+#        event_gallery:
+#          min_columns: 4
         event_gallery:
-          min_columns: 4
+          controls:
+            thumbnails:
+              show_details: false
         menu:
-          mode: hidden-top
+          style: hidden
+          alignment: top
+#          mode: hidden-top
           buttons:
-            image: false
-        event_viewer:
+            image: 
+              enabled: false
+        media_viewer:
           controls:
             next_previous:
               style: none
             thumbnails:
               mode: below
+              show_details: false
         image:
           mode: camera
         live:
@@ -122,10 +141,11 @@ cards:
             thumbnails:
               mode: below
               media: snapshots
+              show_details: false
             next_previous:
               style: chevrons
           preload: true
-          auto_unmute: true
+          auto_unmute: selected
 
 # most recent
 #      - type: picture-glance
@@ -154,24 +174,33 @@ cards:
       - type: custom:frigate-card
         cameras:
           - camera_entity: camera.right_stream
-            camera_name: right
-            frigate_url: http://10.10.10.200:4000/
-            label: person
+            frigate:
+              url: http://10.10.10.200:4000/
+              label: person
+              camera_name: right
         view:
           default: live
           camera_select: live
         event_gallery:
-          min_columns: 4
+          controls:
+            thumbnails:
+              show_details: false
+#        event_gallery:
+#          min_columns: 4
         menu:
-          mode: hidden-top
+          style: hidden
+          alignment: top
+#          mode: hidden-top
           buttons:
-            image: false
-        event_viewer:
+            image: 
+              enabled: false
+        media_viewer:
           controls:
             next_previous:
               style: none
             thumbnails:
               mode: below
+              show_details: false
         image:
           mode: camera
         live:
@@ -179,10 +208,11 @@ cards:
             thumbnails:
               mode: below
               media: snapshots
+              show_details: false
             next_previous:
               style: chevrons
           preload: true
-          auto_unmute: true
+          auto_unmute: selected
 
 # most recet
 #      - type: picture-glance
@@ -219,24 +249,29 @@ cards:
     - type: custom:frigate-card
       cameras:
         - camera_entity: camera.back_stream
-          camera_name: back
-          frigate_url: http://10.10.10.200:4000/
-          label: person
+          frigate:
+            url: http://10.10.10.200:4000/
+            label: person
+            camera_name: back
       view:
         default: live
         camera_select: live
-      event_gallery:
-        min_columns: 4
+#      event_gallery:
+#        min_columns: 4
       menu:
-        mode: hidden-top
+        style: hidden
+        alignment: top
+#        mode: hidden-top
         buttons:
-          image: false
-      event_viewer:
+          image: 
+            enabled: false
+      media_viewer:
         controls:
           next_previous:
             style: none
           thumbnails:
             mode: below
+            show_details: false
       image:
         mode: camera
       live:
@@ -244,10 +279,11 @@ cards:
           thumbnails:
             mode: below
             media: snapshots
+            show_details: false
           next_previous:
             style: icons
         preload: true
-        auto_unmute: true
+        auto_unmute: selected
   #
   #    - type: history-graph
   #      title: 'Back Motion'
