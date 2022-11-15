@@ -770,14 +770,16 @@
         push:
           thread-id: "error"
 
-- id: run_speedtest
-  alias: run_speedtest
-  initial_state: 'true'
-  trigger:
-    platform: time_pattern
-    minutes: 59
-  action:
-    service: speedtestdotnet.speedtest
+#the speedtest service was deprecated and the default is once an hour anyway, so I think this isn't needed any more.
+
+#- id: run_speedtest
+#  alias: run_speedtest
+#  initial_state: 'true'
+#  trigger:
+#    platform: time_pattern
+#    minutes: 59
+#  action:
+#    service: speedtestdotnet.speedtest
 
 - id: server_room_flooding
   alias: server_room_flooding

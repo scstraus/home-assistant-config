@@ -1242,6 +1242,15 @@
           command: 
             - Standby
 
+  play_the_tv:
+    sequence:
+      - service: remote.send_command
+        target:
+          entity_id: media_player.philips936_tv_cast
+        data:
+          command: 
+            - Play
+
 #
 #  turn_on_the_towel_warmer:
 #    sequence:

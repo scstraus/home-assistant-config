@@ -261,4 +261,7 @@ elif LOW_TEMP < 2 and HIGH_TEMP > 11:
 elif LOW_TEMP < 5 and HIGH_TEMP < 11:
   logger.info("Low <= 5 High <= 11 - Choose Living Room Auto")
   set_to_profile(LIVING_ROOM_AUTO,"LIVING_ROOM_AUTO","null","NULL")
+else:
+  logger.info("Didn't choose any living room preset. Setting living room profile to UNUSED_AUTO")
+  hass.services.call("input_select", "select_option", {"entity_id" : "input_select.active_heating_profile_living_room", "option" : "UNUSED_AUTO"}, False)
 

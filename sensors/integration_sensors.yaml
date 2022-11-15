@@ -241,17 +241,21 @@
 #    name: LG_Washer
 #    mac: !secret lg_washer_mac        
 
-  - name: Alarm State 1 - Laundry
-    platform: mqtt
-    state_topic: !secret alarm_state_1
+# moved to configuration.yaml mqtt section - start
 
-  - name: Alarm State 2 - 1st Floor
-    platform: mqtt
-    state_topic: !secret alarm_state_2
-    
-  - name: Alarm State 3 - Motion Sensors
-    platform: mqtt
-    state_topic: !secret alarm_state_3
+#  - name: Alarm State 1 - Laundry
+#    platform: mqtt
+#    state_topic: !secret alarm_state_1
+#
+#  - name: Alarm State 2 - 1st Floor
+#    platform: mqtt
+#    state_topic: !secret alarm_state_2
+#    
+#  - name: Alarm State 3 - Motion Sensors
+#    platform: mqtt
+#    state_topic: !secret alarm_state_3
+
+# moved to configuration.yaml mqtt section - end
 
 #  - name: Home Air Quality
 #    platform: file
@@ -369,16 +373,16 @@
 #      - wind_1d_kph
 #      - alerts
 
-  - platform: mqtt
-    name: "Genesys 5490 Idle Time"
-    state_topic: !secret genesys_5490_idle_time_topic
-    unit_of_measurement: 'seconds'
-    icon: mdi:timer
-    value_template: "{{ value }}"
-    availability_topic: !secret genesys_5490_availability_topic
-    payload_available: "ON"
-    payload_not_available: "OFF"
-    qos: 1
+#  - platform: mqtt
+#    name: "Genesys 5490 Idle Time"
+#    state_topic: !secret genesys_5490_idle_time_topic
+#    unit_of_measurement: 'seconds'
+#    icon: mdi:timer
+#    value_template: "{{ value }}"
+#    availability_topic: !secret genesys_5490_availability_topic
+#    payload_available: "ON"
+#    payload_not_available: "OFF"
+#    qos: 1
 
   - platform: statistics
     name: bathroom_humidity_stats
@@ -419,7 +423,7 @@
 #    timeout: 5
 #    away_timeout: 0
 
-  - platform: uptime
+#  - platform: uptime
 
 
   - platform: rest

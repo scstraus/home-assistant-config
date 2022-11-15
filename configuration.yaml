@@ -482,6 +482,235 @@ mqtt:
 #  discovery: true
 #  discovery_prefix: airthings_upstairs
 
+  sensor:
+  
+    - name: "Radon Upstairs"
+      state_topic: "airthings_upstairs/sensor/airthings_short_term_radon/state"
+      unit_of_measurement: 'Bq/m3'
+      icon: mdi:radioactive
+
+    - name: "Longterm Radon Upstairs"
+      state_topic: "airthings_upstairs/sensor/airthings_long_term_radon/state"
+      unit_of_measurement: 'Bq/m3'
+      icon: mdi:radioactive
+
+    - name: "TVOCS Upstairs"
+      state_topic: "airthings_upstairs/sensor/airthings_voc/state"
+      unit_of_measurement: 'ppb'
+      icon: mdi:weather-windy
+
+    - name: "Air Pressure Upstairs"
+      state_topic: "airthings_upstairs/sensor/airthings_pressure/state"
+      unit_of_measurement: 'hpa'
+      icon: mdi:gauge
+      device_class: pressure
+
+    - name: "CO2 Upstairs"
+      state_topic: "airthings_upstairs/sensor/airthings_co2/state"
+      unit_of_measurement: 'ppm'
+      icon: mdi:cloud-outline
+
+
+    - name: "Humidity Upstairs"
+      state_topic: "airthings_upstairs/sensor/airthings_humidity/state"
+      unit_of_measurement: '%'
+      icon: mdi:water-percent
+
+    - name: "Temperature Upstairs Airthings"
+      state_topic: "airthings_upstairs/sensor/airthings_temperature/state"
+      device_class: temperature
+
+    - name: Alarm State 1 - Laundry
+      state_topic: !secret alarm_state_1
+
+    - name: Alarm State 2 - 1st Floor
+      state_topic: !secret alarm_state_2
+
+    - name: Alarm State 3 - Motion Sensors
+      state_topic: !secret alarm_state_3
+  
+  binary_sensor:
+  
+    - state_topic: "paradox/zone/state/1"
+      name: "Front Door (Zone 1)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: door
+
+    - state_topic: "paradox/zone/state/2"
+      name: "Windows 1st Floor (Zone 2)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: window
+
+    - state_topic: "paradox/zone/state/3"
+      name: "Play Room (Zone 3)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/4"
+      name: "Living Room (Zone 4)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/5"
+      name: "Master Bedroom (Zone 5)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/6"
+      name: "Library (Zone 6)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/7"
+      name: "Zone 7"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/8"
+      name: "Master Closet (Zone 8)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/9"
+      name: "Zone 9"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/10"
+      name: "Sophies Room (Zone 10)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/11"
+      name: "3rd Floor Hallway (Zone 11)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/12"
+      name: "Garage (Zone 12)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: motion
+
+    - state_topic: "paradox/zone/state/13"
+      name: "Laundry Room Window (Zone 13)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: window
+
+    - state_topic: "paradox/zone/state/14"
+      name: "Garage Door (Zone 14)"
+      qos: 1
+      payload_on: "on"
+      payload_off: "off"
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      device_class: garage_door
+
+
+    - state_topic: "paradox/ctrl/state"
+      name: "Alarm Connection"
+      qos: 1
+      payload_on: "Connected"
+      payload_off: "Disconnected"
+      device_class: connectivity
+
+  alarm_control_panel:
+    - name: "Motion Sensors"
+      state_topic: "paradox/alarm/state/3"
+      command_topic: "paradox/alarm/cmnd/3"
+      qos: 1
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      payload_disarm: DISARM
+      payload_arm_away: ARM_AWAY
+      code: !secret alarm_code
+    - name: "Windows and Garage Door"
+      state_topic: "paradox/alarm/state/2"
+      command_topic: "paradox/alarm/cmnd/2"
+      qos: 1
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      payload_disarm: DISARM
+      payload_arm_away: ARM_AWAY
+      code: !secret alarm_code
+    - name: "Laundry Room Window"
+      state_topic: "paradox/alarm/state/1"
+      command_topic: "paradox/alarm/cmnd/1"
+      qos: 1
+      availability_topic: "paradox/ctrl/state"
+      payload_available: "Connected"
+      payload_not_available: "Disconnected"
+      payload_disarm: DISARM
+      payload_arm_away: ARM_AWAY
+      code: !secret alarm_code
+
 input_boolean:
   fire_in_fireplace_tomorrow:
     name: Heat Down Tomorrow - Fire in Fireplace
@@ -690,6 +919,7 @@ input_select:
       - LIVING_ROOM_AUTO
       - LIVING_ROOM_20
       - LIVING_ROOM_18
+      - UNUSED_AUTO
 #
 #  dreamscreen_mode:
 #    name: Dreamscreen Mode
@@ -815,40 +1045,44 @@ notify:
 #    - upload
 #  manual: true
 
-alarm_control_panel:
-  - platform: mqtt
-    name: "Motion Sensors"
-    state_topic: "paradox/alarm/state/3"
-    command_topic: "paradox/alarm/cmnd/3"
-    qos: 1
-    availability_topic: "paradox/ctrl/state"
-    payload_available: "Connected"
-    payload_not_available: "Disconnected"
-    payload_disarm: DISARM
-    payload_arm_away: ARM_AWAY
-    code: !secret alarm_code
-  - platform: mqtt
-    name: "Windows and Garage Door"
-    state_topic: "paradox/alarm/state/2"
-    command_topic: "paradox/alarm/cmnd/2"
-    qos: 1
-    availability_topic: "paradox/ctrl/state"
-    payload_available: "Connected"
-    payload_not_available: "Disconnected"
-    payload_disarm: DISARM
-    payload_arm_away: ARM_AWAY
-    code: !secret alarm_code
-  - platform: mqtt
-    name: "Laundry Room Window"
-    state_topic: "paradox/alarm/state/1"
-    command_topic: "paradox/alarm/cmnd/1"
-    qos: 1
-    availability_topic: "paradox/ctrl/state"
-    payload_available: "Connected"
-    payload_not_available: "Disconnected"
-    payload_disarm: DISARM
-    payload_arm_away: ARM_AWAY
-    code: !secret alarm_code
+
+#these ones moved to mqtt section - start
+#alarm_control_panel:
+#  - platform: mqtt
+#    name: "Motion Sensors"
+#    state_topic: "paradox/alarm/state/3"
+#    command_topic: "paradox/alarm/cmnd/3"
+#    qos: 1
+#    availability_topic: "paradox/ctrl/state"
+#    payload_available: "Connected"
+#    payload_not_available: "Disconnected"
+#    payload_disarm: DISARM
+#    payload_arm_away: ARM_AWAY
+#    code: !secret alarm_code
+#  - platform: mqtt
+#    name: "Windows and Garage Door"
+#    state_topic: "paradox/alarm/state/2"
+#    command_topic: "paradox/alarm/cmnd/2"
+#    qos: 1
+#    availability_topic: "paradox/ctrl/state"
+#    payload_available: "Connected"
+#    payload_not_available: "Disconnected"
+#    payload_disarm: DISARM
+#    payload_arm_away: ARM_AWAY
+#    code: !secret alarm_code
+#  - platform: mqtt
+#    name: "Laundry Room Window"
+#    state_topic: "paradox/alarm/state/1"
+#    command_topic: "paradox/alarm/cmnd/1"
+#    qos: 1
+#    availability_topic: "paradox/ctrl/state"
+#    payload_available: "Connected"
+#    payload_not_available: "Disconnected"
+#    payload_disarm: DISARM
+#    payload_arm_away: ARM_AWAY
+#    code: !secret alarm_code
+
+#these ones moved to the MQTT section - end
 
 
 #    code: !secret alarm_code
