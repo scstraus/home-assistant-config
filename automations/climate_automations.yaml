@@ -1667,3 +1667,19 @@
                 option: 'off'
               target:
                 entity_id: select.master_bedroom_ac_light
+
+
+
+- id: towel_warmer_turn_off_timer
+  alias: towel_warmer_turn_off_timer
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.master_bath_towel_warmer
+      to: 'on'
+      for: 
+        hours: 3
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.master_bath_towel_warmer

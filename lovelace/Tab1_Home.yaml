@@ -12,6 +12,8 @@ visible:
 ###### START COMMENT BLOCK 1: 
 #POPUP CARDS
 
+
+
 popup_cards:
 
   weather.openweathermap:
@@ -23,47 +25,47 @@ popup_cards:
       temp: sensor.weatherflow_air_temperature
       wind: sensor.tempest_st_00023475_wind_speed
 
-  sensor.sean_location:
-    title: Sean Location History and Time to Home
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - sensor.sean_location
-      - type: markdown
-        content: |
-          ## {{ states('sensor.sean_eta')}}
-          {{ states('sensor.sean_eta_description')}} 
+#  sensor.sean_location:
+#    title: Sean Location History and Time to Home
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: history-graph
+#        entities:
+#          - sensor.sean_location
+#      - type: markdown
+#        content: |
+#          ## {{ states('sensor.sean_eta')}}
+#          {{ states('sensor.sean_eta_description')}} 
 
-  sensor.sophie_location:
-    title: Sophie Location History and Time to Home
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - sensor.sophie_location
-      - type: markdown
-        content: |
-          ## {{ states('sensor.sophie_eta')}}
-          {{ states('sensor.sophie_eta_description')}} 
-
-  sensor.alena_location:
-    title: Alena Location History and Time to Home
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - sensor.alena_location
-      - type: markdown
-        content: |
-          ## {{ states('sensor.alena_eta')}}
-          {{ states('sensor.alena_eta_description')}} 
+#  sensor.sophie_location:
+#    title: Sophie Location History and Time to Home
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: history-graph
+#        entities:
+#          - sensor.sophie_location
+#      - type: markdown
+#        content: |
+#          ## {{ states('sensor.sophie_eta')}}
+#          {{ states('sensor.sophie_eta_description')}} 
+#
+#  sensor.alena_location:
+#    title: Alena Location History and Time to Home
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: history-graph
+#        entities:
+#          - sensor.alena_location
+#      - type: markdown
+#        content: |
+#          ## {{ states('sensor.alena_eta')}}
+#          {{ states('sensor.alena_eta_description')}} 
 
   input_boolean.sophies_air_purifier:
     title: "Sophie's Air Purifier"
@@ -199,14 +201,71 @@ popup_cards:
         entities:
           - sensor.tempest_st_00023475_wind_speed
 
-### END COMMENT BLOCK 1: POPUP CARDS
+
 
 
 
 cards: 
 
+  - type: custom:popup-card
+    entity: sensor.sean_location
+    title: Sean Location History and Time to Home
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - sensor.sean_location
+      - type: markdown
+        content: |
+          ## {{ states('sensor.sean_eta')}}
+          {{ states('sensor.sean_eta_description')}} 
+          <br />
+          <br />
+          <br />
+
+  - type: custom:popup-card
+    entity: sensor.sophie_location
+    title: Sophie Location History and Time to Home
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - sensor.sophie_location
+      - type: markdown
+        content: |
+          ## {{ states('sensor.sophie_eta')}}
+          {{ states('sensor.sophie_eta_description')}} 
+          <br />
+          <br />
+          <br />
+
+  - type: custom:popup-card
+    entity: sensor.alena_location
+    title: Alena Location History and Time to Home
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - sensor.alena_location
+      - type: markdown
+        content: |
+          ## {{ states('sensor.alena_eta')}}
+          {{ states('sensor.alena_eta_description')}} 
+          <br />
+          <br />
+          <br />
+
+### END COMMENT BLOCK 1: POPUP CARDS
 
 ### START COMMENT BLOCK 2: DECLUTTERING CARDS 
+
+
 
 
   - type: custom:decluttering-card

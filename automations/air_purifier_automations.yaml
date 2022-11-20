@@ -369,7 +369,7 @@
     above: 70
   condition:
     condition: time
-    after: '12:30:00'
+    after: '13:30:00'
     before: '16:30:00'
   action:
     service: input_boolean.turn_on
@@ -382,7 +382,7 @@
   initial_state: 'true'
   trigger:
     platform: time
-    at: '12:30:00'
+    at: '13:30:00'
   condition:
     condition: numeric_state
     entity_id: sensor.hlubocepy_air_quality
@@ -545,7 +545,7 @@
   condition:
     condition: time
     after: '21:00:00'
-    before: '11:00:00'
+    before: '09:30:00'
   action:
     - service: fan.turn_on
       data:
@@ -584,32 +584,29 @@
   initial_state: 'true'
   trigger:
     - platform: time
-      at: '11:00:00'
+      at: '09:30:00'
     - platform: numeric_state
       entity_id: sensor.hlubocepy_air_quality
       below: 65
   action:
-    service: fan.turn_off
-    data:
-      entity_id: fan.master_bedroom_air_purifier
+    - service: fan.turn_off
+      data:
+        entity_id: fan.master_bedroom_air_purifier
 
 
-- id: turn_on_master_bedroom_air_purifier_if_air_is_bad_after_unavailable
-  alias: "Turn on Master Bedroom Air Purifier if the air is bad after unavailable"
+
+
+- id: turn_on_master_bedroom_air_purifier_if_air_is_bad_for_naptime
+  alias: turn_on_master_bedroom_air_purifier_if_air_is_bad_for_naptime
   initial_state: 'true'
   trigger:
-    platform: state
-    entity_id: fan.master_bedroom_air_purifier
-    from: 'unavailable'
+    platform: numeric_state
+    entity_id: sensor.hlubocepy_air_quality
+    above: 70
   condition:
-    condition: and
-    conditions:
-      - condition: numeric_state
-        entity_id: sensor.hlubocepy_air_quality
-        above: 70
-      - condition: time
-        after: '21:00:00'
-        before: '11:00:00'
+    condition: time
+    after: '13:30:00'
+    before: '16:30:00'
   action:
     - service: fan.turn_on
       data:
@@ -620,3 +617,36 @@
       data:
         entity_id: fan.master_bedroom_air_purifier
         preset_mode: Silent
+
+
+- id: turn_on_sebastians_air_purifier_if_air_is_bad_for_naptime_2
+  alias: "Turn on Sebastian's Air Purifier if the air is bad for naptime 2"
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '12:30:00'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.hlubocepy_air_quality
+    above: 70
+  action:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+    - delay:
+        seconds: 15
+    - service: fan.set_preset_mode
+      data:
+        entity_id: fan.master_bedroom_air_purifier
+        preset_mode: Silent
+
+- id: turn_off_sebastians_air_purifier_after_nap
+  alias: "Turn off Sebastian's Air Purifier after nap"
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '16:30:00'
+  action:
+    - service: fan.turn_off
+      data:
+        entity_id: fan.master_bedroom_air_purifier

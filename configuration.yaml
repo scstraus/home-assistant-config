@@ -1132,10 +1132,10 @@ shell_command:
   reload_ui_kindle_fire_entrance: !secret entrance_kindle_reload_ui
 
 
-browser_mod:
-  disable: 
-    - light
-    - media_player
+#browser_mod:
+#  disable: 
+#    - light
+#    - media_player
 
 #display:
 #  - platform: fully_kiosk
