@@ -16,14 +16,14 @@ visible:
 
 popup_cards:
 
-  weather.openweathermap:
-    title: Weekly Weather Forecast
-    card: 
-      type: 'custom:weather-card-chart'
-      weather: weather.weatherflow_day_based_forecast
-      sun: sun.sun
-      temp: sensor.weatherflow_air_temperature
-      wind: sensor.tempest_st_00023475_wind_speed
+#  weather.openweathermap:
+#    title: Weekly Weather Forecast
+#    card: 
+#      type: 'custom:weather-card-chart'
+#      weather: weather.weatherflow_day_based_forecast
+#      sun: sun.sun
+#      temp: sensor.weatherflow_air_temperature
+#      wind: sensor.tempest_st_00023475_wind_speed
 
 #  sensor.sean_location:
 #    title: Sean Location History and Time to Home
@@ -66,140 +66,140 @@ popup_cards:
 #        content: |
 #          ## {{ states('sensor.alena_eta')}}
 #          {{ states('sensor.alena_eta_description')}} 
+#
+#  input_boolean.sophies_air_purifier:
+#    title: "Sophie's Air Purifier"
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: history-graph
+#        entities:
+#          - input_boolean.sophies_air_purifier
+#      - type: history-graph
+#        entities:
+#          - sensor.hlubocepy_air_quality
+#      - type: history-graph
+#        entities:
+#          - sensor.sophies_room_aqi
+##      - type: markdown
+##        content: |
+##          Last Hour Availability:
+#      - type: history-graph
+#        entities:
+#          - fan.sophies_room_air_purifier
+#        hours_to_show: 1
 
-  input_boolean.sophies_air_purifier:
-    title: "Sophie's Air Purifier"
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - input_boolean.sophies_air_purifier
-      - type: history-graph
-        entities:
-          - sensor.hlubocepy_air_quality
-      - type: history-graph
-        entities:
-          - sensor.sophies_room_aqi
-#      - type: markdown
-#        content: |
-#          Last Hour Availability:
-      - type: history-graph
-        entities:
-          - fan.sophies_room_air_purifier
-        hours_to_show: 1
-
-  input_boolean.sebastians_air_purifier:
-    title: "Sebastian's Air Purifier"
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - input_boolean.sebastians_air_purifier
-      - type: history-graph
-        entities:
-          - sensor.hlubocepy_air_quality
-      - type: history-graph
-        entities:
-          - sensor.sebastians_room_aqi
-#      - type: markdown
-#        content: |
-#          Last Hour Availability:
-      - type: history-graph
-        entities:
-          - fan.sebastians_room_air_purifier
-        hours_to_show: 1
-
-
-  fan.master_bedroom_air_purifier:
-    title: "Master Bedroom Air Purifier"
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - fan.master_bedroom_air_purifier
-      - type: history-graph
-        entities:
-          - sensor.hlubocepy_air_quality
-      - type: history-graph
-        entities:
-          - sensor.master_bedroom_aqi
-
-  binary_sensor.cooper_s_e_all4_door_lock_state:
-    title: "Car Lock"
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: entities
-        entities:
-          - binary_sensor.cooper_s_e_all4_door_lock_state
-      - type: history-graph
-        entities:
-          - binary_sensor.cooper_s_e_all4_door_lock_state
-      - type: button
-        name: Press to Lock the Car
-        tap_action:
-          action: call-service
-          service: lock.lock
-          service_data:
-            entity_id: lock.cooper_s_e_all4_lock
-        entity: lock.cooper_s_e_all4_lock
-
-  sensor.last_lightning:
-    title: "Lightning strikes and distance in last hour"
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        hours_to_show: 1
-        entities:
-          - sensor.weatherflow_last_lightning_strike_distance
-
-  sensor.trash_display:
-    title: "Trash Needs Taking Out"
-    card:
-      type: button
-      name: I took it out!
-      tap_action:
-        action: call-service
-        service: input_boolean.turn_off
-        service_data:
-          entity_id: input_boolean.trash_needs_taking_out
-      entity: sensor.trash_display
-
-  sensor.rain_sensor:
-    title: "Rain Summary"
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - sensor.rain_sensor
-      - type: history-graph
-        entities:
-          - sensor.weatherflow_precipitation_rate
+#  input_boolean.sebastians_air_purifier:
+#    title: "Sebastian's Air Purifier"
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: history-graph
+#        entities:
+#          - input_boolean.sebastians_air_purifier
+#      - type: history-graph
+#        entities:
+#          - sensor.hlubocepy_air_quality
+#      - type: history-graph
+#        entities:
+#          - sensor.sebastians_room_aqi
+##      - type: markdown
+##        content: |
+##          Last Hour Availability:
+#      - type: history-graph
+#        entities:
+#          - fan.sebastians_room_air_purifier
+#        hours_to_show: 1
 
 
-  sensor.high_wind_warning:
-    title: "Wind Summary"
-    card:
-      type: vertical-stack
-      in_card: true
-      cards:
-      - type: history-graph
-        entities:
-          - sensor.high_wind_warning
-      - type: history-graph
-        entities:
-          - sensor.tempest_st_00023475_wind_speed
+#  fan.master_bedroom_air_purifier:
+#    title: "Master Bedroom Air Purifier"
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: history-graph
+#        entities:
+#          - fan.master_bedroom_air_purifier
+#      - type: history-graph
+#        entities:
+#          - sensor.hlubocepy_air_quality
+#      - type: history-graph
+#        entities:
+#          - sensor.master_bedroom_aqi
+#
+#  binary_sensor.cooper_s_e_all4_door_lock_state:
+#    title: "Car Lock"
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: entities
+#        entities:
+#          - binary_sensor.cooper_s_e_all4_door_lock_state
+#      - type: history-graph
+#        entities:
+#          - binary_sensor.cooper_s_e_all4_door_lock_state
+#      - type: button
+#        name: Press to Lock the Car
+#        tap_action:
+#          action: call-service
+#          service: lock.lock
+#          service_data:
+#            entity_id: lock.cooper_s_e_all4_lock
+#        entity: lock.cooper_s_e_all4_lock
+#
+#  sensor.last_lightning:
+#    title: "Lightning strikes and distance in last hour"
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: history-graph
+#        hours_to_show: 1
+#        entities:
+#          - sensor.weatherflow_last_lightning_strike_distance
+#
+#  sensor.trash_display:
+#    title: "Trash Needs Taking Out"
+#    card:
+#      type: button
+#      name: I took it out!
+#      tap_action:
+#        action: call-service
+#        service: input_boolean.turn_off
+#        service_data:
+#          entity_id: input_boolean.trash_needs_taking_out
+#      entity: sensor.trash_display
+#
+#  sensor.rain_sensor:
+#    title: "Rain Summary"
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: history-graph
+#        entities:
+#          - sensor.rain_sensor
+#      - type: history-graph
+#        entities:
+#          - sensor.weatherflow_precipitation_rate
+#
+#
+#  sensor.high_wind_warning:
+#    title: "Wind Summary"
+#    card:
+#      type: vertical-stack
+#      in_card: true
+#      cards:
+#      - type: history-graph
+#        entities:
+#          - sensor.high_wind_warning
+#      - type: history-graph
+#        entities:
+#          - sensor.tempest_st_00023475_wind_speed
 
 
 
@@ -260,6 +260,198 @@ cards:
           <br />
           <br />
           <br />
+          
+  - type: custom:popup-card
+    entity: input_boolean.sophies_air_purifier
+    title: "Sophie's Air Purifier"
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - input_boolean.sophies_air_purifier
+      - type: history-graph
+        entities:
+          - sensor.hlubocepy_air_quality
+#      - type: history-graph
+#        entities:
+#          - sensor.sophies_room_aqi
+#      - type: markdown
+#        content: |
+#          Last Hour Availability:
+      - type: history-graph
+        entities:
+          - fan.sophies_room_air_purifier
+        hours_to_show: 1
+      - type: markdown
+        content: |
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+  - type: custom:popup-card
+    entity: input_boolean.sebastians_air_purifier
+    title: "Sebastian's Air Purifier"
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - input_boolean.sebastians_air_purifier
+      - type: history-graph
+        entities:
+          - sensor.hlubocepy_air_quality
+#      - type: history-graph
+#        entities:
+#          - sensor.sebastians_room_aqi
+#      - type: markdown
+#        content: |
+#          Last Hour Availability:
+      - type: history-graph
+        entities:
+          - fan.sebastians_room_air_purifier
+        hours_to_show: 1
+      - type: markdown
+        content: |
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+  - type: custom:popup-card
+    entity: fan.master_bedroom_air_purifier
+    title: "Master Bedroom Air Purifier"
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - fan.master_bedroom_air_purifier
+      - type: history-graph
+        entities:
+          - sensor.hlubocepy_air_quality
+#      - type: history-graph
+#        entities:
+#          - sensor.master_bedroom_aqi
+      - type: markdown
+        content: |
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+  - type: custom:popup-card
+    entity: binary_sensor.cooper_s_e_all4_door_lock_state
+    title: "Car Lock"
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: entities
+        entities:
+          - binary_sensor.cooper_s_e_all4_door_lock_state
+      - type: history-graph
+        entities:
+          - binary_sensor.cooper_s_e_all4_door_lock_state
+      - type: button
+        name: Press to Lock the Car
+        tap_action:
+          action: call-service
+          service: lock.lock
+          service_data:
+            entity_id: lock.cooper_s_e_all4_lock
+        entity: lock.cooper_s_e_all4_lock
+      - type: markdown
+        content: |
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+
+  - type: custom:popup-card
+    entity: sensor.last_lightning
+    title: "Lightning strikes and distance in last hour"
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        hours_to_show: 1
+        entities:
+          - sensor.weatherflow_last_lightning_strike_distance
+      - type: markdown
+        content: |
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+
+  - type: custom:popup-card
+    entity: sensor.trash_display
+    title: "Trash Needs Taking Out"
+    card:
+      type: button
+      name: I took it out!
+      tap_action:
+        action: call-service
+        service: input_boolean.turn_off
+        service_data:
+          entity_id: input_boolean.trash_needs_taking_out
+      entity: sensor.trash_display
+
+  - type: custom:popup-card
+    entity: sensor.rain_sensor
+    title: "Rain Summary"
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - sensor.rain_sensor
+      - type: history-graph
+        entities:
+          - sensor.weatherflow_precipitation_rate
+      - type: markdown
+        content: |
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+  - type: custom:popup-card
+    entity: sensor.high_wind_warning
+    title: "Wind Summary"
+    card:
+      type: vertical-stack
+      in_card: true
+      cards:
+      - type: history-graph
+        entities:
+          - sensor.high_wind_warning
+      - type: history-graph
+        entities:
+          - sensor.tempest_st_00023475_wind_speed
+      - type: markdown
+        content: |
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
 
 ### END COMMENT BLOCK 1: POPUP CARDS
 
