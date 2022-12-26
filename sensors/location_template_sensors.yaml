@@ -34,29 +34,29 @@
             mdi:city
           {% elif is_state('input_select.sean_location_dropdown', 'At Černy Kohout') %}
             mdi:food-turkey
-          {% elif is_state('device_tracker.sean_s_iphone_12', 'Udoli Turnaround') %}
+          {% elif is_state('device_tracker.seans_iphone_14', 'Udoli Turnaround') %}
             mdi:redo-variant
-          {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliBetweenBridges') %}
+          {% elif is_state('device_tracker.seans_iphone_14', 'UdoliBetweenBridges') %}
             mdi:bridge
-          {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliBoat') %}
+          {% elif is_state('device_tracker.seans_iphone_14', 'UdoliBoat') %}
             mdi:ferry
-          {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliGoats') %}
+          {% elif is_state('device_tracker.seans_iphone_14', 'UdoliGoats') %}
             mdi:sheep
-          {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliLake') %}
+          {% elif is_state('device_tracker.seans_iphone_14', 'UdoliLake') %}
             mdi:duck
-          {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliMilitary') %}
+          {% elif is_state('device_tracker.seans_iphone_14', 'UdoliMilitary') %}
             mdi:tank
-          {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliMeadow') %}
+          {% elif is_state('device_tracker.seans_iphone_14', 'UdoliMeadow') %}
             mdi:grass
-          {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliStart') %}
+          {% elif is_state('device_tracker.seans_iphone_14', 'UdoliStart') %}
             mdi:ray-start-arrow
-          {% elif is_state('device_tracker.sean_s_iphone_12', 'UdoliTrain+Cave') %}
+          {% elif is_state('device_tracker.seans_iphone_14', 'UdoliTrain+Cave') %}
             mdi:seesaw
-          {% elif "ToUdoli" in states('device_tracker.sean_s_iphone_12') and is_state('sensor.sean_direction_of_travel', 'away_from') %}
+          {% elif "ToUdoli" in states('device_tracker.seans_iphone_14') and is_state('sensor.sean_direction_of_travel', 'away_from') %}
             mdi:walk
-          {% elif "ToUdoli" in states('device_tracker.sean_s_iphone_12') and is_state('sensor.sean_direction_of_travel', 'stationary') %}
+          {% elif "ToUdoli" in states('device_tracker.seans_iphone_14') and is_state('sensor.sean_direction_of_travel', 'stationary') %}
             mdi:walk
-          {% elif "ToUdoli" in states('device_tracker.sean_s_iphone_12') and is_state('sensor.sean_direction_of_travel', 'towards') %}
+          {% elif "ToUdoli" in states('device_tracker.seans_iphone_14') and is_state('sensor.sean_direction_of_travel', 'towards') %}
             mdi:walk
           {% else %}
             mdi:train-car

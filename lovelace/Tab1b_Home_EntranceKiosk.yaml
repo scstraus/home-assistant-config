@@ -1041,13 +1041,7 @@ cards:
 
 ### These are the cards you see all the time in the first tab on the kiosks
 
-    - type: glance
-      entities:
-        - sensor.sean_location
-  #        type: "custom:secondaryinfo-entity-row"
-  #        secondary_info: "ETA: [[ sensor.sean_tram_time_to_home ]]"
-        - sensor.sophie_location
-        - sensor.alena_location
+
 
 #    - type: iframe
 #      url: https://todoist.com/app/project/2249307675#
@@ -1415,103 +1409,111 @@ cards:
 #          height: 60
 
 
-    #coronavirus card
-    - type: picture-elements
-      image: /local/images/coronavirus_transparent.png
-      elements:
-        - type: icon
-          icon: mdi:virus-outline
-          style:
-            top: 15%
-            left: 5%
-            color: var(--ha-card-header-color)
-        - type: icon
-          icon: mdi:virus-outline
-          style:
-            top: 15%
-            right: -2%
-            color: var(--ha-card-header-color)
-        # Header
-        - style:
-            font-size: large
-            left: 31%
-            top: 16%
-            color: var(--ha-card-header-color)
-          text: Coronavirus
-          type: 'custom:text-element'
-        - style:
-            font-size: large
-            left: 57%
-            top: 16%
-            color: var(--ha-card-header-color)
-          text: In
-          type: 'custom:text-element'
-        - style:
-            font-size: large
-            left: 76%
-            top: 16%
-            color: var(--ha-card-header-color)
-          text: Czechia
-          type: 'custom:text-element'
-        #Numbers
-        - type: state-label  
-          entity: sensor.czechia_coronavirus_current
-          #entity: sensor.coronavirus_active_cases_cz
-          style:
-            font-size: large
-            left: 20%
-            top: 44%
-        - type: state-label  
-#          entity: variable.czechia_coronavirus_new_yesterday
-          entity: variable.czechia_coronavirus_new_day_before
-          style:
-            font-size: large
-            left: 51%
-            top: 44%
-        - type: state-label  
-          entity: variable.czechia_coronavirus_new_backup
-          style:
-            font-size: large
-            left: 82%
-            top: 44%
-        #Units top row
-        - style:
-            font-size: small
-            left: 20%
-            top: 66%
-          text: Active
-          type: 'custom:text-element'
-        - style:
-            font-size: small
-            left: 51%
-            top: 66%
-          text: New
-          type: 'custom:text-element'
-        - style:
-            font-size: small
-            left: 82%
-            top: 66%
-          text: New
-          type: 'custom:text-element'
-        #Units bottom row
-        - style:
-            font-size: small
-            left: 20%
-            top: 85%
-          text: Cases
-          type: 'custom:text-element'
-        - style:
-            font-size: small
-            left: 51%
-            top: 85%
-          text: Yesterday
-          type: 'custom:text-element'
-        - style:
-            font-size: small
-            left: 82%
-            top: 85%
-          text: Today
-          type: 'custom:text-element'
+    - type: glance
+      entities:
+        - sensor.sean_location
+  #        type: "custom:secondaryinfo-entity-row"
+  #        secondary_info: "ETA: [[ sensor.sean_tram_time_to_home ]]"
+        - sensor.sophie_location
+        - sensor.alena_location
+
+#    #coronavirus card
+#    - type: picture-elements
+#      image: /local/images/coronavirus_transparent.png
+#      elements:
+#        - type: icon
+#          icon: mdi:virus-outline
+#          style:
+#            top: 15%
+#            left: 5%
+#            color: var(--ha-card-header-color)
+#        - type: icon
+#          icon: mdi:virus-outline
+#          style:
+#            top: 15%
+#            right: -2%
+#            color: var(--ha-card-header-color)
+#        # Header
+#        - style:
+#            font-size: large
+#            left: 31%
+#            top: 16%
+#            color: var(--ha-card-header-color)
+#          text: Coronavirus
+#          type: 'custom:text-element'
+#        - style:
+#            font-size: large
+#            left: 57%
+#            top: 16%
+#            color: var(--ha-card-header-color)
+#          text: In
+#          type: 'custom:text-element'
+#        - style:
+#            font-size: large
+#            left: 76%
+#            top: 16%
+#            color: var(--ha-card-header-color)
+#          text: Czechia
+#          type: 'custom:text-element'
+#        #Numbers
+#        - type: state-label  
+#          entity: sensor.czechia_coronavirus_current
+#          #entity: sensor.coronavirus_active_cases_cz
+#          style:
+#            font-size: large
+#            left: 20%
+#            top: 44%
+#        - type: state-label  
+##          entity: variable.czechia_coronavirus_new_yesterday
+#          entity: variable.czechia_coronavirus_new_day_before
+#          style:
+#            font-size: large
+#            left: 51%
+#            top: 44%
+#        - type: state-label  
+#          entity: variable.czechia_coronavirus_new_backup
+#          style:
+#            font-size: large
+#            left: 82%
+#            top: 44%
+#        #Units top row
+#        - style:
+#            font-size: small
+#            left: 20%
+#            top: 66%
+#          text: Active
+#          type: 'custom:text-element'
+#        - style:
+#            font-size: small
+#            left: 51%
+#            top: 66%
+#          text: New
+#          type: 'custom:text-element'
+#        - style:
+#            font-size: small
+#            left: 82%
+#            top: 66%
+#          text: New
+#          type: 'custom:text-element'
+#        #Units bottom row
+#        - style:
+#            font-size: small
+#            left: 20%
+#            top: 85%
+#          text: Cases
+#          type: 'custom:text-element'
+#        - style:
+#            font-size: small
+#            left: 51%
+#            top: 85%
+#          text: Yesterday
+#          type: 'custom:text-element'
+#        - style:
+#            font-size: small
+#            left: 82%
+#            top: 85%
+#          text: Today
+#          type: 'custom:text-element'
 
 
 #    
@@ -2218,8 +2220,8 @@ cards:
       entities: 
       - entity: fan.master_bedroom_air_purifier
         name: "Master Bedroom Air Purifier"
-        type: "custom:secondaryinfo-entity-row"
-        secondary_info: "Air Quality: [[  sensor.master_bedroom_aqi_description.state ]]"
+#        type: "custom:secondaryinfo-entity-row"
+#        secondary_info: "Air Quality: [[  sensor.master_bedroom_aqi_description.state ]]"
   #    - entity: media_player.master_bedroom_airtunes_speaker
       - entity: media_player.forked_daapd_output_master_bedroom
         type: custom:mini-media-player
@@ -2277,12 +2279,12 @@ cards:
       entities:
       - entity: input_boolean.sophies_air_purifier
         name: "Sophie's Room Air Purifier"
-        type: "custom:secondaryinfo-entity-row"
-        secondary_info: "Air Quality: [[  sensor.sophies_room_aqi_description.state ]]"
+#        type: "custom:secondaryinfo-entity-row"
+#        secondary_info: "Air Quality: [[  sensor.sophies_room_aqi_description.state ]]"
       - entity: input_boolean.sebastians_air_purifier
         name: "Seb's Room Air Purifier"
-        type: "custom:secondaryinfo-entity-row"
-        secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi_description.state ]]"
+#        type: "custom:secondaryinfo-entity-row"
+#        secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi_description.state ]]"
   #    - entity: media_player.sophie_s_room_airtunes_speaker
       - entity: media_player.forked_daapd_output_sophie_s_room
         type: custom:mini-media-player

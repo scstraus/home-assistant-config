@@ -14,7 +14,7 @@
         - condition: template
           value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_12
+    service: notify.mobile_app_sean_s_iphone_14
     data:
       title: "Bio Odpad Tomorrow"
       message: "Bio odpad should be taken out tonight or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
@@ -58,7 +58,7 @@
         - condition: template
           value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_12
+    service: notify.mobile_app_sean_s_iphone_14
     data:
       title: "Trash Tomorrow"
       message: "Trash should be taken out tonight or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
@@ -102,7 +102,7 @@
         - condition: template
           value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_12
+    service: notify.mobile_app_sean_s_iphone_14
     data:
       title: "Bio Odpad Today"
       message: "Bio odpad should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
@@ -151,7 +151,7 @@
 #        - condition: template
 #          value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
 #  action:
-#    service: notify.mobile_app_sean_s_iphone_12
+#    service: notify.mobile_app_sean_s_iphone_14
 #    data:
 #      title: "Trash Day Today"
 #      message: "Trash should be taken out tonight for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
@@ -287,7 +287,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.sean_s_iphone_12
+    entity_id: device_tracker.seans_iphone_14
     to: 'home'
   condition:
     condition: and
@@ -299,7 +299,7 @@
       entity_id: 'input_boolean.trash_needs_taking_out'
       state: 'on'
   action:
-    service: notify.mobile_app_sean_s_iphone_12
+    service: notify.mobile_app_sean_s_iphone_14
     data:
       title: "Take out that trash!"
       message: "Hello there, now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
@@ -316,14 +316,14 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.sean_s_iphone_12
+    entity_id: device_tracker.seans_iphone_14
     to: 'home'
   condition:
     condition: state
     entity_id: 'sensor.bio_odpad_day'
     state: 'Today'
   action:
-    service: notify.mobile_app_sean_s_iphone_12
+    service: notify.mobile_app_sean_s_iphone_14
     data:
       title: "Take out that bio odpad!"
       message: "Hello there, now would be a really great time to take out the bio odpad, what do you think? Let's do it, what do you say?!?"

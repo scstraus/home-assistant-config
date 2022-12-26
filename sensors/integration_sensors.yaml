@@ -384,9 +384,9 @@
 #    payload_not_available: "OFF"
 #    qos: 1
 
-  - platform: statistics
-    name: bathroom_humidity_stats
-    entity_id: sensor.boiler_flood_sensor_humidity_level
+#  - platform: statistics
+#    name: bathroom_humidity_stats
+#    entity_id: sensor.boiler_flood_sensor_humidity_level
 
 #  - platform: smartweatherudp
 #    monitored_conditions:

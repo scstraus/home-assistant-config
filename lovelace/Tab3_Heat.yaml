@@ -1084,6 +1084,7 @@ cards:
     show_header_toggle: false
     entities: 
     - input_boolean.working_from_home
+    - input_boolean.sebastian_home_weekday
     - input_boolean.fire_in_fireplace_tomorrow
     - input_boolean.fire_in_fireplace_now
     - input_select.active_heating_profile

@@ -759,6 +759,9 @@ input_boolean:
   heat_electro_mode:
     name: Heat Electro Mode
     icon: mdi:power-plug
+  sebastian_home_weekday:
+    name: Sebastian Home
+    icon: mdi:home-import-outline
 
 #  auto_curtain_open_state:
 #    name: "Automatic curtain opener state"
@@ -989,7 +992,7 @@ input_select:
 proximity:
   all_home: 
     devices:
-      - device_tracker.seans_iphone_x
+      - device_tracker.seans_iphone_14
       - device_tracker.alena_s_iphone
       - device_tracker.sophie
       - device_tracker.sophies_iphhshshshs
@@ -997,7 +1000,7 @@ proximity:
     unit_of_measurement: km
   sean_home: 
     devices:
-      - device_tracker.sean_s_iphone_12
+      - device_tracker.seans_iphone_14
     tolerance: 50
     unit_of_measurement: km
   alena_home: 
@@ -1029,12 +1032,12 @@ notify:
   - name: sean_alena
     platform: group
     services:
-      - service: mobile_app_sean_s_iphone_12
+      - service: mobile_app_seans_iphone_14
       - service: mobile_app_alena_s_iphone
   - name: whole_family
     platform: group
     services:
-      - service: mobile_app_sean_s_iphone_12
+      - service: mobile_app_seans_iphone_14
       - service: mobile_app_alena_s_iphone
       - service: mobile_app_sophies_iphone_6
 

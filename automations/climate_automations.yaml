@@ -690,7 +690,7 @@
     value_template: >
       {{ (states('sensor.dark_sky_wind_gust_1h')|float > 17) or (states('sensor.dark_sky_wind_gust_2h')|float > 17) or (states('sensor.dark_sky_wind_gust_3h')|float > 17) or (states('sensor.dark_sky_wind_gust_4h')|float > 17) or (states('sensor.dark_sky_wind_gust_5h')|float > 17) or (states('sensor.dark_sky_wind_gust_6h')|float > 17) or (states('sensor.dark_sky_wind_gust_7h')|float > 17) or (states('sensor.dark_sky_wind_gust_8h')|float > 17) or (states('sensor.dark_sky_wind_gust_9h')|float > 17) }}
   action:
-    - service: notify.mobile_app_sean_s_iphone_12
+    - service: notify.mobile_app_sean_s_iphone_14
       data:
         title: "High Winds Warning"
         data:
@@ -964,10 +964,10 @@
     - choose:
         - conditions: 
             - condition: state
-              entity_id: device_tracker.sean_s_iphone_12
+              entity_id: device_tracker.seans_iphone_14
               state: 'home'
           sequence:
-            - service: notify.mobile_app_sean_s_iphone_12
+            - service: notify.mobile_app_sean_s_iphone_14
               data:
                 title: "Home indoor air quality is poor"
                 message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}. Turn on an air purifier."
@@ -998,7 +998,7 @@
     - choose:
         - conditions: 
             - condition: state
-              entity_id: device_tracker.sean_s_iphone_12
+              entity_id: device_tracker.seans_iphone_14
               state: 'home'
           sequence:
             - service: mqtt.publish
@@ -1031,10 +1031,10 @@
     - choose:
         - conditions:
             - condition: state
-              entity_id: device_tracker.sean_s_iphone_12
+              entity_id: device_tracker.seans_iphone_14
               state: 'home'
           sequence:
-            - service: notify.mobile_app_sean_s_iphone_12
+            - service: notify.mobile_app_sean_s_iphone_14
               data:
                 title: "Home indoor air quality is good again"
                 message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}."             
@@ -1058,7 +1058,7 @@
     - choose:
         - conditions: 
             - condition: state
-              entity_id: device_tracker.sean_s_iphone_12
+              entity_id: device_tracker.seans_iphone_14
               state: 'home'
           sequence:
             - service: mqtt.publish
@@ -1091,10 +1091,10 @@
     - choose:
         - conditions: 
             - condition: state
-              entity_id: device_tracker.sean_s_iphone_12
+              entity_id: device_tracker.seans_iphone_14
               state: 'home'
           sequence:
-            - service: notify.mobile_app_sean_s_iphone_12
+            - service: notify.mobile_app_sean_s_iphone_14
               data:
                 title: "Home outdoor air quality is poor"
                 message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}. Turn on an air purifier."
@@ -1117,7 +1117,7 @@
     - choose:
         - conditions: 
             - condition: state
-              entity_id: device_tracker.sean_s_iphone_12
+              entity_id: device_tracker.seans_iphone_14
               state: 'home'
           sequence:
             - service: mqtt.publish
@@ -1150,10 +1150,10 @@
     - choose:
         - conditions: 
             - condition: state
-              entity_id: device_tracker.sean_s_iphone_12
+              entity_id: device_tracker.seans_iphone_14
               state: 'home'
           sequence:
-            - service: notify.mobile_app_sean_s_iphone_12
+            - service: notify.mobile_app_sean_s_iphone_14
               data:
                 title: "Home outdoor air quality is good again"
                 message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}."             
@@ -1184,7 +1184,7 @@
     - choose:
         - conditions: 
             - condition: state
-              entity_id: device_tracker.sean_s_iphone_12
+              entity_id: device_tracker.seans_iphone_14
               state: 'home'
           sequence:
             - service: mqtt.publish
@@ -1224,7 +1224,7 @@
         - condition: template
           value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
-    - service: notify.mobile_app_sean_s_iphone_12
+    - service: notify.mobile_app_sean_s_iphone_14
       data:
         title: "It's Raining"
         message: "It's raining outside at home"
@@ -1241,9 +1241,9 @@
 #    - choose:
 #        - conditions: 
 #            - condition: template
-#              value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
+#              value_template: "{{ not is_state('device_tracker.seans_iphone_14', 'Traveling') }}"
 #          sequence:
-#            - service: notify.mobile_app_sean_s_iphone_12
+#            - service: notify.mobile_app_sean_s_iphone_14
 #              data:
 #                title: "It's Raining"
 #                message: "It's raining outside at home"
@@ -1278,9 +1278,9 @@
     - choose:
         - conditions: 
             - condition: template
-              value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
+              value_template: "{{ not is_state('device_tracker.seans_iphone_14', 'Traveling') }}"
           sequence:
-            - service: notify.mobile_app_sean_s_iphone_12
+            - service: notify.mobile_app_sean_s_iphone_14
               data:
                 title: "Stopped Raining"
                 message: "It stopped raining outside at home. Total rain today: {{states('sensor.weatherflow_precipitation_today')}} millimeters over {{states('sensor.weatherflow_precipitation_duration_today')}} minutes of rain"
@@ -1482,9 +1482,9 @@
     - choose:
         - conditions: 
             - condition: template
-              value_template: "{{ not is_state('device_tracker.sean_s_iphone_12', 'Traveling') }}"
+              value_template: "{{ not is_state('device_tracker.seans_iphone_14', 'Traveling') }}"
           sequence:
-            - service: notify.mobile_app_sean_s_iphone_12
+            - service: notify.mobile_app_sean_s_iphone_14
               data:
                 title: "Lightning Warning"
                 message: "Lightning has been detected outside. Most recent strike was {{states('sensor.weatherflow_last_lightning_strike_distance')}} km away. There have been {{states('sensor.weatherflow_lightning_strike_count_last_hour')}} lightning strikes in the last hour within a 50km radius of home."
@@ -1588,7 +1588,7 @@
              and (states('sensor.dark_sky_precip_intensity_6h')|float > 0.05)
              and (states('sensor.dark_sky_precip_intensity_7h')|float > 0.05)) }}
   action:
-    - service: notify.mobile_app_sean_s_iphone_12
+    - service: notify.mobile_app_sean_s_iphone_14
       data:
         title: "{{sensor.dark_sky_precip_0d}} warning"
         data:
@@ -1683,3 +1683,30 @@
     service: switch.turn_off
     data:
       entity_id: switch.master_bath_towel_warmer
+
+- id: sebastian_home_weekday_nap
+  alias: sebastian_home_weekday_nap
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '13:30:00'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.sebastian_home_weekday
+          state: 'on'
+        - condition:  time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.living_room
+      setpoint: 21
+      duration: {"minutes":195}
+
