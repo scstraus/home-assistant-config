@@ -165,10 +165,6 @@ lovelace:
       title: kiosk
       show_in_sidebar: false
       filename: ui-kiosk.yaml                
-                
-                
-                
-                
 
 mobile_app:
 
@@ -477,7 +473,7 @@ weather:
 
 
 #removed due to move into ui
-#mqtt:
+mqtt:
 #  broker: !secret narnia_ip
 #  client_id: homeassistant-001
 #  username: !secret mqtt_uname
