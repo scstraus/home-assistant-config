@@ -229,7 +229,7 @@
         entity_id: timer.bosch_dishwasher_running_door_open  
 
 - id: fire_notify_dishwasher_door_open
-  alias: "TTS Notify Dishwasher Door Open"
+  alias: fire_notify_dishwasher_door_open
   initial_state: 'true'
   trigger:
     minutes: '/5'
@@ -262,7 +262,7 @@
     - data:
         title: "Dishwasher Update"
         message: "Looks like you left the dishwasher door open"
-      service: notify.s_iphone_14
+      service: notify.mobile_app_sean_s_iphone_14
 
 
 - id: dishwasher_running_door_open_input_boolean_on

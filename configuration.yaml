@@ -12,6 +12,8 @@ homeassistant:
   elevation: 260
   unit_system: metric
   time_zone: Europe/Prague
+  country: CZ
+  currency: CZK
   customize: !include customize.yaml
   whitelist_external_dirs:
     - /share
@@ -474,11 +476,14 @@ weather:
 #  client_id: homeassistant-001
 
 
-mqtt:
-  broker: !secret narnia_ip
-  client_id: homeassistant-001
-  username: !secret mqtt_uname
-  password: !secret mqqt_pass
+#removed due to move into ui
+#mqtt:
+#  broker: !secret narnia_ip
+#  client_id: homeassistant-001
+#  username: !secret mqtt_uname
+#  password: !secret mqqt_pass
+#  
+  
 #  discovery: true
 #  discovery_prefix: airthings_upstairs
 

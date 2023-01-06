@@ -1,6 +1,6 @@
         
 - id: bio_odpad_day_tomorrow_sean
-  alias: 'Bio Odpad Day'
+  alias: bio_odpad_day_tomorrow_sean
   initial_state: 'true'
   trigger:
     platform: time
@@ -23,7 +23,7 @@
           thread-id: "info"
 
 - id: bio_odpad_day_tomorrow_alena
-  alias: 'Bio Odpad Day'
+  alias: bio_odpad_day_tomorrow_alena
   initial_state: 'true'
   trigger:
     platform: time
@@ -44,7 +44,7 @@
           thread-id: "info"
 
 - id: trash_day_tomorrow_sean
-  alias: 'Trash Day'
+  alias: trash_day_tomorrow_sean
   initial_state: 'true'
   trigger:
     platform: time
@@ -88,7 +88,7 @@
           thread-id: "info"
 
 - id: bio_odpad_day_today_sean
-  alias: 'Bio Odpad Day'
+  alias: bio_odpad_day_today_sean
   initial_state: 'true'
   trigger:
     platform: time
@@ -111,7 +111,7 @@
           thread-id: "info"
         
 - id: bio_odpad_day_today_alena
-  alias: 'Bio Odpad Day'
+  alias: bio_odpad_day_today_alena
   initial_state: 'true'
   trigger:
     platform: time
@@ -160,7 +160,7 @@
 #          thread-id: "info"
         
 - id: trash_day_today_alena
-  alias: 'Trash Day'
+  alias: trash_day_today_alena
   initial_state: 'true'
   trigger:
     platform: time
