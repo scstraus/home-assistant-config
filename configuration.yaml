@@ -762,6 +762,9 @@ input_boolean:
   sebastian_home_weekday:
     name: Sebastian Home
     icon: mdi:home-import-outline
+  sophie_home_weekday:
+    name: Sophie Home
+    icon: mdi:home-import-outline
 
 #  auto_curtain_open_state:
 #    name: "Automatic curtain opener state"

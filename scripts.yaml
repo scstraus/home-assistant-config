@@ -1246,7 +1246,7 @@
     sequence:
       - service: remote.send_command
         target:
-          entity_id: media_player.philips936_tv_cast
+          entity_id: remote.philips936_tv
         data:
           command: 
             - Play

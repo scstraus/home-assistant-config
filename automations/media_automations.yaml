@@ -503,7 +503,7 @@
 # Left = TV Guide
 # Right = Apple TV
 # Down = Play/Pause (philips936_tv_cast)
-# Up = 
+# Up = Disney Plus
 # Back = 
 # InstantReplay = 
 # Info = 
@@ -639,6 +639,26 @@
   - service: media_player.media_play_pause
     target:
       entity_id: media_player.philips936_tv_cast
+
+
+- id: philips_launch_disney_plus
+  alias: philips_launch_disney_plus
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant 2
+      type: keypress
+      key: Up
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.bamtechmedia.dominguez.main.MainActivity-com.disney.disneyplus
+      media_content_type: app
 #####################################################################      
 
 
@@ -646,33 +666,70 @@
   alias: philips_tv_turn_off_remote
   initial_state: 'true'
   trigger:
+#    platform: state
+#    entity_id: media_player.philips936_tv_other
+#    to: 'off'
+#    for:
+#      minutes: 5
     platform: state
-    entity_id: media_player.philips936_tv_other
+    entity_id: media_player.philips936_tv
     to: 'off'
     for:
       minutes: 5
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: remote.harmony
-        state: 'on'
-      - condition: state
-        entity_id: media_player.philips936_tv
-        state: 'off'
-      - condition: state
-        entity_id: media_player.philips936_tv_cast 
-        state: 'off'
-
+    condition: state
+    entity_id: remote.harmony
+    state: 'on'
+#    condition: and
+#    conditions:
+#      - condition: state
+#        entity_id: remote.harmony
+#        state: 'on'
+#      - condition: state
+#        entity_id: media_player.philips936_tv
+#        state: 'off'
+#      - condition: state
+#        entity_id: media_player.philips936_tv_cast 
+#        state: 'off'
   action:
-  - service: remote.send_command
-    target:
-      entity_id: remote.philips936_tv
-    data:
-      command: PowerOn
-  - delay: 1
+#  - service: remote.send_command
+#    target:
+#      entity_id: remote.philips936_tv
+#    data:
+#      command: PowerOn
+#  - delay: 1
   - service: remote.turn_off
     target:
       entity_id: remote.harmony
 
 
+- id: phillips_tv_turn_on_with_harmony_remote
+  alias: phillips_tv_turn_on_with_harmony_remote
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: remote.harmony
+    to: 'on'
+  action:
+  - service: remote.send_command
+    target:
+      entity_id: remote.philips936_tv
+    data:
+      command: 
+        - PowerOn
+
+- id: phillips_tv_turn_off_with_harmony_remote
+  alias: phillips_tv_turn_off_with_harmony_remote
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: remote.harmony
+    to: 'off'
+  action:
+  - delay: 1
+  - service: remote.send_command
+    target:
+      entity_id: remote.philips936_tv
+    data:
+      command: 
+        - PowerOff
