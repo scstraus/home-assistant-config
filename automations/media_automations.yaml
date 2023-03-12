@@ -13,7 +13,7 @@
 # Right = HDMI 4 (Xbox)
 # Down = Curiosity Stream
 # Up = HBO Max
-# Back = PBS 
+# Back = Power On
 # InstantReplay = Plex
 # Info = PBS Kids
 # BackSpace = HDMI 1 (PlayStation)
@@ -126,8 +126,8 @@
 
 
 
-- id: philips_turn_off
-  alias: philips_turn_off
+- id: philips_turn_off_ha1
+  alias: philips_turn_off_ha1
   initial_state: 'true'
   trigger:
     platform: event
@@ -142,7 +142,8 @@
       entity_id: remote.philips936_tv
     data:
       command: 
-        - Standby
+        - PowerOff
+#        - Standby
 
 
 
@@ -326,10 +327,8 @@
               com.hbo.max.HboMaxActivity-com.hbo.hbonow
             media_content_type: app
 
-
-
-- id: philips_launch_pbs
-  alias: philips_launch_pbs
+- id: philips_turn_on_ha1
+  alias: philips_turn_on_ha1
   initial_state: 'true'
   trigger:
     platform: event
@@ -339,13 +338,12 @@
       type: keypress
       key: Back
   action:
-    service: media_player.play_media
+    service: remote.send_command
     target:
-      entity_id: media_player.philips936_tv
+      entity_id: remote.philips936_tv
     data:
-      media_content_id: >-
-        com.pbs.video.ui.main.activities.StartupActivity-com.pbs.video
-      media_content_type: app
+      command: 
+        - PowerOn
 
 - id: philips_launch_plex
   alias: philips_launch_plex
@@ -504,10 +502,10 @@
 # Right = Apple TV
 # Down = Play/Pause (philips936_tv_cast)
 # Up = Disney Plus
-# Back = 
+# Back = PBS
 # InstantReplay = 
-# Info = 
-# BackSpace = 
+# Info = Power On
+# BackSpace = Crunchyroll
 # Search = 
 
 
@@ -536,8 +534,8 @@
       entity_id: remote.harmony
 
 
-- id: philips_turn_off_2
-  alias: philips_turn_off_2
+- id: philips_turn_off_ha2
+  alias: philips_turn_off_ha2
   initial_state: 'true'
   trigger:
     platform: event
@@ -545,13 +543,18 @@
     event_data:
       source_name: Home Assistant 2
       type: keypress
-      key: Left
+      key: Rev
   action:
     service: remote.send_command
     target:
       entity_id: remote.philips936_tv
     data:
-      command: Standby
+      command: 
+        - PowerOff  
+#        - Standby
+
+
+
 
 
 - id: philips_launch_other_media
@@ -640,6 +643,42 @@
     target:
       entity_id: media_player.philips936_tv_cast
 
+- id: philips_launch_pbs
+  alias: philips_launch_pbs
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant 2
+      type: keypress
+      key: Back
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.pbs.video.ui.main.activities.StartupActivity-com.pbs.video
+      media_content_type: app
+
+- id: philips_turn_on_ha2
+  alias: philips_turn_on_ha2
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant
+      type: keypress
+      key: Info
+  action:
+    service: remote.send_command
+    target:
+      entity_id: remote.philips936_tv
+    data:
+      command: 
+        - PowerOn
 
 - id: philips_launch_disney_plus
   alias: philips_launch_disney_plus
@@ -659,6 +698,26 @@
       media_content_id: >-
         com.bamtechmedia.dominguez.main.MainActivity-com.disney.disneyplus
       media_content_type: app
+
+- id: philips_launch_crunchyroll
+  alias: philips_launch_crunchyroll
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Home Assistant 2
+      type: keypress
+      key: BackSpace
+  action:
+    service: media_player.play_media
+    target:
+      entity_id: media_player.philips936_tv
+    data:
+      media_content_id: >-
+        com.crunchyroll.crunchyroid.MainActivity-com.crunchyroll.crunchyroid
+      media_content_type: app
+
 #####################################################################      
 
 

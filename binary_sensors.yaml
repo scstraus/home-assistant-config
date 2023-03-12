@@ -787,3 +787,23 @@
       sophies_room_air_purifier_mode_fan_3:
         friendly_name: "Living Room Fan mode 3"
         value_template: "{{ is_state_attr('fan.sophies_room_air_purifier', 'preset_mode', 'Favorite') and (states('number.sophies_room_air_purifier_favorite_level')|float > 9) and is_state('fan.sophies_room_air_purifier', 'on') }}"
+
+
+  - platform: template
+    sensors:
+      weatherflow_forecast_precip_total:
+        friendly_name: Weather Forecast Precip Next 12
+        value_template: >
+          {{ (state_attr('weather.weatherflow_hourly_based_forecast','forecast').0.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').1.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').2.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').3.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').4.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').5.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').6.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').7.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').8.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').9.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').10.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').11.precipitation | float(0) +
+             state_attr('weather.weatherflow_hourly_based_forecast','forecast').12.precipitation | float(0) ) > 0 }}

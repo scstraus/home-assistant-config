@@ -35,7 +35,7 @@
           name: "EN-US-Daisy-Garage-Door-Open.wav"
         thread-id: "info"
     notifiers:
-      - mobile_app_sean_s_iphone_12
+      - mobile_app_sean_iphone_14
 #    entity_id: binary_sensor.garage_door_zone_14
 
   front_door_alena:
@@ -74,7 +74,7 @@
           name: "EN-US-Daisy-Front-Door-Open.wav"
         thread-id: "info"
     notifiers:
-      - mobile_app_sean_s_iphone_12
+      - mobile_app_sean_iphone_14
 
   sebastian_window_rain_warning_alena:
     name: Sebastian's room window is open and it might rain.
@@ -107,7 +107,7 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - mobile_app_sean_s_iphone_12
+      - mobile_app_sean_iphone_14
     data:
       push:
         thread-id: "weather"
@@ -143,7 +143,7 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - mobile_app_sean_s_iphone_12
+      - mobile_app_sean_iphone_14
     data:
       push:
         thread-id: "weather"
@@ -157,7 +157,7 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - mobile_app_sean_s_iphone_12
+      - mobile_app_sean_iphone_14
     data:
       push:
         category: "trash"
@@ -170,8 +170,7 @@
     state: 'on'
     repeat: 
       - 5
-      - 10
-      - 15
+      - 30
     can_acknowledge: true
     skip_first: true
     notifiers:
@@ -189,8 +188,7 @@
     state: 'on'
     repeat: 
       - 5
-      - 10
-      - 15
+      - 30
     can_acknowledge: true
     skip_first: true
     notifiers:

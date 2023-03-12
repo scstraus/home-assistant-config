@@ -1616,6 +1616,8 @@
 
 
 - id: turn_off_ac_light_at_night
+  alias: turn_off_ac_light_at_night
+  initial_state: 'false'
   trigger:
     - platform: state
       entity_id: climate.sophie_s_room_ac

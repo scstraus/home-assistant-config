@@ -478,3 +478,12 @@
   #   name: Sebs Room
   #   scan_interval: 5
 
+
+  - platform: xiaomi_cloud_map_extractor
+    host: !secret roborock_s7_vacuum_ip
+    token: !secret roborock_s7_vacuum_token
+    username: !secret xiaomi_cloud_username
+    password: !secret xiaomi_cloud_password
+    draw: ['all']
+    attributes:
+      - calibration_points

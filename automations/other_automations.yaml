@@ -1108,10 +1108,11 @@
 
 - id: reload_kitchen_kiosk_ui_every_30_minutes
   alias: reload_kitchen_kiosk_ui_every_30_minutes
+  initial_state: 'on'
   trigger:
     - platform: state
-      entity_id: !secret kindle_kitchen_motion_sensor
-      to: 'off'
+      entity_id: switch.kindle_kitchen_screensaver
+      to: 'on'
       for:
         minutes: 5
     - platform: state
@@ -1136,10 +1137,11 @@
 
 - id: reload_closet_kiosk_ui_every_30_minutes
   alias: reload_closet_kiosk_ui_every_30_minutes
+  initial_state: 'on'  
   trigger:
     - platform: state
-      entity_id: !secret kindle_master_closet_motion_sensor
-      to: 'off'
+      entity_id: switch.kindle_closet_screensaver
+      to: 'on'
       for:
         minutes: 5
     - platform: state

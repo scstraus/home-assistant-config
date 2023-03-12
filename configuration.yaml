@@ -156,6 +156,9 @@ lovelace:
       type: module
     - url: /hacsfiles/mushroom.js
       type: module
+    - url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
+      type: module
+                
                 
 
   dashboards:
@@ -227,6 +230,13 @@ logger:
     homeassistant.components.alexa: warn
     custom_components.smartthinq_sensors: warn
     evohomeclient2: debug
+    zwave_js_server: warn
+    homeassistant.core: warn
+    homeassistant.components.recorder.core: warn
+    custom_components.watchman.utils: warn
+    miio.miioprotocol: warn
+    synology_dsm.synology_dsm: warn
+
 #    hass_nabucasa: debug
 #    homeassistant.components.cloud: debug
 #    homeassistant.components.nest: debug
@@ -429,7 +439,7 @@ nest:
 #             
 #  client_id: !secret google_calendar_client_id
 #  client_secret: !secret google_calendar_secret
-
+#
 #zwave:
 #
 ##  usb_path: /dev/ttyACM0
@@ -472,8 +482,9 @@ weather:
 #  client_id: homeassistant-001
 
 
-#removed due to move into ui
+
 mqtt:
+#removed due to move into ui
 #  broker: !secret narnia_ip
 #  client_id: homeassistant-001
 #  username: !secret mqtt_uname

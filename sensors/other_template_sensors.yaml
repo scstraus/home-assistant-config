@@ -150,8 +150,8 @@
           {% endif %}
 
 
-# 04/15/21-11/25/21: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
-# 12/08/21-03/30/22: Pickup is Odd Weeks Wednesday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
+# First 2 statements are for 04/15/21-11/25/21: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
+# Second 2 statements are for 12/08/21-03/30/22: Pickup is Odd Weeks Thursday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
 # Check how closely next years dates compare to this year's and adjust as needed. There was no collection at the end of November. The sensor still goes all the way to the end of november and starts from beginning of December which isn't exactly accurate during the transition.
 
   - platform: template
@@ -170,12 +170,12 @@
           and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-04-01" %}
             Tomorrow
           {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
-          and now().weekday() in (1,) 
+          and now().weekday() in (2,) 
           and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
           or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01") %}
             Today
           {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
-          and now().weekday() in (0,) 
+          and now().weekday() in (1,) 
           and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
           or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01") %}
             Tomorrow
@@ -1029,3 +1029,487 @@
           (state_attr('variable.czechia_coronavirus_new_backup', 'history_6_day')|int)+
           (state_attr('variable.czechia_coronavirus_new_backup', 'history_7_day')|int))
           }}
+       
+       
+  - platform: template
+    sensors:
+      weatherflow_forecast_0:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').0.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').0.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').0.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_0:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').0.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').0.precipitation_probability }}"
+
+     
+      weatherflow_forecast_1:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').1.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').1.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').1.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_1:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').1.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').1.precipitation_probability }}"
+
+     
+      weatherflow_forecast_2:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').2.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').2.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').2.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_2:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').2.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').2.precipitation_probability }}"
+
+     
+      weatherflow_forecast_3:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').3.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').3.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').3.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_3:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').3.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').3.precipitation_probability }}"
+
+     
+      weatherflow_forecast_4:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').4.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').4.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').4.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_4:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').4.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').4.precipitation_probability }}"
+
+     
+      weatherflow_forecast_5:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').5.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').5.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').5.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_5:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').5.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').5.precipitation_probability }}"
+
+     
+      weatherflow_forecast_6:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').6.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').6.temperature |int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').6.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_6:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').6.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').6.precipitation_probability }}"
+
+     
+      weatherflow_forecast_7:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').7.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').7.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').7.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_7:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').7.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').7.precipitation_probability }}"
+
+     
+      weatherflow_forecast_8:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').8.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').8.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').8.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_8:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').8.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').8.precipitation_probability }}"
+
+     
+      weatherflow_forecast_9:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').9.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').9.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').9.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_9:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').9.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').9.precipitation_probability }}"
+
+     
+      weatherflow_forecast_10:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').10.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').10.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').10.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_10:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').10.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').10.precipitation_probability }}"
+
+     
+      weatherflow_forecast_11:
+        friendly_name: >-
+          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').11.datetime | as_datetime | as_local | default(0,true) %}
+          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+  #      unit_of_measurement: °
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').11.temperature|int}}"
+        icon_template: >
+          {% set array = { 'clear-night':'night',
+                            'cloudy':'cloudy',
+                            'exceptional':'sunny',
+                            'fog':'fog',
+                            'hail':'hail',
+                            'lightning':'lightning',
+                            'lightning-rainy':'lightning-rainy',
+                            'partlycloudy':'partly-cloudy',
+                            'rainy':'rainy',
+                            'snowy':'snowy',
+                            'snowy-rainy':'snowy-rainy',
+                            'sunny':'sunny',
+                            'windy':'windy' } %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').11.condition] %}
+          mdi:weather-{{ icon }}
+
+
+      weatherflow_forecast_precip_11:
+        friendly_name: >-
+          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').11.precipitation | float(0) %}
+          {% set amt = (amt * 100) | int(0) %}
+          {% if amt > 0 %}
+            {% if amt < 100 %}.{{amt}}
+            {% else %}{{ amt / 100 }}
+            {% endif %}
+          {% else %}.
+          {% endif %}
+        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').11.precipitation_probability }}"
+
+#    
+#      weatherflow_forecast_12:
+#        friendly_name: >-
+#          {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').12.datetime | as_datetime | as_local | default(0,true) %}
+#          {{ time | as_timestamp | timestamp_custom('%-H') | replace('M','') | lower }}
+#  #      unit_of_measurement: °
+#        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').12.temperature }}|int"
+#        icon_template: >
+#          {% set array = { 'clear-night':'night',
+#                            'cloudy':'cloudy',
+#                            'exceptional':'sunny',
+#                            'fog':'fog',
+#                            'hail':'hail',
+#                            'lightning':'lightning',
+#                            'lightning-rainy':'lightning-rainy',
+#                            'partlycloudy':'partly-cloudy',
+#                            'rainy':'rainy',
+#                            'snowy':'snowy',
+#                            'snowy-rainy':'snowy-rainy',
+#                            'sunny':'sunny',
+#                            'windy':'windy' } %}
+#          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').12.condition] %}
+#          mdi:weather-{{ icon }}
+#
+#
+#      weatherflow_forecast_precip_12:
+#        friendly_name: >-
+#          {% set amt = state_attr('weather.weatherflow_hourly_based_forecast','forecast').12.precipitation | float(0) %}
+#          {% set amt = (amt * 100) | int(0) %}
+#          {% if amt > 0 %}
+#            {% if amt < 100 %}.{{amt}}
+#            {% else %}{{ amt / 100 }}
+#            {% endif %}
+#          {% else %}.
+#          {% endif %}
+#        value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').12.precipitation_probability }}"
+#     
