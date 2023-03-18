@@ -1027,20 +1027,426 @@ cards:
 
 ### START COMMENT BLOCK 4: Weather and air quality
 
-  - type: custom:mod-card
-    report_size: 14
-    card:
+#  - type: custom:mod-card
+#    report_size: 14
+#    card:
 
-      type: vertical-stack
-      cards:
 
-      - type: 'custom:weather-card-chart'
-        title: Weather / Air Quality
-        weather: weather.weatherflow_hourly_based_forecast
-        sun: sun.sun
-        mode: hourly
-        temp: sensor.weatherflow_air_temperature
-        wind: sensor.tempest_st_00023475_wind_speed
+
+
+
+  - type: vertical-stack
+    cards:
+
+    - type: weather-forecast
+      entity: weather.weatherflow_day_based_forecast
+      name: "Prague"
+      show_forecast: false
+      style: |
+        .header {
+          padding-top: 12px !important;
+        }
+        .content {
+          padding-bottom: 12px !important;
+        }
+    - type: glance
+      columns: 1
+      show_icon: false
+      show_name: false
+      style: |
+        ha-card {
+          margin-top: -35px !important;
+          margin-bottom: 5px !important;
+        }
+      entities:
+        - entity: sensor.dark_sky_summary_0d
+
+    ## Today Weather Details - Names
+    - type: glance
+      columns: 4
+      show_icon: false
+      show_state: false
+      style: |
+        ha-card {
+          margin-top: -30px !important;
+          margin-bottom: -5px !important;
+          font-size: 10px;
+          color: #9da5b4;
+        }
+      entities:
+        - entity: sensor.tempest_st_00023475_humidity
+          name: Humiditiy
+        - entity: sensor.weatherflow_wind_speed
+          name: Wind
+        - entity: sensor.weatherflow_wind_cardinal
+          name: Direction
+        - entity: sensor.dark_sky_precip_probability_0d
+          name: Precip.
+    ## Today Weather Details - Values
+    - type: glance
+      columns: 4
+      show_icon: false
+      show_name: false
+      style: |
+        ha-card {
+          margin-top: -30px !important;
+          margin-bottom: 0px !important;
+        }
+      entities:
+        - entity: sensor.tempest_st_00023475_humidity
+        - entity: sensor.weatherflow_wind_speed
+        - entity: sensor.weatherflow_wind_cardinal
+        - entity: sensor.dark_sky_precip_probability_0d
+
+
+  ## BAR CARD FUTURE WEATHER ##
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          margin-top: 10px;
+          margin-bottom: -10px;
+          padding-top: 10px;
+          border-top: 5px solid #222222;
+        }
+        bar-card-card {
+          margin-right: 0px;
+          font-size: 11px;
+        }
+        bar-card-value {
+          color: #222222;
+          color: #9da5b4;
+        }
+        bar-card-iconbar {
+          width: 20px;
+          color: #333;
+          margin-top: 65px;
+        }
+        bar-card-name {
+          margin: 4px 0;
+          color: #9da5b4;
+          color: #dadadb;
+        }
+        .value-direction-up {
+          #color: #dadadb;
+          margin-top: -125px;
+        }
+        bar-card-backgroundbar {
+          filter: brightness(.45);
+        }
+      positions:
+        indicator: off
+        value: inside
+        title: off
+        name: outside
+        icon: inside
+      animation:
+        state: on
+      direction: up
+      height: 100px
+      width: 22px
+      columns: 9
+      stack: horizontal
+      min: -5
+      max: 35
+      entities:
+        - sensor.weatherflow_forecast_0
+        - sensor.weatherflow_forecast_1
+        - sensor.weatherflow_forecast_2
+        - sensor.weatherflow_forecast_3
+        - sensor.weatherflow_forecast_4
+        - sensor.weatherflow_forecast_5
+        - sensor.weatherflow_forecast_6
+        - sensor.weatherflow_forecast_7
+  #      - sensor.weatherflow_forecast_8
+  #      - sensor.weatherflow_forecast_9
+  #      - sensor.weatherflow_forecast_10
+  #      - sensor.weatherflow_forecast_11
+      severity:
+        - color: rgb(242,249,255)
+          from: -30
+          to: -17
+        - color: rgb(228,242,254)
+          from: -17
+          to: -15.5
+        - color: rgb(215,236,254)
+          from: -15.5
+          to: -14.5
+        - color: rgb(201,229,253)
+          from: -14.5
+          to: -13.5
+        - color: rgb(187,223,253)
+          from: -13.5
+          to: -12
+        - color: rgb(173,216,252)
+          from: -12
+          to: -11
+        - color: rgb(159,210,252)
+          from: -11
+          to: -10
+        - color: rgb(145,203,251)
+          from: -10
+          to: -9
+        - color: rgb(131,197,250)
+          from: -9
+          to: -8
+        - color: rgb(117,190,249)
+          from: -8
+          to: -6.5
+        - color: rgb(103,184,248)
+          from: -6.5
+          to: -5.5
+        - color: rgb(89,177,247)
+          from: -5.5
+          to: -4.5
+        - color: rgb(75,171,246)
+          from: -4.5
+          to: -3.5
+        - color: rgb(61,164,245)
+          from: -3.5
+          to: -2
+        - color: rgb(47,157,244)
+          from: -2
+          to: -1
+        - color: rgb(33150243)
+          from: -1
+          to: 0
+        - color: rgb(44,153,234)
+          from: 0
+          to: 1
+        - color: rgb(55,157,224)
+          from: 1
+          to: 2
+        - color: rgb(66,160,215)
+          from: 2
+          to: 3.5
+        - color: rgb(77,164,205)
+          from: 3.5
+          to: 4.5
+        - color: rgb(88,167,196)
+          from: 4.5
+          to: 5.5
+        - color: rgb(99,171,186)
+          from: 5.5
+          to: 6.5
+        - color: rgb(110,174,177)
+          from: 6.5
+          to: 8
+        - color: rgb(121,178,168)
+          from: 8
+          to: 9
+        - color: rgb(132,181,159)
+          from: 9
+          to: 10
+        - color: rgb(143,185,150)
+          from: 10
+          to: 11
+        - color: rgb(154,188,141)
+          from: 11
+          to: 12
+        - color: rgb(165,192,132)
+          from: 12
+          to: 13
+        - color: rgb(176,195,123)
+          from: 13
+          to: 14.5
+        - color: rgb(187,199,114)
+          from: 14.5
+          to: 15.5
+        - color: rgb(198,202,105)
+          from: 15.5
+          to: 16.5
+        - color: rgb(209,205,96)
+          from: 16.5
+          to: 18
+        - color: rgb(220,208,87)
+          from: 18
+          to: 19
+        - color: rgb(231,211,78)
+          from: 19
+          to: 20
+        - color: rgb(242,214,69)
+          from: 20
+          to: 21
+        - color: rgb(253,217,60)
+          from: 21
+          to: 22
+        - color: rgb(247,206,58)
+          from: 22
+          to: 23.5
+        - color: rgb(240,194,55)
+          from: 23.5
+          to: 24.5
+        - color: rgb(234,183,53)
+          from: 24.5
+          to: 25.5
+        - color: rgb(227,171,50)
+          from: 25.5
+          to: 26.5
+        - color: rgb(221,160,48)
+          from: 26.5
+          to: 28
+        - color: rgb(214,148,45)
+          from: 28
+          to: 29
+        - color: rgb(208,137,43)
+          from: 29
+          to: 30
+        - color: rgb(201,125,40)
+          from: 30
+          to: 31
+        - color: rgb(195,114,38)
+          from: 31
+          to: 32
+        - color: rgb(188,102,35)
+          from: 32
+          to: 33.5
+        - color: rgb(182,91,33)
+          from: 33.5
+          to: 34.5
+        - color: rgb(175,79,30)
+          from: 34.5
+          to: 35.5
+        - color: rgb(169,68,28)
+          from: 35.5
+          to: 36.5
+        - color: rgb(162,56,25)
+          from: 36.5
+          to: 38
+        - color: rgb(155,45,23)
+          from: 38
+          to: 39
+        - color: rgb(148,33,20)
+          from: 39
+          to: 40
+        - color: rgb(141,22,18)
+          from: 40
+          to: 41
+        - color: rgb(134,11,15)
+          from: 41
+          to: 42
+        - color: rgb(127,0,12)
+          from: 42
+          to: 49
+
+  # BAR CARD FUTURE HOURLY PRECIPITATION
+
+    - type: conditional
+      conditions:
+      - entity: binary_sensor.weatherflow_forecast_precip_total
+        state: 'on'
+      card:
+        type: custom:bar-card
+        style: |
+          ha-card {
+            margin-top: -15px;
+            margin-bottom: -15px;
+            padding-top: 0px;
+          }
+          bar-card-card {
+            margin-right: 0px;
+            font-size: 11px;
+          }
+          bar-card-value {
+            color: #222222;
+          }
+          bar-card-iconbar {
+            width: 20px;
+            color: #333;
+            margin-top: 85px;
+          }
+          bar-card-name {
+            margin: 4px 0;
+            color: #9da5b4;
+          }
+          .value-direction-up {
+            color: #dadadb;
+            margin-top: -120px;
+          }
+          bar-card-backgroundbar {
+            filter: brightness(.65);
+          }
+        positions:
+          indicator: off
+          value: off
+          title: off
+          name: outside
+          icon: off
+        animation:
+          state: on
+        direction: up
+        height: 25px
+        width: 22px
+        columns: 9
+        stack: horizontal
+        min: 0
+        max: 10
+        entities:
+          - sensor.weatherflow_forecast_precip_0
+          - sensor.weatherflow_forecast_precip_1
+          - sensor.weatherflow_forecast_precip_2
+          - sensor.weatherflow_forecast_precip_3
+          - sensor.weatherflow_forecast_precip_4
+          - sensor.weatherflow_forecast_precip_5
+          - sensor.weatherflow_forecast_precip_6
+          - sensor.weatherflow_forecast_precip_7
+          - sensor.weatherflow_forecast_precip_8
+
+
+    - type: custom:platinum-weather-card
+      card_config_version: 8
+      daily_forecast_days: 5
+      daily_forecast_layout: horizontal
+      entity_extended: sensor.dark_sky_hourly_summary
+      entity_forecast_icon: sensor.dark_sky_icon
+      entity_forecast_icon_1: weather.weatherflow_day_based_forecast
+      entity_forecast_max: weather.weatherflow_hourly_based_forecast
+      entity_forecast_max_1: weather.weatherflow_day_based_forecast
+      entity_forecast_min: weather.weatherflow_hourly_based_forecast
+      entity_forecast_min_1: weather.weatherflow_day_based_forecast
+      entity_pop_1: weather.weatherflow_day_based_forecast
+      entity_pos_1: weather.weather_forecast
+      entity_summary: sensor.dark_sky_summary
+      entity_summary_1: weather.weatherflow_day_based_forecast
+      entity_sun: sun.sun
+      entity_temperature: sensor.weatherflow_air_temperature
+      entity_todays_uv_forecast: sensor.dark_sky_daily_summary
+      entity_wind_bearing: weather.weatherflow_hourly_based_forecast
+      entity_wind_gust: sensor.dark_sky_wind_gust
+      entity_wind_speed: weather.weatherflow_hourly_based_forecast
+      option_time_format: 24hour
+      option_tooltips: false
+      section_order:
+        - overview
+        - extended
+        - slots
+        - daily_forecast
+      show_section_extended: false
+      show_section_overview: false
+      show_section_slots: false
+      slot_l1: forecast_max
+      slot_l2: forecast_min
+      slot_l3: wind
+      slot_l4: pressure
+      slot_l5: sun_next
+      slot_l6: remove
+      slot_l7: remove
+      slot_l8: remove
+      slot_r1: popforecast
+      slot_r2: humidity
+      slot_r3: uv_summary
+      slot_r4: fire_danger
+      slot_r5: sun_following
+      slot_r6: remove
+      slot_r7: remove
+      slot_r8: remove
+      text_card_title: Weather In Prague
+#      - type: 'custom:weather-card-chart'
+#        title: Weather / Air Quality
+#        weather: weather.weatherflow_hourly_based_forecast
+#        sun: sun.sun
+#        mode: hourly
+#        temp: sensor.weatherflow_air_temperature
+#        wind: sensor.tempest_st_00023475_wind_speed
 
 #      - type: 'custom:weather-card-chart'
 #        title: Weather / Air Quality
@@ -1049,14 +1455,14 @@ cards:
 #        mode: hourly
 
 
-      - type: conditional
-        conditions:
-          - entity: 'binary_sensor.open_window_making_air_problem'
-            state: 'on'
-        card:
-          type: markdown
-          content: |
-            {{states('variable.windows_making_problem')}}
+    - type: conditional
+      conditions:
+        - entity: 'binary_sensor.open_window_making_air_problem'
+          state: 'on'
+      card:
+        type: markdown
+        content: |
+          {{states('variable.windows_making_problem')}}
  
 
 #      - type: conditional
@@ -1102,47 +1508,47 @@ cards:
 #graph magenta: #ff9cdb
 #graph violet: #f59cff
 
-      - type: horizontal-stack
-        cards:
+    - type: horizontal-stack
+      cards:
 
-        - type: custom:mini-graph-card
-          name: AQI Outside 
-          icon: mdi:air-filter
-          style: |
-            ha-card {
-              background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
-              #00c40a
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
-              #c1c400 
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
-              #c48600
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
-              #c41700
-              {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
-              #b000c4
-              {% else %}
-              #c4007c
-              {% endif %}
-          entities:
-            - entity: sensor.hlubocepy_air_quality
-              name: 
-          color_thresholds:
-            - value: 25
-              color: "#9cffa1"
-            - value: 75
-              color: "#fdff9c"
-            - value: 125
-              color: "#ffe09c"
-            - value: 175
-              color: "#ffa79c"
-            - value: 250
-              color: "#f59cff"
-            - value: 350
-              color: "#ff9cdb"
-          hours_to_show: 24
-          points_per_hour: 2
-          show_points: false
-          height: 60
+      - type: custom:mini-graph-card
+        name: AQI Outside 
+        icon: mdi:air-filter
+        style: |
+          ha-card {
+            background: {% if states('sensor.hlubocepy_air_quality')|int <= 50 %}
+            #00c40a
+            {% elif states('sensor.hlubocepy_air_quality')|int <= 100 %} 
+            #c1c400 
+            {% elif states('sensor.hlubocepy_air_quality')|int <= 150 %}
+            #c48600
+            {% elif states('sensor.hlubocepy_air_quality')|int <= 200 %}
+            #c41700
+            {% elif states('sensor.hlubocepy_air_quality')|int <= 300 %}
+            #b000c4
+            {% else %}
+            #c4007c
+            {% endif %}
+        entities:
+          - entity: sensor.hlubocepy_air_quality
+            name: 
+        color_thresholds:
+          - value: 25
+            color: "#9cffa1"
+          - value: 75
+            color: "#fdff9c"
+          - value: 125
+            color: "#ffe09c"
+          - value: 175
+            color: "#ffa79c"
+          - value: 250
+            color: "#f59cff"
+          - value: 350
+            color: "#ff9cdb"
+        hours_to_show: 24
+        points_per_hour: 2
+        show_points: false
+        height: 60
 #
 #        - type: custom:mini-graph-card
 #          name: CO2 Indoors
@@ -1183,44 +1589,44 @@ cards:
 #          show_points: false
 #          height: 60
 
-        - type: custom:mini-graph-card
-          name: AQI Inside
-          icon: mdi:air-filter
-          style: |
-            ha-card {
-              background: {% if states('sensor.home_air_quality')|int <= 50 %}
-              #00c40a
-              {% elif states('sensor.home_air_quality')|int <= 100 %} 
-              #c1c400 
-              {% elif states('sensor.home_air_quality')|int <= 150 %}
-              #c48600
-              {% elif states('sensor.home_air_quality')|int <= 200 %}
-              #c41700
-              {% elif states('sensor.home_air_quality')|int <= 300 %}
-              #b000c4
-              {% else %}
-              #c4007c
-              {% endif %}
-          entities:
-            - entity: sensor.home_air_quality
-              name: 
-          color_thresholds:
-            - value: 25
-              color: "#9cffa1"
-            - value: 75
-              color: "#fdff9c"
-            - value: 125
-              color: "#ffe09c"
-            - value: 175
-              color: "#ffa79c"
-            - value: 250
-              color: "#f59cff"
-            - value: 350
-              color: "#ff9cdb"
-          hours_to_show: 24
-          points_per_hour: 2
-          show_points: false
-          height: 60
+      - type: custom:mini-graph-card
+        name: AQI Inside
+        icon: mdi:air-filter
+        style: |
+          ha-card {
+            background: {% if states('sensor.home_air_quality')|int <= 50 %}
+            #00c40a
+            {% elif states('sensor.home_air_quality')|int <= 100 %} 
+            #c1c400 
+            {% elif states('sensor.home_air_quality')|int <= 150 %}
+            #c48600
+            {% elif states('sensor.home_air_quality')|int <= 200 %}
+            #c41700
+            {% elif states('sensor.home_air_quality')|int <= 300 %}
+            #b000c4
+            {% else %}
+            #c4007c
+            {% endif %}
+        entities:
+          - entity: sensor.home_air_quality
+            name: 
+        color_thresholds:
+          - value: 25
+            color: "#9cffa1"
+          - value: 75
+            color: "#fdff9c"
+          - value: 125
+            color: "#ffe09c"
+          - value: 175
+            color: "#ffa79c"
+          - value: 250
+            color: "#f59cff"
+          - value: 350
+            color: "#ff9cdb"
+        hours_to_show: 24
+        points_per_hour: 2
+        show_points: false
+        height: 60
           
 
           
