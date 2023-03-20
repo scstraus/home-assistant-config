@@ -1025,38 +1025,182 @@ cards:
 
 ### These are the cards you see all the time in the first tab on the kiosks
 
-    - type: vertical-stack
-      in_card: true
+#    - type: vertical-stack
+#      in_card: true
+#      cards:
+
+    - type: 'custom:vertical-stack-in-card'
       cards:
 
+      - type: custom:platinum-weather-card
+#        text_card_title: Weather
+        card_config_version: 8
+        daily_forecast_days: 5
+        daily_forecast_layout: horizontal
+        entity_extended: sensor.dark_sky_hourly_summary
+        entity_forecast_icon: sensor.dark_sky_icon
+        entity_forecast_icon_1: weather.weatherflow_day_based_forecast
+        entity_forecast_max: weather.weatherflow_hourly_based_forecast
+        entity_forecast_max_1: weather.weatherflow_day_based_forecast
+        entity_forecast_min: weather.weatherflow_hourly_based_forecast
+        entity_forecast_min_1: weather.weatherflow_day_based_forecast
+        entity_pop_1: weather.weatherflow_day_based_forecast
+        entity_pos_1: weather.weather_forecast
+        entity_summary_1: weather.weatherflow_day_based_forecast
+        entity_sun: sun.sun
+        entity_temperature: sensor.weatherflow_air_temperature
+        entity_todays_uv_forecast: sensor.dark_sky_daily_summary
+        entity_wind_bearing: weather.weatherflow_hourly_based_forecast
+        entity_wind_gust: sensor.dark_sky_wind_gust
+        entity_wind_speed: weather.weatherflow_hourly_based_forecast
+        option_time_format: 24hour
+        option_tooltips: false
+        section_order:
+          - overview
+          - extended
+          - slots
+          - daily_forecast
+        show_section_daily_forecast: false
+        show_section_extended: false
+        show_section_overview: true
+        show_section_slots: false
+        slot_l1: forecast_max
+        slot_l2: forecast_min
+        slot_l3: wind
+        slot_l4: pressure
+        slot_l5: sun_next
+        slot_l6: remove
+        slot_l7: remove
+        slot_l8: remove
+        slot_r1: popforecast
+        slot_r2: humidity
+        slot_r3: uv_summary
+        slot_r4: fire_danger
+        slot_r5: sun_following
+        slot_r6: remove
+        slot_r7: remove
+        slot_r8: remove
 
-      - type: weather-forecast
-        entity: weather.weatherflow_day_based_forecast
-        name: "Prague"
-        show_forecast: false
+
+        style: |
+          ha-card {
+            margin-bottom: -50px !important;
+            padding-bottom: -50px !important;
+            font-size: 18px !important;}
+
+#
+#
+#      - type: weather-forecast
+#        entity: weather.weatherflow_day_based_forecast
+#        name: "Prague"
+#        show_forecast: false
 
 #        style: |
-#          .header {
-#            padding-top: 12px !important;
+#          ha-card .name-state .state {
+#            font-size: 16px !important;
+#            border-left: 0 !important
+#            margin-left: -10 !important
+#            border-right: 0 !important
+#            margin-right: -10 !important
 #          }
-#          .content {
-#            padding-bottom: 12px !important;
+#          ha-card .temp-attribute .temp {
+#            font-size: 18px !important;
+#            border-left: -10 !important
+#            margin-left: -10 !important
+#            border-right: -10 !important
+#            margin-right: -10 !important
 #          }
+
+
       - type: glance
         columns: 1
         show_icon: false
         show_name: false
-#        style: |
-#          ha-card {
-#            margin-top: -35px !important;
-#            margin-bottom: 5px !important;
-#          }
         style: |
           ha-card {
-            font-size: 12px;
-            }
+            margin-top: -55px !important;
+            margin-bottom: -10px !important;
+            padding-top: -55px;
+            padding-bottom: -10px;
+            font-size: 20px;
+        entities:
+          - entity: weather.weatherflow_day_based_forecast
+
+      - type: glance
+        columns: 1
+        show_icon: false
+        show_name: false
+        style: |
+          ha-card {
+            margin-top: 0px !important;
+            margin-bottom: -20px !important;
+            padding-top: 0px;
+            padding-bottom: -20px;
+            font-size: 14px;
         entities:
           - entity: sensor.dark_sky_summary_0d
+#
+#
+#      - type: custom:platinum-weather-card
+#        card_config_version: 8
+#        daily_forecast_days: 5
+#        daily_forecast_layout: horizontal
+#        entity_extended: sensor.dark_sky_hourly_summary
+#        entity_forecast_icon: sensor.dark_sky_icon
+#        entity_forecast_icon_1: weather.weatherflow_day_based_forecast
+#        entity_forecast_max: sensor.dark_sky_daytime_high_temperature_0d
+#        entity_forecast_max_1: weather.weatherflow_day_based_forecast
+#        entity_forecast_min: sensor.dark_sky_overnight_low_temperature_0d
+#        entity_forecast_min_1: weather.weatherflow_day_based_forecast
+#        entity_humidity: sensor.weatherflow_relative_humidity
+#        entity_pop_1: weather.weatherflow_day_based_forecast
+#        entity_pos_1: weather.weather_forecast
+#        entity_summary_1: weather.weatherflow_day_based_forecast
+#        entity_sun: sun.sun
+#        entity_temperature: sensor.weatherflow_air_temperature
+#        entity_todays_uv_forecast: sensor.dark_sky_daily_summary
+#        entity_wind_bearing: weather.weatherflow_hourly_based_forecast
+#        entity_wind_gust: sensor.dark_sky_wind_gust
+#        entity_wind_speed: weather.weatherflow_hourly_based_forecast
+#        option_time_format: 24hour
+#        option_tooltips: false
+#        section_order:
+#          - overview
+#          - extended
+#          - slots
+#          - daily_forecast
+#        show_section_daily_forecast: false
+#        show_section_extended: false
+#        show_section_overview: false
+#        show_section_slots: true
+#        slot_l1: forecast_min
+#        slot_l2: humidity
+#        slot_l3: sun_next
+#        slot_l4: remove
+#        slot_l5: remove
+#        slot_l6: remove
+#        slot_l7: remove
+#        slot_l8: remove
+#        slot_r1: forecast_max
+#        slot_r2: wind
+#        slot_r3: sun_following
+#        slot_r4: remove
+#        slot_r5: remove
+#        slot_r6: remove
+#        slot_r7: remove
+#        slot_r8: remove
+#        text_card_title: Weather In Prague
+#        style: |
+#          ha-card {
+#            font-size: 10px;}
+            
+#            margin-top: -55px !important;
+#            margin-bottom: -10px !important;
+#            padding-top: -55px;
+#            padding-bottom: -10px;            
+
+
+
 
       ## Today Weather Details - Names
       - type: glance
@@ -1088,13 +1232,13 @@ cards:
           ha-card {
             font-size: 12px;
             }
-#        style: |
-#          ha-card {
-#            margin-top: -30px !important;
-#            margin-bottom: 0px !important;
-#          }
+        style: |
+          ha-card {
+            margin-top: -20px !important;
+            margin-bottom: -20px !important;
+          }
         entities:
-          - entity: sensor.tempest_st_00023475_humidity
+          - entity: sensor.weatherflow_relative_humidity
           - entity: sensor.weatherflow_wind_speed
           - entity: sensor.weatherflow_wind_cardinal
           - entity: sensor.dark_sky_precip_probability_0d
@@ -1144,7 +1288,7 @@ cards:
         direction: up
         height: 100px
         width: 22px
-        columns: 9
+        columns: 8
         stack: horizontal
         min: -5
         max: 35
@@ -1376,10 +1520,10 @@ cards:
           direction: up
           height: 25px
           width: 22px
-          columns: 9
+          columns: 8
           stack: horizontal
           min: 0
-          max: 10
+          max: 5
           entities:
             - sensor.weatherflow_forecast_precip_0
             - sensor.weatherflow_forecast_precip_1
@@ -1389,10 +1533,17 @@ cards:
             - sensor.weatherflow_forecast_precip_5
             - sensor.weatherflow_forecast_precip_6
             - sensor.weatherflow_forecast_precip_7
-            - sensor.weatherflow_forecast_precip_8
+#            - sensor.weatherflow_forecast_precip_8
 
 
       - type: custom:platinum-weather-card
+        style: |
+          ha-card {
+            margin-top: -15px;
+            margin-bottom: 15px;
+            padding-top: -10px;
+            padding-bottom: 10px
+          }
         card_config_version: 8
         daily_forecast_days: 4
         daily_forecast_layout: horizontal
@@ -1493,9 +1644,12 @@ cards:
           state: "on"
       card:
 
-        type: vertical-stack
-        in_card: true
+
+        type: 'custom:vertical-stack-in-card'
         cards:
+#        type: vertical-stack
+#        in_card: true
+#        cards:
 
         - type: "custom:button-card"
           name: Reminders
