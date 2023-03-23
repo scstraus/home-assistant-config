@@ -1036,8 +1036,8 @@
       weatherflow_forecast_0:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').0.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').0.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1073,8 +1073,8 @@
       weatherflow_forecast_1:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').2.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').2.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1110,8 +1110,8 @@
       weatherflow_forecast_2:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').4.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').4.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1147,8 +1147,8 @@
       weatherflow_forecast_3:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').6.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').6.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1184,8 +1184,8 @@
       weatherflow_forecast_4:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').8.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').8.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1221,8 +1221,8 @@
       weatherflow_forecast_5:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').10.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').10.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1258,8 +1258,8 @@
       weatherflow_forecast_6:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').12.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').12.temperature |int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1295,8 +1295,8 @@
       weatherflow_forecast_7:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').14.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').14.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1332,8 +1332,8 @@
       weatherflow_forecast_8:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').16.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').16.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1369,7 +1369,7 @@
       weatherflow_forecast_9:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').18.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
   #      unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').18.temperature|int}}"
         icon_template: >
@@ -1406,8 +1406,8 @@
       weatherflow_forecast_10:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').20.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').20.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
@@ -1443,8 +1443,8 @@
       weatherflow_forecast_11:
         friendly_name: >-
           {% set time =  state_attr('weather.weatherflow_hourly_based_forecast','forecast').22.datetime | as_datetime | as_local | default(0,true) %}
-          {{ time | as_timestamp | timestamp_custom('%-H:00') | replace('M','') | lower }}
-  #      unit_of_measurement: °
+          {{ time | as_timestamp | timestamp_custom('%-I%p') | replace('M','') | lower }}
+        unit_of_measurement: °
         value_template: "{{ state_attr('weather.weatherflow_hourly_based_forecast','forecast').22.temperature|int}}"
         icon_template: >
           {% set array = { 'clear-night':'night',
