@@ -348,7 +348,7 @@
         friendly_name: "Sebastian's Window is Open and it Might Rain"
         device_class: moisture
         value_template: >-
-          {{ is_state('sensor.dark_sky_icon_0d', 'rain') and 
+          {{ is_state('sensor.pirateweather_icon_0d', 'rain') and 
           is_state('binary_sensor.sebastians_room_left_window','on')}}
 
 
@@ -358,7 +358,7 @@
         friendly_name: "Sophie's Window is Open and it Might Rain"
         device_class: moisture
         value_template: >-
-          {{ is_state('sensor.dark_sky_icon_0d', 'rain') and 
+          {{ is_state('sensor.pirateweather_icon_0d', 'rain') and 
           is_state('binary_sensor.sophies_room_ceiling_window','on')}}
 
   - platform: template
@@ -499,7 +499,7 @@
           {{ (
               ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2','on')) or  (is_state('binary_sensor.ecolink_garage_door','on')) or (is_state('binary_sensor.office_door','on')) or (is_state('binary_sensor.library_door','on'))) 
               and ((is_state('input_select.active_heating_profile','PROFILE_AUTO')) or (is_state('input_select.active_heating_profile','PROFILE_A')) or (is_state('input_select.active_heating_profile','PROFILE_B')) or (is_state('input_select.active_heating_profile','PROFILE_C')))
-              and (states('sensor.dark_sky_temperature')|float < 18)
+              and (states('sensor.pirateweather_temperature')|float < 18)
               ) }}
 
 
@@ -512,8 +512,8 @@
           {{ (
               ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2','on')) or (is_state('binary_sensor.ecolink_garage_door','on')) or (is_state('binary_sensor.ecolink_garage_door','on')) or (is_state('binary_sensor.office_door','on')) or (is_state('binary_sensor.library_door','on'))) 
               and (is_state('input_select.active_heating_profile','PROFILE_E'))
-              and (states('sensor.dark_sky_temperature')|float > 26)
-              and (states('sensor.dark_sky_daytime_high_temperature_0d')|float > 30)
+              and (states('sensor.weatherflow_air_temperature')|float > 26)
+              and (states('sensor.pirateweather_daytime_high_temperature_0d')|float > 30)
               ) }}
 
   - platform: template 
@@ -537,11 +537,11 @@
           {{ (
               ((is_state('binary_sensor.back_door','on')) or (is_state('binary_sensor.sebastians_room_left_window','on')) or (is_state('binary_sensor.sophies_room_ceiling_window','on')) or (is_state('binary_sensor.ecolink_closet_left_window','on')) or  (is_state('binary_sensor.laundry_room_window_zone_13','on')) or (is_state('binary_sensor.windows_1st_floor_zone_2','on')) or  (is_state('binary_sensor.ecolink_garage_door','on')) or (is_state('binary_sensor.office_door','on')) or (is_state('binary_sensor.library_door','on'))) 
               and ((((is_state('input_select.active_heating_profile','PROFILE_AUTO')) or (is_state('input_select.active_heating_profile','PROFILE_A')) or (is_state('input_select.active_heating_profile','PROFILE_B')) or (is_state('input_select.active_heating_profile','PROFILE_C')))
-              and (states('sensor.dark_sky_temperature')|float < 18)
+              and (states('sensor.weatherflow_air_temperature')|float < 18)
               )
               or ((is_state('input_select.active_heating_profile','PROFILE_E'))
-              and (states('sensor.dark_sky_temperature')|float > 26)
-              and (states('sensor.dark_sky_daytime_high_temperature_0d')|float > 30))
+              and (states('sensor.weatherflow_air_temperature')|float > 26)
+              and (states('sensor.pirateweather_daytime_high_temperature_0d')|float > 30))
               or
               (states('sensor.hlubocepy_air_quality')|float > 50))
               )
@@ -807,3 +807,27 @@
              state_attr('weather.weatherflow_hourly_based_forecast','forecast').10.precipitation | float(0) +
              state_attr('weather.weatherflow_hourly_based_forecast','forecast').11.precipitation | float(0) +
              state_attr('weather.weatherflow_hourly_based_forecast','forecast').12.precipitation | float(0) ) > 0 }}
+             
+             
+  - platform: template
+    sensors:
+      rain_today:
+        friendly_name: "Rain Today"
+        value_template: >
+          {{ ((states('sensor.pirateweather_precip_probability_0d')|float < 30)
+             or ((states('sensor.pirateweather_precip_intensity_1h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_2h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_3h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_4h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_5h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_6h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_7h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_8h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_9h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_10h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_11h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_12h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_13h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_14h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_15h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_16h')|float < 0.05))) }}

@@ -1351,7 +1351,7 @@ cards:
 
       - type: conditional
         conditions:
-        - entity: binary_sensor.weatherflow_forecast_precip_total
+        - entity: binary_sensor.rain_today
           state: 'on'
         card:
           type: custom:bar-card

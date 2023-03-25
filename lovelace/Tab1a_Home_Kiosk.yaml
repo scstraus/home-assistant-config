@@ -1145,6 +1145,8 @@ cards:
 #          }
 
 #
+
+
       - type: glance
         columns: 1
         show_icon: false
@@ -1158,6 +1160,35 @@ cards:
             font-size: 20px;
         entities:
           - entity: weather.weatherflow_day_based_forecast
+
+      - type: glance
+        columns: 1
+        show_icon: false
+        show_name: false
+        style: |
+          ha-card {
+            margin-top: 0px !important;
+            margin-bottom: -20px !important;
+            padding-top: 0px;
+            padding-bottom: -20px;
+            font-size: 14px;
+        entities:
+          - entity: sensor.dark_sky_summary_0d
+
+#
+#      - type: glance
+#        columns: 1
+#        show_icon: false
+#        show_name: false
+#        style: |
+#          ha-card {
+#            margin-top: -55px !important;
+#            margin-bottom: -10px !important;
+#            padding-top: -55px;
+#            padding-bottom: -10px;
+#            font-size: 20px;
+#        entities:
+#          - entity: weather.weatherflow_day_based_forecast
 
 
       ## Today Weather Details - Names
@@ -1434,7 +1465,7 @@ cards:
 
       - type: conditional
         conditions:
-        - entity: binary_sensor.weatherflow_forecast_precip_total
+        - entity: binary_sensor.rain_today
           state: 'on'
         card:
           type: custom:bar-card

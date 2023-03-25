@@ -3,19 +3,19 @@
       bike_day:
         friendly_name: "Bike Day"
         value_template: >-
-          {% if states('sensor.dark_sky_daytime_high_temperature_0d')|float < 27
-             and states('sensor.dark_sky_temperature')|float > 14 
-             and states('sensor.dark_sky_wind_gust')|float < 20
-             and (states('sensor.dark_sky_precip_probability_0d')|float < 30
-             or ((states('sensor.dark_sky_precip_intensity_1h')|float < 0.05)
-             and (states('sensor.dark_sky_precip_intensity_2h')|float < 0.05)
-             and (states('sensor.dark_sky_precip_intensity_3h')|float < 0.05)
-             and (states('sensor.dark_sky_precip_intensity_4h')|float < 0.05)
-             and (states('sensor.dark_sky_precip_intensity_5h')|float < 0.05)
-             and (states('sensor.dark_sky_precip_intensity_6h')|float < 0.05)
-             and (states('sensor.dark_sky_precip_intensity_7h')|float < 0.05)
-             and (states('sensor.dark_sky_precip_intensity_8h')|float < 0.05)
-             and (states('sensor.dark_sky_precip_intensity_9h')|float < 0.05))) %}
+          {% if states('sensor.pirateweather_daytime_high_temperature_0d')|float < 27
+             and states('ensor.weatherflow_air_temperature')|float > 14 
+             and states('sensor.pirateweather_wind_gust')|float < 20
+             and (states('sensor.pirateweather_precip_probability_0d')|float < 30
+             or ((states('sensor.pirateweather_precip_intensity_1h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_2h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_3h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_4h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_5h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_6h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_7h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_8h')|float < 0.05)
+             and (states('sensor.pirateweather_precip_intensity_9h')|float < 0.05))) %}
             yes
           {% else %}
             no
@@ -799,10 +799,10 @@
               and states('sensor.weatherflow_air_temperature')|float > 10 
               and states('sensor.tempest_st_00023475_wind_speed')|float < 30
               and states('sensor.tempest_st_00023475_wind_speed')|float > 7
-              and (states('sensor.dark_sky_precip_probability_0d')|float < 30
-              or ((states('sensor.dark_sky_precip_intensity_1h')|float < 0.05)
-              and (states('sensor.dark_sky_precip_intensity_2h')|float < 0.05)
-              and (states('sensor.dark_sky_precip_intensity_3h')|float < 0.05))) %}
+              and (states('sensor.pirateweather_precip_probability_0d')|float < 30
+              or ((states('sensor.pirateweather_precip_intensity_1h')|float < 0.05)
+              and (states('sensor.pirateweather_precip_intensity_2h')|float < 0.05)
+              and (states('sensor.pirateweather_precip_intensity_3h')|float < 0.05))) %}
             yes
           {% else %}
             no
