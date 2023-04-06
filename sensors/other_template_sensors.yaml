@@ -1349,7 +1349,7 @@
                             'snowy-rainy':'snowy-rainy',
                             'sunny':'sunny',
                             'windy':'windy' } %}
-          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').8.condition] %}
+          {% set icon = array[state_attr('weather.weatherflow_hourly_based_forecast','forecast').16.condition] %}
           mdi:weather-{{ icon }}
 
 
@@ -1475,4 +1475,16 @@
             {% endif %}
           {% else %}0
           {% endif %}
+          
+          
+  - platform: template
+    sensors:
+      next_sunrise:
+        friendly_name: "next_sunrise"
+        value_template: >
+          {{ as_timestamp(state_attr('sun.sun', 'next_rising')) | timestamp_custom('%H:%M') }}
 
+      next_sunset:
+        friendly_name: "next_sunset"
+        value_template: >
+          {{ as_timestamp(state_attr('sun.sun', 'next_setting')) | timestamp_custom('%H:%M') }}

@@ -1081,7 +1081,7 @@ cards:
         show_state: false
         style: |
           ha-card {
-            margin-top: -20px !important;
+            margin-top: -40px !important;
             margin-bottom: 0px !important;
             font-size: 10px;
             color: #9da5b4;
@@ -1097,10 +1097,10 @@ cards:
             name: Humiditiy
           - entity: sensor.weatherflow_wind_speed
             name: Wind
-          - entity: sensor.weatherflow_wind_cardinal
-            name: Direction
-          - entity: sensor.openweathermap_forecast_precipitation_probability
-            name: Precip.
+          - entity: sensor.next_sunrise
+            name: Sunrise
+          - entity: sensor.next_sunset
+            name: Sunset
       ## Today Weather Details - Values
       - type: glance
         columns: 4
@@ -1114,8 +1114,8 @@ cards:
         entities:
           - entity: sensor.weatherflow_relative_humidity
           - entity: sensor.weatherflow_wind_speed
-          - entity: sensor.weatherflow_wind_cardinal
-          - entity: sensor.openweathermap_forecast_precipitation_probability
+          - entity: sensor.next_sunrise
+          - entity: sensor.next_sunset
 
 
     ## BAR CARD FUTURE WEATHER ##
@@ -1226,7 +1226,7 @@ cards:
           - color: rgb(47,157,244)
             from: -2
             to: -1
-          - color: rgb(33150243)
+          - color: rgb(33,150,243)
             from: -1
             to: 0
           - color: rgb(44,153,234)
@@ -1398,7 +1398,7 @@ cards:
           columns: 9
           stack: horizontal
           min: 0
-          max: 5
+          max: 10
           entities:
             - sensor.weatherflow_forecast_precip_0
             - sensor.weatherflow_forecast_precip_1

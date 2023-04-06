@@ -1060,9 +1060,428 @@ cards:
         show_section_slots: false
         style: |
           ha-card {
+            padding: 0px 0px 0px 0spx
             margin-bottom: -50px !important;
             padding-bottom: -50px !important;
             font-size: 18px !important;}
+#          .card {
+#            padding: 0px 0px 0px 0px;
+#          }
+#          .top-left {
+#            display: self-start !important;
+#            flex-direction: column;
+#            height: 120px;
+#          }
+#          .content {
+#            align-items: self-start !important;
+#          }
+#          .card-header {
+#            font-size: 0em !important;
+#            color: var(--primary-text-color);
+#          }
+#          .top-left-obs {
+#            display: self-start !important;
+#            flex-direction: column;
+#          }
+#          .big-icon {
+#            height: 120px;
+#            width: 140px;
+#            position: self-start !important;
+#          }
+#          .slot-icon {
+#            display: table-cell;
+#            position: self-start !important;
+#            height: 0px !important;
+#            padding-right: 0px !important;
+#            color: var(--paper-item-icon-color);
+#          }
+
+#
+#      .card {
+#        padding: 8px 16px 8px 16px;
+#      }
+#      .content {
+#        align-items: center;
+#      }
+#      .card-header {
+#        font-size: 1.5em;
+#        color: var(--primary-text-color);
+#      }
+#      .section {
+#        margin: -1px;
+#        border: 1px solid transparent;
+#        padding-top: 8px;
+#        padding-bottom: 8px;
+#      }
+#      .updated {
+#        font-size: 0.9em;
+#        font-weight: 300;
+#        color: var(--primary-text-color);
+#      }
+#      .overview-top {
+#        display: flex;
+#        justify-content: space-between;
+#        flex-wrap: nowrap;
+#      }
+#      .stacked {
+#        position: absolute;
+#      }
+#      .top-left {
+#        display: flex;
+#        flex-direction: column;
+#        height: 120px;
+#      }
+#      .top-left-obs {
+#        display: flex;
+#        flex-direction: column;
+#      }
+#      .big-icon {
+#        height: 120px;
+#        width: 140px;
+#        position: relative;
+#      }
+#      .unknown-forecast {
+#        position: relative;
+#        top: -30px;
+#        text-align: center;
+#      }
+#      .currentTemps {
+#        display: flex;
+#        align-self: flex-start;
+#        flex-direction: column;
+#        height: 60px;
+#      }
+#      .current-temp {
+#        display: table-row;
+#        margin-left: auto;
+#        padding: 2px 0px;
+#      }
+#      .temp {
+#        display:table-cell;
+#        font-weight: 300;
+#        font-size: 4em;
+#        color: var(--primary-text-color);
+#        position: relative;
+#        line-height: 74%;
+#      }
+#      .unit-temp-big {
+#        display: table-cell;
+#        vertical-align: top;
+#        font-weight: 300;
+#        font-size: 1.5em;
+#        color: var(--primary-text-color);
+#        position: relative;
+#        line-height: 74%;
+#      }
+#      .apparent-temp {
+#        display: table-row;
+#        margin-left: auto;
+#        height: 24px;
+#      }
+#      .apparent {
+#        display: table-cell;
+#        color: var(--primary-text-color);
+#        font-weight: 300;
+#        position: relative;
+#        line-height: 24px;
+#      }
+#      .unit-temp-small {
+#        display: table-cell;
+#        vertical-align: top;
+#        font-size: 10.5px;
+#        color: var(--primary-text-color);
+#        position: relative;
+#        line-height: 14px;
+#        padding-top: 3.6px;
+#        padding-left: 1px;
+#      }
+#      .line {
+#        margin-top : 7px;
+#        margin-bottom: -9px;
+#        color: var(--primary-text-color);
+#      }
+#      .forecast-text {
+#        font-size: 21px;
+#        text-align: center;
+#        line-height: 25px;
+#      }
+#      .forecast-text-right {
+#        font-size: 21px;
+#        text-align: center;
+#        width: 100%;
+#        align-items: center;
+#        display: flex;
+#        justify-content: center;
+#        line-height: 25px;
+#        margin-left: -40px;
+#      }
+#      .variations {
+#        display: flex;
+#        flex-flow: row wrap;
+#        font-weight: 300;
+#        color: var(--primary-text-color);
+#        list-style: none;
+#        margin-block-start: 0px;
+#        margin-block-end: 0px;
+#        padding-inline-start: 8px;
+#      }
+#      .slot-list-item-1 {
+#        min-width:50%;
+#        padding-right: 8px;
+#      }
+#      .slot-list {
+#        list-style: none;
+#        padding: 0;
+#      }
+#      .slot-list li {
+#        height:24px;
+#      }
+#      .variations-ugly {
+#        display: flex;
+#        flex-flow: row wrap;
+#        justify-content: space-between;
+#        font-weight: 300;
+#        color: var(--primary-text-color);
+#        list-style: none;
+#        margin-block-start: 0px;
+#        margin-block-end: 0px;
+#        padding-inline-start: 8px;
+#      }
+#      .ha-icon {
+#        height: 24px;
+#        margin-right: 5px;
+#        color: var(--paper-item-icon-color);
+#      }
+#      .unit {
+#        font-size: 0.8em;
+#        display: table-cell;
+#        padding-left: 1px;
+#      }
+#      .slot {
+#        display: table-row;
+#      }
+#      .slot-icon {
+#        display: table-cell;
+#        position: relative;
+#        height: 18px;
+#        padding-right: 5px;
+#        color: var(--paper-item-icon-color);
+#      }
+#      .slot-text {
+#        display: table-cell;
+#        position: relative;
+#      }
+#      .fire-danger-text-color {
+#        display: inline-block;
+#        height: 18px;
+#        line-height: 20px;
+#        text-align: left;
+#        vertical-align: middle;
+#        margin: 0;
+#        padding-left: 4px;
+#        font-weight: 600;
+#        width: 108px;
+#      }
+#      .daily-forecast-horiz-section {
+#        display: flex;
+#        flex-flow: row wrap;
+#        width: 100%;
+#        margin: 0;
+#        clear: both;
+#      }
+#      .daily-forecast-horiz-section .day-horiz:nth-last-child(1) {
+#        border-right: transparent;
+#      }
+#      .day-horiz {
+#        flex: 1;
+#        float: left;
+#        text-align: center;
+#        color: var(--primary-text-color);
+#        border-right: 1px solid #d9d9d9;
+#        margin-right: -1px;
+#        box-sizing: border-box;
+#      }
+#      .daily-forecast-vert-section {
+#        display: flex;
+#        flex-flow: column nowrap;
+#        margin: 0 auto;
+#        clear: both;
+#      }
+#      .day-vert {
+#        flex: 1;
+#        color: var(--primary-text-color);
+#        border-top: 1px solid #d9d9d9;
+#        line-height: 24px;
+#        box-sizing: border-box;
+#        padding-bottom: 8px;
+#      }
+#      .day-vert-top {
+#        display: flex;
+#        width: 100%;
+#      }
+#      .day-vert-middle {
+#        display: flex;
+#        float: left;
+#        width: 100%;
+#      }
+#      .day-vert-bottom {
+#        text-align: left;
+#        float: left;
+#      }
+#      .day-vert-dayicon {
+#        width: 40px;
+#        text-align: left;
+#        float: left;
+#        margin-bottom: -8px;
+#      }
+#      .day-vert-temps {
+#        flex: 1;
+#        text-align: left;
+#        float: left;
+#        padding-left: 1em;
+#        padding-top: 0.5em;
+#      }
+#      .day-vert-rain {
+#        flex: 2;
+#        text-align: left;
+#        float: left;
+#        padding-left: 1em;
+#        padding-top: 0.5em;
+#      }
+#      .dayname {
+#        text-transform: uppercase;
+#      }
+#      .dayname-vert {
+#        min-width: 40px;
+#        max-width: 40px;
+#        text-transform: uppercase;
+#      }
+#      .icon {
+#        width: 49px;
+#        height: 42px;
+#        margin: auto;
+#        display: inline-block;
+#        background-size: contain;
+#        background-position: center center;
+#        background-repeat: no-repeat;
+#        text-indent: -9999px;
+#      }
+#      .f-slot-horiz {
+#        display: inline-block;
+#        text-align: center;
+#        list-style: none;
+#        overflow: hidden;
+#        font-weight: 300;
+#        padding: 0;
+#        margin-block-start: 0;
+#        margin-block-end: -12px;
+#      }
+#      .f-slot-horiz-text {
+#        height:20px;
+#      }
+#      .f-slot-horiz-icon {
+#        height:50px;
+#      }
+#      .f-summary-vert {
+#        padding-left: 1em;
+#        font-weight: 400;
+#      }
+#      .f-firedanger-vert {
+#        text-align: right;
+#        font-weight: 300;
+#        margin-top: -24px;
+#      }
+#      .f-slot-vert {
+#        display: table;
+#        overflow: hidden;
+#        height: 24px;
+#        font-weight: 300;
+#      }
+#      .f-slot-minmax {
+#        width: 100%;
+#      }
+#      .f-extended {
+#        display: inline-table;
+#        font-size: 13px;
+#        font-weight: 300;
+#        padding-top: 8px;
+#        line-height:20px;
+#      }
+#      .extended-section .f-extended {
+#        padding-top: 0;
+#      }
+#      .highTemp {
+#        display: table-cell;
+#        font-weight: bold;
+#      }
+#      .lowTemp {
+#        display: table-cell;
+#        font-weight: 300;
+#      }
+#      .slash {
+#        padding-left: 2px;
+#        padding-right: 2px;
+#      }
+#      .high-temp {
+#        display: table-cell;
+#        font-weight: bold;
+#        width: 21px;
+#        text-align: right;
+#      }
+#      .low-temp {
+#        display: table-cell;
+#        font-weight: 300;
+#        width: 21px;
+#        text-align: right;
+#      }
+#      .temp-label {
+#        display: table-cell;
+#        width: 32px;
+#        font-weight: 300;
+#      }
+#      .f-label {
+#        display: table-cell;
+#        white-space: nowrap;
+#        padding-right: 0.2em;
+#      }
+#      .pop {
+#        display: table-cell;
+#        font-weight: 300;
+#        color: var(--primary-text-color);
+#      }
+#      .pos {
+#        display: table-cell;
+#        font-weight: 300;
+#        color: var(--primary-text-color);
+#        white-space: nowrap;
+#      }
+#      .fcasttooltip {
+#        position: relative;
+#        display: inline-block;
+#      }
+#      .fcasttooltip .fcasttooltipblock {
+#        visibility: hidden;
+#        background-color: #4B9BEF;
+#        color: #FFFFFF;
+#        text-align: center;
+#        border-radius: 6px;
+#        border-style: solid;
+#        border-color: #FFA100;
+#        border-width: 1px;
+#        padding: 5px 0;
+#        position: absolute;
+#        z-index: 1;
+#        bottom: 107%;
+#        margin-left: -2px;
+#      }
+#      .fcasttooltip:hover .fcasttooltipblock {
+#        visibility: hidden;
+#      }
+#      .fcasttooltiptext {
+#        padding-left: 8px;
+#        padding-right: 8px;
+#      }
+#    
 
 #
 #      - type: custom:platinum-weather-card
@@ -1147,34 +1566,19 @@ cards:
 #
 
 
-      - type: glance
-        columns: 1
-        show_icon: false
-        show_name: false
-        style: |
-          ha-card {
-            margin-top: -55px !important;
-            margin-bottom: -10px !important;
-            padding-top: -55px;
-            padding-bottom: -10px;
-            font-size: 20px;
-        entities:
-          - entity: weather.weatherflow_day_based_forecast
-
-      - type: glance
-        columns: 1
-        show_icon: false
-        show_name: false
-        style: |
-          ha-card {
-            margin-top: 0px !important;
-            margin-bottom: -20px !important;
-            padding-top: 0px;
-            padding-bottom: -20px;
-            font-size: 14px;
-        entities:
-          - entity: sensor.dark_sky_summary_0d
-
+#      - type: glance
+#        columns: 1
+#        show_icon: false
+#        show_name: false
+#        style: |
+#          ha-card {
+#            margin-top: -35px !important;
+#            margin-bottom: -10px !important;
+#            padding-top: -55px;
+#            padding-bottom: -10px;
+#            font-size: 20px;
+#        entities:
+#          - entity: weather.weatherflow_day_based_forecast
 #
 #      - type: glance
 #        columns: 1
@@ -1182,13 +1586,28 @@ cards:
 #        show_name: false
 #        style: |
 #          ha-card {
-#            margin-top: -55px !important;
-#            margin-bottom: -10px !important;
-#            padding-top: -55px;
-#            padding-bottom: -10px;
-#            font-size: 20px;
+#            margin-top: 0px !important;
+#            margin-bottom: -20px !important;
+#            padding-top: 0px;
+#            padding-bottom: -20px;
+#            font-size: 14px;
 #        entities:
-#          - entity: weather.weatherflow_day_based_forecast
+#          - entity: sensor.dark_sky_summary_0d
+
+
+      - type: glance
+        columns: 1
+        show_icon: false
+        show_name: false
+        style: |
+          ha-card {
+            margin-top: -25px !important;
+            margin-bottom: -10px !important;
+            padding-top: -55px;
+            padding-bottom: -10px;
+            font-size: 20px;
+        entities:
+          - entity: weather.weatherflow_day_based_forecast
 
 
       ## Today Weather Details - Names
@@ -1208,10 +1627,10 @@ cards:
             name: Humiditiy
           - entity: sensor.weatherflow_wind_speed
             name: Wind
-          - entity: sensor.weatherflow_wind_cardinal
-            name: Direction
-          - entity: sensor.openweathermap_forecast_precipitation_probability
-            name: Precip.
+          - entity: sensor.next_sunrise
+            name: Sunrise
+          - entity: sensor.next_sunset
+            name: Sunset
       ## Today Weather Details - Values
       - type: glance
         columns: 4
@@ -1229,9 +1648,8 @@ cards:
         entities:
           - entity: sensor.weatherflow_relative_humidity
           - entity: sensor.weatherflow_wind_speed
-          - entity: sensor.weatherflow_wind_cardinal
-          - entity: sensor.openweathermap_forecast_precipitation_probability
-
+          - entity: sensor.next_sunrise
+          - entity: sensor.next_sunset
 
       - type: custom:bar-card
         style: |
@@ -1340,7 +1758,7 @@ cards:
           - color: rgb(47,157,244)
             from: -2
             to: -1
-          - color: rgb(33150243)
+          - color: rgb(33,150,243)
             from: -1
             to: 0
           - color: rgb(44,153,234)
@@ -1512,7 +1930,7 @@ cards:
           columns: 9
           stack: horizontal
           min: 0
-          max: 5
+          max: 10
           entities:
             - sensor.weatherflow_forecast_precip_0
             - sensor.weatherflow_forecast_precip_1
