@@ -912,13 +912,420 @@ cards:
 ##      nameColor: var(--ha-card-header-color)
 
 
+    - type: 'custom:vertical-stack-in-card'
+      cards:
+      
+      
+
+#      - type: weather-forecast
+#        entity: weather.weatherflow_day_based_forecast
+#        name: "Prague"
+#        show_forecast: false
+#        style: |
+#          .header {
+#            padding-top: 12px !important;
+#          }
+#          .content {
+#            padding-bottom: 12px !important;
+#          }
+
+      - type: custom:platinum-weather-card
+        card_config_version: 8
+        entity_forecast_icon: weather.weatherflow_day_based_forecast
+        entity_temperature: weather.weatherflow_day_based_forecast
+        section_order:
+          - overview
+          - extended
+          - slots
+          - daily_forecast
+        show_section_daily_forecast: false
+        show_section_extended: false
+        show_section_slots: false
+        style: |
+          ha-card {
+            padding: 0px 0px 0px 0spx
+            margin-bottom: -50px !important;
+            padding-bottom: -50px !important;
+            font-size: 18px !important;}
+
+      - type: glance
+        columns: 1
+        show_icon: false
+        show_name: false
+        style: |
+          ha-card {
+            margin-top: -25px !important;
+            margin-bottom: -10px !important;
+            padding-top: -55px;
+            padding-bottom: -10px;
+            font-size: 20px;
+        entities:
+          - entity: weather.weatherflow_day_based_forecast
+
+
+      ## Today Weather Details - Names
+      - type: glance
+        columns: 4
+        show_icon: false
+        show_state: false
+        style: |
+          ha-card {
+            margin-bottom: -10px !important;
+            font-size: 10px;
+            color: #9da5b4;
+          }
+#            margin-top: -30px !important;
+        entities:
+          - entity: sensor.tempest_st_00023475_humidity
+            name: Humiditiy
+          - entity: sensor.weatherflow_wind_speed
+            name: Wind
+          - entity: sensor.next_sunrise
+            name: Sunrise
+          - entity: sensor.next_sunset
+            name: Sunset
+      ## Today Weather Details - Values
+      - type: glance
+        columns: 4
+        show_icon: false
+        show_name: false
+        style: |
+          ha-card {
+            font-size: 12px;
+            }
+        style: |
+          ha-card {
+            margin-top: -20px !important;
+            margin-bottom: -20px !important;
+          }
+        entities:
+          - entity: sensor.weatherflow_relative_humidity
+          - entity: sensor.weatherflow_wind_speed
+          - entity: sensor.next_sunrise
+          - entity: sensor.next_sunset
+
+      - type: custom:bar-card
+        style: |
+          ha-card {
+            margin-top: 10px;
+            margin-bottom: -10px;
+            padding-top: 10px;
+            border-top: 5px solid #222222;
+          }
+          bar-card-card {
+            margin-right: 0px;
+            font-size: 13px;
+          }
+          bar-card-value {
+            color: #222222;
+            color: #9da5b4;
+          }
+          bar-card-iconbar {
+            width: 20px;
+            color: #333;
+            margin-top: 65px;
+          }
+          bar-card-name {
+            margin: 4px 0;
+            color: #9da5b4;
+            color: #dadadb;
+          }
+          .value-direction-up {
+            #color: #dadadb;
+            margin-top: -125px;
+          }
+          bar-card-backgroundbar {
+            filter: brightness(.45);
+          }
+        positions:
+          indicator: off
+          value: inside
+          title: off
+          name: outside
+          icon: inside
+        animation:
+          state: on
+        direction: up
+        height: 100px
+        width: 22px
+        columns: 9
+        stack: horizontal
+        min: -17
+        max: 42
+        entities:
+          - sensor.weatherflow_forecast_0
+          - sensor.weatherflow_forecast_1
+          - sensor.weatherflow_forecast_2
+          - sensor.weatherflow_forecast_3
+          - sensor.weatherflow_forecast_4
+          - sensor.weatherflow_forecast_5
+          - sensor.weatherflow_forecast_6
+          - sensor.weatherflow_forecast_7
+          - sensor.weatherflow_forecast_8
+    #      - sensor.weatherflow_forecast_9
+    #      - sensor.weatherflow_forecast_10
+    #      - sensor.weatherflow_forecast_11
+        severity:
+          - color: rgb(242,249,255)
+            from: -30
+            to: -17
+          - color: rgb(228,242,254)
+            from: -17
+            to: -15.5
+          - color: rgb(215,236,254)
+            from: -15.5
+            to: -14.5
+          - color: rgb(201,229,253)
+            from: -14.5
+            to: -13.5
+          - color: rgb(187,223,253)
+            from: -13.5
+            to: -12
+          - color: rgb(173,216,252)
+            from: -12
+            to: -11
+          - color: rgb(159,210,252)
+            from: -11
+            to: -10
+          - color: rgb(145,203,251)
+            from: -10
+            to: -9
+          - color: rgb(131,197,250)
+            from: -9
+            to: -8
+          - color: rgb(117,190,249)
+            from: -8
+            to: -6.5
+          - color: rgb(103,184,248)
+            from: -6.5
+            to: -5.5
+          - color: rgb(89,177,247)
+            from: -5.5
+            to: -4.5
+          - color: rgb(75,171,246)
+            from: -4.5
+            to: -3.5
+          - color: rgb(61,164,245)
+            from: -3.5
+            to: -2
+          - color: rgb(47,157,244)
+            from: -2
+            to: -1
+          - color: rgb(33,150,243)
+            from: -1
+            to: 0
+          - color: rgb(44,153,234)
+            from: 0
+            to: 1
+          - color: rgb(55,157,224)
+            from: 1
+            to: 2
+          - color: rgb(66,160,215)
+            from: 2
+            to: 3.5
+          - color: rgb(77,164,205)
+            from: 3.5
+            to: 4.5
+          - color: rgb(88,167,196)
+            from: 4.5
+            to: 5.5
+          - color: rgb(99,171,186)
+            from: 5.5
+            to: 6.5
+          - color: rgb(110,174,177)
+            from: 6.5
+            to: 8
+          - color: rgb(121,178,168)
+            from: 8
+            to: 9
+          - color: rgb(132,181,159)
+            from: 9
+            to: 10
+          - color: rgb(143,185,150)
+            from: 10
+            to: 11
+          - color: rgb(154,188,141)
+            from: 11
+            to: 12
+          - color: rgb(165,192,132)
+            from: 12
+            to: 13
+          - color: rgb(176,195,123)
+            from: 13
+            to: 14.5
+          - color: rgb(187,199,114)
+            from: 14.5
+            to: 15.5
+          - color: rgb(198,202,105)
+            from: 15.5
+            to: 16.5
+          - color: rgb(209,205,96)
+            from: 16.5
+            to: 18
+          - color: rgb(220,208,87)
+            from: 18
+            to: 19
+          - color: rgb(231,211,78)
+            from: 19
+            to: 20
+          - color: rgb(242,214,69)
+            from: 20
+            to: 21
+          - color: rgb(253,217,60)
+            from: 21
+            to: 22
+          - color: rgb(247,206,58)
+            from: 22
+            to: 23.5
+          - color: rgb(240,194,55)
+            from: 23.5
+            to: 24.5
+          - color: rgb(234,183,53)
+            from: 24.5
+            to: 25.5
+          - color: rgb(227,171,50)
+            from: 25.5
+            to: 26.5
+          - color: rgb(221,160,48)
+            from: 26.5
+            to: 28
+          - color: rgb(214,148,45)
+            from: 28
+            to: 29
+          - color: rgb(208,137,43)
+            from: 29
+            to: 30
+          - color: rgb(201,125,40)
+            from: 30
+            to: 31
+          - color: rgb(195,114,38)
+            from: 31
+            to: 32
+          - color: rgb(188,102,35)
+            from: 32
+            to: 33.5
+          - color: rgb(182,91,33)
+            from: 33.5
+            to: 34.5
+          - color: rgb(175,79,30)
+            from: 34.5
+            to: 35.5
+          - color: rgb(169,68,28)
+            from: 35.5
+            to: 36.5
+          - color: rgb(162,56,25)
+            from: 36.5
+            to: 38
+          - color: rgb(155,45,23)
+            from: 38
+            to: 39
+          - color: rgb(148,33,20)
+            from: 39
+            to: 40
+          - color: rgb(141,22,18)
+            from: 40
+            to: 41
+          - color: rgb(134,11,15)
+            from: 41
+            to: 42
+          - color: rgb(127,0,12)
+            from: 42
+            to: 49
+
+    # BAR CARD FUTURE HOURLY PRECIPITATION
+
+      - type: conditional
+        conditions:
+        - entity: binary_sensor.rain_today
+          state: 'on'
+        card:
+          type: custom:bar-card
+          style: |
+            ha-card {
+              margin-top: -15px;
+              margin-bottom: -15px;
+              padding-top: 0px;
+            }
+            bar-card-card {
+              margin-right: 0px;
+              font-size: 12px;
+            }
+            bar-card-value {
+              color: #222222;
+            }
+            bar-card-iconbar {
+              width: 20px;
+              color: #333;
+              margin-top: 85px;
+            }
+            bar-card-name {
+              margin: 4px 0;
+              color: #9da5b4;
+            }
+            .value-direction-up {
+              color: #dadadb;
+              margin-top: -120px;
+            }
+            bar-card-backgroundbar {
+              filter: brightness(.65);
+            }
+          positions:
+            indicator: off
+            value: off
+            title: off
+            name: outside
+            icon: off
+          animation:
+            state: on
+          direction: up
+          height: 25px
+          width: 22px
+          columns: 9
+          stack: horizontal
+          min: 0
+          max: 10
+          entities:
+            - sensor.weatherflow_forecast_precip_0
+            - sensor.weatherflow_forecast_precip_1
+            - sensor.weatherflow_forecast_precip_2
+            - sensor.weatherflow_forecast_precip_3
+            - sensor.weatherflow_forecast_precip_4
+            - sensor.weatherflow_forecast_precip_5
+            - sensor.weatherflow_forecast_precip_6
+            - sensor.weatherflow_forecast_precip_7
+            - sensor.weatherflow_forecast_precip_8
+
+      - type: custom:platinum-weather-card
+#        style: |
+#          ha-card {
+##            margin-top: -15px;
+##            margin-bottom: 50px;
+##            padding-top: -10px;
+##            padding-bottom: 50px
+#          }
+        card_config_version: 8
+        daily_forecast_days: 4
+        entity_forecast_icon_1: weather.weatherflow_day_based_forecast
+        entity_forecast_max_1: weather.weatherflow_day_based_forecast
+        entity_forecast_min_1: weather.weatherflow_day_based_forecast
+        entity_pop_1: weather.weatherflow_day_based_forecast
+        entity_pos_1: weather.weatherflow_day_based_forecast
+        entity_summary_1: weather.weatherflow_day_based_forecast
+        section_order:
+          - overview
+          - extended
+          - slots
+          - daily_forecast
+        show_section_extended: false
+        show_section_overview: false
+        show_section_slots: false
+
     - type: conditional
       conditions:
         - entity: binary_sensor.reminders_label
           state: "on"
       card:
-        type: vertical-stack
-        in_card: true
+        type: 'custom:vertical-stack-in-card'
         cards:
         - type: "custom:button-card"
           name: Reminders
@@ -987,28 +1394,30 @@ cards:
 
 #    - type: custom:gap-card
 #      height: 25
-
-    - type: vertical-stack
-      in_card: true
+    - type: 'custom:vertical-stack-in-card'
       cards:
+
+#    - type: vertical-stack
+#      in_card: true
+#      cards:
 #
 #      - type: custom:gap-card
 ##        height: 25
 
-
-      - type: 'custom:weather-card-chart'
-        style: |
-          .card-header {
-            padding: 0px 0px 0px;
-            font-size: var(--ha-card-header-font-size, 0px);
-            line-height: 24px;
-          }
-        title: Weather
-        weather: weather.weatherflow_hourly_based_forecast
-        sun: sun.sun
-        mode: hourly
-        temp: sensor.weatherflow_air_temperature
-        wind: sensor.tempest_st_00023475_wind_speed
+##latest:
+#      - type: 'custom:weather-card-chart'
+#        style: |
+#          .card-header {
+#            padding: 0px 0px 0px;
+#            font-size: var(--ha-card-header-font-size, 0px);
+#            line-height: 24px;
+#          }
+#        title: Weather
+#        weather: weather.weatherflow_hourly_based_forecast
+#        sun: sun.sun
+#        mode: hourly
+#        temp: sensor.weatherflow_air_temperature
+#        wind: sensor.tempest_st_00023475_wind_speed
 
 #
 #      - type: 'custom:weather-card-chart'
@@ -1022,13 +1431,13 @@ cards:
 #        weather: weather.openweathermap
 #        sun: sun.sun
 #        mode: hourly
-
-      - type: entities
-    #        title: Weather Forecast
-        show_header_toggle: false
-        entities:
-        - sensor.dark_sky_hourly_summary
-        - sensor.dark_sky_daily_summary
+#
+#      - type: entities
+#    #        title: Weather Forecast
+#        show_header_toggle: false
+#        entities:
+#        - sensor.dark_sky_hourly_summary
+#        - sensor.dark_sky_daily_summary
 
   #        - sensor.u_s_air_pollution_level 
   #        - sensor.u_s_air_quality_index 
@@ -1047,9 +1456,8 @@ cards:
 #      url: https://todoist.com/app/project/2249307675#
 #      aspect_ratio: 160%
 
-    - type: vertical-stack
-      in_card: true
-      cards: 
+    - type: 'custom:vertical-stack-in-card'
+      cards:
 
       - type: entity-filter
         card:

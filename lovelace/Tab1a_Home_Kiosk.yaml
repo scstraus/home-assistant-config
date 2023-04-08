@@ -1697,8 +1697,8 @@ cards:
         width: 22px
         columns: 9
         stack: horizontal
-        min: -5
-        max: 35
+        min: -17
+        max: 42
         entities:
           - sensor.weatherflow_forecast_0
           - sensor.weatherflow_forecast_1
