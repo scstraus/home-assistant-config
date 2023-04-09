@@ -1394,8 +1394,8 @@ cards:
 
 #    - type: custom:gap-card
 #      height: 25
-    - type: 'custom:vertical-stack-in-card'
-      cards:
+#    - type: 'custom:vertical-stack-in-card'
+#      cards:
 
 #    - type: vertical-stack
 #      in_card: true
