@@ -1879,66 +1879,66 @@ cards:
 #    states:
 #      Home:
 
-  - type: custom:mod-card
-    report_size: 12
-    card:
+#  - type: custom:mod-card
+#    report_size: 12
+#    card:
 
-      type: vertical-stack
+  - type: vertical-stack
+    cards:
+
+
+  #       - type: conditional
+  #         conditions:
+  #           - entity: binary_sensor.seb_naptime
+  #             state: "on"
+  #         card:
+  #           type: picture-glance
+  # #            title: "Seb's Room"
+  #           camera_image: camera.sebs_room
+  #           camera_view: live
+  #           entities: []
+
+
+
+  #        - switch.camera_sebs_room_ir_lights
+  #              - binary_sensor.sebs_room_motion
+  #        - switch.camera_sebs_room_email
+  #        - switch.camera_sebs_room_ftp
+
+    - type: picture-glance
+      aspect_ratio: 16x9
+      entities: []
+      show_state: false
+      show_name: false
+      camera_image: camera.front_stream
+      camera_view: live
+
+    - type: horizontal-stack
       cards:
 
-
-    #       - type: conditional
-    #         conditions:
-    #           - entity: binary_sensor.seb_naptime
-    #             state: "on"
-    #         card:
-    #           type: picture-glance
-    # #            title: "Seb's Room"
-    #           camera_image: camera.sebs_room
-    #           camera_view: live
-    #           entities: []
-
-
-
-    #        - switch.camera_sebs_room_ir_lights
-    #              - binary_sensor.sebs_room_motion
-    #        - switch.camera_sebs_room_email
-    #        - switch.camera_sebs_room_ftp
-
       - type: picture-glance
-        aspect_ratio: 16x9
+        aspect_ratio: 9x16
         entities: []
         show_state: false
         show_name: false
-        camera_image: camera.front_stream
+        camera_image: camera.left_stream
         camera_view: live
-
-      - type: horizontal-stack
-        cards:
-
-        - type: picture-glance
-          aspect_ratio: 9x16
-          entities: []
-          show_state: false
-          show_name: false
-          camera_image: camera.left_stream
-          camera_view: live
-
-        - type: picture-glance
-          aspect_ratio: 9x16
-          show_state: false
-          show_name: false
-          entities: []
-          camera_image: camera.right_stream
-          camera_view: live
 
       - type: picture-glance
-        aspect_ratio: 16x9
-        entities: []
+        aspect_ratio: 9x16
         show_state: false
         show_name: false
-        camera_image: camera.back_stream
+        entities: []
+        camera_image: camera.right_stream
         camera_view: live
+
+    - type: picture-glance
+      aspect_ratio: 16x9
+      entities: []
+      show_state: false
+      show_name: false
+      camera_image: camera.back_stream
+      camera_view: live
 #
 #
 #      default:

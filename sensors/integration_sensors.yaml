@@ -1,44 +1,44 @@
-  - platform: darksky
-    api_key: !secret darksky_key
-    scan_interval:
-      minutes: 12
-    forecast:
-    - 0
-    hourly_forecast:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    monitored_conditions:
-    - temperature_high
-    - temperature_low
-    - apparent_temperature_high
-    - apparent_temperature_low
-    - summary
-    - icon
-    - nearest_storm_distance
-    - precip_type
-    - precip_intensity
-    - precip_probability
-    - temperature
-    - apparent_temperature
-    - dew_point
-    - wind_speed
-    - wind_bearing
-    - wind_gust
-    - cloud_cover
-    - humidity
-    - pressure
-    - visibility
-    - ozone
-    - minutely_summary
-    - hourly_summary
-    - daily_summary
+#  - platform: darksky
+#    api_key: !secret darksky_key
+#    scan_interval:
+#      minutes: 12
+#    forecast:
+#    - 0
+#    hourly_forecast:
+#    - 1
+#    - 2
+#    - 3
+#    - 4
+#    - 5
+#    - 6
+#    - 7
+#    - 8
+#    - 9
+#    monitored_conditions:
+#    - temperature_high
+#    - temperature_low
+#    - apparent_temperature_high
+#    - apparent_temperature_low
+#    - summary
+#    - icon
+#    - nearest_storm_distance
+#    - precip_type
+#    - precip_intensity
+#    - precip_probability
+#    - temperature
+#    - apparent_temperature
+#    - dew_point
+#    - wind_speed
+#    - wind_bearing
+#    - wind_gust
+#    - cloud_cover
+#    - humidity
+#    - pressure
+#    - visibility
+#    - ozone
+#    - minutely_summary
+#    - hourly_summary
+#    - daily_summary
 
   - platform: imap_email_content
     server: imap.gmail.com
