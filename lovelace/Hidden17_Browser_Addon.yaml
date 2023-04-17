@@ -49,10 +49,10 @@ cards:
       - "Dangerous"
       - "Violent Shower"
       entities:
-      - variable.posta_variable
-      - variable.dhl_variable
-      - variable.dpd_variable
-      - variable.gls_variable
+      - sensor.posta_variable
+      - sensor.dhl_variable
+      - sensor.dpd_variable
+      - sensor.gls_variable
       - sensor.bio_odpad_day
       - sensor.bike_day
       - binary_sensor.back_door

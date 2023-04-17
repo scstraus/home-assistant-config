@@ -629,7 +629,7 @@ cards:
       card:
         type: markdown
         content: |
-          {{states('variable.windows_making_problem')}}
+          {{states('sensor.windows_making_problem')}}
 
 
 #    - type: custom:decluttering-card
@@ -694,10 +694,10 @@ cards:
       - "Very Heavy Shower"
       - "Violent Shower"
       entities:
-      - variable.posta_variable
-      - variable.dhl_variable
-      - variable.dpd_variable
-      - variable.gls_variable
+      - sensor.posta_variable
+      - sensor.dhl_variable
+      - sensor.dpd_variable
+      - sensor.gls_variable
       - sensor.bio_odpad_day
       - sensor.bike_day
       - binary_sensor.back_door
@@ -1338,18 +1338,18 @@ cards:
               - padding-top: 22px
               - padding-bottom: 10px
               - font-size: 24px
-        - type: custom:mod-card
-          report_size: 2
-          card:
-            type: 'custom:atomic-calendar-revive'
-            entities:
-              - entity: calendar.alena_and_seans_calendar
-            showWeekDay: true
-            maxDaysToShow: 3
-            showLoader: false
-            eventTitleSize: 100
-            timeSize: 100
-            dateSize: 100
+#        - type: custom:mod-card
+#          report_size: 2
+#          card:
+        - type: 'custom:atomic-calendar-revive'
+          entities:
+            - entity: calendar.alena_and_seans_calendar
+          showWeekDay: true
+          maxDaysToShow: 3
+          showLoader: false
+          eventTitleSize: 100
+          timeSize: 100
+          dateSize: 100
 
     - type: entity-filter
       card:
@@ -1872,14 +1872,14 @@ cards:
 #            left: 20%
 #            top: 44%
 #        - type: state-label  
-##          entity: variable.czechia_coronavirus_new_yesterday
-#          entity: variable.czechia_coronavirus_new_day_before
+##          entity: sensor.czechia_coronavirus_new_yesterday
+#          entity: sensor.czechia_coronavirus_new_day_before
 #          style:
 #            font-size: large
 #            left: 51%
 #            top: 44%
 #        - type: state-label  
-#          entity: variable.czechia_coronavirus_new_backup
+#          entity: sensor.czechia_coronavirus_new_backup
 #          style:
 #            font-size: large
 #            left: 82%

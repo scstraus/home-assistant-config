@@ -20,7 +20,7 @@
             - thu
             - fri
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Bike Day"
       message: "It's a good day to ride your bike to work today!"
@@ -314,7 +314,7 @@
     entity_id: sensor.speedtest_upload
     below: 0.25
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Internet is Severely Limited"
       message: "The upload speed of the internet is below 250kbit"
@@ -329,7 +329,7 @@
     entity_id: sensor.speedtest_upload
     above: 1
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Internet is Normal"
       message: "The upload speed of the internet is above 1 mbit"
@@ -367,7 +367,7 @@
           - condition: template
             value_template: "{{ now().strftime('%m')|int > 8 or now().strftime('%m')|int < 7 }}"
   action:
-    - service: notify.mobile_app_sean_s_iphone_14
+    - service: notify.mobile_app_sean_iphone_14
       data:
         title: "Sophie is Up Late"
         message: "Sophie is Up Late"
@@ -547,7 +547,7 @@
     condition: template
     value_template: '{{ state_attr("sensor.ical_czech_holidays_event_0", "eta") == 7 }}'
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "State Holiday Coming Up"
       message: "In one week, it is {{ states('sensor.ical_czech_holidays_event_0')}}"
@@ -565,7 +565,7 @@
     condition: template
     value_template: '{{ state_attr("sensor.ical_czech_holidays_event_0", "eta") == 1 }}'
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "State Holiday Coming Up"
       message: "Tomorrow it is {{ states('sensor.ical_czech_holidays_event_0')}}"
@@ -583,7 +583,7 @@
     condition: template
     value_template: '{{ state_attr("sensor.ical_czech_holidays_event_0, "eta") == 0 }}'
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "State Holiday Today"
       message: "Today it is {{ states('sensor.ical_czech_holidays_event_0')}}, you don't need to go to work!"
@@ -628,28 +628,28 @@
   trigger:
     platform: state
 #    entity_id: variable.czechia_coronavirus_new_day_before
-    entity_id: variable.czechia_coronavirus_new_yesterday
+    entity_id: sensor.czechia_coronavirus_new_yesterday
   action:
     service: variable.set_variable
     data:
       variable: czechia_coronavirus_new_backup
       value: >
-          {{ states('variable.czechia_coronavirus_new_yesterday')}}
+          {{ states('sensor.czechia_coronavirus_new_yesterday')}}
       attributes:
-          history_1_day: "{{states('variable.czechia_coronavirus_new_yesterday')}}"
-          history_2_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_1_day')}}"
-          history_3_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_2_day')}}"
-          history_4_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_3_day')}}"
-          history_5_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_4_day')}}"
-          history_6_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_5_day')}}"
-          history_7_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_6_day')}}"
-          history_8_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_7_day')}}"
-          history_9_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_8_day')}}"
-          history_10_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_9_day')}}"
-          history_11_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_10_day')}}"
-          history_12_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_11_day')}}"
-          history_13_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_12_day')}}"
-          history_14_day: "{{state_attr('variable.czechia_coronavirus_new_backup','history_13_day')}}"
+          history_1_day: "{{states('sensor.czechia_coronavirus_new_yesterday')}}"
+          history_2_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_1_day')}}"
+          history_3_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_2_day')}}"
+          history_4_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_3_day')}}"
+          history_5_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_4_day')}}"
+          history_6_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_5_day')}}"
+          history_7_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_6_day')}}"
+          history_8_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_7_day')}}"
+          history_9_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_8_day')}}"
+          history_10_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_9_day')}}"
+          history_11_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_10_day')}}"
+          history_12_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_11_day')}}"
+          history_13_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_12_day')}}"
+          history_14_day: "{{state_attr('sensor.czechia_coronavirus_new_backup','history_13_day')}}"
 
 - id: backup_coronavirus_deaths
   alias: backup_coronavirus_deaths
@@ -664,14 +664,14 @@
       value: >
           {{ states('sensor.czechia_coronavirus_deaths')}}
       attributes:
-          history_1_day: "{{states('variable.czechia_coronavirus_total_deaths')}}"
-          history_2_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_1_day')}}"
-          history_3_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_2_day')}}"
-          history_4_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_3_day')}}"
-          history_5_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_4_day')}}"
-          history_6_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_5_day')}}"
-          history_7_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_6_day')}}"
-          history_8_day: "{{state_attr('variable.czechia_coronavirus_total_deaths','history_7_day')}}"
+          history_1_day: "{{states('sensor.czechia_coronavirus_total_deaths')}}"
+          history_2_day: "{{state_attr('sensor.czechia_coronavirus_total_deaths','history_1_day')}}"
+          history_3_day: "{{state_attr('sensor.czechia_coronavirus_total_deaths','history_2_day')}}"
+          history_4_day: "{{state_attr('sensor.czechia_coronavirus_total_deaths','history_3_day')}}"
+          history_5_day: "{{state_attr('sensor.czechia_coronavirus_total_deaths','history_4_day')}}"
+          history_6_day: "{{state_attr('sensor.czechia_coronavirus_total_deaths','history_5_day')}}"
+          history_7_day: "{{state_attr('sensor.czechia_coronavirus_total_deaths','history_6_day')}}"
+          history_8_day: "{{state_attr('sensor.czechia_coronavirus_total_deaths','history_7_day')}}"
          
           
 #          {{ states('sensor.coronavirus_new_cases_cz')}}
@@ -690,7 +690,7 @@
     data:
       variable: czechia_coronavirus_new_day_before
       value: >
-          {{ states('variable.czechia_coronavirus_new_backup')}}
+          {{ states('sensor.czechia_coronavirus_new_backup')}}
 
 - id: preserve_yesterdays_coronavirus_cases
   alias: "Preserve Yesterday's Coronavirus Cases"
@@ -717,12 +717,12 @@
       data:
         variable: czechia_coronavirus_new_yesterday
         value: >
-            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('sensor.czechia_coronavirus_yesterday'))|int }}
     - service: variable.set_variable
       data:
         variable: czechia_coronavirus_new_yesterday_units
         value: >
-            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('sensor.czechia_coronavirus_yesterday'))|int }}
 
 - id: calculate_coronavirus_delta_today
   alias: "Calculate Change in Coronavirus Cases Today"
@@ -735,12 +735,12 @@
       data:
         variable: czechia_coronavirus_new_today
         value: >
-            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('sensor.czechia_coronavirus_yesterday'))|int }}
     - service: variable.set_variable
       data:
         variable: czechia_coronavirus_new_today_units
         value: >
-            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('variable.czechia_coronavirus_yesterday'))|int }}
+            {{ (states('sensor.czechia_coronavirus_confirmed'))|int - (states('sensor.czechia_coronavirus_yesterday'))|int }}
 
 - id: reminders_label_update
   alias: reminders_label_update
@@ -762,7 +762,7 @@
     entity_id: 'sensor.narnia_raid_status'
     state: 'Degraded'
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "RAID Warning"
       message: "The RAID Array on Narnia is Degraded"
@@ -1008,7 +1008,7 @@
     entity_id: 'sensor.bio_odpad_day'
     state: 'Today'
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Take in the mail"
       message: "Hey as long as you are coming home, you might as well check the mailbox."
@@ -1101,7 +1101,7 @@
     event_type: alexa_media_relogin_required
   condition: []
   action:
-  - service: notify.mobile_app_sean_s_iphone_14
+  - service: notify.mobile_app_sean_iphone_14
     data:
       title: "Alexa Needs Authentication"
       message: "Alexa Media's authentication has expired, please renew it"
@@ -1206,7 +1206,7 @@
           value_template: >
             {{ is_state('device_tracker.seans_iphone_14', 'home') and ((now() - states.device_tracker.seans_iphone_14.total_seconds()) < 6*60) and is_state('binary_sensor.car_needs_charging', 'Charge It') }}
         sequence:
-          - service: notify.mobile_app_sean_s_iphone_14
+          - service: notify.mobile_app_sean_iphone_14
             data:
               title: "Plug Car In"
               message: "The car needs to be charged, please plug it in."
@@ -1289,7 +1289,7 @@
 #    - condition: time
 #      before: "21:00:00"
 #  action:
-#    - service: notify.mobile_app_sean_s_iphone_14
+#    - service: notify.mobile_app_sean_iphone_14
 #      data:
 #        title: "Curains Opening"
 #        message: "Curtains would be opening now"
@@ -1307,7 +1307,7 @@
 #    - platform: time
 #      at: "21:00:00"
 #  action:
-#    - service: notify.mobile_app_sean_s_iphone_14
+#    - service: notify.mobile_app_sean_iphone_14
 #      data:
 #        title: "Curains Closing"
 #        message: "Curtains would be closing now"  

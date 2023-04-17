@@ -702,7 +702,7 @@
   - condition: template
     value_template: "{{ not is_state('device_tracker.seans_iphone_14', 'Traveling') }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Alena Left Yoga"
       message: "Alena Left Yoga"
@@ -726,7 +726,7 @@
       - condition: template
         value_template: "{{ (as_timestamp(now())-as_timestamp(states.device_tracker.seans_iphone_14.last_changed)) > 120 }}"
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Alena's Home"
       message: "Alena's Almost Arrived"
@@ -875,7 +875,7 @@
          (now().strftime('%M')|int <= 36 and
          now().strftime('%M')|int >= 28)) and (not is_state('sensor.sean_activity', 'Automotive')) }}
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Ferry Notification"
       message: "It's a good time to grab the ferry to work"
@@ -899,7 +899,7 @@
          (now().strftime('%M')|int <= 40 and
          now().strftime('%M')|int >= 32) }}
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Ferry Notification"
       message: "It's a good time to grab the ferry from work"
@@ -921,7 +921,7 @@
     entity_id: device_tracker.seans_iphone_14
     state: 'home'
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Alena's Heading Home"
       message: "Alena is Heading Home and should arrive in about {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving"
@@ -954,7 +954,7 @@
     value_template: >
       {{ "Udoli" in states('device_tracker.seans_iphone_14') }} 
   action:
-    service: notify.mobile_app_sean_s_iphone_14
+    service: notify.mobile_app_sean_iphone_14
     data:
       title: "Getting Dark in Udoli"
       message: "The sun is setting. It will be dark soon. It's time to leave the udoli"

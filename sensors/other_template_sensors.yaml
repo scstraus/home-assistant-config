@@ -952,36 +952,36 @@
         unit_of_measurement: "Annual Death Rate/100k"
         value_template: >-
           {{ 
-          ((((state_attr('variable.czechia_coronavirus_total_deaths', 'history_1_day')|int)-
-          (state_attr('variable.czechia_coronavirus_total_deaths', 'history_8_day')|int))/
-          ((state_attr('variable.czechia_coronavirus_new_backup', 'history_8_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_9_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_10_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_11_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_12_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_13_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_14_day')|int))*
-          (((state_attr('variable.czechia_coronavirus_new_backup', 'history_1_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_2_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_3_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_4_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_5_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_6_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_7_day')|int))/
-          ((state_attr('variable.czechia_coronavirus_new_backup', 'history_8_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_9_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_10_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_11_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_12_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_13_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_14_day')|int)))*
-          (((state_attr('variable.czechia_coronavirus_new_backup', 'history_1_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_2_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_3_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_4_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_5_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_6_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_7_day')|int))))*52)/107.42625
+          ((((state_attr('sensor.czechia_coronavirus_total_deaths', 'history_1_day')|int)-
+          (state_attr('sensor.czechia_coronavirus_total_deaths', 'history_8_day')|int))/
+          ((state_attr('sensor.czechia_coronavirus_new_backup', 'history_8_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_9_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_10_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_11_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_12_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_13_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_14_day')|int))*
+          (((state_attr('sensor.czechia_coronavirus_new_backup', 'history_1_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_2_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_3_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_4_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_5_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_6_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_7_day')|int))/
+          ((state_attr('sensor.czechia_coronavirus_new_backup', 'history_8_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_9_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_10_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_11_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_12_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_13_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_14_day')|int)))*
+          (((state_attr('sensor.czechia_coronavirus_new_backup', 'history_1_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_2_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_3_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_4_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_5_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_6_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_7_day')|int))))*52)/107.42625
           }}
 
   - platform: template
@@ -992,8 +992,8 @@
           mdi:virus
         value_template: >-
           {{ 
-          ((state_attr('variable.czechia_coronavirus_total_deaths', 'history_1_day')|int)-
-          (state_attr('variable.czechia_coronavirus_total_deaths', 'history_8_day')|int))
+          ((state_attr('sensor.czechia_coronavirus_total_deaths', 'history_1_day')|int)-
+          (state_attr('sensor.czechia_coronavirus_total_deaths', 'history_8_day')|int))
           }}
 
   - platform: template
@@ -1004,13 +1004,13 @@
           mdi:virus
         value_template: >-
           {{ 
-          ((state_attr('variable.czechia_coronavirus_new_backup', 'history_8_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_9_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_10_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_11_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_12_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_13_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_14_day')|int))
+          ((state_attr('sensor.czechia_coronavirus_new_backup', 'history_8_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_9_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_10_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_11_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_12_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_13_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_14_day')|int))
           }}
 
   - platform: template
@@ -1021,13 +1021,13 @@
           mdi:virus
         value_template: >-
           {{ 
-          ((state_attr('variable.czechia_coronavirus_new_backup', 'history_1_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_2_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_3_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_4_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_5_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_6_day')|int)+
-          (state_attr('variable.czechia_coronavirus_new_backup', 'history_7_day')|int))
+          ((state_attr('sensor.czechia_coronavirus_new_backup', 'history_1_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_2_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_3_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_4_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_5_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_6_day')|int)+
+          (state_attr('sensor.czechia_coronavirus_new_backup', 'history_7_day')|int))
           }}
        
        

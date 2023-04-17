@@ -262,7 +262,7 @@
     - data:
         title: "Dishwasher Update"
         message: "Looks like you left the dishwasher door open"
-      service: notify.mobile_app_sean_s_iphone_14
+      service: notify.mobile_app_sean_iphone_14
 
 
 - id: dishwasher_running_door_open_input_boolean_on

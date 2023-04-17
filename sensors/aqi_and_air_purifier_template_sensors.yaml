@@ -4,7 +4,7 @@
         friendly_name: "Sebastian's Room Air Quality"
         value_template: >-
           {% if states('sensor.sebastians_room_air_purifier_pm2_5')|float == 0 %}
-            {{ states('variable.sebastians_room_aqi') }}  
+            {{ states('sensor.sebastians_room_aqi') }}  
           {% elif states('sensor.sebastians_room_air_purifier_pm2_5')|float < 15.401 %}           {{(((state_attr('fan.sebastians_room_air_purifier', 'aqi')|float * 3.24675324675)|float)*1)|round|int }}
           {% elif states('sensor.sebastians_room_air_purifier_pm2_5')|float < 40.401 %}
             {{(((51+(states('sensor.sebastians_room_air_purifier_pm2_5')-15.5)|float * 1.96787148594)|float)*1)|round|int }}
@@ -25,7 +25,7 @@
         friendly_name: "Sebastian's Room Air Quality Description"
         value_template: >-
           {% if states('sensor.sebastians_room_air_purifier_pm2_5')|float == 0 %}
-            {{ states('variable.sebastians_room_aqi_description') }}  
+            {{ states('sensor.sebastians_room_aqi_description') }}  
           {% elif states('sensor.sebastians_room_air_purifier_pm2_5')|float < 15.401 %}
             {{(((states('sensor.sebastians_room_air_purifier_pm2_5')|float * 3.24675324675)|float)*1)|round|int }} (Good)
           {% elif states('sensor.sebastians_room_air_purifier_pm2_5')|float < 40.401 %}
@@ -49,7 +49,7 @@
         friendly_name: "Sophie's Room Air Quality"
         value_template: >-
           {% if states('sensor.sophies_room_air_purifier_pm2_5')|float == 0 %}
-            {{ states('variable.sophies_room_aqi') }}  
+            {{ states('sensor.sophies_room_aqi') }}  
           {% elif states('sensor.sophies_room_air_purifier_pm2_5')|float < 15.401 %}
             {{(((states('sensor.sophies_room_air_purifier_pm2_5')|float * 3.24675324675)|float)*1)|round|int }}
           {% elif states('sensor.sophies_room_air_purifier_pm2_5')|float < 40.401 %}
@@ -71,7 +71,7 @@
         friendly_name: "Sophie's Room Air Quality Description"
         value_template: >-
           {% if states('sensor.sophies_room_air_purifier_pm2_5')|float == 0 %}
-            {{ states('variable.sophies_room_aqi_description') }}  
+            {{ states('sensor.sophies_room_aqi_description') }}  
           {% elif states('sensor.sophies_room_air_purifier_pm2_5')|float < 15.401 %}
             {{(((states('sensor.sophies_room_air_purifier_pm2_5')|float * 3.24675324675)|float)*1)|round|int }} (Good)
           {% elif states('sensor.sophies_room_air_purifier_pm2_5')|float < 40.401 %}
@@ -115,7 +115,7 @@
         friendly_name: "Master Bedroom Air Quality Description"
         value_template: >-
           {% if states('sensor.master_bedroom_air_purifier_pm2_5')|float == 0 %}
-            {{ states('variable.master_bedroom_aqi_description') }}  
+            {{ states('sensor.master_bedroom_aqi_description') }}  
           {% elif states('sensor.master_bedroom_air_purifier_pm2_5')|float < 15.401 %}
             {{(((states('sensor.master_bedroom_air_purifier_pm2_5')|float * 3.24675324675)|float)*1)|round|int }} (Good)
           {% elif states('sensor.master_bedroom_air_purifier_pm2_5')|float < 40.401 %}
