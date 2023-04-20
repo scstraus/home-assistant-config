@@ -35,7 +35,7 @@
           entity_id: 'sensor.bio_odpad_day'
           state: 'Tomorrow'
   action:
-    service: notify.mobile_app_alena_s_iphone
+    service: notify.mobile_app_alenas_iphone
     data:
       title: "Bio Odpad Tomorrow"
       message: "Bio odpad should be taken out today or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
@@ -79,7 +79,7 @@
           entity_id: 'sensor.trash_day'
           state: 'Tomorrow'
   action:
-    service: notify.mobile_app_alena_s_iphone
+    service: notify.mobile_app_alenas_iphone
     data:
       title: "Trash Tomorrow"
       message: "Trash should be taken out today or tomorrow for collection on {% if now().weekday() in (5,)  %}Monday{% elif now().weekday() in (6,)  %}Tuesday{% elif now().weekday() in (0,)  %}Wednesday{% elif now().weekday() in (1,)  %}Thursday{% elif now().weekday() in (2,)  %}Friday{% elif now().weekday() in (3,)  %}Saturday{% elif now().weekday() in (4,)  %}Sunday{% endif %} morning"
@@ -123,7 +123,7 @@
           entity_id: 'sensor.bio_odpad_day'
           state: 'Today'
   action:
-    service: notify.mobile_app_alena_s_iphone
+    service: notify.mobile_app_alenas_iphone
     data:
       title: "Bio Odpad Today"
       message: "Bio odpad should be taken out today for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
@@ -172,7 +172,7 @@
           entity_id: 'sensor.trash_day'
           state: 'Today'
   action:
-    service: notify.mobile_app_alena_s_iphone
+    service: notify.mobile_app_alenas_iphone
     data:
       title: "Trash Day Today"
       message: "Trash should be taken out today for collection on {% if now().weekday() in (6,)  %}Monday{% elif now().weekday() in (0,)  %}Tuesday{% elif now().weekday() in (1,)  %}Wednesday{% elif now().weekday() in (2,)  %}Thursday{% elif now().weekday() in (3,)  %}Friday{% elif now().weekday() in (4,)  %}Saturday{% elif now().weekday() in (5,)  %}Sunday{% endif %} morning"
@@ -270,7 +270,7 @@
       entity_id: 'input_boolean.trash_needs_taking_out'
       state: 'on'
   action:
-    service: notify.mobile_app_alena_s_iphone
+    service: notify.mobile_app_alenas_iphone
     data:
       title: "Take out that trash!"
       message: "Hello there, today is trash day and now would be a really great time to take out the trash, what do you think? Let's do it, what do you say?!?"
@@ -347,7 +347,7 @@
     entity_id: 'sensor.bio_odpad_day'
     state: 'Today'
   action:
-    service: notify.mobile_app_alena_s_iphone
+    service: notify.mobile_app_alenas_iphone
     data:
       title: "Take out that bio odpad!"
       message: "Hello there, now would be a really great time to take out the bio odpad, what do you think? Let's do it, what do you say?!?"

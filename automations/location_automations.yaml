@@ -695,7 +695,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.alena_s_iphone
+    entity_id: device_tracker.alenas_iphone
     from: 'Yoga'
     to: 'not_home'
   condition:
@@ -715,7 +715,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.alena_s_iphone
+    entity_id: device_tracker.alenas_iphone
     to: 'home'
   condition:  
     - condition: and
@@ -976,9 +976,9 @@
   condition:    
     condition: template
     value_template: >
-      {{ "Udoli" in states('device_tracker.alena_s_iphone') }} 
+      {{ "Udoli" in states('device_tracker.alenas_iphone') }} 
   action:
-    service: notify.mobile_app_alena_s_iphone
+    service: notify.mobile_app_alenas_iphone
     data:
       title: "Getting Dark in Udoli"
       message: "The sun is setting. It will be dark soon. It's time to leave the udoli"

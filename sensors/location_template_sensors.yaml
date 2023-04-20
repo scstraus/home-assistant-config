@@ -67,57 +67,57 @@
       alena_location:
         friendly_name: "Mama Is:"
         value_template: >-          
-          {% if is_state('device_tracker.alena_s_iphone', 'home') %}
+          {% if is_state('device_tracker.alenas_iphone', 'home') %}
             Home
-          {% elif is_state('device_tracker.alena_s_iphone', 'Andel') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Andel') %}
             At Andel
-          {% elif is_state('device_tracker.alena_s_iphone', 'WineFood') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'WineFood') %}
             At WineFood
-          {% elif is_state('device_tracker.alena_s_iphone', 'Hornbach') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Hornbach') %}
             At Hornbach
-          {% elif is_state('device_tracker.alena_s_iphone', 'Ikea') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Ikea') %}
             At Ikea
-          {% elif is_state('device_tracker.alena_s_iphone', 'Billa') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Billa') %}
             At Billa
-          {% elif is_state('device_tracker.alena_s_iphone', 'BioStore') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'BioStore') %}
             At Bio Store
-          {% elif is_state('device_tracker.alena_s_iphone', 'Posta') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Posta') %}
             At Posta
-          {% elif is_state('device_tracker.alena_s_iphone', 'Yoga') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Yoga') %}
             At Yoga
-          {% elif is_state('device_tracker.alena_s_iphone', 'LittleGym') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'LittleGym') %}
             At Little Gym
-          {% elif is_state('device_tracker.alena_s_iphone', 'ParklaneValdejnska') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'ParklaneValdejnska') %}
             At Parklane Valdejnska
-          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp6') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp6') %}
             At CMC in P6
-          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp4') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp4') %}
             At CMC in P4
-          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp5') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp5') %}
             At CMC in P5
-          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp4') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'EUCp4') %}
             At EUC in P4
-          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp1') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'EUCp1') %}
             At EUC in P1
-          {% elif is_state('device_tracker.alena_s_iphone', 'Zlichov') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Zlichov') %}
             At Zlichov
-          {% elif is_state('device_tracker.alena_s_iphone', 'Malostranska') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Malostranska') %}
             At Malostranska
-          {% elif is_state('device_tracker.alena_s_iphone', 'OB-GYN') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'OB-GYN') %}
             At OB-GYN
-          {% elif is_state('device_tracker.alena_s_iphone', 'Climbing') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Climbing') %}
             At Climbing
-          {% elif is_state('device_tracker.alena_s_iphone', 'CernyKohout') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'CernyKohout') %}
             At Černy Kohout
-          {% elif is_state('device_tracker.alena_s_iphone', 'HlubocepyCenter') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'HlubocepyCenter') %}
             In Old Hlubočepy
-          {% elif "ToUdoli" in states('device_tracker.alena_s_iphone') and is_state('sensor.alena_direction_of_travel', 'away_from') %}
+          {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'away_from') %}
             To Udoli
-          {% elif "ToUdoli" in states('device_tracker.alena_s_iphone') and is_state('sensor.alena_direction_of_travel', 'stationary') %}
+          {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'stationary') %}
             To/from Udoli
-          {% elif "ToUdoli" in states('device_tracker.alena_s_iphone') and is_state('sensor.alena_direction_of_travel', 'towards') %}
+          {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'towards') %}
             From Udoli
-          {% elif "Udoli" in states('device_tracker.alena_s_iphone') %}
+          {% elif "Udoli" in states('device_tracker.alenas_iphone') %}
             In Udoli
           {% elif states('proximity.alena_home')|float > 120 %}
             Traveling
@@ -131,75 +131,75 @@
             Somewhere
           {% endif %}
         icon_template: >-
-          {% if is_state('device_tracker.alena_s_iphone', 'home') %}
+          {% if is_state('device_tracker.alenas_iphone', 'home') %}
             mdi:home
-          {% elif is_state('device_tracker.alena_s_iphone', 'Andel') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Andel') %}
             mdi:cart
-          {% elif is_state('device_tracker.alena_s_iphone', 'WineFood') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'WineFood') %}
             mdi:cart
-          {% elif is_state('device_tracker.alena_s_iphone', 'Hornbach') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Hornbach') %}
             mdi:cart
-          {% elif is_state('device_tracker.alena_s_iphone', 'Ikea') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Ikea') %}
             mdi:cart
-          {% elif is_state('device_tracker.alena_s_iphone', 'Billa') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Billa') %}
             mdi:cart
-          {% elif is_state('device_tracker.alena_s_iphone', 'BioStore') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'BioStore') %}
             mdi:cart
-          {% elif is_state('device_tracker.alena_s_iphone', 'Posta') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Posta') %}
             mdi:email
-          {% elif is_state('device_tracker.alena_s_iphone', 'Yoga') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Yoga') %}
             mdi:human-handsup
-          {% elif is_state('device_tracker.alena_s_iphone', 'LittleGym') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'LittleGym') %}
             mdi:human-handsup
-          {% elif is_state('device_tracker.alena_s_iphone', 'Traveling') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Traveling') %}
             mdi:airplane
-          {% elif is_state('device_tracker.alena_s_iphone', 'ParklaneValdstejnska') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'ParklaneValdstejnska') %}
             mdi:school
-          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp6') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp6') %}
             mdi:stethoscope
-          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp4') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp4') %}
             mdi:stethoscope
-          {% elif is_state('device_tracker.alena_s_iphone', 'CMCp5') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'CMCp5') %}
             mdi:stethoscope
-          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp4') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'EUCp4') %}
             mdi:stethoscope
-          {% elif is_state('device_tracker.alena_s_iphone', 'EUCp1') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'EUCp1') %}
             mdi:stethoscope
-          {% elif is_state('device_tracker.alena_s_iphone', 'Zlichov') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Zlichov') %}
             mdi:tram
-          {% elif is_state('device_tracker.alena_s_iphone', 'Malostranska') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Malostranska') %}
             mdi:tram
-          {% elif is_state('device_tracker.alena_s_iphone', 'OB-GYN') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'OB-GYN') %}
             mdi:stethoscope
-          {% elif is_state('device_tracker.alena_s_iphone', 'Climbing') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Climbing') %}
             mdi:carabiner
-          {% elif is_state('device_tracker.alena_s_iphone', 'Udoli Turnaround') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'Udoli Turnaround') %}
             mdi:redo-variant
-          {% elif is_state('device_tracker.alena_s_iphone', 'UdoliBetweenBridges') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'UdoliBetweenBridges') %}
             mdi:bridge
-          {% elif is_state('device_tracker.alena_s_iphone', 'UdoliBoat') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'UdoliBoat') %}
             mdi:ferry
-          {% elif is_state('device_tracker.alena_s_iphone', 'UdoliGoats') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'UdoliGoats') %}
             mdi:sheep
-          {% elif is_state('device_tracker.alena_s_iphone', 'UdoliLake') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'UdoliLake') %}
             mdi:duck
-          {% elif is_state('device_tracker.alena_s_iphone', 'UdoliMilitary') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'UdoliMilitary') %}
             mdi:tank
-          {% elif is_state('device_tracker.alena_s_iphone', 'UdoliMeadow') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'UdoliMeadow') %}
             mdi:grass
-          {% elif is_state('device_tracker.alena_s_iphone', 'UdoliStart') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'UdoliStart') %}
             mdi:ray-start-arrow
-          {% elif is_state('device_tracker.alena_s_iphone', 'UdoliTrain+Cave') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'UdoliTrain+Cave') %}
             mdi:seesaw
-          {% elif is_state('device_tracker.alena_s_iphone', 'CernyKohout') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'CernyKohout') %}
             mdi:food-turkey
-          {% elif is_state('device_tracker.alena_s_iphone', 'HlubocepyCenter') %}
+          {% elif is_state('device_tracker.alenas_iphone', 'HlubocepyCenter') %}
             mdi:city
-          {% elif "ToUdoli" in states('device_tracker.alena_s_iphone') and is_state('sensor.alena_direction_of_travel', 'away_from') %}
+          {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'away_from') %}
             mdi:walk
-          {% elif "ToUdoli" in states('device_tracker.alena_s_iphone') and is_state('sensor.alena_direction_of_travel', 'stationary') %}
+          {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'stationary') %}
             mdi:walk
-          {% elif "ToUdoli" in states('device_tracker.alena_s_iphone') and is_state('sensor.alena_direction_of_travel', 'towards') %}
+          {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'towards') %}
             mdi:walk
           {% elif is_state('sensor.alena_direction_of_travel', 'stationary') %}
             mdi:help
@@ -355,11 +355,11 @@
             mdi:food-turkey
           {% elif is_state('device_tracker.sophie', 'HlubocepyCenter') %}
             mdi:city
-          {% elif "ToUdoli" in states('device_tracker.alena_s_iphone') and is_state('sensor.alena_direction_of_travel', 'away_from') %}
+          {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'away_from') %}
             mdi:walk
-          {% elif "ToUdoli" in states('device_tracker.alena_s_iphone') and is_state('sensor.alena_direction_of_travel', 'stationary') %}
+          {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'stationary') %}
             mdi:walk
-          {% elif "ToUdoli" in states('device_tracker.alena_s_iphone') and is_state('sensor.alena_direction_of_travel', 'towards') %}
+          {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'towards') %}
             mdi:walk
           {% elif states('proximity.sophie_home')|float > 120 %}
             mdi:airplane

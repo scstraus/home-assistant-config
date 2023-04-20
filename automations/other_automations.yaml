@@ -355,7 +355,7 @@
             before: '5:00:00'
           - condition: template
             value_template: "{{ not is_state('device_tracker.seans_iphone_14', 'Traveling') }}"
-          - condition: template
+          - condition: templatealenas_iphone
             value_template: "{{ now().strftime('%m')|int > 6 or now().strftime('%m')|int < 9 }}"
       - condition: and
         conditions:
@@ -1019,14 +1019,14 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.alena_s_iphone
+    entity_id: device_tracker.alenas_iphone
     to: 'home'
   condition:
     condition: state
     entity_id: 'sensor.bio_odpad_day'
     state: 'Today'
   action:
-    service: notify.mobile_app_alena_s_iphone
+    service: notify.mobile_app_alenas_iphone
     data:
       title: "Take in the mail"
       message: "Hey as long as you are coming home, you might as well check the mailbox."
@@ -1217,9 +1217,9 @@
       - conditions:
         - condition: template
           value_template: > 
-            {{ is_state('device_tracker.alena_s_iphone', 'home') and ((now() - device_tracker.alena_s_iphone.total_seconds()) < 6*60) and is_state('binary_sensor.car_needs_charging', 'Charge It') }}
+            {{ is_state('device_tracker.alenas_iphone', 'home') and ((now() - device_tracker.alenas_iphone.total_seconds()) < 6*60) and is_state('binary_sensor.car_needs_charging', 'Charge It') }}
         sequence:
-          - service: notify.mobile_app_alena_s_iphone
+          - service: notify.mobile_app_alenas_iphone
             data:
               title: "Plug Car In"
               message: "The car needs to be charged, please plug it in."
