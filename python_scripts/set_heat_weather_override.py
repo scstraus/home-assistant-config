@@ -6,10 +6,10 @@
 #########################################################
 
 ## Grab the weather parameters ##
-LOW_TEMP = float((hass.states.get("sensor.dark_sky_overnight_low_temperature_0d")).state)
-HIGH_TEMP = float((hass.states.get("sensor.dark_sky_daytime_high_temperature_0d")).state)
-CLOUDY_DAY = ((hass.states.get("sensor.dark_sky_icon_0d")).state in ['partly-cloudy-day', 'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy'])
-SUNNY_DAY = ((hass.states.get("sensor.dark_sky_icon_0d")).state in ['clear-day'])
+LOW_TEMP = float((hass.states.get("sensor.pirateweather_overnight_low_temperature_0d")).state)
+HIGH_TEMP = float((hass.states.get("sensor.pirateweather_daytime_high_temperature_0d")).state)
+CLOUDY_DAY = ((hass.states.get("sensor.pirateweather_icon_0d")).state in ['partly-cloudy-day', 'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy'])
+SUNNY_DAY = ((hass.states.get("sensor.pirateweather_icon_0d")).state in ['clear-day'])
 ECO_MODE = (hass.states.get("input_boolean.heat_eco_mode").state)
 AWAY_MODE = (hass.states.get("input_boolean.heat_away_mode").state)
 ELECTRO_MODE = (hass.states.get("input_boolean.heat_electro_mode").state)
@@ -61,11 +61,11 @@ OVERRIDE_MINUTES = 1439
 ###########################################################################################
 
 PROFILE_AUTO = [100,100,100,100,100,100,100,100,100,100,100,100]
-PROFILE_A = [20,18,18,21,0,22,21,22,22,22,21,100]
-PROFILE_B = [19,17,17,20,0,21,21,21,21,21,21,21]
-PROFILE_C = [18,16,15,18,16,20,20,20,20,21,21,21]
-PROFILE_D = [15,15,15,15,15,15,15,15,15,18,18,19]
-PROFILE_E = [15,15,15,15,15,15,15,15,15,15,15,12]
+PROFILE_A = [20,18,13,18,0,22,20,22,22,22,21,100]
+PROFILE_B = [19,17,13,17,0,21,20,21,21,21,21,21]
+PROFILE_C = [18,16,13,16,16,20,18,20,20,21,21,21]
+PROFILE_D = [15,15,13,15,15,15,15,15,15,18,18,19]
+PROFILE_E = [15,15,13,15,15,15,15,15,15,15,15,12]
 
 ###########################################################################################
 ## Some just for the living room, you probably won't need these, you can delete them and ##
@@ -176,7 +176,7 @@ def startup_log_dump():
   logger.info("Low temp: %s",LOW_TEMP)
   logger.info("High temp: %s",HIGH_TEMP)
   logger.info("Weather Description: %s", (
-  (hass.states.get("sensor.dark_sky_icon_0d")).state))
+  (hass.states.get("sensor.pirateweather_icon_0d")).state))
   logger.info("Is cloudy: %s",CLOUDY_DAY)
   logger.info("Is sunny: %s",SUNNY_DAY)
   logger.info("Away Mode: %s",AWAY_MODE)

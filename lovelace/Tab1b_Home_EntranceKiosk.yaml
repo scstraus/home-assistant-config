@@ -399,14 +399,27 @@ cards:
       entity: sensor.trash_display
       title: "Trash Needs Taking Out"
       card:
-        type: button
+        type: 'custom:button-card'
+        entity: sensor.trash_display
         name: I took it out!
         tap_action:
           action: call-service
           service: input_boolean.turn_off
           service_data:
             entity_id: input_boolean.trash_needs_taking_out
-        entity: sensor.trash_display
+
+#    - type: custom:popup-card
+#      entity: sensor.trash_display
+#      title: "Trash Needs Taking Out"
+#      card:
+#        type: button
+#        name: I took it out!
+#        tap_action:
+#          action: call-service
+#          service: input_boolean.turn_off
+#          service_data:
+#            entity_id: input_boolean.trash_needs_taking_out
+#        entity: sensor.trash_display
 
     - type: custom:popup-card
       entity: sensor.rain_sensor
@@ -912,23 +925,46 @@ cards:
 ##      nameColor: var(--ha-card-header-color)
 
 
+#    - type: 'custom:vertical-stack-in-card'
+#      cards:
+      
+#
+#      - type: custom:platinum-weather-card
+#        card_config_version: 8
+#        entity_forecast_icon: weather.weatherflow_day_based_forecast
+#        entity_temperature: weather.weatherflow_day_based_forecast
+#        section_order:
+#          - overview
+#          - extended
+#          - slots
+#          - daily_forecast
+#        show_section_daily_forecast: false
+#        show_section_extended: false
+#        show_section_slots: false
+#        style: |
+#          ha-card {
+#            padding: 0px 0px 0px 0spx
+#            margin-bottom: -50px !important;
+#            padding-bottom: -50px !important;
+#            font-size: 18px !important;}
+#
+#      - type: glance
+#        columns: 1
+#        show_icon: false
+#        show_name: false
+#        style: |
+#          ha-card {
+#            margin-top: -25px !important;
+#            margin-bottom: -10px !important;
+#            padding-top: -55px;
+#            padding-bottom: -10px;
+#            font-size: 20px;
+#        entities:
+#          - entity: weather.weatherflow_day_based_forecast
+
     - type: 'custom:vertical-stack-in-card'
       cards:
       
-      
-
-#      - type: weather-forecast
-#        entity: weather.weatherflow_day_based_forecast
-#        name: "Prague"
-#        show_forecast: false
-#        style: |
-#          .header {
-#            padding-top: 12px !important;
-#          }
-#          .content {
-#            padding-bottom: 12px !important;
-#          }
-
       - type: custom:platinum-weather-card
         card_config_version: 8
         entity_forecast_icon: weather.weatherflow_day_based_forecast
@@ -946,21 +982,36 @@ cards:
             padding: 0px 0px 0px 0spx
             margin-bottom: -50px !important;
             padding-bottom: -50px !important;
-            font-size: 18px !important;}
+            font-size: 18px !important;
+            border-radius: none !important;
+            box-shadow: none !important;}
 
-      - type: glance
-        columns: 1
-        show_icon: false
-        show_name: false
+      - type: custom:state-switch
         style: |
           ha-card {
-            margin-top: -25px !important;
-            margin-bottom: -10px !important;
-            padding-top: -55px;
-            padding-bottom: -10px;
-            font-size: 20px;
-        entities:
-          - entity: weather.weatherflow_day_based_forecast
+
+            border-radius: none !important;
+            box-shadow: none !important;
+        entity: weather.weatherflow_day_based_forecast
+        default: default
+        states:
+          default:
+            type: glance
+            columns: 1
+            show_icon: false
+            show_name: false
+            style: |
+              ha-card {
+                border-radius: none !important;
+                box-shadow: none !important;
+                margin-top: -57px !important;
+                margin-bottom: -50px !important;
+                padding-top: -57px;
+                padding-bottom: -25px;
+                font-size: 20px;
+            entities:
+              - entity: weather.weatherflow_day_based_forecast
+
 
 
       ## Today Weather Details - Names

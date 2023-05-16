@@ -15,7 +15,7 @@
           name: "EN-US-Daisy-Garage-Door-Open.wav"
         thread-id: "info"
     notifiers:
-      - mobile_app_alena_s_iphone
+      - mobile_app_alena_s_iphone_2
 
 
   garage_door_sean:
@@ -55,7 +55,7 @@
           name: "EN-US-Daisy-Front-Door-Open.wav"
         thread-id: "info"
     notifiers:
-      - mobile_app_alena_s_iphone
+      - mobile_app_alena_s_iphone_2
 
   front_door_sean:
     name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
@@ -89,7 +89,7 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - mobile_app_alena_s_iphone
+      - mobile_app_alena_s_iphone_2
     data:
       push:
         thread-id: "weather"
@@ -125,7 +125,7 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - mobile_app_alena_s_iphone
+      - mobile_app_alena_s_iphone_2
     data:
       push:
         thread-id: "weather"
@@ -192,7 +192,7 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - mobile_app_alena_s_iphone
+      - mobile_app_alena_s_iphone_2
     data:
       push:
         thread-id: "info"

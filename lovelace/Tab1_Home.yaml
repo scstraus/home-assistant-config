@@ -395,20 +395,70 @@ cards:
           <br />
           <br />
           <br />
+## attempting to fix the card below it that's commented out in 2023.4
 
+#  - type: custom:popup-card
+#    entity: sensor.trash_display
+#    title: "Trash Needs Taking Out"
+#    card:
+#      type: button
+#      name: 'I took it out!'
+#      show_name: true
+#      tap_action:
+#          action: call-service
+#          service: input_boolean.turn_off
+#          service_data:
+#            entity_id: input_boolean.trash_needs_taking_out
+#      entity: sensor.trash_display
+
+
+#      type: entities
+#      title: Basement
+#      show_header_toggle: false
+#      entities:
+#      - climate.garage
+#      - climate.laundry_room
+    
+    
+#      - type: markdown
+#        content: |
+#          <br />
+#          <br />
+#          <br />
+#          <br />
+#          <br />
+#          <br />
+#          <br />
+#          <br />
+#          <br />
+#          <br />
+
+#
+#  - type: custom:popup-card
+#    entity: sensor.trash_display
+#    title: "Trash Needs Taking Out"
+#    card:
+#      type: button
+#      name: I took it out!
+#      tap_action:
+#        action: call-service
+#        service: input_boolean.turn_off
+#        service_data:
+#          entity_id: input_boolean.trash_needs_taking_out
+#      entity: sensor.trash_display
 
   - type: custom:popup-card
     entity: sensor.trash_display
     title: "Trash Needs Taking Out"
     card:
-      type: button
+      type: 'custom:button-card'
+      entity: sensor.trash_display
       name: I took it out!
       tap_action:
         action: call-service
         service: input_boolean.turn_off
         service_data:
           entity_id: input_boolean.trash_needs_taking_out
-      entity: sensor.trash_display
 
   - type: custom:popup-card
     entity: sensor.rain_sensor
@@ -682,6 +732,15 @@ cards:
     - "yes"
     show_empty: false
     
+#  - type: button
+#    name: I took it out!
+#    tap_action:
+#      action: call-service
+#      service: input_boolean.turn_off
+#      data:
+#        entity_id: input_boolean.trash_needs_taking_out
+
+
   - type: custom:auto-entities
     show_empty: false
     card:
@@ -767,6 +826,7 @@ cards:
 #    - "failing"
 #    - "access error"
 #    show_empty: false
+
 
   - type: entity-filter
     card:

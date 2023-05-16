@@ -164,6 +164,11 @@ lovelace:
       type: js
     - url: /hacsfiles/platinum-weather-card/platinum-weather-card.js
       type: module
+    - url: /hacsfiles/clock-weather-card/clock-weather-card.js
+      type: module
+#    - url: /hacsfiles/lovelace-hourly-weather/hourly-weather.js
+#      type: module
+#                                
                 
                 
 
@@ -1016,7 +1021,6 @@ proximity:
       - device_tracker.seans_iphone_14
       - device_tracker.alena_s_iphone
       - device_tracker.sophie
-      - device_tracker.sophies_iphhshshshs
     tolerance: 50
     unit_of_measurement: km
   sean_home: 
@@ -1054,13 +1058,13 @@ notify:
     platform: group
     services:
       - service: mobile_app_seans_iphone_14
-      - service: mobile_app_alena_s_iphone
+      - service: mobile_app_alena_s_iphone_2
   - name: whole_family
     platform: group
     services:
       - service: mobile_app_seans_iphone_14
-      - service: mobile_app_alena_s_iphone
-      - service: mobile_app_sophies_iphone_6
+      - service: mobile_app_alena_s_iphone_2
+      - service: mobile_app_sophies_iphone_se_2
 
 #speedtestdotnet:
 #  monitored_conditions:

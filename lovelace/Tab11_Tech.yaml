@@ -577,6 +577,7 @@ cards:
     - switch.front_right_security_lights
     - switch.back_left_security_lights
     - input_boolean.sean_headache
+    - input_boolean.trash_needs_taking_out
 
 
 
