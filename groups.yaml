@@ -18,13 +18,13 @@
     name: Alena and Sean
     entities:
       - device_tracker.seans_iphone_14
-      - device_tracker.alena_s_iphone
+      - device_tracker.alenas_iphone
 
   Everyone:
     name: Everyone
     entities:
       - device_tracker.seans_iphone_14
-      - device_tracker.alena_s_iphone
+      - device_tracker.alenas_iphone
       - device_tracker.sophie
 
 

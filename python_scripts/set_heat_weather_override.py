@@ -6,8 +6,8 @@
 #########################################################
 
 ## Grab the weather parameters ##
-LOW_TEMP = float((hass.states.get("sensor.pirateweather_overnight_low_temperature_0d")).state)
-HIGH_TEMP = float((hass.states.get("sensor.pirateweather_daytime_high_temperature_0d")).state)
+LOW_TEMP = float((hass.states.get("sensor.weatherflow_daily_low_temperature")).state)
+HIGH_TEMP = float((hass.states.get("sensor.weatherflow_daily_high_temperature")).state)
 CLOUDY_DAY = ((hass.states.get("sensor.pirateweather_icon_0d")).state in ['partly-cloudy-day', 'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy'])
 SUNNY_DAY = ((hass.states.get("sensor.pirateweather_icon_0d")).state in ['clear-day'])
 ECO_MODE = (hass.states.get("input_boolean.heat_eco_mode").state)
@@ -240,8 +240,9 @@ elif CLOUDY_DAY and LOW_TEMP < 7 and HIGH_TEMP < 15:
   set_to_profile(PROFILE_AUTO,"PROFILE_AUTO",AUTOMATIONS_PROFILE_AUTO,"AUTOMATIONS_PROFILE_AUTO")
 ## Now, in theory the above rules covered all cases, this one is just here in case I screwed up (which is likely) ##
 else:
-  set_to_profile(PROFILE_AUTO,"PROFILE_AUTO",AUTOMATIONS_PROFILE_AUTO,"AUTOMATIONS_PROFILE_AUTO")
   logger.error("Didn't match any rules")
+  set_to_profile(PROFILE_AUTO,"PROFILE_AUTO",AUTOMATIONS_PROFILE_AUTO,"AUTOMATIONS_PROFILE_AUTO")
+
 
 #########################################################################################
 ## I like to turn down the living room based on different rules because it has lots of ##

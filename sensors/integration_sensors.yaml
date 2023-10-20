@@ -282,17 +282,20 @@
 #      - disk_smart_status
 #      - volume_percentage_used
 
-  - platform: here_travel_time
-    name: transport_time_to_work
-    mode: publicTransportTimeTable
-    traffic_mode: true
-    api_key: !secret here_api_key
-    origin_latitude: !secret home_lat
-    origin_longitude: !secret home_long
-    destination_latitude: !secret work_lat
-    destination_longitude: !secret work_long
-    unit_system: metric
-    scan_interval: 60
+#  - platform: here_travel_time
+#    name: transport_time_to_work
+#    mode: publicTransportTimeTable
+#    traffic_mode: true
+#    api_key: !secret here_api_key
+#    origin_latitude: !secret home_lat
+#    origin_longitude: !secret home_long
+#    destination_latitude: !secret work_lat
+#    destination_longitude: !secret work_long
+#    unit_system: metric
+#    scan_interval: 60
+
+
+
 #    app_id: !secret here_app_id
 #    app_code: !secret here_app_code
 #    origin: !secret home_lat_long
@@ -322,15 +325,15 @@
 #      - coral
 #    value_template: 'OK'
 
-  - platform: command_line
-    name: narnia_ssd_mdstat
-    command: "cat /proc/mdstat | tail -n 5"
-    scan_interval: 3600
-
-  - platform: command_line
-    name: narnia_hdd_mdstat
-    command: "cat /proc/mdstat | head -n 4 | tail -n 3"
-    scan_interval: 3600
+#  - platform: command_line
+#    name: narnia_ssd_mdstat
+#    command: "cat /proc/mdstat | tail -n 5"
+#    scan_interval: 3600
+#
+#  - platform: command_line
+#    name: narnia_hdd_mdstat
+#    command: "cat /proc/mdstat | head -n 4 | tail -n 3"
+#    scan_interval: 3600
 
   - platform: time_date
     display_options:

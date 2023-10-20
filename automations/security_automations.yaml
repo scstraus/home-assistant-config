@@ -377,7 +377,7 @@
     entity_id: sensor.alarm_state_3_motion_sensors
     state: armed_away
   action:
-    service: notify.mobile_app_alenas_iphone
+    service: notify.mobile_app_alena_iphone
     data:
       title: "Warning: Alarm On"
       message: "The alarm is turned on. Remember to turn it off before opening the door."
@@ -421,7 +421,7 @@
       entity_id: sensor.alarm_state_3_motion_sensors
       to: 'armed'
   action:
-    service: notify.mobile_app_alenas_iphone
+    service: notify.mobile_app_alena_iphone
     data:
       title: "Alarm is On At Home"
       message: "The alarm has been activated at home"
@@ -442,7 +442,7 @@
       from: 'armed'
       to: 'disarmed'
   action:
-    service: notify.mobile_app_alenas_iphone
+    service: notify.mobile_app_alena_iphone
     data:
       title: "Alarm is Off At Home"
       message: "The alarm has been turned off at home"
@@ -798,47 +798,54 @@
           }
 
 - alias: 'Record Human In Front'
-  initial_state: 'on'
+  initial_state: 'true'
   trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_front
-#    to: 'on'
-    platform: numeric_state
-    entity_id: sensor.front_person_count
-    above: 0
+    platform: mqtt
+    topic: frigate/events
+  condition:
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'front' }}"
   action:
     - service: rest_command.record_human_front
 
 - alias: 'Record Human In Back'
-  initial_state: 'on'
+  initial_state: 'true'
   trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_back
-#    to: 'on'
-    platform: numeric_state
-    entity_id: sensor.back_person_count
-    above: 0
+    platform: mqtt
+    topic: frigate/events
+  condition:
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
   action:
     - service: rest_command.record_human_back
 
 - alias: 'Record Human In Left'
-  initial_state: 'on'
+  initial_state: 'true'
   trigger:
-#    platform: state
-#    entity_id: binary_sensor.human_left
-#    to: 'on'
-    platform: numeric_state
-    entity_id: sensor.left_person_count
-    above: 0
+    platform: mqtt
+    topic: frigate/events
+  condition:
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'left' }}"
   action:
     - service: rest_command.record_human_left
 
 - alias: 'Record Human In Right'
-  initial_state: 'on'
+  initial_state: 'true'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.right_person_count
-    above: 0
+    platform: mqtt
+    topic: frigate/events
+  condition:
+    condition: and
+    conditions:
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'right' }}"
   action:
     - service: rest_command.record_human_right
 
@@ -881,7 +888,7 @@
                 entity_id: device_tracker.alenas_iphone
                 state: 'home'
           sequence:
-            service: notify.mobile_app_alenas_iphone
+            service: notify.mobile_app_alena_iphone
             data:
               title: "Special Delivery?"
               message: "There's a Truck Out Front"
@@ -936,7 +943,7 @@
                 entity_id: device_tracker.alenas_iphone
                 state: 'home'
           sequence:
-            service: notify.mobile_app_alenas_iphone
+            service: notify.mobile_app_alena_iphone
             data:
               title: "Person at gate"
               message: "There's someone at the front gate"
@@ -997,7 +1004,7 @@
               entity_id: device_tracker.alenas_iphone
               state: 'home'
           sequence:
-            service: notify.mobile_app_alenas_iphone
+            service: notify.mobile_app_alena_iphone
             data_template:
               title: "Person Coming Through Gate"
               message: "Looks like someone is going to or coming from the front gate to the front door"
@@ -1056,7 +1063,7 @@
               entity_id: device_tracker.alenas_iphone
               state: 'home'
           sequence:
-            service: notify.mobile_app_alenas_iphone
+            service: notify.mobile_app_alena_iphone
             data_template:
               title: "Car Arrived"
               message: "The car has come through the gate into the driveway"
@@ -1239,7 +1246,7 @@
     #           entity_id: device_tracker.alenas_iphone
     #           state: 'home'
     #       sequence:
-    #         service: notify.mobile_app_alenas_iphone
+    #         service: notify.mobile_app_alena_iphone
     #         data_template:
     #           title: "New Car In Front of Gate"
     #           message: "A new car has arrived and is parked in front of the house"
@@ -1289,7 +1296,7 @@
 #              entity_id: device_tracker.alenas_iphone
 #              state: 'home'
 #          sequence:
-#            service: notify.mobile_app_alenas_iphone
+#            service: notify.mobile_app_alena_iphone
 #            data:
 #              title: "Car Arrived"
 #              message: "The car has come through the gate into the driveway"
@@ -1370,7 +1377,7 @@
 #              entity_id: device_tracker.alenas_iphone
 #              state: 'home'
 #          sequence:
-#            service: notify.mobile_app_alenas_iphone
+#            service: notify.mobile_app_alena_iphone
 #            data:
 #              title: "New Car In Front of Gate"
 #              message: "A new car has arrived and is parked in front of the gate"
@@ -1463,7 +1470,7 @@
             content-type: jpg
             hide-thumbnail: false
           clickAction: "/lovelace/8"
-    - service: notify.mobile_app_alenas_iphone
+    - service: notify.mobile_app_alena_iphone
       data_template:
         title: "House Watch"
         message: "A door or window was opened while the alarm was armed!"

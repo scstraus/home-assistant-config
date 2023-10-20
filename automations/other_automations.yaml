@@ -1026,7 +1026,7 @@
     entity_id: 'sensor.bio_odpad_day'
     state: 'Today'
   action:
-    service: notify.mobile_app_alenas_iphone
+    service: notify.mobile_app_alena_iphone
     data:
       title: "Take in the mail"
       message: "Hey as long as you are coming home, you might as well check the mailbox."
@@ -1219,7 +1219,7 @@
           value_template: > 
             {{ is_state('device_tracker.alenas_iphone', 'home') and ((now() - device_tracker.alenas_iphone.total_seconds()) < 6*60) and is_state('binary_sensor.car_needs_charging', 'Charge It') }}
         sequence:
-          - service: notify.mobile_app_alenas_iphone
+          - service: notify.mobile_app_alena_iphone
             data:
               title: "Plug Car In"
               message: "The car needs to be charged, please plug it in."

@@ -1004,9 +1004,9 @@ cards:
               ha-card {
                 border-radius: none !important;
                 box-shadow: none !important;
-                margin-top: -57px !important;
+                margin-top: -58px !important;
                 margin-bottom: -50px !important;
-                padding-top: -57px;
+                padding-top: -58px;
                 padding-bottom: -25px;
                 font-size: 20px;
             entities:
@@ -2724,6 +2724,8 @@ cards:
         name: Bedroom
       - entity: climate.master_bath
         name: Bath
+      - entity: switch.hot_water_circulation_pump
+        name: Hot Water Pump
       - entity: climate.master_closet
         name: Closet
       - entity: climate.office_library

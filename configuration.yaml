@@ -398,11 +398,14 @@ evohome:
   location_idx: 0
   scan_interval: 360 
 
-media_player:
-  # Use the Python ADB implementation
-  - platform: androidtv
-    name: Philips936
-    host: !secret Philips936_IP
+#media_player:
+#  # Use the Python ADB implementation
+#  - platform: androidtv
+#    name: Philips936
+#    host: !secret Philips936_IP
+    
+    
+    
 #
 #  - platform: itunes
 #    host: !secret itunes_ip
@@ -433,16 +436,16 @@ ios:
   #           destructive: false
   #           behavior: 'default'
             
-nest:
-
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-  sensors:
-    monitored_conditions:
-      - 'co_status'
-      - 'smoke_status'
-      - 'battery_health'
-      - 'color_status'
+#nest:
+#
+#  client_id: !secret nest_client_id
+#  client_secret: !secret nest_client_secret
+#  sensors:
+#    monitored_conditions:
+#      - 'co_status'
+#      - 'smoke_status'
+#      - 'battery_health'
+#      - 'color_status'
 
 
 
@@ -849,6 +852,7 @@ input_select:
       - ParklaneValdejnska
       - In Old Hlubočepy
       - At Černy Kohout
+      - PianoClass
       - Udoli Turnaround
       - UdoliBetweenBridges
       - UdoliBoat
@@ -857,6 +861,7 @@ input_select:
       - UdoliMilitary
       - UdoliStart
       - UdoliTrain+Cave
+
     initial: home
     
   sean_location_dropdown:
@@ -888,10 +893,12 @@ input_select:
       - At Parklane Valdejnska
       - At Černy Kohout
       - In Old Hlubočepy
+      - At Piano Class
       - To Udoli
       - To/from Udoli
       - From Udoli
       - In Udoli
+
 
   bosch_dishwasher_status:
     name: Bosch Dishwasher Status
@@ -1019,7 +1026,7 @@ proximity:
   all_home: 
     devices:
       - device_tracker.seans_iphone_14
-      - device_tracker.alena_s_iphone
+      - device_tracker.alenas_iphone
       - device_tracker.sophie
     tolerance: 50
     unit_of_measurement: km
@@ -1030,7 +1037,7 @@ proximity:
     unit_of_measurement: km
   alena_home: 
     devices:
-      - device_tracker.alena_s_iphone
+      - device_tracker.alenas_iphone
     tolerance: 50
     unit_of_measurement: km
   sophie_home: 
@@ -1058,12 +1065,12 @@ notify:
     platform: group
     services:
       - service: mobile_app_seans_iphone_14
-      - service: mobile_app_alena_s_iphone_2
+      - service: mobile_app_alena_iphone
   - name: whole_family
     platform: group
     services:
       - service: mobile_app_seans_iphone_14
-      - service: mobile_app_alena_s_iphone_2
+      - service: mobile_app_alena_iphone
       - service: mobile_app_sophies_iphone_se_2
 
 #speedtestdotnet:
@@ -1396,9 +1403,12 @@ input_text:
 #  - platform: switchbot-curtain
 #    mac: !secret switchbot_curtain_left_ble
 
-climate:
-  - platform: sensibo
-    api_key: !secret sensibo_api_key
+#climate:
+#  - platform: sensibo
+#    api_key: !secret sensibo_api_key
+    
+    
+    
 #  - platform: climate_group
 #    name: sophie_room
 #    temperature_unit: C  # default to celsius, 'C' or 'F'
@@ -1471,3 +1481,12 @@ rest:
 
 energy:
 
+command_line:
+  - sensor:
+      name: narnia_ssd_mdstat
+      command: "cat /proc/mdstat | tail -n 5"
+      scan_interval: 3600
+  - sensor:
+      name: narnia_hdd_mdstat
+      command: "cat /proc/mdstat | head -n 4 | tail -n 3"
+      scan_interval: 3600

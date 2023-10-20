@@ -160,13 +160,24 @@ cards:
 #        entities:
 #        - climate.entrance
 #
+
+
     - type: custom:simple-thermostat
       entity: climate.entrance
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
+
+#    - type: custom:simple-thermostat
+#      entity: climate.entrance
+#      step_size: 0.5
+#      header: false
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
 
 
 
@@ -209,9 +220,13 @@ cards:
       entity: climate.dining_room
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
 
 #      - type: entities
 #        entities:
@@ -274,9 +289,13 @@ cards:
       layout:
         mode:
           headings: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
     - type: custom:simple-thermostat
       entity: climate.living_room_ac
       style: |
@@ -394,9 +413,13 @@ cards:
       entity: climate.master_bedroom
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
 
     - type: custom:simple-thermostat
       entity: climate.master_bedroom_ac
@@ -513,9 +536,13 @@ cards:
       entity: climate.master_bath
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
 
   - type: vertical-stack
     in_card: true
@@ -555,9 +582,13 @@ cards:
       entity: climate.master_closet
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
 
   - type: vertical-stack
     in_card: true
@@ -597,9 +628,13 @@ cards:
       entity: climate.office_library
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
 
   - type: vertical-stack
     in_card: true
@@ -639,9 +674,14 @@ cards:
       entity: climate.sebastian_s_room
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
+
     - type: custom:simple-thermostat
       entity: climate.sebastian_s_room_ac
       style: |
@@ -796,9 +836,13 @@ cards:
       layout:
         mode:
           headings: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
     - type: custom:simple-thermostat
       entity: climate.sophie_s_room_ac
       style: |
@@ -918,9 +962,13 @@ cards:
       entity: climate.guest_bedroom
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
 
   - type: vertical-stack
     in_card: true
@@ -960,9 +1008,13 @@ cards:
       entity: climate.garage
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
 
   - type: vertical-stack
     in_card: true
@@ -1002,9 +1054,13 @@ cards:
       entity: climate.laundry_room
       step_size: 0.5
       header: false
-      sensors:
-        - attribute: preset_mode
-          name: Mode
+#      sensors:
+#        - attribute: preset_mode
+#          name: Mode
+      control:
+        preset:
+          mode:
+          _name: Mode
 
 
 #      - type: divider

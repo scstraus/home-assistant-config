@@ -32,6 +32,8 @@
             mdi:human-handsup
           {% elif is_state('input_select.sean_location_dropdown', 'In Old Hlubočepy') %}
             mdi:city
+          {% elif is_state('input_select.sean_location_dropdown', 'PianoClass') %}
+            mdi:piano
           {% elif is_state('input_select.sean_location_dropdown', 'At Černy Kohout') %}
             mdi:food-turkey
           {% elif is_state('device_tracker.seans_iphone_14', 'Udoli Turnaround') %}
@@ -111,6 +113,8 @@
             At Černy Kohout
           {% elif is_state('device_tracker.alenas_iphone', 'HlubocepyCenter') %}
             In Old Hlubočepy
+          {% elif is_state('device_tracker.alenas_iphone', 'PianoClass') %}
+            At Piano Class
           {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'away_from') %}
             To Udoli
           {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'stationary') %}
@@ -195,6 +199,8 @@
             mdi:food-turkey
           {% elif is_state('device_tracker.alenas_iphone', 'HlubocepyCenter') %}
             mdi:city
+          {% elif is_state('device_tracker.alenas_iphone', 'PianoClass') %}
+            mdi:piano
           {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'away_from') %}
             mdi:walk
           {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'stationary') %}
@@ -208,7 +214,7 @@
           {% elif is_state('sensor.alena_direction_of_travel', 'towards') %}
             mdi:car
           {% elif states('proximity.alena_home')|float > 120 %}
-            mdi:airplane
+            mdi:airplane %}
           {% else %}
             mdi:help
           {% endif %}
@@ -269,6 +275,8 @@
             At Černy Kohout
           {% elif is_state('device_tracker.sophie', 'HlubocepyCenter') %}
             In Old Hlubočepy
+          {% elif is_state('device_tracker.sophie', 'Piano Class') %}
+            At Piano Class
           {% elif "ToUdoli" in states('device_tracker.sophie') and is_state('sensor.sophie_direction_of_travel', 'away_from') %}
             To Udoli
           {% elif "ToUdoli" in states('device_tracker.sophie') and is_state('sensor.sophie_direction_of_travel', 'stationary') %}
@@ -355,6 +363,8 @@
             mdi:food-turkey
           {% elif is_state('device_tracker.sophie', 'HlubocepyCenter') %}
             mdi:city
+          {% elif is_state('device_tracker.sophie', 'PianoClass') %}
+            mdi:piano
           {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'away_from') %}
             mdi:walk
           {% elif "ToUdoli" in states('device_tracker.alenas_iphone') and is_state('sensor.alena_direction_of_travel', 'stationary') %}
@@ -381,24 +391,39 @@
           {% else %}Alena is at {{ states('sensor.alena_location') }}. She hasn't started heading home yet. But if she were to start driving home now, it would take her approximately {{ states('sensor.alena_driving_time_to_home') }} minutes if she's driving in a car.
           {% endif %}
  
+ 
+#tram version 
+#  - platform: template
+#    sensors:
+#      sean_eta_description:
+#        friendly_name: "Sean ETA description"
+#        value_template: >-
+#          {% if now().weekday() in (0,1,2,3,4,) %}
+#            {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}Sean is {{ states('sensor.sean_location') }} . If he's coming by tram, it should take approximately {{ states('sensor.sean_tram_time_to_home') }} minutes to arrive.
+#            {% elif states('sensor.sean_location') in ['Left Home','Heading to Work','Almost at Work','Heading to Center','Heading to Andel','Heading to Hornbach','Heading to WineFood','Heading to P6','Driving','Traveling'] %} Sean is {{ states('sensor.sean_location') }} . He's not heading towards home, but if he were to turn around now and start coming home, it would take approximately {{ states('sensor.sean_tram_time_to_home') }} minutes for him to arrive.
+#            {% elif is_state('sensor.sean_location', 'Home') %} 
+#            {% else %} Sean is {{ states('sensor.sean_location') }}. He hasn't started heading home yet. But if he were to start taking the tram home now, it would take him approximately {{ states('sensor.sean_tram_time_to_home') }} minutes.
+#            {% endif %}
+#          {% else %}
+#            {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}Sean is {{ states('sensor.sean_location') }} . If he's coming by car, it should take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
+#            {% elif states('sensor.sean_location') in ['Left Home','Heading to Work','Almost at Work','Heading to Center','Heading to Andel','Heading to Hornbach','Heading to WineFood','Heading to P6','Driving','Traveling'] %} Sean is {{ states('sensor.sean_location') }} . He's not heading towards home, but if he were to turn around now and start coming home by car, it would take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
+#            {% elif is_state('sensor.sean_location', 'Home') %} 
+#            {% else %}Sean is {{ states('sensor.sean_location') }}. He hasn't started heading home yet. But if he were to start driving home now, it would take him approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive if he were coming by car.
+#            {% endif %}
+#          {% endif %}
+          
+  #car version        
   - platform: template
     sensors:
       sean_eta_description:
         friendly_name: "Sean ETA description"
         value_template: >-
-          {% if now().weekday() in (0,1,2,3,4,) %}
-            {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}Sean is {{ states('sensor.sean_location') }} . If he's coming by tram, it should take approximately {{ states('sensor.sean_tram_time_to_home') }} minutes to arrive.
-            {% elif states('sensor.sean_location') in ['Left Home','Heading to Work','Almost at Work','Heading to Center','Heading to Andel','Heading to Hornbach','Heading to WineFood','Heading to P6','Driving','Traveling'] %} Sean is {{ states('sensor.sean_location') }} . He's not heading towards home, but if he were to turn around now and start coming home, it would take approximately {{ states('sensor.sean_tram_time_to_home') }} minutes for him to arrive.
-            {% elif is_state('sensor.sean_location', 'Home') %} 
-            {% else %} Sean is {{ states('sensor.sean_location') }}. He hasn't started heading home yet. But if he were to start taking the tram home now, it would take him approximately {{ states('sensor.sean_tram_time_to_home') }} minutes.
-            {% endif %}
-          {% else %}
-            {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}Sean is {{ states('sensor.sean_location') }} . If he's coming by car, it should take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
-            {% elif states('sensor.sean_location') in ['Left Home','Heading to Work','Almost at Work','Heading to Center','Heading to Andel','Heading to Hornbach','Heading to WineFood','Heading to P6','Driving','Traveling'] %} Sean is {{ states('sensor.sean_location') }} . He's not heading towards home, but if he were to turn around now and start coming home by car, it would take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
-            {% elif is_state('sensor.sean_location', 'Home') %} 
-            {% else %}Sean is {{ states('sensor.sean_location') }}. He hasn't started heading home yet. But if he were to start driving home now, it would take him approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive if he were coming by car.
-            {% endif %}
+          {% if states('sensor.sean_location') in ['Almost Home','Heading Home','Waiting for Tram','Left Work'] %}Sean is {{ states('sensor.sean_location') }} . If he's coming by car, it should take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
+          {% elif states('sensor.sean_location') in ['Left Home','Heading to Work','Almost at Work','Heading to Center','Heading to Andel','Heading to Hornbach','Heading to WineFood','Heading to P6','Driving','Traveling'] %} Sean is {{ states('sensor.sean_location') }} . He's not heading towards home, but if he were to turn around now and start coming home by car, it would take approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive.
+          {% elif is_state('sensor.sean_location', 'Home') %} 
+          {% else %}Sean is {{ states('sensor.sean_location') }}. He hasn't started heading home yet. But if he were to start driving home now, it would take him approximately {{ states('sensor.sean_driving_time_to_home') }} minutes to arrive if he were coming by car.
           {% endif %}
+
 
   - platform: template
     sensors:

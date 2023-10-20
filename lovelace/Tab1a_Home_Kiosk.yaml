@@ -1072,22 +1072,22 @@ cards:
         entity: weather.weatherflow_day_based_forecast
         default: default
         states:
-#          lightning:
-#            type: glance
-#            columns: 1
-#            show_icon: false
-#            show_name: false
-#            style: |
-#              ha-card {
-#                margin-top: -25px !important;
-#                margin-bottom: -10px !important;
-#                padding-top: -55px;
-#                padding-bottom: -10px;
-#                font-size: 20px;
-#                border-radius: none !important;
-#                box-shadow: none !important;
-#            entities:
-#              - entity: weather.weatherflow_day_based_forecast
+          lightning-rainy:
+            type: glance
+            columns: 1
+            show_icon: false
+            show_name: false
+            style: |
+              ha-card {
+                margin-top: -25px !important;
+                margin-bottom: -5px !important;
+                padding-top: -55px;
+                padding-bottom: 0px;
+                font-size: 20px;
+                border-radius: none !important;
+                box-shadow: none !important;
+            entities:
+              - entity: weather.weatherflow_day_based_forecast
           default:
             type: glance
             columns: 1
@@ -1097,9 +1097,9 @@ cards:
               ha-card {
                 border-radius: none !important;
                 box-shadow: none !important;
-                margin-top: -57px !important;
+                margin-top: -58px !important;
                 margin-bottom: -50px !important;
-                padding-top: -57px;
+                padding-top: -58px;
                 padding-bottom: -25px;
                 font-size: 20px;
             entities:
@@ -2508,6 +2508,8 @@ cards:
         name: Bedroom
       - entity: climate.master_bath
         name: Bath
+      - entity: switch.hot_water_circulation_pump
+        name: Hot Water Pump
       - entity: climate.master_closet
         name: Closet
       - entity: climate.office_library

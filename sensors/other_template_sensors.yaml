@@ -4,7 +4,7 @@
         friendly_name: "Bike Day"
         value_template: >-
           {% if states('sensor.pirateweather_daytime_high_temperature_0d')|float < 27
-             and states('ensor.weatherflow_air_temperature')|float > 14 
+             and states('sensor.weatherflow_air_temperature')|float > 14 
              and states('sensor.pirateweather_wind_gust')|float < 20
              and (states('sensor.pirateweather_precip_probability_0d')|float < 30
              or ((states('sensor.pirateweather_precip_intensity_1h')|float < 0.05)
@@ -1488,3 +1488,22 @@
         friendly_name: "next_sunset"
         value_template: >
           {{ as_timestamp(state_attr('sun.sun', 'next_setting')) | timestamp_custom('%H:%M') }}
+
+  - platform: template
+    sensors:
+      weatherflow_daily_high_temperature:
+        friendly_name: "Weatherflow Daily High Temperature"
+        value_template: >
+          {{ (state_attr('weather.weatherflow_hourly_based_forecast', 'forecast')
+              | map(attribute="temperature")
+              | list)[0:23]
+              | max
+              | int}}
+      weatherflow_daily_low_temperature:
+        friendly_name: "Weatherflow Daily Low Temperature"
+        value_template: >
+          {{ (state_attr('weather.weatherflow_hourly_based_forecast', 'forecast')
+              | map(attribute="temperature")
+              | list)[0:23]
+              | min
+              | int}}

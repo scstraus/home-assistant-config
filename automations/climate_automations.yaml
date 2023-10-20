@@ -486,8 +486,8 @@
 # AUTOMATIONS TO ADJUST HEAT BASED ON WEATHER REPORT #
 ######################################################
 # this shit all got replaced by a badass python script
-# that runs once a day at 12:30 AM (and again an 12:32 AM 
-# to cover a 1 minute window where it would normally cycle the TRV's
+# that runs once a day at 12:30 AM (and again an 12:40 AM 
+# to cover a few minute window where it would normally cycle the TRV's
 
 - id: set_heat_overrides_for_warm_weather
   alias: set_heat_overrides_for_warm_weather
@@ -503,7 +503,7 @@
   initial_state: 'true'
   trigger:
     platform: time
-    at: '00:32:00'
+    at: '00:40:00'
   action:
     - service: python_script.set_heat_weather_override
 
@@ -984,7 +984,7 @@
               entity_id: device_tracker.alenas_iphone
               state: 'home'
           sequence:
-            - service: notify.mobile_app_alenas_iphone
+            - service: notify.mobile_app_alena_iphone
               data:
                 title: "Home indoor air quality is poor"
                 message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}. Turn on an air purifier."             
@@ -1048,7 +1048,7 @@
               entity_id: device_tracker.alenas_iphone
               state: 'home'
           sequence:
-            - service: notify.mobile_app_alenas_iphone
+            - service: notify.mobile_app_alena_iphone
               data:
                 title: "Home indoor air quality is good again"
                 message: "The indoor Air Quality Index at home is currently {{states('sensor.home_air_quality')}}."             
@@ -1107,7 +1107,7 @@
               entity_id: device_tracker.alenas_iphone
               state: 'home'
           sequence:
-            - service: notify.mobile_app_alenas_iphone
+            - service: notify.mobile_app_alena_iphone
               data:
                 title: "Home outdoor air quality is poor"
                 message: "The outdoor Air Quality Index at home is currently {{states(' sensor.hlubocepy_air_quality')}}. Turn on an air purifier."             
@@ -1170,7 +1170,7 @@
               entity_id: device_tracker.alenas_iphone
               state: 'home'
           sequence:
-            - service: notify.mobile_app_alenas_iphone
+            - service: notify.mobile_app_alena_iphone
               data:
                 title: "Home outdoor air quality is good again"
                 message: "The outdoor Air Quality Index at home is currently {{states('sensor.hlubocepy_air_quality')}}."             
@@ -1250,7 +1250,7 @@
 #                data:
 #                  push:
 #                    thread-id: "weather"
-#    - service: notify.mobile_app_alenas_iphone
+#    - service: notify.mobile_app_alena_iphone
 #      data:
 #        title: "It's Raining"
 #        message: "It's raining outside at home"
@@ -1287,7 +1287,7 @@
                 data:
                   push:
                     thread-id: "weather"
-    - service: notify.mobile_app_alenas_iphone
+    - service: notify.mobile_app_alena_iphone
       data:
         title: "It Stopped Raining"
         message: "It stopped raining outside at home. Total rain today: {{states('sensor.weatherflow_precipitation_today')}} millimeters over {{states('sensor.weatherflow_precipitation_duration_today')}} minutes of rain"
@@ -1491,7 +1491,7 @@
                 data:
                   push:
                     thread-id: "weather"
-    - service: notify.mobile_app_alenas_iphone
+    - service: notify.mobile_app_alena_iphone
       data:
         title: "Lightning Warning"
         message: "Lightning has been detected outside. Most recent strike was {{states('sensor.weatherflow_last_lightning_strike_distance')}} km away. There have been {{states('sensor.weatherflow_lightning_strike_count_last_hour')}} lightning strikes in the last hour within a 50km radius of home."

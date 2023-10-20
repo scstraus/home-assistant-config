@@ -93,6 +93,20 @@
       entity_id: input_select.sean_location_dropdown
       option: At Work
 
+- id: at_piano_class
+  alias: at_piano_class
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.seans_iphone_14
+    to: 'PianoClass'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sean_location_dropdown
+      option: At Piano Class
+
+
 - id: at_cerny_kohout
   alias: at_cerny_kohout
   initial_state: 'true'
@@ -237,7 +251,7 @@
       value_template: >
         {{ trigger.from_state is not none and trigger.to_state is not none and
            trigger.from_state.state in ['Work'] and
-           trigger.to_state.state in ['Andel', 'Lazarska', 'BioStore', 'ToWineFood', 'SmichovskeNad'] }}
+           trigger.to_state.state in ['Andel', 'Lazarska', 'BioStore', 'ToWineFood', 'SmichovskeNad', 'Zbrovska', 'KarlovoNamesti'] }}
     - condition: time
       after: '18:00:00'
       weekday:
@@ -262,8 +276,8 @@
     condition: template
     value_template: >
       {{ trigger.from_state is not none and trigger.to_state is not none and
-         trigger.from_state.state in ['Work', 'Lazarska', 'Andel', 'BioStore'] and
-         trigger.to_state.state in ['SmichovskeNad', 'WineFood', 'ToAndel', 'ToWineFood', 'ToCenter'] }}
+         trigger.from_state.state in ['Work', 'Lazarska', 'Andel', 'BioStore', 'KarlovoNamesti'] and
+         trigger.to_state.state in ['SmichovskeNad', 'WineFood', 'ToAndel', 'ToWineFood', 'ToCenter', 'Zbrovska' ] }}
   action:
     service: input_select.select_option
     data:
@@ -978,7 +992,7 @@
     value_template: >
       {{ "Udoli" in states('device_tracker.alenas_iphone') }} 
   action:
-    service: notify.mobile_app_alenas_iphone
+    service: notify.mobile_app_alena_iphone
     data:
       title: "Getting Dark in Udoli"
       message: "The sun is setting. It will be dark soon. It's time to leave the udoli"

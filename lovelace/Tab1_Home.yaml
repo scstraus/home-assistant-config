@@ -2792,6 +2792,8 @@ cards:
       name: Bedroom
     - entity: climate.master_bath
       name: Bath
+    - entity: switch.hot_water_circulation_pump
+      name: Hot Water Pump
     - entity: climate.master_closet
       name: Closet
     - entity: climate.office_library

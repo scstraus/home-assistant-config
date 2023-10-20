@@ -467,7 +467,7 @@
       - service: alexa_media.update_last_called  #this will force update the last Alexa attribute used by the sensor
       - delay: 00:00:01  # you may need to increase this value if you dont get the response on the echo you asked the question
       - service: notify.alexa_media
-        data_template:
+        data:
           target: 
             - '{{ states.sensor.last_alexa.state }}' 
           data:
@@ -480,7 +480,7 @@
       - service: alexa_media.update_last_called  #this will force update the last Alexa attribute used by the sensor
       - delay: 00:00:01  # you may need to increase this value if you dont get the response on the echo you asked the question
       - service: notify.alexa_media
-        data_template:
+        data:
           target: 
             - '{{ states.sensor.last_alexa.state }}' 
           data:
@@ -495,7 +495,7 @@
       - service: alexa_media.update_last_called  #this will force update the last Alexa attribute used by the sensor
       - delay: 00:00:01  # you may need to increase this value if you dont get the response on the echo you asked the question
       - service: notify.alexa_media
-        data_template:
+        data:
           target: 
             - '{{ states.sensor.last_alexa.state }}' 
           data:
@@ -508,7 +508,7 @@
       - service: alexa_media.update_last_called  #this will force update the last Alexa attribute used by the sensor
       - delay: 00:00:01  # you may need to increase this value if you dont get the response on the echo you asked the question
       - service: notify.alexa_media
-        data_template:
+        data:
           target: 
             - '{{ states.sensor.last_alexa.state }}' 
           data:
@@ -522,7 +522,7 @@
       - service: alexa_media.update_last_called  #this will force update the last Alexa attribute used by the sensor
       - delay: 00:00:01  # you may need to increase this value if you dont get the response on the echo you asked the question
       - service: notify.alexa_media
-        data_template:
+        data:
           target: 
             - '{{ states.sensor.last_alexa.state }}' 
           data:
@@ -535,7 +535,7 @@
       - service: alexa_media.update_last_called  #this will force update the last Alexa attribute used by the sensor
       - delay: 00:00:01  # you may need to increase this value if you dont get the response on the echo you asked the question
       - service: notify.alexa_media
-        data_template:
+        data:
           target: 
             - '{{ states.sensor.last_alexa.state }}' 
           data:
@@ -549,7 +549,7 @@
       - service: alexa_media.update_last_called  #this will force update the last Alexa attribute used by the sensor
       - delay: 00:00:01  # you may need to increase this value if you dont get the response on the echo you asked the question
       - service: notify.alexa_media
-        data_template:
+        data:
           target: 
             - '{{ states.sensor.last_alexa.state }}' 
           data:

@@ -105,7 +105,7 @@
     from: 'Running'
     to: 'Clean'
   action:
-    service: notify.mobile_app_alenas_iphone
+    service: notify.mobile_app_alena_iphone
     data:
       title: "Dishwasher Update"
       message: "Dishes Are Clean"
@@ -663,7 +663,7 @@
     entity_id: input_select.miele_washing_machine_status
     to: 'Clean'
   action:
-    service: notify.mobile_app_alenas_iphone
+    service: notify.mobile_app_alena_iphone
     data:
       title: "Miele Washing Machine Update"
       message: "Laundry is Done"
@@ -787,7 +787,7 @@
     entity_id: input_select.lg_washing_machine_status
     to: 'Clean'
   action:
-    service: notify.mobile_app_alenas_iphone
+    service: notify.mobile_app_alena_iphone
     data:
       title: "LG Washing Machine Update"
       message: "Laundry is Done"

@@ -15,7 +15,7 @@
           name: "EN-US-Daisy-Garage-Door-Open.wav"
         thread-id: "info"
     notifiers:
-      - mobile_app_alena_s_iphone_2
+      - mobile_app_alenas_iphone
 
 
   garage_door_sean:
@@ -55,7 +55,7 @@
           name: "EN-US-Daisy-Front-Door-Open.wav"
         thread-id: "info"
     notifiers:
-      - mobile_app_alena_s_iphone_2
+      - mobile_app_alenas_iphone
 
   front_door_sean:
     name: Front door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.front_door_zone_1.last_updated)) | int //60 }} minutes
@@ -76,6 +76,40 @@
     notifiers:
       - mobile_app_sean_iphone_14
 
+  back_door_sean:
+    name: Back door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.back_door.last_updated)) | int //60 }} minutes
+    done_message: Back door is closed
+    entity_id: binary_sensor.back_door
+    state: 'on'
+    repeat: 
+      - 60
+    can_acknowledge: true
+    skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Front-Door-Open.wav"
+        thread-id: "info"
+    notifiers:
+      - mobile_app_sean_iphone_14
+
+  back_door_alena:
+    name: Back door has been open for {{(as_timestamp(now())-as_timestamp(states.binary_sensor.back_door.last_updated)) | int //60 }} minutes
+    done_message: Front door is closed
+    entity_id: binary_sensor.back_door
+    state: 'on'
+    repeat: 
+      - 60
+    can_acknowledge: true
+    skip_first: true
+    data:
+      push:
+        sound:
+          name: "EN-US-Daisy-Front-Door-Open.wav"
+        thread-id: "info"
+    notifiers:
+      - mobile_app_alenas_iphone
+
   sebastian_window_rain_warning_alena:
     name: Sebastian's room window is open and it might rain.
     done_message: Sebastian's room window is closed.
@@ -89,7 +123,7 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - mobile_app_alena_s_iphone_2
+      - mobile_app_alenas_iphone
     data:
       push:
         thread-id: "weather"
@@ -125,7 +159,7 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - mobile_app_alena_s_iphone_2
+      - mobile_app_alenas_iphone
     data:
       push:
         thread-id: "weather"
@@ -192,7 +226,7 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - mobile_app_alena_s_iphone_2
+      - mobile_app_alenas_iphone
     data:
       push:
         thread-id: "info"
