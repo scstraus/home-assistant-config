@@ -1049,6 +1049,8 @@
         
   announce_dishes_are_clean:
     sequence:
+# ^ Back on alexa media player    
+    
 #
 #  announce_left_dishwasher_door_open:
 #    sequence:
@@ -1067,6 +1069,8 @@
 
   announce_trash_day_trash_not_out:
     sequence:
+
+# ^back to alexa media
 
 #  announce_its_raining_with_sebastian_roof_window_open_everywhere:
 #    sequence:

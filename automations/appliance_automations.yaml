@@ -134,18 +134,21 @@
 #      - condition: template
 #        value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.fire_notify_clean_dishes.attributes.last_triggered | default(0)) | int > 150)}}'
 
+#  action:
+#    - service: script.announce_dishes_are_clean
+#    - delay: 
+#        seconds: 150
   action:
-    - service: script.announce_dishes_are_clean
+    - data:
+        data:
+          type: tts
+        message: "The dishes are clean."
+        target: 
+  #        - media_player.kichen_bar_kindle_fire
+          - media_player.alexa_kitchen
+      service: notify.alexa_media
     - delay: 
         seconds: 150
-#  - data:
-#      data:
-#        type: tts
-#      message: "The dishes are clean."
-#      target: 
-##        - media_player.kichen_bar_kindle_fire
-#        - media_player.alexa_kitchen
-#    service: notify.alexa_media
 
       
 - id: fire_notify_running_dishes
