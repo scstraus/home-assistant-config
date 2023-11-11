@@ -467,6 +467,22 @@
 - id: to_center_1
   alias: 'Heading To Center'
   initial_state: 'true'
+
+  trigger:
+    platform: state
+    entity_id: input_select.sean_last_zone_dropdown
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+            trigger.from_state.state in ['home','HlubocepyCenter','ToUdoli'] and
+            trigger.to_state.state in ['ToCenter','Zlichov'] }}
   trigger:
     platform: state
     entity_id: input_select.sean_last_zone_dropdown
@@ -477,6 +493,8 @@
     weekday:
     - sat
     - sun
+
+
   action:
     service: input_select.select_option
     data:
