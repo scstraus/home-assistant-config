@@ -1490,3 +1490,224 @@ command_line:
       name: narnia_hdd_mdstat
       command: "cat /proc/mdstat | head -n 4 | tail -n 3"
       scan_interval: 3600
+
+
+
+
+template:
+  - trigger:
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: !secret my_email
+          initial: true
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: !secret wife_email
+          initial: true
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: ceskaposta@cpost.cz
+          initial: true
+    sensor:
+      - name: house_electricity
+        state: >-
+          {% if 'Vezeme' in trigger.event.data["subject"] %}
+            Delivery
+          {% elif 'reset state of package sensor' in trigger.event.data["subject"] %}
+            no_delivery
+          {% endif %}
+#
+#  - platform: imap_email_content
+#    server: imap.gmail.com
+#    name: cp_packages_coming_today
+#    port: 993
+#    username: !secret gmail_uname
+#    password: !secret hass_pass
+#    senders:
+#    - !secret my_email
+#    - ceskaposta@cpost.cz
+#    - !secret wife_email
+#    value_template: >-
+#      {% if 'Vezeme' in subject %}
+#        Delivery
+#      {% elif 'reset state of package sensor' in subject %}
+#        no_delivery
+#      {% endif %}
+
+
+
+  - trigger:
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: !secret my_email
+          initial: true
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: !secret wife_email
+          initial: true
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: NOREPLY@dpd.cz
+          initial: true
+    sensor:
+      - name: house_electricity
+        state: >-
+          {% if 'Dnes' in trigger.event.data["subject"] %}
+            Delivery
+          {% elif 'reset state of package sensor' in trigger.event.data["subject"] %}
+            no_delivery
+          {% endif %}
+
+#  - platform: imap_email_content
+#    server: imap.gmail.com
+#    name: dpd_packages_coming_today
+#    port: 993
+#    username: !secret gmail_uname
+#    password: !secret hass_pass
+#    senders:
+#    - !secret my_email
+#    - NOREPLY@dpd.cz
+#    - !secret wife_email
+#    value_template: >-
+#      {% if 'Dnes' in subject %}
+#        Delivery
+#      {% elif 'reset state of package sensor' in subject %}
+#        no_delivery
+#      {% endif %}
+
+
+  - trigger:
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: !secret my_email
+          initial: true
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: !secret wife_email
+          initial: true
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: NoReply.ODD@dhl.com
+          initial: true
+    sensor:
+      - name: house_electricity
+        state: >-
+          {% if 'DHL On Demand Delivery' in trigger.event.data["subject"] %}
+            Delivery
+          {% elif 'reset state of package sensor' in trigger.event.data["subject"] %}
+            no_delivery
+          {% endif %}
+#
+#  - platform: imap_email_content
+#    server: imap.gmail.com
+#    name: dhl_packages_coming_today
+#    port: 993
+#    username: !secret gmail_uname
+#    password: !secret hass_pass
+#    senders:
+#    - !secret my_email
+#    - NoReply.ODD@dhl.com
+#    - !secret wife_email
+#    value_template: >-
+#      {% if 'DHL On Demand Delivery' in subject %}
+#        Delivery
+#      {% elif 'reset state of package sensor' in subject %}
+#        no_delivery
+#      {% endif %}
+
+
+  - trigger:
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: !secret my_email
+          initial: true
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: !secret wife_email
+          initial: true
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: NoReply.ODD@dhl.com
+          initial: true
+    sensor:
+      - name: house_electricity
+        state: >-
+          {% if 'Informace o' in trigger.event.data["subject"] %}
+            Delivery
+          {% elif 'reset state of package sensor' in trigger.event.data["subject"] %}
+            no_delivery
+          {% endif %}
+#
+#  - platform: imap_email_content
+#    server: imap.gmail.com
+#    name: gls_packages_coming_today
+#    port: 993
+#    username: !secret gmail_uname
+#    password: !secret hass_pass
+#    senders:
+#    - !secret my_email
+#    - noreply@gls-czech.com
+#    - !secret wife_email
+#    value_template: >-
+#      {% if 'Informace o' in subject %}
+#        Delivery
+#      {% elif 'reset state of package sensor' in subject %}
+#        no_delivery
+#      {% endif %}
+
+
+  - trigger:
+      - platform: event
+        event_type: "imap_content"
+        id: "custom_event"
+        event_data:
+          sender: "no-reply@smartconnect.apc.com"
+          initial: true
+    sensor:
+      - name: house_electricity
+        state: >-
+          {% if 'UPS On Battery' in trigger.event.data["subject"] %}
+            power_out
+          {% elif 'Power Restored' in trigger.event.data["subject"] %}
+            power_on
+          {% endif %}
+
+  # - platform: imap_email_content
+  #   server: imap.gmail.com
+  #   name: house_electricity
+  #   port: 993
+  #   username: !secret gmail_uname
+  #   password: !secret hass_pass
+  #   senders:
+  #   - !secret my_email
+  #   - no-reply@smartconnect.apc.com
+  #   value_template: >-
+  #     {% if 'UPS On Battery' in subject %}
+  #       power_out
+  #     {% elif 'Power Restored' in subject %}
+  #       power_on
+  #     {% endif %}
