@@ -1029,7 +1029,7 @@ cards:
         entities:
           - entity: sensor.tempest_st_00023475_humidity
             name: Humiditiy
-          - entity: sensor.weatherflow_wind_speed
+          - entity: sensor.tempest_st_00023475_wind_speed
             name: Wind
           - entity: sensor.next_sunrise
             name: Sunrise
@@ -1051,7 +1051,7 @@ cards:
           }
         entities:
           - entity: sensor.weatherflow_relative_humidity
-          - entity: sensor.weatherflow_wind_speed
+          - entity: sensor.tempest_st_00023475_wind_speed
           - entity: sensor.next_sunrise
           - entity: sensor.next_sunset
 
@@ -1573,8 +1573,12 @@ cards:
 
 # check control problem attribute for real problem: check_control_messages
 
-    - type: shopping-list
+    - type: todo-list
       title: Shopping List
+      entity: todo.shopping_list
+
+#    - type: shopping-list
+#      title: Shopping List
 
 
     - type: custom:layout-break

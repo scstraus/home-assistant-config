@@ -723,7 +723,7 @@
 
 - id: philips_tv_turn_off_remote
   alias: philips_tv_turn_off_remote
-  initial_state: 'true'
+  initial_state: 'false'
   trigger:
 #    platform: state
 #    entity_id: media_player.philips936_tv_other

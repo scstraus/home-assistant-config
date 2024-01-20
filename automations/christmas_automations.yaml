@@ -34,25 +34,29 @@
           entity_id: input_boolean.christmas_mode
           state: 'off'
         sequence:
-          - service: input_boolean.turn_on
+          - service: input_boolean.turn_off
             data:
               entity_id: input_boolean.itunes_shuffle
           - service: switch.turn_on
             data:
               entity_id: switch.garbage_disposal
+          - service: remote.turn_on
+            entity_id: remote.harmony
+            data:
+              activity: "YouTube"
           - service: media_player.play_media
             data:
-              entity_id: media_player.chromecast
+              entity_id: media_player.philips936_tv_cast
               media_content_type: cast
               media_content_id: '
                 {
                   "app_name": "youtube",
-                  "media_id": "8WBThkkpnaA"
+                  "media_id": "DL6wzjjjTB0"
                 }'
           - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
             event_data_template: 
               alexa_entity: "christmas"
-              playlist: "christmas"
+              playlist: "Christmas-Sorted"
 #          - service: dreamscreen.set_ambient_scene
 #            data:
 #              entity_id: dreamscreen.living_room_tv
@@ -61,52 +65,14 @@
 #            data:
 #              entity_id: dreamscreen.living_room_tv
 #              brightness: 90
-          - service: remote.turn_on
-            entity_id: remote.harmony
-            data:
-              activity: "Chrome Cast"
+          - delay: "00:00:20"
           - service: remote.send_command
             data:
+              delay_secs: 10
+              device: Philips TV
+              command: Mute
+            target:
               entity_id: remote.harmony
-              command:
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown   
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown 
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown
-                - VolumeDown          
-              device: "Sony TV"
-              delay_secs: 0.0
           - service: input_boolean.turn_on
             data:
               entity_id: input_boolean.christmas_mode
@@ -183,33 +149,25 @@
               media_content_id: '
                 {
                   "app_name": "youtube",
-                  "media_id": "8WBThkkpnaA"
+                  "media_id": "DL6wzjjjTB0"
                 }'
-          - delay: "00:00:01"
-          - service: remote.send_command
-            data:
-              entity_id: remote.harmony
-              command:
-                - Mute
-              device: "Philips TV"
-              delay_secs: 0.0
           - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
             event_data_template: 
               alexa_entity: "christmas"
-              playlist: "christmas-sorted"
-#          - service: dreamscreen.set_ambient_scene
-#            data:
-#              entity_id: dreamscreen.living_room_tv
-#              scene: 6
-#          - service: dreamscreen.set_brightness
-#            data:
-#              entity_id: dreamscreen.living_room_tv
-#              brightness: 90
+              playlist: "Christmas-Sorted"
+          - delay: '00:00:20'
+          - service: remote.send_command
+            data:
+              delay_secs: 10
+              device: Philips TV
+              command: Mute
+            target:
+              entity_id: remote.harmony
           - service: input_boolean.turn_on
             data:
               entity_id: input_boolean.christmas_mode
-          - delay: 
-              hours: 18
+          - delay: '18:00:00'
+
 
 
 - id: christmas_tree_power_cycle

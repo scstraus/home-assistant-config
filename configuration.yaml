@@ -183,7 +183,7 @@ lovelace:
 mobile_app:
 
 #uncomment for iOS device add
-discovery:
+#discovery:
 #  ignore:
 #    - plex_mediaserver
     
@@ -791,6 +791,10 @@ input_boolean:
   sophie_home_weekday:
     name: Sophie Home
     icon: mdi:home-import-outline
+  frigates_fucked:
+    name: frigates_fucked
+    icon: mdi:alert
+
 
 #  auto_curtain_open_state:
 #    name: "Automatic curtain opener state"
@@ -1279,6 +1283,9 @@ timer:
     duration: '00:10:00'
   lightning_keepalive:
     duration: '00:60:00'
+  one_frigate_event_per_day:
+    duration: '24:00:00'
+    restore: true
 
 
 #

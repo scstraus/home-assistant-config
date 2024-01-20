@@ -1155,7 +1155,7 @@ cards:
         entities:
           - entity: sensor.tempest_st_00023475_humidity
             name: Humiditiy
-          - entity: sensor.weatherflow_wind_speed
+          - entity: sensor.tempest_st_00023475_wind_speed
             name: Wind
           - entity: sensor.next_sunrise
             name: Sunrise
@@ -1173,7 +1173,7 @@ cards:
           }
         entities:
           - entity: sensor.weatherflow_relative_humidity
-          - entity: sensor.weatherflow_wind_speed
+          - entity: sensor.tempest_st_00023475_wind_speed
           - entity: sensor.next_sunrise
           - entity: sensor.next_sunset
 

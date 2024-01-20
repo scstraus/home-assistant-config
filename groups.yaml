@@ -14,6 +14,11 @@
       - media_player.gym_airtunes_speaker
 #      - media_player.master_bedroom_airtunes_speaker
 
+  Sophie:
+    name: Sophie
+    entities:
+      - device_tracker.sophie
+
   Alena_And_Sean:
     name: Alena and Sean
     entities:

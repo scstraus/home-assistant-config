@@ -451,3 +451,53 @@
         data:
           push:
             thread-id: "system"
+
+
+- id: is_frigate_still_working
+  alias: is_frigate_still_working
+  initial_state: 'true'
+  trigger:
+    platform: mqtt
+    topic: frigate/events
+  condition:
+    "{{ trigger.payload_json['after']['label'] == 'person' }}"
+  action:
+    - service: timer.start
+      data:
+        entity_id: timer.one_frigate_event_per_day
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.frigates_fucked
+      
+
+- id: frigates_fucked
+  alias: frigates_fucked
+  initial_state: 'true'
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.one_frigate_event_per_day
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.frigates_fucked
+      
+- id: notify_frigates_fucked
+  alias: notify_frigates_fucked
+  initial_state: 'true'
+  trigger:
+    - platform: time
+      at: "21:55:00"
+  condition:
+    condition: state
+    entity_id: input_boolean.warn_door_open_dishwasher_running
+    state: 'on'
+  action:
+    - service: notify.mobile_app_sean_iphone_14
+      data_template:
+        title: "Frigate's Seems Broken"
+        message: "It's been more than a day since Frigate's noticed anything. It seems there's an issue."
+        data:
+          push:
+            thread-id: "system"
