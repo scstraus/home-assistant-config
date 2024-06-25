@@ -1738,3 +1738,21 @@
       setpoint: 22
       duration: {"hours":13}
 
+
+- id: turn_off_sebastian_ac_in_morning
+  alias: turn_off_sebastian_ac_in_morning
+  initial_state: 'true'
+  mode: single
+  trigger:
+    platform: time
+    at: '08:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: climate.sebastian_s_room_ac
+        state: 'cool'
+  action:
+    service: climate.turn_off
+    target:
+      entity_id: climate.sebastian_s_room_ac
