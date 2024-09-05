@@ -1230,6 +1230,7 @@ cards:
     title: "Circulation Schedule"
     include:
       - switch.hot_water_circulation_pump
+      - switch.aeotec_philips_tv_switch
       - climate.living_room_ac
       - climate.sophie_s_room_ac
       - climate.sebastian_s_room_ac

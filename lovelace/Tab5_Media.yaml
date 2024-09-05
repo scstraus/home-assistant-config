@@ -19,3 +19,18 @@ cards:
     entity: sensor.sonarr_upcoming_media
     title: Upcoming Media
     max: 15
+  - type: custom:flipdown-timer-card
+    entity: timer.tv_timer
+    show_hour: true
+    show_title: false
+    show_header: true
+    styles:
+      rotor:
+        width: 32px
+        height: 50px
+        fontsize: 4rem
+      button:
+        width: 60px
+        height: 30px
+        fontsize: 1em
+        location: bottom

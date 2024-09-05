@@ -1506,3 +1506,39 @@
     service: input_boolean.turn_off
     data:
       entity_id: input_boolean.sean_headache
+
+
+#garage door opened or closed in last 3 minutes
+- id: tv_timer_almost_done_5_min
+  alias: tv_timer_almost_done_5_min
+  initial_state: 'true'
+  trigger:
+    - platform: template
+      value_template: "{{ (state_attr('timer.tv_timer', 'remaining') | int) < 300 }}"
+  action:
+    - data:
+        data:
+          type: tts
+        message: "Excuse me, this is a reminder that the TV will turn off in 5 minutes. Thank you."
+      service: notify.alexa_media_alexa_living_room
+    - service: notify.philips_tv
+      data:
+        title: TV Timer
+        message: The TV will turn off in 5 minutes.
+
+- id: tv_timer_almost_done_1_min
+  alias: tv_timer_almost_done_1_min
+  initial_state: 'true'
+  trigger:
+    - platform: template
+      value_template: "{{ (state_attr('timer.tv_timer', 'remaining') | int) < 60 }}"
+  action:
+    - data:
+        data:
+          type: tts
+        message: "Excuse me, this is a reminder that the TV will turn off in 1 minute. Please turn off game consoles. Thank you."
+      service: notify.alexa_media_alexa_living_room
+    - service: notify.philips_tv
+      data:
+        title: TV Timer
+        message: The TV will turn off in 1 minutes. Please save what you are doing an turn everything off.

@@ -166,6 +166,8 @@ lovelace:
       type: module
     - url: /hacsfiles/clock-weather-card/clock-weather-card.js
       type: module
+    - url: /hacsfiles/flipdown-timer-card/flipdown-timer-card.js
+      type: module
 #    - url: /hacsfiles/lovelace-hourly-weather/hourly-weather.js
 #      type: module
 #                                
@@ -1285,6 +1287,11 @@ timer:
     duration: '00:60:00'
   one_frigate_event_per_day:
     duration: '24:00:00'
+    restore: true
+  tv_timer:
+    restore: true
+  tv_off_delay:
+    duration: '00:03:00'
     restore: true
 
 

@@ -792,3 +792,57 @@
     data:
       command: 
         - PowerOff
+
+- id: tv_on_from_timer
+  alias: tv_on_from_timer
+  initial_state: 'true'
+  trigger:
+    - platform: event
+      event_type: timer.started
+      event_data:
+        entity_id: timer.tv_timer
+    - platform: event
+      event_type: timer.restarted
+      event_data:
+        entity_id: timer.tv_timer
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.aeotec_philips_tv_switch
+    - service: timer.cancel 
+      data:
+        entity_id: timer.tv_off_delay
+
+- id: tv_off_from_timer
+  alias: tv_off_from_timer
+  initial_state: 'true'
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.tv_timer
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.tv_off_delay
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.aeotec_philips_tv_switch
+
+- id: time_off_timer_from_tv_pause_cancel
+  alias: tv_on_from_timer
+  initial_state: 'true'
+  trigger:
+    - platform: event
+      event_type: timer.paused
+      event_data:
+        entity_id: timer.tv_timer
+    - platform: event
+      event_type: timer.cancelled
+      event_data:
+        entity_id: timer.tv_timer
+  action:
+    - service: timer.start
+      data:
+        entity_id: timer.tv_off_delay
