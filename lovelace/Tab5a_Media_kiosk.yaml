@@ -1,0 +1,16 @@
+#### MEDIA TAB FOR KIOSK ####
+
+title: Media
+icon: mdi:television-shimmer
+visible:
+  - user: 2a6556f191a44915998a20ea2ac28057
+  - user: 5d20dcdf0c8f4905b0d3ee79fb195c99
+cards:
+  - type: custom:upcoming-media-card
+    entity: sensor.plex_recently_added
+    title: Recently Added Media
+    max: 15
+  - type: custom:upcoming-media-card
+    entity: sensor.sonarr_upcoming_media
+    title: Upcoming Media
+    max: 15
