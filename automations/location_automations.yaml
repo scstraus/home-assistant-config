@@ -1045,3 +1045,23 @@
             critical: 1
             volume: 1.0
           thread-id: "location"
+
+- id: sophie_secret_phone
+  alias: sophie_secret_phone
+  initial_state: 'true'
+  trigger:
+    platform: state
+    entity_id: device_tracker.unifi_default_24_f6_77_36_7e_0f
+    to: 'home'
+  action:
+    service: notify.mobile_app_sean_iphone_14
+    data:
+      title: "Sophie Secret Phone"
+      message: "Sophie's Secret Phone is Back"
+      data:
+        push:
+          sound:
+            name: "News_Flash.caf"
+            critical: 1
+            volume: 1.0
+          thread-id: "location"
