@@ -256,7 +256,7 @@
         entity_id: binary_sensor.bosch_dishwasher_door
         state: 'on'
       - condition: state
-        entity_id: device_tracker.seans_iphone_14
+        entity_id: device_tracker.sean_s_iphone_16
         state: 'home'
   action:
     - service: script.house_announcement
@@ -265,7 +265,7 @@
     - data:
         title: "Dishwasher Update"
         message: "Looks like you left the dishwasher door open"
-      service: notify.mobile_app_sean_iphone_14
+      service: notify.mobile_app_sean_s_iphone_16
 
 
 - id: dishwasher_running_door_open_input_boolean_on

@@ -28,7 +28,7 @@
           entity_id: sensor.alarm_state_3_motion_sensors
           state: 'triggered'  
   action:
-    - service: notify.mobile_app_sean_iphone_14
+    - service: notify.mobile_app_sean_s_iphone_16
       data_template:
         title: "House Watch"
         message: "There's a Person in Front of the House"
@@ -75,7 +75,7 @@
           entity_id: sensor.alarm_state_3_motion_sensors
           state: 'triggered'  
   action:
-    - service: notify.mobile_app_sean_iphone_14
+    - service: notify.mobile_app_sean_s_iphone_16
       data_template:
         title: "House Watch"
         message: "There's a Person in Back of the House"
@@ -121,7 +121,7 @@
           entity_id: sensor.alarm_state_3_motion_sensors
           state: 'triggered'  
   action:
-    - service: notify.mobile_app_sean_iphone_14
+    - service: notify.mobile_app_sean_s_iphone_16
       data_template:
         title: "House Watch"
         message: "There's a Person on the Left of the House"
@@ -166,7 +166,7 @@
           entity_id: sensor.alarm_state_3_motion_sensors
           state: 'triggered'  
   action:
-    - service: notify.mobile_app_sean_iphone_14
+    - service: notify.mobile_app_sean_s_iphone_16
       data_template:
         title: "House Watch"
         message: "There's a Person on the Right of the House"
@@ -390,14 +390,14 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.seans_iphone_14
+    entity_id: device_tracker.sean_s_iphone_16
     to: 'home'
   condition:
     condition: state
     entity_id: sensor.alarm_state_3_motion_sensors
     state: armed_away
   action:
-    service: notify.mobile_app_sean_iphone_14
+    service: notify.mobile_app_sean_s_iphone_16
     data_template:
       title: "Alarm is armed"
       message: "Alarm is armed. Please make sure to turn it off before opening the doors"
@@ -464,7 +464,7 @@
     condition: template
     value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
   action:
-    service: notify.mobile_app_sean_iphone_14
+    service: notify.mobile_app_sean_s_iphone_16
     data:
       title: "Alarm is On At Home"
       message: "The alarm has been activated at home"
@@ -485,7 +485,7 @@
       from: 'armed'
       to: 'disarmed'
   action:
-    service: notify.mobile_app_sean_iphone_14
+    service: notify.mobile_app_sean_s_iphone_16
     data:
       title: "Alarm is Off At Home"
       message: "The alarm has been turned off at home"
@@ -545,7 +545,7 @@
       entity_id: binary_sensor.play_room_zone_3
       to: 'on'
   action:
-    service: notify.mobile_app_sean_iphone_14
+    service: notify.mobile_app_sean_s_iphone_16
     data:
       title: "Activity Notification"
       message: "Activity Notification"
@@ -865,10 +865,10 @@
               - condition: template
                 value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.truck_outside.attributes.last_triggered | default(0)) | int > 600)}}'
               - condition: state
-                entity_id: device_tracker.seans_iphone_14
+                entity_id: device_tracker.sean_s_iphone_16
                 state: 'home'
           sequence:
-            service: notify.mobile_app_sean_iphone_14
+            service: notify.mobile_app_sean_s_iphone_16
             data:
               title: "Special Delivery?"
               message: "There's a Truck Out Front"
@@ -920,10 +920,10 @@
               - condition: template
                 value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.someone_at_gate.attributes.last_triggered  | default(0)) | int > 600)}}'
               - condition: state
-                entity_id: device_tracker.seans_iphone_14
+                entity_id: device_tracker.sean_s_iphone_16
                 state: 'home'
           sequence:
-            service: notify.mobile_app_sean_iphone_14
+            service: notify.mobile_app_sean_s_iphone_16
             data:
               title: "Person at gate"
               message: "There's someone at the front gate"
@@ -960,7 +960,7 @@
               - condition: template
                 value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.person_in_front.attributes.last_triggered | default(0)) | int > 600)}}'
               - condition: state
-                entity_id: device_tracker.seans_iphone_14
+                entity_id: device_tracker.sean_s_iphone_16
                 state: 'home'
           sequence:
             - service: mqtt.publish
@@ -985,10 +985,10 @@
     - choose:
         - conditions:
             - condition: state
-              entity_id: device_tracker.seans_iphone_14
+              entity_id: device_tracker.sean_s_iphone_16
               state: 'home'
           sequence:
-            service: notify.mobile_app_sean_iphone_14
+            service: notify.mobile_app_sean_s_iphone_16
             data_template:
               title: "Person Coming Through Gate"
               message: "Looks like someone is going to or coming from the front gate to the front door"
@@ -1017,7 +1017,7 @@
     - choose:
         - conditions:
             - condition: state
-              entity_id: device_tracker.seans_iphone_14
+              entity_id: device_tracker.sean_s_iphone_16
               state: 'home'
           sequence:
             - service: mqtt.publish
@@ -1044,10 +1044,10 @@
     - choose:
         - conditions:
             - condition: state
-              entity_id: device_tracker.seans_iphone_14
+              entity_id: device_tracker.sean_s_iphone_16
               state: 'home'
           sequence:
-            service: notify.mobile_app_sean_iphone_14
+            service: notify.mobile_app_sean_s_iphone_16
             data_template:
               title: "Car Arrived"
               message: "The car has come through the gate into the driveway"
@@ -1093,10 +1093,10 @@
       after: '23:00:00'
       before: '7:00:00' 
     - condition: state
-      entity_id: device_tracker.seans_iphone_14
+      entity_id: device_tracker.sean_s_iphone_16
       state: 'home'
   action:
-    - service: notify.mobile_app_sean_iphone_14
+    - service: notify.mobile_app_sean_s_iphone_16
       data_template:
         title: "House Watch"
         message: "There's a Person on The Sidewalk"
@@ -1126,10 +1126,10 @@
       after: '23:00:00'
       before: '7:00:00' 
     - condition: state
-      entity_id: device_tracker.seans_iphone_14
+      entity_id: device_tracker.sean_s_iphone_16
       state: 'home'
   action:
-    - service: notify.mobile_app_sean_iphone_14
+    - service: notify.mobile_app_sean_s_iphone_16
       data_template:
         title: "House Watch"
         message: "There's a Person on the Neighbor's Strip Next to the Back Yard"
@@ -1159,10 +1159,10 @@
       after: '23:00:00'
       before: '7:00:00' 
     - condition: state
-      entity_id: device_tracker.seans_iphone_14
+      entity_id: device_tracker.sean_s_iphone_16
       state: 'home'
   action:
-    - service: notify.mobile_app_sean_iphone_14
+    - service: notify.mobile_app_sean_s_iphone_16
       data_template:
         title: "House Watch"
         message: "There's a Person on the Neighbor's Strip Next to the Left Side of the House by the Swing"
@@ -1192,10 +1192,10 @@
       after: '23:00:00'
       before: '7:00:00' 
     - condition: state
-      entity_id: device_tracker.seans_iphone_14
+      entity_id: device_tracker.sean_s_iphone_16
       state: 'home'
   action:
-    - service: notify.mobile_app_sean_iphone_14
+    - service: notify.mobile_app_sean_s_iphone_16
       data_template:
         title: "House Watch"
         message: "There's a Person on the Neighbor's Yard by the Right Side of the House Near the Air Conditioner"
@@ -1225,10 +1225,10 @@
     - choose:
         - conditions:
             - condition: state
-              entity_id: device_tracker.seans_iphone_14
+              entity_id: device_tracker.sean_s_iphone_16
               state: 'home'
           sequence:
-            service: notify.mobile_app_sean_iphone_14
+            service: notify.mobile_app_sean_s_iphone_16
             data_template:
               title: "New Car In Front of Gate"
               message: "A new car has arrived and is parked in front of the house"
@@ -1277,10 +1277,10 @@
 #              - condition: template
 #                value_template: '{{ (as_timestamp(now()) - as_timestamp(states.automation.car_arrived.attributes.last_triggered | default(0)) | int > 600)}}'
 #              - condition: state
-#                entity_id: device_tracker.seans_iphone_14
+#                entity_id: device_tracker.sean_s_iphone_16
 #                state: 'home'
 #          sequence:
-#            service: notify.mobile_app_sean_iphone_14
+#            service: notify.mobile_app_sean_s_iphone_16
 #            data:
 #              title: "Car Arrived"
 #              message: "The car has come through the gate into the driveway"
@@ -1325,10 +1325,10 @@
 #      after: '23:00:00'
 #      before: '7:00:00' 
 #    - condition: state
-#      entity_id: device_tracker.seans_iphone_14
+#      entity_id: device_tracker.sean_s_iphone_16
 #      state: 'home'
 #  action:
-#    - service: notify.mobile_app_sean_iphone_14
+#    - service: notify.mobile_app_sean_s_iphone_16
 #      data:
 #        title: "House Watch"
 #        message: "There's a Person on The Sidewalk"
@@ -1358,10 +1358,10 @@
 #    - choose:
 #        - conditions:
 #            - condition: state
-#              entity_id: device_tracker.seans_iphone_14
+#              entity_id: device_tracker.sean_s_iphone_16
 #              state: 'home'
 #          sequence:
-#            service: notify.mobile_app_sean_iphone_14
+#            service: notify.mobile_app_sean_s_iphone_16
 #            data:
 #              title: "New Car In Front of Gate"
 #              message: "A new car has arrived and is parked in front of the house"
@@ -1454,7 +1454,7 @@
       entity_id: sensor.alarm_state_3_motion_sensors
       state: 'triggered'  
   action:
-    - service: notify.mobile_app_sean_iphone_14
+    - service: notify.mobile_app_sean_s_iphone_16
       data_template:
         title: "House Watch"
         message: "A door or window was opened while the alarm was armed!"
