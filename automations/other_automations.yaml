@@ -1514,7 +1514,9 @@
   initial_state: 'true'
   trigger:
     - platform: template
-      value_template: "{{ (state_attr('timer.tv_timer', 'remaining') | int) < 300 }}"
+      value_template: |
+        {% set t_finish = state_attr('timer.tv_timer','finishes_at') %}
+        {{ false if t_finish is none else t_finish | as_datetime - now() <= timedelta(minutes=7) }}
   action:
     - data:
         data:
@@ -1531,7 +1533,9 @@
   initial_state: 'true'
   trigger:
     - platform: template
-      value_template: "{{ (state_attr('timer.tv_timer', 'remaining') | int) < 60 }}"
+      value_template: |
+        {% set t_finish = state_attr('timer.tv_timer','finishes_at') %}
+        {{ false if t_finish is none else t_finish | as_datetime - now() <= timedelta(minutes=3) }}
   action:
     - data:
         data:
