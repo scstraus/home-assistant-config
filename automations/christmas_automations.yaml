@@ -111,7 +111,7 @@
 
 - id: christmas_day_automation
   alias: christmas_day_automation
-  initial_state: 'false'
+  initial_state: 'true'
   mode: single
   trigger:
     platform: state
@@ -189,3 +189,19 @@
     - service: switch.turn_on
       data:
         entity_id: switch.garbage_disposal
+
+
+- id: christmas_tv_power_on
+  alias: christmas_tv_power_on
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '5:40:00'
+  condition:
+    - condition: template
+      value_template: "{{ now().strftime('%F') < (now().strftime('%Y') | int ) ~ '-12-25' and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ '-12-24' }}"
+  action:
+    - service: timer.start
+      data:
+        entity_id: timer.tv_timer 
+        duration: '06:00:00'

@@ -1051,7 +1051,7 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: device_tracker.unifi_default_24_f6_77_36_7e_0f
+    entity_id: device_tracker.klaras_iphone
     to: 'home'
   action:
     service: notify.mobile_app_sean_s_iphone_16

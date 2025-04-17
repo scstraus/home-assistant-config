@@ -1004,7 +1004,6 @@ cards:
     - binary_sensor.back_door
     - binary_sensor.garage_door
     - binary_sensor.front_door_zone_1
-    - input_select.bosch_dishwasher_status
     - binary_sensor.popp_unknown_type_0004_id_0014_sensor
     - input_select.miele_washing_machine_status
     - input_select.lg_washing_machine_status
@@ -1026,6 +1025,7 @@ cards:
       type: glance
       title: "Happening Today"
     show_empty: false    
+#     - input_select.bosch_dishwasher_status
 
   - type: entity-filter
     show_empty: false
@@ -1102,7 +1102,7 @@ cards:
       cards:
 
       - type: weather-forecast
-        entity: weather.weatherflow_day_based_forecast
+        entity: weather.home
         name: "Prague"
         show_forecast: false
         style: |

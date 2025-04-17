@@ -714,7 +714,6 @@ cards:
       - binary_sensor.back_door
       - binary_sensor.garage_door
       - binary_sensor.front_door_zone_1
-      - input_select.bosch_dishwasher_status
       - binary_sensor.popp_unknown_type_0004_id_0014_sensor
       - input_select.miele_washing_machine_status
       - input_select.lg_washing_machine_status
@@ -736,6 +735,7 @@ cards:
 #        title: "Happening Today"
         columns: 3
       show_empty: false   
+#       - input_select.bosch_dishwasher_status
 
 
 
@@ -1044,8 +1044,8 @@ cards:
       
       - type: custom:platinum-weather-card
         card_config_version: 8
-        entity_forecast_icon: weather.weatherflow_day_based_forecast
-        entity_temperature: weather.weatherflow_day_based_forecast
+        entity_forecast_icon: weather.home
+        entity_temperature: weather.home
         section_order:
           - overview
           - extended

@@ -587,7 +587,7 @@ cards:
     cards:
     
     - type: custom:bar-card
-      entity: sensor.epson_l3160_series_black_ink
+      entity: sensor.epson_l3260_series_black_ink
       unit_of_measurement: "%"
       name: Black Ink
       severity:
@@ -596,7 +596,7 @@ cards:
         color: "#000000"
 
     - type: custom:bar-card
-      entity: sensor.epson_l3160_series_cyan_ink
+      entity: sensor.epson_l3260_series_cyan_ink
       unit_of_measurement: "%"
       name: Cyan Ink
       severity:
@@ -605,7 +605,7 @@ cards:
         color: "#3498DB"
 
     - type: custom:bar-card
-      entity: sensor.epson_l3160_series_magenta_ink
+      entity: sensor.epson_l3260_series_magenta_ink
       unit_of_measurement: "%"
       name: Magenta Ink
       severity:
@@ -614,7 +614,7 @@ cards:
         color: "#e04c23"
 
     - type: custom:bar-card
-      entity: sensor.epson_l3160_series_yellow_ink
+      entity: sensor.epson_l3260_series_yellow_ink
       unit_of_measurement: "%"
       name: Yellow Ink
       severity:

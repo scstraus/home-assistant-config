@@ -1210,7 +1210,7 @@
 
 - id: car_on_sidewalk
   alias: car_on_sidewalk
-  initial_state: 'true'
+  initial_state: 'false'
   mode: single
   trigger:
     platform: mqtt

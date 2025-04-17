@@ -360,7 +360,7 @@
       - condition: and
         conditions:
           - condition: time
-            after: '21:30:00'
+            after: '22:30:00'
             before: '5:00:00'
           - condition: template
             value_template: "{{ not is_state('device_tracker.sean_s_iphone_16', 'Traveling') }}"
