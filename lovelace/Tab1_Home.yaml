@@ -493,7 +493,7 @@ cards:
           - sensor.high_wind_warning
       - type: history-graph
         entities:
-          - sensor.tempest_st_00023475_wind_speed
+          - sensor.tempest_st_00175075_wind_speed
       - type: markdown
         content: |
           <br />
@@ -1102,7 +1102,7 @@ cards:
       cards:
 
       - type: weather-forecast
-        entity: weather.home
+        entity: weather.weatherflow_day_based_forecast
         name: "Prague"
         show_forecast: false
         style: |
@@ -1153,9 +1153,9 @@ cards:
                 margin-bottom: -10px;
               }
         entities:
-          - entity: sensor.tempest_st_00023475_humidity
+          - entity: sensor.tempest_st_00175075_humidity
             name: Humiditiy
-          - entity: sensor.tempest_st_00023475_wind_speed
+          - entity: sensor.tempest_st_00175075_wind_speed
             name: Wind
           - entity: sensor.next_sunrise
             name: Sunrise
@@ -1173,7 +1173,7 @@ cards:
           }
         entities:
           - entity: sensor.weatherflow_relative_humidity
-          - entity: sensor.tempest_st_00023475_wind_speed
+          - entity: sensor.tempest_st_00175075_wind_speed
           - entity: sensor.next_sunrise
           - entity: sensor.next_sunset
 
@@ -2690,7 +2690,7 @@ cards:
     show_header_toggle: false
     entities:
 #    - entity: media_player.living_room_airtunes_speaker
-    - entity: media_player.forked_daapd_output_living_room
+    - entity: media_player.owntone_output_wiim_pro_86fc_2
       type: custom:mini-media-player
       name: Living Rm
       hide:
@@ -2698,7 +2698,7 @@ cards:
         mute: true
       group: true
 #    - entity: media_player.kitchen_airtunes_speaker
-    - entity: media_player.forked_daapd_output_kitchen
+    - entity: media_player.owntone_output_wiim_pro_e526_2
       type: custom:mini-media-player
       name: Kitchen Speakers
       hide:

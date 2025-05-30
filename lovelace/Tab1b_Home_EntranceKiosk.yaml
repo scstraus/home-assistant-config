@@ -454,7 +454,7 @@ cards:
             - sensor.high_wind_warning
         - type: history-graph
           entities:
-            - sensor.tempest_st_00023475_wind_speed
+            - sensor.tempest_st_00175075_wind_speed
         - type: markdown
           content: |
             <br />
@@ -967,8 +967,8 @@ cards:
       
       - type: custom:platinum-weather-card
         card_config_version: 8
-        entity_forecast_icon: weather.home
-        entity_temperature: weather.home
+        entity_forecast_icon: weather.weatherflow_hourly_based_forecast
+        entity_temperature: weather.weatherflow_hourly_based_forecast
         section_order:
           - overview
           - extended
@@ -1027,9 +1027,9 @@ cards:
           }
 #            margin-top: -30px !important;
         entities:
-          - entity: sensor.tempest_st_00023475_humidity
+          - entity: sensor.tempest_st_00175075_humidity
             name: Humiditiy
-          - entity: sensor.tempest_st_00023475_wind_speed
+          - entity: sensor.tempest_st_00175075_wind_speed
             name: Wind
           - entity: sensor.next_sunrise
             name: Sunrise
@@ -1051,7 +1051,7 @@ cards:
           }
         entities:
           - entity: sensor.weatherflow_relative_humidity
-          - entity: sensor.tempest_st_00023475_wind_speed
+          - entity: sensor.tempest_st_00175075_wind_speed
           - entity: sensor.next_sunrise
           - entity: sensor.next_sunset
 
