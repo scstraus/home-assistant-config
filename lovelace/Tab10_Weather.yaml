@@ -83,7 +83,7 @@ cards:
           }
 #            margin-top: -30px !important;
         entities:
-          - entity: sensor.tempest_st_00023475_humidity
+          - entity: sensor.tempest_st_00175075_humidity
             name: Humiditiy
           - entity: sensor.weatherflow_wind_speed
             name: Wind
@@ -438,7 +438,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.tempest_st_00023475_temperature
+          - entity: sensor.tempest_st_00175075_temperature
             name: Temperature
         hours_to_show: 24
         points_per_hour: 2
@@ -561,7 +561,7 @@ cards:
 #        title: Weather This Week
         weather: weather.weatherflow_day_based_forecast
         temp: sensor.weatherflow_air_temperature
-        wind: sensor.tempest_st_00023475_wind_speed
+        wind: sensor.tempest_st_00175075_wind_speed
         sun: sun.sun
 
       - type: entities
@@ -895,7 +895,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.tempest_st_00023475_rain_rate
+          - entity: sensor.tempest_st_00175075_rain_rate
             name: 'Rain Rate (mm)'
         hours_to_show: 24
         points_per_hour: 2
@@ -939,7 +939,7 @@ cards:
 #              indicator:
 #                type: arrow_inward
 #          value_sensors:
-#            - sensor: sensor.tempest_st_00023475_wind_speed
+#            - sensor: sensor.tempest_st_00175075_wind_speed
 #              decimals: 1
 #          compass:
 #            north:
@@ -955,7 +955,7 @@ cards:
               indicator:
                 type: arrow_inward
           value_sensors:
-            - sensor: sensor.tempest_st_00023475_wind_speed
+            - sensor: sensor.tempest_st_00175075_wind_speed
               decimals: 1
           compass:
             north:
@@ -966,7 +966,7 @@ cards:
       - type: custom:mini-graph-card
     #      name: Internet
         entities:
-          - entity: sensor.tempest_st_00023475_wind_speed
+          - entity: sensor.tempest_st_00175075_wind_speed
             name: Wind Speed
         hours_to_show: 24
         points_per_hour: 2

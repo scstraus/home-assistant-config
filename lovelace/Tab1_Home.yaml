@@ -1102,7 +1102,7 @@ cards:
       cards:
 
       - type: weather-forecast
-        entity: weather.weatherflow_day_based_forecast
+        entity: weather.weatherflow_hourly_based_forecast
         name: "Prague"
         show_forecast: false
         style: |
@@ -2857,69 +2857,69 @@ cards:
 #    report_size: 5
 #    card:
 
-  - type: vertical-stack
-    in_card: true
-    cards: 
-
-    - type: entity-filter
-      card:
-        show_header_toggle: false
-        title: Mini Countryman S E
-      state_filter:
-      - operator: "!="
-        value: "unknown"
-      entities:
-      - entity: sensor.cooper_s_e_all4_charging_time_remaining
-        name: Charging Time
-        state_filter:
-          - operator: ">"
-            value: 0
+#  - type: vertical-stack
+#    in_card: true
+#    cards: 
+#
+#    - type: entity-filter
+#      card:
+#        show_header_toggle: false
+#        title: Mini Countryman S E
+#      state_filter:
+#      - operator: "!="
+#        value: "unknown"
+#      entities:
 #      - entity: sensor.cooper_s_e_all4_charging_time_remaining
 #        name: Charging Time
-      - entity: sensor.cooper_s_e_all4_charging_level_hv
-        name: Charge Level
-      - entity: sensor.cooper_s_e_all4_remaining_range_electric
-        name: Electric Range
-        icon: mdi:car-battery
-      - entity: sensor.cooper_s_e_all4_remaining_range_total
-        name: Total Range
-        icon: mdi:gas-station
-      - entity: input_boolean.mini_countryman_clima
-      show_empty: false
-
-    - type: entity-filter
-      entities:
-      - entity: sensor.car_needs_charging
-      - entity: sensor.low_gas_in_car
-      - entity: binary_sensor.cooper_s_e_all4_charging_status
-        name: Charging
-#      - entity: binary_sensor.cooper_s_e_all4_check_control_messages
-      - entity: binary_sensor.brake_fluid
-      - entity: binary_sensor.oil_change
-      - entity: binary_sensor.inspection_needed
-      - entity: binary_sensor.check_engine
-      - entity: binary_sensor.cooper_s_e_all4_condition_based_services
-      - entity: binary_sensor.cooper_s_e_all4_door_lock_state
-        name: Car is
-      - entity: binary_sensor.cooper_s_e_all4_lids
-        name: Doors
-      - entity: binary_sensor.cooper_s_e_all4_lights_parking
-        name: Lights
-      - entity: binary_sensor.cooper_s_e_all4_windows
-        name: Windows
-      state_filter:
-      - "on"
-      - "DISCONNECTED"
-      - "Charge It"
-      - "Fill It"
-      state_filter:
-        - operator: "!="
-          value: "off"
-      entities:
-        - entity: sensor.mini_cooper_s_problem  
-      card: 
-        type: glance
-      show_empty: false  
+#        state_filter:
+#          - operator: ">"
+#            value: 0
+##      - entity: sensor.cooper_s_e_all4_charging_time_remaining
+##        name: Charging Time
+#      - entity: sensor.cooper_s_e_all4_charging_level_hv
+#        name: Charge Level
+#      - entity: sensor.cooper_s_e_all4_remaining_range_electric
+#        name: Electric Range
+#        icon: mdi:car-battery
+#      - entity: sensor.cooper_s_e_all4_remaining_range_total
+#        name: Total Range
+#        icon: mdi:gas-station
+#      - entity: input_boolean.mini_countryman_clima
+#      show_empty: false
+#
+#    - type: entity-filter
+#      entities:
+#      - entity: sensor.car_needs_charging
+#      - entity: sensor.low_gas_in_car
+#      - entity: binary_sensor.cooper_s_e_all4_charging_status
+#        name: Charging
+##      - entity: binary_sensor.cooper_s_e_all4_check_control_messages
+#      - entity: binary_sensor.brake_fluid
+#      - entity: binary_sensor.oil_change
+#      - entity: binary_sensor.inspection_needed
+#      - entity: binary_sensor.check_engine
+#      - entity: binary_sensor.cooper_s_e_all4_condition_based_services
+#      - entity: binary_sensor.cooper_s_e_all4_door_lock_state
+#        name: Car is
+#      - entity: binary_sensor.cooper_s_e_all4_lids
+#        name: Doors
+#      - entity: binary_sensor.cooper_s_e_all4_lights_parking
+#        name: Lights
+#      - entity: binary_sensor.cooper_s_e_all4_windows
+#        name: Windows
+#      state_filter:
+#      - "on"
+#      - "DISCONNECTED"
+#      - "Charge It"
+#      - "Fill It"
+#      state_filter:
+#        - operator: "!="
+#          value: "off"
+#      entities:
+#        - entity: sensor.mini_cooper_s_problem  
+#      card: 
+#        type: glance
+#      show_empty: false  
 
   - type: entities
     title: Basement
