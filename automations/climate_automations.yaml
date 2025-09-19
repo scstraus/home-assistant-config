@@ -922,16 +922,16 @@
       entity_id: sensor.home_air_quality
       below: 50
     - platform: numeric_state
-      entity_id: sensor.tempest_st_00023475_temperature
+      entity_id: sensor.tempest_st_00175075_temperature
       above: 18
     - platform: numeric_state
-      entity_id: sensor.tempest_st_00023475_temperature
+      entity_id: sensor.tempest_st_00175075_temperature
       below: 18
     - platform: numeric_state
-      entity_id: sensor.tempest_st_00023475_temperature
+      entity_id: sensor.tempest_st_00175075_temperature
       above: 26
     - platform: numeric_state
-      entity_id: sensor.tempest_st_00023475_temperature
+      entity_id: sensor.tempest_st_00175075_temperature
       below: 26
     - platform: numeric_state
       entity_id: sensor.dark_sky_daytime_high_temperature_0d
@@ -1368,12 +1368,12 @@
   initial_state: 'true'
   trigger:
     platform: state
-    entity_id: sensor.tempest_st_00023475_wind_speed
+    entity_id: sensor.tempest_st_00175075_wind_speed
   action:
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: sensor.tempest_st_00023475_wind_speed
+              entity_id: sensor.tempest_st_00175075_wind_speed
 #              above: 8
               above: 14
           sequence:
@@ -1383,7 +1383,7 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: sensor.tempest_st_00023475_wind_speed
+              entity_id: sensor.tempest_st_00175075_wind_speed
               above: 21
 #              above: 13
           sequence:
@@ -1393,7 +1393,7 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: sensor.tempest_st_00023475_wind_speed
+              entity_id: sensor.tempest_st_00175075_wind_speed
               above: 28
 #              above: 17
           sequence:
@@ -1403,7 +1403,7 @@
     - choose:
         - conditions: 
             - condition: numeric_state
-              entity_id: sensor.tempest_st_00023475_wind_speed
+              entity_id: sensor.tempest_st_00175075_wind_speed
               above: 46
 #              above: 25
           sequence:

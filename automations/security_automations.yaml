@@ -190,7 +190,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.tempest_st_00023475_wind_speed
+    entity_id: sensor.tempest_st_00175075_wind_speed
     above: 5
   condition:
     condition: time
@@ -206,7 +206,7 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.tempest_st_00023475_wind_speed
+    entity_id: sensor.tempest_st_00175075_wind_speed
     above: 6
   condition:
     condition: time
@@ -236,7 +236,7 @@
     at: '21:00:00'
   condition:
     condition: numeric_state
-    entity_id: sensor.tempest_st_00023475_wind_speed
+    entity_id: sensor.tempest_st_00175075_wind_speed
     above: 6
   action:
     - service: switch.turn_off
@@ -256,13 +256,13 @@
     - condition: and
       conditions:
       - condition: numeric_state
-        entity_id: sensor.tempest_st_00023475_temperature
+        entity_id: sensor.tempest_st_00175075_temperature
         below: 5
       - condition: numeric_state
-        entity_id: sensor.tempest_st_00023475_temperature
+        entity_id: sensor.tempest_st_00175075_temperature
         above: -3
       - condition: numeric_state
-        entity_id: sensor.tempest_st_00023475_humidity
+        entity_id: sensor.tempest_st_00175075_humidity
         above: 65
   action:
     - service: switch.turn_off
@@ -278,16 +278,16 @@
   initial_state: 'true'
   trigger:
     platform: numeric_state
-    entity_id: sensor.tempest_st_00023475_temperature
+    entity_id: sensor.tempest_st_00175075_temperature
     below: 5
   condition:
     - condition: and
       conditions:
       - condition: numeric_state
-        entity_id: sensor.tempest_st_00023475_temperature
+        entity_id: sensor.tempest_st_00175075_temperature
         above: -3
       - condition: numeric_state
-        entity_id: sensor.tempest_st_00023475_humidity
+        entity_id: sensor.tempest_st_00175075_humidity
         above: 65
       - condition: time
         after: "19:00:00"

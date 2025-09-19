@@ -1805,11 +1805,13 @@ cards:
 
 #### START COMMENT BLOCK 5: Location and Reminders
 
-  - type: glance
-    entities:
-      - sensor.sean_location
-      - sensor.sophie_location
-      - sensor.alena_location
+#  - type: glance
+#    entities:
+#      - sensor.sean_location
+#      - sensor.sophie_location
+#      - sensor.alena_location
+
+
 #        type: "custom:secondaryinfo-entity-row"
 #        secondary_info: "ETA: [[ sensor.sean_tram_time_to_home ]]"
 

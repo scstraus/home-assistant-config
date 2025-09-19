@@ -739,13 +739,13 @@ cards:
 
 
 
-    - type: glance
-      entities:
-        - sensor.sean_location
-  #        type: "custom:secondaryinfo-entity-row"
-  #        secondary_info: "ETA: [[ sensor.sean_tram_time_to_home ]]"
-        - sensor.sophie_location
-        - sensor.alena_location
+#    - type: glance
+#      entities:
+#        - sensor.sean_location
+#  #        type: "custom:secondaryinfo-entity-row"
+#  #        secondary_info: "ETA: [[ sensor.sean_tram_time_to_home ]]"
+#        - sensor.sophie_location
+#        - sensor.alena_location
 
 
 #    #coronavirus card
@@ -2402,8 +2402,9 @@ cards:
       title: First Floor
       show_header_toggle: false
       entities:
+
   #    - entity: media_player.living_room_airtunes_speaker
-      - entity: media_player.forked_daapd_output_living_room
+      - entity: media_player.owntone_output_wiim_pro_86fc_2
         type: custom:mini-media-player
         name: Living Rm
         hide:
@@ -2411,7 +2412,7 @@ cards:
           mute: true
         group: true
   #    - entity: media_player.kitchen_airtunes_speaker
-      - entity: media_player.forked_daapd_output_kitchen
+      - entity: media_player.owntone_output_wiim_pro_e526_2
         type: custom:mini-media-player
         name: Kitchen Speakers
         hide:

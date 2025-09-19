@@ -797,8 +797,8 @@
         value_template: >-
           {% if states('sensor.weatherflow_air_temperature')|float < 27
               and states('sensor.weatherflow_air_temperature')|float > 10 
-              and states('sensor.tempest_st_00023475_wind_speed')|float < 30
-              and states('sensor.tempest_st_00023475_wind_speed')|float > 7
+              and states('sensor.tempest_st_00175075_wind_speed')|float < 30
+              and states('sensor.tempest_st_00175075_wind_speed')|float > 7
               and (states('sensor.pirateweather_precip_probability_0d')|float < 30
               or ((states('sensor.pirateweather_precip_intensity_1h')|float < 0.05)
               and (states('sensor.pirateweather_precip_intensity_2h')|float < 0.05)
@@ -856,17 +856,17 @@
           {% if ((((as_timestamp(now()) - as_timestamp(states.binary_sensor.weatherflow_is_raining.last_changed)) > 300) or ((as_timestamp(now()) - as_timestamp(states('sensor.uptime')))<300)) and (states('binary_sensor.weatherflow_is_raining')=='off')) %}
             no
           {% else %}
-            {% if ((states('sensor.tempest_st_00023475_rain_rate'))|float < 0.2) %}
+            {% if ((states('sensor.tempest_st_00175075_rain_rate'))|float < 0.2) %}
               Drizzle
-            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 0.5 %}           
+            {% elif (states('sensor.tempest_st_00175075_rain_rate'))|float < 0.5 %}           
               Slight Rain
-            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 4.0 %}           
+            {% elif (states('sensor.tempest_st_00175075_rain_rate'))|float < 4.0 %}           
               Moderate Rain
-            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 8.0 %}           
+            {% elif (states('sensor.tempest_st_00175075_rain_rate'))|float < 8.0 %}           
               Heavy Rain
-            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 20.0 %}           
+            {% elif (states('sensor.tempest_st_00175075_rain_rate'))|float < 20.0 %}           
               Heavy Shower
-            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 50.0 %}           
+            {% elif (states('sensor.tempest_st_00175075_rain_rate'))|float < 50.0 %}           
               Very Heavy Shower
             {% else %}           
               Violent Shower
@@ -876,15 +876,15 @@
           {% if ((as_timestamp(now()) - as_timestamp(states.binary_sensor.weatherflow_is_raining.last_changed)) > 300) and (states('binary_sensor.weatherflow_is_raining')=='off') %}
             mdi:weather-sunny
           {% else %}
-            {% if (states('sensor.tempest_st_00023475_rain_rate'))|float < 0.2 %}
+            {% if (states('sensor.tempest_st_00175075_rain_rate'))|float < 0.2 %}
               mdi:weather-partly-rainy
-            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 0.5 %}           
+            {% elif (states('sensor.tempest_st_00175075_rain_rate'))|float < 0.5 %}           
               mdi:weather-partly-rainy
-            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 4.0 %}           
+            {% elif (states('sensor.tempest_st_00175075_rain_rate'))|float < 4.0 %}           
               mdi:weather-rainy
-            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 8.0 %}           
+            {% elif (states('sensor.tempest_st_00175075_rain_rate'))|float < 8.0 %}           
               mdi:weather-pouring
-            {% elif (states('sensor.tempest_st_00023475_rain_rate'))|float < 50.0 %}           
+            {% elif (states('sensor.tempest_st_00175075_rain_rate'))|float < 50.0 %}           
               mdi:weather-pouring
             {% else %}           
               mdi:weather-pouring
