@@ -328,11 +328,11 @@ cards:
 #          color: "#e04c23"
 #
 #
-
-  - type: vertical-stack
-    in_card: true
-    title: Object Detection
-    cards:
+#
+#  - type: vertical-stack
+#    in_card: true
+#    title: Object Detection
+#    cards:
 #
 #    - type: custom:mini-graph-card
 #      name: Coral FPS
@@ -391,40 +391,40 @@ cards:
 #      points_per_hour: 2
 #      show_points: false
 #      height: 300
-
-    - type: custom:mini-graph-card
-      name: Camera Skipped FPS
-      entities:
-        - entity: sensor.front_skipped_fps
-          name: Front FPS
-        - entity: sensor.back_skipped_fps
-          name: Back FPS
-        - entity: sensor.left_skipped_fps
-          name: Left FPS
-        - entity: sensor.right_skipped_fps
-          name: Right FPS
-      lower_bound: 0
-      hours_to_show: 24
-      points_per_hour: 2
-      show_points: false
-      height: 300
-
-    - type: custom:mini-graph-card
-      name: Camera Detection FPS
-      entities:
-        - entity: sensor.front_detection_fps
-          name: Front FPS
-        - entity: sensor.back_detection_fps
-          name: Back FPS
-        - entity: sensor.left_detection_fps
-          name: Left FPS
-        - entity: sensor.right_detection_fps
-          name: Right FPS
-      lower_bound: 0
-      hours_to_show: 24
-      points_per_hour: 2
-      show_points: false
-      height: 300
+#
+#    - type: custom:mini-graph-card
+#      name: Camera Skipped FPS
+#      entities:
+#        - entity: sensor.front_skipped_fps
+#          name: Front FPS
+#        - entity: sensor.back_skipped_fps
+#          name: Back FPS
+#        - entity: sensor.left_skipped_fps
+#          name: Left FPS
+#        - entity: sensor.right_skipped_fps
+#          name: Right FPS
+#      lower_bound: 0
+#      hours_to_show: 24
+#      points_per_hour: 2
+#      show_points: false
+#      height: 300
+#
+#    - type: custom:mini-graph-card
+#      name: Camera Detection FPS
+#      entities:
+#        - entity: sensor.front_detection_fps
+#          name: Front FPS
+#        - entity: sensor.back_detection_fps
+#          name: Back FPS
+#        - entity: sensor.left_detection_fps
+#          name: Left FPS
+#        - entity: sensor.right_detection_fps
+#          name: Right FPS
+#      lower_bound: 0
+#      hours_to_show: 24
+#      points_per_hour: 2
+#      show_points: false
+#      height: 300
 
 
   - type: vertical-stack
