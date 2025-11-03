@@ -1180,17 +1180,17 @@
       data:
         entity_id: timer.kitchen_tablet_reload 
         
-- id: sync_shopping_list
-  alias: sync_shopping_list
-  initial_state: 'on'
-  trigger:
-    - platform: webhook
-      webhook_id: !secret shopping_sync_key
-      local_only: false
-  action:
-    - service: pyscript.sync_shopping_list
-    - delay: 2
-    - service: shell_command.reload_ui_kindle_fire_entrance 
+#- id: sync_shopping_list
+#  alias: sync_shopping_list
+#  initial_state: 'on'
+#  trigger:
+#    - platform: webhook
+#      webhook_id: !secret shopping_sync_key
+#      local_only: false
+#  action:
+#    - service: pyscript.sync_shopping_list
+#    - delay: 2
+#    - service: shell_command.reload_ui_kindle_fire_entrance 
       
 
 - id: remind_to_plug_car_in
@@ -1546,3 +1546,56 @@
       data:
         title: TV Timer
         message: The TV will turn off in 1 minutes. Please save what you are doing an turn everything off.
+
+- id: 4d7ac4e1-4fe1-4abe-b87d-a304208e4388
+  alias: "ASLS: Add new shopping list item to Alexa"
+  trigger:
+    - platform: event
+      event_type: shopping_list_updated
+      event_data:
+        action: "add"
+  action:
+    service: rest_command.add_shopping_list_item
+    data_template:
+      item: "{{ trigger.event.data.item.name }}"
+
+#  This automation is commented out until I can figure out how to get the old item name. It's being tracked here: https://github.com/SavageCore/HA_Addons/issues/1
+# - id: 8ca2d6b3-97db-4465-b48d-26facff1853e
+#   alias: "ASLS: Update shopping list item on Alexa"
+#   trigger:
+#     - platform: event
+#       event_type: shopping_list_updated
+#       event_data:
+#         action: "update"
+#   action:
+#     service: rest_command.update_shopping_list_item
+#     data_template:
+#       item: "{{ trigger.event.data.item.name }}"
+#       new_item: "{{ trigger.event.data.new_item.name }}"
+
+- id: abde7a51-104b-4db7-aea6-d08f00e71ef1
+  alias: "ASLS: Complete shopping list item on Alexa"
+  trigger:
+    - platform: event
+      event_type: shopping_list_updated
+      event_data:
+        action: "update"
+  condition:
+    - condition: template
+      value_template: "{{ trigger.event.data.item.complete == true }}"
+  action:
+    service: rest_command.complete_shopping_list_item
+    data_template:
+      item: "{{ trigger.event.data.item.name }}"
+
+- id: 62eac98e-c205-4aba-b48e-558e9d220fc8
+  alias: "ASLS: Remove shopping list item from Alexa"
+  trigger:
+    - platform: event
+      event_type: shopping_list_updated
+      event_data:
+        action: "remove"
+  action:
+    service: rest_command.remove_shopping_list_item
+    data_template:
+      item: "{{ trigger.event.data.item.name }}"

@@ -304,6 +304,8 @@ switch:
         icon_template: "mdi:volume-high"
 
 
+
+
 #  - platform: command_line
 #    switches:
 #      shuffle:
@@ -1212,6 +1214,31 @@ rest_command:
     method: put
     content_type: "application/x-www-form-urlencoded"
     payload: "mode=off"
+  add_shopping_list_item:
+    url: "http://localhost:5000/add_item"
+    method: post
+    payload: '{"item": "{{ item }}"}'
+    headers:
+      Content-Type: application/json
+  update_shopping_list_item:
+    url: "http://localhost:5000/update_item"
+    method: put
+    payload: '{"item": "{{ item }}", "new_item": "{{ new_item }}"}'
+    headers:
+      Content-Type: application/json
+  complete_shopping_list_item:
+    url: "http://localhost:5000/complete_item"
+    method: put
+    payload: '{"item": "{{ item }}"}'
+    headers:
+      Content-Type: application/json
+  remove_shopping_list_item:
+    url: "http://localhost:5000/remove_item"
+    method: post
+    payload: '{"item": "{{ item }}"}'
+    headers:
+      Content-Type: application/json
+
 #fan:
 #  - platform: xiaomi_miio
 #    name: sebastians_room_air_purifier
