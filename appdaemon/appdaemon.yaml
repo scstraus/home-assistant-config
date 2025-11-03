@@ -8,8 +8,9 @@ appdaemon:
   plugins:
     HASS:
       type: hass
+      token: !env_var SUPERVISOR_TOKEN
 http:
-  url: http://127.0.0.1:5050
+  url: http://0.0.0.0:5050
 admin:
 api:
 hadashboard:
@@ -25,7 +26,7 @@ logs:
     filename: /share/appdaemonlogs/manage_kiosk_camera_popups.log
   playlist_in_room_log:
     name: playlist_in_room_log
-    filename: /share/appdaemonlogs/playlist_in_room.log 
+    filename: /share/appdaemonlogs/playlist_in_room.log
   diag_log:
     filename: /share/appdaemonlogs/diag.log
     log_generations: 5
