@@ -54,31 +54,31 @@ sensor.basement_nest_protect_color_status:
   hidden: true
 sensor.basement_nest_protect_smoke_status:
   friendly_name: Basement Smoke Level
-media_player.forked_daapd_output_apple_tv:
+media_player.owntone_output_apple_tv:
   friendly_name: Music on AppleTV
-media_player.forked_daapd_output_back_yard:
+media_player.owntone_output_back_yard:
   friendly_name: Back Yard Speakers
-media_player.forked_daapd_output_bathroom_1st_floor:
+media_player.owntone_output_bathroom_1st_floor:
   friendly_name: First Floor Bathroom Speakers
-media_player.forked_daapd_output_gym:
+media_player.owntone_output_gym:
   friendly_name: Gym Speakers
-media_player.forked_daapd_output_kitchen:
+media_player.owntone_output_kitchen:
   friendly_name: Kitchen Speakers
-media_player.forked_daapd_output_laundry_room:
+media_player.owntone_output_laundry_room:
   friendly_name: Laundry Room Speakers
-media_player.forked_daapd_output_library:
+media_player.owntone_output_library:
   friendly_name: Library Speakers
-media_player.forked_daapd_output_living_room:
+media_player.owntone_output_living_room:
   friendly_name: Living Room Speakers
-media_player.forked_daapd_output_master_bath:
+media_player.owntone_output_master_bath:
   friendly_name: Master Bath Speakers
-media_player.forked_daapd_output_master_bedroom:
+media_player.owntone_output_master_bedroom:
   friendly_name: Master Bedroom Speakers
-media_player.forked_daapd_output_office:
+media_player.owntone_output_office:
   friendly_name: Office Speakers
-media_player.forked_daapd_output_sebastian_s_room:
+media_player.owntone_output_sebastian_s_room:
   friendly_name: Sebastian's Room Speakers
-media_player.forked_daapd_output_sophie_s_room:
+media_player.owntone_output_sophie_s_room:
   friendly_name: Sophie's Room Speakers
 media_player.apple_tv_airtunes_speaker:
   friendly_name: iTunes Output Apple TV

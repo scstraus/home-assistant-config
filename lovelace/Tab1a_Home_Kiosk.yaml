@@ -1849,7 +1849,7 @@ cards:
 #        cards:
 
 
-    - entity: media_player.forked_daapd_server
+    - entity: media_player.owntone_server
       type: custom:mini-media-player
       name: Music
       source: icon
@@ -2420,7 +2420,7 @@ cards:
           mute: true
         group: true
   #    - entity: media_player.bathroom_1st_floor_airtunes_speaker
-      - entity: media_player.forked_daapd_output_bathroom_1st_floor
+      - entity: media_player.owntone_output_bathroom_1st_floor
         type: custom:mini-media-player
         name: Bathroom Speakers
         hide:
@@ -2428,7 +2428,7 @@ cards:
           mute: true
         group: true
   #    - entity: media_player.apple_tv_airtunes_speaker
-#      - entity: media_player.forked_daapd_output_apple_tv
+#      - entity: media_player.owntone_output_apple_tv
 #        type: custom:mini-media-player
 #        name: Apple TV
 #        hide:
@@ -2467,14 +2467,14 @@ cards:
 #        type: "custom:secondaryinfo-entity-row"
 #        secondary_info: "Air Quality: [[  sensor.master_bedroom_aqi_description.state ]]"
   #    - entity: media_player.master_bedroom_airtunes_speaker
-      - entity: media_player.forked_daapd_output_master_bedroom
+      - entity: media_player.owntone_output_master_bedroom
         type: custom:mini-media-player
         name: "Master Bedroom Speakers"
         hide:
           controls: true
           mute: true
         group: true
-      - entity: media_player.forked_daapd_output_master_bath
+      - entity: media_player.owntone_output_master_bath
   #    - entity: media_player.master_bath_airtunes_speaker
         type: custom:mini-media-player
         name: "Master Bath Speakers"
@@ -2482,7 +2482,7 @@ cards:
           controls: true
           mute: true
         group: true
-      - entity: media_player.forked_daapd_output_office
+      - entity: media_player.owntone_output_office
   #    - entity: media_player.office_airtunes_speaker
         type: custom:mini-media-player
         name: Office Speakers
@@ -2490,7 +2490,7 @@ cards:
           controls: true
           mute: true
         group: true
-      - entity: media_player.forked_daapd_output_library
+      - entity: media_player.owntone_output_library
   #    - entity: media_player.library_airtunes_speaker
         type: custom:mini-media-player
         name: Library Speakers
@@ -2532,14 +2532,14 @@ cards:
 #        type: "custom:secondaryinfo-entity-row"
 #        secondary_info: "Air Quality: [[  sensor.sebastians_room_aqi_description.state ]]"
   #    - entity: media_player.sophie_s_room_airtunes_speaker
-      - entity: media_player.forked_daapd_output_sophie_s_room
+      - entity: media_player.owntone_output_sophie_s_room
         type: custom:mini-media-player
         name: "Sophie's Room Speakers"
         hide:
           controls: true
           mute: true
         group: true
-      - entity: media_player.forked_daapd_output_sebastian_s_room
+      - entity: media_player.owntone_output_sebastian_s_room
   #    - entity: media_player.sebastian_s_room_airtunes_speaker
         type: custom:mini-media-player
         name: "Seb's Room Speakers"
@@ -2547,7 +2547,7 @@ cards:
           controls: true
           mute: true
         group: true
-      - entity: media_player.forked_daapd_output_gym
+      - entity: media_player.owntone_output_gym
   #    - entity: media_player.gym_airtunes_speaker
         type: custom:mini-media-player
         name: Gym Speakers

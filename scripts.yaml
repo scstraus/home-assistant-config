@@ -383,71 +383,71 @@
     sequence:
       - service: media_player.media_pause
         data: 
-          entity_id: media_player.forked_daapd_server
+          entity_id: media_player.owntone_server
     
   start_music:
     sequence:
       - service: media_player.media_play
         data: 
-          entity_id: media_player.forked_daapd_server
+          entity_id: media_player.owntone_server
           
   turn_up_music_volume:
     sequence:
       - service: media_player.volume_up
         data: 
-          entity_id: media_player.forked_daapd_server       
+          entity_id: media_player.owntone_server       
       - service: media_player.volume_up
         data: 
-          entity_id: media_player.forked_daapd_server  
+          entity_id: media_player.owntone_server  
 #      - service: media_player.volume_up
 #        data: 
-#          entity_id: media_player.forked_daapd_server  
+#          entity_id: media_player.owntone_server  
 #      - service: media_player.volume_up
 #        data: 
-#          entity_id: media_player.forked_daapd_server  
+#          entity_id: media_player.owntone_server  
 
 
   turn_down_music_volume:
     sequence:
       - service: media_player.volume_down
         data: 
-          entity_id: media_player.forked_daapd_server      
+          entity_id: media_player.owntone_server      
       - service: media_player.volume_down
         data: 
-          entity_id: media_player.forked_daapd_server 
+          entity_id: media_player.owntone_server 
 #      - service: media_player.volume_down
 #        data: 
-#          entity_id: media_player.forked_daapd_server 
+#          entity_id: media_player.owntone_server 
 #      - service: media_player.volume_down
 #        data: 
-#          entity_id: media_player.forked_daapd_server 
+#          entity_id: media_player.owntone_server 
 
   skip_this_song:
     sequence:
       - choose:
           - conditions:
             - condition: state
-              entity_id: media_player.forked_daapd_server
+              entity_id: media_player.owntone_server
               state: 'playing'
             sequence:
               service: media_player.media_next_track
               data:
-                entity_id: media_player.forked_daapd_server
+                entity_id: media_player.owntone_server
 
   play_last_song:
     sequence:
       - choose:
           - conditions:
             - condition: state
-              entity_id: media_player.forked_daapd_server
+              entity_id: media_player.owntone_server
               state: 'playing'
             sequence:
               - service: media_player.media_previous_track
                 data:
-                  entity_id: media_player.forked_daapd_server
+                  entity_id: media_player.owntone_server
               - service: media_player.media_previous_track
                 data:
-                  entity_id: media_player.forked_daapd_server
+                  entity_id: media_player.owntone_server
 
 
   rewind_the_song:
@@ -455,12 +455,12 @@
       - choose:
           - conditions:
              - condition: state
-               entity_id: media_player.forked_daapd_server
+               entity_id: media_player.owntone_server
                state: 'playing'
             sequence:
               - service: media_player.media_previous_track
                 data:
-                  entity_id: media_player.forked_daapd_server
+                  entity_id: media_player.owntone_server
 
   where_is_sean:
     sequence:
@@ -688,7 +688,7 @@
         data:
           shuffle: true
         target:
-          entity_id: media_player.forked_daapd_server
+          entity_id: media_player.owntone_server
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "christmas"
@@ -705,7 +705,7 @@
         data:
           shuffle: true
         target:
-          entity_id: media_player.forked_daapd_server
+          entity_id: media_player.owntone_server
       - event: ALEXA_LAUNCH_ITUNES_PLAYLIST
         event_data_template: 
           alexa_entity: "christmas"
@@ -762,19 +762,19 @@
     sequence:
       - service: media_player.volume_set
         data: 
-          entity_id: media_player.forked_daapd_server
+          entity_id: media_player.owntone_server
           volume_level: 0.5
       - service: media_player.volume_set
         data: 
-          entity_id: media_player.forked_daapd_output_living_room
+          entity_id: media_player.owntone_output_living_room
           volume_level: 0.25
       - service: media_player.volume_set
         data: 
-          entity_id: media_player.forked_daapd_output_kitchen
+          entity_id: media_player.owntone_output_kitchen
           volume_level: 0.15
       - service: media_player.volume_set
         data: 
-          entity_id: media_player.forked_daapd_server
+          entity_id: media_player.owntone_server
           volume_level: 0.90
 
 #
@@ -1005,7 +1005,7 @@
     sequence:
       - service: media_player.media_pause
         data:
-          entity_id: media_player.forked_daapd_server
+          entity_id: media_player.owntone_server
       - service: switch.turn_off
         data:
           entity_id: switch.garbage_disposal

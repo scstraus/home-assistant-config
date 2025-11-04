@@ -30,25 +30,25 @@ class PlaylistInRoom(hass.Hass):
 #########################################################################################################
 
   ITUNES_VOLUME = 0.5
-  ITUNES_ENTITY = "media_player.forked_daapd_server"
-  AIRPLAY_ENTITIES = ["media_player.forked_daapd_output_apple_tv", "media_player.forked_daapd_output_back_yard", "media_player.forked_daapd_output_bathroom_1st_floor", "media_player.forked_daapd_output_gym", "media_player.forked_daapd_output_kitchen", "media_player.forked_daapd_output_laundry_room", "media_player.forked_daapd_output_library", "media_player.forked_daapd_output_living_room", "media_player.forked_daapd_output_master_bath", "media_player.forked_daapd_output_office",
-  "media_player.forked_daapd_output_sebastian_s_room", "media_player.forked_daapd_output_sophie_s_room"]
+  ITUNES_ENTITY = "media_player.owntone_server"
+  AIRPLAY_ENTITIES = ["media_player.owntone_output_apple_tv", "media_player.owntone_output_back_yard", "media_player.owntone_output_bathroom_1st_floor", "media_player.owntone_output_gym", "media_player.owntone_output_kitchen", "media_player.owntone_output_laundry_room", "media_player.owntone_output_library", "media_player.owntone_output_living_room", "media_player.owntone_output_master_bath", "media_player.owntone_output_office",
+  "media_player.owntone_output_sebastian_s_room", "media_player.owntone_output_sophie_s_room"]
 
-  AIRPLAY_ENTITY_VOLUMES = {"media_player.forked_daapd_output_apple_tv": 0.5, "media_player.forked_daapd_output_back_yard": 0.5, "media_player.forked_daapd_output_bathroom_1st_floor": 0.5, "media_player.forked_daapd_output_gym": 0.5, "media_player.forked_daapd_output_kitchen": 0.37, "media_player.forked_daapd_output_laundry_room": 0.5, "media_player.forked_daapd_output_library": 0.5, "media_player.forked_daapd_output_living_room": 0.29, "media_player.forked_daapd_output_master_bath": 0.7, "media_player.forked_daapd_output_office": 0.5,
-  "media_player.forked_daapd_output_sebastian_s_room": 0.5, "media_player.forked_daapd_output_sophie_s_room": 0.5}
+  AIRPLAY_ENTITY_VOLUMES = {"media_player.owntone_output_apple_tv": 0.5, "media_player.owntone_output_back_yard": 0.5, "media_player.owntone_output_bathroom_1st_floor": 0.5, "media_player.owntone_output_gym": 0.5, "media_player.owntone_output_kitchen": 0.37, "media_player.owntone_output_laundry_room": 0.5, "media_player.owntone_output_library": 0.5, "media_player.owntone_output_living_room": 0.29, "media_player.owntone_output_master_bath": 0.7, "media_player.owntone_output_office": 0.5,
+  "media_player.owntone_output_sebastian_s_room": 0.5, "media_player.owntone_output_sophie_s_room": 0.5}
 
 # Element 0 in each column is the alexa or service call, next elements are the speakers that it needs to activate to play music
-  ALEXA_TO_AIRPLAY_MAPPING =[["media_player.alexa_kitchen","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"],
-  ["media_player.alexa_living_room","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"],
-  ["media_player.alexa_master_bath","media_player.forked_daapd_output_master_bath"],
-  ["media_player.kichen_bar_kindle_fire","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"],
-  ["media_player.office_alexa","media_player.forked_daapd_output_office"],  
-  ["media_player.sophies_room_echo_dot","media_player.forked_daapd_output_sophie_s_room"],
-  ["media_player.master_closet_kindle","media_player.forked_daapd_output_office"],
-  ["christmas","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen","media_player.forked_daapd_output_bathroom_1st_floor"],
-  ["media_player.alexa_echo_dot_kitchen_bar","media_player.forked_daapd_output_living_room","media_player.forked_daapd_output_kitchen"],
-  ["media_player.echo_flex_first_floor_bathroom","media_player.forked_daapd_output_bathroom_1st_floor"],
-  ["media_player.alexa_library","media_player.forked_daapd_output_library"]]
+  ALEXA_TO_AIRPLAY_MAPPING =[["media_player.alexa_kitchen","media_player.owntone_output_living_room","media_player.owntone_output_kitchen"],
+  ["media_player.alexa_living_room","media_player.owntone_output_living_room","media_player.owntone_output_kitchen"],
+  ["media_player.alexa_master_bath","media_player.owntone_output_master_bath"],
+  ["media_player.kichen_bar_kindle_fire","media_player.owntone_output_living_room","media_player.owntone_output_kitchen"],
+  ["media_player.office_alexa","media_player.owntone_output_office"],  
+  ["media_player.sophies_room_echo_dot","media_player.owntone_output_sophie_s_room"],
+  ["media_player.master_closet_kindle","media_player.owntone_output_office"],
+  ["christmas","media_player.owntone_output_living_room","media_player.owntone_output_kitchen","media_player.owntone_output_bathroom_1st_floor"],
+  ["media_player.alexa_echo_dot_kitchen_bar","media_player.owntone_output_living_room","media_player.owntone_output_kitchen"],
+  ["media_player.echo_flex_first_floor_bathroom","media_player.owntone_output_bathroom_1st_floor"],
+  ["media_player.alexa_library","media_player.owntone_output_library"]]
 
   PLAYLIST_EXCEPTION_VOLUMES = {"Best Jazz": 1.13, "Classical": 1.3, "Classical Radio": 1.3, "radio kultura": 1.3, "Jazz24 Radio": 1.22, "Christmas": 1.2}
 
