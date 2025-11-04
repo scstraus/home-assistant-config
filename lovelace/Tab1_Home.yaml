@@ -2939,7 +2939,7 @@ cards:
   #          icon: mdi:gauge
   #        - sensor.us_air_quality_index
   #        - sensor.us_main_pollutant
-    - entity: media_player.owntone_output_back_yard
+    - entity: media_player.owntone_output_backyard
 #    - entity: media_player.back_yard_airtunes_speaker
       type: custom:mini-media-player
       name: Back Yard Speakers

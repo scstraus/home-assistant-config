@@ -2814,7 +2814,7 @@ cards:
     #        - sensor.us_air_quality_index
     #        - sensor.us_main_pollutant
 
-      - entity: media_player.back_yard_airtunes_speaker
+      - entity: media_player.owntone_output_backyard
         type: custom:mini-media-player
         name: Back Yard Speakers
         hide:
