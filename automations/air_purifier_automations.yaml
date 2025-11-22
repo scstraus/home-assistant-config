@@ -362,7 +362,7 @@
 
 - id: turn_on_sebastians_air_purifier_if_air_is_bad_for_naptime
   alias: "Turn on Sebastian's Air Purifier if the air is bad for naptime"
-  initial_state: 'true'
+  initial_state: 'false'
   trigger:
     platform: numeric_state
     entity_id: sensor.hlubocepy_air_quality
@@ -379,7 +379,7 @@
 
 - id: turn_on_sebastians_air_purifier_if_air_is_bad_for_naptime_2
   alias: "Turn on Sebastian's Air Purifier if the air is bad for naptime 2"
-  initial_state: 'true'
+  initial_state: 'false'
   trigger:
     platform: time
     at: '13:30:00'
@@ -394,7 +394,7 @@
 
 - id: turn_off_sebastians_air_purifier_after_nap
   alias: "Turn off Sebastian's Air Purifier after nap"
-  initial_state: 'true'
+  initial_state: 'false'
   trigger:
     platform: time
     at: '16:30:00'
