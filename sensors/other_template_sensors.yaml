@@ -150,39 +150,52 @@
           {% endif %}
 
 
-# First 2 statements are for 04/15/21-11/25/21: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
-# Second 2 statements are for 12/08/21-03/30/22: Pickup is Odd Weeks Thursday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
+# First 2 statements are for 03/01-12/15: Pickup is Even Weeks Monday Morning. Formula is Odd Weeks on Sunday = Today, Odd Weeks on Saturday = Tomorrow. 
+# Second 2 statements are for 12/16/21-02/31: Pickup is Odd Weeks Thursday Morning. Formula is (hopefully) Odd Weeks on Tuesday = Today, Odd Weeks on Monday = Tomorrow
 # Check how closely next years dates compare to this year's and adjust as needed. There was no collection at the end of November. The sensor still goes all the way to the end of november and starts from beginning of December which isn't exactly accurate during the transition.
+#
+#  - platform: template
+#    sensors:
+#      bio_odpad_day:
+#        friendly_name: "Take Bio Odpad Out"
+#        value_template: >-
+#          {% if (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+#          and now().weekday() in (6,) 
+#          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-12-15" 
+#          and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-03-01" %}
+#            Today
+#          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+#          and now().weekday() in (5,) 
+#          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-12-15" 
+#          and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-03-01" %}
+#            Tomorrow
+#          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+#          and now().weekday() in (2,) 
+#          and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-12-15" 
+#          or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-03-01") %}
+#            Today
+#          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+#          and now().weekday() in (1,) 
+#          and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-12-15" 
+#          or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-03-01") %}
+#            Tomorrow
+#          {% else %}
+#            false
+#          {% endif %}
 
+# Now bio odpad day is just even weeks on monday all year around
   - platform: template
     sensors:
       bio_odpad_day:
         friendly_name: "Take Bio Odpad Out"
         value_template: >-
-          {% if (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
-          and now().weekday() in (6,) 
-          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-30" 
-          and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-04-01" %}
+          {% if now().weekday() in (6,) %}
             Today
-          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
-          and now().weekday() in (5,) 
-          and now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-11-30" 
-          and now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-04-01" %}
-            Tomorrow
-          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
-          and now().weekday() in (2,) 
-          and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
-          or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01") %}
-            Today
-          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
-          and now().weekday() in (1,) 
-          and (now().strftime('%F') > (now().strftime('%Y') | int ) ~ "-11-30" 
-          or now().strftime('%F') < (now().strftime('%Y') | int ) ~ "-04-01") %}
+          {% elif now().weekday() in (5,) %}
             Tomorrow
           {% else %}
             false
           {% endif %}
-
 
 #trash day is thursday so take it out today=wednesday, tomorrow=tuesday
 
