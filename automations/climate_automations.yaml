@@ -1756,3 +1756,35 @@
     service: climate.turn_off
     target:
       entity_id: climate.sebastian_s_room_ac
+
+- id: guest
+  alias: guest
+  initial_state: 'true'
+  trigger:
+    platform: time
+    at: '8:00:00'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.guest
+          state: 'on'
+  action:
+    service: evohome.set_zone_override
+    data:
+      entity_id: climate.guest_bedroom
+      setpoint: 22
+      duration: {"hours":23}
+
+- id: guest_on
+  alias: guest_on
+  trigger:
+    platform: state
+    entity_id: input_boolean.guest
+    to: 'on'
+  action:
+    - service: evohome.set_zone_override
+      data:
+        entity_id: climate.guest_bedroom
+        setpoint: 22
+        duration: {"hours":23}

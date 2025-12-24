@@ -154,8 +154,8 @@ lovelace:
       type: module
     - url: /hacsfiles/scheduler-card/scheduler-card.js
       type: module
-#    - url: /hacsfiles/mushroom.js
-#      type: module
+    - url: /hacsfiles/mushroom.js
+      type: module
     - url: /hacsfiles/apexcharts-card/apexcharts-card.js
       type: module
     - url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
@@ -798,6 +798,9 @@ input_boolean:
   frigates_fucked:
     name: frigates_fucked
     icon: mdi:alert
+  guest:
+    name: Guest
+    icon: mdi:home-import-outline
 
 
 #  auto_curtain_open_state:
