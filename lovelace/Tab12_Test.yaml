@@ -157,6 +157,18 @@ cards:
 #      - entity: sensor.weather_wind_both_4d
 #      - entity: sensor.weather_wind_both_5d
 
+  - type: 'custom:mercury-weather-card'
+    weather_entity: weather.weatherflow_hourly_based_forecast # Your weather entity
+    top_sensors:
+    - entity: sensor.tempest_st_00175075_humidity
+      label: Humidity
+    - entity: sensor.tempest_st_00175075_wind_speed
+      label: Wind
+    - entity: sensor.next_sunrise
+      label: Sunrise
+    - entity: sensor.next_sunset
+      label: Sunset
+
   - type: 'custom:vertical-stack-in-card'
     cards:
     - type: custom:platinum-weather-card

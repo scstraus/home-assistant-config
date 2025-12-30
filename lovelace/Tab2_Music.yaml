@@ -95,13 +95,13 @@ cards:
         mute: true
       group: true
 #    - entity: media_player.apple_tv_airtunes_speaker
-    - entity: media_player.owntone_output_apple_tv
-      type: custom:mini-media-player
-      name: Apple TV
-      hide:
-        controls: true
-        mute: true
-      group: true
+#    - entity: media_player.owntone_output_apple_tv
+#      type: custom:mini-media-player
+#      name: Apple TV
+#      hide:
+#        controls: true
+#        mute: true
+#      group: true
 
 
   - type: entities
@@ -136,6 +136,13 @@ cards:
 #    - entity: media_player.library_airtunes_speaker
       type: custom:mini-media-player
       name: Library Speakers
+      hide:
+        controls: true
+        mute: true
+      group: true
+    - entity: media_player.owntone_output_master_closet
+      type: custom:mini-media-player
+      name: Master Closet Speakers
       hide:
         controls: true
         mute: true

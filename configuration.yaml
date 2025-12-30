@@ -171,7 +171,8 @@ lovelace:
 #    - url: /hacsfiles/lovelace-hourly-weather/hourly-weather.js
 #      type: module
 #                                
-                
+    - url: /hacsfiles/mercury-weather-card/mercury-weather-card.js
+      type: module                
                 
 
   dashboards:
