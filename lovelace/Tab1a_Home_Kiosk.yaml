@@ -497,6 +497,50 @@ cards:
         - state: 'on'
         - name: "!!The Server Room is Flooding!!"
 
+
+
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.laundry_room_smoke
+        - state: 'on'
+        - name: "Smoke detected in the laundry room!!"
+
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.2nd_floor_smoke
+        - state: 'on'
+        - name: "Smoke detected on second floor!!"
+
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.3rd_floor_hallway_smoke
+        - state: 'on'
+        - name: "Smoke detected on third floor!!"
+
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.kitchen_smoke
+        - state: 'on'
+        - name: "Smoke detected in the kitchen!!"
+
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.play_room_smoke
+        - state: 'on'
+        - name: "Smoke detected in the 1st floor play room!!"
+
+    - type: custom:decluttering-card
+      template: emergency
+      variables:
+        - entity: binary_sensor.basement_fibaro_co_sensor_carbon_monoxide_detected
+        - state: 'on'
+        - name: "Carbon Monoxide detected in the laundry room!!"      
+
     - type: custom:decluttering-card
       template: alert
       variables:

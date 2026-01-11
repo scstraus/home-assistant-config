@@ -158,16 +158,28 @@ cards:
 #      - entity: sensor.weather_wind_both_5d
 
   - type: 'custom:mercury-weather-card'
-    weather_entity: weather.weatherflow_hourly_based_forecast # Your weather entity
-    top_sensors:
+    weather_entity: weather.weatherflow_hourly_based_forecast 
+    wind_unit: "kph"      # Settings: kph, mph, ms, fps, kn
+    min_gauge_spacing: 10
+    overview_entities:
     - entity: sensor.tempest_st_00175075_humidity
       label: Humidity
+      decimals: 0
     - entity: sensor.tempest_st_00175075_wind_speed
       label: Wind
+      decimals: 1
     - entity: sensor.next_sunrise
       label: Sunrise
     - entity: sensor.next_sunset
       label: Sunset
+    temperature_gauges:
+      min_temp: -17
+      max_temp: 42
+      gauge_height: 180
+      forecast_icon_color: "#444444"
+    precipitation_gauges:
+      gauge_height: 43
+      
 
   - type: 'custom:vertical-stack-in-card'
     cards:

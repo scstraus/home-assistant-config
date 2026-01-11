@@ -1599,3 +1599,55 @@
     service: rest_command.remove_shopping_list_item
     data_template:
       item: "{{ trigger.event.data.item.name }}"
+
+
+
+- id: co_in_laundry_room
+  alias: co_in_laundry_room
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_fibaro_co_sensor_carbon_monoxide_detected
+      to: 'on'
+  action:
+    - service: notify.sean_alena
+      data:
+        title: "Carbon Monoxide detected in Laundry Room"
+        message: "Health Hazard: Carbon Monoxide has been detected in the Laundry Room."
+        data:
+          push:
+            sound:
+              name: "Update.caf"
+              critical: 1
+              volume: 1.0
+            thread-id: "error"
+    - data:
+        data:
+          type: tts
+        message: "Attention! Carbon Monoxide has been detected in the Laundry Room! Attention! Carbon Monoxide has been detected in the Laundry Room! "
+      service: notify.alexa_media_alexa_echo_dot_kitchen_bar
+    - data:
+        data:
+          type: tts
+        message: "Attention! Carbon Monoxide has been detected in the Laundry Room! Attention! Carbon Monoxide has been detected in the Laundry Room! "
+      service: notify.alexa_media_alexa_master_closet
+    - data:
+        data:
+          type: tts
+        message: "Attention! Carbon Monoxide has been detected in the Laundry Room! Attention! Carbon Monoxide has been detected in the Laundry Room! "
+      service: notify.alexa_media_alexa_garage
+    - data:
+        data:
+          type: tts
+        message: "Attention! Carbon Monoxide has been detected in the Laundry Room! Attention! Carbon Monoxide has been detected in the Laundry Room! "
+      service: notify.alexa_media_alexa_master_bath
+    - data:
+        data:
+          type: tts
+        message: "Attention! Carbon Monoxide has been detected in the Laundry Room! Attention! Carbon Monoxide has been detected in the Laundry Room! "
+      service: alexa_media_echo_flex_first_floor_bathroom
+    - data:
+        data:
+          type: tts
+        message: "Attention! Carbon Monoxide has been detected in the Laundry Room! Attention! Carbon Monoxide has been detected in the Laundry Room! "
+      service: alexa_media_echo_flex_first_floor_bathroom
