@@ -22,12 +22,17 @@
 !sensors/**
 !www/images/
 !www/images/*
-!www
+!www/
+!www/**
 !www/community/
+!www/community/**
 !www/community/lovelace-weather-card-chart/
 !www/community/lovelace-weather-card-chart/**
 !www/community/mini-media-player/
 !www/community/mini-media-player/**
+!www/community/mercury-weather-card
+!www/community/mercury-weather-card/**
+
 # Ignore folders.
 .storage
 .cloud
