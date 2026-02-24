@@ -35,13 +35,7 @@ class MercuryWeatherCard extends HTMLElement {
       overview_font_size: '1.25em',
       padding_size: '16px',
       gap_size: '24px',
-      // Optional: sun_entity for day/night icon detection (e.g. sun.sun)
-      // Optional: icon_path to override the default /hacsfiles/mercury-weather-card path
       ...config,
-      current_weather: {
-        temp_font_size: '7.5em',
-        ...(config.current_weather || {})
-      },
       temperature_gauges: {
         min_temp: -20,
         max_temp: 45,
@@ -130,110 +124,6 @@ class MercuryWeatherCard extends HTMLElement {
     return iconMap[state] || 'mdi:weather-cloudy';
   }
 
-  // Returns true if it's currently daytime, using sun.sun entity if available,
-  // otherwise falling back to checking the HA weather state itself.
-  _isDaytime() {
-    // Prefer explicit sun_entity config
-    const sunEntityId = this.config.sun_entity || 'sun.sun';
-    const sunState = this._hass.states[sunEntityId];
-    if (sunState) {
-      return sunState.state === 'above_horizon';
-    }
-    // Fallback: use current weather state - clear-night implies night
-    const weatherState = this._hass.states[this.config.weather_entity];
-    if (weatherState && weatherState.state === 'clear-night') return false;
-    // Last resort: use local time (6am–8pm = day)
-    const hour = new Date().getHours();
-    return hour >= 6 && hour < 20;
-  }
-
-  // Maps a HA weather condition + day/night to a platinum-weather-card animated SVG filename.
-  // Icon list uses:
-  //   a-<name>-day.svg   — animated, daytime variant
-  //   a-<name>-night.svg — animated, nighttime variant
-  //   a-<name>.svg       — animated, no day/night distinction
-  _svgFilename(condition, isDay) {
-    const dn = isDay ? 'day' : 'night';
-    const map = {
-      // HA state          animated filename (day/night aware where available)
-      'sunny':             `a-clear-day.svg`,
-      'clear-night':       `a-clear-night.svg`,
-      'partlycloudy':      `a-cloudy-3-${dn}.svg`,
-      'cloudy':            `a-cloudy.svg`,
-      'fog':               `a-fog-${dn}.svg`,
-      'hail':              `a-hail.svg`,
-      'lightning':         `a-isolated-thunderstorms-${dn}.svg`,
-      'lightning-rainy':   `a-scattered-thunderstorms-${dn}.svg`,
-      'pouring':           `a-rainy-3-${dn}.svg`,
-      'rainy':             `a-rainy-3-${dn}.svg`,
-      'snowy':             `a-snowy-3-${dn}.svg`,
-      'snowy-rainy':       `a-rain-and-snow-mix.svg`,
-      'windy':             `a-wind.svg`,
-      'windy-variant':     `a-wind.svg`,
-      'exceptional':       `a-unknown.svg`,
-    };
-    return map[condition] || `a-cloudy.svg`;
-  }
-
-  // Returns the base URL where SVGs are served.
-  // /hacsfiles/<card-name>/ is the correct browser URL for files stored at
-  // /config/www/community/<card-name>/ (i.e. /www/community/<card-name>/).
-  // An explicit icon_path in config always wins.
-  _iconBase() {
-    if (this.config && this.config.icon_path) {
-      return this.config.icon_path.replace(/\/$/, '');
-    }
-    return '/hacsfiles/mercury-weather-card';
-  }
-
-  // Builds an <img> that chains through fallback URLs on 404 using onerror.
-  _svgImgHtml(condition, isDay, cssClass) {
-    const filename = this._svgFilename(condition, isDay);
-    const base = this._iconBase();
-
-    // Build fallback list:
-    // 1. Primary: correct HACS path (or user-configured path)
-    // 2. Static variant (s- prefix) as first fallback in case animated not present
-    // 3. Generic (no day/night) animated fallback
-    // 4. Static generic fallback
-    const staticFilename = filename.replace(/^a-/, 's-');
-    const genericAnimated = filename.replace(/-day\.svg$/, '.svg').replace(/-night\.svg$/, '.svg');
-    const genericStatic = staticFilename.replace(/-day\.svg$/, '.svg').replace(/-night\.svg$/, '.svg');
-
-    const candidates = [...new Set([
-      `${base}/${filename}`,
-      `${base}/${staticFilename}`,
-      `${base}/${genericAnimated}`,
-      `${base}/${genericStatic}`,
-    ])];
-
-    const [primary, ...rest] = candidates;
-    const fallbacksJson = JSON.stringify(rest).replace(/'/g, '&#39;');
-    return `<img class="${cssClass}" src="${primary}" data-svg-fallbacks='${fallbacksJson}' alt="${condition}"
-      onerror="var f=JSON.parse(this.dataset.svgFallbacks||'[]');if(f.length){this.src=f.shift();this.dataset.svgFallbacks=JSON.stringify(f);}else{this.style.display='none';}">`;
-  }
-
-  getStateLabel(state) {
-    const labels = {
-      'clear-night':     'Clear night',
-      'cloudy':          'Cloudy',
-      'fog':             'Foggy',
-      'hail':            'Hail',
-      'lightning':       'Lightning',
-      'lightning-rainy': 'Lightning',
-      'partlycloudy':    'Partly cloudy',
-      'pouring':         'Pouring rain',
-      'rainy':           'Rainy',
-      'snowy':           'Snowy',
-      'snowy-rainy':     'Snow and rain',
-      'sunny':           'Sunny',
-      'windy':           'Windy',
-      'windy-variant':   'Windy',
-      'exceptional':     'Exceptional',
-    };
-    return labels[state] || state.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-  }
-
   formatTime(dateStr) {
     const date = new Date(dateStr);
     if (isNaN(date.getTime())) return dateStr;
@@ -251,26 +141,6 @@ class MercuryWeatherCard extends HTMLElement {
     this.content.style.gap = this.config.gap_size;
     this.querySelector('ha-card').style.padding = this.config.padding_size;
 
-    // ── Current weather overview (icon + temp + state label) ──────────────────
-    const currentState = stateObj.state;
-    const currentTemp = stateObj.attributes.temperature;
-    const tempUnit = stateObj.attributes.temperature_unit ||
-      (this._hass.config?.unit_system?.temperature) || '°C';
-    const stateLabel = this.getStateLabel(currentState);
-    const isDay = this._isDaytime();
-    const currentOverviewHtml = `
-      <div class="current-overview" data-entity="${this.config.weather_entity}">
-        <div class="current-top">
-          ${this._svgImgHtml(currentState, isDay, 'current-icon')}
-          <div class="current-temp">
-            <span class="current-temp-number" style="font-size: ${this.config.current_weather.temp_font_size};">${currentTemp !== undefined ? Math.round(currentTemp) : '--'}</span>
-            <span class="current-temp-unit">${tempUnit}</span>
-          </div>
-        </div>
-        <div class="current-state">${stateLabel}</div>
-      </div>`;
-
-    // ── Overview entities row ─────────────────────────────────────────────────
     let topHtml = `<div class="top-row" style="font-size: ${this.config.overview_font_size};">`;
     this.config.overview_entities.forEach((s) => {
       const sensorState = this._hass.states[s.entity];
@@ -295,7 +165,7 @@ class MercuryWeatherCard extends HTMLElement {
     });
     topHtml += `</div>`;
 
-    // ── Smart precipitation display check ─────────────────────────────────────
+    // Smart precipitation display check with requested thresholds
     let showPrecipRow = false;
     for (let i = 0; i < 18 && i < forecast.length; i++) {
       const prob = forecast[i].precipitation_probability || 0;
@@ -316,7 +186,6 @@ class MercuryWeatherCard extends HTMLElement {
     const precipFontSize = this.config.precipitation_gauges.font_size;
     const gaugeGap = this.config.min_gauge_spacing;
 
-    // ── Temperature gauges ────────────────────────────────────────────────────
     let tempGaugesHtml = `<div class="gauges-container temp-container" style="height: ${tempHeight}px; gap: ${gaugeGap}px;" data-entity="${this.config.weather_entity}">`;
     for (let i = 0; i < 9; i++) {
       const f1 = forecast[i * 2], f2 = forecast[i * 2 + 1];
@@ -339,17 +208,22 @@ class MercuryWeatherCard extends HTMLElement {
     }
     tempGaugesHtml += `</div>`;
 
-    // ── Precipitation gauges ──────────────────────────────────────────────────
     let precipGaugesHtml = '';
     if (showPrecipRow) {
         precipGaugesHtml = `<div class="gauges-container precip-container" style="height: ${precipHeight + 30}px; gap: ${gaugeGap}px;" data-entity="${this.config.weather_entity}">`;
         for (let i = 0; i < 9; i++) {
             const f1 = forecast[i * 2], f2 = forecast[i * 2 + 1];
             if (!f1 || !f2) break;
+            
+            // Logic: sum precipitation for gauge height
             const totalPrecip = (f1.precipitation || 0) + (f2.precipitation || 0);
+            
+            // Logic: take higher value of the 2 hours for text display
             const maxProb = Math.max((f1.precipitation_probability || 0), (f2.precipitation_probability || 0));
             const displayProb = Math.round(maxProb / 5) * 5;
+            
             const precipHeightPct = Math.min((totalPrecip / 10) * 100, 100);
+            
             precipGaugesHtml += `
               <div class="gauge-column">
                    <div class="gauge-track precip-track" style="height: ${precipHeight}px;">
@@ -362,7 +236,7 @@ class MercuryWeatherCard extends HTMLElement {
         precipGaugesHtml += `</div>`;
     }
 
-    this.content.innerHTML = currentOverviewHtml + topHtml + tempGaugesHtml + precipGaugesHtml;
+    this.content.innerHTML = topHtml + tempGaugesHtml + precipGaugesHtml;
   }
 
   attachStyles() {
@@ -370,13 +244,6 @@ class MercuryWeatherCard extends HTMLElement {
     style.textContent = `
       ha-card { color: #7b8691; transition: padding 0.3s ease; }
       #container { display: flex; flex-direction: column; transition: gap 0.3s ease; }
-      .current-overview { cursor: pointer; }
-      .current-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: -60px; }
-      .current-icon { width: 160px; height: 160px; object-fit: contain; position: relative; z-index: 1; }
-      .current-temp { color: var(--primary-text-color); line-height: 1; display: block; text-align: right; position: relative; }
-      .current-temp-number { font-weight: 200; line-height: 0.85; display: block; letter-spacing: -3px; padding-right: calc(1.6rem + 5px); margin-top: 1.2rem; }
-      .current-temp-unit { font-size: 1.8em; font-weight: 300; letter-spacing: 0; line-height: 1; position: absolute; top: 1.2rem; right: 0; }
-      .current-state { text-align: center; font-size: 1.8em; font-weight: 400; color: var(--primary-text-color); padding: 8px 0 8px 0; position: relative; z-index: 0; }
       .top-row { display: flex; justify-content: space-between; text-align: center; }
       .top-item { cursor: pointer; flex: 1; }
       .top-item .label { font-size: 0.9em; margin-bottom: 4px; }

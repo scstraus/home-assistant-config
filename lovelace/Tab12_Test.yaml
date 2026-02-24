@@ -11,98 +11,175 @@ visible:
 cards:
 
 
-
-  - type: vertical-stack
+  - type: custom:layout-card
+    layout_type: custom:vertical-layout
     cards:
 
-    - type: 'custom:vertical-stack-in-card'
+    - type: vertical-stack
       cards:
 
-      - type: weather-forecast
-        entity: weather.weatherflow_hourly_based_forecast
-        name: "Prague"
-        show_forecast: false
-        style: |
-          .header {
-            padding-top: 12px !important;
-          }
-          .content {
-            padding-bottom: 12px !important;
-          }
-#      - type: glance
-#        columns: 1
-#        show_icon: false
-#        show_name: false
-#        style: |
-#          ha-card {
-#            margin-top: -35px !important;
-#            margin-bottom: 5px !important;
-#          }
-#        .entities .entity:
-#          $: |
-#            state-badge {
-#              margin-top: -10px;
-#              margin-bottom: -10px;
-#              padding-top: -12px !important;
-#              padding-bottom: -12px !important;
-#              margin: 0px
-#              border: 0px
-#            }
-#        entities:
-#          - entity: sensor.dark_sky_summary_0d
+      - type: 'custom:vertical-stack-in-card'
+        cards:
 
-      - type: 'custom:mercury-weather-card'
-        weather_entity: weather.weatherflow_hourly_based_forecast 
-        wind_unit: "kph"      # Settings: kph, mph, ms, fps, kn
-        min_gauge_spacing: 10
-        overview_font_size: 1.25em
-        padding_size: 10px
-#        gap_size: 6px
-        style: |
-          ha-card {
-            border-radius: none !important;
-            margin-top: -28px !important;
-            margin-bottom: -6px !important;
-          }
-        overview_entities:
-          - entity: sensor.tempest_st_00175075_humidity
-            label: Humidity
-            decimals: 0
-          - entity: sensor.tempest_st_00175075_wind_speed
-            label: Wind
-            decimals: 1
-          - entity: sensor.next_sunrise
-            label: Sunrise
-          - entity: sensor.next_sunset
-            label: Sunset
-        temperature_gauges:
-          time_font_size: 1.2em
-          time_font_bold: false
-          min_temp: -17
-          max_temp: 42
-          gauge_height: 160
-          forecast_icon_color: "#444444"
-        precipitation_gauges:
-          gauge_height: 34
-          font_size: .85em
+        - type: weather-forecast
+          entity: weather.weatherflow_hourly_based_forecast
+          name: "Prague"
+          show_forecast: false
+          style: |
+            .header {
+              padding-top: 12px !important;
+            }
+            .content {
+              padding-bottom: 12px !important;
+            }
+  #      - type: glance
+  #        columns: 1
+  #        show_icon: false
+  #        show_name: false
+  #        style: |
+  #          ha-card {
+  #            margin-top: -35px !important;
+  #            margin-bottom: 5px !important;
+  #          }
+  #        .entities .entity:
+  #          $: |
+  #            state-badge {
+  #              margin-top: -10px;
+  #              margin-bottom: -10px;
+  #              padding-top: -12px !important;
+  #              padding-bottom: -12px !important;
+  #              margin: 0px
+  #              border: 0px
+  #            }
+  #        entities:
+  #          - entity: sensor.dark_sky_summary_0d
+
+        - type: 'custom:mercury-weather-card'
+          weather_entity: weather.weatherflow_hourly_based_forecast 
+          wind_unit: "kph"      # Settings: kph, mph, ms, fps, kn
+          min_gauge_spacing: 10
+          overview_font_size: 1.25em
+          padding_size: 10px
+  #        gap_size: 6px
+          style: |
+            ha-card {
+              border-radius: none !important;
+              margin-top: -28px !important;
+              margin-bottom: -6px !important;
+            }
+          overview_entities:
+            - entity: sensor.tempest_st_00175075_humidity
+              label: Humidity
+              decimals: 0
+            - entity: sensor.tempest_st_00175075_wind_speed
+              label: Wind
+              decimals: 1
+            - entity: sensor.next_sunrise
+              label: Sunrise
+            - entity: sensor.next_sunset
+              label: Sunset
+          temperature_gauges:
+            time_font_size: 1.2em
+            time_font_bold: false
+            min_temp: -17
+            max_temp: 42
+            gauge_height: 160
+            forecast_icon_color: "#444444"
+          precipitation_gauges:
+            gauge_height: 34
+            font_size: .85em
 
 
-      - type: custom:platinum-weather-card
-        card_config_version: 8
-        entity_forecast_icon_1: weather.weatherflow_day_based_forecast
-        entity_forecast_max_1: weather.weatherflow_day_based_forecast
-        entity_forecast_min_1: weather.weatherflow_day_based_forecast
-        entity_pop_1: weather.weatherflow_day_based_forecast
-        entity_pos_1: weather.weatherflow_day_based_forecast
-        entity_summary_1: weather.weatherflow_day_based_forecast
-        section_order:
-          - overview
-          - extended
-          - slots
-          - daily_forecast
-        show_section_extended: false
-        show_section_overview: false
-        show_section_slots: false
+        - type: custom:platinum-weather-card
+          card_config_version: 8
+          entity_forecast_icon_1: weather.weatherflow_day_based_forecast
+          entity_forecast_max_1: weather.weatherflow_day_based_forecast
+          entity_forecast_min_1: weather.weatherflow_day_based_forecast
+          entity_pop_1: weather.weatherflow_day_based_forecast
+          entity_pos_1: weather.weatherflow_day_based_forecast
+          entity_summary_1: weather.weatherflow_day_based_forecast
+          section_order:
+            - overview
+            - extended
+            - slots
+            - daily_forecast
+          show_section_extended: false
+          show_section_overview: false
+          show_section_slots: false
+
+    - type: custom:layout-break
+
+    - type: 'custom:mercury-weather-card'
+      weather_entity: weather.weatherflow_hourly_based_forecast 
+      wind_unit: "kph"      # Settings: kph, mph, ms, fps, kn
+      min_gauge_spacing: 10
+      overview_font_size: 1.25em
+      padding_size: 10px
+  #        gap_size: 6px
+      style: |
+        ha-card {
+          border-radius: none !important;
+          margin-top: -28px !important;
+          margin-bottom: -6px !important;
+        }
+      overview_entities:
+        - entity: sensor.tempest_st_00175075_humidity
+          label: Humidity
+          decimals: 0
+        - entity: sensor.tempest_st_00175075_wind_speed
+          label: Wind
+          decimals: 1
+        - entity: sensor.next_sunrise
+          label: Sunrise
+        - entity: sensor.next_sunset
+          label: Sunset
+      temperature_gauges:
+        time_font_size: 1.2em
+        time_font_bold: false
+        min_temp: -17
+        max_temp: 42
+        gauge_height: 160
+        forecast_icon_color: "#444444"
+      precipitation_gauges:
+        gauge_height: 34
+        font_size: .85em
+
+    - type: custom:layout-break
+
+    - type: 'custom:mercury-weather-card'
+      weather_entity: weather.weatherflow_hourly_based_forecast 
+      wind_unit: "kph"      # Settings: kph, mph, ms, fps, kn
+      min_gauge_spacing: 10
+      overview_font_size: 1.25em
+      padding_size: 10px
+  #        gap_size: 6px
+      style: |
+        ha-card {
+          border-radius: none !important;
+          margin-top: -28px !important;
+          margin-bottom: -6px !important;
+        }
+      overview_entities:
+        - entity: sensor.tempest_st_00175075_humidity
+          label: Humidity
+          decimals: 0
+        - entity: sensor.tempest_st_00175075_wind_speed
+          label: Wind
+          decimals: 1
+        - entity: sensor.next_sunrise
+          label: Sunrise
+        - entity: sensor.next_sunset
+          label: Sunset
+      temperature_gauges:
+        time_font_size: 1.2em
+        time_font_bold: false
+        min_temp: -17
+        max_temp: 42
+        gauge_height: 160
+        forecast_icon_color: "#444444"
+      precipitation_gauges:
+        gauge_height: 34
+        font_size: .85em
 
 
 
@@ -292,10 +369,10 @@ cards:
 #      font_size: .85em
 
 
-  - type: custom:layout-card
-    layout_type: custom:vertical-layout
-    cards:
-#
+#  - type: custom:layout-card
+#    layout_type: custom:vertical-layout
+#    cards:
+##
 #
 #    - type: 'custom:mercury-weather-card'
 #      weather_entity: weather.weatherflow_hourly_based_forecast 
