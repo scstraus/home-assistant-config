@@ -1756,3 +1756,6 @@ template:
   #     {% elif 'Power Restored' in subject %}
   #       power_on
   #     {% endif %}
+
+
+scene: !include scenes.yaml

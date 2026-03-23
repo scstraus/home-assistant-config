@@ -2235,6 +2235,30 @@ cards:
     title: First Floor
     show_header_toggle: false
     entities:
+    - entity: light.fibaro_dimmer_2_dining_room_main_room
+      name: Play Rm Main
+    - entity: light.fibaro_dimmer_2_dining_room_corner_ceiling
+      name: Play Rm Corner
+    - entity: light.fibaro_dimmer_2_dining_room_corner_pendant
+      name: Play Rm Pendant
+    - entity: light.fibaro_dimmer_2_dining_room_couch_sconce
+      name: Play Rm Couch
+    - entity: light.fibaro_dimmer_2_dining_room_table_pendants
+      name: Play Rm Table
+    - entity: light.fibaro_dimmer_2_kitchen_ceiling
+      name: Kitchen Ceiling
+    - entity: light.fibaro_dimmer_2_kitchen_table
+      name: Kitchen Table
+    - entity: light.fibaro_rgbw_controller_2_kitchen_led
+      name: Kitchen Counter LED
+    - entity: light.fibaro_dimmer_2_kitchen_bar
+      name: Kitchen Bar
+    - entity: light.fibaro_dimmer_2_living_room_spotlight
+      name: Living Rm Spotlight
+    - entity: light.fibaro_dimmer_2_living_room_wall_sconce
+      name: Living Rm Wall Sconce
+    - entity: light.fibaro_rgbw_controller_2_living_room_led
+      name: Living Rm Ceiling LED
 #    - entity: media_player.living_room_airtunes_speaker
 #    - entity: media_player.owntone_output_wiim_pro_86fc_2
     - entity: media_player.owntone_output_living_room

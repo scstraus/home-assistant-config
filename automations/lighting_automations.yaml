@@ -1,0 +1,276 @@
+- id: kitchen_LED_turn_on_day
+  alias: kitchen_LED_turn_on_day
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_kitchen_led_up_switch
+      to: 'on'
+  condition:
+    - condition: time
+      after: '6:00:00'
+      before: '20:00:00'
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+      data:
+        rgbw_color: [156, 156, 106, 255]
+        brightness: 255
+
+- id: kitchen_LED_turn_on_night
+  alias: kitchen_LED_turn_on_night
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_kitchen_led_up_switch
+      to: 'on'
+  condition:
+    - condition: time
+      after: '20:00:00'
+      before: '6:00:00'
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+      data:
+        rgbw_color: [255, 184, 63, 14]
+        brightness: 62
+
+- id: kitchen_LED_turn_off
+  alias: kitchen_LED_turn_off
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_kitchen_led_down_switch
+      to: 'on'
+  action:
+    - service: light.turn_off
+      target:
+        entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+
+- id: living_room_LED_turn_on_day
+  alias: living_room_LED_turn_on_day
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_living_room_led_up_switch
+      to: 'on'
+  condition:
+    - condition: time
+      after: '6:00:00'
+      before: '20:00:00'
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.fibaro_rgbw_controller_2_living_room_led
+      data:
+        rgbw_color: [167, 168, 137, 255]
+        brightness: 255
+
+- id: living_room_LED_turn_on_night
+  alias: living_room_LED_turn_on_night
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_living_room_led_up_switch
+      to: 'on'
+  condition:
+    - condition: time
+      after: '20:00:00'
+      before: '6:00:00'
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.fibaro_rgbw_controller_2_living_room_led
+      data:
+        rgbw_color: [255, 130, 0, 14]
+        brightness: 5
+
+- id: living_room_LED_turn_off
+  alias: living_room_LED_turn_off
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_living_room_led_down_switch
+      to: 'on'
+  action:
+    - service: light.turn_off
+      target:
+        entity_id: light.fibaro_rgbw_controller_2_living_room_led
+    
+
+- id: scene_button_tv_lights
+  alias: scene_button_tv_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_living_room_button_1l_kitchen_3r
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.tv_2
+    
+- id: scene_button_movie_lights
+  alias: scene_button_movie_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_living_room_button_1r
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.movie
+        
+- id: scene_button_evening_lights
+  alias: scene_button_evening_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_living_room_button_2r_kitchen_2l
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.evening
+
+- id: scene_button_night_lights
+  alias: scene_button_night_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_living_room_button_2l
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.night
+        
+- id: scene_button_bar_lights
+  alias: scene_button_bar_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_kitchen_button_3l
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.bar
+        
+- id: scene_button_kitchen_1_lights
+  alias: scene_button_kitchen_1_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_living_room_button_3r_kitchen_1l
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.kitchen_2
+
+- id: scene_button_kitchen_2_lights
+  alias: scene_button_kitchen_2_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_kitchen_button_1r
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.kitchen_1
+
+        
+- id: scene_button_all_on_lights
+  alias: scene_button_all_on_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_dining_room_button_3
+      to: 'on'
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_button_living_room_kitchen_4l
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.all_on
+        
+- id: scene_button_all_off_lights
+  alias: scene_button_all_off_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_dining_room_button_4
+      to: 'on'
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_button_living_room_kitchen_4r
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.all_off
+
+- id: scene_button_dining_lights
+  alias: scene_button_dining_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_kitchen_button_2r
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.dining
+
+- id: scene_button_dining_room_corner_lights
+  alias: scene_button_dining_room_corner_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_buttons_dining_room_1r
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.dining_room_corner
+
+- id: scene_button_dining_room_table_lights
+  alias: scene_button_dining_room_table_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_dining_room_button_2r
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.dining_room_table
+
+- id: scene_button_dining_room_couch_light
+  alias: scene_button_dining_room_couch_light
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_dining_room_button_2l
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.dining_couch
+      
+
+- id: scene_button_dining_room_lights
+  alias: scene_button_dining_room_lights
+  initial_state: 'true'
+  trigger:
+    - platform: state
+      entity_id: switch.fibaro_smart_implant_button_dining_room_1l
+      to: 'on'
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.dining_room

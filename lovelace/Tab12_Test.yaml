@@ -11,6 +11,28 @@ visible:
 cards:
 
 
+  - type: entities
+    title: Scene Buttons
+    show_header_toggle: false
+    entities: 
+    
+    - switch.fibaro_smart_implant_button_dining_room_l1
+    - switch.fibaro_smart_implant_button_living_room_kitchen_4l
+    - switch.fibaro_smart_implant_button_living_room_kitchen_4r
+    - switch.fibaro_smart_implant_buttons_dining_room_r1
+    - switch.fibaro_smart_implant_dining_room_button_2l
+    - switch.fibaro_smart_implant_dining_room_button_2r
+    - switch.fibaro_smart_implant_dining_room_button_3
+    - switch.fibaro_smart_implant_dining_room_button_4
+    - switch.fibaro_smart_implant_kitchen_button_1r
+    - switch.fibaro_smart_implant_kitchen_button_2r
+    - switch.fibaro_smart_implant_kitchen_button_3l
+    - switch.fibaro_smart_implant_living_room_button_1l_kitchen_3r
+    - switch.fibaro_smart_implant_living_room_button_1r
+    - switch.fibaro_smart_implant_living_room_button_2l
+    - switch.fibaro_smart_implant_living_room_button_2r_kitchen_2l
+    - switch.fibaro_smart_implant_living_room_button_3r_kitchen_1l
+
   - type: custom:layout-card
     layout_type: custom:vertical-layout
     cards:

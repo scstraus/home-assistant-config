@@ -1584,6 +1584,7 @@ cards:
         overview_font_size: 1.1em
         padding_size: 4px
         gap_size: 4px
+        description_vertical_offset: 50px
 #        style: |
 #          ha-card {
 #            border-radius: none !important;
@@ -1940,7 +1941,6 @@ cards:
       title: First Floor
       show_header_toggle: false
       entities:
-
   #    - entity: media_player.living_room_airtunes_speaker
       - entity: media_player.owntone_output_living_room
         type: custom:mini-media-player

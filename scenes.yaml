@@ -1,0 +1,1088 @@
+- id: '1772309388927'
+  name: TV
+  entities:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 36
+      friendly_name: 'Fibaro Dimmer 2 Living Room Spotlight '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 77
+      friendly_name: 'Fibaro Dimmer 2 Living Room Wall Sconce '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_living_room_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 18
+      hs_color:
+      - 30.744
+      - 94.902
+      rgb_color:
+      - 255
+      - 137
+      - 13
+      xy_color:
+      - 0.598
+      - 0.383
+      rgbw_color:
+      - 255
+      - 130
+      - 0
+      - 14
+      friendly_name: 'Fibaro RGBW Controller 2 Living Room LED '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 52
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 3
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_table:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 52
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Table '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 5
+      hs_color:
+      - 9.158
+      - 85.586
+      rgb_color:
+      - 222
+      - 61
+      - 32
+      xy_color:
+      - 0.658
+      - 0.318
+      rgbw_color:
+      - 222
+      - 33
+      - 0
+      - 38
+      friendly_name: 'Fibaro RGBW Controller 2 Kitchen LED '
+      supported_features: 32
+      state: 'on'
+  icon: mdi:television
+  metadata:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      entity_only: true
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_living_room_led:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_bar:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_table:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+- id: '1772311083864'
+  name: Movie
+  entities:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Living Room Spotlight '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 23
+      friendly_name: 'Fibaro Dimmer 2 Living Room Wall Sconce '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_living_room_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 5
+      hs_color:
+      - 30.744
+      - 94.902
+      rgb_color:
+      - 255
+      - 137
+      - 13
+      xy_color:
+      - 0.598
+      - 0.383
+      rgbw_color:
+      - 255
+      - 130
+      - 0
+      - 14
+      friendly_name: 'Fibaro RGBW Controller 2 Living Room LED '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 52
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Ceiling '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 5
+      hs_color:
+      - 9.158
+      - 85.586
+      rgb_color:
+      - 222
+      - 61
+      - 32
+      xy_color:
+      - 0.658
+      - 0.318
+      rgbw_color:
+      - 222
+      - 33
+      - 0
+      - 38
+      friendly_name: 'Fibaro RGBW Controller 2 Kitchen LED '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_table:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 18
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Table '
+      supported_features: 32
+      state: 'on'
+  icon: mdi:movie-open
+  metadata:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      entity_only: true
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_living_room_led:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_bar:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_table:
+      entity_only: true
+- id: '1773858400755'
+  name: Evening
+  entities:
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 227
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_living_room_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 134
+      hs_color:
+      - 27.13
+      - 45.098
+      rgb_color:
+      - 255
+      - 192
+      - 140
+      xy_color:
+      - 0.455
+      - 0.374
+      rgbw_color:
+      - 209
+      - 95
+      - 0
+      - 255
+      friendly_name: 'Fibaro RGBW Controller 2 Living Room LED '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 121
+      hs_color:
+      - 27.13
+      - 45.098
+      rgb_color:
+      - 255
+      - 192
+      - 140
+      xy_color:
+      - 0.455
+      - 0.374
+      rgbw_color:
+      - 209
+      - 95
+      - 0
+      - 255
+      friendly_name: Kitchen Counter LED
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 191
+      friendly_name: 'Fibaro Dimmer 2 Living Room Wall Sconce '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_living_room_spotlight:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 162
+      friendly_name: 'Fibaro Dimmer 2 Living Room Spotlight '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_table:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 121
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Table '
+      supported_features: 32
+      state: 'on'
+  icon: mdi:weather-sunset
+  metadata:
+    light.fibaro_dimmer_2_kitchen_bar:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_living_room_led:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      entity_only: true
+    light.fibaro_dimmer_2_living_room_spotlight:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_table:
+      entity_only: true
+- id: '1774109327737'
+  name: Kitchen 2
+  entities:
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 255
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 155
+      hs_color:
+      - 27.6
+      - 19.608
+      rgb_color:
+      - 255
+      - 228
+      - 205
+      xy_color:
+      - 0.372
+      - 0.35
+      rgbw_color:
+      - 62
+      - 29
+      - 0
+      - 255
+      friendly_name: Kitchen Counter LED
+      supported_features: 32
+      state: 'on'
+  icon: mdi:fridge-outline
+  metadata:
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+- id: '1774109366298'
+  name: Kitchen 1
+  entities:
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 165
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 98
+      hs_color:
+      - 27.13
+      - 45.098
+      rgb_color:
+      - 255
+      - 192
+      - 140
+      xy_color:
+      - 0.455
+      - 0.374
+      rgbw_color:
+      - 209
+      - 95
+      - 0
+      - 255
+      friendly_name: Kitchen Counter LED
+      supported_features: 32
+      state: 'on'
+  icon: mdi:fridge-outline
+  metadata:
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+- id: '1774109448979'
+  name: Bar
+  entities:
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'off'
+  icon: mdi:ceiling-light
+  metadata:
+    light.fibaro_dimmer_2_kitchen_bar:
+      entity_only: true
+- id: '1774109546134'
+  name: Dining
+  entities:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 15
+      friendly_name: 'Fibaro Dimmer 2 Living Room Spotlight '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 54
+      friendly_name: 'Fibaro Dimmer 2 Living Room Wall Sconce '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_living_room_led:
+      supported_color_modes:
+      - rgbw
+      color_mode:
+      brightness:
+      hs_color:
+      rgb_color:
+      xy_color:
+      rgbw_color:
+      friendly_name: 'Fibaro RGBW Controller 2 Living Room LED '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 13
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 3
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_table:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 103
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Table '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 13
+      hs_color:
+      - 9.123
+      - 67.059
+      rgb_color:
+      - 255
+      - 110
+      - 84
+      xy_color:
+      - 0.589
+      - 0.329
+      rgbw_color:
+      - 255
+      - 39
+      - 0
+      - 125
+      friendly_name: Kitchen Counter LED
+      supported_features: 32
+      state: 'on'
+  icon: mdi:table-chair
+  metadata:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      entity_only: true
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_living_room_led:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_bar:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_table:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+- id: '1774109696729'
+  name: All on
+  entities:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 255
+      friendly_name: 'Fibaro Dimmer 2 Living Room Spotlight '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 162
+      friendly_name: 'Fibaro Dimmer 2 Living Room Wall Sconce '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_living_room_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 219
+      hs_color:
+      - 27.6
+      - 19.608
+      rgb_color:
+      - 255
+      - 228
+      - 205
+      xy_color:
+      - 0.372
+      - 0.35
+      rgbw_color:
+      - 62
+      - 29
+      - 0
+      - 255
+      friendly_name: 'Fibaro RGBW Controller 2 Living Room LED '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 222
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 255
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_table:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 175
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Table '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 245
+      hs_color:
+      - 27.6
+      - 19.608
+      rgb_color:
+      - 255
+      - 228
+      - 205
+      xy_color:
+      - 0.372
+      - 0.35
+      rgbw_color:
+      - 62
+      - 29
+      - 0
+      - 255
+      friendly_name: Kitchen Counter LED
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_main_room:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 255
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Main Room '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 255
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Pendant '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 178
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Couch Sconce '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 255
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Table Pendants '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 196
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Ceiling '
+      supported_features: 32
+      state: 'on'
+  metadata:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      entity_only: true
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_living_room_led:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_bar:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_table:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_main_room:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      entity_only: true
+  icon: mdi:lightbulb-on
+- id: '1774110417953'
+  name: Night
+  entities:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 64
+      friendly_name: 'Fibaro Dimmer 2 Living Room Spotlight '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 77
+      friendly_name: 'Fibaro Dimmer 2 Living Room Wall Sconce '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_living_room_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 18
+      hs_color:
+      - 30.744
+      - 94.902
+      rgb_color:
+      - 255
+      - 137
+      - 13
+      xy_color:
+      - 0.598
+      - 0.383
+      rgbw_color:
+      - 255
+      - 130
+      - 0
+      - 14
+      friendly_name: 'Fibaro RGBW Controller 2 Living Room LED '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 54
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_kitchen_table:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 72
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Table '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 62
+      hs_color:
+      - 37.912
+      - 71.373
+      rgb_color:
+      - 255
+      - 188
+      - 73
+      xy_color:
+      - 0.509
+      - 0.422
+      rgbw_color:
+      - 255
+      - 184
+      - 63
+      - 14
+      friendly_name: Kitchen Counter LED
+      supported_features: 32
+      state: 'on'
+  icon: mdi:weather-night
+  metadata:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      entity_only: true
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_living_room_led:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_bar:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_table:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+- id: '1774110846698'
+  name: All off
+  entities:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Living Room Spotlight '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Living Room Wall Sconce '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_rgbw_controller_2_living_room_led:
+      supported_color_modes:
+      - rgbw
+      color_mode:
+      brightness:
+      hs_color:
+      rgb_color:
+      xy_color:
+      rgbw_color:
+      friendly_name: 'Fibaro RGBW Controller 2 Living Room LED '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Ceiling '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_kitchen_table:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Table '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 3
+      hs_color:
+      - 27.13
+      - 45.098
+      rgb_color:
+      - 255
+      - 192
+      - 140
+      xy_color:
+      - 0.455
+      - 0.374
+      rgbw_color:
+      - 209
+      - 95
+      - 0
+      - 255
+      friendly_name: Kitchen Counter LED
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_main_room:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Main Room '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Pendant '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Couch Sconce '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Table Pendants '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Ceiling '
+      supported_features: 32
+      state: 'off'
+  metadata:
+    light.fibaro_dimmer_2_living_room_spotlight:
+      entity_only: true
+    light.fibaro_dimmer_2_living_room_wall_sconce:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_living_room_led:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_bar:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_ceiling:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_table:
+      entity_only: true
+    light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_main_room:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      entity_only: true
+  icon: mdi:lightbulb-off
+- id: '1774213293642'
+  name: Dining Room Corner
+  entities:
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 211
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 219
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Pendant '
+      supported_features: 32
+      state: 'on'
+  icon: mdi:ceiling-light
+  metadata:
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      entity_only: true
+- id: '1774215659789'
+  name: Dining Room Table
+  entities:
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 3
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 188
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Table Pendants '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_main_room:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 3
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Main Room '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 3
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Couch Sconce '
+      supported_features: 32
+      state: 'on'
+  icon: mdi:ceiling-light-multiple
+  metadata:
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_main_room:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      entity_only: true
+- id: '1774216378681'
+  name: Dining Room
+  entities:
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Couch Sconce '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 255
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Table Pendants '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 3
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Pendant '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_dining_room_main_room:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 219
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Main Room '
+      supported_features: 32
+      state: 'on'
+  icon: mdi:light-recessed
+  metadata:
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_main_room:
+      entity_only: true
+- id: '1774220334315'
+  name: Dining Couch
+  entities:
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 219
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Couch Sconce '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 3
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Ceiling '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_main_room:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Main Room '
+      supported_features: 32
+      state: 'off'
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 80
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Table Pendants '
+      supported_features: 32
+      state: 'on'
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      friendly_name: 'Fibaro Dimmer 2 Dining Room Corner Pendant '
+      supported_features: 32
+      state: 'off'
+  icon: mdi:sofa
+  metadata:
+    light.fibaro_dimmer_2_dining_room_couch_sconce:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_corner_ceiling:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_main_room:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_table_pendants:
+      entity_only: true
+    light.fibaro_dimmer_2_dining_room_corner_pendant:
+      entity_only: true

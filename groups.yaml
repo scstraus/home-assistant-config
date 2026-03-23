@@ -74,6 +74,21 @@
       - binary_sensor.laundry_room_window_zone_13
       - binary_sensor.windows_1st_floor_zone_2
 
+  kitchen_lights:
+    name: Kitchen Lights
+    entities:
+      - light.fibaro_dimmer_2_kitchen_bar
+      - light.fibaro_dimmer_2_kitchen_ceiling
+      - light.fibaro_dimmer_2_kitchen_table
+      - light.fibaro_rgbw_controller_2_kitchen_led
+
+  living_room_lights:
+    name: Living Room Lights
+      - light.fibaro_rgbw_controller_2_living_room_led
+      - light.fibaro_dimmer_2_living_room_wall_sconce
+      - light.fibaro_dimmer_2_living_room_spotlight
+
+
 #  default_view:
 #    view: yes
 #    name: Home

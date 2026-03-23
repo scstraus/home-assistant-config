@@ -1083,6 +1083,7 @@ cards:
         overview_font_size: 1.1em
         padding_size: 4px
         gap_size: 6px
+        description_vertical_offset: 10px
 #        style: |
 #          ha-card {
 #            border-radius: none !important;

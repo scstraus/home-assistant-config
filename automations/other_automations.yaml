@@ -1651,3 +1651,4 @@
           type: tts
         message: "Attention! Carbon Monoxide has been detected in the Laundry Room! Attention! Carbon Monoxide has been detected in the Laundry Room! "
       service: alexa_media_echo_flex_first_floor_bathroom
+

@@ -40,6 +40,7 @@ class MercuryWeatherCard extends HTMLElement {
       ...config,
       current_weather: {
         temp_font_size: '7.5em',
+        description_vertical_offset: '0px',
         ...(config.current_weather || {})
       },
       temperature_gauges: {
@@ -260,7 +261,7 @@ class MercuryWeatherCard extends HTMLElement {
     const isDay = this._isDaytime();
     const currentOverviewHtml = `
       <div class="current-overview" data-entity="${this.config.weather_entity}">
-        <div class="current-top">
+        <div class="current-top" style="margin-bottom: calc(-60px + ${this.config.current_weather.description_vertical_offset});">
           ${this._svgImgHtml(currentState, isDay, 'current-icon')}
           <div class="current-temp">
             <span class="current-temp-number" style="font-size: ${this.config.current_weather.temp_font_size};">${currentTemp !== undefined ? Math.round(currentTemp) : '--'}</span>
@@ -371,10 +372,10 @@ class MercuryWeatherCard extends HTMLElement {
       ha-card { color: #7b8691; transition: padding 0.3s ease; }
       #container { display: flex; flex-direction: column; transition: gap 0.3s ease; }
       .current-overview { cursor: pointer; }
-      .current-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: -60px; }
+      .current-top { display: flex; justify-content: space-between; align-items: flex-start; }
       .current-icon { width: 160px; height: 160px; object-fit: contain; position: relative; z-index: 1; }
       .current-temp { color: var(--primary-text-color); line-height: 1; display: block; text-align: right; position: relative; }
-      .current-temp-number { font-weight: 200; line-height: 0.85; display: block; letter-spacing: -3px; padding-right: calc(1.6rem + 5px); margin-top: 1.2rem; }
+      .current-temp-number { font-weight: 200; line-height: 0.85; display: block; letter-spacing: -3px; padding-right: calc(1.6rem + 10px); margin-top: 1.2rem; }
       .current-temp-unit { font-size: 1.8em; font-weight: 300; letter-spacing: 0; line-height: 1; position: absolute; top: 1.2rem; right: 0; }
       .current-state { text-align: center; font-size: 1.8em; font-weight: 400; color: var(--primary-text-color); padding: 8px 0 8px 0; position: relative; z-index: 0; }
       .top-row { display: flex; justify-content: space-between; text-align: center; }
