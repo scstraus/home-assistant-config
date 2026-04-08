@@ -154,7 +154,7 @@ lovelace:
       type: module
     - url: /hacsfiles/scheduler-card/scheduler-card.js
       type: module
-    - url: /hacsfiles/mushroom.js
+    - url: /hacsfiles/lovelace-mushroom/mushroom.js
       type: module
     - url: /hacsfiles/apexcharts-card/apexcharts-card.js
       type: module
@@ -172,8 +172,12 @@ lovelace:
 #      type: module
 #                                
     - url: /hacsfiles/mercury-weather-card/mercury-weather-card.js
-      type: module                
-                
+      type: module     
+    - url: /hacsfiles/lovelace-expander-card/expander-card.js
+      type: module 
+    - url: /hacsfiles/bubble-card/bubble-card.js
+      type: module 
+
 
   dashboards:
   

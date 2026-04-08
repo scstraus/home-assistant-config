@@ -1,40 +1,127 @@
-- id: kitchen_LED_turn_on_day
-  alias: kitchen_LED_turn_on_day
-  initial_state: 'true'
-  trigger:
-    - platform: state
-      entity_id: switch.fibaro_smart_implant_kitchen_led_up_switch
-      to: 'on'
-  condition:
-    - condition: time
-      after: '6:00:00'
-      before: '20:00:00'
-  action:
-    - service: light.turn_on
-      target:
-        entity_id: light.fibaro_rgbw_controller_2_kitchen_led
-      data:
-        rgbw_color: [156, 156, 106, 255]
-        brightness: 255
+#- id: kitchen_LED_turn_on_day
+#  alias: kitchen_LED_turn_on_day
+#  initial_state: 'true'
+#  trigger:
+#    - platform: state
+#      entity_id: switch.fibaro_smart_implant_kitchen_led_up_switch
+#      to: 'on'
+#  condition:
+#    - condition: time
+#      after: '6:00:00'
+#      before: '20:00:00'
+#  action:
+#    - service: light.turn_on
+#      target:
+#        entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+#      data:
+#        rgbw_color: [156, 156, 106, 255]
+#        brightness: 255
+#
+#- id: kitchen_LED_turn_on_night
+#  alias: kitchen_LED_turn_on_night
+#  initial_state: 'true'
+#  trigger:
+#    - platform: state
+#      entity_id: switch.fibaro_smart_implant_kitchen_led_up_switch
+#      to: 'on'
+#  condition:
+#    - condition: time
+#      after: '20:00:00'
+#      before: '6:00:00'
+#  action:
+#    - service: light.turn_on
+#      target:
+#        entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+#      data:
+#        rgbw_color: [255, 184, 63, 14]
+#        brightness: 62
 
-- id: kitchen_LED_turn_on_night
-  alias: kitchen_LED_turn_on_night
+
+- id: kitchen_LED_turn_on
+  alias: kitchen_LED_turn_on
   initial_state: 'true'
   trigger:
     - platform: state
       entity_id: switch.fibaro_smart_implant_kitchen_led_up_switch
       to: 'on'
-  condition:
-    - condition: time
-      after: '20:00:00'
-      before: '6:00:00'
   action:
-    - service: light.turn_on
-      target:
-        entity_id: light.fibaro_rgbw_controller_2_kitchen_led
-      data:
-        rgbw_color: [255, 184, 63, 14]
-        brightness: 62
+    - choose:
+        # Option 1: Night to midnight
+        - conditions:
+            - condition: time
+              after: "20:00:00"
+            - condition: time
+              before: "23:59:59"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+              data:
+                rgbw_color: [255, 184, 63, 14]
+                brightness: 62
+                transition: 1
+        # Option 1a: midnight to sunrise
+        - conditions:
+            - condition: time
+              after: "00:00:00"
+            - condition: sun
+              before: sunrise
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+              data:
+                rgbw_color: [255, 184, 63, 14]
+                brightness: 62
+                transition: 1
+
+        # Option 2: Early Morning
+        - conditions:
+            - condition: sun
+              after: sunrise
+              before: sunrise
+              before_offset: "02:00:00"
+          sequence:
+            - service: light.turn_on # Your evening action here
+              target:
+                entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+              data:
+                rgbw_color: [62, 29, 0, 255]
+                brightness: 155
+                transition: 1
+
+        # Option 3: Daytime
+        - conditions:
+            - condition: sun
+              after: sunrise
+              after_offset: "02:00:00"
+              before: sunset
+              before_offset: "-01:00:00"
+          sequence:
+            - service: light.turn_on # Your daytime action here
+              target:
+                entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+              data:
+                rgbw_color: [156, 156, 106, 255]
+                brightness: 255
+                transition: 1
+
+        # Option 4: Golden Hour
+        - conditions:
+            - condition: sun
+              after: sunset
+              after_offset: "-01:00:00"
+            - condition: time
+              before: '20:00:00'
+          sequence:
+            - service: light.turn_on # Your evening action here
+              target:
+                entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+              data:
+                rgbw_color: [62, 29, 0, 255]
+                brightness: 155
+                transition: 1
+
 
 - id: kitchen_LED_turn_off
   alias: kitchen_LED_turn_off
@@ -47,6 +134,8 @@
     - service: light.turn_off
       target:
         entity_id: light.fibaro_rgbw_controller_2_kitchen_led
+      data:
+        transition: 1
 
 - id: living_room_LED_turn_on_day
   alias: living_room_LED_turn_on_day
@@ -66,6 +155,7 @@
       data:
         rgbw_color: [167, 168, 137, 255]
         brightness: 255
+        transition: 1
 
 - id: living_room_LED_turn_on_night
   alias: living_room_LED_turn_on_night
@@ -85,6 +175,7 @@
       data:
         rgbw_color: [255, 130, 0, 14]
         brightness: 5
+        transition: 1
 
 - id: living_room_LED_turn_off
   alias: living_room_LED_turn_off
@@ -97,7 +188,8 @@
     - service: light.turn_off
       target:
         entity_id: light.fibaro_rgbw_controller_2_living_room_led
-    
+      data:
+        transition: 1    
 
 - id: scene_button_tv_lights
   alias: scene_button_tv_lights

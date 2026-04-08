@@ -84,6 +84,7 @@
 
   living_room_lights:
     name: Living Room Lights
+    entities:
       - light.fibaro_rgbw_controller_2_living_room_led
       - light.fibaro_dimmer_2_living_room_wall_sconce
       - light.fibaro_dimmer_2_living_room_spotlight

@@ -12,6 +12,7 @@ visible:
   - user: cb904806764d46bfbfb049d6e6939586
   - user: 2a6556f191a44915998a20ea2ac28057
   - user: 5d20dcdf0c8f4905b0d3ee79fb195c99
+  - user: e052118b75074465bd10d171ebced98b
 #background: var(--background-image)
 cards:
 
@@ -53,18 +54,30 @@ cards:
         - name: "KIDS"
           type: source
           id: "Kids - English (playlist)"
-        - name: "KULTURA"
+#        - name: "KULTURA"
+#          type: source
+#          id: "radio kultura (playlist)"
+#        - name: "CLASSIC"
+#          type: source
+#          id: "Classical Radio (playlist)"
+#        - name: "JAZZ24"
+#          type: source
+#          id: "Jazz24 Radio (playlist)"
+#        - name: "EUROPA2"
+#          type: source
+#          id: "radio2 (playlist)"
+        - name: "FAVORITE"
           type: source
-          id: "radio kultura (playlist)"
-        - name: "CLASSIC"
+          id: "My Liked Songs (playlist)"
+        - name: "ROCKET"
           type: source
-          id: "Classical Radio (playlist)"
-        - name: "JAZZ24"
+          id: "All Rocket League Songs (playlist)"
+        - name: "RONALDO"
           type: source
-          id: "Jazz24 Radio (playlist)"
-        - name: "EUROPA2"
+          id: "RONALDO SONGS (playlist)"
+        - name: "2010s"
           type: source
-          id: "radio2 (playlist)"
+          id: "2010s Mix (playlist)"
 
   - type: entities
     title: First Floor
@@ -191,7 +204,7 @@ cards:
     show_header_toggle: false
     entities:
 
-    - entity: media_player.owntone_output_back_yard
+    - entity: media_player.owntone_output_backyard
       type: custom:mini-media-player
       name: Back Yard Speakers
       hide:

@@ -108,6 +108,11 @@ Google Light Theme:
   paper-font-title_-_font-family: "var(--primary-font-family)"
   header-height: 48px
 
+# Next 2 lines added for the rings around the chips on the room cards 
+  mush-chip-box-shadow: "none"
+  mush-chip-border-color: "transparent"   
+
+
 
   card-mod-theme: "Google Light Theme"
   card-mod-root-yaml: |
@@ -196,3 +201,27 @@ Google Light Theme:
       }
       
       {% endif %}
+
+      {% if (user == 'basu') %}
+
+      mwc-icon-button[slot="trigger"] > ha-svg-icon {
+        display: none;
+      }
+
+      /* This displays the clock instead of the 3 dots */
+
+      ha-menu-button {
+        display: none !important;
+      }
+
+
+      ha-button-menu {
+        color: transparent;
+      }
+      
+      ha-icon-button {
+        color: transparent;
+      }
+
+      {% endif %}
+

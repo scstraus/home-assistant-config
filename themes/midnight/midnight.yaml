@@ -91,6 +91,7 @@ midnight:
   ha-card-border-radius: "10px"
 #  ha-card-box-shadow: "4px 4px 4px #2E333A"
   ha-card-box-shadow: "4px 4px 4px #1B1E1F"
+  
 #  ha-card-header-color: "#FFFFFF"
   primary-background-color: "#181A1B" 
   paper-dialog-background-color: "#1f2223" 
@@ -102,12 +103,55 @@ midnight:
   app-header-background-color: "#181A1B" 
 
   card-mod-theme: "midnight"
+
   card-mod-root-yaml: |
     .: |
       /* This hides the help button, menu button and title */
       ha-menu-button {
         display: none !important;
       }
+
+      {% if (user == 'basu') %}
+
+
+      @media (orientation: landscape) {
+        a.menu-link[target="_blank"], ha-button-menu, [main-title] {
+          display: none;
+        }
+        paper-icon-button[icon="paper-tabs:chevron-right"] {
+          display: none;
+        }
+        paper-icon-button[icon="paper-tabs:chevron-left"] {
+          display: none;
+        }
+      }
+
+      /* This hides the help button, menu button and title */
+      ha-menu-button {
+        display: none !important;
+      }
+      mwc-icon-button[slot="trigger"] > ha-svg-icon {
+        display: none;
+      }
+
+      /* This displays the clock instead of the 3 dots */
+
+
+      ha-menu-button {
+        display: none !important;
+      }
+
+
+      ha-button-menu {
+        color: transparent;
+      }
+      
+      ha-icon-button {
+        color: transparent;
+      }
+
+      {% endif %}
+
 
       {% if (user != 'entrancekiosk') %}
 
@@ -186,5 +230,44 @@ midnight:
       ha-icon-button {
         color: transparent;
       }
+
+      {% endif %}
       
+      {% if (user == 'basu') %}
+
+      @media (orientation: landscape) {
+        a.menu-link[target="_blank"], ha-button-menu, [main-title] {
+          display: none;
+        }
+        paper-icon-button[icon="paper-tabs:chevron-right"] {
+          display: none;
+        }
+        paper-icon-button[icon="paper-tabs:chevron-left"] {
+          display: none;
+        }
+      }
+      /* This hides the help button, menu button and title */
+      ha-menu-button {
+        display: none !important;
+      }
+      mwc-icon-button[slot="trigger"] > ha-svg-icon {
+        display: none;
+      }
+
+      /* This displays the clock instead of the 3 dots */
+
+
+      ha-menu-button {
+        display: none !important;
+      }
+
+
+      ha-button-menu {
+        color: transparent;
+      }
+      
+      ha-icon-button {
+        color: transparent;
+      }
+
       {% endif %}

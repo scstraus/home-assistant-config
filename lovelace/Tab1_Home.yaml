@@ -2213,18 +2213,30 @@ cards:
         - name: "KIDS"
           type: source
           id: "Kids - English (playlist)"
-        - name: "KULTURA"
+#        - name: "KULTURA"
+#          type: source
+#          id: "radio kultura (playlist)"
+#        - name: "CLASSIC"
+#          type: source
+#          id: "Classical Radio (playlist)"
+#        - name: "JAZZ24"
+#          type: source
+#          id: "Jazz24 Radio (playlist)"
+#        - name: "EUROPA2"
+#          type: source
+#          id: "radio2 (playlist)"
+        - name: "FAVORITE"
           type: source
-          id: "radio kultura (playlist)"
-        - name: "CLASSIC"
+          id: "My Liked Songs (playlist)"
+        - name: "ROCKET"
           type: source
-          id: "Classical Radio (playlist)"
-        - name: "JAZZ24"
+          id: "All Rocket League Songs (playlist)"
+        - name: "RONALDO"
           type: source
-          id: "Jazz24 Radio (playlist)"
-        - name: "EUROPA2"
+          id: "RONALDO SONGS (playlist)"
+        - name: "2010s"
           type: source
-          id: "radio2 (playlist)"
+          id: "2010s Mix (playlist)"
 
 
 #### END COMMENT BLOCK 7: Music
