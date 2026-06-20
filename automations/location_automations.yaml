@@ -892,7 +892,7 @@
 
 - alias: 'Good Time For Ferry to Work'
   
-  initial_state: 'true'
+  initial_state: 'false'
   trigger:
     platform: state
     entity_id: device_tracker.sean_s_iphone_16
@@ -916,7 +916,7 @@
           thread-id: "location"
 
 - alias: 'Good Time For Ferry from Work'
-  initial_state: 'true'
+  initial_state: 'false'
   trigger:
     platform: state
     entity_id: device_tracker.sean_s_iphone_16

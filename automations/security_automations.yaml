@@ -319,51 +319,67 @@
   alias: 'Front+Right Security Lights on if Human'
   initial_state: 'true'
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.front_person_count
-      above: 0
-    - platform: numeric_state
-      entity_id: sensor.right_person_count
-      above: 0
-#    - platform: state
-#      entity_id: binary_sensor.human_front
-#      to: 'on'
-#    - platform: state
-#      entity_id: binary_sensor.human_right
-#      to: 'on'
+    platform: mqtt
+    topic: frigate/events
   condition:
-    condition: time
-    after: '21:00:00'
-    before: '7:00:00'
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json['after']['label'] == 'person' }}"
+            - condition: template
+              value_template: "{{ trigger.payload_json['after']['camera'] == 'front' }}"
+        - condition: and
+          conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json['after']['label'] == 'person' }}"
+            - condition: template
+              value_template: "{{ trigger.payload_json['after']['camera'] == 'right' }}"
+        - condition: and
+          conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json['after']['label'] == 'person' }}"
+            - condition: template
+              value_template: "{{ trigger.payload_json['after']['camera'] == 'back' }}"
+        - condition: and
+          conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json['after']['label'] == 'person' }}"
+            - condition: template
+              value_template: "{{ trigger.payload_json['after']['camera'] == 'left' }}"
   action:
-    service: switch.turn_on
-    data:
-      entity_id: switch.front_right_security_lights
-
-- id: back_left_security_lights_on_if_human
-  alias: 'Back+Left Security Lights on if Human'
-  initial_state: 'true'
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.back_person_count
-      above: 0
-    - platform: numeric_state
-      entity_id: sensor.left_person_count
-      above: 0
-#    - platform: state
-#      entity_id: binary_sensor.human_back
-#      to: 'on'
-#    - platform: state
-#      entity_id: binary_sensor.human_left
-#      to: 'on'
-  condition:
-    condition: time
-    after: '21:00:00'
-    before: '7:00:00'
-  action:
-    service: switch.turn_on
-    data:
-      entity_id: switch.back_left_security_lights
+    - service: switch.turn_on
+      data:
+        entity_id: switch.front_right_security_lights
+    - service: switch.turn_on
+      data:
+        entity_id: switch.back_left_security_lights
+#
+#- id: back_left_security_lights_on_if_human
+#  alias: 'Back+Left Security Lights on if Human'
+#  initial_state: 'true'
+#  trigger:
+#    - platform: numeric_state
+#      entity_id: sensor.back_person_count
+#      above: 0
+#    - platform: numeric_state
+#      entity_id: sensor.left_person_count
+#      above: 0
+##    - platform: state
+##      entity_id: binary_sensor.human_back
+##      to: 'on'
+##    - platform: state
+##      entity_id: binary_sensor.human_left
+##      to: 'on'
+#  condition:
+#    condition: time
+#    after: '21:00:00'
+#    before: '7:00:00'
+#  action:
+#    service: switch.turn_on
+#    data:
+#      entity_id: switch.back_left_security_lights
 
 - id: alarm_is_on_alena_home
   alias: 'Alarm is on - Alena is home'

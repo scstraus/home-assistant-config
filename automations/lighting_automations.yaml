@@ -118,10 +118,9 @@
               target:
                 entity_id: light.fibaro_rgbw_controller_2_kitchen_led
               data:
-                rgbw_color: [62, 29, 0, 255]
-                brightness: 155
+                rgbw_color: [255, 184, 91, 255]
+                brightness: 121
                 transition: 1
-
 
 - id: kitchen_LED_turn_off
   alias: kitchen_LED_turn_off

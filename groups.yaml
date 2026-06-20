@@ -89,6 +89,15 @@
       - light.fibaro_dimmer_2_living_room_wall_sconce
       - light.fibaro_dimmer_2_living_room_spotlight
 
+  play_room_lights:
+    name: Play Room Lights
+    entities:
+      - light.fibaro_dimmer_2_dining_room_corner_ceiling
+      - light.fibaro_dimmer_2_dining_room_corner_pendant
+      - light.fibaro_dimmer_2_dining_room_couch_sconce
+      - light.fibaro_dimmer_2_dining_room_main_room
+      - light.fibaro_dimmer_2_dining_room_table_pendants
+
 
 #  default_view:
 #    view: yes

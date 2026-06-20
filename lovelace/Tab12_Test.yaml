@@ -30,16 +30,46 @@ cards:
 #    expanded-gap: 0.0em
 #    title-card:
 
-########## LIVING ROOM CARD #################
 
+  - type: entities
+    title: First Floor
+    entities: []
+    card_mod:
+      style: |
+        ha-card {
+          /* Remove the card container */
+          background: none !important;
+          background-color: transparent !important;
+          border: none !important;
+          box-shadow: none !important;
+        }
+        .card-header {
+          /* This centers the native HA header */
+          display: block !important;
+          text-align: center !important;
+
+          /* Matching the standard HA font properties from your 2nd photo */
+          font-size: 24px !important; 
+          font-weight: 400 !important;
+          color: var(--primary-text-color) !important;
+
+          /* Adjust padding to sit nicely in the background */
+          padding-bottom: 0px !important;
+        }
+        /* This removes the empty space where the list would usually be */
+        #states {
+          padding: 0px !important;
+        }
+
+########## LIVING ROOM CARD #################
 
   - type: custom:expander-card
     child-margin-top: 0px
     padding: 0
     clear: true
     title-card-button-overlay: true
-    title-card-clickable: true
-    expanded: true
+    title-card-clickable: false
+    expanded: false
     expanded-gap: 0.0em
     card_mod:
       style: |
@@ -160,6 +190,8 @@ cards:
               entity: media_player.owntone_output_living_room
               icon: mdi:volume-high
               name: Speakers
+              tap_action: 
+                action: toggle
               card_mod:
                 style: |
                   ha-card {
@@ -262,6 +294,38 @@ cards:
                   margin-left: auto !important;
                   margin-right: auto !important;
                 }
+
+
+          - type: custom:bubble-card
+            card_type: media-player
+            entity: media_player.philips936_tv
+            name: TV
+            sub_button:
+              - name: Pause Button
+                icon: mdi:pause
+                show_background: true
+                tap_action:
+                  action: call-service
+                  service: media_player.media_pause
+                  target:
+                    entity_id: media_player.philips936_tv
+            card_mod:
+              style: |
+                /* This removes the blue background from your sub-button */
+                .bubble-sub-button {
+                  background: none !important;
+                  --bubble-sub-button-background-color: transparent !important;
+                }
+                
+                ha-card {
+                  margin-top: 12px !important; 
+                  margin-bottom: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                  border: none !important;
+                }
+
 
           - type: custom:bubble-card
             card_type: climate
@@ -367,8 +431,8 @@ cards:
     padding: 0
     clear: true
     title-card-button-overlay: true
-    title-card-clickable: true
-    expanded: true
+    title-card-clickable: false
+    expanded: false
     expanded-gap: 0.0em
     card_mod:
       style: |
@@ -428,7 +492,7 @@ cards:
 
 
             - type: custom:mushroom-light-card
-              entity: group.living_room_lights
+              entity: group.kitchen_lights
               name: Lights
               icon: mdi:lightbulb-group
               card_mod:
@@ -483,13 +547,13 @@ cards:
                     {% endif %}
                   # Logic: Turn the icon Red when the door is open
                   icon_color: >
-                    {% if is_state('binary_sensor.back_door', 'on') %}
+                    {% if is_state('binary_sensor.windows_1st_floor_zone_2', 'on') %}
                       red
                     {% else %}
                       grey
                     {% endif %}
                   content: >
-                    {% if is_state('binary_sensor.back_door', 'on') %}
+                    {% if is_state('binary_sensor.windows_1st_floor_zone_2', 'on') %}
                       Open
                     {% else %}
                       Closed
@@ -499,12 +563,15 @@ cards:
                       ha-card {
                         box-shadow: none !important;
                         border: none !important;
+                        margin-top: -6px !important; 
                       }
 
             - type: custom:mushroom-entity-card
-              entity: media_player.owntone_output_living_room
+              entity: media_player.owntone_output_kitchen
               icon: mdi:volume-high
               name: Speakers
+              tap_action: 
+                action: toggle
               card_mod:
                 style: |
                   ha-card {
@@ -532,8 +599,8 @@ cards:
           - type: custom:bubble-card
             card_type: button
             button_type: slider
-            entity: media_player.owntone_output_living_room
-            name: Living Room Speakers
+            entity: media_player.owntone_output_kitchen
+            name: Kitchen Speakers
             icon: mdi:volume-high
             card_mod:
               style: |
@@ -548,8 +615,8 @@ cards:
           - type: custom:bubble-card
             card_type: button
             button_type: slider
-            entity: light.fibaro_dimmer_2_living_room_spotlight
-            name: Living Room Spotlights
+            entity: light.fibaro_dimmer_2_kitchen_ceiling
+            name: Kitchen Ceiling Lights
             icon: mdi:lightbulb-spot
             card_mod:
               style: |
@@ -566,8 +633,8 @@ cards:
           - type: custom:bubble-card
             card_type: button
             button_type: slider
-            entity: light.fibaro_rgbw_controller_2_living_room_led
-            name: Living Room LED Lights
+            entity: light.fibaro_rgbw_controller_2_kitchen_led
+            name: Kitchen Counter LED lights
             icon: mdi:led-variant-on
             card_mod:
               style: |
@@ -584,9 +651,9 @@ cards:
           - type: custom:bubble-card
             card_type: button
             button_type: slider
-            entity: light.fibaro_dimmer_2_living_room_wall_sconce
-            name: Living Room Wall Sconce
-            icon: mdi:wall-sconce
+            entity: light.fibaro_dimmer_2_kitchen_bar
+            name: Kitchen Bar Lights
+            icon: mdi:ceiling-light-multiple
             card_mod:
               style: |
                 ha-card {
@@ -617,7 +684,7 @@ cards:
                   margin-right: auto !important;
                 }
 
-##### Sample
+############## PLAY ROOM CARD ######################
 
 
 
@@ -626,8 +693,8 @@ cards:
     padding: 0
     clear: true
     title-card-button-overlay: true
-    title-card-clickable: true
-    expanded: true
+    title-card-clickable: false
+    expanded: false
     expanded-gap: 0.0em
     card_mod:
       style: |
@@ -658,8 +725,8 @@ cards:
           cards:
           
             - type: custom:mushroom-template-card
-              primary: Kitchen
-              icon: mdi:sofa
+              primary: Play Room
+              icon: mdi:soccer
               layout: vertical
               card_mod:
                 style:
@@ -684,22 +751,661 @@ cards:
                     }
                     :host {
                       --mush-icon-size: 70px;
-                      --primary-text-color: white;
+                      --primary-font-weight: 660;
+                    }
+
+            - type: vertical-stack
+              cards:
+
+
+                - type: custom:mushroom-light-card
+                  entity: group.play_room_lights
+                  name: Lights
+                  icon: mdi:lightbulb-group
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: none !important;
+                        border: none !important;
+                        box-shadow: none!important;
+                        margin-top: 0px !important; 
+                        /* Ensures the card doesn't cut off the text */
+                        width: 100% !important;
+                      }
+
+        # --- BOTTOM First row (Chips) ---
+
+        - type: custom:mushroom-chips-card
+          alignment: center
+          card_mod:
+            style: |
+              ha-card {
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                margin-top: -38px;
+                padding-left: -13px;
+                padding-bottom: 0px !important; 
+              }
+          chips:
+
+            - type: template
+              # Logic: If open, show the open door icon; otherwise, show closed.
+              icon: >
+                {% if is_state('binary_sensor.back_door', 'on') %}
+                  mdi:door-open
+                {% else %}
+                  mdi:door-closed
+                {% endif %}
+              # Logic: Turn the icon Red when the door is open
+              icon_color: >
+                {% if is_state('binary_sensor.back_door', 'on') %}
+                  red
+                {% else %}
+                  grey
+                {% endif %}
+              content: >
+                {% if is_state('binary_sensor.back_door', 'on') %}
+                  Open
+                {% else %}
+                  Closed
+                {% endif %}
+              card_mod:
+                style: |
+                  ha-card {
+                    box-shadow: none !important;
+                    border: none !important;
+                  }
+
+    cards:
+      - type: custom:vertical-stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: -12px !important; 
+              border: none !important;
+            }
+        cards:
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: light.fibaro_dimmer_2_dining_room_main_room
+            name: Play Room Main Lights
+            icon: mdi:lightbulb-spot
+            card_mod:
+              style: |
+                ha-card {
+                  margin-top: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: light.fibaro_dimmer_2_dining_room_corner_ceiling
+            name: Play Room Corner Ceiling Lights
+            icon: mdi:lightbulb-spot
+            card_mod:
+              style: |
+                ha-card {
+                  margin-top: 12px !important; 
+                  margin-bottom: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: light.fibaro_dimmer_2_dining_room_corner_pendant
+            name: Play Room Corner Pendant
+            icon: mdi:lightbulb-spot
+            card_mod:
+              style: |
+                ha-card {
+                  margin-top: 12px !important; 
+                  margin-bottom: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: light.fibaro_dimmer_2_dining_room_couch_sconce
+            name: Play Room Corner Couch Sconce
+            icon: mdi:lightbulb-spot
+            card_mod:
+              style: |
+                ha-card {
+                  margin-top: 12px !important; 
+                  margin-bottom: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: light.fibaro_dimmer_2_dining_room_table_pendants
+            name: Play Room Table Pendants
+            icon: mdi:lightbulb-spot
+            card_mod:
+              style: |
+                ha-card {
+                  margin-top: 12px !important; 
+                  margin-bottom: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+
+############## 1ST FLOOR BATHROOM CARD ######################
+
+
+
+  - type: custom:expander-card
+    child-margin-top: 0px
+    padding: 0
+    clear: true
+    title-card-button-overlay: true
+    title-card-clickable: false
+    expanded: false
+    expanded-gap: 0.0em
+    card_mod:
+      style: |
+        ha-card {
+          border: none !important;
+          box-shadow: none !important;
+          background: none !important;
+        }
+        /* This turns the ENTIRE background behind the bubbles grey */
+        .content {
+          border: none !important;
+          padding: 8px 0px !important; /* Adds top/bottom space, removes side space */
+        }
+        .title {
+          border: none !important;
+        }
+    title-card:
+      type: custom:vertical-stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            border-bottom: none !important;
+            box-shadow: none !important;
+          }
+      cards:
+        # --- TOP ROW ---
+        - type: horizontal-stack
+          cards:
+          
+            - type: custom:mushroom-template-card
+              primary: 1st Flr Bathroom
+              icon: mdi:shower
+              layout: vertical
+              card_mod:
+                style:
+                  mushroom-shape-icon$: |
+                    .shape {
+                      background: none !important;
+                      --shape-color: transparent !important;
+                    }
+                  .: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      /* This moves the entire card (icon + text) up by 6px */
+                      margin-top: -15px !important; 
+                    }
+                    mushroom-state-info {
+                      margin-top: -25px !important; /* Keeps the tight text-to-icon gap */
+                    }
+                    mushroom-state-item {
+                      gap: 0px !important;
+                    }
+                    :host {
+                      --mush-icon-size: 70px;
+                      --primary-font-weight: 660;
+                    }
+
+            - type: vertical-stack
+              cards:
+
+
+                - type: custom:mushroom-entity-card
+                  entity: media_player.owntone_output_bathroom_1st_floor
+                  icon: mdi:volume-high
+                  name: Speakers
+                  tap_action: 
+                    action: toggle
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: none !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        margin-top: 0px !important; 
+                        margin-bottom: 50 !important;
+                        /* Ensures the card doesn't cut off the text */
+                        width: 100% !important;
+                      }
+        # --- BOTTOM First row (Chips) ---
+
+        - type: custom:mushroom-chips-card
+          alignment: center
+          card_mod:
+            style: |
+              ha-card {
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                margin-top: -38px;
+                padding-left: 31px;
+                padding-bottom: 8px !important; 
+              }
+          chips:
+
+            - type: template
+              # Logic: If open, show the open door icon; otherwise, show closed.
+              icon: >
+                {% if is_state('binary_sensor.windows_1st_floor_zone_2', 'on') %}
+                  mdi:window-open-variant
+                {% else %}
+                  mdi:window-closed-variant
+                {% endif %}
+              # Logic: Turn the icon Red when the door is open
+              icon_color: >
+                {% if is_state('binary_sensor.windows_1st_floor_zone_2', 'on') %}
+                  red
+                {% else %}
+                  grey
+                {% endif %}
+              content: >
+                {% if is_state('binary_sensor.windows_1st_floor_zone_2', 'on') %}
+                  Open
+                {% else %}
+                  Closed
+                {% endif %}
+              card_mod:
+                style: |
+                  ha-card {
+                    box-shadow: none !important;
+                    border: none !important;
+                  }
+
+    cards:
+      - type: custom:vertical-stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: -12px !important; 
+              border: none !important;
+            }
+        cards:
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: media_player.owntone_output_bathroom_1st_floor
+            name: Bathroom Speakers
+            icon: mdi:volume-high
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+
+
+################## MASTER BATHROOM NEW CARD #########################
+
+
+  - type: custom:expander-card
+    child-margin-top: 0px
+    padding: 0
+    clear: true
+    title-card-button-overlay: true
+    title-card-clickable: false
+    expanded: false
+    expanded-gap: 0.0em
+    card_mod:
+      style: |
+        ha-card {
+          border: none !important;
+          box-shadow: none !important;
+          background: none !important;
+        }
+        .content {
+          border: none !important;
+          padding: 8px 0px !important; /* Adds top/bottom space, removes side space */
+        }
+        .title {
+          border: none !important;
+        }
+    title-card:
+      type: custom:vertical-stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            border-bottom: none !important;
+            box-shadow: none !important;
+          }
+      cards:
+        # --- TOP ROW ---
+        - type: horizontal-stack
+          cards:
+          
+            - type: custom:mushroom-template-card
+              primary: Master Bathroom
+              icon: mdi:shower
+              layout: vertical
+              card_mod:
+                style:
+                  mushroom-shape-icon$: |
+                    .shape {
+                      background: none !important;
+                    }
+                  .: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      /* This moves the entire card (icon + text) up by 6px */
+                      margin-top: -15px !important; 
+                    }
+                    mushroom-state-info {
+                      margin-top: -25px !important; /* Keeps the tight text-to-icon gap */
+                    }
+                    mushroom-state-item {
+                      gap: 0px !important;
+                    }
+                    :host {
+                      --mush-icon-size: 70px;
+                      --primary-font-weight: 660;
+                    }
+            
+            - type: vertical-stack
+              cards: 
+
+              - type: custom:mushroom-entity-card
+                entity: media_player.owntone_output_master_bath
+                icon: mdi:volume-high
+                name: Speakers
+                tap_action: 
+                  action: toggle
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      margin-top: 0px !important; 
+                      margin-bottom: -10px !important; 
+                      width: 100% !important;
+                    }
+
+              - type: custom:mushroom-entity-card
+                entity: switch.master_bath_towel_warmer
+                icon: mdi:heating-coil
+                name: Towel Warmer
+                tap_action: 
+                  action: toggle
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      margin-top: 0px !important; 
+                      margin-bottom: 50 !important;
+                      /* Ensures the card doesn't cut off the text */
+                      width: 100% !important;
+                    }
+
+
+              
+        # --- Opening cards (BUBBLE CARDS)
+    cards:
+      - type: custom:vertical-stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: -12px !important; 
+              border: none !important;
+            }
+        cards:
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: media_player.owntone_output_master_bath
+            name: Bathroom Speakers
+            icon: mdi:volume-high
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+############## MASTER CLOSET CARD ######################
+
+
+
+  - type: custom:expander-card
+    child-margin-top: 0px
+    padding: 0
+    clear: true
+    title-card-button-overlay: true
+    title-card-clickable: false
+    expanded: false
+    expanded-gap: 0.0em
+    card_mod:
+      style: |
+        ha-card {
+          border: none !important;
+          box-shadow: none !important;
+          background: none !important;
+        }
+        /* This turns the ENTIRE background behind the bubbles grey */
+        .content {
+          border: none !important;
+          padding: 8px 0px !important; /* Adds top/bottom space, removes side space */
+        }
+        .title {
+          border: none !important;
+        }
+    title-card:
+      type: custom:vertical-stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            border-bottom: none !important;
+            box-shadow: none !important;
+          }
+      cards:
+        # --- TOP ROW ---
+        - type: horizontal-stack
+          cards:
+          
+            - type: custom:mushroom-template-card
+              primary: Master Closet
+              icon: mdi:wardrobe-outline
+              layout: vertical
+              card_mod:
+                style:
+                  mushroom-shape-icon$: |
+                    .shape {
+                      background: none !important;
+                      --shape-color: transparent !important;
+                    }
+                  .: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      /* This moves the entire card (icon + text) up by 6px */
+                      margin-top: -15px !important; 
+                    }
+                    mushroom-state-info {
+                      margin-top: -25px !important; /* Keeps the tight text-to-icon gap */
+                    }
+                    mushroom-state-item {
+                      gap: 0px !important;
+                    }
+                    :host {
+                      --mush-icon-size: 70px;
+                      --primary-font-weight: 660;
+                    }
+
+            - type: vertical-stack
+              cards:
+
+
+                - type: custom:mushroom-entity-card
+                  entity: media_player.owntone_output_master_closet
+                  icon: mdi:volume-high
+                  name: Speakers
+                  tap_action: 
+                    action: toggle
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: none !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        margin-top: 9px !important; 
+                        margin-bottom: 50 !important;
+                        /* Ensures the card doesn't cut off the text */
+                        width: 100% !important;
+                      }
+
+
+    cards:
+      - type: custom:vertical-stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: -12px !important; 
+              border: none !important;
+            }
+        cards:
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: media_player.owntone_output_master_closet
+            name: Bathroom Speakers
+            icon: mdi:volume-high
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+
+
+################## MASTER BEDROOM NEW CARD #########################
+
+
+  - type: custom:expander-card
+    child-margin-top: 0px
+    padding: 0
+    clear: true
+    title-card-button-overlay: true
+    title-card-clickable: false
+    expanded: false
+    expanded-gap: 0.0em
+    card_mod:
+      style: |
+        ha-card {
+          border: none !important;
+          box-shadow: none !important;
+          background: none !important;
+        }
+        .content {
+          border: none !important;
+          padding: 8px 0px !important; /* Adds top/bottom space, removes side space */
+        }
+        .title {
+          border: none !important;
+        }
+    title-card:
+      type: custom:vertical-stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            border-bottom: none !important;
+            box-shadow: none !important;
+          }
+      cards:
+        # --- TOP ROW ---
+        - type: horizontal-stack
+          cards:
+          
+            - type: custom:mushroom-template-card
+              primary: Master Bedroom
+              icon: mdi:bed
+              layout: vertical
+              card_mod:
+                style:
+                  mushroom-shape-icon$: |
+                    .shape {
+                      background: none !important;
+                    }
+                  .: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      /* This moves the entire card (icon + text) up by 6px */
+                      margin-top: -15px !important; 
+                    }
+                    mushroom-state-info {
+                      margin-top: -25px !important; /* Keeps the tight text-to-icon gap */
+                    }
+                    mushroom-state-item {
+                      gap: 0px !important;
+                    }
+                    :host {
+                      --mush-icon-size: 70px;
                       --primary-font-weight: 660;
                     }
 
 
-            - type: custom:mushroom-light-card
-              entity: light.fibaro_dimmer_2_living_room_spotlight
-              name: Lights
+            - type: custom:mushroom-entity-card
+              entity: climate.master_bedroom_ac
+              name: AC
+              icon: mdi:snowflake
               card_mod:
                 style: |
                   ha-card {
                     background: none !important;
                     border: none !important;
                     box-shadow: none !important;
-                    margin-top: 8px !important; 
-                    /* Ensures the card doesn't cut off the text */
+                    margin-top: 0px !important; 
+                    margin-bottom: -10px !important; 
                     width: 100% !important;
                   }
 
@@ -718,62 +1424,89 @@ cards:
 #                    width: 100% !important;
 #                  }
 
-        # --- BOTTOM First row (Chips) ---
-        - type: custom:mushroom-chips-card
-          alignment: center
-          card_mod:
-            style: |
-              ha-card {
-                background: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                margin-top: -10px;
-                /* Add this line below */
-                padding-bottom: 12px !important; 
-              }
-          chips:
-            - type: template
-              icon: mdi:thermometer
-              icon_color: orange
-              content: "21.71 °C"
+        - type: horizontal-stack
+          cards:
+
+            - type: custom:mushroom-chips-card
+              alignment: center
               card_mod:
                 style: |
                   ha-card {
-                    box-shadow: none !important;
+                    background: none !important;
                     border: none !important;
+                    box-shadow: none !important;
+                    margin-top: -10px;
                   }
-            - type: template
-              icon: mdi:water-percent
-              icon_color: blue
-              content: "44.89 %"
+              chips:
+
+
+                - type: template
+                  # Logic: If open, show the open door icon; otherwise, show closed.
+                  icon: >
+                    {% if is_state('binary_sensor.ecolink_master_bedroom_left_window_window_door_is_open', 'on') %}
+                      mdi:window-open-variant
+                    {% else %}
+                      mdi:window-closed-variant
+                    {% endif %}
+                  # Logic: Turn the icon Red when the door is open
+                  icon_color: >
+                    {% if is_state('binary_sensor.ecolink_master_bedroom_left_window_window_door_is_open', 'on') %}
+                      red
+                    {% else %}
+                      grey
+                    {% endif %}
+                  card_mod:
+                    style: |
+                      ha-card {
+                        box-shadow: none !important;
+                        border: none !important;
+                        margin-top: -6px !important; 
+                      }
+                
+                - type: template
+                  # Logic: If open, show the open door icon; otherwise, show closed.
+                  icon: >
+                    {% if is_state('binary_sensor.ecolink_master_bedroom_right_window', 'on') %}
+                      mdi:window-open-variant
+                    {% else %}
+                      mdi:window-closed-variant
+                    {% endif %}
+                  # Logic: Turn the icon Red when the door is open
+                  icon_color: >
+                    {% if is_state('binary_sensor.ecolink_master_bedroom_right_window', 'on') %}
+                      red
+                    {% else %}
+                      grey
+                    {% endif %}
+                  card_mod:
+                    style: |
+                      ha-card {
+                        box-shadow: none !important;
+                        border: none !important;
+                        margin-top: -6px !important; 
+                      }
+
+            - type: custom:mushroom-entity-card
+              entity: media_player.owntone_output_master_bedroom
+              icon: mdi:volume-high
+              name: Speakers
+              tap_action: 
+                action: toggle
               card_mod:
                 style: |
                   ha-card {
-                    box-shadow: none !important;
+                    background: none !important;
                     border: none !important;
-                  }
-            - type: template
-              icon: mdi:gauge
-              icon_color: red
-              content: "974.3 hPa"
-              card_mod:
-                style: |
-                  ha-card {
                     box-shadow: none !important;
-                    border: none !important;
+                    margin-top: -36px !important; 
+                    margin-bottom: 50 !important;
+                    /* Ensures the card doesn't cut off the text */
+                    width: 100% !important;
                   }
 
 
-#            - type: template
-#              icon: mdi:flash
-#              icon_color: yellow
-#              content: "357 W"
-#              card_mod:
-#                style: |
-#                  ha-card {
-#                    box-shadow: none !important;
-#                    border: none !important;
-#                  }
+              
+        # --- Opening cards (BUBBLE CARDS)
     cards:
       - type: custom:vertical-stack-in-card
         card_mod:
@@ -787,9 +1520,9 @@ cards:
           - type: custom:bubble-card
             card_type: button
             button_type: slider
-            entity: light.fibaro_dimmer_2_living_room_spotlight
-            name: Living Room Spotlights
-            icon: mdi:lightbulb-spot
+            entity: media_player.owntone_output_master_bedroom
+            name: Bedroom Speakers
+            icon: mdi:volume-high
             card_mod:
               style: |
                 ha-card {
@@ -802,11 +1535,15 @@ cards:
 
 
           - type: custom:bubble-card
-            card_type: button
-            button_type: slider
-            entity: light.fibaro_dimmer_2_living_room_spotlight
-            name: Living Room Spotlights
-            icon: mdi:lightbulb-spot
+            card_type: climate
+            entity: climate.master_bedroom_ac
+            name: Air Conditioner
+            icon: mdi:air-conditioner
+            sub_button:
+              - name: Mode
+                select_attribute: hvac_modes
+                show_arrow: false
+                state_background: false
             card_mod:
               style: |
                 ha-card {
@@ -819,245 +1556,808 @@ cards:
                 }
 
 
-#      - type: custom:mushroom-light-card
-#        entity: light.fibaro_dimmer_2_living_room_spotlight
-#        name: Lights
-#        card_mod:
-#          style: |
-#            ha-card {
-#              border: none !important;
-#              box-shadow: none !important;
-#              /* This removes any potential top-border 'seam' */
-#              margin-top: -12px !important; 
-#            }
 
-#
-#
-#      - type: custom:bubble-card
-#        card_type: button
-#        button_type: slider
-#        entity: light.fibaro_dimmer_2_living_room_spotlight
-#        name: Living Room Spotlights
-#        icon: mdi:lightbulb-spot
-#        card_mod:
-#          style: |
-#            ha-card {
-#              /* Make the bubble card wide enough to cover the gaps */
-#              width: 100% !important;
-#              margin: 0px !important;
-#              background: transparent !important; 
-#              border: none !important;
-#              box-shadow: none !important;
-#            }
-#      - type: custom:bubble-card
-#        card_type: button
-#        button_type: slider
-#        entity: light.fibaro_dimmer_2_living_room_spotlight
-#        name: Living Room Spotlights
-#        icon: mdi:lightbulb-spot
-#        card_mod:
-#          style: |
-#            ha-card {
-#              /* Make the bubble card wide enough to cover the gaps */
-#              width: 100% !important;
-#              margin: 0px !important;
-#              background: transparent !important; 
-#              border: none !important;
-#              box-shadow: none !important;
-#            }
+############## MASTER BATHROOM CARD ######################
 
 
 
-#      - type: custom:bubble-card
-#        card_type: button
-#        button_type: slider
-#        entity: light.fibaro_dimmer_2_living_room_spotlight
-#        name: Living Room Spotlights
-#        icon: mdi:lightbulb-spot
-#        card_mod:
-#          style: |
-#            ha-card {
-#              border: none !important;
-#              box-shadow: none !important;
-#              /* This removes any potential top-border 'seam' */
-#              margin-top: -12px !important; 
-#            }
-#      - type: custom:bubble-card
-#        card_type: button
-#        button_type: slider
-#        entity: light.fibaro_dimmer_2_living_room_spotlight
-#        name: Living Room Spotlights
-#        icon: mdi:lightbulb-spot
+  - type: custom:expander-card
+    child-margin-top: 0px
+    padding: 0
+    clear: true
+    title-card-button-overlay: true
+    title-card-clickable: false
+    expanded: false
+    expanded-gap: 0.0em
+    card_mod:
+      style: |
+        ha-card {
+          border: none !important;
+          box-shadow: none !important;
+          background: none !important;
+        }
+        /* This turns the ENTIRE background behind the bubbles grey */
+        .content {
+          border: none !important;
+          padding: 8px 0px !important; /* Adds top/bottom space, removes side space */
+        }
+        .title {
+          border: none !important;
+        }
+    title-card:
+      type: custom:vertical-stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            border-bottom: none !important;
+            box-shadow: none !important;
+          }
+      cards:
+        # --- TOP ROW ---
+        - type: horizontal-stack
+          cards:
+          
+            - type: custom:mushroom-template-card
+              primary: Master Bathroom
+              icon: mdi:shower
+              layout: vertical
+              card_mod:
+                style:
+                  mushroom-shape-icon$: |
+                    .shape {
+                      background: none !important;
+                      --shape-color: transparent !important;
+                    }
+                  .: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      /* This moves the entire card (icon + text) up by 6px */
+                      margin-top: -15px !important; 
+                    }
+                    mushroom-state-info {
+                      margin-top: -25px !important; /* Keeps the tight text-to-icon gap */
+                    }
+                    mushroom-state-item {
+                      gap: 0px !important;
+                    }
+                    :host {
+                      --mush-icon-size: 70px;
+                      --primary-font-weight: 660;
+                    }
+
+            - type: vertical-stack
+              cards:
+
+
+                - type: custom:mushroom-entity-card
+                  entity: media_player.owntone_output_master_bath
+                  icon: mdi:volume-high
+                  name: Speakers
+                  tap_action: 
+                    action: toggle
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: none !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        margin-top: 9px !important; 
+                        margin-bottom: 50 !important;
+                        /* Ensures the card doesn't cut off the text */
+                        width: 100% !important;
+                      }
+
+
+    cards:
+      - type: custom:vertical-stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: -12px !important; 
+              border: none !important;
+            }
+        cards:
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: media_player.owntone_output_master_bath
+            name: Bathroom Speakers
+            icon: mdi:volume-high
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
 
 
 
-#
-#  - type: custom:expander-card
-#    child-margin-top: 0.6em
-#    padding: 0
-#    clear: true
-#    title-card-button-overlay: true
-#    title-card-clickable: true
-#    expanded: true
-#    title-card:
-#      type: custom:vertical-stack-in-card
-#      cards:
-#        # --- TOP ROW (Horizontal Layout) ---
-#        - type: horizontal-stack
-#          cards:
-#            - type: custom:mushroom-template-card
-#              primary: Living Room
-#              icon: mdi:sofa
-#              layout: vertical
-#              card_mod: &border_fix # A reusable anchor to kill borders
+
+################## SEBASTIANS BEDROOM NEW CARD #########################
+
+
+  - type: custom:expander-card
+    child-margin-top: 0px
+    padding: 0
+    clear: true
+    title-card-button-overlay: true
+    title-card-clickable: false
+    expanded: false
+    expanded-gap: 0.0em
+    card_mod:
+      style: |
+        ha-card {
+          border: none !important;
+          box-shadow: none !important;
+          background: none !important;
+        }
+        .content {
+          border: none !important;
+          padding: 8px 0px !important; /* Adds top/bottom space, removes side space */
+        }
+        .title {
+          border: none !important;
+        }
+    title-card:
+      type: custom:vertical-stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            border-bottom: none !important;
+            box-shadow: none !important;
+          }
+      cards:
+        # --- TOP ROW ---
+        - type: horizontal-stack
+          cards:
+          
+            - type: custom:mushroom-template-card
+              primary: Sebastian Bedroom
+              icon: mdi:bed
+              layout: vertical
+              card_mod:
+                style:
+                  mushroom-shape-icon$: |
+                    .shape {
+                      background: none !important;
+                    }
+                  .: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      /* This moves the entire card (icon + text) up by 6px */
+                      margin-top: -15px !important; 
+                    }
+                    mushroom-state-info {
+                      margin-top: -25px !important; /* Keeps the tight text-to-icon gap */
+                    }
+                    mushroom-state-item {
+                      gap: 0px !important;
+                    }
+                    :host {
+                      --mush-icon-size: 70px;
+                      --primary-font-weight: 660;
+                    }
+
+
+            - type: custom:mushroom-entity-card
+              entity: climate.sebastian_s_room_ac
+              name: AC
+              icon: mdi:snowflake
+              card_mod:
+                style: |
+                  ha-card {
+                    background: none !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    margin-top: 0px !important; 
+                    margin-bottom: -10px !important; 
+                    width: 100% !important;
+                  }
+
+
+#            - type: custom:mushroom-light-card
+#              entity: light.fibaro_dimmer_2_living_room_spotlight
+#              name: Lights
+#              card_mod:
 #                style: |
 #                  ha-card {
 #                    background: none !important;
 #                    border: none !important;
 #                    box-shadow: none !important;
+#                    margin-top: 8px !important; 
+#                    /* Ensures the card doesn't cut off the text */
+#                    width: 100% !important;
 #                  }
+
+        - type: horizontal-stack
+          cards:
+
+            - type: custom:mushroom-chips-card
+              alignment: center
+              card_mod:
+                style: |
+                  ha-card {
+                    background: none !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    margin-top: -10px;
+                  }
+              chips:
+
+
+                - type: template
+                  # Logic: If open, show the open door icon; otherwise, show closed.
+                  icon: >
+                    {% if is_state('binary_sensor.ecolink_sebastians_room_left_window_sensor_window_door_is_open', 'on') %}
+                      mdi:window-open-variant
+                    {% else %}
+                      mdi:window-closed-variant
+                    {% endif %}
+                  # Logic: Turn the icon Red when the door is open
+                  icon_color: >
+                    {% if is_state('binary_sensor.ecolink_sebastians_room_left_window_sensor_window_door_is_open', 'on') %}
+                      red
+                    {% else %}
+                      grey
+                    {% endif %}
+                  content: >
+                    {% if is_state('binary_sensor.ecolink_sebastians_room_left_window_sensor_window_door_is_open', 'on') %}
+                      Open
+                    {% else %}
+                      Closed
+                    {% endif %}
+                  card_mod:
+                    style: |
+                      ha-card {
+                        box-shadow: none !important;
+                        border: none !important;
+                        margin-top: -6px !important; 
+                      }
+
+            - type: custom:mushroom-entity-card
+              entity: media_player.owntone_output_sebastian_s_room
+              icon: mdi:volume-high
+              name: Speakers
+              tap_action: 
+                action: toggle
+              card_mod:
+                style: |
+                  ha-card {
+                    background: none !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    margin-top: -36px !important; 
+                    margin-bottom: 50 !important;
+                    /* Ensures the card doesn't cut off the text */
+                    width: 100% !important;
+                  }
+              
+        # --- Opening cards (BUBBLE CARDS)
+    cards:
+      - type: custom:vertical-stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: -12px !important; 
+              border: none !important;
+            }
+        cards:
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: media_player.owntone_output_sebastian_s_room
+            name: Bedroom Speakers
+            icon: mdi:volume-high
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+          - type: custom:bubble-card
+            card_type: climate
+            entity: climate.sebastian_s_room_ac
+            name: Air Conditioner
+            icon: mdi:air-conditioner
+            sub_button:
+              - name: Mode
+                select_attribute: hvac_modes
+                show_arrow: false
+                state_background: false
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 12px !important; 
+                  margin-bottom: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+
+
+
+################## SOPHIES BEDROOM NEW CARD #########################
+
+
+  - type: custom:expander-card
+    child-margin-top: 0px
+    padding: 0
+    clear: true
+    title-card-button-overlay: true
+    title-card-clickable: false
+    expanded: false
+    expanded-gap: 0.0em
+    card_mod:
+      style: |
+        ha-card {
+          border: none !important;
+          box-shadow: none !important;
+          background: none !important;
+        }
+        .content {
+          border: none !important;
+          padding: 8px 0px !important; /* Adds top/bottom space, removes side space */
+        }
+        .title {
+          border: none !important;
+        }
+    title-card:
+      type: custom:vertical-stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            border-bottom: none !important;
+            box-shadow: none !important;
+          }
+      cards:
+        # --- TOP ROW ---
+        - type: horizontal-stack
+          cards:
+          
+            - type: custom:mushroom-template-card
+              primary: "Sophie's Bedroom"
+              icon: mdi:bed
+              layout: vertical
+              card_mod:
+                style:
+                  mushroom-shape-icon$: |
+                    .shape {
+                      background: none !important;
+                    }
+                  .: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      /* This moves the entire card (icon + text) up by 6px */
+                      margin-top: -15px !important; 
+                    }
+                    mushroom-state-info {
+                      margin-top: -25px !important; /* Keeps the tight text-to-icon gap */
+                    }
+                    mushroom-state-item {
+                      gap: 0px !important;
+                    }
+                    :host {
+                      --mush-icon-size: 70px;
+                      --primary-font-weight: 660;
+                    }
+
+
+            - type: custom:mushroom-entity-card
+              entity: climate.sophie_s_room_ac
+              name: AC
+              icon: mdi:snowflake
+              card_mod:
+                style: |
+                  ha-card {
+                    background: none !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    margin-top: 0px !important; 
+                    margin-bottom: -10px !important; 
+                    width: 100% !important;
+                  }
+
+
 #            - type: custom:mushroom-light-card
 #              entity: light.fibaro_dimmer_2_living_room_spotlight
 #              name: Lights
-#              card_mod: *border_fix
-#
-#        # --- BOTTOM ROW (Chips) ---
-#        - type: custom:mushroom-chips-card
-#          alignment: center
-#          chips:
-#            - type: template
-#              icon: mdi:thermometer
-#              icon_color: orange
-#              content: "21.71 °C"
-#            - type: template
-#              icon: mdi:water-percent
-#              icon_color: blue
-#              content: "44.89 %"
-#            - type: template
-#              icon: mdi:gauge
-#              icon_color: red
-#              content: "974.3 hPa"
-#            - type: template
-#              icon: mdi:flash
-#              icon_color: yellow
-#              content: "357 W"
-#          card_mod: *border_fix
-
-      # This removes the border from the container holding the cards
-#      card_mod: *border_fix
-
-#cards:
-#  - type: entities
-#    entities:
-#      - entity: light.fibaro_dimmer_2_living_room_spotlight
-#
-#  - type: 'custom:vertical-stack-in-card'
-#    cards:
-#      - type: horizontal-stack
-#        cards:
-#          - type: custom:mushroom-template-card
-#            primary: Wohnzimmer
-#            icon: mdi:sofa
-#            icon_color: white
-#            layout: vertical
-#            tap_action:
-#              action: none
-#            card_mod:
-#              style: |
-#                ha-card {
-#                  border: none;
-#                  background: none;
-#                }
-#          - type: custom:mushroom-light-card
-#            entity: light.fibaro_dimmer_2_living_room_spotlight # Replace with your entity
-#            name: Lights
-#            use_light_color: true
-#            show_brightness_control: false
-#            card_mod:
-#              style: |
-#                ha-card {
-#                  border: none;
-#                  background: none;
-#                }
-#
-#
-#
-#  - type: vertical-stack
-#    in_card: true
-#    cards:
-#      - type: custom:expander-card
-#        title: " " # Leave blank as we'll use Mushroom for the title
-#        overlay_margin: 0
-#        child_margin: 0
-#        button_pos: tr # Top Right to match your image
-#        clear: true
-#        # This section is what shows when the card is CLOSED
-#        header:
-#          type: vertical-stack
-#          in_card: true
-#          cards:
-#            - type: horizontal-stack
-#              cards:
-#                - type: custom:mushroom-template-card
-#                  primary: Wohnzimmer
-#                  icon: mdi:sofa
-#                  icon_color: white
-#                  layout: vertical
-#                  tap_action:
-#                    action: none
-#                  card_mod:
-#                    style: |
-#                      ha-card {
-#                        border: none;
-#                        background: none;
-#                      }
-#                - type: custom:mushroom-light-card
-#                  entity: group.living_room_lights # Replace with your entity
-#                  name: Lights
-#                  use_light_color: true
-#                  show_brightness_control: false
-#                  card_mod:
-#                    style: |
-#                      ha-card {
-#                        border: none;
-#                        background: none;
-#                      }
-#
-#            # The Sensor Row (Mushroom Chips)
-#            - type: custom:mushroom-chips-card
-#              alignment: center
-#              chips:
-#                - type: template
-#                  icon: mdi:thermometer
-#                  icon_color: orange
-#                  content: "21.71 °C"
-#                - type: template
-#                  icon: mdi:water-percent
-#                  icon_color: blue
-#                  content: "44.89 %"
-#                - type: template
-#                  icon: mdi:gauge
-#                  icon_color: red
-#                  content: "974.3 hPa"
-#                - type: template
-#                  icon: mdi:flash
-#                  icon_color: yellow
-#                  content: "357 W"
 #              card_mod:
 #                style: |
 #                  ha-card {
-#                    border: none;
-#                    background: none;
-#                    padding-bottom: 10px;
+#                    background: none !important;
+#                    border: none !important;
+#                    box-shadow: none !important;
+#                    margin-top: 8px !important; 
+#                    /* Ensures the card doesn't cut off the text */
+#                    width: 100% !important;
 #                  }
-#
-#        # This section is what shows when the card is OPENED
-#        cards:
-#          - type: entities
-#            entities:
-#              - entity: group.living_room_lights
-#              - entity: media_player.living_room_tv
-#              - entity: climate.living_room
+
+        - type: horizontal-stack
+          cards:
+
+            - type: custom:mushroom-chips-card
+              alignment: center
+              card_mod:
+                style: |
+                  ha-card {
+                    background: none !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    margin-top: -10px;
+                  }
+              chips:
+
+
+                - type: template
+                  # Logic: If open, show the open door icon; otherwise, show closed.
+                  icon: >
+                    {% if is_state('binary_sensor.ecolink_sophies_room_cieling_window_window_door_is_open', 'on') %}
+                      mdi:window-open-variant
+                    {% else %}
+                      mdi:window-closed-variant
+                    {% endif %}
+                  # Logic: Turn the icon Red when the door is open
+                  icon_color: >
+                    {% if is_state('binary_sensor.ecolink_sophies_room_cieling_window_window_door_is_open', 'on') %}
+                      red
+                    {% else %}
+                      grey
+                    {% endif %}
+                  content: >
+                    {% if is_state('binary_sensor.ecolink_sophies_room_cieling_window_window_door_is_open', 'on') %}
+                      Open
+                    {% else %}
+                      Closed
+                    {% endif %}
+                  card_mod:
+                    style: |
+                      ha-card {
+                        box-shadow: none !important;
+                        border: none !important;
+                        margin-top: -6px !important; 
+                      }
+
+
+            - type: custom:mushroom-entity-card
+              entity: media_player.owntone_output_sophie_s_room
+              icon: mdi:volume-high
+              name: Speakers
+              tap_action: 
+                action: toggle
+              card_mod:
+                style: |
+                  ha-card {
+                    background: none !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    margin-top: -36px !important; 
+                    margin-bottom: 50 !important;
+                    /* Ensures the card doesn't cut off the text */
+                    width: 100% !important;
+                  }
+              
+        # --- Opening cards (BUBBLE CARDS)
+    cards:
+      - type: custom:vertical-stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: -12px !important; 
+              border: none !important;
+            }
+        cards:
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: media_player.owntone_output_sophie_s_room
+            name: Bedroom Speakers
+            icon: mdi:volume-high
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+          - type: custom:bubble-card
+            card_type: climate
+            entity: climate.sophie_s_room_ac
+            name: Air Conditioner
+            icon: mdi:air-conditioner
+            sub_button:
+              - name: Mode
+                select_attribute: hvac_modes
+                show_arrow: false
+                state_background: false
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 12px !important; 
+                  margin-bottom: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+
+
+
+
+
+
+
+
+
+############## GYM CARD ######################
+
+
+
+  - type: custom:expander-card
+    child-margin-top: 0px
+    padding: 0
+    clear: true
+    title-card-button-overlay: true
+    title-card-clickable: false
+    expanded: false
+    expanded-gap: 0.0em
+    card_mod:
+      style: |
+        ha-card {
+          border: none !important;
+          box-shadow: none !important;
+          background: none !important;
+        }
+        /* This turns the ENTIRE background behind the bubbles grey */
+        .content {
+          border: none !important;
+          padding: 8px 0px !important; /* Adds top/bottom space, removes side space */
+        }
+        .title {
+          border: none !important;
+        }
+    title-card:
+      type: custom:vertical-stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            border-bottom: none !important;
+            box-shadow: none !important;
+          }
+      cards:
+        # --- TOP ROW ---
+        - type: horizontal-stack
+          cards:
+          
+            - type: custom:mushroom-template-card
+              primary: Gym
+              icon: mdi:dumbbell
+              layout: vertical
+              card_mod:
+                style:
+                  mushroom-shape-icon$: |
+                    .shape {
+                      background: none !important;
+                      --shape-color: transparent !important;
+                    }
+                  .: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      /* This moves the entire card (icon + text) up by 6px */
+                      margin-top: -15px !important; 
+                    }
+                    mushroom-state-info {
+                      margin-top: -25px !important; /* Keeps the tight text-to-icon gap */
+                    }
+                    mushroom-state-item {
+                      gap: 0px !important;
+                    }
+                    :host {
+                      --mush-icon-size: 70px;
+                      --primary-font-weight: 660;
+                    }
+
+            - type: vertical-stack
+              cards:
+
+
+                - type: custom:mushroom-entity-card
+                  entity: media_player.owntone_output_gym
+                  icon: mdi:volume-high
+                  name: Speakers
+                  tap_action: 
+                    action: toggle
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: none !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        margin-top: 9px !important; 
+                        margin-bottom: 50 !important;
+                        /* Ensures the card doesn't cut off the text */
+                        width: 100% !important;
+                      }
+
+
+    cards:
+      - type: custom:vertical-stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: -12px !important; 
+              border: none !important;
+            }
+        cards:
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: media_player.owntone_output_gym
+            name: Gym Speakers
+            icon: mdi:volume-high
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+
+
+
+############## BACK YARD CARD ######################
+
+
+  - type: custom:expander-card
+    child-margin-top: 0px
+    padding: 0
+    clear: true
+    title-card-button-overlay: true
+    title-card-clickable: false
+    expanded: false
+    expanded-gap: 0.0em
+    card_mod:
+      style: |
+        ha-card {
+          border: none !important;
+          box-shadow: none !important;
+          background: none !important;
+        }
+        /* This turns the ENTIRE background behind the bubbles grey */
+        .content {
+          border: none !important;
+          padding: 8px 0px !important; /* Adds top/bottom space, removes side space */
+        }
+        .title {
+          border: none !important;
+        }
+    title-card:
+      type: custom:vertical-stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            border-bottom: none !important;
+            box-shadow: none !important;
+          }
+      cards:
+        # --- TOP ROW ---
+        - type: horizontal-stack
+          cards:
+          
+            - type: custom:mushroom-template-card
+              primary: Outside
+              icon: mdi:grass
+              layout: vertical
+              card_mod:
+                style:
+                  mushroom-shape-icon$: |
+                    .shape {
+                      background: none !important;
+                      --shape-color: transparent !important;
+                    }
+                  .: |
+                    ha-card {
+                      background: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                      /* This moves the entire card (icon + text) up by 6px */
+                      margin-top: -15px !important; 
+                    }
+                    mushroom-state-info {
+                      margin-top: -25px !important; /* Keeps the tight text-to-icon gap */
+                    }
+                    mushroom-state-item {
+                      gap: 0px !important;
+                    }
+                    :host {
+                      --mush-icon-size: 70px;
+                      --primary-font-weight: 660;
+                    }
+
+            - type: vertical-stack
+              cards:
+
+
+                - type: custom:mushroom-entity-card
+                  entity: media_player.owntone_output_backyard
+                  icon: mdi:volume-high
+                  name: Speakers
+                  tap_action: 
+                    action: toggle
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: none !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        margin-top: 9px !important; 
+                        margin-bottom: 50 !important;
+                        /* Ensures the card doesn't cut off the text */
+                        width: 100% !important;
+                      }
+
+
+    cards:
+      - type: custom:vertical-stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: -12px !important; 
+              border: none !important;
+            }
+        cards:
+
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: media_player.owntone_output_backyard
+            name: Back Yard Speakers
+            icon: mdi:volume-high
+            card_mod:
+              style: |
+                ha-card {
+                  /* This adds the space you're looking for */
+                  margin-top: 8px !important; 
+                  width: 96% !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+
+
+
+
+
+
+
+
 
 
   - type: entities
@@ -1251,6 +2551,8 @@ cards:
       precipitation_gauges:
         gauge_height: 34
         font_size: .85em
+
+
 
 
 

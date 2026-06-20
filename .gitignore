@@ -64,3 +64,8 @@ www/cam1
 www/cam2
 www/cam3
 www/cam4
+pyscript/train.py
+automations/training_automations.yaml
+imap_content.yaml
+pyscript/train-bravos.py
+pyscript_modules/bravo-scraper.py

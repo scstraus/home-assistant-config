@@ -184,6 +184,25 @@
 #          {% endif %}
 
 # Now bio odpad day is just even weeks on monday all year around
+
+
+  - platform: template
+    sensors:
+      bio_odpad_day:
+        friendly_name: "Take Bio Odpad Out"
+        value_template: >-
+          {% if (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+          and now().weekday() in (6,) %}
+            Today
+          {% elif (now().isocalendar()[1]/2)|round(0) != (now().isocalendar()[1]/2)  
+          and now().weekday() in (5,)  %}
+            Tomorrow
+          {% else %}
+            false
+          {% endif %}
+
+# Now bio odpad day is just even weeks on monday all year around
+# This one seems to have a mistake that it is every week other than even weeks.
   - platform: template
     sensors:
       bio_odpad_day:

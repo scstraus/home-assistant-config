@@ -21,22 +21,22 @@
       supported_color_modes:
       - rgbw
       color_mode: rgbw
-      brightness: 18
+      brightness: 8
       hs_color:
-      - 30.744
-      - 94.902
+      - 30.404
+      - 87.451
       rgb_color:
       - 255
-      - 137
-      - 13
+      - 145
+      - 32
       xy_color:
-      - 0.598
-      - 0.383
+      - 0.583
+      - 0.389
       rgbw_color:
       - 255
       - 130
       - 0
-      - 14
+      - 36
       friendly_name: 'Fibaro RGBW Controller 2 Living Room LED '
       supported_features: 32
       state: 'on'
@@ -44,7 +44,7 @@
       supported_color_modes:
       - brightness
       color_mode: brightness
-      brightness: 52
+      brightness: 36
       friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
       supported_features: 32
       state: 'on'
@@ -68,23 +68,23 @@
       supported_color_modes:
       - rgbw
       color_mode: rgbw
-      brightness: 5
+      brightness: 13
       hs_color:
-      - 9.158
-      - 85.586
+      - 9.123
+      - 67.059
       rgb_color:
-      - 222
-      - 61
-      - 32
+      - 255
+      - 110
+      - 84
       xy_color:
-      - 0.658
-      - 0.318
+      - 0.589
+      - 0.329
       rgbw_color:
-      - 222
-      - 33
+      - 255
+      - 39
       - 0
-      - 38
-      friendly_name: 'Fibaro RGBW Controller 2 Kitchen LED '
+      - 125
+      friendly_name: Kitchen Counter LED
       supported_features: 32
       state: 'on'
   icon: mdi:television
@@ -149,7 +149,7 @@
       supported_color_modes:
       - brightness
       color_mode: brightness
-      brightness: 52
+      brightness: 8
       friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
       supported_features: 32
       state: 'on'
@@ -181,7 +181,7 @@
       - 33
       - 0
       - 38
-      friendly_name: 'Fibaro RGBW Controller 2 Kitchen LED '
+      friendly_name: Kitchen Counter LED
       supported_features: 32
       state: 'on'
     light.fibaro_dimmer_2_kitchen_table:
@@ -214,11 +214,11 @@
     light.fibaro_dimmer_2_kitchen_bar:
       supported_color_modes:
       - brightness
-      color_mode:
-      brightness:
+      color_mode: brightness
+      brightness: 116
       friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
       supported_features: 32
-      state: 'off'
+      state: 'on'
     light.fibaro_dimmer_2_kitchen_ceiling:
       supported_color_modes:
       - brightness
@@ -231,22 +231,22 @@
       supported_color_modes:
       - rgbw
       color_mode: rgbw
-      brightness: 134
+      brightness: 15
       hs_color:
-      - 27.13
-      - 45.098
+      - 30.682
+      - 69.02
       rgb_color:
       - 255
-      - 192
-      - 140
+      - 169
+      - 79
       xy_color:
-      - 0.455
-      - 0.374
+      - 0.529
+      - 0.396
       rgbw_color:
-      - 209
-      - 95
-      - 0
       - 255
+      - 130
+      - 0
+      - 115
       friendly_name: 'Fibaro RGBW Controller 2 Living Room LED '
       supported_features: 32
       state: 'on'
@@ -256,19 +256,19 @@
       color_mode: rgbw
       brightness: 121
       hs_color:
-      - 27.13
-      - 45.098
+      - 38.78
+      - 32.157
       rgb_color:
       - 255
-      - 192
-      - 140
+      - 226
+      - 173
       xy_color:
-      - 0.455
-      - 0.374
+      - 0.399
+      - 0.381
       rgbw_color:
-      - 209
-      - 95
-      - 0
+      - 255
+      - 197
+      - 91
       - 255
       friendly_name: Kitchen Counter LED
       supported_features: 32
@@ -347,11 +347,21 @@
       friendly_name: Kitchen Counter LED
       supported_features: 32
       state: 'on'
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 185
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'on'
   icon: mdi:fridge-outline
   metadata:
     light.fibaro_dimmer_2_kitchen_ceiling:
       entity_only: true
     light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_bar:
       entity_only: true
 - id: '1774109366298'
   name: Kitchen 1
@@ -387,11 +397,21 @@
       friendly_name: Kitchen Counter LED
       supported_features: 32
       state: 'on'
+    light.fibaro_dimmer_2_kitchen_bar:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 80
+      friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
+      supported_features: 32
+      state: 'on'
   icon: mdi:fridge-outline
   metadata:
     light.fibaro_dimmer_2_kitchen_ceiling:
       entity_only: true
     light.fibaro_rgbw_controller_2_kitchen_led:
+      entity_only: true
+    light.fibaro_dimmer_2_kitchen_bar:
       entity_only: true
 - id: '1774109448979'
   name: Bar
@@ -399,11 +419,11 @@
     light.fibaro_dimmer_2_kitchen_bar:
       supported_color_modes:
       - brightness
-      color_mode:
-      brightness:
+      color_mode: brightness
+      brightness: 175
       friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
       supported_features: 32
-      state: 'off'
+      state: 'on'
   icon: mdi:ceiling-light
   metadata:
     light.fibaro_dimmer_2_kitchen_bar:
@@ -443,7 +463,7 @@
       supported_color_modes:
       - brightness
       color_mode: brightness
-      brightness: 13
+      brightness: 44
       friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
       supported_features: 32
       state: 'on'
@@ -702,11 +722,11 @@
     light.fibaro_dimmer_2_kitchen_bar:
       supported_color_modes:
       - brightness
-      color_mode:
-      brightness:
+      color_mode: brightness
+      brightness: 57
       friendly_name: 'Fibaro Dimmer 2 Kitchen Bar '
       supported_features: 32
-      state: 'off'
+      state: 'on'
     light.fibaro_dimmer_2_kitchen_ceiling:
       supported_color_modes:
       - brightness
@@ -729,20 +749,20 @@
       color_mode: rgbw
       brightness: 62
       hs_color:
-      - 37.912
-      - 71.373
+      - 18
+      - 28.986
       rgb_color:
-      - 255
-      - 188
-      - 73
+      - 69
+      - 55
+      - 49
       xy_color:
-      - 0.509
-      - 0.422
+      - 0.396
+      - 0.345
       rgbw_color:
-      - 255
-      - 184
-      - 63
-      - 14
+      - 31
+      - 11
+      - 2
+      - 69
       friendly_name: Kitchen Counter LED
       supported_features: 32
       state: 'on'
