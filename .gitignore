@@ -67,5 +67,6 @@ www/cam4
 pyscript/train.py
 automations/training_automations.yaml
 imap_content.yaml
-pyscript/train-bravos.py
+pyscript/train-bravo.py
 pyscript_modules/bravo-scraper.py
+pyscript/train_bravo_model.py
