@@ -102,7 +102,7 @@
               target:
                 entity_id: light.fibaro_rgbw_controller_2_kitchen_led
               data:
-                rgbw_color: [156, 156, 106, 255]
+                rgbw_color: [114, 156, 98, 255]
                 brightness: 255
                 transition: 1
 
@@ -365,3 +365,169 @@
     - service: scene.turn_on
       target:
         entity_id: scene.dining_room
+
+
+- id: "away_mode_scene_controller"
+  alias: "away_mode_scene_controller"
+  trigger:
+    # 1. Evening Scene: Sunset trigger
+    - platform: sun
+      event: sunset
+      id: "evt_sunset"
+
+    # 2. Evening Scene (Early Offset): 1 hr before sunset
+    - platform: sun
+      event: sunset
+      offset: "-01:00:00"
+      id: "evt_sunset_early"
+
+    # 3. TV Scene: 2 hours after sunset
+    - platform: sun
+      event: sunset
+      offset: "02:00:00"
+      id: "evt_tv_scene"
+
+    # 4. Night Scene: 12:00 AM
+    - platform: time
+      at: "00:00:00"
+      id: "evt_night_scene"
+
+    # 5. All Off Scene: 01:00 AM
+    - platform: time
+      at: "01:00:00"
+      id: "evt_all_off"
+
+  condition:
+    - condition: or
+      conditions:
+        # Condition 1: Away mode helper is ON
+        - condition: state
+          entity_id: input_boolean.away_mode
+          state: "on"
+        # Condition 2: Sean is Traveling AND Alarm is Armed Away
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: sensor.sean_location
+              state: "Traveling"
+            - condition: state
+              entity_id: alarm_control_panel.windows_and_garage_door
+              state: "armed_away"
+
+  action:
+    - choose:
+        # --- EVENING SCENE (±1 Hour from Sunset) ---
+        - conditions:
+            - condition: trigger
+              id: "evt_sunset_early"
+          sequence:
+            - if:
+                - condition: template
+                  value_template: "{{ [True, False] | random }}"
+              then:
+                - service: scene.turn_on
+                  target:
+                    entity_id: scene.evening
+
+        - conditions:
+            - condition: trigger
+              id: "evt_sunset"
+          sequence:
+            - delay: "{{ range(0, 3600) | random }}"
+            - service: scene.turn_on
+              target:
+                entity_id: scene.evening
+
+        # --- TV SCENE (2 to 3 Hours after Sunset) ---
+        - conditions:
+            - condition: trigger
+              id: "evt_tv_scene"
+          sequence:
+            - delay: "{{ range(0, 3600) | random }}"
+            - service: scene.turn_on
+              target:
+                entity_id: scene.tv
+
+        # --- NIGHT SCENE (12:00 AM to 01:00 AM) ---
+        - conditions:
+            - condition: trigger
+              id: "evt_night_scene"
+          sequence:
+            - delay: "{{ range(0, 3600) | random }}"
+            - service: scene.turn_on
+              target:
+                entity_id: scene.night
+
+        # --- ALL OFF SCENE (01:00 AM to 02:00 AM) ---
+        - conditions:
+            - condition: trigger
+              id: "evt_all_off"
+          sequence:
+            - delay: "{{ range(0, 3600) | random }}"
+            - service: scene.turn_on
+              target:
+                entity_id: scene.all_off
+
+- id: "away_mode_dining_room"
+  alias: "away_mode_dining_room"
+  trigger:
+    - platform: time_pattern
+      minutes: "/18"
+  condition:
+    # Time window: Between Sunset and 02:00 AM (fixed to correctly cross midnight)
+    - condition: or
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: time
+          before: "02:00:00"
+
+    # Presence Check: Away Mode is ON OR (Sean Traveling AND Alarm Armed Away)
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.away_mode
+          state: "on"
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: sensor.sean_location
+              state: "Traveling"
+            - condition: state
+              entity_id: alarm_control_panel.home_alarm
+              state: "armed_away"
+
+  action:
+    # 50% chance to act during this tick to keep execution unpredictable
+    - condition: template
+      value_template: "{{ [True, False] | random }}"
+
+    # Add a random initial delay between 0 and 17 minutes (0-1020 seconds)
+    - delay: "{{ range(0, 1021) | random }}"
+
+    # Pick a random dimmer, brightness (50-100%), and duration (30-60 mins)
+    - variables:
+        selected_light: >-
+          {{ [
+            'light.fibaro_dimmer_2_dining_room_couch_sconce',
+            'light.fibaro_dimmer_2_dining_room_table_pendants',
+            'light.fibaro_dimmer_2_dining_room_corner_ceiling',
+            'light.fibaro_dimmer_2_dining_room_main_room'
+          ] | random }}
+        random_brightness: "{{ range(50, 101) | random }}"
+        stay_on_duration: "{{ range(1800, 3601) | random }}"
+
+    # Turn on the randomly selected light
+    - service: light.turn_on
+      target:
+        entity_id: "{{ selected_light }}"
+      data:
+        brightness_pct: "{{ random_brightness }}"
+
+    # Wait 30 to 60 minutes
+    - delay: "{{ stay_on_duration }}"
+
+    # Turn the light back off
+    - service: light.turn_off
+      target:
+        entity_id: "{{ selected_light }}"

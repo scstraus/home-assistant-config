@@ -806,6 +806,9 @@ input_boolean:
   guest:
     name: Guest
     icon: mdi:home-import-outline
+  away_mode:
+    name: Away Mode
+    icon: mdi:home-export-outline
 
 
 #  auto_curtain_open_state:

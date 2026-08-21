@@ -1278,7 +1278,8 @@
     - choose:
         - conditions: 
             - condition: template
-              value_template: "{{ not is_state('device_tracker.sean_s_iphone_16', 'Traveling') }}"
+              value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
+
           sequence:
             - service: notify.mobile_app_sean_s_iphone_16
               data:
@@ -1482,7 +1483,7 @@
     - choose:
         - conditions: 
             - condition: template
-              value_template: "{{ not is_state('device_tracker.sean_s_iphone_16', 'Traveling') }}"
+              value_template: "{{ not is_state('sensor.sean_location', 'Traveling') }}"
           sequence:
             - service: notify.mobile_app_sean_s_iphone_16
               data:

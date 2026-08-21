@@ -2311,6 +2311,8 @@ cards:
               border: none !important;
             }
         title-card:
+
+
           type: custom:vertical-stack-in-card
           card_mod:
             style: |
@@ -2494,27 +2496,30 @@ cards:
                       }
 
             # --- Opening cards (BUBBLE CARDS)
+# --- Opening cards (BUBBLE CARDS)
         cards:
           - type: custom:vertical-stack-in-card
             card_mod:
               style: |
-                /* 1. Forces the column container to float over neighboring columns/cards */
-                :host {
+                /* 1. Elevate ONLY when actively interacting with a menu dropdown inside */
+                :host(:focus-within) {
                   z-index: 30 !important;
                   position: relative !important;
                 }
                 ha-card {
-                  /* Your original styles preserved */
+                  /* Your original layout styles perfectly preserved */
                   margin-top: -12px !important; 
                   border: none !important;
                   
-                  /* The fixes added seamlessly */
+                  /* Always allow the dropdown to spill out of boundaries */
                   overflow: visible !important;
+                }
+                /* Apply high layer priority only during active selection */
+                :host(:focus-within) ha-card {
                   z-index: 30 !important;
                   position: relative !important;
                 }
             cards:
-
               - type: custom:bubble-card
                 card_type: button
                 button_type: slider
@@ -3542,28 +3547,32 @@ cards:
 
 
             # --- Opening cards (BUBBLE CARDS)
+
+
         cards:
 
           - type: custom:vertical-stack-in-card
             card_mod:
               style: |
-                /* 1. Forces the column container to float over neighboring columns/cards */
-                :host {
+                /* 1. Elevate ONLY when actively interacting with a menu dropdown inside */
+                :host(:focus-within) {
                   z-index: 30 !important;
                   position: relative !important;
                 }
                 ha-card {
-                  /* Your original styles preserved */
+                  /* Your original layout styles perfectly preserved */
                   margin-top: -12px !important; 
                   border: none !important;
                   
-                  /* The fixes added seamlessly */
+                  /* Always allow the dropdown to spill out of boundaries */
                   overflow: visible !important;
+                }
+                /* Apply high layer priority only during active selection */
+                :host(:focus-within) ha-card {
                   z-index: 30 !important;
                   position: relative !important;
                 }
             cards:
-
               - type: custom:bubble-card
                 card_type: button
                 button_type: slider
@@ -4398,25 +4407,28 @@ cards:
             # --- Opening cards (BUBBLE CARDS)
         cards:
           - type: custom:vertical-stack-in-card
+
             card_mod:
               style: |
-                /* 1. Forces the column container to float over neighboring columns/cards */
-                :host {
+                /* 1. Elevate ONLY when actively interacting with a menu dropdown inside */
+                :host(:focus-within) {
                   z-index: 30 !important;
                   position: relative !important;
                 }
                 ha-card {
-                  /* Your original styles preserved */
+                  /* Your original layout styles perfectly preserved */
                   margin-top: -12px !important; 
                   border: none !important;
                   
-                  /* The fixes added seamlessly */
+                  /* Always allow the dropdown to spill out of boundaries */
                   overflow: visible !important;
+                }
+                /* Apply high layer priority only during active selection */
+                :host(:focus-within) ha-card {
                   z-index: 30 !important;
                   position: relative !important;
                 }
             cards:
-
               - type: custom:bubble-card
                 card_type: button
                 button_type: slider
@@ -4639,20 +4651,24 @@ cards:
         cards:
 
           - type: custom:vertical-stack-in-card
+
             card_mod:
               style: |
-                /* 1. Forces the column container to float over neighboring columns/cards */
-                :host {
+                /* 1. Elevate ONLY when actively interacting with a menu dropdown inside */
+                :host(:focus-within) {
                   z-index: 30 !important;
                   position: relative !important;
                 }
                 ha-card {
-                  /* Your original styles preserved */
+                  /* Your original layout styles perfectly preserved */
                   margin-top: -12px !important; 
                   border: none !important;
                   
-                  /* The fixes added seamlessly */
+                  /* Always allow the dropdown to spill out of boundaries */
                   overflow: visible !important;
+                }
+                /* Apply high layer priority only during active selection */
+                :host(:focus-within) ha-card {
                   z-index: 30 !important;
                   position: relative !important;
                 }

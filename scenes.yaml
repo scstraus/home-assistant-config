@@ -118,7 +118,7 @@
       supported_color_modes:
       - brightness
       color_mode: brightness
-      brightness: 23
+      brightness: 3
       friendly_name: 'Fibaro Dimmer 2 Living Room Wall Sconce '
       supported_features: 32
       state: 'on'

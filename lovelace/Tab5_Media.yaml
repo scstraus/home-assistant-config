@@ -31,3 +31,12 @@ cards:
         height: 30px
         fontsize: 1em
         location: bottom
+
+
+  - type: history-graph
+    title: 'TV Activity Graph'
+    hours_to_show: 24
+    refresh_interval: 60
+    entities:
+    - timer.tv_timer
+
